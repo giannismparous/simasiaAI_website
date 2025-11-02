@@ -1,0 +1,182 @@
+.impact-wrapper {
+    position: relative;
+    overflow: hidden;
+    background: var(--primary-warm);
+}
+
+.impact-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 200%;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            var(--primary-warm) 0%,
+            var(--primary-warm) 8%,
+            var(--secondary-warm) 15%,
+            var(--secondary-warm) 22%,
+            var(--accent-warm) 28%,
+            var(--accent-warm) 40%,
+            var(--secondary-warm) 47%,
+            var(--secondary-warm) 54%,
+            var(--primary-warm) 61%,
+            var(--primary-warm) 75%,
+            var(--secondary-warm) 82%,
+            var(--secondary-warm) 90%,
+            var(--accent-warm) 95%,
+            var(--accent-warm) 100%
+        );
+    z-index: 0;
+    will-change: transform;
+    animation: gradientScroll 40s linear infinite;
+}
+
+@keyframes gradientScroll {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.impact {
+    padding: 8rem 0;
+    color: var(--white);
+    position: relative;
+    min-height: 100%;
+}
+
+.impact::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 12s ease-in-out infinite;
+}
+
+.impact::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    right: -15%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+.impact .container {
+    position: relative;
+    z-index: 1;
+}
+
+.impact .section-title,
+.impact .section-subtitle {
+    color: var(--white);
+}
+
+.impact-content {
+    max-width: 900px;
+    margin: 3rem auto 0;
+}
+
+.collaboration-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 16px;
+    text-align: center;
+    position: relative;
+    min-height: 300px;
+}
+
+.collaboration-logo {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.poamsk-logo {
+    max-width: 220px;
+    max-height: 120px;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.collaboration-card:hover .poamsk-logo {
+    opacity: 1;
+}
+
+.collaboration-card h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.collaboration-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.collaboration-description strong {
+    color: var(--white);
+    font-weight: 700;
+}
+
+.collaboration-note {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .collaboration-card {
+        padding: 2rem;
+    }
+
+    .collaboration-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .collaboration-description {
+        font-size: 1.1rem;
+    }
+}
+

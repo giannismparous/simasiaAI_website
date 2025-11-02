@@ -1,0 +1,201 @@
+.target-audience {
+    padding: 8rem 0;
+    background: var(--white);
+    position: relative;
+}
+
+.target-audience::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(44, 122, 123, 0.2), transparent);
+}
+
+.audience-tabs {
+    display: flex;
+    gap: 1rem;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.audience-tab {
+    padding: 1rem 2rem;
+    background: var(--light-bg);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--dark-text);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.audience-tab:hover {
+    background: var(--gray-light);
+    border-color: var(--primary-warm);
+    transform: translateY(-2px);
+}
+
+.audience-tab.active {
+    background: var(--primary-warm);
+    color: var(--white);
+    border-color: var(--primary-warm);
+}
+
+.tab-content {
+    margin-top: 3rem;
+    min-height: 400px;
+}
+
+.audience-section {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.audience-section h3 {
+    font-size: 1.8rem;
+    color: var(--dark-text);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.audience-section h4 {
+    font-size: 1.4rem;
+    color: var(--primary-warm);
+    margin-bottom: 1rem;
+}
+
+.audience-section h5 {
+    font-size: 1.2rem;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.audience-section p {
+    color: var(--gray-medium);
+    line-height: 1.8;
+}
+
+.audience-section ul {
+    color: var(--gray-medium);
+    line-height: 1.8;
+}
+
+.audience-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.challenge-item {
+    padding: 1.5rem;
+    background: var(--light-bg);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-warm);
+}
+
+.solution-highlight {
+    background: var(--light-bg);
+    border-left: 4px solid var(--accent-warm);
+}
+
+.b2c-card {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 3rem;
+    background: linear-gradient(135deg, var(--primary-warm) 0%, var(--accent-warm) 100%);
+    border-radius: 16px;
+    color: var(--white);
+    text-align: center;
+}
+
+.b2c-card h3 {
+    color: var(--white);
+    font-size: 1.8rem;
+}
+
+.b2c-card p {
+    color: var(--white);
+    opacity: 0.95;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.b2c-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.b2c-buttons .btn {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid transparent;
+}
+
+.b2c-buttons .btn-primary {
+    background: var(--white);
+    color: var(--primary-warm);
+    border-color: var(--white);
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.b2c-buttons .btn-primary:hover {
+    background: var(--accent-warm);
+    border-color: var(--accent-warm);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(224, 120, 86, 0.35);
+}
+
+.b2c-buttons .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.b2c-buttons .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent-warm);
+    color: var(--accent-warm);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .audience-tabs {
+        flex-direction: column;
+    }
+
+    .audience-tab {
+        width: 100%;
+        text-align: center;
+    }
+
+    .b2c-card {
+        padding: 2rem;
+    }
+
+    .b2c-buttons {
+        flex-direction: column;
+    }
+
+    .b2c-buttons .btn {
+        width: 100%;
+    }
+}
+

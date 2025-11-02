@@ -1,0 +1,64 @@
+.about {
+    padding: 5rem 0;
+    background: var(--white);
+    position: relative;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gray-light), transparent);
+}
+
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-text {
+    text-align: center;
+}
+
+.about-tagline {
+    font-size: 2rem;
+    color: var(--primary-warm);
+    margin: 1rem 0 2rem;
+    font-weight: 600;
+    font-family: "Crimson Pro", Georgia, serif;
+    letter-spacing: -0.01em;
+}
+
+.about-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--gray-medium);
+    max-width: 750px;
+    margin: 0 auto;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+.about-text {
+    padding: 2rem;
+}
+
+.brand-name {
+    color: var(--primary-warm);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .about-tagline {
+        font-size: 1.5rem;
+    }
+
+    .about-text p {
+        font-size: 1.1rem;
+    }
+}
+

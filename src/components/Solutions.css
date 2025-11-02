@@ -1,0 +1,271 @@
+.solutions {
+    padding: 8rem 0;
+    background: var(--gray-light);
+    position: relative;
+}
+
+.solutions::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(44, 122, 123, 0.2), transparent);
+}
+
+.solutions-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.solution-category {
+    padding: 1rem 2rem;
+    background: var(--light-bg);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.solution-category.active {
+    background: var(--primary-warm);
+    color: var(--white);
+}
+
+.b2b-section,
+.b2c-section {
+    margin-top: 3rem;
+}
+
+.b2b-intro {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--gray-medium);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.subsection-title {
+    font-size: 2rem;
+    color: var(--dark-text);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.achievements-section {
+    margin-bottom: 5rem;
+    padding-bottom: 3rem;
+    border-bottom: 2px solid var(--gray-light);
+}
+
+.achievement-item {
+    padding: 2rem;
+    background: var(--light-bg);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-warm);
+}
+
+.achievement-item h4 {
+    font-size: 1.3rem;
+    color: var(--dark-text);
+    margin-bottom: 0.8rem;
+}
+
+.achievement-item p {
+    color: var(--gray-medium);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.achievement-tag {
+    display: inline-block;
+    color: var(--primary-warm);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.collaboration-process {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--gray-light);
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.process-step {
+    text-align: center;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 12px;
+}
+
+.process-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.process-step h4 {
+    font-size: 1.2rem;
+    color: var(--dark-text);
+    margin-bottom: 0.8rem;
+}
+
+.process-step p {
+    color: var(--gray-medium);
+    line-height: 1.7;
+}
+
+.process-note {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--gray-medium);
+    line-height: 1.8;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 8px;
+}
+
+.process-cta {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-warm);
+    margin-top: 1.5rem;
+}
+
+.b2c-section {
+    margin-top: 6rem;
+}
+
+.b2c-card {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
+    background: linear-gradient(135deg, var(--primary-warm) 0%, var(--accent-warm) 100%);
+    border-radius: 16px;
+    color: var(--white);
+    text-align: center;
+}
+
+.b2c-card .subsection-title {
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.b2c-card h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.b2c-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+.b2c-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.b2c-buttons .btn {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid transparent;
+}
+
+.b2c-buttons .btn > * {
+    position: relative;
+    z-index: 2;
+}
+
+.b2c-buttons .btn-primary {
+    background: var(--white);
+    color: var(--primary-warm);
+    border-color: var(--white);
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.b2c-buttons .btn-primary:hover {
+    background: var(--accent-warm);
+    border-color: var(--accent-warm);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(224, 120, 86, 0.35);
+}
+
+.b2c-buttons .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.b2c-buttons .btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 0;
+}
+
+.b2c-buttons .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent-warm);
+    color: var(--accent-warm);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+.b2c-buttons .btn-secondary:hover::before {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .process-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .b2c-card {
+        padding: 2rem;
+    }
+}
+

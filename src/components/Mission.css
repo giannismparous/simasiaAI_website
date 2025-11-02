@@ -1,0 +1,77 @@
+.mission {
+    padding: 8rem 0;
+    background: var(--white);
+    position: relative;
+}
+
+.mission::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gray-light), transparent);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: var(--dark-text);
+    font-weight: 600;
+    font-family: "Crimson Pro", Georgia, serif;
+    letter-spacing: -0.01em;
+}
+
+.mission-description {
+    text-align: center;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--gray-medium);
+    max-width: 900px;
+    margin: 2rem auto 0;
+    padding: 0 1rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .mission-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
