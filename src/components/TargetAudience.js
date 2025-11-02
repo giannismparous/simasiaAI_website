@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { WordReveal, SmoothReveal } from './TextReveal';
+import { SmoothReveal } from './TextReveal';
 import './TargetAudience.css';
 
 const TargetAudience = () => {
