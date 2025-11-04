@@ -1,0 +1,33 @@
+.bridge-animation-section {
+  padding: 4rem 0;
+  background: var(--white);
+}
+
+.bridge-animation-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.simasia-painter {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.simasia-painter svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .bridge-animation-section {
+    padding: 2rem 0;
+  }
+  
+  .bridge-animation-wrapper {
+    padding: 0 1rem;
+  }
+}
+

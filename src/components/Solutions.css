@@ -73,6 +73,12 @@
     background: var(--light-bg);
     border-radius: 12px;
     border-left: 4px solid var(--primary-warm);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.achievement-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 .achievement-item h4 {
@@ -114,6 +120,12 @@
     padding: 2rem;
     background: var(--white);
     border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process-step:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 .process-icon {
@@ -163,6 +175,13 @@
     border-radius: 16px;
     color: var(--white);
     text-align: center;
+    transition: all 0.3s ease;
+}
+
+.b2c-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .b2c-card .subsection-title {

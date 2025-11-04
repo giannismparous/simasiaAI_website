@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
+import { motion } from 'framer-motion';
 import './ContactForm.css';
 
 const ContactForm = () => {
@@ -13,6 +15,9 @@ const ContactForm = () => {
     attachment: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: null, message: '' });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -21,19 +26,56 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to a server
-    // For now, we'll use mailto as a fallback
-    const subject = encodeURIComponent(`Συνεργασία - ${formData.companyName || formData.organizationType}`);
-    const body = encodeURIComponent(`
-Όνομα: ${formData.firstName} ${formData.lastName}
-Email: ${formData.email}
-Φορέας/Ιδιότητα: ${formData.organizationType}
-Επωνυμία: ${formData.companyName || formData.organization}
-Περιγραφή: ${formData.description}
-    `);
-    window.location.href = `mailto:info@simasia.ai?subject=${subject}&body=${body}`;
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      // EmailJS configuration
+      // You'll need to set these up in your EmailJS account
+      const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'your_service_id';
+      const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'your_template_id';
+      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'your_public_key';
+
+      const templateParams = {
+        from_name: `${formData.firstName} ${formData.lastName}`,
+        from_email: formData.email,
+        organization_type: formData.organizationType,
+        company_name: formData.companyName || formData.organization || 'N/A',
+        message: formData.description || 'N/A',
+        attachment: formData.attachment || 'N/A',
+        to_email: 'simasia.ai@gmail.com',
+        reply_to: formData.email
+      };
+
+      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+
+      setSubmitStatus({ 
+        type: 'success', 
+        message: 'Το μήνυμά σας στάλθηκε επιτυχώς! Θα επικοινωνήσουμε μαζί σας σύντομα.' 
+      });
+      
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        organization: '',
+        organizationType: '',
+        companyName: '',
+        description: '',
+        attachment: ''
+      });
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setSubmitStatus({ 
+        type: 'error', 
+        message: 'Υπήρξε πρόβλημα με την αποστολή. Παρακαλώ δοκιμάστε ξανά ή επικοινωνήστε μαζί μας στο simasia.ai@gmail.com' 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -135,9 +177,36 @@ Email: ${formData.email}
             />
           </div>
 
-          <button type="submit" className="btn btn-primary submit-btn">
-            Αποστολή αιτήματος
+          <button 
+            type="submit" 
+            className="btn btn-primary submit-btn"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Αποστολή...' : 'Αποστολή αιτήματος'}
           </button>
+
+          {submitStatus.type && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`submit-message ${submitStatus.type === 'success' ? 'success' : 'error'}`}
+              style={{
+                marginTop: '1.5rem',
+                padding: '1rem',
+                borderRadius: '8px',
+                textAlign: 'center',
+                backgroundColor: submitStatus.type === 'success' 
+                  ? 'rgba(44, 122, 123, 0.1)' 
+                  : 'rgba(224, 120, 86, 0.1)',
+                color: submitStatus.type === 'success' 
+                  ? 'var(--primary-warm)' 
+                  : 'var(--accent-warm)',
+                fontWeight: '500'
+              }}
+            >
+              {submitStatus.message}
+            </motion.div>
+          )}
         </form>
       </div>
     </section>

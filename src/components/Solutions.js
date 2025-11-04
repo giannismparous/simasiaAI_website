@@ -23,19 +23,9 @@ const Solutions = () => {
       tag: "AI ethics"
     },
     {
-      title: "Προσβασιμότητα",
-      description: "Συμπερίληψη στην ψηφιακή επικοινωνία.",
+      title: "Προσβασιμότητα & Ενδυνάμωση",
+      description: "Συμπερίληψη στην ψηφιακή επικοινωνία με έγκυρη, ανθρώπινη καθοδήγηση.",
       tag: "Human Centered AI"
-    },
-    {
-      title: "Ενδυνάμωση κοινοτήτων",
-      description: "Έγκυρη, ανθρώπινη καθοδήγηση σε συνεργασία με ειδικούς (υγεία, εκπαίδευση, κοινωνικές υπηρεσίες, πολιτισμός κ.ά.).",
-      tag: "Domain Specific Solution"
-    },
-    {
-      title: "Ομαλή ενσωμάτωση",
-      description: "Στις υπάρχουσες ροές και συστήματα.",
-      tag: "Full Integration"
     }
   ];
 
@@ -147,18 +137,10 @@ const Solutions = () => {
               ))}
             </motion.div>
             <motion.p 
-              className="process-note"
-              initial={{ opacity: 0 }}
-              animate={isProcessInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 0.45, duration: 0.3 }}
-            >
-              Σήμερα εστιάζουμε σε συνομιλιακές λύσεις (chatbots). Η αρχιτεκτονική μας επιτρέπει να επεκταθούμε σε επιπλέον εφαρμογές AI, ανάλογα με την ανθρώπινη ανάγκη που συν-εξυπηρετούμε.
-            </motion.p>
-            <motion.p 
               className="process-cta"
               initial={{ opacity: 0 }}
               animate={isProcessInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 0.5, duration: 0.3 }}
+              transition={{ delay: 0.45, duration: 0.3 }}
             >
               Προτείνετέ μας τη λύση που οραματίζεστε να συνδημιουργήσουμε.
             </motion.p>

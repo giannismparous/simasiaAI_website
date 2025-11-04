@@ -107,3 +107,23 @@ html {
     transform: translateY(0);
 }
 
+/* Section title color transition on hover - base style */
+.section-title {
+    transition: color 0.6s ease-in-out;
+}
+
+/* When mouse is in section, change title to primary-warm color */
+section:hover .section-title {
+    color: var(--primary-warm) !important;
+}
+
+/* CTA section title hover effect */
+section.cta-section:hover h2 {
+    color: var(--primary-warm) !important;
+}
+
+/* Impact section - change from white to black on hover */
+section.impact-wrapper:hover .impact .section-title {
+    color: var(--dark-text) !important;
+}
+

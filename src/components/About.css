@@ -1,6 +1,11 @@
 .about {
-    padding: 5rem 0;
-    background: var(--white);
+    padding: 8rem 0 5rem 0;
+    background: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.about .container {
     position: relative;
 }
 
@@ -17,10 +22,62 @@
 .about-content {
     max-width: 900px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    background: transparent;
 }
 
 .about-text {
     text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.about-title-wrapper {
+    position: relative;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.about-network-visualization {
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 1200px;
+    max-width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.3;
+    overflow: visible;
+}
+
+.about-network-visualization .simasia-painter {
+    width: 100%;
+    margin: 0;
+}
+
+.about-network-visualization svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+
+.about-title-wrapper .section-title {
+    position: relative;
+    z-index: 2;
+}
+
+.about .simasia-painter {
+    width: 100%;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .about-tagline {
@@ -60,5 +117,9 @@
     .about-text p {
         font-size: 1.1rem;
     }
-}
 
+    .about-network-visualization {
+        max-width: 500px;
+        opacity: 0.2;
+    }
+}

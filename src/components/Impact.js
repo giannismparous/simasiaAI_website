@@ -10,7 +10,6 @@ const Impact = () => {
 
   return (
     <section className="impact-wrapper" id="impact">
-      <div className="impact-gradient"></div>
       <div className="impact" style={{ position: 'relative', zIndex: 1 }}>
       <div className="container">
         <motion.h2 
@@ -34,7 +33,7 @@ const Impact = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ y: -5, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
+            whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
           >
             <motion.h3
               initial={{ opacity: 0, y: 10 }}

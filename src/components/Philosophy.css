@@ -63,6 +63,12 @@
     color: var(--primary-warm);
 }
 
+.animated-dots {
+    display: inline-block;
+    min-width: 1.5em;
+    text-align: left;
+}
+
 @media (max-width: 768px) {
     .philosophy-quote {
         font-size: 1.2rem;

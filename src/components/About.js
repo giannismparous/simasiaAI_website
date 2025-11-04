@@ -25,9 +25,11 @@ const About = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.5, delay: 0, ease: [0.16, 1, 0.3, 1] }}
           >
-            <SmoothReveal delay={0.1} yOffset={15}>
-              <h2 className="section-title">Ποιοι είμαστε</h2>
-            </SmoothReveal>
+            <div className="about-title-wrapper">
+              <SmoothReveal delay={0.1} yOffset={15}>
+                <h2 className="section-title">Ποιοι είμαστε</h2>
+              </SmoothReveal>
+            </div>
             <p>
               <WordReveal 
                 text="Η /ΣimasiaAI/ αναπτύσσει καινοτόμες λύσεις τεχνητής νοημοσύνης που αναγνωρίζουν την ατομική ιδιαιτερότητα, ενισχύουν την συμπερίληψη, ενδυναμώνουν τον/την χρήστη/τρια, εκφράζουν το εταιρικό προφίλ με σεβασμό και ευθύνη." 

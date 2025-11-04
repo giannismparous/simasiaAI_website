@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,10 +25,11 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { href: "#about", text: "Ποιοι είμαστε" },
-    { href: "#mission", text: "Αποστολή" },
-    { href: "#products", text: "Τα προϊόντα μας" },
-    { href: "#contact", text: "Επικοινωνία" }
+    { path: "/", text: "Αρχική" },
+    { path: "/solutions", text: "Λύσεις" },
+    { path: "/education", text: "Εκπαίδευση" },
+    { path: "/about", text: "Ποιοι είμαστε" },
+    { path: "/book-demo", text: "Κλείστε ένα demo", isButton: true }
   ];
 
   return (
@@ -37,8 +40,8 @@ const Navbar = () => {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="container">
-        <a 
-          href="#home" 
+        <Link 
+          to="/" 
           className="logo" 
           onClick={closeMobileMenu}
         >
@@ -47,7 +50,7 @@ const Navbar = () => {
             alt="SimasiaAI Logo" 
             className="logo-img"
           />
-        </a>
+        </Link>
         <motion.button 
           className="mobile-menu-toggle"
           onClick={toggleMobileMenu}
@@ -59,14 +62,25 @@ const Navbar = () => {
           <span></span>
         </motion.button>
         <ul className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`}>
-          {navLinks.map((link, index) => (
-            <li key={link.href}>
-              <a 
-                href={link.href} 
-                onClick={closeMobileMenu}
-              >
-                {link.text}
-              </a>
+          {navLinks.map((link) => (
+            <li key={link.path}>
+              {link.isButton ? (
+                <Link 
+                  to={link.path} 
+                  onClick={closeMobileMenu}
+                  className={`nav-demo-button ${location.pathname === link.path ? 'active' : ''}`}
+                >
+                  {link.text}
+                </Link>
+              ) : (
+                <Link 
+                  to={link.path} 
+                  onClick={closeMobileMenu}
+                  className={location.pathname === link.path ? 'active' : ''}
+                >
+                  {link.text}
+                </Link>
+              )}
             </li>
           ))}
         </ul>

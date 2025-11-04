@@ -96,6 +96,13 @@
     background: var(--light-bg);
     border-radius: 8px;
     border-left: 4px solid var(--primary-warm);
+    transition: all 0.3s ease;
+}
+
+.challenge-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .solution-highlight {
@@ -111,6 +118,13 @@
     border-radius: 16px;
     color: var(--white);
     text-align: center;
+    transition: all 0.3s ease;
+}
+
+.b2c-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .b2c-card h3 {

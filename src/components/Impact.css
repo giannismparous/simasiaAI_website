@@ -4,44 +4,26 @@
     background: var(--primary-warm);
 }
 
-.impact-gradient {
+.impact-wrapper::after {
+    content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 200%;
-    background: 
-        repeating-linear-gradient(
-            90deg,
-            var(--primary-warm) 0%,
-            var(--primary-warm) 8%,
-            var(--secondary-warm) 15%,
-            var(--secondary-warm) 22%,
-            var(--accent-warm) 28%,
-            var(--accent-warm) 40%,
-            var(--secondary-warm) 47%,
-            var(--secondary-warm) 54%,
-            var(--primary-warm) 61%,
-            var(--primary-warm) 75%,
-            var(--secondary-warm) 82%,
-            var(--secondary-warm) 90%,
-            var(--accent-warm) 95%,
-            var(--accent-warm) 100%
-        );
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--primary-warm) 0%,
+        var(--secondary-warm) 20%,
+        var(--accent-warm) 35%,
+        var(--accent-warm) 65%,
+        var(--secondary-warm) 80%,
+        var(--primary-warm) 100%
+    );
+    animation: orangeSweep 6s ease-in-out infinite;
     z-index: 0;
-    will-change: transform;
-    animation: gradientScroll 40s linear infinite;
 }
 
-@keyframes gradientScroll {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(0%);
-    }
-}
 
 .impact {
     padding: 8rem 0;
@@ -76,17 +58,30 @@
 
 .impact .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .impact .section-title,
 .impact .section-subtitle {
     color: var(--white);
+    transition: color 0.6s ease-in-out;
 }
 
 .impact-content {
     max-width: 900px;
     margin: 3rem auto 0;
+}
+
+@keyframes orangeSweep {
+    0% {
+        left: -100%;
+    }
+    50% {
+        left: 100%;
+    }
+    100% {
+        left: 100%;
+    }
 }
 
 .collaboration-card {
@@ -97,6 +92,14 @@
     text-align: center;
     position: relative;
     min-height: 300px;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.collaboration-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .collaboration-logo {
@@ -118,8 +121,21 @@
     transition: opacity 0.3s ease;
 }
 
+.collaboration-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .collaboration-card:hover .poamsk-logo {
     opacity: 1;
+}
+
+.collaboration-card h3,
+.collaboration-card p,
+.collaboration-card .collaboration-logo {
+    position: relative;
+    z-index: 1;
 }
 
 .collaboration-card h3 {

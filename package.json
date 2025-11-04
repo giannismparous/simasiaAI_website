@@ -4,10 +4,12 @@
   "description": "SimasiaAI - Τεχνητή Νοημοσύνη που Συνδέει Ανθρώπους",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "framer-motion": "^10.16.16",
     "gradflow": "^0.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^7.9.5",
     "react-scripts": "5.0.1"
   },
   "scripts": {

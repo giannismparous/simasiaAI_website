@@ -1,0 +1,41 @@
+.cursor-follower {
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(44, 122, 123, 0.35) 0%, rgba(95, 179, 180, 0.25) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    mix-blend-mode: normal;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                height 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                background 0.4s ease,
+                opacity 1.2s ease-in-out;
+    will-change: transform, opacity;
+    filter: blur(1px);
+}
+
+.cursor-follower.hovering {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(224, 120, 95, 0.45) 0%, rgba(95, 179, 180, 0.3) 40%, transparent 70%);
+    filter: blur(2px);
+}
+
+/* Keep default cursor visible - bubble is just an enhancement */
+
+@media (max-width: 768px) {
+    .cursor-follower {
+        display: none !important;
+    }
+}
+
+/* Touch device detection */
+@media (hover: none) and (pointer: coarse) {
+    .cursor-follower {
+        display: none !important;
+    }
+}
+

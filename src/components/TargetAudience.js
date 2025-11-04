@@ -57,68 +57,15 @@ const TargetAudience = () => {
                 <h3>Αν είστε εταιρεία, οργανισμός ή επαγγελματίας που απευθύνεται σε ευάλωτες ομάδες</h3>
               </SmoothReveal>
               
-              <div className="vulnerable-list" style={{ marginTop: '2rem' }}>
+              <div className="solution-highlight" style={{ marginTop: '2rem', padding: '2rem', background: 'var(--light-bg)', borderRadius: '12px' }}>
                 <SmoothReveal delay={0.15} yOffset={10}>
-                  <p>Όπως:</p>
+                  <p style={{ marginBottom: '1rem' }}>
+                    Αντιμετωπίζετε προκλήσεις όπως έλλειψη ανθρώπινων πόρων για 24/7 υποστήριξη, δυσκολία στη διάδοση έγκυρης πληροφορίας, ή φόβος ότι το AI θα παραπληροφορήσει.
+                  </p>
+                  <p style={{ fontWeight: '600' }}>
+                    👉 Τα chatbots μας λειτουργούν 24/7, μιλούν πολλές γλώσσες, έχουν ελαχιστοποιημένες προκαταλήψεις, και εκπαιδεύονται με βάση τις δικές σας τεκμηριωμένες πηγές. Η SimasiaAI σας δίνει τον έλεγχο — το chatbot μιλά με τη φωνή και τη φιλοσοφία του ίδιου του φορέα.
+                  </p>
                 </SmoothReveal>
-                <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
-                  <li>Άτομα με αναπηρίες ή χρόνια νοσήματα</li>
-                  <li>Άτομα που υφίστανται σωματική ή ψυχική κακοποίηση (π.χ. γυναίκες, ΛΟΑΤΚΙ+, έφηβοι/ες σε δυσλειτουργικά περιβάλλοντα)</li>
-                  <li>Άτομα που υφίστανται ρατσισμό (πρόσφυγες/ισσες, μετανάστες/τριες) και δεν μιλούν ελληνικά</li>
-                  <li>Άτομα με ψυχικά νοσήματα</li>
-                  <li>Άτομα που αντιμετωπίζουν στιγμές κρίσης</li>
-                </ul>
-              </div>
-
-              <div className="challenges-section" style={{ marginTop: '2.5rem' }}>
-                <SmoothReveal delay={0.2} yOffset={10}>
-                  <h4>Αν αντιμετωπίζετε:</h4>
-                </SmoothReveal>
-                
-                <div className="challenge-item" style={{ marginTop: '1.5rem' }}>
-                  <h5>Δυσκολία στη διάδοση έγκυρης πληροφορίας</h5>
-                  <p>Η ενημέρωση των ευάλωτων ομάδων είναι συχνά διάσπαρτη, δύσκολη να ελεγχθεί και μπορεί να αλλοιώνεται από παραπληροφόρηση online.</p>
-                </div>
-
-                <div className="challenge-item" style={{ marginTop: '1.5rem' }}>
-                  <h5>Έλλειψη ανθρώπινων πόρων</h5>
-                  <p>Δεν υπάρχει πάντα διαθέσιμο προσωπικό να απαντά σε ερωτήσεις 24/7.</p>
-                </div>
-
-                <div className="challenge-item" style={{ marginTop: '1.5rem' }}>
-                  <h5>Δυσκολία συνέπειας στο μήνυμα</h5>
-                  <p>Διαφορετικοί άνθρωποι απαντούν διαφορετικά — το μήνυμα δεν είναι πάντα ομοιόμορφο.</p>
-                </div>
-
-                <div className="challenge-item" style={{ marginTop: '1.5rem' }}>
-                  <h5>Ανάγκη για εκπαίδευση και ευαισθητοποίηση</h5>
-                  <p>Χρειάζεστε συχνή επικαιροποίηση των πληροφοριών που παρέχετε και συνεχή εκπαίδευση τόσο των ευάλωτων ατόμων όσο και του περιβάλλοντός τους.</p>
-                </div>
-
-                <div className="challenge-item" style={{ marginTop: '1.5rem' }}>
-                  <h5>Έλλειψη εμπιστοσύνης στην τεχνητή νοημοσύνη</h5>
-                  <p>Φοβάστε ότι θα παραπληροφορήσει ή θα εκφράσει λάθος αξίες.</p>
-                </div>
-              </div>
-
-              <div className="solution-highlight" style={{ marginTop: '2.5rem', padding: '2rem', background: 'var(--light-bg)', borderRadius: '12px' }}>
-                <SmoothReveal delay={0.25} yOffset={10}>
-                  <h4>👉 Τα chatbots μας λειτουργούν 24/7 και:</h4>
-                </SmoothReveal>
-                <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
-                  <li>Προσφέρουν εναλλακτικές επιλογές πρόσβασης για άτομα με αναπηρίες</li>
-                  <li>Μιλούν όλες τις ευρωπαϊκές και μεγάλες γλώσσες (κινέζικα –μανδαρινικά και καντονέζικα–, ιαπωνικά, κορέατικα, αραβικά, χίντι, μπενγκάλι, πακιστάνι, φαρσί, σουαχίλι), καθώς και ελληνικές διαλέκτους όπως τα κυπριακά και τα ποντιακά</li>
-                  <li>Έχουν ελαχιστοποιημένες προκαταλήψεις φύλου, έμφυλων ταυτοτήτων, σεξουαλικότητας, σωματικής/ψυχικής κατάστασης, εθνικής καταγωγής, τάξης</li>
-                  <li>Εκπαιδεύονται με βάση τις δικές σας τεκμηριωμένες πηγές καθώς και τα κείμενα/εγχειρίδια/guidelines που θα μας υποδείξετε</li>
-                  <li>Απαντούν βασισμένα σε εγκεκριμένο περιεχόμενο, με συνέπεια και ασφάλεια</li>
-                  <li>Μπορούν να στείλουν τηλεφωνικό ή γραπτό μήνυμα σε πρόσωπο ή υπηρεσία που θα υποδειχθεί σε περίπτωση που εντοπιστεί κίνδυνος ζωής</li>
-                </ul>
-                <p style={{ marginTop: '1.5rem', fontWeight: '600' }}>
-                  👉 Η SimasiaAI σας δίνει τον έλεγχο — το chatbot μιλά με τη φωνή και τη φιλοσοφία του ίδιου του φορέα.
-                </p>
-                <p style={{ marginTop: '1rem', fontStyle: 'italic' }}>
-                  Δώστε φωνή στη γνώση σας - ενδυναμώστε το κοινό σας
-                </p>
               </div>
             </div>
           </motion.div>
@@ -139,67 +86,20 @@ const TargetAudience = () => {
                 <h3>Αν είστε επιχείρηση με επικοινωνία και υποστήριξη πελατών</h3>
               </SmoothReveal>
               
-              <p style={{ marginTop: '1rem', fontStyle: 'italic' }}>
+              <p style={{ marginTop: '1rem', fontStyle: 'italic', marginBottom: '1.5rem' }}>
                 (Tourism, E-shops, Real Estate, Travel Agencies, Museums, Cultural Centers, Restaurants, Tech Companies)
               </p>
 
-              <div className="challenges-section" style={{ marginTop: '2rem' }}>
+              <div className="solution-highlight" style={{ padding: '2rem', background: 'var(--light-bg)', borderRadius: '12px' }}>
                 <SmoothReveal delay={0.15} yOffset={10}>
-                  <h4>Προκλήσεις:</h4>
+                  <p style={{ marginBottom: '1rem' }}>
+                    Αντιμετωπίζετε προκλήσεις όπως υψηλό κόστος customer support, απώλεια brand consistency, ή φόβος απώλειας ελέγχου της πληροφορίας.
+                  </p>
+                  <p style={{ fontWeight: '600' }}>
+                    👉 Το chatbot της SimasiaAI απαντά άμεσα 24/7, διασφαλίζει ενιαίο ύφος και γλώσσα, και σας δίνει πλήρη έλεγχο πάνω στο περιεχόμενο. Μετατρέψτε τη γνώση σας σε έξυπνη επικοινωνία.
+                  </p>
                 </SmoothReveal>
-                
-                <div className="challenge-item" style={{ marginTop: '1.5rem' }}>
-                  <h5>Πίεση για άμεση και συνεχή εξυπηρέτηση</h5>
-                  <p>Οι πελάτες θέλουν απαντήσεις τώρα, σε κάθε γλώσσα και οποιαδήποτε ώρα.</p>
-                  <p style={{ marginTop: '0.5rem' }}>
-                    👉 Το chatbot της SimasiaAI απαντά άμεσα, 24/7, σε όλες τις ευρωπαϊκές και μεγάλες γλώσσες, καθώς και ελληνικές διαλέκτους.
-                  </p>
-                </div>
-
-                <div className="challenge-item" style={{ marginTop: '1.5rem' }}>
-                  <h5>Υψηλό κόστος ανθρώπινου customer support</h5>
-                  <p>Οι επιχειρήσεις επενδύουν σε προσωπικό για ερωτήσεις ρουτίνας.</p>
-                  <p style={{ marginTop: '0.5rem' }}>
-                    👉 Με το chatbot, μειώνεται το κόστος χωρίς να χάνεται η ποιότητα ή η φωνή του brand.
-                  </p>
-                </div>
-
-                <div className="challenge-item" style={{ marginTop: '1.5rem' }}>
-                  <h5>Απώλεια brand consistency</h5>
-                  <p>Οι διαφορετικοί υπάλληλοι απαντούν με διαφορετικό ύφος ή πληροφορίες.</p>
-                  <p style={{ marginTop: '0.5rem' }}>
-                    👉 Η SimasiaAI διασφαλίζει ενιαίο ύφος, γλώσσα και πολιτική επικοινωνίας.
-                  </p>
-                </div>
-
-                <div className="challenge-item" style={{ marginTop: '1.5rem' }}>
-                  <h5>Πολύπλοκη πληροφόρηση ή προϊόντα</h5>
-                  <p>Τουριστικά πακέτα, τεχνολογικά προϊόντα ή υπηρεσίες έχουν πολλές λεπτομέρειες.</p>
-                  <p style={{ marginTop: '0.5rem' }}>
-                    👉 Το chatbot βασίζεται στη γνώση της επιχείρησης και παρέχει ακριβείς απαντήσεις. Εκπαιδεύεται με βάση τη στρατηγική marketing της εταιρείας.
-                  </p>
-                </div>
-
-                <div className="challenge-item" style={{ marginTop: '1.5rem' }}>
-                  <h5>Ανάγκη για συνεχή παρουσία & engagement</h5>
-                  <p>Θέλουν να "είναι εκεί" για τον πελάτη τους, ακόμα κι όταν δεν είναι online.</p>
-                  <p style={{ marginTop: '0.5rem' }}>
-                    👉 Η SimasiaAI προσφέρει συνεχή, αξιόπιστη παρουσία που χτίζει εμπιστοσύνη. Εντοπίζει την κατάλληλη στιγμή στον διάλογο για να αναζητήσει μια θετική κριτική.
-                  </p>
-                </div>
-
-                <div className="challenge-item" style={{ marginTop: '1.5rem' }}>
-                  <h5>Φόβος απώλειας του ελέγχου της πληροφορίας</h5>
-                  <p>Οι επιχειρήσεις δεν θέλουν ένα chatbot που "απαντά ό,τι να 'ναι".</p>
-                  <p style={{ marginTop: '0.5rem' }}>
-                    👉 Η SimasiaAI τους δίνει πλήρη έλεγχο πάνω στο περιεχόμενο και τη φωνή του AI.
-                  </p>
-                </div>
               </div>
-
-              <p style={{ marginTop: '2rem', fontWeight: '600', textAlign: 'center' }}>
-                👉 Μετατρέψτε τη γνώση σας σε έξυπνη επικοινωνία. Κλείστε τώρα τη δική σας παρουσίαση.
-              </p>
             </div>
           </motion.div>
         )}
@@ -224,7 +124,7 @@ const TargetAudience = () => {
                   <h4 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>Hammer</h4>
                 </SmoothReveal>
                 <p>
-                  Ολιστικές λύσεις για το γραφείο: Το Hammer συγκεντρώνει σε μια εφαρμογή επιμελητή κειμένου, μεταφραστή, δημιουργό QR code, μετατροπέα αρχείων και φωτογραφιών, σύνοψη βιογραφικού.
+                  Ολιστικές λύσεις για το γραφείο: επιμελητής κειμένου, μεταφραστής, δημιουργός QR code, μετατροπέας αρχείων και φωτογραφιών, σύνοψη βιογραφικού.
                 </p>
               </div>
             </div>

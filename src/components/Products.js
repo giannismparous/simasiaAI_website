@@ -23,12 +23,21 @@ const Products = () => {
     {
       title: "Ολιστικές λύσεις για το γραφείο",
       subtitle: "Hammer",
-      description: "Το Hammer συγκεντρώνει σε μια εφαρμογή επιμελητή κειμένου, μεταφραστή, δημιουργό QR code, μετατροπέα αρχείων και φωτογραφιών, σύνοψη βιογραφικού"
+      features: [
+        "Επιμελητής κειμένου για άμεση διόρθωση και βελτίωση",
+        "Μεταφραστής πολλαπλών γλωσσών",
+        "Δημιουργός QR codes και μετατροπέας αρχείων",
+        "Σύνοψη βιογραφικού για αποτελεσματική προβολή"
+      ]
     },
     {
       title: "Εκπαιδευτικός βοηθός",
       subtitle: "Ο Φροντιστηριάρχης",
-      description: "Εξειδικευμένη πλατφόρμα υποστήριξης εκπαιδευτικών και μαθητών"
+      features: [
+        "Δημιουργία αξιολογήσεων για όλα τα μαθήματα και τάξεις",
+        "Προσαρμογή δυσκολίας ανά μαθητή/τρια",
+        "Αυτόματη διόρθωση με ανέβασμα φωτογραφίας ή PDF διαγωνίσματος"
+      ]
     }
   ];
 
@@ -53,6 +62,7 @@ const Products = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
+                whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
               >
                 <SmoothReveal delay={0.25 + (index * 0.1)} yOffset={10}>
                   <h3>{product.title}</h3>
@@ -62,11 +72,7 @@ const Products = () => {
                     <h4 className="product-subtitle">{product.subtitle}</h4>
                   </SmoothReveal>
                 )}
-                {product.description ? (
-                  <p>
-                    <WordReveal text={product.description} delay={0.35 + (index * 0.1)} duration={0.25} />
-                  </p>
-                ) : (
+                {product.features && (
                   <ul className="product-features">
                     {product.features.map((feature, fIndex) => (
                       <li key={fIndex}>
