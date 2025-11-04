@@ -3,7 +3,6 @@ import './Mission.css';
 
 const BridgeSection = () => {
   const ref = useRef(null);
-  const wrapperRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const timersRef = useRef([]);
 

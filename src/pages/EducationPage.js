@@ -8,7 +8,6 @@ import '../components/Mission.css';
 
 const EducationPage = () => {
   const ref = useRef(null);
-  const wrapperRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const isInView = useInView(ref, { once: true, margin: "200px" });
 
