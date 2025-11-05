@@ -52,32 +52,51 @@ const Philosophy = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
+          <SmoothReveal delay={0.15} yOffset={10}>
+            <h3 className="section-subtitle" style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--primary-warm)' }}>Σκοπός</h3>
+          </SmoothReveal>
           <p className="philosophy-quote">
             <WordReveal 
-              text="Στο ερώτημα «Ο άνθρωπος για την Τεχνητή Νοημοσύνη» ή «Η Τεχνητή Νοημοσύνη για τον Άνθρωπο», απαντάμε με υπευθυνότητα: Η Τεχνητή Νοημοσύνη για τον Άνθρωπο."
-              delay={0.15}
+              text="Αναπτύσσουμε συστήματα ΤΝ που κατανοούν, επιδεικνύουν ενσυναίσθηση και επικοινωνούν φυσικά, πάντα με επίκεντρο τον Άνθρωπο, για να αμβλύνουμε ανισότητες, να ενισχύσουμε τη συμπερίληψη και να βελτιώσουμε την καθημερινότητα."
+              delay={0.2}
               duration={0.25}
             />
           </p>
+          <SmoothReveal delay={0.3} yOffset={10}>
+            <h3 className="section-subtitle" style={{ fontSize: '1.5rem', marginTop: '2.5rem', marginBottom: '1.5rem', color: 'var(--primary-warm)' }}>Φιλοσοφία</h3>
+          </SmoothReveal>
+          <p className="philosophy-quote">
+            <WordReveal 
+              text="Στο δίλημμα «Ο άνθρωπος για την ΤΝ ή η ΤΝ για τον άνθρωπο;» απαντάμε καθαρά: Η ΤΝ για τον Άνθρωπο."
+              delay={0.35}
+              duration={0.25}
+            />
+          </p>
+          <SmoothReveal delay={0.45} yOffset={10}>
+            <h3 className="section-subtitle" style={{ fontSize: '1.5rem', marginTop: '2.5rem', marginBottom: '1.5rem', color: 'var(--primary-warm)' }}>Όραμα</h3>
+          </SmoothReveal>
+          <p className="philosophy-quote">
+            <WordReveal 
+              text="Μια πραγματικότητα όπου η ΤΝ υπηρετεί με ευθύνη τις ανθρώπινες ανάγκες και χτίζει γέφυρες κατανόησης."
+              delay={0.5}
+              duration={0.25}
+            />
+          </p>
+          <SmoothReveal delay={0.6} yOffset={10}>
+            <h3 className="section-subtitle" style={{ fontSize: '1.5rem', marginTop: '2.5rem', marginBottom: '1.5rem', color: 'var(--primary-warm)' }}>Τι κάνουμε</h3>
+          </SmoothReveal>
           <div className="philosophy-text">
             <p>
               <WordReveal 
-                text="Ερχόμαστε σε επαφή με τις σύγχρονες ανάγκες και, σε συνεργασία με ειδικούς στο κάθε πεδίο (φορείς, επιχειρήσεις, οργανισμούς), αναπτύσσουμε βιώσιμες λύσεις AI με πραγματικό αντίκτυπο στο κοινωνικό σύνολο και με σεβασμό στην ανθρώπινη επικοινωνία."
-                delay={0.25}
+                text="Συνδιαμορφώνουμε με οργανισμούς λύσεις ΤΝ με πραγματικό κοινωνικό αντίκτυπο και σεβασμό στην ανθρώπινη επικοινωνία."
+                delay={0.65}
                 duration={0.25}
               />
             </p>
-            <p>
+            <p style={{ marginTop: '1.5rem' }}>
               <WordReveal 
-                text="Σχεδιάζουμε ολιστικές λύσεις με κέντρο τον άνθρωπο και την κοινότητα, στην υγεία, την εκπαίδευση, την πολιτισμική διαμεσολάβηση και όπου αλλού μπορούμε να στηρίξουμε την ανθρώπινη ανάγκη μέσω της Τεχνητής Νοημοσύνης."
-                delay={0.35}
-                duration={0.25}
-              />
-            </p>
-            <p className="philosophy-goal">
-              <WordReveal 
-                text="Στόχος μας: να αμβλύνουμε ανισότητες, να ενισχύσουμε τη συμπερίληψη και να βελτιώσουμε την καθημερινή ζωή."
-                delay={0.45}
+                text="Σχεδιάζουμε ολιστικές, προσβάσιμες λύσεις για υγεία, εκπαίδευση, πολιτισμική διαμεσολάβηση και άλλους τομείς όπου η ΤΝ μπορεί να στηρίξει την ανθρώπινη ανάγκη."
+                delay={0.75}
                 duration={0.25}
               />
             </p>

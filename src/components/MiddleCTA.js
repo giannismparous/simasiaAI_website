@@ -2,15 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { SmoothReveal } from './TextReveal';
+import { Link } from 'react-router-dom';
+import { WordReveal, SmoothReveal } from './TextReveal';
 import './CTA.css';
 
-const CTA = () => {
+const MiddleCTA = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "200px" });
 
   return (
-    <section className="cta-section">
+    <section className="cta-section middle-cta">
       <div className="container">
         <motion.div 
           ref={ref}
@@ -25,24 +26,18 @@ const CTA = () => {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.5, delay: 0 }}
           >
-            <SmoothReveal delay={0.1} yOffset={10}>
-              <h2>Ζητήστε πρόταση συνεργασίας</h2>
-            </SmoothReveal>
             <motion.div 
               className="cta-buttons"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <motion.a 
-                href="#contact" 
+              <Link 
+                to="/solutions" 
                 className="btn btn-primary"
-                whileHover={{ scale: 1.03, y: -4 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                Ζητήστε πρόταση συνεργασίας
-              </motion.a>
+                Δείτε πώς συνεργαζόμαστε
+              </Link>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -51,5 +46,5 @@ const CTA = () => {
   );
 };
 
-export default CTA;
+export default MiddleCTA;
 

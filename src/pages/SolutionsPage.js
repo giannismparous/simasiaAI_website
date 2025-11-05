@@ -106,47 +106,9 @@ const SolutionsPage = () => {
     };
   }, [originalPoints, remapPoint, animationDelays, animationDuration]);
 
-  const products = [
-    {
-      title: "Chatbots που μιλούν όπως εσείς",
-      features: [
-        "Εντοπισμός συναισθήματος για καλύτερη κατανόηση",
-        "Εκπαίδευση με βάση τις δικές σας πηγές και guidelines",
-        "Πολλαπλές γλώσσες και ελληνικές διάλεκτοι",
-        "Εναλλακτικές επιλογές πρόσβασης για άτομα με αναπηρία",
-        "Ελαχιστοποιημένες προκαταλήψεις"
-      ]
-    },
-    {
-      title: "Hammer",
-      subtitle: "Ολιστικές λύσεις για το γραφείο",
-      features: [
-        "Επιμελητής κειμένου για άμεση διόρθωση",
-        "Μεταφραστής πολλαπλών γλωσσών",
-        "Δημιουργός QR codes και μετατροπέας αρχείων",
-        "Σύνοψη βιογραφικού"
-      ]
-    }
-  ];
-
-  const audiences = [
-    {
-      title: "Οργανισμοί με ευάλωτες ομάδες",
-      description: "Chatbots 24/7 που μιλούν πολλές γλώσσες, έχουν ελαχιστοποιημένες προκαταλήψεις, και εκπαιδεύονται με βάση τις δικές σας τεκμηριωμένες πηγές. Έλεγχος πλήρους περιεχομένου."
-    },
-    {
-      title: "Επιχειρήσεις",
-      description: "Άμεση εξυπηρέτηση 24/7, ενιαίο ύφος και γλώσσα, μείωση κόστους χωρίς απώλεια ποιότητας. Μετατρέψτε τη γνώση σας σε έξυπνη επικοινωνία."
-    },
-    {
-      title: "Εκδοτικοί οίκοι / Μεταφραστές",
-      description: "Το Hammer προσφέρει ολιστικές λύσεις για το γραφείο: επιμελητής κειμένου, μεταφραστής, δημιουργός QR codes, μετατροπέας αρχείων."
-    }
-  ];
-
   return (
-    <div className="solutions-page-wrapper" style={{ position: 'relative', overflow: 'visible' }}>
-      <section className="solutions-hero" style={{ padding: '8rem 0 4rem', position: 'relative' }}>
+    <div className="solutions-page-wrapper" style={{ position: 'relative', overflow: 'visible', background: 'transparent' }}>
+      <section className="solutions-hero" style={{ padding: '8rem 0 4rem', position: 'relative', background: 'transparent' }}>
         <div className="container">
           <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, pointerEvents: 'none', zIndex: 1 }}>
             <div 
@@ -210,13 +172,13 @@ const SolutionsPage = () => {
           >
             <SmoothReveal delay={0.1} yOffset={20}>
               <h1 className="section-title" style={{ fontSize: '3.5rem', marginBottom: '2rem' }}>
-                Λύσεις για Οργανισμούς
+                Λύσεις με Σημασία
               </h1>
             </SmoothReveal>
             <SmoothReveal delay={0.2} yOffset={15}>
               <p style={{ fontSize: '1.25rem', color: 'var(--gray-medium)', maxWidth: '800px', margin: '0 auto', lineHeight: 1.8 }}>
                 <WordReveal 
-                  text="Ανάπτυξη AI λύσεων που αναγνωρίζουν την ατομική ιδιαιτερότητα, ενισχύουν την συμπερίληψη και εκφράζουν το εταιρικό προφίλ με σεβασμό."
+                  text="Για Επιχειρήσεις, Φορείς, Οργανισμούς. Συνεργαζόμαστε για λύσεις που ενισχύουν την κοινωνική συνοχή και υποστηρίζουν καθαρή, προσβάσιμη επικοινωνία."
                   delay={0.25}
                   duration={0.25}
                 />
@@ -226,64 +188,146 @@ const SolutionsPage = () => {
         </div>
       </section>
 
-      <section className="solutions-products" style={{ padding: '6rem 0', position: 'relative', zIndex: 2 }}>
+      <section className="solutions-achievements" style={{ padding: '6rem 0', position: 'relative', zIndex: 2, background: 'transparent' }}>
         <div className="container">
           <SmoothReveal delay={0.1} yOffset={20}>
-            <h2 className="section-title">Τα προϊόντα μας</h2>
+            <h2 className="section-title">Τι πετυχαίνουμε μαζί</h2>
           </SmoothReveal>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
-            {products.map((product, index) => (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
+            {[
+              "Σαφείς απαντήσεις και λιγότερη χρονοτριβή σε συχνές ερωτήσεις/σύνθετες διαδικασίες.",
+              "Διαφάνεια γνώσης με τεκμηρίωση από εγκεκριμένες πηγές.",
+              "Προσβασιμότητα & συμπερίληψη στην ψηφιακή επικοινωνία.",
+              "Ενδυνάμωση κοινοτήτων (υγεία, εκπαίδευση, κοινωνικές υπηρεσίες, πολιτισμός κ.ά.) με έγκυρη, ανθρώπινη καθοδήγηση σε συνεργασία με ειδικούς/ες.",
+              "Ομαλή ενσωμάτωση στις υπάρχουσες ροές και συστήματα."
+            ].map((item, index) => (
               <motion.div
                 key={index}
-                className="product-item"
+                className="achievement-item"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
                 whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
               >
                 <SmoothReveal delay={0.25 + (index * 0.1)} yOffset={10}>
-                  <h3>{product.title}</h3>
+                  <p style={{ fontSize: '1.1rem', lineHeight: 1.7 }}>
+                    <WordReveal text={item} delay={0.3 + (index * 0.1)} duration={0.25} />
+                  </p>
                 </SmoothReveal>
-                {product.subtitle && (
-                  <SmoothReveal delay={0.3 + (index * 0.1)} yOffset={8}>
-                    <h4 style={{ fontSize: '1.1rem', color: 'var(--primary-warm)', marginTop: '0.5rem', marginBottom: '1rem' }}>{product.subtitle}</h4>
-                  </SmoothReveal>
-                )}
-                <ul className="product-features" style={{ marginTop: '1rem' }}>
-                  {product.features.map((feature, fIndex) => (
-                    <li key={fIndex}>
-                      <WordReveal text={feature} delay={0.35 + (index * 0.1) + (fIndex * 0.05)} duration={0.2} />
-                    </li>
-                  ))}
-                </ul>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="solutions-audiences" style={{ padding: '6rem 0', background: 'var(--light-bg)' }}>
+      <section className="solutions-process" style={{ padding: '6rem 0', background: 'transparent' }}>
         <div className="container">
           <SmoothReveal delay={0.1} yOffset={20}>
-            <h2 className="section-title">Σε ποιους απευθυνόμαστε</h2>
+            <h2 className="section-title">Πώς συνεργαζόμαστε</h2>
           </SmoothReveal>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
-            {audiences.map((audience, index) => (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
+            {[
+              { title: "Διερεύνηση", desc: "Χαρτογραφούμε ανάγκες ανθρώπων/ομάδων, περιεχόμενο και ροές πληροφορίας." },
+              { title: "Πιλοτική εφαρμογή", desc: "Δοκιμή λύσεων σε πραγματικά σενάρια, μετρήσεις και ανατροφοδότηση." },
+              { title: "Παραγωγική ένταξη & Ενσωματώσεις", desc: "Προσαρμογή στο περιβάλλον σας, εκπαίδευση ομάδων, SSO/CRM/Helpdesk." },
+              { title: "Υποστήριξη & Εξέλιξη", desc: "Συνεχής βελτίωση και επεκτασιμότητα." }
+            ].map((step, index) => (
               <motion.div
                 key={index}
-                className="challenge-item"
+                className="process-step"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
                 whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
               >
                 <SmoothReveal delay={0.25 + (index * 0.1)} yOffset={10}>
-                  <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem' }}>{audience.title}</h3>
+                  <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: 'var(--primary-warm)' }}>{step.title}</h3>
                 </SmoothReveal>
                 <p>
-                  <WordReveal text={audience.description} delay={0.3 + (index * 0.1)} duration={0.25} />
+                  <WordReveal text={step.desc} delay={0.3 + (index * 0.1)} duration={0.25} />
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="solutions-focus" style={{ padding: '6rem 0', position: 'relative', zIndex: 2, background: 'transparent' }}>
+        <div className="container">
+          <SmoothReveal delay={0.1} yOffset={20}>
+            <p style={{ fontSize: '1.2rem', color: 'var(--gray-medium)', maxWidth: '900px', margin: '0 auto', lineHeight: 1.8, textAlign: 'center' }}>
+              <WordReveal 
+                text="Σήμερα εστιάζουμε σε συνομιλιακές λύσεις (chatbots). Η αρχιτεκτονική μας επιτρέπει επεκτάσεις σε επιπλέον εφαρμογές AI, ανάλογα με την ανάγκη."
+                delay={0.15}
+                duration={0.25}
+              />
+            </p>
+          </SmoothReveal>
+        </div>
+      </section>
+
+      <section className="solutions-capabilities" style={{ padding: '6rem 0', background: 'transparent' }}>
+        <div className="container">
+          <SmoothReveal delay={0.1} yOffset={20}>
+            <h2 className="section-title">Τι μπορούμε να αναπτύξουμε για εσάς (ενδεικτικά)</h2>
+          </SmoothReveal>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
+            {[
+              "Υποστηρικτικά chatbots 24/7 για ενημέρωση, υποδοχή αιτημάτων, καθοδήγηση διαδικασιών.",
+              "Εξειδικευμένα assistants (π.χ., πολιτικές/κανονισμοί οργανισμού, onboarding προσωπικού, knowledge bases).",
+              "Εκπαιδευτικά εργαλεία AI (αυτόματη δημιουργία/διόρθωση αξιολογήσεων, εξατομίκευση δυσκολίας, υποστήριξη εκπαιδευτικών).",
+              "Πολυγλωσσική διαμεσολάβηση & προσβασιμότητα (π.χ., απλούστευση κειμένου, μετατροπή μορφών)."
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="capability-item"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
+                whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
+              >
+                <SmoothReveal delay={0.25 + (index * 0.1)} yOffset={10}>
+                  <p style={{ fontSize: '1.1rem', lineHeight: 1.7 }}>
+                    <WordReveal text={item} delay={0.3 + (index * 0.1)} duration={0.25} />
+                  </p>
+                </SmoothReveal>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="solutions-why" style={{ padding: '6rem 0', position: 'relative', zIndex: 2, background: 'transparent' }}>
+        <div className="container">
+          <SmoothReveal delay={0.1} yOffset={20}>
+            <h2 className="section-title">Γιατί να επιλέξετε τα chatbots της \ΣimasiaAI\</h2>
+          </SmoothReveal>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
+            {[
+              { title: "Προσβασιμότητα από σχεδιασμό", desc: "Εναλλακτικοί τρόποι εισόδου/εξόδου (κείμενο/ήχος), WCAG-oriented επιλογές." },
+              { title: "Πολυγλωσσία", desc: "Υποστήριξη πολλών ευρωπαϊκών και παγκόσμιων γλωσσών (ενδεικτικά: κινεζικά—μανδαρινικά/καντονέζικα, ιαπωνικά, κορεατικά, αραβικά, χίντι, μπενγκάλι κ.ά.) και τοπικές ελληνικές ποικιλίες (π.χ. κυπριακά, ποντιακά) όπου είναι εφικτό ή κατόπιν στοχευμένης εκπαίδευσης." },
+              { title: "Μείωση προκαταλήψεων", desc: "Ροές αξιολόγησης και πολιτικές ισότητας/συμπερίληψης ενσωματωμένες στο design." },
+              { title: "Εκπαίδευση σε δικό σας περιεχόμενο", desc: "Τεκμηριωμένες πηγές, εγχειρίδια, guidelines για ειδικές καταστάσεις." },
+              { title: "Συνέπεια & ασφάλεια", desc: "Απαντήσεις βασισμένες σε εγκεκριμένο περιεχόμενο με ελεγχόμενα αποδεικτικά." },
+              { title: "Κλιμάκωση και ειδοποιήσεις", desc: "Δυνατότητα αποστολής ειδοποίησης (τηλεφωνικής/γραπτής) σε οριζόμενα πρόσωπα/υπηρεσίες όταν ανιχνεύονται ροές που το απαιτούν—μόνο κατόπιν ρητής συμφωνίας και πολιτικής κλιμάκωσης." }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="why-item"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
+                whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
+              >
+                <SmoothReveal delay={0.25 + (index * 0.1)} yOffset={10}>
+                  <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--primary-warm)' }}>{item.title}</h3>
+                </SmoothReveal>
+                <p>
+                  <WordReveal text={item.desc} delay={0.3 + (index * 0.1)} duration={0.25} />
                 </p>
               </motion.div>
             ))}

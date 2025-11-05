@@ -7,23 +7,23 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>SimasiaAI</h3>
-            <p>Τεχνητή Νοημοσύνη με ανθρώπινο DNA. Λύσεις που ενισχύουν την συμπερίληψη, την ισότητα και την ανθρώπινη επικοινωνία.</p>
+            <h3>SimasiaAI / ΣημασίαΑΙ</h3>
+            <p>AI από την πλευρά του ανθρώπου.</p>
           </div>
           
           <div className="footer-section">
             <h3>Πλοήγηση</h3>
-            <a href="#about">Για εμάς</a>
-            <a href="#mission">Αποστολή</a>
-            <a href="#values">Αξίες</a>
-            <a href="#solutions">Λύσεις</a>
-            <a href="#impact">Συνεργασίες</a>
+            <a href="/">Αρχική</a>
+            <a href="/about">Ποιοι είμαστε</a>
+            <a href="/solutions">Λύσεις με σημασία</a>
+            <a href="/collaborations">Συνεργασίες</a>
+            <a href="/applications">Εφαρμογές</a>
           </div>
           
           <div className="footer-section">
             <h3>Επικοινωνία</h3>
-            <a href="mailto:info@simasia.ai">info@simasia.ai</a>
-            <p>Ελλάδα</p>
+            <a href="mailto:simasia.ai@gmail.com">simasia.ai@gmail.com</a>
+            <p>Αθήνα, Ελλάδα</p>
           </div>
           
           <div className="footer-section">
@@ -33,12 +33,11 @@ const Footer = () => {
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
             <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">TikTok</a>
             <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
           </div>
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2025 SimasiaAI. Όλα τα δικαιώματα κατοχυρωμένα.</p>
+          <p>&copy; SimasiaAI</p>
         </div>
       </div>
     </footer>

@@ -18,12 +18,12 @@ const BridgeSection = () => {
 
   // Original point positions (base positions, never change)
   const originalPoints = useMemo(() => [
-    { cx: 80, cy: 360 + randomOffsets[0] },
-    { cx: 30, cy: 240 + randomOffsets[1] },
-    { cx: 120, cy: 150 + randomOffsets[2] },
-    { cx: 1170, cy: 330 + randomOffsets[3] },
-    { cx: 1240, cy: 220 + randomOffsets[4] },
-    { cx: 1100, cy: 140 + randomOffsets[5] },
+    { cx: 80, cy: 60 + randomOffsets[0] },
+    { cx: 30, cy: -60 + randomOffsets[1] },
+    { cx: 120, cy: -150 + randomOffsets[2] },
+    { cx: 1170, cy: 30 + randomOffsets[3] },
+    { cx: 1240, cy: -80 + randomOffsets[4] },
+    { cx: 1100, cy: -160 + randomOffsets[5] },
   ], [randomOffsets]);
 
   // State to store current point positions (will be remapped)
@@ -145,7 +145,7 @@ const BridgeSection = () => {
                     .hub-outer{ stroke: var(--s); stroke-width: 10; fill: none; opacity: ${isHovered ? 0.4 : 0.12}; transition: opacity 0.5s ease-in-out; }
                     .hub-inner{ stroke: var(--a); stroke-width: 2; fill: none; opacity: ${isHovered ? 0.35 : 0.1}; transition: opacity 0.5s ease-in-out; }
                     .hub-arc{ stroke: var(--p); stroke-width: 12; stroke-linecap: round; fill: none;
-                              transform-origin: 600px 260px; animation: spin 10s linear infinite; opacity: ${isHovered ? 0.5 : 0.15}; transition: opacity 0.5s ease-in-out; }
+                              transform-origin: 600px 285px; animation: spin 10s linear infinite; opacity: ${isHovered ? 0.5 : 0.15}; transition: opacity 0.5s ease-in-out; }
 
                     .bridge-base{ stroke: var(--a); stroke-width: 2; opacity: ${isHovered ? 0.3 : 0.08}; fill: none; transition: opacity 0.5s ease-in-out; }
                     .bridge-draw{ stroke: var(--p); stroke-width: 6; fill: none; stroke-linecap: round;
@@ -189,9 +189,9 @@ const BridgeSection = () => {
               </defs>
 
               <g aria-hidden="true">
-                <circle className="hub-outer" cx="600" cy="260" r="92"/>
-                <circle className="hub-inner" cx="600" cy="260" r="64"/>
-                <path className="hub-arc" d="M600,168 a92,92 0 0 1 70,38"/>
+                <circle className="hub-outer" cx="600" cy="285" r="92"/>
+                <circle className="hub-inner" cx="600" cy="285" r="64"/>
+                <path className="hub-arc" d="M600,193 a92,92 0 0 1 70,38"/>
               </g>
 
               <g>
@@ -213,9 +213,9 @@ const BridgeSection = () => {
               </g>
 
               <g className="b1">
-                <path id="p1" className="bridge-base" d={`M600,260 C400,300 250,330 ${currentPoints[0]?.cx || originalPoints[0].cx},${currentPoints[0]?.cy || originalPoints[0].cy}`} pathLength="1000"/>
-                <path className="bridge-draw" d={`M600,260 C400,300 250,330 ${currentPoints[0]?.cx || originalPoints[0].cx},${currentPoints[0]?.cy || originalPoints[0].cy}`} pathLength="1000"/>
-                <path className="care" d={`M600,260 C400,300 250,330 ${currentPoints[0]?.cx || originalPoints[0].cx},${currentPoints[0]?.cy || originalPoints[0].cy}`}/>
+                <path id="p1" className="bridge-base" d={`M600,285 C400,325 250,355 ${currentPoints[0]?.cx || originalPoints[0].cx},${currentPoints[0]?.cy || originalPoints[0].cy}`} pathLength="1000"/>
+                <path className="bridge-draw" d={`M600,285 C400,325 250,355 ${currentPoints[0]?.cx || originalPoints[0].cx},${currentPoints[0]?.cy || originalPoints[0].cy}`} pathLength="1000"/>
+                <path className="care" d={`M600,285 C400,325 250,355 ${currentPoints[0]?.cx || originalPoints[0].cx},${currentPoints[0]?.cy || originalPoints[0].cy}`}/>
                 <g className="hand handShow">
                   <g>
                     <animateMotion dur="9s" begin="0s" repeatCount="indefinite" keyTimes="0;1">
@@ -229,9 +229,9 @@ const BridgeSection = () => {
               </g>
 
               <g className="b2">
-                <path id="p2" className="bridge-base" d={`M600,260 C400,240 200,230 ${currentPoints[1]?.cx || originalPoints[1].cx},${currentPoints[1]?.cy || originalPoints[1].cy}`} pathLength="1000"/>
-                <path className="bridge-draw" d={`M600,260 C400,240 200,230 ${currentPoints[1]?.cx || originalPoints[1].cx},${currentPoints[1]?.cy || originalPoints[1].cy}`} pathLength="1000"/>
-                <path className="care" d={`M600,260 C400,240 200,230 ${currentPoints[1]?.cx || originalPoints[1].cx},${currentPoints[1]?.cy || originalPoints[1].cy}`}/>
+                <path id="p2" className="bridge-base" d={`M600,285 C400,265 200,255 ${currentPoints[1]?.cx || originalPoints[1].cx},${currentPoints[1]?.cy || originalPoints[1].cy}`} pathLength="1000"/>
+                <path className="bridge-draw" d={`M600,285 C400,265 200,255 ${currentPoints[1]?.cx || originalPoints[1].cx},${currentPoints[1]?.cy || originalPoints[1].cy}`} pathLength="1000"/>
+                <path className="care" d={`M600,285 C400,265 200,255 ${currentPoints[1]?.cx || originalPoints[1].cx},${currentPoints[1]?.cy || originalPoints[1].cy}`}/>
                 <g className="hand" style={{opacity:0}}>
                   <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.167;0.333;0.334" dur="9s" begin="1.5s" repeatCount="indefinite"/>
                   <g>
@@ -244,9 +244,9 @@ const BridgeSection = () => {
               </g>
 
               <g className="b3">
-                <path id="p3" className="bridge-base" d={`M600,260 C400,200 250,170 ${currentPoints[2]?.cx || originalPoints[2].cx},${currentPoints[2]?.cy || originalPoints[2].cy}`} pathLength="1000"/>
-                <path className="bridge-draw" d={`M600,260 C400,200 250,170 ${currentPoints[2]?.cx || originalPoints[2].cx},${currentPoints[2]?.cy || originalPoints[2].cy}`} pathLength="1000"/>
-                <path className="care" d={`M600,260 C400,200 250,170 ${currentPoints[2]?.cx || originalPoints[2].cx},${currentPoints[2]?.cy || originalPoints[2].cy}`}/>
+                <path id="p3" className="bridge-base" d={`M600,285 C400,225 250,195 ${currentPoints[2]?.cx || originalPoints[2].cx},${currentPoints[2]?.cy || originalPoints[2].cy}`} pathLength="1000"/>
+                <path className="bridge-draw" d={`M600,285 C400,225 250,195 ${currentPoints[2]?.cx || originalPoints[2].cx},${currentPoints[2]?.cy || originalPoints[2].cy}`} pathLength="1000"/>
+                <path className="care" d={`M600,285 C400,225 250,195 ${currentPoints[2]?.cx || originalPoints[2].cx},${currentPoints[2]?.cy || originalPoints[2].cy}`}/>
                 <g className="hand" style={{opacity:0}}>
                   <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.167;0.333;0.334" dur="9s" begin="3s" repeatCount="indefinite"/>
                   <g>
@@ -259,9 +259,9 @@ const BridgeSection = () => {
               </g>
 
               <g className="b4">
-                <path id="p4" className="bridge-base" d={`M600,260 C800,290 1000,300 ${currentPoints[3]?.cx || originalPoints[3].cx},${currentPoints[3]?.cy || originalPoints[3].cy}`} pathLength="1000"/>
-                <path className="bridge-draw" d={`M600,260 C800,290 1000,300 ${currentPoints[3]?.cx || originalPoints[3].cx},${currentPoints[3]?.cy || originalPoints[3].cy}`} pathLength="1000"/>
-                <path className="care" d={`M600,260 C800,290 1000,300 ${currentPoints[3]?.cx || originalPoints[3].cx},${currentPoints[3]?.cy || originalPoints[3].cy}`}/>
+                <path id="p4" className="bridge-base" d={`M600,285 C800,315 1000,325 ${currentPoints[3]?.cx || originalPoints[3].cx},${currentPoints[3]?.cy || originalPoints[3].cy}`} pathLength="1000"/>
+                <path className="bridge-draw" d={`M600,285 C800,315 1000,325 ${currentPoints[3]?.cx || originalPoints[3].cx},${currentPoints[3]?.cy || originalPoints[3].cy}`} pathLength="1000"/>
+                <path className="care" d={`M600,285 C800,315 1000,325 ${currentPoints[3]?.cx || originalPoints[3].cx},${currentPoints[3]?.cy || originalPoints[3].cy}`}/>
                 <g className="hand" style={{opacity:0}}>
                   <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.167;0.333;0.334" dur="9s" begin="4.5s" repeatCount="indefinite"/>
                   <g>
@@ -274,9 +274,9 @@ const BridgeSection = () => {
               </g>
 
               <g className="b5">
-                <path id="p5" className="bridge-base" d={`M600,260 C840,220 1080,210 ${currentPoints[4]?.cx || originalPoints[4].cx},${currentPoints[4]?.cy || originalPoints[4].cy}`} pathLength="1000"/>
-                <path className="bridge-draw" d={`M600,260 C840,220 1080,210 ${currentPoints[4]?.cx || originalPoints[4].cx},${currentPoints[4]?.cy || originalPoints[4].cy}`} pathLength="1000"/>
-                <path className="care" d={`M600,260 C840,220 1080,210 ${currentPoints[4]?.cx || originalPoints[4].cx},${currentPoints[4]?.cy || originalPoints[4].cy}`}/>
+                <path id="p5" className="bridge-base" d={`M600,285 C840,245 1080,235 ${currentPoints[4]?.cx || originalPoints[4].cx},${currentPoints[4]?.cy || originalPoints[4].cy}`} pathLength="1000"/>
+                <path className="bridge-draw" d={`M600,285 C840,245 1080,235 ${currentPoints[4]?.cx || originalPoints[4].cx},${currentPoints[4]?.cy || originalPoints[4].cy}`} pathLength="1000"/>
+                <path className="care" d={`M600,285 C840,245 1080,235 ${currentPoints[4]?.cx || originalPoints[4].cx},${currentPoints[4]?.cy || originalPoints[4].cy}`}/>
                 <g className="hand" style={{opacity:0}}>
                   <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.167;0.333;0.334" dur="9s" begin="6s" repeatCount="indefinite"/>
                   <g>
@@ -289,9 +289,9 @@ const BridgeSection = () => {
               </g>
 
               <g className="b6">
-                <path id="p6" className="bridge-base" d={`M600,260 C820,200 1020,170 ${currentPoints[5]?.cx || originalPoints[5].cx},${currentPoints[5]?.cy || originalPoints[5].cy}`} pathLength="1000"/>
-                <path className="bridge-draw" d={`M600,260 C820,200 1020,170 ${currentPoints[5]?.cx || originalPoints[5].cx},${currentPoints[5]?.cy || originalPoints[5].cy}`} pathLength="1000"/>
-                <path className="care" d={`M600,260 C820,200 1020,170 ${currentPoints[5]?.cx || originalPoints[5].cx},${currentPoints[5]?.cy || originalPoints[5].cy}`}/>
+                <path id="p6" className="bridge-base" d={`M600,285 C820,225 1020,195 ${currentPoints[5]?.cx || originalPoints[5].cx},${currentPoints[5]?.cy || originalPoints[5].cy}`} pathLength="1000"/>
+                <path className="bridge-draw" d={`M600,285 C820,225 1020,195 ${currentPoints[5]?.cx || originalPoints[5].cx},${currentPoints[5]?.cy || originalPoints[5].cy}`} pathLength="1000"/>
+                <path className="care" d={`M600,285 C820,225 1020,195 ${currentPoints[5]?.cx || originalPoints[5].cx},${currentPoints[5]?.cy || originalPoints[5].cy}`}/>
                 <g className="hand" style={{opacity:0}}>
                   <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.167;0.333;0.334" dur="9s" begin="7.5s" repeatCount="indefinite"/>
                   <g>

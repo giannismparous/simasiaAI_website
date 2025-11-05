@@ -81,8 +81,8 @@ const ContactForm = () => {
   return (
     <section className="contact-form-section" id="contact">
       <div className="container">
-        <h2 className="section-title">Ελάτε σε επαφή μαζί μας</h2>
-        <p className="form-subtitle">Συμπληρώστε την παρακάτω φόρμα. Απαντάμε εντός 24 ωρών.</p>
+        <h2 className="section-title">Φόρμα Επικοινωνίας</h2>
+        <p className="form-subtitle">Προτείνετέ μας τη λύση που οραματίζεστε να συνδημιουργήσουμε. Απαντάμε εντός 24 ωρών.</p>
         
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-row">
@@ -184,6 +184,10 @@ const ContactForm = () => {
           >
             {isSubmitting ? 'Αποστολή...' : 'Αποστολή αιτήματος'}
           </button>
+          
+          <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--gray-medium)', textAlign: 'center' }}>
+            Με την υποβολή συμφωνείτε ότι θα επικοινωνήσουμε για το αίτημά σας. Τα στοιχεία σας δεν κοινοποιούνται σε τρίτους.
+          </p>
 
           {submitStatus.type && (
             <motion.div

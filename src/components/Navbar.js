@@ -26,10 +26,11 @@ const Navbar = () => {
 
   const navLinks = [
     { path: "/", text: "Αρχική" },
-    { path: "/solutions", text: "Λύσεις" },
-    { path: "/education", text: "Εκπαίδευση" },
     { path: "/about", text: "Ποιοι είμαστε" },
-    { path: "/book-demo", text: "Κλείστε ένα demo", isButton: true }
+    { path: "/solutions", text: "Λύσεις με σημασία" },
+    { path: "/collaborations", text: "Συνεργασίες" },
+    { path: "/applications", text: "Εφαρμογές" },
+    { path: "/book-demo", text: "Προγραμματίστε ένα demo", isButton: true }
   ];
 
   return (
