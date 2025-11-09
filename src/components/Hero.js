@@ -59,18 +59,18 @@ const Hero = () => {
           {/* Network visualization ABOVE text */}
           <motion.div 
             className="hero-network-visualization hero-network-top"
-            variants={itemVariants}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ 
-              opacity: isMouseInHero ? 1 : 0.4, 
-              scale: 1 
-            }}
-            transition={{ 
-              delay: 0.85, 
-              duration: 0.8,
-              opacity: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
-            }}
-          >
+              variants={itemVariants}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ 
+                opacity: isMouseInHero ? 1 : 0.4, 
+                scale: 1 
+              }}
+              transition={{ 
+                delay: 0.85, 
+                duration: 0.8,
+                opacity: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
+              }}
+            >
             <section className="simasia-network simasia-network-flipped" aria-label="Network visualization top">
                 <svg viewBox="0 0 960 640" width="100%" xmlns="http://www.w3.org/2000/svg" role="img">
                   <defs>
@@ -286,25 +286,25 @@ const Hero = () => {
           </div>
           
           {/* Network visualization BELOW text on the RIGHT */}
-          <motion.div 
+            <motion.div 
             className="hero-network-visualization hero-network-bottom"
-            variants={itemVariants}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ 
-              opacity: isMouseInHero ? 1 : 0.4, 
-              scale: 1
-            }}
-            transition={{ 
-              delay: 0.85, 
-              duration: 0.8,
-              opacity: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
-            }}
-          >
+              variants={itemVariants}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ 
+                opacity: isMouseInHero ? 1 : 0.4, 
+                scale: 1 
+              }}
+              transition={{ 
+                delay: 0.85, 
+                duration: 0.8,
+                opacity: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
+              }}
+            >
             <section className="simasia-network simasia-network-bottom-rotated" aria-label="Network visualization bottom right">
               <svg viewBox="0 0 960 640" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" transform="scale(1, -1) translate(0, -640)">
-                <defs>
-                  <style>
-                    {`
+                  <defs>
+                    <style>
+                      {`
                       .simasia-network {
                         --bg: transparent;
                         --dark: var(--dark-text, #1F2D3D);
@@ -402,97 +402,97 @@ const Hero = () => {
                         }
                       }
                     `}
-                  </style>
-                </defs>
+                    </style>
+                  </defs>
 
-                <rect x="0" y="0" width="960" height="640" fill="transparent"/>
+                  <rect x="0" y="0" width="960" height="640" fill="transparent"/>
 
-                <path
-                  className="stem base"
-                  d="M480 520 C480 460 482 410 486 370 C490 330 520 310 560 290 C600 270 612 240 600 220 C585 198 552 200 540 214"
-                  pathLength="1000"
-                />
-                <path
-                  className="stem draw"
-                  d="M480 520 C480 460 482 410 486 370 C490 330 520 310 560 290 C600 270 612 240 600 220 C585 198 552 200 540 214"
-                  pathLength="1000"
-                />
+                  <path
+                    className="stem base"
+                    d="M480 520 C480 460 482 410 486 370 C490 330 520 310 560 290 C600 270 612 240 600 220 C585 198 552 200 540 214"
+                    pathLength="1000"
+                  />
+                  <path
+                    className="stem draw"
+                    d="M480 520 C480 460 482 410 486 370 C490 330 520 310 560 290 C600 270 612 240 600 220 C585 198 552 200 540 214"
+                    pathLength="1000"
+                  />
 
-                <path
-                  className="stem base"
-                  d="M486 370 C450 352 425 330 410 305 C395 280 372 270 350 268"
-                  pathLength="1000"
-                />
-                <path
-                  className="stem draw"
-                  d="M486 370 C450 352 425 330 410 305 C395 280 372 270 350 268"
-                  pathLength="1000"
-                />
+                  <path
+                    className="stem base"
+                    d="M486 370 C450 352 425 330 410 305 C395 280 372 270 350 268"
+                    pathLength="1000"
+                  />
+                  <path
+                    className="stem draw"
+                    d="M486 370 C450 352 425 330 410 305 C395 280 372 270 350 268"
+                    pathLength="1000"
+                  />
 
-                <path
-                  className="stem base"
-                  d="M560 290 C600 300 630 310 660 310 C690 310 720 298 730 280"
-                  pathLength="1000"
-                />
-                <path
-                  className="stem draw"
-                  d="M560 290 C600 300 630 310 660 310 C690 310 720 298 730 280"
-                  pathLength="1000"
-                />
+                  <path
+                    className="stem base"
+                    d="M560 290 C600 300 630 310 660 310 C690 310 720 298 730 280"
+                    pathLength="1000"
+                  />
+                  <path
+                    className="stem draw"
+                    d="M560 290 C600 300 630 310 660 310 C690 310 720 298 730 280"
+                    pathLength="1000"
+                  />
 
-                <path
-                  className="stem base"
-                  d="M540 214 C510 205 490 188 470 164 C450 140 430 132 408 130"
-                  pathLength="1000"
-                />
-                <path
-                  className="stem draw"
-                  d="M540 214 C510 205 490 188 470 164 C450 140 430 132 408 130"
-                  pathLength="1000"
-                />
+                  <path
+                    className="stem base"
+                    d="M540 214 C510 205 490 188 470 164 C450 140 430 132 408 130"
+                    pathLength="1000"
+                  />
+                  <path
+                    className="stem draw"
+                    d="M540 214 C510 205 490 188 470 164 C450 140 430 132 408 130"
+                    pathLength="1000"
+                  />
 
-                <path
-                  className="stem base"
-                  d="M540 214 C560 200 585 185 610 170 C635 155 660 150 682 152"
-                  pathLength="1000"
-                />
-                <path
-                  className="stem draw"
-                  d="M540 214 C560 200 585 185 610 170 C635 155 660 150 682 152"
-                  pathLength="1000"
-                />
+                  <path
+                    className="stem base"
+                    d="M540 214 C560 200 585 185 610 170 C635 155 660 150 682 152"
+                    pathLength="1000"
+                  />
+                  <path
+                    className="stem draw"
+                    d="M540 214 C560 200 585 185 610 170 C635 155 660 150 682 152"
+                    pathLength="1000"
+                  />
 
-                <path
-                  className="stem base"
-                  d="M486 370 C495 350 510 338 525 330"
-                  pathLength="1000"
-                />
-                <path
-                  className="stem draw"
-                  d="M486 370 C495 350 510 338 525 330"
-                  pathLength="1000"
-                />
+                  <path
+                    className="stem base"
+                    d="M486 370 C495 350 510 338 525 330"
+                    pathLength="1000"
+                  />
+                  <path
+                    className="stem draw"
+                    d="M486 370 C495 350 510 338 525 330"
+                    pathLength="1000"
+                  />
 
-                <g className="nodes" aria-hidden="true">
-                  <circle className="halo h1" cx="480" cy="520" r="18"/>
-                  <circle className="halo h2" cx="350" cy="268" r="18"/>
-                  <circle className="halo h3" cx="730" cy="280" r="18"/>
-                  <circle className="halo h4" cx="408" cy="130" r="18"/>
-                  <circle className="halo h5" cx="682" cy="152" r="18"/>
-                  <circle className="halo h6" cx="525" cy="330" r="18"/>
-                  <circle className="halo h7" cx="540" cy="214" r="18"/>
+                  <g className="nodes" aria-hidden="true">
+                    <circle className="halo h1" cx="480" cy="520" r="18"/>
+                    <circle className="halo h2" cx="350" cy="268" r="18"/>
+                    <circle className="halo h3" cx="730" cy="280" r="18"/>
+                    <circle className="halo h4" cx="408" cy="130" r="18"/>
+                    <circle className="halo h5" cx="682" cy="152" r="18"/>
+                    <circle className="halo h6" cx="525" cy="330" r="18"/>
+                    <circle className="halo h7" cx="540" cy="214" r="18"/>
 
-                  <circle className="n1" cx="480" cy="520" r="9" fill="var(--p)"/>
-                  <circle className="n2" cx="350" cy="268" r="9" fill="var(--s)"/>
-                  <circle className="n3" cx="730" cy="280" r="9" fill="var(--a)"/>
-                  <circle className="n4" cx="408" cy="130" r="9" fill="var(--p)"/>
-                  <circle className="n5" cx="682" cy="152" r="9" fill="var(--s)"/>
-                  <circle className="n6" cx="525" cy="330" r="9" fill="var(--a)"/>
-                  <circle className="n7" cx="540" cy="214" r="9" fill="var(--p)"/>
-                </g>
-              </svg>
-            </section>
-          </motion.div>
+                    <circle className="n1" cx="480" cy="520" r="9" fill="var(--p)"/>
+                    <circle className="n2" cx="350" cy="268" r="9" fill="var(--s)"/>
+                    <circle className="n3" cx="730" cy="280" r="9" fill="var(--a)"/>
+                    <circle className="n4" cx="408" cy="130" r="9" fill="var(--p)"/>
+                    <circle className="n5" cx="682" cy="152" r="9" fill="var(--s)"/>
+                    <circle className="n6" cx="525" cy="330" r="9" fill="var(--a)"/>
+                    <circle className="n7" cx="540" cy="214" r="9" fill="var(--p)"/>
+                  </g>
+                </svg>
+              </section>
+            </motion.div>
           
           <motion.div 
             className="hero-network-text"
@@ -557,6 +557,20 @@ const Hero = () => {
           z-index: 1;
           pointer-events: none;
           opacity: 0.4;
+        }
+        @media (max-width: 768px){
+          .hero-network-top{
+            max-width: 400px;
+            top: -20%;
+            left: -50%;
+            opacity: 0.2;
+          }
+          .hero-network-bottom{
+            max-width: 400px;
+            bottom: -10%;
+            right: -40%;
+            opacity: 0.2;
+          }
         }
         .simasia-network-bottom-rotated {
           transform: rotate(180deg) !important;
@@ -886,10 +900,89 @@ const Hero = () => {
 
         @media (max-width: 768px){
           .simasia-brand-anim{
-            padding: 1rem 0;
+            padding: 0.5rem 0;
+            gap: 1rem;
           }
-          .simasia-brand-anim .line1{
+          .simasia-brand-anim .line1-wrapper{
+            width: 100%;
+            max-width: 100%;
+            padding: 0 0.5rem;
+            min-height: auto;
+          }
+          .simasia-brand-anim .line1a,
+          .simasia-brand-anim .line1b{
+            font-size: 1.5rem;
+            line-height: 1.3;
+          }
+          .simasia-brand-anim .line2{
+            font-size: 1rem;
             white-space: normal;
+          }
+          .simasia-brand-anim .line2-placeholder{
+            font-size: 1rem;
+          }
+          .brandline{
+            font-size: 2rem;
+            padding: 0 0.5rem;
+          }
+          .word > *,
+          .prefix-s, .prefix-i, .prefix-m, .prefix-a, .prefix-s2,
+          .ia-i, .ia-a, .AI{
+            font-size: 2rem;
+          }
+          .brand-anim-container{
+            margin: 1rem 0;
+          }
+          .simasia-brand-anim .taglines{
+            padding: 0 0.5rem;
+            min-height: auto;
+          }
+        }
+        @media (max-width: 320px){
+          .simasia-brand-anim{
+            padding: 0.25rem 0;
+            gap: 0.75rem;
+          }
+          .simasia-brand-anim .line1-wrapper{
+            padding: 0 0.25rem;
+            margin-bottom: 0.25rem;
+          }
+          .simasia-brand-anim .line1a,
+          .simasia-brand-anim .line1b{
+            font-size: 1.1rem;
+            line-height: 1.25;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+          }
+          .simasia-brand-anim .line2-wrapper{
+            margin-top: 0.5rem;
+          }
+          .simasia-brand-anim .line2{
+            font-size: 0.9rem;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+          }
+          .simasia-brand-anim .line2-placeholder{
+            font-size: 0.9rem;
+          }
+          .brandline{
+            font-size: 1.5rem;
+            padding: 0 0.25rem;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+          .word > *,
+          .prefix-s, .prefix-i, .prefix-m, .prefix-a, .prefix-s2,
+          .ia-i, .ia-a, .AI{
+            font-size: 1.5rem;
+          }
+          .brand-anim-container{
+            margin: 0.75rem 0;
+          }
+          .simasia-brand-anim .taglines{
+            padding: 0 0.25rem;
+            gap: 0.5rem;
           }
         }
       `}</style>

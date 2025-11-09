@@ -139,6 +139,12 @@
     padding: 0 2rem;
 }
 
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+}
+
 .section-title {
     text-align: center;
     font-size: 2.8rem;
@@ -187,8 +193,19 @@
 }
 
 @media (max-width: 768px) {
+    .mission {
+        padding: 4rem 0;
+    }
+
     .section-title {
-        font-size: 2rem;
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .mission-description {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+        margin: 1.5rem auto 0;
     }
 
     .mission-grid {

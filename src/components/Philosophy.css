@@ -70,13 +70,23 @@
 }
 
 @media (max-width: 768px) {
+    .philosophy {
+        padding: 4rem 0;
+    }
+
     .philosophy-quote {
-        font-size: 1.2rem;
-        padding: 1.5rem;
+        font-size: 1.1rem;
+        padding: 1.25rem;
+        margin-bottom: 2rem;
     }
 
     .philosophy-text {
+        font-size: 0.95rem;
+    }
+
+    .philosophy-goal {
         font-size: 1rem;
+        padding: 1.25rem;
     }
 }
 

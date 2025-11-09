@@ -59,8 +59,30 @@
 }
 
 @media (max-width: 768px) {
+    .values {
+        padding: 4rem 0;
+    }
+
     .values-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .value-item {
+        padding: 2rem 1.5rem;
+    }
+
+    .value-number {
+        font-size: 2.5rem;
+    }
+
+    .value-item h3 {
+        font-size: 1.2rem;
+    }
+
+    .value-item p {
+        font-size: 0.95rem;
     }
 }
 

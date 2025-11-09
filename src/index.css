@@ -127,3 +127,182 @@ section.impact-wrapper:hover .impact .section-title {
     color: var(--dark-text) !important;
 }
 
+/* Global mobile responsive styles */
+@media (max-width: 768px) {
+    /* Page hero sections */
+    .applications-hero,
+    .solutions-hero,
+    .collaborations-hero,
+    .book-demo-page {
+        padding: 4rem 0 2rem !important;
+    }
+
+    /* Page content sections */
+    .applications-content,
+    .solutions-achievements,
+    .solutions-process,
+    .solutions-focus,
+    .solutions-capabilities,
+    .solutions-why,
+    .collaborations-content {
+        padding: 3rem 0 !important;
+    }
+
+    /* Section titles */
+    .section-title {
+        font-size: 2rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* Page-specific title adjustments */
+    .applications-hero .section-title,
+    .solutions-hero .section-title,
+    .collaborations-hero .section-title {
+        font-size: 2rem !important;
+    }
+
+    /* Subtitle/description text in hero sections */
+    .applications-hero p,
+    .solutions-hero p,
+    .collaborations-hero p {
+        font-size: 1rem !important;
+    }
+
+    /* Application cards */
+    .application-card {
+        padding: 2rem 1.5rem !important;
+        margin: 0 1rem !important;
+    }
+
+    .application-card h2 {
+        font-size: 1.75rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .application-card p {
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Collaboration cards */
+    .collaboration-card {
+        padding: 2rem 1.5rem !important;
+        margin: 0 1rem !important;
+    }
+
+    .collaboration-card h3 {
+        font-size: 1.25rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .collaboration-ctas {
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+    }
+
+    .collaboration-ctas .btn {
+        width: 100% !important;
+    }
+
+    /* Book demo page */
+    .book-demo-page {
+        min-height: auto !important;
+    }
+
+    .book-demo-page .section-title {
+        font-size: 2rem !important;
+    }
+
+    /* Solutions page sections */
+    .solutions-hero h1,
+    .solutions-achievements h2,
+    .solutions-process h2,
+    .solutions-capabilities h2,
+    .solutions-why h2 {
+        font-size: 1.75rem !important;
+    }
+
+    .solutions-hero p,
+    .solutions-focus p {
+        font-size: 1rem !important;
+    }
+
+    /* Process steps grid */
+    .process-step {
+        margin-bottom: 2rem;
+    }
+
+    /* Capabilities grid */
+    .capabilities-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Why section grid */
+    .why-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Solutions page specific fixes */
+    .solutions-page-wrapper {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+
+    .solutions-achievements,
+    .solutions-process,
+    .solutions-capabilities,
+    .solutions-why {
+        overflow-x: hidden !important;
+    }
+
+    /* Grid fixes for very small screens */
+    .solutions-achievements > .container > div[style*="grid"],
+    .solutions-process > .container > div[style*="grid"],
+    .solutions-capabilities > .container > div[style*="grid"],
+    .solutions-why > .container > div[style*="grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+}
+
+@media (max-width: 330px) {
+    .solutions-page-wrapper {
+        overflow-x: hidden !important;
+    }
+
+    .solutions-hero h1,
+    .solutions-achievements h2,
+    .solutions-process h2,
+    .solutions-capabilities h2,
+    .solutions-why h2 {
+        font-size: 1.5rem !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+
+    .solutions-hero p,
+    .solutions-focus p {
+        font-size: 0.95rem !important;
+        padding: 0 0.5rem !important;
+    }
+
+    .achievement-item,
+    .process-step,
+    .capability-item,
+    .why-item {
+        padding: 0 !important;
+    }
+
+    .achievement-item p,
+    .process-step p,
+    .capability-item p,
+    .why-item p {
+        font-size: 0.95rem !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+}
+

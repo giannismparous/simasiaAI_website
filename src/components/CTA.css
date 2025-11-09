@@ -197,3 +197,48 @@
     }
 }
 
+@media (max-width: 480px) {
+    .cta-section h2 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+
+    .cta-section .btn {
+        font-size: 0.95rem;
+        padding: 1rem 1.5rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .cta-section {
+        padding: 3rem 0;
+    }
+
+    .cta-card {
+        padding: 2rem 1.25rem;
+        margin: 0 0.75rem;
+    }
+
+    .cta-section h2 {
+        font-size: 1.25rem;
+        line-height: 1.3;
+        margin-bottom: 0.75rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .cta-section p {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .cta-section .btn {
+        font-size: 0.85rem;
+        padding: 0.875rem 1.25rem;
+        max-width: 100%;
+        line-height: 1.4;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+}
+

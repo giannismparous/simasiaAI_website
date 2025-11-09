@@ -12,7 +12,7 @@ const CollaborationsPage = () => {
   const isInView = useInView(ref, { once: true, margin: "200px" });
 
   return (
-    <div className="collaborations-page-wrapper" style={{ position: 'relative', overflow: 'visible' }}>
+    <div className="collaborations-page-wrapper" style={{ position: 'relative', overflow: 'hidden', width: '100%' }}>
       <section className="collaborations-hero" style={{ padding: '8rem 0 4rem', position: 'relative' }}>
         <div className="container">
           <motion.div

@@ -8,6 +8,14 @@
     overflow: hidden;
 }
 
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto;
+        padding: 2rem 0;
+        margin-top: 70px;
+    }
+}
+
 .hero::before {
     content: '';
     position: absolute;
@@ -38,6 +46,12 @@
     padding: 0 2rem;
     position: relative;
     z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .hero .container {
+        padding: 0 1rem;
+    }
 }
 
 .hero-content {
@@ -274,24 +288,27 @@
 
 @media (max-width: 768px) {
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        line-height: 1.2;
     }
 
     .hero p {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
     }
 
     .network-quote {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 
     .network-quote-en {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     .hero-network-visualization {
-        max-width: 500px;
-        opacity: 0.3;
+        max-width: 400px;
+        opacity: 0.2;
     }
 
     .hero-network-left {
@@ -306,5 +323,58 @@
 
     .hero-heading-wrapper {
         margin-bottom: 1.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .hero {
+        padding: 1.5rem 0;
+    }
+
+    .hero .container {
+        padding: 0 0.75rem;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .network-quote {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
     }
 }

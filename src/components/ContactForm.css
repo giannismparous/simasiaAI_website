@@ -88,12 +88,23 @@
 }
 
 @media (max-width: 768px) {
+    .contact-form-section {
+        padding: 4rem 0;
+    }
+
     .form-row {
         grid-template-columns: 1fr;
     }
 
     .contact-form {
-        padding: 2rem;
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .form-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
     }
 }
 

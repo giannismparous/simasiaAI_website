@@ -107,14 +107,14 @@ const SolutionsPage = () => {
   }, [originalPoints, remapPoint, animationDelays, animationDuration]);
 
   return (
-    <div className="solutions-page-wrapper" style={{ position: 'relative', overflow: 'visible', background: 'transparent' }}>
+    <div className="solutions-page-wrapper" style={{ position: 'relative', overflow: 'hidden', width: '100%', maxWidth: '100vw', background: 'transparent' }}>
       <section className="solutions-hero" style={{ padding: '8rem 0 4rem', position: 'relative', background: 'transparent' }}>
         <div className="container">
           <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, pointerEvents: 'none', zIndex: 1 }}>
             <div 
               ref={ref}
               className="about-network-visualization"
-              style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%) translateY(-50%)', width: '1200px', maxWidth: 'calc(100vw - 10%)', top: '50%', zIndex: 1, opacity: isHovered ? 1 : 0.6, transition: 'opacity 0.5s ease-in-out' }}
+              style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%) translateY(-50%)', width: '1200px', maxWidth: 'min(1200px, calc(100vw - 20px))', top: '50%', zIndex: 1, opacity: isHovered ? 1 : 0.6, transition: 'opacity 0.5s ease-in-out' }}
             >
               <svg viewBox="0 0 1200 1400" width="100%" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
                 <defs>
@@ -194,7 +194,7 @@ const SolutionsPage = () => {
             <h2 className="section-title">Τι πετυχαίνουμε μαζί</h2>
           </SmoothReveal>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: '2rem', marginTop: '3rem' }}>
             {[
               "Σαφείς απαντήσεις και λιγότερη χρονοτριβή σε συχνές ερωτήσεις/σύνθετες διαδικασίες.",
               "Διαφάνεια γνώσης με τεκμηρίωση από εγκεκριμένες πηγές.",
@@ -227,7 +227,7 @@ const SolutionsPage = () => {
             <h2 className="section-title">Πώς συνεργαζόμαστε</h2>
           </SmoothReveal>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', gap: '2rem', marginTop: '3rem' }}>
             {[
               { title: "Διερεύνηση", desc: "Χαρτογραφούμε ανάγκες ανθρώπων/ομάδων, περιεχόμενο και ροές πληροφορίας." },
               { title: "Πιλοτική εφαρμογή", desc: "Δοκιμή λύσεων σε πραγματικά σενάρια, μετρήσεις και ανατροφοδότηση." },
@@ -274,7 +274,7 @@ const SolutionsPage = () => {
             <h2 className="section-title">Τι μπορούμε να αναπτύξουμε για εσάς (ενδεικτικά)</h2>
           </SmoothReveal>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: '2rem', marginTop: '3rem' }}>
             {[
               "Υποστηρικτικά chatbots 24/7 για ενημέρωση, υποδοχή αιτημάτων, καθοδήγηση διαδικασιών.",
               "Εξειδικευμένα assistants (π.χ., πολιτικές/κανονισμοί οργανισμού, onboarding προσωπικού, knowledge bases).",
@@ -306,7 +306,7 @@ const SolutionsPage = () => {
             <h2 className="section-title">Γιατί να επιλέξετε τα chatbots της \ΣimasiaAI\</h2>
           </SmoothReveal>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: '2rem', marginTop: '3rem' }}>
             {[
               { title: "Προσβασιμότητα από σχεδιασμό", desc: "Εναλλακτικοί τρόποι εισόδου/εξόδου (κείμενο/ήχος), WCAG-oriented επιλογές." },
               { title: "Πολυγλωσσία", desc: "Υποστήριξη πολλών ευρωπαϊκών και παγκόσμιων γλωσσών (ενδεικτικά: κινεζικά—μανδαρινικά/καντονέζικα, ιαπωνικά, κορεατικά, αραβικά, χίντι, μπενγκάλι κ.ά.) και τοπικές ελληνικές ποικιλίες (π.χ. κυπριακά, ποντιακά) όπου είναι εφικτό ή κατόπιν στοχευμένης εκπαίδευσης." },
