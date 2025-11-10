@@ -806,8 +806,12 @@ const Hero = () => {
           margin-right: -0.05em;
           vertical-align: baseline;
           clip-path: inset(0 100% 0 0);
+          -webkit-clip-path: inset(0 100% 0 0);
           margin-left: 0;
           padding: 0;
+          position: relative;
+          transform: translateZ(0);
+          will-change: clip-path;
         }
         .prefix-s{
           animation: typeChar 0.16s 0.1s steps(1,end) forwards;
@@ -817,6 +821,8 @@ const Hero = () => {
         }
         .prefix-m{
           animation: typeChar 0.16s 0.42s steps(1,end) forwards;
+          -webkit-clip-path: inset(0 100% 0 0);
+          clip-path: inset(0 100% 0 0);
         }
         .prefix-a{
           animation: typeChar 0.16s 0.58s steps(1,end) forwards;
@@ -828,8 +834,14 @@ const Hero = () => {
           display: none;
         }
         @keyframes typeChar{
-          from{ clip-path: inset(0 100% 0 0); }
-          to{ clip-path: inset(0 0% 0 0); }
+          from{ 
+            clip-path: inset(0 100% 0 0);
+            -webkit-clip-path: inset(0 100% 0 0);
+          }
+          to{ 
+            clip-path: inset(0 0% 0 0);
+            -webkit-clip-path: inset(0 0% 0 0);
+          }
         }
         .ia-i, .ia-a{
           color: var(--dark-text);
