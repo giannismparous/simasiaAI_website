@@ -966,6 +966,33 @@ const Hero = () => {
           .ia-i, .ia-a, .AI{
             font-size: 2rem;
           }
+          /* Mobile fix: ensure characters are visible */
+          .prefix-s, .prefix-i, .prefix-m, .prefix-a, .prefix-s2{
+            clip-path: none !important;
+            -webkit-clip-path: none !important;
+            width: auto !important;
+            opacity: 0;
+            animation: typeCharMobile 0.16s ease-out forwards;
+          }
+          .prefix-s{
+            animation-delay: 0.1s;
+          }
+          .prefix-i{
+            animation-delay: 0.26s;
+          }
+          .prefix-m{
+            animation-delay: 0.42s;
+          }
+          .prefix-a{
+            animation-delay: 0.58s;
+          }
+          .prefix-s2{
+            animation-delay: 0.74s;
+          }
+          @keyframes typeCharMobile{
+            from{ opacity: 0; }
+            to{ opacity: 1; }
+          }
           .brand-anim-container{
             margin: 1rem 0;
           }
@@ -1012,6 +1039,33 @@ const Hero = () => {
           .prefix-s, .prefix-i, .prefix-m, .prefix-a, .prefix-s2,
           .ia-i, .ia-a, .AI{
             font-size: 1.5rem;
+          }
+          /* Mobile fix: ensure characters are visible */
+          .prefix-s, .prefix-i, .prefix-m, .prefix-a, .prefix-s2{
+            clip-path: none !important;
+            -webkit-clip-path: none !important;
+            width: auto !important;
+            opacity: 0;
+            animation: typeCharMobile 0.16s ease-out forwards;
+          }
+          .prefix-s{
+            animation-delay: 0.1s;
+          }
+          .prefix-i{
+            animation-delay: 0.26s;
+          }
+          .prefix-m{
+            animation-delay: 0.42s;
+          }
+          .prefix-a{
+            animation-delay: 0.58s;
+          }
+          .prefix-s2{
+            animation-delay: 0.74s;
+          }
+          @keyframes typeCharMobile{
+            from{ opacity: 0; }
+            to{ opacity: 1; }
           }
           .brand-anim-container{
             margin: 0.75rem 0;
