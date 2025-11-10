@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { SmoothReveal } from './TextReveal';
+import { useTranslation } from '../hooks/useTranslation';
 import './Values.css';
 
 const Values = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "200px" });
 
@@ -37,7 +39,7 @@ const Values = () => {
     <section className="values" id="values">
       <div className="container">
         <SmoothReveal delay={0.1} yOffset={15}>
-          <h2 className="section-title">Αξίες</h2>
+          <h2 className="section-title">{t('values.title')}</h2>
         </SmoothReveal>
         
         <motion.div 
@@ -47,61 +49,22 @@ const Values = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <motion.div 
-            className="value-item"
-            variants={itemVariants}
-            whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
-          >
-            <div className="value-number">1</div>
-            <h3>
-              Ανθρωποκεντρική Τεχνολογία
-            </h3>
-            <p>
-              Η τεχνολογία ενισχύει, δεν αντικαθιστά τις ανθρώπινες σχέσεις. Σχεδιάζουμε AI με τον άνθρωπο στο κέντρο.
-            </p>
-          </motion.div>
-          
-          <motion.div 
-            className="value-item"
-            variants={itemVariants}
-            whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
-          >
-            <div className="value-number">2</div>
-            <h3>
-              Κοινωνική Συνεισφορά
-            </h3>
-            <p>
-              Εστιάζουμε σε πραγματικές ανάγκες, ενδυναμώνοντας κοινότητες και βελτιώνοντας την ποιότητα ζωής.
-            </p>
-          </motion.div>
-          
-          <motion.div 
-            className="value-item"
-            variants={itemVariants}
-            whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
-          >
-            <div className="value-number">3</div>
-            <h3>
-              Ενσυναίσθηση στην Καινοτομία
-            </h3>
-            <p>
-              Ξεκινάμε από τις ανθρώπινες ανάγκες. Οι λύσεις μας τις ακούν, τις κατανοούν και προσαρμόζονται για να τις εξυπηρετούν.
-            </p>
-          </motion.div>
-          
-          <motion.div 
-            className="value-item"
-            variants={itemVariants}
-            whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
-          >
-            <div className="value-number">4</div>
-            <h3>
-              Τεχνολογία που Ενδυναμώνει
-            </h3>
-            <p>
-              Παρέχουμε πρακτικά εργαλεία εκεί που χρειάζονται: απλά • αξιόπιστα • μετρήσιμα.
-            </p>
-          </motion.div>
+          {t('values.items').map((value, index) => (
+            <motion.div 
+              key={index}
+              className="value-item"
+              variants={itemVariants}
+              whileHover={{ 
+                y: -8, 
+                transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+                boxShadow: '0 20px 60px rgba(224, 120, 86, 0.3)'
+              }}
+            >
+              <div className="value-number">{index + 1}</div>
+              <h3>{value.title}</h3>
+              <p>{value.text}</p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

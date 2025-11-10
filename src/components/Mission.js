@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { WordReveal, SmoothReveal } from './TextReveal';
+import { useTranslation } from '../hooks/useTranslation';
 import './Mission.css';
 
 const Mission = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "200px" });
 
@@ -19,11 +21,11 @@ const Mission = () => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <SmoothReveal delay={0.1} yOffset={15}>
-            <h2 className="section-title">Η αποστολή μας</h2>
+            <h2 className="section-title">{t('mission.title')}</h2>
           </SmoothReveal>
           <p className="mission-description">
             <WordReveal 
-              text="Δημιουργούμε τεχνολογικές λύσεις με επίκεντρο τον άνθρωπο που ενδυναμώνουν την κοινωνική συνοχή. Κάθε λύση μας λειτουργεί ως γέφυρα κατανόησης: απλή στη χρήση, αξιόπιστη στην πράξη, ουσιαστική για το κοινωνικό σύνολο."
+              text={t('mission.text')}
               delay={0.15}
               duration={0.25}
             />

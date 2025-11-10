@@ -26,7 +26,7 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 @media (max-width: 768px) {
@@ -88,6 +88,14 @@
     gap: 1.5rem;
     list-style: none;
     flex-wrap: wrap;
+    align-items: center;
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1001;
 }
 
 .nav-links a {
@@ -97,6 +105,8 @@
     transition: color 0.3s;
     font-size: 0.9rem;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
 }
 
 .nav-links a:hover {
@@ -112,6 +122,9 @@
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     box-shadow: 0 4px 12px rgba(44, 122, 123, 0.3) !important;
     border: 2px solid var(--primary-warm) !important;
+    overflow: hidden;
+    position: relative !important;
+    z-index: 1001 !important;
 }
 
 .nav-demo-button:hover {
@@ -120,6 +133,7 @@
     color: var(--white) !important;
     transform: translateY(-2px) !important;
     box-shadow: 0 6px 20px rgba(224, 120, 86, 0.4) !important;
+    z-index: 1002 !important;
 }
 
 .nav-demo-button.active {

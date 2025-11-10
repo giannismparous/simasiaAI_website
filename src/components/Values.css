@@ -30,7 +30,7 @@
 
 .value-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 20px 60px rgba(224, 120, 86, 0.3);
 }
 
 .value-number {

@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import ReactCountryFlag from 'react-country-flag';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useTranslation } from '../hooks/useTranslation';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { language, toggleLanguage } = useLanguage();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,12 +30,12 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { path: "/", text: "Αρχική" },
-    { path: "/about", text: "Ποιοι είμαστε" },
-    { path: "/solutions", text: "Λύσεις με σημασία" },
-    { path: "/collaborations", text: "Συνεργασίες" },
-    { path: "/applications", text: "Εφαρμογές" },
-    { path: "/book-demo", text: "Προγραμματίστε ένα demo", isButton: true }
+    { path: "/", text: t('nav.home') },
+    { path: "/about", text: t('nav.about') },
+    { path: "/target-audience", text: t('nav.targetAudience') },
+    { path: "/products", text: t('nav.products') },
+    { path: "/collaborations", text: t('nav.collaborations') },
+    { path: "/book-demo", text: t('nav.bookDemo'), isButton: true }
   ];
 
   return (
@@ -84,6 +89,38 @@ const Navbar = () => {
               )}
             </li>
           ))}
+          <li style={{ display: 'flex', alignItems: 'center' }}>
+            <button 
+              onClick={toggleLanguage}
+              className="language-switcher"
+              aria-label="Switch language"
+              style={{
+                background: 'transparent',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '0.5rem',
+                width: '40px',
+                height: '40px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = 'var(--primary-warm)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'transparent';
+              }}
+            >
+              {language === 'el' ? (
+                <ReactCountryFlag countryCode="GB" svg style={{ width: '24px', height: '24px' }} />
+              ) : (
+                <ReactCountryFlag countryCode="GR" svg style={{ width: '24px', height: '24px' }} />
+              )}
+            </button>
+          </li>
         </ul>
       </div>
     </motion.nav>

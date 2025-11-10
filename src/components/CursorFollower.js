@@ -51,6 +51,14 @@ const CursorFollower = () => {
       target.closest('.cta-card') ||
       target.closest('.b2c-card') ||
       target.closest('.challenge-item') ||
+      target.closest('.obstacles-grid') ||
+      target.closest('.obstacle-item') ||
+      target.closest('.business-type-item') ||
+      target.closest('.product-item') ||
+      target.closest('.capability-item') ||
+      target.closest('.why-item') ||
+      target.closest('[style*="borderRadius"]') ||
+      target.closest('[style*="border-radius"]') ||
       target.closest('input') ||
       target.closest('textarea') ||
       target.closest('select')

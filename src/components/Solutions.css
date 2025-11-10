@@ -78,7 +78,7 @@
 
 .achievement-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 20px 60px rgba(224, 120, 86, 0.3);
 }
 
 .achievement-item h4 {
@@ -125,7 +125,7 @@
 
 .process-step:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 20px 60px rgba(224, 120, 86, 0.3);
 }
 
 .process-icon {

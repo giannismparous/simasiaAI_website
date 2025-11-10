@@ -103,12 +103,10 @@
 }
 
 .collaboration-logo {
-    position: absolute;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    position: relative;
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
 }
 
 .poamsk-logo {
@@ -200,9 +198,6 @@
     }
 
     .collaboration-logo {
-        position: relative !important;
-        bottom: auto !important;
-        right: auto !important;
         margin-top: 2rem;
         display: flex;
         justify-content: center;

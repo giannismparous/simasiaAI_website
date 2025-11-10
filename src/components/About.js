@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { WordReveal, SmoothReveal } from './TextReveal';
+import { useTranslation } from '../hooks/useTranslation';
 import './About.css';
 
 const About = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "200px" });
 
@@ -27,12 +29,12 @@ const About = () => {
           >
             <div className="about-title-wrapper">
               <SmoothReveal delay={0.1} yOffset={15}>
-                <h2 className="section-title">Ποιοι είμαστε</h2>
+                <h2 className="section-title">{t('about.title')}</h2>
               </SmoothReveal>
             </div>
             <p>
               <WordReveal 
-                text="Είμαστε μια ελληνική startup με διεπιστημονική ομάδα ερευνητών/ερευνητριών, προγραμματιστών/στριών και επαγγελματιών στους τομείς της Τεχνητής Νοημοσύνης, Γλωσσολογίας και Ανάπτυξης Λογισμικού. Η εμπειρία μας σε έρευνα, ανάπτυξη και πωλήσεις μάς βοηθά να κατανοούμε σε βάθος τις ανάγκες των ανθρώπων και να δημιουργούμε αξιόπιστα και κατανοητά συστήματα ΤΝ." 
+                text={t('about.text')}
                 delay={0.2}
                 duration={0.25}
               />

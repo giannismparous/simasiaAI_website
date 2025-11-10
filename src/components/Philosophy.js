@@ -53,50 +53,46 @@ const Philosophy = () => {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
           <SmoothReveal delay={0.15} yOffset={10}>
-            <h3 className="section-subtitle" style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--primary-warm)' }}>Σκοπός</h3>
+            <h3 className="section-subtitle" style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--primary-warm)' }}>Φιλοσοφία & Όραμα</h3>
           </SmoothReveal>
           <p className="philosophy-quote">
             <WordReveal 
-              text="Αναπτύσσουμε συστήματα ΤΝ που κατανοούν, επιδεικνύουν ενσυναίσθηση και επικοινωνούν φυσικά, πάντα με επίκεντρο τον Άνθρωπο, για να αμβλύνουμε ανισότητες, να ενισχύσουμε τη συμπερίληψη και να βελτιώσουμε την καθημερινότητα."
+              text="Η ΤΝ για τον άνθρωπο. Οραματιζόμαστε μια πραγματικότητα όπου η ΤΝ υπηρετεί με ευθύνη τις ανθρώπινες ανάγκες και χτίζει γέφυρες κατανόησης στις ανθρώπινες κοινότητες."
               delay={0.2}
               duration={0.25}
             />
           </p>
           <SmoothReveal delay={0.3} yOffset={10}>
-            <h3 className="section-subtitle" style={{ fontSize: '1.5rem', marginTop: '2.5rem', marginBottom: '1.5rem', color: 'var(--primary-warm)' }}>Φιλοσοφία</h3>
-          </SmoothReveal>
-          <p className="philosophy-quote">
-            <WordReveal 
-              text="Στο δίλημμα «Ο άνθρωπος για την ΤΝ ή η ΤΝ για τον άνθρωπο;» απαντάμε καθαρά: Η ΤΝ για τον Άνθρωπο."
-              delay={0.35}
-              duration={0.25}
-            />
-          </p>
-          <SmoothReveal delay={0.45} yOffset={10}>
-            <h3 className="section-subtitle" style={{ fontSize: '1.5rem', marginTop: '2.5rem', marginBottom: '1.5rem', color: 'var(--primary-warm)' }}>Όραμα</h3>
-          </SmoothReveal>
-          <p className="philosophy-quote">
-            <WordReveal 
-              text="Μια πραγματικότητα όπου η ΤΝ υπηρετεί με ευθύνη τις ανθρώπινες ανάγκες και χτίζει γέφυρες κατανόησης."
-              delay={0.5}
-              duration={0.25}
-            />
-          </p>
-          <SmoothReveal delay={0.6} yOffset={10}>
             <h3 className="section-subtitle" style={{ fontSize: '1.5rem', marginTop: '2.5rem', marginBottom: '1.5rem', color: 'var(--primary-warm)' }}>Τι κάνουμε</h3>
           </SmoothReveal>
           <div className="philosophy-text">
             <p>
+              <strong>1) Συνδιαμορφώνουμε</strong>
+            </p>
+            <p style={{ marginTop: '0.5rem', marginBottom: '1.5rem' }}>
               <WordReveal 
-                text="Συνδιαμορφώνουμε με οργανισμούς λύσεις ΤΝ με πραγματικό κοινωνικό αντίκτυπο και σεβασμό στην ανθρώπινη επικοινωνία."
-                delay={0.65}
+                text="Με οργανισμούς, φορείς και επιχειρήσεις συστήματα ΤΝ που κατανοούν, δείχνουν ενσυναίσθηση και επικοινωνούν φυσικά, με πραγματικό κοινωνικό αντίκτυπο και σεβασμό στην ανθρώπινη επικοινωνία."
+                delay={0.35}
                 duration={0.25}
               />
             </p>
-            <p style={{ marginTop: '1.5rem' }}>
+            <p>
+              <strong>2) Σχεδιάζουμε</strong>
+            </p>
+            <p style={{ marginTop: '0.5rem', marginBottom: '1.5rem' }}>
               <WordReveal 
-                text="Σχεδιάζουμε ολιστικές, προσβάσιμες λύσεις για υγεία, εκπαίδευση, πολιτισμική διαμεσολάβηση και άλλους τομείς όπου η ΤΝ μπορεί να στηρίξει την ανθρώπινη ανάγκη."
-                delay={0.75}
+                text="Ολιστικές, προσβάσιμες εφαρμογές για την υγεία, την εκπαίδευση, την πολιτισμική διαμεσολάβηση και τους άλλους τομείς, όπου η ΤΝ μπορεί να στηρίξει την ανθρώπινη ανάγκη."
+                delay={0.4}
+                duration={0.25}
+              />
+            </p>
+            <p>
+              <strong>3) Ενισχύουμε</strong>
+            </p>
+            <p style={{ marginTop: '0.5rem' }}>
+              <WordReveal 
+                text="Την κοινωνική συνοχή, αμβλύνουμε τις κοινωνικές ανισότητες, προωθούμε τη συμπερίληψη και βελτιώνουμε την καθημερινότητα των ατόμων."
+                delay={0.45}
                 duration={0.25}
               />
             </p>

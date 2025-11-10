@@ -208,7 +208,11 @@ const SolutionsPage = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
-                whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
+                whileHover={{ 
+                  y: -8, 
+                  transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+                  boxShadow: '0 20px 60px rgba(224, 120, 86, 0.3)'
+                }}
               >
                 <SmoothReveal delay={0.25 + (index * 0.1)} yOffset={10}>
                   <p style={{ fontSize: '1.1rem', lineHeight: 1.7 }}>
@@ -240,7 +244,11 @@ const SolutionsPage = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
-                whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
+                whileHover={{ 
+                  y: -8, 
+                  transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+                  boxShadow: '0 20px 60px rgba(224, 120, 86, 0.3)'
+                }}
               >
                 <SmoothReveal delay={0.25 + (index * 0.1)} yOffset={10}>
                   <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: 'var(--primary-warm)' }}>{step.title}</h3>
@@ -287,7 +295,11 @@ const SolutionsPage = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
-                whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
+                whileHover={{ 
+                  y: -8, 
+                  transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+                  boxShadow: '0 20px 60px rgba(224, 120, 86, 0.3)'
+                }}
               >
                 <SmoothReveal delay={0.25 + (index * 0.1)} yOffset={10}>
                   <p style={{ fontSize: '1.1rem', lineHeight: 1.7 }}>
@@ -321,7 +333,11 @@ const SolutionsPage = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
-                whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
+                whileHover={{ 
+                  y: -8, 
+                  transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+                  boxShadow: '0 20px 60px rgba(224, 120, 86, 0.3)'
+                }}
               >
                 <SmoothReveal delay={0.25 + (index * 0.1)} yOffset={10}>
                   <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--primary-warm)' }}>{item.title}</h3>

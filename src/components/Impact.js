@@ -2,9 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from '../hooks/useTranslation';
 import './Impact.css';
 
 const Impact = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "200px" });
 
@@ -18,7 +21,7 @@ const Impact = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
-          Τρέχουσες συνεργασίες
+          {t('collaborations.current.title')}
         </motion.h2>
         
         <motion.div 
@@ -40,7 +43,7 @@ const Impact = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
               transition={{ duration: 0.3, delay: 0.25 }}
             >
-              ΠΟΑΜΣΚ
+              {t('collaborations.current.poamsk.name')}
             </motion.h3>
             <motion.p 
               className="collaboration-description"
@@ -48,20 +51,49 @@ const Impact = () => {
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.3, delay: 0.3 }}
             >
-              Σε συνεργασία με την <strong>ΠΟΑΜΣΚ</strong> (Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση Κατά Πλάκας): 
-              υποστηρικτικό chatbot για έγκυρη ενημέρωση σχετικά με τη Σκλήρυνση Κατά Πλάκας.
+              {t('collaborations.current.poamsk.description')}
             </motion.p>
             <motion.div 
               className="collaboration-logo"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 0.85, scale: 1 } : { opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              style={{ marginTop: '2rem', marginBottom: '1rem' }}
             >
               <img 
                 src="/Collaborations/Logos/poamsk_logo.png" 
                 alt="ΠΟΑΜΣΚ Logo" 
                 className="poamsk-logo"
               />
+            </motion.div>
+            <motion.p 
+              style={{ marginTop: '1rem', fontSize: '0.95rem', color: 'rgba(255, 255, 255, 0.85)', fontStyle: 'italic', textAlign: 'center' }}
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+            >
+              ({t('collaborations.current.poamsk.note')})
+            </motion.p>
+            <motion.div 
+              className="collaboration-ctas"
+              style={{ display: 'flex', gap: '1rem', marginTop: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.45 }}
+            >
+              <a 
+                href="#contact" 
+                className="btn btn-primary"
+              >
+                {t('collaborations.current.poamsk.contact')}
+              </a>
+              <Link 
+                to="/book-demo" 
+                className="btn btn-primary"
+                style={{ background: 'rgba(255, 255, 255, 0.2)', border: '2px solid rgba(255, 255, 255, 0.5)', color: 'var(--white)' }}
+              >
+                {t('collaborations.current.poamsk.bookDemo')}
+              </Link>
             </motion.div>
           </motion.div>
         </motion.div>

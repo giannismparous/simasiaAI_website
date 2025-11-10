@@ -6,6 +6,7 @@
     background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
     position: relative;
     overflow: hidden;
+    padding-bottom: 4rem;
 }
 
 @media (max-width: 768px) {

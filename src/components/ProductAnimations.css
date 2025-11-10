@@ -1,0 +1,117 @@
+/* Product Animation Styles */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scaleX(1.1);
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 120;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes sweep {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(110%);
+  }
+}
+
+@keyframes blink {
+  0%, 90% {
+    opacity: 0;
+  }
+  92%, 100% {
+    opacity: 1;
+  }
+}
+
+@keyframes gear {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  60% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-anim] {
+    animation: none !important;
+  }
+  .sweep,
+  .gear {
+    display: none;
+  }
+}
+
+.product-animation-container {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #fff, #f4f7f6);
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  height: 260px;
+  width: 100%;
+  max-width: 512px;
+  margin: 0 auto;
+}
+
+.product-animation-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Logo style - no container, just the SVG */
+.product-animation-logo {
+  display: grid;
+  place-items: center;
+  height: 180px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.product-animation-logo svg {
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+}
+

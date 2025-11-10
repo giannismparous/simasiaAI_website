@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
+import { useTranslation } from '../hooks/useTranslation';
 import './ContactForm.css';
 
 const ContactForm = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -53,7 +55,7 @@ const ContactForm = () => {
 
       setSubmitStatus({ 
         type: 'success', 
-        message: 'Το μήνυμά σας στάλθηκε επιτυχώς! Θα επικοινωνήσουμε μαζί σας σύντομα.' 
+        message: t('contactForm.successMessage')
       });
       
       // Reset form
@@ -71,7 +73,7 @@ const ContactForm = () => {
       console.error('EmailJS Error:', error);
       setSubmitStatus({ 
         type: 'error', 
-        message: 'Υπήρξε πρόβλημα με την αποστολή. Παρακαλώ δοκιμάστε ξανά ή επικοινωνήστε μαζί μας στο simasia.ai@gmail.com' 
+        message: t('contactForm.errorMessage')
       });
     } finally {
       setIsSubmitting(false);
@@ -81,13 +83,13 @@ const ContactForm = () => {
   return (
     <section className="contact-form-section" id="contact">
       <div className="container">
-        <h2 className="section-title">Φόρμα Επικοινωνίας</h2>
-        <p className="form-subtitle">Προτείνετέ μας τη λύση που οραματίζεστε να συνδημιουργήσουμε. Απαντάμε εντός 24 ωρών.</p>
+        <h2 className="section-title">{t('contactForm.title')}</h2>
+        <p className="form-subtitle">{t('contactForm.subtitle')}</p>
         
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="firstName">Όνομα *</label>
+              <label htmlFor="firstName">{t('contactForm.firstName')} *</label>
               <input
                 type="text"
                 id="firstName"
@@ -99,7 +101,7 @@ const ContactForm = () => {
             </div>
             
             <div className="form-group">
-              <label htmlFor="lastName">Επίθετο *</label>
+              <label htmlFor="lastName">{t('contactForm.lastName')} *</label>
               <input
                 type="text"
                 id="lastName"
@@ -113,7 +115,7 @@ const ContactForm = () => {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="email">Email *</label>
+              <label htmlFor="email">{t('contactForm.email')} *</label>
               <input
                 type="email"
                 id="email"
@@ -125,7 +127,7 @@ const ContactForm = () => {
             </div>
             
             <div className="form-group">
-              <label htmlFor="organizationType">Φορέας/Ιδιότητα *</label>
+              <label htmlFor="organizationType">{t('contactForm.organizationType')} *</label>
               <select
                 id="organizationType"
                 name="organizationType"
@@ -133,17 +135,17 @@ const ContactForm = () => {
                 onChange={handleChange}
                 required
               >
-                <option value="">Επιλέξτε...</option>
-                <option value="Επιχείρηση">Επιχείρηση</option>
-                <option value="Οργανισμός">Οργανισμός</option>
-                <option value="Φορέας">Φορέας</option>
-                <option value="Άλλο">Άλλο</option>
+                <option value="">{t('contactForm.selectOption')}</option>
+                <option value={t('contactForm.organization')}>{t('contactForm.organization')}</option>
+                <option value={t('contactForm.organization2')}>{t('contactForm.organization2')}</option>
+                <option value={t('contactForm.organization3')}>{t('contactForm.organization3')}</option>
+                <option value={t('contactForm.organization4')}>{t('contactForm.organization4')}</option>
               </select>
             </div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="companyName">Επωνυμία</label>
+            <label htmlFor="companyName">{t('contactForm.companyName')}</label>
             <input
               type="text"
               id="companyName"
@@ -154,26 +156,26 @@ const ContactForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="description">Σύντομη περιγραφή ανάγκης/ιδέας</label>
+            <label htmlFor="description">{t('contactForm.description')}</label>
             <textarea
               id="description"
               name="description"
               value={formData.description}
               onChange={handleChange}
               rows="5"
-              placeholder="Περιγράψτε την ανάγκη σας ή τη λύση που οραματίζεστε..."
+              placeholder={t('contactForm.descriptionPlaceholder')}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="attachment">(Προαιρετικά) Αρχείο/Σύνδεσμος</label>
+            <label htmlFor="attachment">{t('contactForm.attachment')}</label>
             <input
               type="url"
               id="attachment"
               name="attachment"
               value={formData.attachment}
               onChange={handleChange}
-              placeholder="https://..."
+              placeholder={t('contactForm.attachmentPlaceholder')}
             />
           </div>
 
@@ -182,11 +184,11 @@ const ContactForm = () => {
             className="btn btn-primary submit-btn"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Αποστολή...' : 'Αποστολή αιτήματος'}
+            {isSubmitting ? t('contactForm.submitting') : t('contactForm.submit')}
           </button>
           
           <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--gray-medium)', textAlign: 'center' }}>
-            Με την υποβολή συμφωνείτε ότι θα επικοινωνήσουμε για το αίτημά σας. Τα στοιχεία σας δεν κοινοποιούνται σε τρίτους.
+            {t('contactForm.privacyNote')}
           </p>
 
           {submitStatus.type && (

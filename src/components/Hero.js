@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from '../hooks/useTranslation';
 import './Hero.css';
 
 const Hero = () => {
+  const { t } = useTranslation();
   const [isMouseInHero, setIsMouseInHero] = useState(false);
   const heroRef = useRef(null);
   const containerVariants = {
@@ -270,12 +272,12 @@ const Hero = () => {
             <section className="simasia-brand-anim" aria-label="Σimasia → /ΣimasiaAI/ with tagline">
               <div className="taglines">
                 <div className="line1-wrapper">
-                  <p className="line1a">Το AI έχει σημασία όταν το</p>
-                  <p className="line1b">δούμε ανάποδα</p>
+                  <p className="line1a">{t('hero.line1a')}</p>
+                  <p className="line1b">{t('hero.line1b')}</p>
                 </div>
                 <div className="line2-wrapper">
-                  <p className="line2-placeholder" aria-hidden="true">Από την πλευρά του ανθρώπου.</p>
-                  <p className="line2">Από την πλευρά του ανθρώπου.</p>
+                  <p className="line2-placeholder" aria-hidden="true">{t('hero.line2')}</p>
+                  <p className="line2">{t('hero.line2')}</p>
                 </div>
               </div>
 
@@ -502,7 +504,13 @@ const Hero = () => {
             transition={{ delay: 1.15, duration: 0.4 }}
           >
             <p className="network-quote">
-              Αναπτύσσουμε λύσεις ΤΝ με κοινωνικό αποτύπωμα που ενισχύουν τη συμπερίληψη, την ισότητα και την ανθρώπινη επικοινωνία. Ξεκινάμε από εκεί όπου η ανάγκη είναι μεγαλύτερη—με ενσυναίσθηση και ευθύνη.
+              {t('hero.description1').split('.')[0] + '.'}
+            </p>
+            <p className="network-quote" style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
+              {t('hero.description1')}
+            </p>
+            <p className="network-quote" style={{ marginTop: '1rem', fontSize: '1rem', color: 'var(--gray-medium)' }}>
+              {t('hero.description2')}
             </p>
           </motion.div>
           <motion.div 
@@ -511,6 +519,25 @@ const Hero = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.4 }}
+            style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}
+          >
+            <motion.a 
+              href="/products" 
+              className="btn btn-primary"
+              whileHover={{ scale: 1.03, y: -3 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              {t('hero.seeProducts')}
+            </motion.a>
+          </motion.div>
+          <motion.div 
+            className="cta-buttons" 
+            variants={itemVariants}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.4 }}
+            style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '1rem' }}
           >
             <motion.a 
               href="#contact" 
@@ -519,7 +546,7 @@ const Hero = () => {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              Μιλήστε με την ομάδα
+              {t('hero.talkToTeam')}
             </motion.a>
             <motion.a 
               href="/book-demo" 
@@ -528,7 +555,7 @@ const Hero = () => {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              Προγραμματίστε ένα demo
+              {t('hero.scheduleDemo')}
             </motion.a>
           </motion.div>
         </motion.div>
@@ -540,7 +567,7 @@ const Hero = () => {
           width: 100%;
           max-width: 1000px;
           height: auto;
-          top: -30%;
+          top: 10%;
           left: -90%;
           z-index: 1;
           pointer-events: none;
@@ -551,7 +578,7 @@ const Hero = () => {
           width: 100%;
           max-width: 1000px;
           height: auto;
-          bottom: calc(-30% + 40px);
+          bottom: 10%;
           right: -70%;
           left: auto;
           z-index: 1;

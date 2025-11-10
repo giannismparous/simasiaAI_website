@@ -33,7 +33,7 @@ const MiddleCTA = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <Link 
-                to="/solutions" 
+                to="/products" 
                 className="btn btn-primary"
               >
                 Δείτε πώς συνεργαζόμαστε

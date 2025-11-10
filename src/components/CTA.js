@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { SmoothReveal } from './TextReveal';
+import { useTranslation } from '../hooks/useTranslation';
 import './CTA.css';
 
 const CTA = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "200px" });
 
@@ -26,7 +28,7 @@ const CTA = () => {
             transition={{ duration: 0.5, delay: 0 }}
           >
             <SmoothReveal delay={0.1} yOffset={10}>
-              <h2>Ζητήστε πρόταση συνεργασίας</h2>
+              <h2>{t('cta.title')}</h2>
             </SmoothReveal>
             <motion.div 
               className="cta-buttons"
@@ -41,7 +43,7 @@ const CTA = () => {
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                Ζητήστε πρόταση συνεργασίας
+                {t('cta.button')}
               </motion.a>
             </motion.div>
           </motion.div>

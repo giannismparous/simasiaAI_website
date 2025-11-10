@@ -55,7 +55,11 @@ const ApplicationsPage = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
+            whileHover={{ 
+              y: -8, 
+              transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+              boxShadow: '0 20px 60px rgba(224, 120, 86, 0.3)'
+            }}
           >
             <SmoothReveal delay={0.25} yOffset={10}>
               <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'var(--dark-text)' }}>
