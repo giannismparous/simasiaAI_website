@@ -63,7 +63,7 @@ const CollaborationsPage = () => {
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.3, delay: 0.35 }}
             >
-              (Διατίθεται περιγραφική παρουσίαση κατόπιν επικοινωνίας.)
+              {t('collaborations.current.poamsk.note')}
             </motion.p>
             <motion.div 
               className="collaboration-logo"
@@ -73,7 +73,7 @@ const CollaborationsPage = () => {
             >
               <img 
                 src="/Collaborations/Logos/poamsk_logo.png" 
-                alt="ΠΟΑΜΣΚ Logo" 
+                alt={t('collaborations.current.poamsk.name')} 
                 className="poamsk-logo"
               />
             </motion.div>
@@ -88,13 +88,13 @@ const CollaborationsPage = () => {
                 href="#contact" 
                 className="btn btn-primary"
               >
-                Επικοινωνήστε για πρόσβαση
+                {t('collaborations.current.poamsk.contact')}
               </a>
               <Link 
                 to="/book-demo" 
                 className="btn btn-secondary"
               >
-                Κλείστε demo
+                {t('collaborations.current.poamsk.bookDemo')}
               </Link>
             </motion.div>
           </motion.div>

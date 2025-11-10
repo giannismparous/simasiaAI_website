@@ -104,19 +104,95 @@ export const translations = {
       title: "Προϊόντα",
       chatbots: {
         name: "SimasiaChatbots",
-        title: "Ασφαλή chatbots, σχεδιασμένα από ανθρώπους, για ανθρώπους"
+        title: "Ασφαλή chatbots, σχεδιασμένα από ανθρώπους, για ανθρώπους",
+        offers: "Τα SimasiaChatbots προσφέρουν:",
+        features: [
+          "Προσβασιμότητα από σχεδιασμό: εναλλακτικοί τρόποι εισόδου/εξόδου (κείμενο/ήχος), WCAG-oriented επιλογές.",
+          "Πολυγλωσσία: υποστήριξη πολλών ευρωπαϊκών και παγκόσμιων γλωσσών (ενδεικτικά: κινεζικά—μανδαρινικά/καντονέζικα, ιαπωνικά, κορεατικά, αραβικά, χίντι, μπενγκάλι κ.ά.) και τοπικές ελληνικές ποικιλίες (π.χ. κυπριακά, ποντιακά) όπου είναι εφικτό ή κατόπιν στοχευμένης εκπαίδευσης.",
+          "Μείωση προκαταλήψεων: ροές αξιολόγησης και πολιτικές ισότητας/συμπερίληψης ενσωματωμένες στον σχεδιασμό.",
+          "Εκπαίδευση σε δικό σας περιεχόμενο: τεκμηριωμένες πηγές, εγχειρίδια, οδηγίες για ειδικές καταστάσεις.",
+          "Συνέπεια & ασφάλεια: απαντήσεις βασισμένες σε εγκεκριμένο περιεχόμενο με ελεγχόμενα αποδεικτικά.",
+          "Κλιμάκωση και ειδοποιήσεις: δυνατότητα αποστολής ειδοποίησης (τηλεφωνικής/γραπτής) σε οριζόμενα πρόσωπα/υπηρεσίες όταν ανιχνεύονται ροές που το απαιτούν, μόνο κατόπιν ρητής συμφωνίας και πολιτικής κλιμάκωσης."
+        ]
       },
       studio: {
         name: "SimasiaStudio",
-        title: "Τεκμηριωμένη μετάφραση, επιμέλεια με ευθύνη"
+        title: "Τεκμηριωμένη μετάφραση, επιμέλεια με ευθύνη",
+        offers: "Το SimasiaStudio προσφέρει:",
+        features: [
+          "Ανέβασμα και επιλογή οδηγών ύφους στη μετάφραση και στην επιμέλεια κειμένου.",
+          "Πρόσβαση σε έγκριτη ορολογία/γλωσσάρια.",
+          "Επιμέλεια ελληνικών κειμένων με το Λεξικό Τριανταφυλλίδη (υποστήριξη/ενσωμάτωση εναλλακτικών λεξικών- επέκταση σε επιπλέον γλώσσα κατ' επιλογή).",
+          "Αναλυτικές προτάσεις διόρθωσης και εξαγωγή αρχείων \"Παρακολούθησης αλλαγών\" (DOCX/PDF).",
+          "Εξειδικευμένη μετάφραση/επιμέλεια ανά πεδίο, με σαφή μεταφραστική κατεύθυνση και τεκμηριωμένη ορολογία (ιατρική, νομική, ακαδημαϊκή γραφή, λογοτεχνικό ύφος), με προσαρμογή ύφους και ορολογίας κατ' επιλογή.",
+          "Μαζική επεξεργασία και συνδέσεις (Google Drive/Dropbox/S3).",
+          "Ρυθμιζόμενη ευαισθησία σε προκαταλήψεις γένους, κοινωνικών ομάδων, στερεοτύπων.",
+          "Προσαρμοσμένος ορθογραφικός/γραμματικός έλεγχος για EL/EN, άλλες γλώσσες και ελληνικές διαλέκτους."
+        ]
       },
       daily: {
         name: "SimasiaDaily",
-        title: "Μικρά και αξιόπιστα εργαλεία, μεγάλη διαφορά."
+        title: "Μικρά και αξιόπιστα εργαλεία, μεγάλη διαφορά.",
+        offers: "Το SimasiaDaily προσφέρει:",
+        toolCategories: [
+          {
+            category: "Μετρητής Κειμένου",
+            tools: ["Λέξεις, χαρακτήρες, προτάσεις."]
+          },
+          {
+            category: "Αναδιατύπωση Κειμένου",
+            tools: ["Από ανεπίσημο → επίσημο με AI."]
+          },
+          {
+            category: "Έξυπνος Δημιουργός Τιμολογίων",
+            tools: ["Στοιχεία εκδότη/λήπτη, γραμμές ειδών, υπολογισμός φόρων, εξαγωγή PDF."]
+          },
+          {
+            category: "Προγραμματιστής Συναντήσεων Πολλαπλών Ζωνών Ώρας",
+            tools: ["Προγραμματισμός σε πολλές ζώνες, έξυπνες προτάσεις χρόνου, εξαγωγή ημερολογίου (.ics)."]
+          },
+          {
+            category: "Πρότυπο Πρακτικών Συνάντησης",
+            tools: ["Συμμετέχοντες, θέματα ημερήσιας διάταξης, σημεία συζήτησης, ενέργειες, επόμενη συνάντηση, επιλογές εξαγωγής."]
+          },
+          {
+            category: "Μετατροπέας Αρχείων (15+ μετατροπές)",
+            tools: ["DOCX↔PDF, LaTeX↔PDF/DOCX, TXT→PDF, DOC→PDF, CSV↔JSON, MP3↔WAV, PNG↔JPEG, PDF→εικόνα."]
+          },
+          {
+            category: "Εργαλεία Εικόνας (3)",
+            tools: ["Δημιουργία «σκαναρισμένης» εικόνας, αλλαγή μεγέθους, μετατροπή εικόνας σε Base64."]
+          },
+          {
+            category: "Εργαλεία επεξεργασία κειμένου",
+            tools: ["Μετατροπή γραμμάτων σε κεφαλαία, πεζά, μετατροπή τίτλων σε κεφαλαίων, αφαίρεση περιττών κενών, δημιουργία αρκτικολέξων με AI."]
+          },
+          {
+            category: "Εργαλεία Δεδομένων & Κώδικα",
+            tools: ["Μορφοποίηση JSON, περίληψη κειμένου/μελέτης (ανέβασμα .txt → σύνοψη + λέξεις-κλειδιά)."]
+          },
+          {
+            category: "Βοηθητικά Εργαλεία",
+            tools: ["Δημιουργός QR κωδικών, δημιουργός κωδικών πρόσβασης, προηγμένο OCR (εξαγωγή κειμένου + περιγραφή εικόνας με AI)."]
+          },
+          {
+            category: "Διασκεδαστικά/Πειραματικά Εργαλεία",
+            tools: ["Αυτόματη επιστολή συγγνώμης (AI), μεταφραστής «εταιρικής» σε ανθρώπινη γλώσσα (jargon → απλά), τυχαίος δημιουργός ψευδωνύμων, δημιουργός κομπλιμέντων (AI), μετατροπέας CV σε σύντομο βιογραφικό (AI) (επερχόμενες προσθήκες)."]
+          }
+        ]
       },
       edu: {
         name: "SimasiaEdu",
-        title: "Θέματα διαγωνισμάτων, διορθώσεις, εξηγήσεις και λύσεις με συνέπεια"
+        title: "Θέματα διαγωνισμάτων, διορθώσεις, εξηγήσεις και λύσεις με συνέπεια",
+        offers: "Το SimasiaEdu προσφέρει:",
+        features: [
+          "Δημιουργία και αξιολόγηση διαγωνισμάτων για όλες τις βαθμίδες και μαθήματα, ευθυγραμμισμένων με τη διδακτέα ύλη και πρότυπα (π.χ. τράπεζα θεμάτων).",
+          "Προσαρμογή δυσκολίας και χρήση αξιολόγησης.",
+          "Άμεση βαθμολόγηση και ανατροφοδότηση σε πραγματικό χρόνο από ανέβασμα φωτογραφίας ή PDF πραγματικού γραπτού.",
+          "Πρότυπες λύσεις με βήμα-βήμα εξηγήσεις και στοχευμένες διορθώσεις ανά λάθος.",
+          "Εξαγωγή υλικού (θέματα, λύσεις, βαθμολογίες) σε DOCX/PDF/CSV και συμβατότητα με LMS (Moodle, Classroom, Canvas).",
+          "Προσβασιμότητα από τον σχεδιασμό (WCAG) και πολυγλωσσική υποστήριξη (EL/EN +)."
+        ]
       }
     },
     // Target Audience
@@ -147,7 +223,22 @@ export const translations = {
           { title: "Μουσεία & Κέντρα Πολιτισμού", desc: "που επιδιώκουν πρόσβαση για όλους/ες (προσβάσιμες εκθέσεις, απλοποιημένη γλώσσα, πολυγλωσσία)." },
           { title: "Καταστήματα εστίασης", desc: "με ανάγκη για προσβάσιμα μενού/οδηγίες και πολιτισμική διαμεσολάβηση." }
         ]
-      }
+      },
+      translation: {
+        title: "Πρεσβείες, Προξενεία, Εκδοτικοί Οίκοι, Μεταφραστικά κέντρα, Εταιρείες με διεθνείς συναλλαγές",
+        description1: "Μετάφραση και επιμέλεια κειμένου με βάση τις δικές σας προδιαγραφές, λεξικά της επιλογής σας, και εξειδικευμένη ορολογία.",
+        description2: "Μικρά και αξιόπιστα εργαλεία για τις καθημερινές δουλειές γραφείου.",
+        description3: "Το SimasiaStudio και το SimasiaDaily προσαρμόζονται στις ανάγκες σας και προσφέρουν ακριβή και αξιόπιστα αποτελέσματα."
+      },
+      office: {
+        title: "Επιχειρήσεις, Φορείς, Ατομική χρήση",
+        description: "Το SimasiaDaily προσαρμόζεται στις ανάγκες σας και απλουστεύει μια σειρά από καθημερινές δουλειές γραφείου: Έκδοση τιμολογίων, μετατροπή μεταξύ όλων των τύπων αρχείων, μετατροπή μεγέθους και μορφής φωτογραφιών, δημιουργία QR code, προσαρμογή του logo/template της επιχείρησης ή του φορέα σε παρουσιάσεις και αλληλογραφία κ.ά."
+      },
+      education: {
+        title: "Εκπαιδευτικοί οργανισμοί, Καθηγητές/τριες, Μαθητές/τριες",
+        description: "Το SimasiaEdu προτείνει θέματα εξετάσεων με βάση επιλεγμένα πρότυπα (π.χ. τράπεζα θεμάτων), προτείνει διορθώσεις στις απαντήσεις σας (αρκεί η ανάρτηση του εγγράφου ή μια απλή φωτογραφία του γραπτού) και δίνει πρότυπες λύσεις, εξηγώντας βήμα-βήμα."
+      },
+      chatbotsButton: "SimasiaChatbots: Ασφαλή chatbots, σχεδιασμένα από ανθρώπους, για ανθρώπους"
     },
     // Collaborations
     collaborations: {
@@ -337,19 +428,95 @@ export const translations = {
       title: "Products",
       chatbots: {
         name: "SimasiaChatbots",
-        title: "Safe chatbots, designed by humans, for humans"
+        title: "Safe chatbots, designed by humans, for humans",
+        offers: "SimasiaChatbots offers:",
+        features: [
+          "Accessibility by design: alternative input/output methods (text/audio), WCAG-oriented options.",
+          "Multilingualism: support for many European and global languages (indicatively: Chinese—Mandarin/Cantonese, Japanese, Korean, Arabic, Hindi, Bengali, etc.) and local Greek varieties (e.g., Cypriot, Pontic) where feasible or following targeted training.",
+          "Bias reduction: evaluation flows and equality/inclusion policies integrated into the design.",
+          "Training on your own content: documented sources, manuals, guidelines for specific situations.",
+          "Consistency & safety: responses based on approved content with controlled evidence.",
+          "Escalation and notifications: ability to send notifications (phone/written) to designated persons/services when flows requiring it are detected, only following explicit agreement and escalation policy."
+        ]
       },
       studio: {
         name: "SimasiaStudio",
-        title: "Documented translation, editing with responsibility"
+        title: "Documented translation, editing with responsibility",
+        offers: "SimasiaStudio offers:",
+        features: [
+          "Upload and selection of style guides for translation and text editing.",
+          "Access to approved terminology/glossaries.",
+          "Editing of Greek texts with the Triantafyllidis Dictionary (support/integration of alternative dictionaries—extension to additional language by choice).",
+          "Detailed correction suggestions and export of \"Track Changes\" files (DOCX/PDF).",
+          "Specialized translation/editing by field, with clear translation direction and documented terminology (medical, legal, academic writing, literary style), with style and terminology adaptation by choice.",
+          "Bulk processing and connections (Google Drive/Dropbox/S3).",
+          "Adjustable sensitivity to gender biases, social groups, stereotypes.",
+          "Customized spelling/grammar check for EL/EN, other languages, and Greek dialects."
+        ]
       },
       daily: {
         name: "SimasiaDaily",
-        title: "Small and reliable tools, big difference."
+        title: "Small and reliable tools, big difference.",
+        offers: "SimasiaDaily offers:",
+        toolCategories: [
+          {
+            category: "Text Counter",
+            tools: ["Words, characters, sentences."]
+          },
+          {
+            category: "Text Rephrasing",
+            tools: ["From informal → formal with AI."]
+          },
+          {
+            category: "Smart Invoice Generator",
+            tools: ["Issuer/recipient details, item lines, tax calculation, PDF export."]
+          },
+          {
+            category: "Multi-Time Zone Meeting Scheduler",
+            tools: ["Scheduling across multiple zones, smart time suggestions, calendar export (.ics)."]
+          },
+          {
+            category: "Meeting Minutes Template",
+            tools: ["Participants, agenda topics, discussion points, actions, next meeting, export options."]
+          },
+          {
+            category: "File Converter (15+ conversions)",
+            tools: ["DOCX↔PDF, LaTeX↔PDF/DOCX, TXT→PDF, DOC→PDF, CSV↔JSON, MP3↔WAV, PNG↔JPEG, PDF→image."]
+          },
+          {
+            category: "Image Tools (3)",
+            tools: ["Create \"scanned\" image, resize, convert image to Base64."]
+          },
+          {
+            category: "Text Processing Tools",
+            tools: ["Convert letters to uppercase, lowercase, convert titles to uppercase, remove extra spaces, create acronyms with AI."]
+          },
+          {
+            category: "Data & Code Tools",
+            tools: ["Format JSON, text/study summary (upload .txt → summary + keywords)."]
+          },
+          {
+            category: "Utility Tools",
+            tools: ["QR code generator, password generator, advanced OCR (text extraction + image description with AI)."]
+          },
+          {
+            category: "Fun/Experimental Tools",
+            tools: ["Automatic apology letter (AI), translator of \"corporate\" to human language (jargon → simple), random nickname generator, compliment generator (AI), CV to short bio converter (AI) (upcoming additions)."]
+          }
+        ]
       },
       edu: {
         name: "SimasiaEdu",
-        title: "Exam topics, corrections, explanations, and solutions with consistency"
+        title: "Exam topics, corrections, explanations, and solutions with consistency",
+        offers: "SimasiaEdu offers:",
+        features: [
+          "Creation and evaluation of exams for all levels and subjects, aligned with curriculum and standards (e.g., question bank).",
+          "Difficulty adjustment and use of assessment.",
+          "Instant grading and feedback in real time from uploading a photo or PDF of actual written work.",
+          "Model solutions with step-by-step explanations and targeted corrections per error.",
+          "Export of material (topics, solutions, grades) to DOCX/PDF/CSV and compatibility with LMS (Moodle, Classroom, Canvas).",
+          "Accessibility by design (WCAG) and multilingual support (EL/EN +)."
+        ]
       }
     },
     // Target Audience
@@ -380,7 +547,22 @@ export const translations = {
           { title: "Museums & Cultural Centers", desc: "that seek access for all (accessible exhibitions, simplified language, multilingualism)." },
           { title: "Restaurants", desc: "with a need for accessible menus/guides and cultural mediation." }
         ]
-      }
+      },
+      translation: {
+        title: "Embassies, Consulates, Publishing Houses, Translation Centers, Companies with International Transactions",
+        description1: "Translation and text editing based on your own specifications, dictionaries of your choice, and specialized terminology.",
+        description2: "Small and reliable tools for everyday office work.",
+        description3: "SimasiaStudio and SimasiaDaily adapt to your needs and provide accurate and reliable results."
+      },
+      office: {
+        title: "Businesses, Bodies, Individual Use",
+        description: "SimasiaDaily adapts to your needs and simplifies a range of everyday office tasks: Invoice generation, conversion between all file types, photo size and format conversion, QR code creation, customization of your business or organization's logo/template in presentations and correspondence, etc."
+      },
+      education: {
+        title: "Educational Organizations, Teachers, Students",
+        description: "SimasiaEdu suggests exam topics based on selected standards (e.g., question bank), suggests corrections to your answers (just upload the document or a simple photo of the written work) and provides model solutions, explaining step by step."
+      },
+      chatbotsButton: "SimasiaChatbots: Safe chatbots, designed by humans, for humans"
     },
     // Collaborations
     collaborations: {

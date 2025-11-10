@@ -4,9 +4,11 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { SmoothReveal, WordReveal } from '../components/TextReveal';
+import { useTranslation } from '../hooks/useTranslation';
 import '../components/TargetAudience.css';
 
 const TargetAudiencePage = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "200px" });
 
@@ -23,7 +25,7 @@ const TargetAudiencePage = () => {
           >
             <SmoothReveal delay={0.1} yOffset={20}>
               <h1 className="section-title" style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>
-                Ποιους αφορά;
+                {t('targetAudience.title')}
               </h1>
             </SmoothReveal>
           </motion.div>
@@ -39,33 +41,30 @@ const TargetAudiencePage = () => {
           >
             <SmoothReveal delay={0.1} yOffset={15}>
               <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>
-                Φορείς, Οργανισμοί & Επιχειρήσεις με κοινωνικό ρόλο
+                {t('targetAudience.organizations.title')}
               </h2>
             </SmoothReveal>
             <p style={{ fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '2rem', color: 'var(--gray-medium)' }}>
               <WordReveal 
-                text="Συνεργαζόμαστε για λύσεις βοηθών επικοινωνίας (chatbots) που ενισχύουν την κοινωνική συνοχή με σεβασμό στη διαφορετικότητα και τις ανάγκες των κοινοτήτων (για περισσότερες πληροφορίες δείτε στο link product)."
+                text={t('targetAudience.organizations.description')}
                 delay={0.15}
                 duration={0.25}
               />
             </p>
             <p style={{ fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '2rem', fontWeight: '600' }}>
-              Αν απευθύνεστε ή στηρίζετε ομάδες όπως:
+              {t('targetAudience.organizations.note')}
             </p>
             <ul style={{ fontSize: '1.1rem', lineHeight: 2, marginBottom: '2rem', paddingLeft: '1.5rem' }}>
-              <li>Άτομα με αναπηρίες ή χρόνια νοσήματα, καθώς και φροντιστές/ριες.</li>
-              <li>ΛΟΑΤΚΙ+ άτομα και επιζώντες/επιζώσες έμφυλης ή ενδοοικογενειακής βίας.</li>
-              <li>Πρόσφυγες/ισσες και μετανάστες/τριες, μη ελληνόφωνες/οι & πολυγλωσσικές κοινότητες.</li>
-              <li>Άτομα με ζητήματα ψυχικής υγείας.</li>
-              <li>Παιδιά/έφηβους/ες σε δυσλειτουργικά περιβάλλοντα.</li>
-              <li>Άτομα που αντιμετωπίζουν στιγμές κρίσης.</li>
+              {t('targetAudience.organizations.groups').map((group, index) => (
+                <li key={index}>{group}</li>
+              ))}
             </ul>
             <p style={{ fontSize: '0.95rem', fontStyle: 'italic', color: 'var(--gray-medium)', marginBottom: '2rem' }}>
-              Σημείωση: Η παραπάνω λίστα είναι ενδεικτική· συνεργαζόμαστε και με άλλες κοινότητες με παρόμοιες ανάγκες πρόσβασης.
+              {t('targetAudience.organizations.note2')}
             </p>
             <div style={{ marginTop: '2rem', textAlign: 'center' }}>
               <Link to="/products/simasia-chatbots" className="btn btn-primary">
-                SimasiaChatbots: Ασφαλή chatbots, σχεδιασμένα από ανθρώπους, για ανθρώπους
+                {t('targetAudience.chatbotsButton')}
               </Link>
             </div>
           </motion.div>
@@ -81,19 +80,11 @@ const TargetAudiencePage = () => {
           >
             <SmoothReveal delay={0.1} yOffset={15}>
               <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>
-                Επιχειρήσεις, φορείς και υπηρεσίες με ευρεία απεύθυνση και ανάγκες εξατομίκευσης
+                {t('targetAudience.businesses.title')}
               </h2>
             </SmoothReveal>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: '2rem', marginBottom: '2rem' }}>
-              {[
-                { title: "Ταξιδιωτικά Γραφεία & Ξενοδοχεία", desc: "που επενδύουν στον συμπεριληπτικό τουρισμό (πληροφορία χωρίς εμπόδια και προκαταλήψεις, σαφείς διαδικασίες βοήθειας)." },
-                { title: "Πρεσβείες και Προξενεία", desc: "που χρειάζονται 24/7 αξιόπιστο βοηθό επικοινωνίας (chatbot) για πολίτες των χωρών τους που χρειάζονται καθοδήγηση σε διαδικασίες ή αντιμετωπίζουν καταστάσεις κρίσης." },
-                { title: "Real Estate", desc: "που εξυπηρετεί διαφορετικά γλωσσικά/πολιτισμικά περιβάλλοντα με σαφή, ανθρώπινη ενημέρωση." },
-                { title: "E-shops", desc: "που επιθυμούν να διευρύνουν το κοινό τους ή εστιάζουν σε κοινό με ανάγκες προσβασιμότητας (απλοποίηση κειμένου, πολυγλωσσική καθοδήγηση με βάση Web Content Accessibility Guidelines)." },
-                { title: "Tech Companies", desc: "που δεσμεύονται σε υπεύθυνη, συμπεριληπτική επικοινωνία με χρήστριες/χρήστες και κοινότητες." },
-                { title: "Μουσεία & Κέντρα Πολιτισμού", desc: "που επιδιώκουν πρόσβαση για όλους/ες (προσβάσιμες εκθέσεις, απλοποιημένη γλώσσα, πολυγλωσσία)." },
-                { title: "Καταστήματα εστίασης", desc: "με ανάγκη για προσβάσιμα μενού/οδηγίες και πολιτισμική διαμεσολάβηση." }
-              ].map((item, index) => (
+              {t('targetAudience.businesses.items').map((item, index) => (
                 <motion.div
                   key={index}
                   className="business-type-item"
@@ -121,7 +112,7 @@ const TargetAudiencePage = () => {
             </div>
             <div style={{ marginTop: '2rem', textAlign: 'center' }}>
               <Link to="/products/simasia-chatbots" className="btn btn-primary">
-                SimasiaChatbots: Ασφαλή chatbots, σχεδιασμένα από ανθρώπους, για ανθρώπους
+                {t('targetAudience.chatbotsButton')}
               </Link>
             </div>
           </motion.div>
@@ -137,26 +128,26 @@ const TargetAudiencePage = () => {
           >
             <SmoothReveal delay={0.1} yOffset={15}>
               <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>
-                Πρεσβείες, Προξενεία, Εκδοτικοί Οίκοι, Μεταφραστικά κέντρα, Εταιρείες με διεθνείς συναλλαγές
+                {t('targetAudience.translation.title')}
               </h2>
             </SmoothReveal>
             <p style={{ fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '2rem', color: 'var(--gray-medium)' }}>
               <WordReveal 
-                text="Μετάφραση και επιμέλεια κειμένου με βάση τις δικές σας προδιαγραφές, λεξικά της επιλογής σας, και εξειδικευμένη ορολογία."
+                text={t('targetAudience.translation.description1')}
                 delay={0.15}
                 duration={0.25}
               />
             </p>
             <p style={{ fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '2rem', color: 'var(--gray-medium)' }}>
               <WordReveal 
-                text="Μικρά και αξιόπιστα εργαλεία για τις καθημερινές δουλειές γραφείου."
+                text={t('targetAudience.translation.description2')}
                 delay={0.2}
                 duration={0.25}
               />
             </p>
             <p style={{ fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '2rem', color: 'var(--gray-medium)' }}>
               <WordReveal 
-                text="Το SimasiaStudio και το SimasiaDaily προσαρμόζονται στις ανάγκες σας και προσφέρουν ακριβή και αξιόπιστα αποτελέσματα."
+                text={t('targetAudience.translation.description3')}
                 delay={0.25}
                 duration={0.25}
               />
@@ -182,12 +173,12 @@ const TargetAudiencePage = () => {
           >
             <SmoothReveal delay={0.1} yOffset={15}>
               <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>
-                Επιχειρήσεις, Φορείς, Ατομική χρήση
+                {t('targetAudience.office.title')}
               </h2>
             </SmoothReveal>
             <p style={{ fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '2rem', color: 'var(--gray-medium)' }}>
               <WordReveal 
-                text="Το SimasiaDaily προσαρμόζεται στις ανάγκες σας και απλουστεύει μια σειρά από καθημερινές δουλειές γραφείου: Έκδοση τιμολογίων, μετατροπή μεταξύ όλων των τύπων αρχείων, μετατροπή μεγέθους και μορφής φωτογραφιών, δημιουργία QR code, προσαρμογή του logo/template της επιχείρησης ή του φορέα σε παρουσιάσεις και αλληλογραφία κ.ά."
+                text={t('targetAudience.office.description')}
                 delay={0.15}
                 duration={0.25}
               />
@@ -210,12 +201,12 @@ const TargetAudiencePage = () => {
           >
             <SmoothReveal delay={0.1} yOffset={15}>
               <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>
-                Εκπαιδευτικοί οργανισμοί, Καθηγητές/τριες, Μαθητές/τριες
+                {t('targetAudience.education.title')}
               </h2>
             </SmoothReveal>
             <p style={{ fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '2rem', color: 'var(--gray-medium)' }}>
               <WordReveal 
-                text="Το SimasiaEdu προτείνει θέματα εξετάσεων με βάση επιλεγμένα πρότυπα (π.χ. τράπεζα θεμάτων), προτείνει διορθώσεις στις απαντήσεις σας (αρκεί η ανάρτηση του εγγράφου ή μια απλή φωτογραφία του γραπτού) και δίνει πρότυπες λύσεις, εξηγώντας βήμα-βήμα."
+                text={t('targetAudience.education.description')}
                 delay={0.15}
                 duration={0.25}
               />

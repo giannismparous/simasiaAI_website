@@ -4,20 +4,13 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { SmoothReveal, WordReveal } from '../components/TextReveal';
 import { ChatbotsAnimation } from '../components/ProductAnimations';
+import { useTranslation } from '../hooks/useTranslation';
 import CTA from '../components/CTA';
 
 const SimasiaChatbotsPage = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "200px" });
-
-  const features = [
-    "Προσβασιμότητα από σχεδιασμό: εναλλακτικοί τρόποι εισόδου/εξόδου (κείμενο/ήχος), WCAG-oriented επιλογές.",
-    "Πολυγλωσσία: υποστήριξη πολλών ευρωπαϊκών και παγκόσμιων γλωσσών (ενδεικτικά: κινεζικά—μανδαρινικά/καντονέζικα, ιαπωνικά, κορεατικά, αραβικά, χίντι, μπενγκάλι κ.ά.) και τοπικές ελληνικές ποικιλίες (π.χ. κυπριακά, ποντιακά) όπου είναι εφικτό ή κατόπιν στοχευμένης εκπαίδευσης.",
-    "Μείωση προκαταλήψεων: ροές αξιολόγησης και πολιτικές ισότητας/συμπερίληψης ενσωματωμένες στον σχεδιασμό.",
-    "Εκπαίδευση σε δικό σας περιεχόμενο: τεκμηριωμένες πηγές, εγχειρίδια, οδηγίες για ειδικές καταστάσεις.",
-    "Συνέπεια & ασφάλεια: απαντήσεις βασισμένες σε εγκεκριμένο περιεχόμενο με ελεγχόμενα αποδεικτικά.",
-    "Κλιμάκωση και ειδοποιήσεις: δυνατότητα αποστολής ειδοποίησης (τηλεφωνικής/γραπτής) σε οριζόμενα πρόσωπα/υπηρεσίες όταν ανιχνεύονται ροές που το απαιτούν, μόνο κατόπιν ρητής συμφωνίας και πολιτικής κλιμάκωσης."
-  ];
 
   return (
     <div className="product-page-wrapper" style={{ position: 'relative', overflow: 'visible' }}>
@@ -32,7 +25,7 @@ const SimasiaChatbotsPage = () => {
           >
             <SmoothReveal delay={0.1} yOffset={20}>
               <h1 className="section-title" style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}>
-                SimasiaChatbots
+                {t('products.chatbots.name')}
               </h1>
             </SmoothReveal>
             <div style={{ marginBottom: '2rem', height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -40,7 +33,7 @@ const SimasiaChatbotsPage = () => {
             </div>
             <SmoothReveal delay={0.2} yOffset={15}>
               <p style={{ fontSize: '1.5rem', color: 'var(--primary-warm)', marginBottom: '2rem' }}>
-                Ασφαλή chatbots, σχεδιασμένα από ανθρώπους, για ανθρώπους
+                {t('products.chatbots.title')}
               </p>
             </SmoothReveal>
           </motion.div>
@@ -51,12 +44,12 @@ const SimasiaChatbotsPage = () => {
         <div className="container">
           <SmoothReveal delay={0.1} yOffset={20}>
             <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>
-              Τα SimasiaChatbots προσφέρουν:
+              {t('products.chatbots.offers')}
             </h2>
           </SmoothReveal>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(350px, 100%), 1fr))', gap: '2rem', marginTop: '3rem' }}>
-            {features.map((feature, index) => (
+            {t('products.chatbots.features').map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}

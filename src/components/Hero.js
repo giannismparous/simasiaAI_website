@@ -503,10 +503,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.15, duration: 0.4 }}
           >
-            <p className="network-quote">
-              {t('hero.description1').split('.')[0] + '.'}
-            </p>
-            <p className="network-quote" style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
+            <p className="network-quote" style={{ fontSize: '1.1rem' }}>
               {t('hero.description1')}
             </p>
             <p className="network-quote" style={{ marginTop: '1rem', fontSize: '1rem', color: 'var(--gray-medium)' }}>

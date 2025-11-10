@@ -5,20 +5,13 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { SmoothReveal, WordReveal } from '../components/TextReveal';
 import { EduAnimation } from '../components/ProductAnimations';
+import { useTranslation } from '../hooks/useTranslation';
 import CTA from '../components/CTA';
 
 const SimasiaEduPage = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "200px" });
-
-  const features = [
-    "Δημιουργία και αξιολόγηση διαγωνισμάτων για όλες τις βαθμίδες και μαθήματα, ευθυγραμμισμένων με τη διδακτέα ύλη και πρότυπα (π.χ. τράπεζα θεμάτων).",
-    "Προσαρμογή δυσκολίας και χρήση αξιολόγησης.",
-    "Άμεση βαθμολόγηση και ανατροφοδότηση σε πραγματικό χρόνο από ανέβασμα φωτογραφίας ή PDF πραγματικού γραπτού.",
-    "Πρότυπες λύσεις με βήμα-βήμα εξηγήσεις και στοχευμένες διορθώσεις ανά λάθος.",
-    "Εξαγωγή υλικού (θέματα, λύσεις, βαθμολογίες) σε DOCX/PDF/CSV και συμβατότητα με LMS (Moodle, Classroom, Canvas).",
-    "Προσβασιμότητα από τον σχεδιασμό (WCAG) και πολυγλωσσική υποστήριξη (EL/EN +)."
-  ];
 
   return (
     <div className="product-page-wrapper" style={{ position: 'relative', overflow: 'visible' }}>
@@ -33,7 +26,7 @@ const SimasiaEduPage = () => {
           >
             <SmoothReveal delay={0.1} yOffset={20}>
               <h1 className="section-title" style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}>
-                SimasiaEdu
+                {t('products.edu.name')}
               </h1>
             </SmoothReveal>
             <div style={{ marginBottom: '2rem', height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -41,7 +34,7 @@ const SimasiaEduPage = () => {
             </div>
             <SmoothReveal delay={0.2} yOffset={15}>
               <p style={{ fontSize: '1.5rem', color: 'var(--primary-warm)', marginBottom: '2rem' }}>
-                Θέματα διαγωνισμάτων, διορθώσεις, εξηγήσεις και λύσεις με συνέπεια
+                {t('products.edu.title')}
               </p>
             </SmoothReveal>
           </motion.div>
@@ -52,12 +45,12 @@ const SimasiaEduPage = () => {
         <div className="container">
           <SmoothReveal delay={0.1} yOffset={20}>
             <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>
-              Το SimasiaEdu προσφέρει:
+              {t('products.edu.offers')}
             </h2>
           </SmoothReveal>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(350px, 100%), 1fr))', gap: '2rem', marginTop: '3rem' }}>
-            {features.map((feature, index) => (
+            {t('products.edu.features').map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -88,10 +81,10 @@ const SimasiaEduPage = () => {
       <section style={{ padding: '4rem 0', textAlign: 'center' }}>
         <div className="container" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link to="/book-demo" className="btn btn-primary" style={{ fontSize: '1.2rem', padding: '1rem 2rem' }}>
-            Προγραμματίστε ένα demo άμεσα
+            {t('common.scheduleDemoNow')}
           </Link>
           <a href="#contact" className="btn btn-secondary" style={{ fontSize: '1.2rem', padding: '1rem 2rem' }}>
-            Ζητήστε πρόσβαση
+            {t('common.requestAccess')}
           </a>
         </div>
       </section>

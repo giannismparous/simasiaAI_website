@@ -72,7 +72,7 @@ const Impact = () => {
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.3, delay: 0.4 }}
             >
-              ({t('collaborations.current.poamsk.note')})
+              {t('collaborations.current.poamsk.note')}
             </motion.p>
             <motion.div 
               className="collaboration-ctas"
