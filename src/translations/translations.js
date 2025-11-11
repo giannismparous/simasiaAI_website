@@ -246,7 +246,7 @@ export const translations = {
       current: {
         title: "Τρέχουσες Συνεργασίες",
         poamsk: {
-          name: "ΠΟΑΜΣΚ — Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση Κατά Πλάκας",
+          name: "ΠΟΑΜΣΚΠ — Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση Κατά Πλάκας",
           description: "Υποστηρικτικό chatbot για έγκυρη ενημέρωση σχετικά με τη Σκλήρυνση Κατά Πλάκας.",
           note: "(Διατίθεται περιγραφική παρουσίαση κατόπιν επικοινωνίας.)",
           contact: "Επικοινωνήστε για πρόσβαση",
@@ -281,6 +281,8 @@ export const translations = {
       contact: "Επικοινωνία",
       social: "Social Media",
       location: "Αθήνα, Ελλάδα",
+      poweredBy: "Powered by Empathy",
+      established: "Est. 2025",
       copyright: "SimasiaAI — \"AI από την πλευρά του ανθρώπου.\""
     },
     // CTA
@@ -570,7 +572,7 @@ export const translations = {
       current: {
         title: "Current Collaborations",
         poamsk: {
-          name: "POAMSK — Panhellenic Federation of People with Multiple Sclerosis",
+          name: "POAMSKP — Panhellenic Federation of People with Multiple Sclerosis",
           description: "Supportive chatbot for reliable information about Multiple Sclerosis.",
           note: "(A descriptive presentation is available upon contact.)",
           contact: "Contact for access",
@@ -605,6 +607,8 @@ export const translations = {
       contact: "Contact",
       social: "Social Media",
       location: "Athens, Greece",
+      poweredBy: "Powered by Empathy",
+      established: "Est. 2025",
       copyright: "SimasiaAI — \"AI from the human side.\""
     },
     // CTA

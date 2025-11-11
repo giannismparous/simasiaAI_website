@@ -62,7 +62,7 @@ const Impact = () => {
             >
               <img 
                 src="/Collaborations/Logos/poamsk_logo.png" 
-                alt="ΠΟΑΜΣΚ Logo" 
+                alt="ΠΟΑΜΣΚΠ Logo" 
                 className="poamsk-logo"
               />
             </motion.div>

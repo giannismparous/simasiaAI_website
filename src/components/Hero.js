@@ -506,7 +506,7 @@ const Hero = () => {
             <p className="network-quote" style={{ fontSize: '1.1rem' }}>
               {t('hero.description1')}
             </p>
-            <p className="network-quote" style={{ marginTop: '1rem', fontSize: '1rem', color: 'var(--gray-medium)' }}>
+            <p className="network-quote" style={{ marginTop: '1rem', fontSize: '1.1rem', color: 'var(--gray-medium)' }}>
               {t('hero.description2')}
             </p>
           </motion.div>

@@ -190,6 +190,40 @@
     box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
 }
 
+.business-type-item {
+    position: relative;
+    cursor: pointer;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.business-type-item h3 {
+    flex-shrink: 0;
+    transition: margin-bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Font size is set inline based on language */
+}
+
+.business-card-description {
+    color: var(--gray-medium);
+    line-height: 1.6;
+    flex: 1;
+    min-height: 0;
+    text-align: center;
+    /* Font size is set inline based on language */
+}
+
+/* Desktop: Show description on hover */
+@media (min-width: 769px) {
+    .business-type-item {
+        min-height: 300px;
+    }
+}
+
+/* Mobile: Show description when in view */
 @media (max-width: 768px) {
     .audience-tabs {
         flex-direction: column;
@@ -210,6 +244,14 @@
 
     .b2c-buttons .btn {
         width: 100%;
+    }
+
+    .business-type-item {
+        min-height: 280px;
+    }
+
+    .business-type-item .business-card-description {
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), margin-top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 }
 

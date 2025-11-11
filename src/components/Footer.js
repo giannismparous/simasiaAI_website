@@ -40,7 +40,9 @@ const Footer = () => {
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; {t('footer.copyright')}</p>
+          <p>
+            {t('footer.poweredBy')} • {t('footer.established')}
+          </p>
         </div>
       </div>
     </footer>
