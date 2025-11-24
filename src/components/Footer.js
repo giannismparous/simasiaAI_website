@@ -30,12 +30,8 @@ const Footer = () => {
           
           <div className="footer-section">
             <h3>{t('footer.social')}</h3>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">TikTok</a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer">Χ</a>
+            <a href="https://www.linkedin.com/in/simasiaai/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.instagram.com/simasiaai/" target="_blank" rel="noopener noreferrer">Instagram</a>
           </div>
         </div>
         
