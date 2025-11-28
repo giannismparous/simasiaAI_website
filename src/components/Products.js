@@ -51,7 +51,7 @@ const Products = () => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <SmoothReveal delay={0.1} yOffset={15}>
-            <h2 className="section-title">Τα προϊόντα μας</h2>
+            <h2 className="section-title">Οι υπηρεσίες μας</h2>
           </SmoothReveal>
 
           <div className="products-grid">

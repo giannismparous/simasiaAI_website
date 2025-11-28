@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
@@ -20,6 +20,14 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: null, message: '' });
 
+  // Initialize EmailJS
+  useEffect(() => {
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -35,10 +43,14 @@ const ContactForm = () => {
 
     try {
       // EmailJS configuration
-      // You'll need to set these up in your EmailJS account
       const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'your_service_id';
       const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'your_template_id';
       const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'your_public_key';
+
+      // Validate configuration
+      if (serviceID === 'your_service_id' || templateID === 'your_template_id' || publicKey === 'your_public_key') {
+        throw new Error('EmailJS configuration is missing. Please check your environment variables.');
+      }
 
       const templateParams = {
         from_name: `${formData.firstName} ${formData.lastName}`,
@@ -47,11 +59,33 @@ const ContactForm = () => {
         company_name: formData.companyName || formData.organization || 'N/A',
         message: formData.description || 'N/A',
         attachment: formData.attachment || 'N/A',
-        to_email: 'simasia.ai@gmail.com',
+        to_email: 'contact@simasiaai.gr',
         reply_to: formData.email
       };
 
-      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      // Send email with retry logic for network errors
+      let retries = 2;
+      let lastError = null;
+      
+      while (retries >= 0) {
+        try {
+          await emailjs.send(serviceID, templateID, templateParams, publicKey);
+          break; // Success, exit retry loop
+        } catch (error) {
+          lastError = error;
+          if (retries > 0 && (error.text?.includes('fetch') || error.message?.includes('fetch'))) {
+            // Network error, retry after a short delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            retries--;
+          } else {
+            throw error; // Not a network error or no retries left
+          }
+        }
+      }
+      
+      if (lastError && retries < 0) {
+        throw lastError; // All retries failed
+      }
 
       setSubmitStatus({ 
         type: 'success', 
@@ -71,9 +105,18 @@ const ContactForm = () => {
       });
     } catch (error) {
       console.error('EmailJS Error:', error);
+      
+      // Provide more specific error messages
+      let errorMessage = t('contactForm.errorMessage');
+      if (error.text?.includes('fetch') || error.message?.includes('fetch') || error.message?.includes('Failed to fetch')) {
+        errorMessage = 'Network error. Please check your internet connection and try again.';
+      } else if (error.text?.includes('Public Key')) {
+        errorMessage = 'Email configuration error. Please contact support.';
+      }
+      
       setSubmitStatus({ 
         type: 'error', 
-        message: t('contactForm.errorMessage')
+        message: errorMessage
       });
     } finally {
       setIsSubmitting(false);

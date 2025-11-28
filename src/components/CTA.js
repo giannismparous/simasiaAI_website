@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { SmoothReveal } from './TextReveal';
 import { useTranslation } from '../hooks/useTranslation';
 import './CTA.css';
@@ -36,15 +37,15 @@ const CTA = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <motion.a 
-                href="#contact" 
-                className="btn btn-primary"
+              <motion.div
                 whileHover={{ scale: 1.03, y: -4 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                {t('cta.button')}
-              </motion.a>
+                <Link to="/book-demo" className="btn btn-primary">
+                  {t('cta.button')}
+                </Link>
+              </motion.div>
             </motion.div>
           </motion.div>
         </motion.div>

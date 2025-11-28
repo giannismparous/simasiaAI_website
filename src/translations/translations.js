@@ -5,7 +5,7 @@ export const translations = {
       home: "Αρχική",
       about: "Σχετικά με εμάς",
       targetAudience: "Ποιους αφορά;",
-      products: "Προϊόντα",
+      products: "Υπηρεσίες",
       collaborations: "Συνεργασίες",
       bookDemo: "Προγραμματίστε ένα demo"
     },
@@ -16,7 +16,7 @@ export const translations = {
       line2: "Από την πλευρά του ανθρώπου.",
       description1: "Αναπτύσσουμε εξατομικευμένες εφαρμογές Τεχνητής Νοημοσύνης με κοινωνικό αποτύπωμα, που ενισχύουν την ισότητα, τη συμπερίληψη και την ανθρώπινη επικοινωνία. Ξεκινάμε από εκεί όπου η ανάγκη είναι μεγαλύτερη, με ενσυναίσθηση και ευθύνη.",
       description2: "Chatbots, λύσεις οργάνωσης γραφείου, μετάφραση και επιμέλεια κειμένου, εκπαιδευτικοί βοηθοί, είναι μερικές από τις εφαρμογές που έχουμε αναπτύξει και εξατομικεύουμε για τον φορέα, την επιχείρηση ή την ατομική σας χρήση.",
-      seeProducts: "Δείτε τα διαθέσιμα προϊόντα μας",
+      seeProducts: "Δείτε τις διαθέσιμες υπηρεσίες μας",
       talkToTeam: "Μιλήστε με την ομάδα",
       scheduleDemo: "Προγραμματίστε ένα demo"
     },
@@ -101,7 +101,7 @@ export const translations = {
     },
     // Products
     products: {
-      title: "Προϊόντα",
+      title: "Υπηρεσίες",
       chatbots: {
         name: "SimasiaChatbots",
         title: "Ασφαλή chatbots, σχεδιασμένα από ανθρώπους, για ανθρώπους",
@@ -311,7 +311,7 @@ export const translations = {
       submit: "Αποστολή αιτήματος",
       submitting: "Αποστολή...",
       successMessage: "Το μήνυμά σας στάλθηκε επιτυχώς! Θα επικοινωνήσουμε μαζί σας σύντομα.",
-      errorMessage: "Υπήρξε πρόβλημα με την αποστολή. Παρακαλώ δοκιμάστε ξανά ή επικοινωνήστε μαζί μας στο simasia.ai@gmail.com",
+      errorMessage: "Υπήρξε πρόβλημα με την αποστολή. Παρακαλώ δοκιμάστε ξανά ή επικοινωνήστε μαζί μας στο contact@simasiaai.gr",
       privacyNote: "Με την υποβολή συμφωνείτε ότι θα επικοινωνήσουμε για το αίτημά σας. Τα στοιχεία σας δεν κοινοποιούνται σε τρίτους."
     },
     // Common
@@ -342,7 +342,7 @@ export const translations = {
       line2: "From the human side.",
       description1: "We develop customized Artificial Intelligence applications with social impact that enhance equality, inclusion, and human communication. We start where the need is greatest, with empathy and responsibility.",
       description2: "Chatbots, office organization solutions, translation and text editing, educational assistants, are some of the applications we have developed and customize for organizations, businesses, or your personal use.",
-      seeProducts: "See our available products",
+      seeProducts: "See our available services",
       talkToTeam: "Talk to the team",
       scheduleDemo: "Schedule a demo"
     },
@@ -427,7 +427,7 @@ export const translations = {
     },
     // Products
     products: {
-      title: "Products",
+      title: "Services",
       chatbots: {
         name: "SimasiaChatbots",
         title: "Safe chatbots, designed by humans, for humans",
@@ -637,7 +637,7 @@ export const translations = {
       submit: "Submit Request",
       submitting: "Submitting...",
       successMessage: "Your message has been sent successfully! We will contact you soon.",
-      errorMessage: "There was a problem sending. Please try again or contact us at simasia.ai@gmail.com",
+      errorMessage: "There was a problem sending. Please try again or contact us at contact@simasiaai.gr",
       privacyNote: "By submitting, you agree that we will contact you regarding your request. Your information is not shared with third parties."
     },
     // Common

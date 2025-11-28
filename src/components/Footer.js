@@ -24,7 +24,7 @@ const Footer = () => {
           
           <div className="footer-section">
             <h3>{t('footer.contact')}</h3>
-            <a href="mailto:simasia.ai@gmail.com">simasia.ai@gmail.com</a>
+            <a href="mailto:contact@simasiaai.gr">contact@simasiaai.gr</a>
             <p>{t('footer.location')}</p>
           </div>
           
