@@ -2,7 +2,13 @@ export const translations = {
   el: {
     // Common
     common: {
-      learnMore: "Μάθετε περισσότερα"
+      learnMore: "Μάθετε περισσότερα",
+      requestProposal: "Ζητήστε πρόταση συνεργασίας",
+      requestAccess: "Ζητήστε πρόσβαση",
+      scheduleDemoNow: "Προγραμματίστε ένα demo άμεσα",
+      scheduleDemoToday: "Ζητήστε πρόταση συνεργασίας σήμερα",
+      contactForAccess: "Επικοινωνήστε για πρόσβαση",
+      bookDemo: "Κλείστε demo"
     },
     // Navigation
     nav: {
@@ -335,22 +341,18 @@ export const translations = {
       successMessage: "Το μήνυμά σας στάλθηκε επιτυχώς! Θα επικοινωνήσουμε μαζί σας σύντομα.",
       errorMessage: "Υπήρξε πρόβλημα με την αποστολή. Παρακαλώ δοκιμάστε ξανά ή επικοινωνήστε μαζί μας στο contact@simasiaai.gr",
       privacyNote: "Με την υποβολή συμφωνείτε ότι θα επικοινωνήσουμε για το αίτημά σας. Τα στοιχεία σας δεν κοινοποιούνται σε τρίτους."
-    },
-    // Common
-    common: {
-      learnMore: "Μάθετε περισσότερα",
-      requestProposal: "Ζητήστε πρόταση συνεργασίας",
-      requestAccess: "Ζητήστε πρόσβαση",
-      scheduleDemoNow: "Προγραμματίστε ένα demo άμεσα",
-      scheduleDemoToday: "Ζητήστε πρόταση συνεργασίας σήμερα",
-      contactForAccess: "Επικοινωνήστε για πρόσβαση",
-      bookDemo: "Κλείστε demo"
     }
   },
   en: {
     // Common
     common: {
-      learnMore: "Learn more"
+      learnMore: "Learn more",
+      requestProposal: "Request a collaboration proposal",
+      requestAccess: "Request access",
+      scheduleDemoNow: "Schedule a demo now",
+      scheduleDemoToday: "Request a collaboration proposal today",
+      contactForAccess: "Contact for access",
+      bookDemo: "Book demo"
     },
     // Navigation
     nav: {
@@ -683,16 +685,6 @@ export const translations = {
       successMessage: "Your message has been sent successfully! We will contact you soon.",
       errorMessage: "There was a problem sending. Please try again or contact us at contact@simasiaai.gr",
       privacyNote: "By submitting, you agree that we will contact you regarding your request. Your information is not shared with third parties."
-    },
-    // Common
-    common: {
-      learnMore: "Learn more",
-      requestProposal: "Request a collaboration proposal",
-      requestAccess: "Request access",
-      scheduleDemoNow: "Schedule a demo now",
-      scheduleDemoToday: "Request a collaboration proposal today",
-      contactForAccess: "Contact for access",
-      bookDemo: "Book demo"
     }
   }
 };
