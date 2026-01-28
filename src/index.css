@@ -5,14 +5,14 @@
 }
 
 :root {
-    --primary-warm:   #2C7A7B;
+    --primary-warm: #2C7A7B;
     --secondary-warm: #5FB3B4;
-    --accent-warm:    #E07A5F;
-    --dark-text:      #111111;
-    --light-bg:       #F7F3E8;
-    --white:          #FFFFFF;
-    --gray-light:     #EEE7DA;
-    --gray-medium:    #6B7280;
+    --accent-warm: #E07A5F;
+    --dark-text: #111111;
+    --light-bg: #F7F3E8;
+    --white: #FFFFFF;
+    --gray-light: #EEE7DA;
+    --gray-medium: #6B7280;
 }
 
 /* Custom font - uncomment when you add font files to public/fonts/ directory */
@@ -38,7 +38,12 @@ body {
 }
 
 /* Literary serif for headings */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Crimson Pro", Georgia, serif;
     font-weight: 600;
     letter-spacing: -0.01em;
@@ -59,6 +64,7 @@ html {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -69,15 +75,19 @@ html {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0px);
     }
+
     50% {
         transform: translateY(-20px);
     }
@@ -87,9 +97,11 @@ html {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
@@ -127,8 +139,56 @@ section.impact-wrapper:hover .impact .section-title {
     color: var(--dark-text) !important;
 }
 
+/* Global button styles */
+.btn {
+    padding: 1.1rem 2.5rem;
+    font-size: 1.05rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid transparent;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+}
+
+.btn-primary {
+    background: var(--primary-warm);
+    color: var(--white);
+    border-color: var(--primary-warm);
+}
+
+.btn-primary:hover {
+    background: var(--accent-warm);
+    border-color: var(--accent-warm);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(224, 120, 86, 0.45);
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--dark-text);
+    border: 2px solid var(--primary-warm);
+}
+
+.btn-secondary:hover {
+    background: var(--light-bg);
+    border-color: var(--accent-warm);
+    color: var(--accent-warm);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(44, 122, 123, 0.3);
+}
+
 /* Global mobile responsive styles */
 @media (max-width: 768px) {
+
     /* Page hero sections */
     .applications-hero,
     .solutions-hero,
@@ -259,10 +319,10 @@ section.impact-wrapper:hover .impact .section-title {
     }
 
     /* Grid fixes for very small screens */
-    .solutions-achievements > .container > div[style*="grid"],
-    .solutions-process > .container > div[style*="grid"],
-    .solutions-capabilities > .container > div[style*="grid"],
-    .solutions-why > .container > div[style*="grid"] {
+    .solutions-achievements>.container>div[style*="grid"],
+    .solutions-process>.container>div[style*="grid"],
+    .solutions-capabilities>.container>div[style*="grid"],
+    .solutions-why>.container>div[style*="grid"] {
         grid-template-columns: 1fr !important;
         gap: 1.5rem !important;
     }
@@ -305,4 +365,3 @@ section.impact-wrapper:hover .impact .section-title {
         overflow-wrap: break-word !important;
     }
 }
-

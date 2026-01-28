@@ -3,15 +3,156 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { SmoothReveal, WordReveal } from '../components/TextReveal';
+import HorizontalScrollCards from '../components/HorizontalScrollCards';
 import CTA from '../components/CTA';
 import ContactForm from '../components/ContactForm';
+import { useTranslation } from '../hooks/useTranslation';
+import './ApplicationsPage.css';
+
+const ProductSection = ({ product, index }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "100px" });
+  const { t } = useTranslation();
+
+  // Get features based on product type
+  const getFeatures = () => {
+    if (product.features) {
+      return product.features;
+    }
+    if (product.toolCategories) {
+      return product.toolCategories.map(cat => `${cat.category}: ${cat.tools.join(', ')}`);
+    }
+    return [];
+  };
+
+  const features = getFeatures();
+
+  return (
+    <section 
+      ref={ref}
+      className="product-section" 
+      style={{ 
+        padding: '4rem 0', 
+        borderBottom: index < 3 ? '1px solid rgba(44, 122, 123, 0.1)' : 'none' 
+      }}
+    >
+      <div className="container">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6 }}
+        >
+          <SmoothReveal delay={0.1} yOffset={15}>
+            <h2 className="product-name" style={{ 
+              fontSize: '2rem', 
+              color: 'var(--primary-deep)', 
+              marginBottom: '0.75rem',
+              fontStyle: 'italic'
+            }}>
+              {product.name}
+            </h2>
+          </SmoothReveal>
+          
+          <SmoothReveal delay={0.15} yOffset={10}>
+            <h3 style={{ 
+              fontSize: '1.5rem', 
+              marginBottom: '1.5rem', 
+              color: 'var(--dark-text)',
+              fontWeight: '500'
+            }}>
+              {product.title}
+            </h3>
+          </SmoothReveal>
+
+          {product.offers && (
+            <SmoothReveal delay={0.2} yOffset={10}>
+              <p style={{ 
+                fontSize: '1.1rem', 
+                color: 'var(--gray-medium)', 
+                marginBottom: '1.5rem' 
+              }}>
+                {product.offers}
+              </p>
+            </SmoothReveal>
+          )}
+
+          {/* Horizontal Scroll Cards for Features */}
+          {features.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              style={{ marginBottom: '2rem' }}
+            >
+              <HorizontalScrollCards cardWidth={300} gap={20}>
+                {features.map((feature, idx) => (
+                  <motion.div
+                    key={idx}
+                    className="feature-card"
+                    style={{
+                      minWidth: '300px',
+                      maxWidth: '300px',
+                      padding: '1.5rem',
+                      background: 'linear-gradient(135deg, var(--light-bg) 0%, rgba(247, 243, 232, 0.5) 100%)',
+                      borderRadius: '16px',
+                      border: '1px solid rgba(44, 122, 123, 0.1)',
+                      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)'
+                    }}
+                    whileHover={{ 
+                      y: -4, 
+                      boxShadow: '0 8px 30px rgba(44, 122, 123, 0.15)' 
+                    }}
+                  >
+                    <p style={{ 
+                      fontSize: '0.95rem', 
+                      lineHeight: 1.7, 
+                      color: 'var(--dark-text)',
+                      margin: 0
+                    }}>
+                      {feature}
+                    </p>
+                  </motion.div>
+                ))}
+              </HorizontalScrollCards>
+            </motion.div>
+          )}
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+          >
+            <a 
+              href="#contact" 
+              className="btn btn-primary"
+              style={{ display: 'inline-flex' }}
+            >
+              {t('applications.requestProposal') || 'Ζητήστε πρόταση συνεργασίας'}
+            </a>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
 
 const ApplicationsPage = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "200px" });
+  const { t } = useTranslation();
+
+  // Get all products from translations
+  const products = [
+    t('products.chatbots'),
+    t('products.studio'),
+    t('products.daily'),
+    t('products.edu')
+  ];
 
   return (
     <div className="applications-page-wrapper" style={{ position: 'relative', overflow: 'visible' }}>
+      {/* Hero Section */}
       <section className="applications-hero" style={{ padding: '8rem 0 4rem', position: 'relative' }}>
         <div className="container">
           <motion.div
@@ -23,13 +164,13 @@ const ApplicationsPage = () => {
           >
             <SmoothReveal delay={0.1} yOffset={20}>
               <h1 className="section-title" style={{ fontSize: '3.5rem', marginBottom: '2rem' }}>
-                Εφαρμογές
+                {t('applications.title') || '-Εφαρμογές-'}
               </h1>
             </SmoothReveal>
             <SmoothReveal delay={0.2} yOffset={15}>
               <p style={{ fontSize: '1.25rem', color: 'var(--gray-medium)', maxWidth: '800px', margin: '0 auto', lineHeight: 1.8 }}>
                 <WordReveal 
-                  text="Διαθέσιμες για άμεση χρήση"
+                  text={t('applications.subtitle') || 'Διαθέσιμες για άμεση χρήση'}
                   delay={0.25}
                   duration={0.25}
                 />
@@ -39,67 +180,11 @@ const ApplicationsPage = () => {
         </div>
       </section>
 
-      <section className="applications-content" style={{ padding: '6rem 0', position: 'relative', zIndex: 2 }}>
-        <div className="container">
-          <motion.div 
-            className="application-card"
-            style={{
-              maxWidth: '900px',
-              margin: '0 auto',
-              background: 'linear-gradient(135deg, var(--light-bg) 0%, rgba(247, 243, 232, 0.5) 100%)',
-              borderRadius: '24px',
-              padding: '4rem 3rem',
-              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.08)',
-              border: '1px solid rgba(44, 122, 123, 0.1)'
-            }}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ 
-              y: -8, 
-              transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
-              boxShadow: '0 20px 60px rgba(224, 120, 86, 0.3)'
-            }}
-          >
-            <SmoothReveal delay={0.25} yOffset={10}>
-              <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'var(--dark-text)' }}>
-                Πλατφόρμα υποστήριξης εκπαιδευτικών & μαθητών/τριών
-              </h2>
-            </SmoothReveal>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <p style={{ fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '1.5rem', color: 'var(--gray-medium)' }}>
-                <WordReveal 
-                  text="Δημιουργία αξιολογήσεων για όλα τα μαθήματα/τάξεις, εξατομίκευση δυσκολίας, αυτόματη διόρθωση με ανέβασμα φωτογραφίας ή PDF πραγματικού διαγωνίσματος."
-                  delay={0.35}
-                  duration={0.25}
-                />
-              </p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}>
-                <button 
-                  type="button"
-                  className="btn btn-primary"
-                  style={{ textDecoration: 'none', cursor: 'pointer', border: 'none', background: 'inherit', fontFamily: 'inherit', fontSize: 'inherit' }}
-                  disabled
-                  aria-label="Link coming soon"
-                >
-                  Άνοιξε, δοκίμασε, χρησιμοποίησε τώρα εδώ
-                </button>
-              </div>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
-                <a 
-                  href="#contact" 
-                  className="btn btn-secondary"
-                >
-                  Επικοινωνήστε για πρόσβαση
-                </a>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
+      {/* Product Sections */}
+      <section className="applications-content" style={{ position: 'relative', zIndex: 2 }}>
+        {products.map((product, index) => (
+          <ProductSection key={index} product={product} index={index} />
+        ))}
       </section>
 
       <CTA />
@@ -109,4 +194,3 @@ const ApplicationsPage = () => {
 };
 
 export default ApplicationsPage;
-

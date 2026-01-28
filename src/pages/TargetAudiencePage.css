@@ -1,0 +1,93 @@
+.target-audience-page {
+    min-height: 100vh;
+}
+
+.target-audience-hero {
+    padding: 8rem 0 3rem;
+    background: var(--white);
+}
+
+.page-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-family: "Crimson Pro", Georgia, serif;
+    font-weight: 700;
+    color: var(--dark-text);
+    text-align: center;
+    margin: 0;
+}
+
+.target-audience-cards-section {
+    padding: 3rem 0 4rem;
+    background: var(--white);
+}
+
+.audience-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(44, 122, 123, 0.1);
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    transition: all 0.3s ease;
+}
+
+.audience-card-title {
+    font-size: 1.25rem;
+    font-family: "Crimson Pro", Georgia, serif;
+    font-weight: 600;
+    color: var(--dark-text);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.audience-card-product {
+    margin-bottom: 1rem;
+}
+
+.product-badge {
+    display: inline-block;
+    background: rgba(44, 122, 123, 0.1);
+    color: var(--primary-warm);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.audience-card-link {
+    color: var(--accent-warm);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.audience-card-link:hover {
+    color: var(--primary-warm);
+}
+
+.target-audience-cta {
+    padding: 3rem 0 5rem;
+    background: linear-gradient(180deg, var(--white) 0%, rgba(44, 122, 123, 0.05) 100%);
+}
+
+.cta-box {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .target-audience-hero {
+        padding: 6rem 0 2rem;
+    }
+
+    .audience-card {
+        width: 300px;
+        min-height: 240px;
+    }
+
+    .target-audience-cards-section {
+        padding: 2rem 0 3rem;
+    }
+}

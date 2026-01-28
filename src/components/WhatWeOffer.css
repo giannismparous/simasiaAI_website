@@ -1,0 +1,83 @@
+.what-we-offer {
+    padding: 5rem 0;
+    background: var(--white);
+}
+
+.what-we-offer .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.offer-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.offer-card {
+    background: var(--light-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid rgba(44, 122, 123, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.offer-card-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-warm);
+    margin-bottom: 0.75rem;
+    font-family: "Crimson Pro", Georgia, serif;
+}
+
+.offer-card-desc {
+    font-size: 1rem;
+    color: var(--dark-text);
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+
+.offer-card-link {
+    color: var(--accent-warm);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.offer-card-link:hover {
+    color: var(--primary-warm);
+}
+
+.offer-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .what-we-offer {
+        padding: 3rem 0;
+    }
+
+    .offer-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .offer-ctas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .offer-ctas .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}

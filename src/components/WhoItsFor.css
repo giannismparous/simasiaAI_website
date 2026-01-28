@@ -1,0 +1,56 @@
+.who-its-for {
+    padding: 4rem 0;
+    background: var(--white);
+}
+
+.who-its-for .section-title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.who-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.who-chip {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid rgba(44, 122, 123, 0.1);
+    transition: all 0.3s ease;
+}
+
+.who-chip:hover {
+    border-color: var(--primary-warm);
+    box-shadow: 0 4px 12px rgba(44, 122, 123, 0.1);
+}
+
+.who-chip-bullet {
+    color: var(--accent-warm);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.who-chip-text {
+    font-size: 1.05rem;
+    color: var(--dark-text);
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .who-its-for {
+        padding: 3rem 0;
+    }
+
+    .who-chip {
+        padding: 0.875rem 1rem;
+    }
+}

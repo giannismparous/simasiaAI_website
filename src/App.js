@@ -36,6 +36,11 @@ function App() {
             <Route path="/book-demo" element={<BookDemoPage />} />
             <Route path="/target-audience" element={<TargetAudiencePage />} />
             <Route path="/products" element={<ProductsPage />} />
+            <Route path="/applications" element={<ProductsPage />} />
+            <Route path="/applications/simasia-chatbots" element={<SimasiaChatbotsPage />} />
+            <Route path="/applications/simasia-studio" element={<SimasiaStudioPage />} />
+            <Route path="/applications/simasia-daily" element={<SimasiaDailyPage />} />
+            <Route path="/applications/simasia-edu" element={<SimasiaEduPage />} />
             <Route path="/products/simasia-chatbots" element={<SimasiaChatbotsPage />} />
             <Route path="/products/simasia-studio" element={<SimasiaStudioPage />} />
             <Route path="/products/simasia-daily" element={<SimasiaDailyPage />} />

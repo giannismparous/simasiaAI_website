@@ -1,0 +1,59 @@
+.applications-page-wrapper {
+    background: var(--white);
+}
+
+.applications-hero {
+    text-align: center;
+    background: var(--white);
+}
+
+.applications-hero .section-title {
+    color: var(--primary-deep);
+    font-weight: 600;
+}
+
+.product-section {
+    background: var(--white);
+}
+
+.product-name {
+    color: var(--primary-deep) !important;
+}
+
+.feature-card {
+    user-select: none;
+    cursor: grab;
+}
+
+.feature-card:active {
+    cursor: grabbing;
+}
+
+/* Ensure horizontal scroll cards have proper spacing */
+.product-section .horizontal-scroll-wrapper {
+    margin: 1.5rem 0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .applications-hero {
+        padding: 6rem 0 3rem !important;
+    }
+
+    .applications-hero .section-title {
+        font-size: 2.5rem !important;
+    }
+
+    .product-section {
+        padding: 3rem 0 !important;
+    }
+
+    .product-name {
+        font-size: 1.75rem !important;
+    }
+
+    .feature-card {
+        min-width: 260px !important;
+        max-width: 260px !important;
+    }
+}

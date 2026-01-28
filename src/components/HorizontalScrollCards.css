@@ -1,0 +1,111 @@
+.horizontal-scroll-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 0 60px;
+}
+
+/* Subtle fade effect on edges */
+.horizontal-scroll-wrapper::before,
+.horizontal-scroll-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.horizontal-scroll-wrapper::before {
+  left: 50px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.9), transparent);
+}
+
+.horizontal-scroll-wrapper::after {
+  right: 50px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.9), transparent);
+}
+
+.horizontal-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  padding: 1rem 0;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-scroll-container.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.horizontal-scroll-container>* {
+  flex-shrink: 0;
+}
+
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid rgba(44, 122, 123, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--primary-warm);
+  transition: all 0.3s ease;
+}
+
+.scroll-arrow:hover {
+  background: var(--primary-warm);
+  color: var(--white);
+  border-color: var(--primary-warm);
+}
+
+.scroll-arrow-left {
+  left: 0;
+}
+
+.scroll-arrow-right {
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .horizontal-scroll-wrapper {
+    padding: 0 40px;
+  }
+
+  .scroll-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .scroll-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .horizontal-scroll-wrapper {
+    padding: 0 30px;
+  }
+
+  .scroll-arrow {
+    width: 32px;
+    height: 32px;
+  }
+}

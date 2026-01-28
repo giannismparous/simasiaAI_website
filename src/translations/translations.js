@@ -1,24 +1,65 @@
 export const translations = {
   el: {
+    // Common
+    common: {
+      learnMore: "Μάθετε περισσότερα"
+    },
     // Navigation
     nav: {
       home: "Αρχική",
       about: "Σχετικά με εμάς",
-      targetAudience: "Ποιους αφορά;",
-      products: "Υπηρεσίες",
+      targetAudience: "Ποιους αφορά",
+      products: "Εφαρμογές",
       collaborations: "Συνεργασίες",
-      bookDemo: "Προγραμματίστε ένα demo"
+      bookDemo: "Λάβετε AI πρόταση για τον οργανισμό σας"
     },
-    // Hero
     hero: {
-      line1a: "Το AI έχει σημασία όταν το",
-      line1b: "δούμε ανάποδα",
-      line2: "Από την πλευρά του ανθρώπου.",
-      description1: "Αναπτύσσουμε εξατομικευμένες εφαρμογές Τεχνητής Νοημοσύνης με κοινωνικό αποτύπωμα, που ενισχύουν την ισότητα, τη συμπερίληψη και την ανθρώπινη επικοινωνία. Ξεκινάμε από εκεί όπου η ανάγκη είναι μεγαλύτερη, με ενσυναίσθηση και ευθύνη.",
-      description2: "Chatbots, λύσεις οργάνωσης γραφείου, μετάφραση και επιμέλεια κειμένου, εκπαιδευτικοί βοηθοί, είναι μερικές από τις εφαρμογές που έχουμε αναπτύξει και εξατομικεύουμε για τον φορέα, την επιχείρηση ή την ατομική σας χρήση.",
-      seeProducts: "Δείτε τις διαθέσιμες υπηρεσίες μας",
-      talkToTeam: "Μιλήστε με την ομάδα",
-      scheduleDemo: "Προγραμματίστε ένα demo"
+      line1a: "Το AI έχει σημασία όταν το δούμε",
+      line1b: "από την ανθρώπινη πλευρά.",
+      line2: "Ανθρωποκεντρικές εφαρμογές Τεχνητής Νοημοσύνης για οργανισμούς, φορείς και επιχειρήσεις.",
+      talkToTeam: "Μιλήστε με την ομάδα μας",
+      seeApplications: "Δείτε εφαρμογές"
+    },
+    // Applications Page
+    applications: {
+      title: "-Εφαρμογές-",
+      subtitle: "Διαθέσιμες για άμεση χρήση",
+      requestProposal: "Ζητήστε πρόταση συνεργασίας"
+    },
+    // Book Demo Page
+    bookDemo: {
+      title: "Κλείστε ένα demo",
+      description: "Ας δημιουργήσουμε μαζί λύσεις με σημασία για τον άνθρωπο. Συμπληρώστε τη φόρμα και θα επικοινωνήσουμε μαζί σας άμεσα."
+    },
+    // What We Offer
+    whatWeOffer: {
+      title: "Τι προσφέρουμε",
+      seeAll: "Δείτε τις διαθέσιμες εφαρμογές μας",
+      cards: [
+        { name: "SimasiaChatbots", desc: "Ασφαλή, προσαρμοσμένα chatbots για ενημέρωση και εξυπηρέτηση.", link: "/applications/simasia-chatbots" },
+        { name: "SimasiaEdu", desc: "Εφαρμογές για εκπαιδευτικούς και μαθητές: ύλη, ασκήσεις, αξιολόγηση.", link: "/applications/simasia-edu" },
+        { name: "SimasiaStudio", desc: "Τεκμηριωμένη μετάφραση/επιμέλεια με συνέπεια και έλεγχο.", link: "/applications/simasia-studio" },
+        { name: "SimasiaDaily", desc: "Μικρά εργαλεία αυτοματοποίησης που εξοικονομούν χρόνο.", link: "/applications/simasia-daily" }
+      ]
+    },
+    // Who It's For (Homepage)
+    whoItsFor: {
+      title: "Ποιους αφορά",
+      items: [
+        "Φορείς & οργανισμοί με κοινωνικό ρόλο",
+        "Εκπαίδευση (φροντιστήρια, σχολεία, ΙΕΚ, πανεπιστήμια)",
+        "Εκδοτικοί οίκοι & μεταφραστικά κέντρα",
+        "Επιχειρήσεις με μεγάλη απεύθυνση & ανάγκες εξατομίκευσης"
+      ]
+    },
+    // How We Work
+    howWeWork: {
+      title: "Πώς δουλεύουμε",
+      steps: [
+        "Επιλέγουμε από κοινού την εφαρμογή που σας ταιριάζει.",
+        "Την προσαρμόζουμε στα δεδομένα και στις ροές σας.",
+        "Την παραδίδουμε και τη βελτιώνουμε μαζί στην πράξη."
+      ]
     },
     // Obstacles
     obstacles: {
@@ -197,48 +238,29 @@ export const translations = {
     },
     // Target Audience
     targetAudience: {
-      title: "Ποιους αφορά;",
-      organizations: {
-        title: "Φορείς, Οργανισμοί & Επιχειρήσεις με κοινωνικό ρόλο",
-        description: "Συνεργαζόμαστε για λύσεις βοηθών επικοινωνίας (chatbots) που ενισχύουν την κοινωνική συνοχή με σεβασμό στη διαφορετικότητα και τις ανάγκες των κοινοτήτων (για περισσότερες πληροφορίες δείτε στο link product).",
-        note: "Αν απευθύνεστε ή στηρίζετε ομάδες όπως:",
-        groups: [
-          "Άτομα με αναπηρίες ή χρόνια νοσήματα, καθώς και φροντιστές/ριες.",
-          "ΛΟΑΤΚΙ+ άτομα και επιζώντες/επιζώσες έμφυλης ή ενδοοικογενειακής βίας.",
-          "Πρόσφυγες/ισσες και μετανάστες/τριες, μη ελληνόφωνες/οι & πολυγλωσσικές κοινότητες.",
-          "Άτομα με ζητήματα ψυχικής υγείας.",
-          "Παιδιά/έφηβους/ες σε δυσλειτουργικά περιβάλλοντα.",
-          "Άτομα που αντιμετωπίζουν στιγμές κρίσης."
-        ],
-        note2: "Σημείωση: Η παραπάνω λίστα είναι ενδεικτική· συνεργαζόμαστε και με άλλες κοινότητες με παρόμοιες ανάγκες πρόσβασης."
-      },
-      businesses: {
-        title: "Επιχειρήσεις, φορείς και υπηρεσίες με ευρεία απεύθυνση και ανάγκες εξατομίκευσης",
-        items: [
-          { title: "Ταξιδιωτικά Γραφεία & Ξενοδοχεία", desc: "που επενδύουν στον συμπεριληπτικό τουρισμό (πληροφορία χωρίς εμπόδια και προκαταλήψεις, σαφείς διαδικασίες βοήθειας)." },
-          { title: "Πρεσβείες και Προξενεία", desc: "που χρειάζονται 24/7 αξιόπιστο βοηθό επικοινωνίας (chatbot) για πολίτες των χωρών τους που χρειάζονται καθοδήγηση σε διαδικασίες ή αντιμετωπίζουν καταστάσεις κρίσης." },
-          { title: "Real Estate", desc: "που εξυπηρετεί διαφορετικά γλωσσικά/πολιτισμικά περιβάλλοντα με σαφή, ανθρώπινη ενημέρωση." },
-          { title: "E-shops", desc: "που επιθυμούν να διευρύνουν το κοινό τους ή εστιάζουν σε κοινό με ανάγκες προσβασιμότητας (απλοποίηση κειμένου, πολυγλωσσική καθοδήγηση με βάση Web Content Accessibility Guidelines)." },
-          { title: "Tech Companies", desc: "που δεσμεύονται σε υπεύθυνη, συμπεριληπτική επικοινωνία με χρήστριες/χρήστες και κοινότητες." },
-          { title: "Μουσεία & Κέντρα Πολιτισμού", desc: "που επιδιώκουν πρόσβαση για όλους/ες (προσβάσιμες εκθέσεις, απλοποιημένη γλώσσα, πολυγλωσσία)." },
-          { title: "Καταστήματα εστίασης", desc: "με ανάγκη για προσβάσιμα μενού/οδηγίες και πολιτισμική διαμεσολάβηση." }
-        ]
-      },
-      translation: {
-        title: "Πρεσβείες, Προξενεία, Εκδοτικοί Οίκοι, Μεταφραστικά κέντρα, Εταιρείες με διεθνείς συναλλαγές",
-        description1: "Μετάφραση και επιμέλεια κειμένου με βάση τις δικές σας προδιαγραφές, λεξικά της επιλογής σας, και εξειδικευμένη ορολογία.",
-        description2: "Μικρά και αξιόπιστα εργαλεία για τις καθημερινές δουλειές γραφείου.",
-        description3: "Το SimasiaStudio και το SimasiaDaily προσαρμόζονται στις ανάγκες σας και προσφέρουν ακριβή και αξιόπιστα αποτελέσματα."
-      },
-      office: {
-        title: "Επιχειρήσεις, Φορείς, Ατομική χρήση",
-        description: "Το SimasiaDaily προσαρμόζεται στις ανάγκες σας και απλουστεύει μια σειρά από καθημερινές δουλειές γραφείου: Έκδοση τιμολογίων, μετατροπή μεταξύ όλων των τύπων αρχείων, μετατροπή μεγέθους και μορφής φωτογραφιών, δημιουργία QR code, προσαρμογή του logo/template της επιχείρησης ή του φορέα σε παρουσιάσεις και αλληλογραφία κ.ά."
-      },
-      education: {
-        title: "Εκπαιδευτικοί οργανισμοί, Καθηγητές/τριες, Μαθητές/τριες",
-        description: "Το SimasiaEdu προτείνει θέματα εξετάσεων με βάση επιλεγμένα πρότυπα (π.χ. τράπεζα θεμάτων), προτείνει διορθώσεις στις απαντήσεις σας (αρκεί η ανάρτηση του εγγράφου ή μια απλή φωτογραφία του γραπτού) και δίνει πρότυπες λύσεις, εξηγώντας βήμα-βήμα."
-      },
-      chatbotsButton: "SimasiaChatbots: Ασφαλή chatbots, σχεδιασμένα από ανθρώπους, για ανθρώπους"
+      title: "Ποιους αφορά",
+      audienceCards: [
+        { 
+          title: "Φορείς, Οργανισμοί & Επιχειρήσεις με κοινωνικό ρόλο", 
+          product: "SimasiaChatbots",
+          link: "/applications/simasia-chatbots"
+        },
+        { 
+          title: "Φροντιστήρια, Εκπαιδευτικοί οργανισμοί, Καθηγητές/τριες, Μαθητές/τριες", 
+          product: "SimasiaEdu",
+          link: "/applications/simasia-edu"
+        },
+        { 
+          title: "Εκδοτικοί Οίκοι, Μεταφραστικά κέντρα, Πρεσβείες, Προξενεία, Εταιρείες με διεθνείς συναλλαγές", 
+          product: "SimasiaStudio",
+          link: "/applications/simasia-studio"
+        },
+        { 
+          title: "Επιχειρήσεις, Φορείς, Ατομική χρήση", 
+          product: "SimasiaDaily",
+          link: "/applications/simasia-daily"
+        }
+      ]
     },
     // Collaborations
     collaborations: {
@@ -326,25 +348,66 @@ export const translations = {
     }
   },
   en: {
+    // Common
+    common: {
+      learnMore: "Learn more"
+    },
     // Navigation
     nav: {
       home: "Home",
       about: "About Us",
-      targetAudience: "Who is it for?",
-      products: "Products",
+      targetAudience: "Who It's For",
+      products: "Applications",
       collaborations: "Collaborations",
-      bookDemo: "Schedule a demo"
+      bookDemo: "Get an AI Proposal for Your Organization"
     },
-    // Hero
     hero: {
-      line1a: "AI has meaning when we",
-      line1b: "see it upside down",
-      line2: "From the human side.",
-      description1: "We develop customized Artificial Intelligence applications with social impact that enhance equality, inclusion, and human communication. We start where the need is greatest, with empathy and responsibility.",
-      description2: "Chatbots, office organization solutions, translation and text editing, educational assistants, are some of the applications we have developed and customize for organizations, businesses, or your personal use.",
-      seeProducts: "See our available services",
-      talkToTeam: "Talk to the team",
-      scheduleDemo: "Schedule a demo"
+      line1a: "AI matters when we look at it",
+      line1b: "from the human side.",
+      line2: "Human-centered AI applications for organizations, institutions, and businesses.",
+      talkToTeam: "Talk to our team",
+      seeApplications: "See applications"
+    },
+    // Applications Page
+    applications: {
+      title: "Applications",
+      subtitle: "Available for immediate use",
+      requestProposal: "Request collaboration proposal"
+    },
+    // Book Demo Page
+    bookDemo: {
+      title: "Book a demo",
+      description: "Let's create solutions that matter for people together. Fill out the form and we will contact you immediately."
+    },
+    // What We Offer
+    whatWeOffer: {
+      title: "What we offer",
+      seeAll: "See all available applications",
+      cards: [
+        { name: "SimasiaChatbots", desc: "Secure, tailored chatbots for information and customer support.", link: "/applications/simasia-chatbots" },
+        { name: "SimasiaEdu", desc: "AI applications for educators and students: curriculum, exercises, assessment.", link: "/applications/simasia-edu" },
+        { name: "SimasiaStudio", desc: "Evidence-based translation and editing with consistency and quality control.", link: "/applications/simasia-studio" },
+        { name: "SimasiaDaily", desc: "Lightweight workflow automation tools that save time.", link: "/applications/simasia-daily" }
+      ]
+    },
+    // Who It's For (Homepage)
+    whoItsFor: {
+      title: "Who it's for",
+      items: [
+        "Institutions and organizations with a social mission",
+        "Education (tutoring centers, schools, vocational institutes, universities)",
+        "Publishers and translation centers",
+        "Customer-facing businesses with personalization needs at scale"
+      ]
+    },
+    // How We Work
+    howWeWork: {
+      title: "How we work",
+      steps: [
+        "We choose the right application together.",
+        "We tailor it to your data and workflows.",
+        "We deliver it and improve it together in real use."
+      ]
     },
     // Obstacles
     obstacles: {
@@ -523,48 +586,29 @@ export const translations = {
     },
     // Target Audience
     targetAudience: {
-      title: "Who is it for?",
-      organizations: {
-        title: "Bodies, Organizations & Businesses with a social role",
-        description: "We collaborate on communication assistant solutions (chatbots) that enhance social cohesion with respect for diversity and community needs (for more information see the product link).",
-        note: "If you address or support groups such as:",
-        groups: [
-          "People with disabilities or chronic illnesses, as well as caregivers.",
-          "LGBTQIA+ people and survivors of gender-based or domestic violence.",
-          "Refugees and immigrants, non-Greek-speaking & multilingual communities.",
-          "People with mental health issues.",
-          "Children/adolescents in dysfunctional environments.",
-          "People facing crisis situations."
-        ],
-        note2: "Note: The above list is indicative; we also collaborate with other communities with similar access needs."
-      },
-      businesses: {
-        title: "Businesses, bodies, and services with broad appeal and personalization needs",
-        items: [
-          { title: "Travel Agencies & Hotels", desc: "that invest in inclusive tourism (information without barriers and prejudices, clear assistance procedures)." },
-          { title: "Embassies and Consulates", desc: "that need a 24/7 reliable communication assistant (chatbot) for citizens of their countries who need guidance on procedures or face crisis situations." },
-          { title: "Real Estate", desc: "that serves different linguistic/cultural environments with clear, human information." },
-          { title: "E-shops", desc: "that wish to expand their audience or focus on an audience with accessibility needs (text simplification, multilingual guidance based on Web Content Accessibility Guidelines)." },
-          { title: "Tech Companies", desc: "that are committed to responsible, inclusive communication with users and communities." },
-          { title: "Museums & Cultural Centers", desc: "that seek access for all (accessible exhibitions, simplified language, multilingualism)." },
-          { title: "Restaurants", desc: "with a need for accessible menus/guides and cultural mediation." }
-        ]
-      },
-      translation: {
-        title: "Embassies, Consulates, Publishing Houses, Translation Centers, Companies with International Transactions",
-        description1: "Translation and text editing based on your own specifications, dictionaries of your choice, and specialized terminology.",
-        description2: "Small and reliable tools for everyday office work.",
-        description3: "SimasiaStudio and SimasiaDaily adapt to your needs and provide accurate and reliable results."
-      },
-      office: {
-        title: "Businesses, Bodies, Individual Use",
-        description: "SimasiaDaily adapts to your needs and simplifies a range of everyday office tasks: Invoice generation, conversion between all file types, photo size and format conversion, QR code creation, customization of your business or organization's logo/template in presentations and correspondence, etc."
-      },
-      education: {
-        title: "Educational Organizations, Teachers, Students",
-        description: "SimasiaEdu suggests exam topics based on selected standards (e.g., question bank), suggests corrections to your answers (just upload the document or a simple photo of the written work) and provides model solutions, explaining step by step."
-      },
-      chatbotsButton: "SimasiaChatbots: Safe chatbots, designed by humans, for humans"
+      title: "Who It's For",
+      audienceCards: [
+        { 
+          title: "Institutions, organizations, and businesses with a social mission", 
+          product: "SimasiaChatbots",
+          link: "/applications/simasia-chatbots"
+        },
+        { 
+          title: "Tutoring centers, educational organizations, teachers, students", 
+          product: "SimasiaEdu",
+          link: "/applications/simasia-edu"
+        },
+        { 
+          title: "Publishers, translation centers, embassies, consulates, companies with international operations", 
+          product: "SimasiaStudio",
+          link: "/applications/simasia-studio"
+        },
+        { 
+          title: "Businesses, institutions, individual use", 
+          product: "SimasiaDaily",
+          link: "/applications/simasia-daily"
+        }
+      ]
     },
     // Collaborations
     collaborations: {

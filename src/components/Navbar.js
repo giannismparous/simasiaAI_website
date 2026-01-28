@@ -33,7 +33,7 @@ const Navbar = () => {
     { path: "/", text: t('nav.home') },
     { path: "/about", text: t('nav.about') },
     { path: "/target-audience", text: t('nav.targetAudience') },
-    { path: "/products", text: t('nav.products') },
+    { path: "/applications", text: t('nav.products') },
     { path: "/collaborations", text: t('nav.collaborations') },
     { path: "/book-demo", text: t('nav.bookDemo'), isButton: true }
   ];

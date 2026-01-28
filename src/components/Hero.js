@@ -282,7 +282,7 @@ const Hero = () => {
               </div>
 
               <div className="brandline" aria-hidden="true">
-                <span className="slash-left">/</span><span className="prefix-s">Σ</span><span className="prefix-i">i</span><span className="prefix-m">m</span><span className="prefix-a">a</span><span className="prefix-s2">s</span><span className="ia-i">i</span><span className="ia-a">a</span><span className="word"><span className="AI">AI</span></span><span className="slash-right">/</span><span className="cursor">|</span>
+                <span className="slash-left">/</span><span className="prefix-s">Σ</span><span className="prefix-i">i</span><span className="prefix-m">m</span><span className="prefix-a">a</span><span className="prefix-s2">s</span><span className="ia-i">i</span><span className="ia-a">a</span><span className="word"><span className="AI-A">A</span><span className="AI-I">I</span></span><span className="slash-right">/</span><span className="cursor">|</span>
               </div>
             </section>
           </div>
@@ -497,44 +497,12 @@ const Hero = () => {
             </motion.div>
           
           <motion.div 
-            className="hero-network-text"
+            className="cta-buttons" 
             variants={itemVariants}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.15, duration: 0.4 }}
-          >
-            <p className="network-quote" style={{ fontSize: '1.1rem' }}>
-              {t('hero.description1')}
-            </p>
-            <p className="network-quote" style={{ marginTop: '1rem', fontSize: '1.1rem', color: 'var(--gray-medium)' }}>
-              {t('hero.description2')}
-            </p>
-          </motion.div>
-          <motion.div 
-            className="cta-buttons" 
-            variants={itemVariants}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4, duration: 0.4 }}
             style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}
-          >
-            <motion.a 
-              href="/products" 
-              className="btn btn-primary"
-              whileHover={{ scale: 1.03, y: -3 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              {t('hero.seeProducts')}
-            </motion.a>
-          </motion.div>
-          <motion.div 
-            className="cta-buttons" 
-            variants={itemVariants}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.4 }}
-            style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '1rem' }}
           >
             <motion.a 
               href="#contact" 
@@ -546,13 +514,13 @@ const Hero = () => {
               {t('hero.talkToTeam')}
             </motion.a>
             <motion.a 
-              href="/book-demo" 
+              href="/applications" 
               className="btn btn-secondary"
               whileHover={{ scale: 1.03, y: -3 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              {t('hero.scheduleDemo')}
+              {t('hero.seeApplications')}
             </motion.a>
           </motion.div>
         </motion.div>
@@ -562,10 +530,10 @@ const Hero = () => {
         .hero-network-top{
           position: absolute;
           width: 100%;
-          max-width: 1000px;
+          max-width: 500px;
           height: auto;
-          top: 10%;
-          left: -90%;
+          top: 20%;
+          left: -5%;
           z-index: 1;
           pointer-events: none;
           opacity: 0.4;
@@ -573,10 +541,10 @@ const Hero = () => {
         .hero-network-bottom{
           position: absolute;
           width: 100%;
-          max-width: 1000px;
+          max-width: 500px;
           height: auto;
-          bottom: 10%;
-          right: -70%;
+          bottom: 20%;
+          right: -5%;
           left: auto;
           z-index: 1;
           pointer-events: none;
@@ -584,16 +552,16 @@ const Hero = () => {
         }
         @media (max-width: 768px){
           .hero-network-top{
-            max-width: 400px;
-            top: -20%;
-            left: -50%;
-            opacity: 0.2;
+            max-width: 300px;
+            top: 10%;
+            left: -10%;
+            opacity: 0.25;
           }
           .hero-network-bottom{
-            max-width: 400px;
-            bottom: -10%;
-            right: -40%;
-            opacity: 0.2;
+            max-width: 300px;
+            bottom: 10%;
+            right: -10%;
+            opacity: 0.25;
           }
         }
         .simasia-network-bottom-rotated {
@@ -705,32 +673,39 @@ const Hero = () => {
           text-align: center;
         }
         .simasia-brand-anim .line2-placeholder{
-          font-size: clamp(1.25rem, 2.5vw, 1.25rem);
+          font-size: clamp(1rem, 2vw, 1.15rem);
           font-family: "Inter", sans-serif;
           font-weight: 500;
           letter-spacing: 0.01em;
           visibility: hidden;
           margin: 0 auto;
-          display: inline-block;
-          white-space: nowrap;
+          display: block;
+          white-space: normal;
         }
         .simasia-brand-anim .line2{
-          position: absolute;
+          position: relative;
           top: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          font-size: clamp(1.25rem, 2.5vw, 1.25rem);
-          white-space: nowrap;
-          overflow: hidden;
-          display: inline-block;
-          border-right: .08em solid transparent;
+          left: 0;
+          transform: none;
+          font-size: clamp(1rem, 2vw, 1.15rem);
+          white-space: normal;
+          overflow: visible;
+          display: block;
+          border-right: none;
           color: var(--primary-warm);
           font-family: "Inter", sans-serif;
           font-weight: 500;
           letter-spacing: 0.01em;
-          max-width: 0;
-          animation: type2 1.0s 2.749s steps(28,end) forwards;
+          max-width: 100%;
+          opacity: 0;
+          animation: fadeIn2 0.8s 2.5s ease-out forwards;
           margin: 0;
+          text-align: center;
+          line-height: 1.5;
+        }
+        @keyframes fadeIn2 {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
         @keyframes type1a{
           from{ 
@@ -844,7 +819,6 @@ const Hero = () => {
           }
         }
         .ia-i, .ia-a{
-          color: var(--dark-text);
           display: inline-block;
           overflow: hidden;
           white-space: nowrap;
@@ -856,11 +830,13 @@ const Hero = () => {
           padding: 0;
         }
         .ia-i{
-          animation: typeIaChar 0.25s 0.91s ease-out forwards, iaFade .35s 1.16s ease-out forwards;
+          color: var(--accent-warm);
+          animation: typeIaChar 0.25s 0.91s ease-out forwards, iaFadeRed .35s 1.16s ease-out forwards;
         }
         .ia-a{
+          color: var(--primary-warm);
           margin-left: -0.05em;
-          animation: typeIaChar 0.25s 1.16s ease-out forwards, iaFade .35s 1.41s ease-out forwards;
+          animation: typeIaChar 0.25s 1.16s ease-out forwards, iaFadeGreen .35s 1.41s ease-out forwards;
         }
         @keyframes typeIaChar{
           from{ clip-path: inset(0 100% 0 0); }
@@ -869,27 +845,35 @@ const Hero = () => {
         .prefix{
           color: var(--dark-text);
         }
-        .AI{
-          color: var(--primary-warm);
+        .AI-A, .AI-I{
           transform: translateX(-0.6em) scale(0);
-          animation: aiPop .55s 1.4s cubic-bezier(.2,.9,.15,1.1) forwards,
-                     aiSettle .35s 1.95s ease-out forwards;
+          animation: aiPop .55s 1.4s cubic-bezier(.2,.9,.15,1.1) forwards;
           margin-left: 0;
+        }
+        .AI-A{
+          color: var(--primary-warm);
+        }
+        .AI-I{
+          color: var(--accent-warm);
         }
         @keyframes iaPulse{
           from{ color: var(--dark-text) }
           to{ color: var(--primary-warm) }
         }
-        @keyframes iaFade{
+        @keyframes iaFadeGreen{
           to{ 
             opacity: .25;
+            color: var(--primary-warm);
+          }
+        }
+        @keyframes iaFadeRed{
+          to{ 
+            opacity: .25;
+            color: var(--accent-warm);
           }
         }
         @keyframes aiPop{
           to{ transform: translateX(0) scale(1) }
-        }
-        @keyframes aiSettle{
-          to{ color: var(--dark-text) }
         }
 
         .slash{
@@ -899,7 +883,7 @@ const Hero = () => {
         }
         .slash-left, .slash-right{
           opacity: 0;
-          color: var(--accent-warm);
+          color: var(--dark-text);
           transform: translateY(.2em);
         }
         .slash-left{
@@ -963,7 +947,7 @@ const Hero = () => {
           }
           .word > *,
           .prefix-s, .prefix-i, .prefix-m, .prefix-a, .prefix-s2,
-          .ia-i, .ia-a, .AI{
+          .ia-i, .ia-a, .AI-A, .AI-I{
             font-size: 2rem;
           }
           /* Mobile fix: ensure characters are visible */
@@ -999,80 +983,6 @@ const Hero = () => {
           .simasia-brand-anim .taglines{
             padding: 0 0.5rem;
             min-height: auto;
-          }
-        }
-        @media (max-width: 320px){
-          .simasia-brand-anim{
-            padding: 0.25rem 0;
-            gap: 0.75rem;
-          }
-          .simasia-brand-anim .line1-wrapper{
-            padding: 0 0.25rem;
-            margin-bottom: 0.25rem;
-          }
-          .simasia-brand-anim .line1a,
-          .simasia-brand-anim .line1b{
-            font-size: 1.1rem;
-            line-height: 1.25;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-          }
-          .simasia-brand-anim .line2-wrapper{
-            margin-top: 0.5rem;
-          }
-          .simasia-brand-anim .line2{
-            font-size: 0.9rem;
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-          }
-          .simasia-brand-anim .line2-placeholder{
-            font-size: 0.9rem;
-          }
-          .brandline{
-            font-size: 1.5rem;
-            padding: 0 0.25rem;
-            flex-wrap: wrap;
-            justify-content: center;
-          }
-          .word > *,
-          .prefix-s, .prefix-i, .prefix-m, .prefix-a, .prefix-s2,
-          .ia-i, .ia-a, .AI{
-            font-size: 1.5rem;
-          }
-          /* Mobile fix: ensure characters are visible */
-          .prefix-s, .prefix-i, .prefix-m, .prefix-a, .prefix-s2{
-            clip-path: none !important;
-            -webkit-clip-path: none !important;
-            width: auto !important;
-            opacity: 0;
-            animation: typeCharMobile 0.16s ease-out forwards;
-          }
-          .prefix-s{
-            animation-delay: 0.1s;
-          }
-          .prefix-i{
-            animation-delay: 0.26s;
-          }
-          .prefix-m{
-            animation-delay: 0.42s;
-          }
-          .prefix-a{
-            animation-delay: 0.58s;
-          }
-          .prefix-s2{
-            animation-delay: 0.74s;
-          }
-          @keyframes typeCharMobile{
-            from{ opacity: 0; }
-            to{ opacity: 1; }
-          }
-          .brand-anim-container{
-            margin: 0.75rem 0;
-          }
-          .simasia-brand-anim .taglines{
-            padding: 0 0.25rem;
-            gap: 0.5rem;
           }
         }
       `}</style>
