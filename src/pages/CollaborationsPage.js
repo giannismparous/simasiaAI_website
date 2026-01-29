@@ -84,12 +84,12 @@ const CollaborationsPage = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <a 
-                href="#contact" 
+              <Link 
+                to="/book-demo" 
                 className="btn btn-primary"
               >
                 {t('collaborations.current.poamsk.contact')}
-              </a>
+              </Link>
               <Link 
                 to="/book-demo" 
                 className="btn btn-secondary"

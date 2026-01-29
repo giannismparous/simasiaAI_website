@@ -119,7 +119,7 @@ const BridgeSection = () => {
   }, [originalPoints, remapPoint, animationDelays, animationDuration]);
 
   return (
-    <section className="bridge-section">
+    <section className="bridge-section" style={{ display: 'none' }}>
       <div className="container">
         <div 
           ref={ref}
@@ -142,20 +142,20 @@ const BridgeSection = () => {
                       border-radius: 0;
                     }
 
-                    .hub-outer{ stroke: var(--s); stroke-width: 10; fill: none; opacity: ${isHovered ? 0.4 : 0.12}; transition: opacity 0.5s ease-in-out; }
-                    .hub-inner{ stroke: var(--a); stroke-width: 2; fill: none; opacity: ${isHovered ? 0.35 : 0.1}; transition: opacity 0.5s ease-in-out; }
+                    .hub-outer{ stroke: var(--s); stroke-width: 10; fill: none; opacity: ${isHovered ? 0.3 : 0.06}; transition: opacity 0.5s ease-in-out; }
+                    .hub-inner{ stroke: var(--a); stroke-width: 2; fill: none; opacity: ${isHovered ? 0.25 : 0.05}; transition: opacity 0.5s ease-in-out; }
                     .hub-arc{ stroke: var(--p); stroke-width: 12; stroke-linecap: round; fill: none;
-                              transform-origin: 600px 285px; animation: spin 10s linear infinite; opacity: ${isHovered ? 0.5 : 0.15}; transition: opacity 0.5s ease-in-out; }
+                              transform-origin: 600px 285px; animation: spin 10s linear infinite; opacity: ${isHovered ? 0.35 : 0.08}; transition: opacity 0.5s ease-in-out; }
 
-                    .bridge-base{ stroke: var(--a); stroke-width: 2; opacity: ${isHovered ? 0.3 : 0.08}; fill: none; transition: opacity 0.5s ease-in-out; }
+                    .bridge-base{ stroke: var(--a); stroke-width: 2; opacity: ${isHovered ? 0.2 : 0.04}; fill: none; transition: opacity 0.5s ease-in-out; }
                     .bridge-draw{ stroke: var(--p); stroke-width: 6; fill: none; stroke-linecap: round;
-                                  stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: draw 9s linear infinite; opacity: ${isHovered ? 0.5 : 0.15}; transition: opacity 0.5s ease-in-out; }
+                                  stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: draw 9s linear infinite; opacity: ${isHovered ? 0.35 : 0.08}; transition: opacity 0.5s ease-in-out; }
 
                     .care{ stroke: var(--warm); stroke-width: 6; fill: none; stroke-linecap: round;
-                           stroke-dasharray: 1 140; animation: flow 2.4s linear infinite; filter: url(#softGlow); opacity: ${isHovered ? 0.6 : 0.18}; transition: opacity 0.5s ease-in-out; }
+                           stroke-dasharray: 1 140; animation: flow 2.4s linear infinite; filter: url(#softGlow); opacity: ${isHovered ? 0.4 : 0.09}; transition: opacity 0.5s ease-in-out; }
 
-                    .person{ fill: var(--dark); opacity: ${isHovered ? 0.7 : 0.2}; transition: opacity 0.5s ease-in-out; }
-                    .halo{ fill: none; stroke: var(--a); stroke-width: 4; opacity: ${isHovered ? 0.3 : 0.08};
+                    .person{ fill: var(--dark); opacity: ${isHovered ? 0.5 : 0.1}; transition: opacity 0.5s ease-in-out; }
+                    .halo{ fill: none; stroke: var(--a); stroke-width: 4; opacity: ${isHovered ? 0.2 : 0.04};
                            transform-origin: center; animation: breathe 3.2s ease-in-out infinite; transition: opacity 0.5s ease-in-out; }
 
                     .hand{ fill: var(--dark); opacity: 0; }

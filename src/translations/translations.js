@@ -17,7 +17,7 @@ export const translations = {
       targetAudience: "Ποιους αφορά",
       products: "Εφαρμογές",
       collaborations: "Συνεργασίες",
-      bookDemo: "Λάβετε AI πρόταση για τον οργανισμό σας"
+      bookDemo: "Ας συνεργαστούμε"
     },
     hero: {
       line1a: "Το AI έχει σημασία όταν το δούμε",
@@ -28,7 +28,7 @@ export const translations = {
     },
     // Applications Page
     applications: {
-      title: "-Εφαρμογές-",
+      title: "Εφαρμογές",
       subtitle: "Διαθέσιμες για άμεση χρήση",
       requestProposal: "Ζητήστε πρόταση συνεργασίας"
     },
@@ -361,7 +361,7 @@ export const translations = {
       targetAudience: "Who It's For",
       products: "Applications",
       collaborations: "Collaborations",
-      bookDemo: "Get an AI Proposal for Your Organization"
+      bookDemo: "Let's collaborate"
     },
     hero: {
       line1a: "AI matters when we look at it",
