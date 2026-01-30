@@ -365,3 +365,23 @@ section.impact-wrapper:hover .impact .section-title {
         overflow-wrap: break-word !important;
     }
 }
+
+/* Global small screen adjustments for headings */
+@media (max-width: 380px) {
+
+    .section-title,
+    h1,
+    h2,
+    h3 {
+        font-size: 1.5rem !important;
+        word-wrap: normal !important;
+        /* Prevent aggressive breaking */
+        overflow-wrap: break-word !important;
+        hyphens: auto;
+    }
+
+    /* Specific adjustment for Collaborations page style headings */
+    .collaborations-hero .section-title {
+        font-size: 1.5rem !important;
+    }
+}

@@ -88,6 +88,12 @@
     padding: 0 40px;
   }
 
+  /* Remove gradient fade on mobile */
+  .horizontal-scroll-wrapper::before,
+  .horizontal-scroll-wrapper::after {
+    display: none !important;
+  }
+
   .scroll-arrow {
     width: 36px;
     height: 36px;
@@ -107,5 +113,11 @@
   .scroll-arrow {
     width: 32px;
     height: 32px;
+  }
+}
+
+@media (max-width: 360px) {
+  .horizontal-scroll-wrapper {
+    padding: 0 10px !important;
   }
 }

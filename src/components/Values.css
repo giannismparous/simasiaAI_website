@@ -1,6 +1,6 @@
 .values {
     padding: 8rem 0;
-    background: var(--gray-light);
+    background: linear-gradient(to bottom, var(--white) 0%, var(--gray-light) 20%);
     position: relative;
 }
 
@@ -85,4 +85,3 @@
         font-size: 0.95rem;
     }
 }
-

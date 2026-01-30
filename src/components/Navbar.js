@@ -105,19 +105,14 @@ const Navbar = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = 'var(--primary-warm)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'transparent';
+                transition: 'all 0.3s ease',
+                outline: 'none'
               }}
             >
               {language === 'el' ? (
-                <ReactCountryFlag countryCode="GB" svg style={{ width: '24px', height: '24px' }} />
-              ) : (
                 <ReactCountryFlag countryCode="GR" svg style={{ width: '24px', height: '24px' }} />
+              ) : (
+                <ReactCountryFlag countryCode="GB" svg style={{ width: '24px', height: '24px' }} />
               )}
             </button>
           </li>

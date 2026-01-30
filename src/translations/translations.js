@@ -152,7 +152,7 @@ export const translations = {
       chatbots: {
         name: "SimasiaChatbots",
         title: "Ασφαλή chatbots, σχεδιασμένα από ανθρώπους, για ανθρώπους",
-        offers: "Τα SimasiaChatbots προσφέρουν:",
+
         features: [
           "Προσβασιμότητα από σχεδιασμό: εναλλακτικοί τρόποι εισόδου/εξόδου (κείμενο/ήχος), WCAG-oriented επιλογές.",
           "Πολυγλωσσία: υποστήριξη πολλών ευρωπαϊκών και παγκόσμιων γλωσσών (ενδεικτικά: κινεζικά—μανδαρινικά/καντονέζικα, ιαπωνικά, κορεατικά, αραβικά, χίντι, μπενγκάλι κ.ά.) και τοπικές ελληνικές ποικιλίες (π.χ. κυπριακά, ποντιακά) όπου είναι εφικτό ή κατόπιν στοχευμένης εκπαίδευσης.",
@@ -165,7 +165,7 @@ export const translations = {
       studio: {
         name: "SimasiaStudio",
         title: "Τεκμηριωμένη μετάφραση, επιμέλεια με ευθύνη",
-        offers: "Το SimasiaStudio προσφέρει:",
+
         features: [
           "Ανέβασμα και επιλογή οδηγών ύφους στη μετάφραση και στην επιμέλεια κειμένου.",
           "Πρόσβαση σε έγκριτη ορολογία/γλωσσάρια.",
@@ -180,7 +180,7 @@ export const translations = {
       daily: {
         name: "SimasiaDaily",
         title: "Μικρά και αξιόπιστα εργαλεία, μεγάλη διαφορά.",
-        offers: "Το SimasiaDaily προσφέρει:",
+
         toolCategories: [
           {
             category: "Μετρητής Κειμένου",
@@ -231,7 +231,7 @@ export const translations = {
       edu: {
         name: "SimasiaEdu",
         title: "Θέματα διαγωνισμάτων, διορθώσεις, εξηγήσεις και λύσεις με συνέπεια",
-        offers: "Το SimasiaEdu προσφέρει:",
+
         features: [
           "Δημιουργία και αξιολόγηση διαγωνισμάτων για όλες τις βαθμίδες και μαθήματα, ευθυγραμμισμένων με τη διδακτέα ύλη και πρότυπα (π.χ. τράπεζα θεμάτων).",
           "Προσαρμογή δυσκολίας και χρήση αξιολόγησης.",
@@ -496,7 +496,7 @@ export const translations = {
       chatbots: {
         name: "SimasiaChatbots",
         title: "Safe chatbots, designed by humans, for humans",
-        offers: "SimasiaChatbots offers:",
+
         features: [
           "Accessibility by design: alternative input/output methods (text/audio), WCAG-oriented options.",
           "Multilingualism: support for many European and global languages (indicatively: Chinese—Mandarin/Cantonese, Japanese, Korean, Arabic, Hindi, Bengali, etc.) and local Greek varieties (e.g., Cypriot, Pontic) where feasible or following targeted training.",
@@ -509,7 +509,7 @@ export const translations = {
       studio: {
         name: "SimasiaStudio",
         title: "Documented translation, editing with responsibility",
-        offers: "SimasiaStudio offers:",
+
         features: [
           "Upload and selection of style guides for translation and text editing.",
           "Access to approved terminology/glossaries.",
@@ -524,7 +524,7 @@ export const translations = {
       daily: {
         name: "SimasiaDaily",
         title: "Small and reliable tools, big difference.",
-        offers: "SimasiaDaily offers:",
+
         toolCategories: [
           {
             category: "Text Counter",
@@ -575,7 +575,7 @@ export const translations = {
       edu: {
         name: "SimasiaEdu",
         title: "Exam topics, corrections, explanations, and solutions with consistency",
-        offers: "SimasiaEdu offers:",
+
         features: [
           "Creation and evaluation of exams for all levels and subjects, aligned with curriculum and standards (e.g., question bank).",
           "Difficulty adjustment and use of assessment.",

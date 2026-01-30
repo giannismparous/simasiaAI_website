@@ -563,6 +563,21 @@ const Hero = () => {
             right: -10%;
             opacity: 0.25;
           }
+          /* Fix mobile spacing */
+          .simasia-brand-anim .taglines {
+            min-height: auto !important;
+          }
+          .simasia-brand-anim .line1-wrapper {
+            margin-bottom: 0.5rem !important;
+            min-height: auto !important;
+          }
+          /* Fix ghost text spacing: overlay line2 on top of placeholder */
+          .simasia-brand-anim .line2 {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+          }
         }
         .simasia-network-bottom-rotated {
           transform: rotate(180deg) !important;
@@ -619,7 +634,7 @@ const Hero = () => {
           margin: 0 auto;
         }
         .simasia-brand-anim .line1-wrapper{
-          width: 800px;
+          width: 100%;
           max-width: 800px;
           margin: 0 auto 0.5rem auto;
           text-align: center;
@@ -641,7 +656,7 @@ const Hero = () => {
           letter-spacing: -0.02em;
           line-height: 1.3;
           clip-path: inset(0 100% 0 0);
-          animation: type1a 1.2s .55s steps(36,end) forwards;
+          animation: type1a 0.8s 0.1s steps(36,end) forwards;
           text-align: center;
           width: 100%;
           word-wrap: break-word;
@@ -659,7 +674,7 @@ const Hero = () => {
           letter-spacing: -0.02em;
           line-height: 1.3;
           clip-path: inset(0 100% 0 0);
-          animation: type1b 1.0s 1.749s steps(20,end) forwards;
+          animation: type1b 0.6s 0.6s steps(20,end) forwards;
           text-align: center;
           width: 100%;
           word-wrap: break-word;
@@ -698,7 +713,7 @@ const Hero = () => {
           letter-spacing: 0.01em;
           max-width: 100%;
           opacity: 0;
-          animation: fadeIn2 0.8s 2.5s ease-out forwards;
+          animation: fadeIn2 0.5s 1.1s ease-out forwards;
           margin: 0;
           text-align: center;
           line-height: 1.5;
@@ -789,21 +804,21 @@ const Hero = () => {
           will-change: clip-path;
         }
         .prefix-s{
-          animation: typeChar 0.16s 0.1s steps(1,end) forwards;
+          animation: typeChar 0.2s 0.2s steps(1,end) forwards;
         }
         .prefix-i{
-          animation: typeChar 0.16s 0.26s steps(1,end) forwards;
+          animation: typeChar 0.2s 0.4s steps(1,end) forwards;
         }
         .prefix-m{
-          animation: typeChar 0.16s 0.42s steps(1,end) forwards;
+          animation: typeChar 0.2s 0.6s steps(1,end) forwards;
           -webkit-clip-path: inset(0 100% 0 0);
           clip-path: inset(0 100% 0 0);
         }
         .prefix-a{
-          animation: typeChar 0.16s 0.58s steps(1,end) forwards;
+          animation: typeChar 0.2s 0.8s steps(1,end) forwards;
         }
         .prefix-s2{
-          animation: typeChar 0.16s 0.74s steps(1,end) forwards;
+          animation: typeChar 0.2s 1.0s steps(1,end) forwards;
         }
         .prefix-typed{
           display: none;
@@ -831,12 +846,12 @@ const Hero = () => {
         }
         .ia-i{
           color: var(--accent-warm);
-          animation: typeIaChar 0.25s 0.91s ease-out forwards, iaFadeRed .35s 1.16s ease-out forwards;
+          animation: typeIaChar 0.25s 1.2s ease-out forwards, iaFadeRed .4s 1.6s ease-out forwards;
         }
         .ia-a{
           color: var(--primary-warm);
           margin-left: -0.05em;
-          animation: typeIaChar 0.25s 1.16s ease-out forwards, iaFadeGreen .35s 1.41s ease-out forwards;
+          animation: typeIaChar 0.25s 1.4s ease-out forwards, iaFadeGreen .4s 1.8s ease-out forwards;
         }
         @keyframes typeIaChar{
           from{ clip-path: inset(0 100% 0 0); }
@@ -847,7 +862,7 @@ const Hero = () => {
         }
         .AI-A, .AI-I{
           transform: translateX(-0.6em) scale(0);
-          animation: aiPop .55s 1.4s cubic-bezier(.2,.9,.15,1.1) forwards;
+          animation: aiPop .6s 1.8s cubic-bezier(.2,.9,.15,1.1) forwards;
           margin-left: 0;
         }
         .AI-A{
@@ -890,7 +905,7 @@ const Hero = () => {
           animation: slashIn .35s 0s ease-out forwards;
         }
         .slash-right{
-          animation: slashIn .35s 0.9s ease-out forwards;
+          animation: slashIn .35s 1.4s ease-out forwards;
         }
         @keyframes slashIn{
           to{
@@ -903,7 +918,7 @@ const Hero = () => {
           color: var(--secondary-warm);
           opacity: 0;
           margin-left: .1em;
-          animation: blink .9s 1.8s steps(1,end) infinite;
+          animation: blink 1.0s 2.2s steps(1,end) infinite;
         }
         @keyframes blink{
           0%, 49%{ opacity: 1 }
@@ -918,7 +933,25 @@ const Hero = () => {
           }
         }
 
+        @media (max-width: 950px) {
+          .simasia-brand-anim .line2 {
+             white-space: normal !important;
+             height: auto !important;
+             overflow: visible !important;
+             opacity: 1 !important; /* Ensure it's visible if animation fails or clips */
+             animation: fadeIn2 0.5s 0.5s ease-out forwards !important;
+          }
+          .simasia-brand-anim .line2-wrapper {
+             height: auto !important;
+             min-height: auto !important;
+          }
+        }
+
         @media (max-width: 768px){
+          .hero-network-top,
+          .hero-network-bottom {
+            display: none !important;
+          }
           .simasia-brand-anim{
             padding: 0.5rem 0;
             gap: 1rem;
@@ -956,22 +989,22 @@ const Hero = () => {
             -webkit-clip-path: none !important;
             width: auto !important;
             opacity: 0;
-            animation: typeCharMobile 0.16s ease-out forwards;
+            animation: typeCharMobile 0.2s ease-out forwards;
           }
           .prefix-s{
-            animation-delay: 0.1s;
+            animation-delay: 0.2s;
           }
           .prefix-i{
-            animation-delay: 0.26s;
+            animation-delay: 0.4s;
           }
           .prefix-m{
-            animation-delay: 0.42s;
+            animation-delay: 0.6s;
           }
           .prefix-a{
-            animation-delay: 0.58s;
+            animation-delay: 0.8s;
           }
           .prefix-s2{
-            animation-delay: 0.74s;
+            animation-delay: 1.0s;
           }
           @keyframes typeCharMobile{
             from{ opacity: 0; }

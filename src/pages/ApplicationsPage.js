@@ -32,7 +32,7 @@ const ProductSection = ({ product, index }) => {
       ref={ref}
       className="product-section" 
       style={{ 
-        padding: '4rem 0', 
+        padding: index === 0 ? '2rem 0 4rem' : '4rem 0', 
         borderBottom: index < 3 ? '1px solid rgba(44, 122, 123, 0.1)' : 'none' 
       }}
     >
@@ -153,7 +153,7 @@ const ApplicationsPage = () => {
   return (
     <div className="applications-page-wrapper" style={{ position: 'relative', overflow: 'visible' }}>
       {/* Hero Section */}
-      <section className="applications-hero" style={{ padding: '8rem 0 4rem', position: 'relative' }}>
+      <section className="applications-hero" style={{ padding: '8rem 0 2rem', position: 'relative' }}>
         <div className="container">
           <motion.div
             ref={ref}
@@ -163,19 +163,11 @@ const ApplicationsPage = () => {
             style={{ position: 'relative', zIndex: 2 }}
           >
             <SmoothReveal delay={0.1} yOffset={20}>
-              <h1 className="section-title" style={{ fontSize: '3.5rem', marginBottom: '2rem' }}>
+              <h1 className="section-title" style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>
                 {t('applications.title') || '-Εφαρμογές-'}
               </h1>
             </SmoothReveal>
-            <SmoothReveal delay={0.2} yOffset={15}>
-              <p style={{ fontSize: '1.25rem', color: 'var(--gray-medium)', maxWidth: '800px', margin: '0 auto', lineHeight: 1.8 }}>
-                <WordReveal 
-                  text={t('applications.subtitle') || 'Διαθέσιμες για άμεση χρήση'}
-                  delay={0.25}
-                  duration={0.25}
-                />
-              </p>
-            </SmoothReveal>
+
           </motion.div>
         </div>
       </section>

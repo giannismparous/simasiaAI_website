@@ -7,6 +7,7 @@ import { SmoothReveal, WordReveal } from '../components/TextReveal';
 import { useTranslation } from '../hooks/useTranslation';
 import CTA from '../components/CTA';
 import '../components/Impact.css';
+import './CollaborationsPage.css';
 
 const CollaborationsPage = () => {
   const { t } = useTranslation();
@@ -15,7 +16,7 @@ const CollaborationsPage = () => {
 
   return (
     <div className="collaborations-page-wrapper" style={{ position: 'relative', overflow: 'hidden', width: '100%' }}>
-      <section className="collaborations-hero" style={{ paddingTop: '10rem', paddingBottom: '0.5rem' }}>
+      <section className="collaborations-hero">
         <div className="container">
           <motion.div
             ref={ref}
@@ -25,7 +26,7 @@ const CollaborationsPage = () => {
             style={{ position: 'relative', zIndex: 2 }}
           >
             <SmoothReveal delay={0.1} yOffset={20}>
-              <h1 className="section-title" style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>
+              <h1 className="section-title">
                 {t('collaborations.title')}
               </h1>
             </SmoothReveal>

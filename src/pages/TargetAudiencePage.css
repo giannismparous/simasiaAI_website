@@ -79,7 +79,7 @@
 
 @media (max-width: 768px) {
     .target-audience-hero {
-        padding: 6rem 0 2rem;
+        padding: 8rem 0 2rem !important;
     }
 
     .audience-card {
