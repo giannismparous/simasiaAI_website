@@ -17,6 +17,7 @@ import SimasiaChatbotsPage from './pages/SimasiaChatbotsPage';
 import SimasiaStudioPage from './pages/SimasiaStudioPage';
 import SimasiaDailyPage from './pages/SimasiaDailyPage';
 import SimasiaEduPage from './pages/SimasiaEduPage';
+import ChatbotBubble from './components/ChatbotBubble';
 import './App.css';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
             <Route path="/products/simasia-edu" element={<SimasiaEduPage />} />
           </Routes>
           <Footer />
+          <ChatbotBubble />
         </div>
       </Router>
     </LanguageProvider>

@@ -1,0 +1,657 @@
+{
+    "documents": [
+        {
+            "id": "doc_001",
+            "title": "About SimasiaAI - Company Overview",
+            "category": "company",
+            "content": "SimasiaAI is a Greek startup with an interdisciplinary team of researchers, developers, and professionals in Artificial Intelligence, Linguistics, and Software Development. We create human-centered AI solutions. Our tagline is 'AI from the human side.' We work so that every solution functions as a bridge of understanding—simple to use, reliable in practice, meaningful for society.",
+            "keywords": [
+                "simasia",
+                "simasiaai",
+                "about",
+                "who we are",
+                "company",
+                "startup",
+                "greek",
+                "team",
+                "AI",
+                "artificial intelligence"
+            ],
+            "url": "/about",
+            "language": "en"
+        },
+        {
+            "id": "doc_002",
+            "title": "SimasiaAI Mission",
+            "category": "company",
+            "content": "To create technology solutions centered on people. We work so that every solution functions as a bridge of understanding. Simple to use, reliable in practice, meaningful for society.",
+            "keywords": [
+                "mission",
+                "purpose",
+                "goals",
+                "vision",
+                "bridge",
+                "understanding"
+            ],
+            "url": "/about",
+            "language": "en"
+        },
+        {
+            "id": "doc_003",
+            "title": "Company Values",
+            "category": "company",
+            "content": "SimasiaAI has four core values: 1) Human-Centered Technology - Technology enhances, not replaces human relationships. We design AI with people at the center. 2) Social Contribution - We focus on real needs, empowering communities and improving quality of life. 3) Empathy in Innovation - We start from human needs. Our solutions listen, understand, and adapt to serve them. 4) Empowering Technology - We provide practical tools where needed: simple, reliable, measurable.",
+            "keywords": [
+                "values",
+                "principles",
+                "human-centered",
+                "empathy",
+                "social contribution",
+                "empowerment"
+            ],
+            "url": "/about",
+            "language": "en"
+        },
+        {
+            "id": "doc_004",
+            "title": "SimasiaAI Philosophy and Vision",
+            "category": "company",
+            "content": "AI for people. We envision a reality where AI serves human needs responsibly and builds bridges of understanding in human communities. We do three things: 1) Co-shape AI systems with organizations that understand, show empathy, and communicate naturally with real social impact. 2) Design holistic, accessible applications for health, education, cultural mediation where AI supports human needs. 3) Strengthen social cohesion, mitigate social inequalities, promote inclusion, and improve daily lives.",
+            "keywords": [
+                "philosophy",
+                "vision",
+                "co-shape",
+                "design",
+                "strengthen",
+                "social cohesion"
+            ],
+            "url": "/about",
+            "language": "en"
+        },
+        {
+            "id": "doc_005",
+            "title": "Products Overview",
+            "category": "products",
+            "content": "SimasiaAI offers four main products: SimasiaChatbots for secure customer service, SimasiaEdu for educational tools, SimasiaStudio for translation and editing, and SimasiaDaily for automation tools.",
+            "keywords": [
+                "products",
+                "services",
+                "applications",
+                "solutions",
+                "offerings"
+            ],
+            "url": "/applications",
+            "language": "en"
+        },
+        {
+            "id": "doc_006",
+            "title": "SimasiaChatbots Product",
+            "category": "products",
+            "content": "SimasiaChatbots: Safe chatbots, designed by humans, for humans. Secure, tailored chatbots for information and customer support. Features include: Accessibility by design with text/audio input/output and WCAG-oriented options; Multilingualism supporting many European and global languages including Chinese, Japanese, Korean, Arabic, Hindi, Bengali, and local Greek varieties like Cypriot and Pontic; Bias reduction with evaluation flows and inclusion policies; Training on your own content with documented sources, manuals, and guidelines; Consistency and safety with responses based on approved content; Escalation and notifications with ability to alert designated persons when needed.",
+            "keywords": [
+                "chatbots",
+                "simasia chatbots",
+                "customer service",
+                "support",
+                "accessible",
+                "multilingual",
+                "secure",
+                "safe"
+            ],
+            "url": "/applications/simasia-chatbots",
+            "language": "en"
+        },
+        {
+            "id": "doc_007",
+            "title": "SimasiaStudio Product",
+            "category": "products",
+            "content": "SimasiaStudio: Documented translation and editing with responsibility. Evidence-based translation and editing with consistency and quality control. Features include: Upload and selection of style guides; Access to approved terminology/glossaries; Editing Greek texts with Triantafyllidis Dictionary; Detailed correction suggestions and track changes export (DOCX/PDF); Specialized translation/editing by field (medical, legal, academic, literary) with documented terminology; Bulk processing and integrations with Google Drive/Dropbox/S3; Adjustable sensitivity to gender biases, social groups, and stereotypes; Customized spelling/grammar check for multiple languages and Greek dialects.",
+            "keywords": [
+                "studio",
+                "simasia studio",
+                "translation",
+                "editing",
+                "proofreading",
+                "quality control",
+                "multilingual",
+                "style guide"
+            ],
+            "url": "/applications/simasia-studio",
+            "language": "en"
+        },
+        {
+            "id": "doc_008",
+            "title": "SimasiaDaily Product",
+            "category": "products",
+            "content": "SimasiaDaily: Small and reliable tools, big difference. Lightweight workflow automation tools that save time. Tool categories include: Text Counter (words, characters, sentences); Text Rephrasing (informal to formal with AI); Smart Invoice Generator with tax calculation and PDF export; Multi-Time Zone Meeting Scheduler with smart time suggestions and calendar export; Meeting Minutes Template; File Converter supporting 15+ conversions (DOCX↔PDF, LaTeX↔PDF/DOCX, images, audio); Image Tools (create scanned effect, resize, Base64 conversion); Text Processing Tools (case conversion, remove extra spaces, create acronyms with AI); Data & Code Tools (format JSON, text summarization); Utility Tools (QR code generator, password generator, advanced OCR with AI); Fun/Experimental Tools (apology letter generator, jargon translator, nickname generator, compliment generator, CV to bio converter).",
+            "keywords": [
+                "daily",
+                "simasia daily",
+                "tools",
+                "utilities",
+                "automation",
+                "file conversion",
+                "productivity",
+                "invoice",
+                "meeting"
+            ],
+            "url": "/applications/simasia-daily",
+            "language": "en"
+        },
+        {
+            "id": "doc_009",
+            "title": "SimasiaEdu Product",
+            "category": "products",
+            "content": "SimasiaEdu: Exam topics, corrections, explanations, and solutions with consistency. AI applications for educators and students covering curriculum, exercises, and assessment. Features include: Creation and evaluation of exams for all levels and subjects aligned with curriculum and standards; Difficulty adjustment and assessment use; Instant grading and real-time feedback from uploaded photos or PDFs; Model solutions with step-by-step explanations and targeted corrections per error; Export of materials (topics, solutions, grades) to DOCX/PDF/CSV; Compatibility with LMS (Moodle, Classroom, Canvas); Accessibility by design (WCAG) and multilingual support.",
+            "keywords": [
+                "edu",
+                "simasia edu",
+                "education",
+                "exams",
+                "assessment",
+                "grading",
+                "students",
+                "teachers",
+                "learning"
+            ],
+            "url": "/applications/simasia-edu",
+            "language": "en"
+        },
+        {
+            "id": "doc_010",
+            "title": "Target Audience - Who SimasiaAI Serves",
+            "category": "target_audience",
+            "content": "SimasiaAI serves four main groups: 1) Institutions, organizations, and businesses with a social mission (recommended: SimasiaChatbots); 2) Educational organizations including tutoring centers, schools, vocational institutes, universities, teachers, and students (recommended: SimasiaEdu); 3) Publishers, translation centers, embassies, consulates, and companies with international operations (recommended: SimasiaStudio); 4) Businesses, institutions, and individual users (recommended: SimasiaDaily).",
+            "keywords": [
+                "target audience",
+                "who its for",
+                "customers",
+                "clients",
+                "businesses",
+                "education",
+                "publishers"
+            ],
+            "url": "/target-audience",
+            "language": "en"
+        },
+        {
+            "id": "doc_011",
+            "title": "Solutions and Collaboration Approach",
+            "category": "solutions",
+            "content": "Solutions with Meaning. For businesses, institutions, and organizations. We collaborate to create solutions that enhance social cohesion and support clear, accessible communication. What we achieve together: Clear answers to frequent questions and complex procedures; Knowledge transparency with documentation from approved sources; Accessibility and inclusion in digital communication; Community empowerment in health, education, social services, and culture with guidance from experts; Smooth integration into existing flows and systems.",
+            "keywords": [
+                "solutions",
+                "collaboration",
+                "approach",
+                "benefits",
+                "achieve",
+                "accessibility"
+            ],
+            "url": "/solutions",
+            "language": "en"
+        },
+        {
+            "id": "doc_012",
+            "title": "Collaboration Process",
+            "category": "solutions",
+            "content": "How we collaborate: 1) Exploration - We map your needs, content, and information flows. 2) Pilot application - We test solutions in real scenarios, make measurements, extract results, and receive feedback. 3) Production integration - We adapt solutions to your environment, train your team, and integrate with SSO/CRM/Helpdesk systems. 4) Support & Evolution - We offer continuous support and the ability to evolve applications.",
+            "keywords": [
+                "process",
+                "collaboration",
+                "how we work",
+                "steps",
+                "methodology"
+            ],
+            "url": "/solutions",
+            "language": "en"
+        },
+        {
+            "id": "doc_013",
+            "title": "What SimasiaAI Can Develop",
+            "category": "solutions",
+            "content": "What we can develop for you (examples): 24/7 support chatbots for information, request intake, and process guidance; Specialized assistants for organizational policies/regulations, staff onboarding, and knowledge bases; Educational AI tools for automatic exam creation/correction, difficulty customization, and educator support; Multilingual mediation and accessibility features like text simplification and format conversion.",
+            "keywords": [
+                "develop",
+                "capabilities",
+                "chatbots",
+                "assistants",
+                "educational tools",
+                "multilingual"
+            ],
+            "url": "/solutions",
+            "language": "en"
+        },
+        {
+            "id": "doc_014",
+            "title": "Why Choose SimasiaAI Chatbots",
+            "category": "solutions",
+            "content": "Why choose SimasiaAI chatbots: Accessibility from design with alternative input/output methods and WCAG options; Multilingualism supporting many European and global languages and local Greek varieties; Bias reduction with evaluation flows and inclusion policies; Training on your content with documented sources; Consistency and safety with approved content and controlled evidence; Escalation and notifications with ability to alert designated persons following explicit agreement.",
+            "keywords": [
+                "why choose",
+                "reasons",
+                "benefits",
+                "chatbots",
+                "advantages"
+            ],
+            "url": "/solutions",
+            "language": "en"
+        },
+        {
+            "id": "doc_015",
+            "title": "Current Collaborations",
+            "category": "collaborations",
+            "content": "SimasiaAI collaborates with POAMSKP — Panhellenic Federation of People with Multiple Sclerosis. We provide a supportive chatbot for reliable information about Multiple Sclerosis. A descriptive presentation is available upon contact.",
+            "keywords": [
+                "collaborations",
+                "partnerships",
+                "poamskp",
+                "multiple sclerosis",
+                "current projects"
+            ],
+            "url": "/collaborations",
+            "language": "en"
+        },
+        {
+            "id": "doc_016",
+            "title": "SimasiaAI Commitment to Social Impact",
+            "category": "collaborations",
+            "content": "SimasiaAI undertakes projects when there is a clear social orientation: co-design with experts and communities, accessibility from design, multilingualism/cultural competence, documented sources, and human escalation where needed.",
+            "keywords": [
+                "commitment",
+                "social impact",
+                "co-design",
+                "accessibility",
+                "multilingual"
+            ],
+            "url": "/collaborations",
+            "language": "en"
+        },
+        {
+            "id": "doc_017",
+            "title": "AI Capabilities and Limits",
+            "category": "technology",
+            "content": "Artificial Intelligence today has both capabilities and limits. Capabilities: AI fundamentally changes information, communication, marketing, education, organization, individual empowerment, and social cohesion possibilities. Limits & Risks: AI brings risks including inaccuracies (hallucinations), reproduction or reinforcement of biases, flattery towards users, and more impersonal communication.",
+            "keywords": [
+                "AI",
+                "capabilities",
+                "limits",
+                "risks",
+                "technology",
+                "artificial intelligence"
+            ],
+            "url": "/",
+            "language": "en"
+        },
+        {
+            "id": "doc_018",
+            "title": "Contact and Collaboration",
+            "category": "contact",
+            "content": "We respond within 24 hours. You can request a collaboration proposal, book a demo, or ask about our products. We're based in Athens, Greece. Contact us to propose a solution you envision we can co-create together. Your information is not shared with third parties.",
+            "keywords": [
+                "contact",
+                "demo",
+                "proposal",
+                "athens",
+                "greece",
+                "collaboration request"
+            ],
+            "url": "/book-demo",
+            "language": "en"
+        },
+        {
+            "id": "doc_019",
+            "title": "How SimasiaAI Works",
+            "category": "process",
+            "content": "How we work: We choose the right application together. We tailor it to your data and workflows. We deliver it and improve it together in real use.",
+            "keywords": [
+                "how we work",
+                "process",
+                "methodology",
+                "approach"
+            ],
+            "url": "/",
+            "language": "en"
+        },
+        {
+            "id": "doc_020",
+            "title": "Common Obstacles We Address",
+            "category": "problems",
+            "content": "Obstacles we all encounter that SimasiaAI helps solve: Social inequalities in access to information (language, disability, literacy); Digital barriers and complex processes that confuse rather than help; Cultural barriers and misinformation in critical moments; Lack of continuous support when we need it.",
+            "keywords": [
+                "obstacles",
+                "problems",
+                "challenges",
+                "barriers",
+                "accessibility"
+            ],
+            "url": "/",
+            "language": "en"
+        },
+        {
+            "id": "doc_101",
+            "title": "Σχετικά με τη SimasiaAI - Επισκόπηση Εταιρείας",
+            "category": "company",
+            "content": "Η SimasiaAI είναι μια ελληνική startup με διεπιστημονική ομάδα ερευνητών και ερευνητριών, προγραμματιστών και επαγγελματιών στους τομείς της Τεχνητής Νοημοσύνης, της Γλωσσολογίας και της Ανάπτυξης Λογισμικού. Δημιουργούμε ανθρωποκεντρικές λύσεις ΤΝ. Το σλόγκαν μας είναι 'AI από την πλευρά του ανθρώπου.' Εργαζόμαστε ώστε κάθε λύση μας να λειτουργεί ως γέφυρα κατανόησης—απλή στη χρήση, αξιόπιστη στην πράξη, ουσιαστική για το κοινωνικό σύνολο.",
+            "keywords": [
+                "simasia",
+                "simasiaai",
+                "σχετικά",
+                "ποιοι είμαστε",
+                "εταιρεία",
+                "startup",
+                "ελληνική",
+                "ομάδα",
+                "ΤΝ",
+                "τεχνητή νοημοσύνη"
+            ],
+            "url": "/about",
+            "language": "el"
+        },
+        {
+            "id": "doc_102",
+            "title": "Αποστολή της SimasiaAI",
+            "category": "company",
+            "content": "Να δημιουργούμε τεχνολογικές λύσεις με επίκεντρο τον άνθρωπο. Εργαζόμαστε ώστε κάθε μας λύση να λειτουργεί ως γέφυρα κατανόησης. Απλή στη χρήση, αξιόπιστη στην πράξη, ουσιαστική για το κοινωνικό σύνολο.",
+            "keywords": [
+                "αποστολή",
+                "σκοπός",
+                "στόχοι",
+                "όραμα",
+                "γέφυρα",
+                "κατανόηση"
+            ],
+            "url": "/about",
+            "language": "el"
+        },
+        {
+            "id": "doc_103",
+            "title": "Αξίες της Εταιρείας",
+            "category": "company",
+            "content": "Η SimasiaAI έχει τέσσερις βασικές αξίες: 1) Ανθρωποκεντρική Τεχνολογία - Η τεχνολογία ενισχύει, δεν αντικαθιστά τις ανθρώπινες σχέσεις. Σχεδιάζουμε AI με τον άνθρωπο στο κέντρο. 2) Κοινωνική Συνεισφορά - Εστιάζουμε σε πραγματικές ανάγκες, ενδυναμώνοντας κοινότητες και βελτιώνοντας την ποιότητα ζωής. 3) Ενσυναίσθηση στην Καινοτομία - Ξεκινάμε από τις ανθρώπινες ανάγκες. Οι λύσεις μας τις ακούν, τις κατανοούν και προσαρμόζονται για να τις εξυπηρετούν. 4) Τεχνολογία που Ενδυναμώνει - Παρέχουμε πρακτικά εργαλεία εκεί που χρειάζονται: απλά, αξιόπιστα, μετρήσιμα.",
+            "keywords": [
+                "αξίες",
+                "αρχές",
+                "ανθρωποκεντρικό",
+                "ενσυναίσθηση",
+                "κοινωνική συνεισφορά",
+                "ενδυνάμωση"
+            ],
+            "url": "/about",
+            "language": "el"
+        },
+        {
+            "id": "doc_104",
+            "title": "Φιλοσοφία και Όραμα της SimasiaAI",
+            "category": "company",
+            "content": "Η ΤΝ για τον άνθρωπο. Οραματιζόμαστε μια πραγματικότητα όπου η ΤΝ υπηρετεί με ευθύνη τις ανθρώπινες ανάγκες και χτίζει γέφυρες κατανόησης στις ανθρώπινες κοινότητες. Κάνουμε τρία πράγματα: 1) Συνδιαμορφώνουμε με οργανισμούς συστήματα ΤΝ που κατανοούν, δείχνουν ενσυναίσθηση και επικοινωνούν φυσικά με πραγματικό κοινωνικό αντίκτυπο. 2) Σχεδιάζουμε ολιστικές, προσβάσιμες εφαρμογές για την υγεία, την εκπαίδευση, την πολιτισμική διαμεσολάβηση όπου η ΤΝ στηρίζει την ανθρώπινη ανάγκη. 3) Ενισχύουμε την κοινωνική συνοχή, αμβλύνουμε τις κοινωνικές ανισότητες, προωθούμε τη συμπερίληψη και βελτιώνουμε την καθημερινότητα.",
+            "keywords": [
+                "φιλοσοφία",
+                "όραμα",
+                "συνδιαμόρφωση",
+                "σχεδιασμός",
+                "ενίσχυση",
+                "κοινωνική συνοχή"
+            ],
+            "url": "/about",
+            "language": "el"
+        },
+        {
+            "id": "doc_105",
+            "title": "Επισκόπηση Προϊόντων",
+            "category": "products",
+            "content": "Η SimasiaAI προσφέρει τέσσερα κύρια προϊόντα: SimasiaChatbots για ασφαλή εξυπηρέτηση πελατών, SimasiaEdu για εκπαιδευτικά εργαλεία, SimasiaStudio για μετάφραση και επιμέλεια, και SimasiaDaily για εργαλεία αυτοματοποίησης.",
+            "keywords": [
+                "προϊόντα",
+                "υπηρεσίες",
+                "εφαρμογές",
+                "λύσεις",
+                "προσφορές"
+            ],
+            "url": "/applications",
+            "language": "el"
+        },
+        {
+            "id": "doc_106",
+            "title": "Προϊόν SimasiaChatbots",
+            "category": "products",
+            "content": "SimasiaChatbots: Ασφαλή chatbots, σχεδιασμένα από ανθρώπους, για ανθρώπους. Ασφαλή, προσαρμοσμένα chatbots για ενημέρωση και εξυπηρέτηση. Χαρακτηριστικά: Προσβασιμότητα από σχεδιασμό με εναλλακτικούς τρόπους εισόδου/εξόδου (κείμενο/ήχος) και WCAG επιλογές. Πολυγλωσσία με υποστήριξη πολλών ευρωπαϊκών και παγκόσμιων γλωσσών όπως κινεζικά, ιαπωνικά, κορεατικά, αραβικά, χίντι, μπενγκάλι, και τοπικές ελληνικές ποικιλίες όπως κυπριακά και ποντιακά. Μείωση προκαταλήψεων με ροές αξιολόγησης και πολιτικές συμπερίληψης. Εκπαίδευση σε δικό σας περιεχόμενο με τεκμηριωμένες πηγές. Συνέπεια και ασφάλεια με απαντήσεις βασισμένες σε εγκεκριμένο περιεχόμενο. Κλιμάκωση και ειδοποιήσεις με δυνατότητα αποστολής ειδοποιήσεων όταν χρειάζεται.",
+            "keywords": [
+                "chatbots",
+                "simasia chatbots",
+                "εξυπηρέτηση πελατών",
+                "υποστήριξη",
+                "προσβάσιμο",
+                "πολυγλωσσικό",
+                "ασφαλές"
+            ],
+            "url": "/applications/simasia-chatbots",
+            "language": "el"
+        },
+        {
+            "id": "doc_107",
+            "title": "Προϊόν SimasiaStudio",
+            "category": "products",
+            "content": "SimasiaStudio: Τεκμηριωμένη μετάφραση, επιμέλεια με ευθύνη. Τεκμηριωμένη μετάφραση και επιμέλεια με συνέπεια και έλεγχο ποιότητας. Χαρακτηριστικά: Ανέβασμα και επιλογή οδηγών ύφους. Πρόσβαση σε έγκριτη ορολογία/γλωσσάρια. Επιμέλεια ελληνικών κειμένων με το Λεξικό Τριανταφυλλίδη. Αναλυτικές προτάσεις διόρθωσης και εξαγωγή αρχείων Παρακολούθησης αλλαγών (DOCX/PDF). Εξειδικευμένη μετάφραση/επιμέλεια ανά πεδίο (ιατρική, νομική, ακαδημαϊκή, λογοτεχνική). Μαζική επεξεργασία και συνδέσεις με Google Drive/Dropbox/S3. Ρυθμιζόμενη ευαισθησία σε προκαταλήψεις γένους και στερεότυπα. Προσαρμοσμένος ορθογραφικός/γραμματικός έλεγχος για πολλές γλώσσες.",
+            "keywords": [
+                "studio",
+                "simasia studio",
+                "μετάφραση",
+                "επιμέλεια",
+                "διόρθωση",
+                "ποιότητα",
+                "πολυγλωσσικό",
+                "οδηγός ύφους"
+            ],
+            "url": "/applications/simasia-studio",
+            "language": "el"
+        },
+        {
+            "id": "doc_108",
+            "title": "Προϊόν SimasiaDaily",
+            "category": "products",
+            "content": "SimasiaDaily: Μικρά και αξιόπιστα εργαλεία, μεγάλη διαφορά. Μικρά εργαλεία αυτοματοποίησης που εξοικονομούν χρόνο. Κατηγορίες εργαλείων: Μετρητής Κειμένου (λέξεις, χαρακτήρες, προτάσεις). Αναδιατύπωση Κειμένου (ανεπίσημο σε επίσημο με AI). Έξυπνος Δημιουργός Τιμολογίων με υπολογισμό φόρων και εξαγωγή PDF. Προγραμματιστής Συναντήσεων Πολλαπλών Ζωνών Ώρας. Πρότυπο Πρακτικών Συνάντησης. Μετατροπέας Αρχείων με 15+ μετατροπές (DOCX↔PDF, LaTeX, εικόνες, ήχος). Εργαλεία Εικόνας (σκαναρισμένη εικόνα, αλλαγή μεγέθους, Base64). Εργαλεία επεξεργασίας κειμένου. Εργαλεία Δεδομένων και Κώδικα (JSON, σύνοψη). Βοηθητικά Εργαλεία (QR, κωδικοί, OCR με AI). Διασκεδαστικά/Πειραματικά Εργαλεία (επιστολή συγγνώμης, μεταφραστής jargon, ψευδώνυμα, κομπλιμέντα, CV σε βιογραφικό).",
+            "keywords": [
+                "daily",
+                "simasia daily",
+                "εργαλεία",
+                "utilities",
+                "αυτοματοποίηση",
+                "μετατροπή",
+                "παραγωγικότητα",
+                "τιμολόγιο",
+                "συναντήσεις"
+            ],
+            "url": "/applications/simasia-daily",
+            "language": "el"
+        },
+        {
+            "id": "doc_109",
+            "title": "Προϊόν SimasiaEdu",
+            "category": "products",
+            "content": "SimasiaEdu: Θέματα διαγωνισμάτων, διορθώσεις, εξηγήσεις και λύσεις με συνέπεια. Εφαρμογές για εκπαιδευτικούς και μαθητές: ύλη, ασκήσεις, αξιολόγηση. Χαρακτηριστικά: Δημιουργία και αξιολόγηση διαγωνισμάτων για όλες τις βαθμίδες και μαθήματα ευθυγραμμισμένα με τη διδακτέα ύλη. Προσαρμογή δυσκολίας και χρήση αξιολόγησης. Άμεση βαθμολόγηση και ανατροφοδότηση σε πραγματικό χρόνο από ανέβασμα φωτογραφίας ή PDF. Πρότυπες λύσεις με βήμα-βήμα εξηγήσεις και στοχευμένες διορθώσεις ανά λάθος. Εξαγωγή υλικού (θέματα, λύσεις, βαθμολογίες) σε DOCX/PDF/CSV. Συμβατότητα με LMS (Moodle, Classroom, Canvas). Προσβασιμότητα από τον σχεδιασμό (WCAG) και πολυγλωσσική υποστήριξη.",
+            "keywords": [
+                "edu",
+                "simasia edu",
+                "εκπαίδευση",
+                "διαγωνίσματα",
+                "αξιολόγηση",
+                "βαθμολόγηση",
+                "μαθητές",
+                "καθηγητές",
+                "μάθηση"
+            ],
+            "url": "/applications/simasia-edu",
+            "language": "el"
+        },
+        {
+            "id": "doc_110",
+            "title": "Κοινό-Στόχος - Ποιους Εξυπηρετεί η SimasiaAI",
+            "category": "target_audience",
+            "content": "Η SimasiaAI εξυπηρετεί τέσσερις κύριες ομάδες: 1) Φορείς, οργανισμούς και επιχειρήσεις με κοινωνικό ρόλο (συνιστώμενο: SimasiaChatbots). 2) Εκπαιδευτικούς οργανισμούς όπως φροντιστήρια, σχολεία, ΙΕΚ, πανεπιστήμια, καθηγητές και μαθητές (συνιστώμενο: SimasiaEdu). 3) Εκδοτικούς οίκους, μεταφραστικά κέντρα, πρεσβείες, προξενεία και εταιρείες με διεθνείς συναλλαγές (συνιστώμενο: SimasiaStudio). 4) Επιχειρήσεις, φορείς και ατομική χρήση (συνιστώμενο: SimasiaDaily).",
+            "keywords": [
+                "κοινό στόχος",
+                "ποιους αφορά",
+                "πελάτες",
+                "clients",
+                "επιχειρήσεις",
+                "εκπαίδευση",
+                "εκδότες"
+            ],
+            "url": "/target-audience",
+            "language": "el"
+        },
+        {
+            "id": "doc_111",
+            "title": "Λύσεις και Προσέγγιση Συνεργασίας",
+            "category": "solutions",
+            "content": "Λύσεις με Σημασία. Για επιχειρήσεις, φορείς και οργανισμούς. Συνεργαζόμαστε για λύσεις που ενισχύουν την κοινωνική συνοχή και υποστηρίζουν καθαρή, προσβάσιμη επικοινωνία. Τι πετυχαίνουμε μαζί: Σαφείς απαντήσεις σε συχνές ερωτήσεις και σύνθετες διαδικασίες. Διαφάνεια γνώσης με τεκμηρίωση από εγκεκριμένες πηγές. Προσβασιμότητα και συμπερίληψη στην ψηφιακή επικοινωνία. Ενδυνάμωση κοινοτήτων σε υγεία, εκπαίδευση, κοινωνικές υπηρεσίες και πολιτισμό με καθοδήγηση από ειδικούς. Ομαλή ενσωμάτωση στις υπάρχουσες ροές και συστήματα.",
+            "keywords": [
+                "λύσεις",
+                "συνεργασία",
+                "προσέγγιση",
+                "οφέλη",
+                "επίτευγμα",
+                "προσβασιμότητα"
+            ],
+            "url": "/solutions",
+            "language": "el"
+        },
+        {
+            "id": "doc_112",
+            "title": "Διαδικασία Συνεργασίας",
+            "category": "solutions",
+            "content": "Πώς συνεργαζόμαστε: 1) Διερεύνηση - Χαρτογραφούμε τις ανάγκες σας, το περιεχόμενο και τις ροές πληροφορίας. 2) Πιλοτική εφαρμογή - Δοκιμάζουμε λύσεις σε πραγματικά σενάρια, κάνουμε μετρήσεις, εξάγουμε αποτελέσματα και λαμβάνουμε ανατροφοδότηση. 3) Παραγωγική ένταξη - Προσαρμόζουμε τις λύσεις στο περιβάλλον σας, εκπαιδεύουμε την ομάδα σας και ενσωματώνουμε με SSO/CRM/Helpdesk. 4) Υποστήριξη & Εξέλιξη - Προσφέρουμε διαρκή υποστήριξη και δυνατότητα εξέλιξης των εφαρμογών.",
+            "keywords": [
+                "διαδικασία",
+                "συνεργασία",
+                "πώς δουλεύουμε",
+                "βήματα",
+                "μεθοδολογία"
+            ],
+            "url": "/solutions",
+            "language": "el"
+        },
+        {
+            "id": "doc_113",
+            "title": "Τι Μπορεί να Αναπτύξει η SimasiaAI",
+            "category": "solutions",
+            "content": "Τι μπορούμε να αναπτύξουμε για εσάς (ενδεικτικά): Υποστηρικτικά chatbots 24/7 για ενημέρωση, υποδοχή αιτημάτων και καθοδήγηση διαδικασιών. Εξειδικευμένα assistants για πολιτικές/κανονισμούς οργανισμού, onboarding προσωπικού και knowledge bases. Εκπαιδευτικά εργαλεία AI για αυτόματη δημιουργία/διόρθωση αξιολογήσεων, εξατομίκευση δυσκολίας και υποστήριξη εκπαιδευτικών. Πολυγλωσσική διαμεσολάβηση και προσβασιμότητα όπως απλούστευση κειμένου και μετατροπή μορφών.",
+            "keywords": [
+                "ανάπτυξη",
+                "δυνατότητες",
+                "chatbots",
+                "assistants",
+                "εκπαιδευτικά εργαλεία",
+                "πολυγλωσσικό"
+            ],
+            "url": "/solutions",
+            "language": "el"
+        },
+        {
+            "id": "doc_114",
+            "title": "Γιατί να Επιλέξετε τα Chatbots της SimasiaAI",
+            "category": "solutions",
+            "content": "Γιατί να επιλέξετε τα chatbots της SimasiaAI: Προσβασιμότητα από σχεδιασμό με εναλλακτικούς τρόπους εισόδου/εξόδου και WCAG επιλογές. Πολυγλωσσία με υποστήριξη πολλών ευρωπαϊκών και παγκόσμιων γλωσσών και τοπικών ελληνικών ποικιλιών. Μείωση προκαταλήψεων με ροές αξιολόγησης και πολιτικές συμπερίληψης. Εκπαίδευση σε δικό σας περιεχόμενο με τεκμηριωμένες πηγές. Συνέπεια και ασφάλεια με εγκεκριμένο περιεχόμενο και ελεγχόμενα αποδεικτικά. Κλιμάκωση και ειδοποιήσεις με δυνατότητα αποστολής ειδοποιήσεων κατόπιν ρητής συμφωνίας.",
+            "keywords": [
+                "γιατί να επιλέξετε",
+                "λόγοι",
+                "οφέλη",
+                "chatbots",
+                "πλεονεκτήματα"
+            ],
+            "url": "/solutions",
+            "language": "el"
+        },
+        {
+            "id": "doc_115",
+            "title": "Τρέχουσες Συνεργασίες",
+            "category": "collaborations",
+            "content": "Η SimasiaAI συνεργάζεται με την ΠΟΑΜΣΚΠ — Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση Κατά Πλάκας. Παρέχουμε υποστηρικτικό chatbot για έγκυρη ενημέρωση σχετικά με τη Σκλήρυνση Κατά Πλάκας. Διατίθεται περιγραφική παρουσίαση κατόπιν επικοινωνίας.",
+            "keywords": [
+                "συνεργασίες",
+                "partnerships",
+                "ποαμσκπ",
+                "σκλήρυνση κατά πλάκας",
+                "τρέχοντα έργα"
+            ],
+            "url": "/collaborations",
+            "language": "el"
+        },
+        {
+            "id": "doc_116",
+            "title": "Δέσμευση της SimasiaAI για Κοινωνικό Αντίκτυπο",
+            "category": "collaborations",
+            "content": "Η SimasiaAI αναλαμβάνει έργα όταν υπάρχει σαφής κοινωνικός προσανατολισμός: συν-σχεδιασμός με ειδικούς/ες και κοινότητες, προσβασιμότητα από τον σχεδιασμό, πολυγλωσσία/πολιτισμική επάρκεια, τεκμηριωμένες πηγές και ανθρώπινη κλιμάκωση όπου χρειάζεται.",
+            "keywords": [
+                "δέσμευση",
+                "κοινωνικός αντίκτυπος",
+                "συν-σχεδιασμός",
+                "προσβασιμότητα",
+                "πολυγλωσσικό"
+            ],
+            "url": "/collaborations",
+            "language": "el"
+        },
+        {
+            "id": "doc_117",
+            "title": "Δυνατότητες και Όρια της ΤΝ",
+            "category": "technology",
+            "content": "Η Τεχνητή Νοημοσύνη σήμερα έχει τόσο δυνατότητες όσο και όρια. Δυνατότητες: Η ΤΝ αλλάζει ριζικά τις δυνατότητες της πληροφόρησης, της επικοινωνίας, του marketing, της εκπαίδευσης, της οργάνωσης, της ατομικής ενδυνάμωσης και της κοινωνικής συνοχής. Όρια και Κίνδυνοι: Η ΤΝ φέρνει κινδύνους όπως ανακρίβειες (παραισθήσεις), αναπαραγωγή ή ενίσχυση προκαταλήψεων, κολακεία προς τους χρήστες και πιο απρόσωπη επικοινωνία.",
+            "keywords": [
+                "ΤΝ",
+                "δυνατότητες",
+                "όρια",
+                "κίνδυνοι",
+                "τεχνολογία",
+                "τεχνητή νοημοσύνη"
+            ],
+            "url": "/",
+            "language": "el"
+        },
+        {
+            "id": "doc_118",
+            "title": "Επικοινωνία και Συνεργασία",
+            "category": "contact",
+            "content": "Απαντάμε εντός 24 ωρών. Μπορείτε να ζητήσετε πρόταση συνεργασίας, να κλείσετε demo ή να ρωτήσετε για τα προϊόντα μας. Βρισκόμαστε στην Αθήνα, Ελλάδα. Επικοινωνήστε μαζί μας για να προτείνετε τη λύση που οραματίζεστε να συνδημιουργήσουμε. Τα στοιχεία σας δεν κοινοποιούνται σε τρίτους.",
+            "keywords": [
+                "επικοινωνία",
+                "demo",
+                "πρόταση",
+                "αθήνα",
+                "ελλάδα",
+                "αίτημα συνεργασίας"
+            ],
+            "url": "/book-demo",
+            "language": "el"
+        },
+        {
+            "id": "doc_119",
+            "title": "Πώς Δουλεύει η SimasiaAI",
+            "category": "process",
+            "content": "Πώς δουλεύουμε: Επιλέγουμε από κοινού την εφαρμογή που σας ταιριάζει. Την προσαρμόζουμε στα δεδομένα και στις ροές σας. Την παραδίδουμε και τη βελτιώνουμε μαζί στην πράξη.",
+            "keywords": [
+                "πώς δουλεύουμε",
+                "διαδικασία",
+                "μεθοδολογία",
+                "προσέγγιση"
+            ],
+            "url": "/",
+            "language": "el"
+        },
+        {
+            "id": "doc_120",
+            "title": "Κοινά Εμπόδια που Αντιμετωπίζουμε",
+            "category": "problems",
+            "content": "Εμπόδια που συναντούμε όλες και όλοι και που η SimasiaAI βοηθά να λυθούν: Κοινωνικές ανισότητες στην πρόσβαση στην πληροφορία (γλώσσα, αναπηρία, γραμματισμός). Ψηφιακά εμπόδια και πολύπλοκες διαδικασίες που μπερδεύουν αντί να βοηθούν. Πολιτισμικοί φραγμοί και παραπληροφόρηση σε κρίσιμες στιγμές. Έλλειψη συνεχούς υποστήριξης όταν τη χρειαζόμαστε.",
+            "keywords": [
+                "εμπόδια",
+                "προβλήματα",
+                "προκλήσεις",
+                "φραγμοί",
+                "προσβασιμότητα"
+            ],
+            "url": "/",
+            "language": "el"
+        }
+    ]
+}

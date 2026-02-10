@@ -5,6 +5,8 @@
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^17.2.3",
     "framer-motion": "^10.16.16",
     "gradflow": "^0.1.0",
     "react": "^18.2.0",
