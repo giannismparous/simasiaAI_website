@@ -253,3 +253,12 @@
         height: 24px;
     }
 }
+
+/* Hide greeting cloud on very small screens */
+@media (max-width: 415px) {
+
+    .greeting-cloud,
+    .greeting-tail {
+        display: none !important;
+    }
+}

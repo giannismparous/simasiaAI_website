@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { SmoothReveal, WordReveal } from '../components/TextReveal';
+import { SmoothReveal } from '../components/TextReveal';
 import HorizontalScrollCards from '../components/HorizontalScrollCards';
 import CTA from '../components/CTA';
 import ContactForm from '../components/ContactForm';

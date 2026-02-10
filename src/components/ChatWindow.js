@@ -7,20 +7,27 @@ import { useLanguage } from '../contexts/LanguageContext';
 function ChatWindow({ onClose, isClosing, messages, setMessages }) {
     const { language } = useLanguage();
 
-    // Initialize welcome message if history is empty
+    // Initialize welcome message if history is empty OR update it if language changes for the initial message
     useEffect(() => {
+        const welcomeText = language === 'el'
+            ? 'Γεια σου! 👋\nΕίμαι η Sima. Πώς μπορώ να σε βοηθήσω σήμερα;'
+            : 'Hi there! 👋\nI\'m Sima. How can I help you today?';
+
         if (messages.length === 0) {
-            const welcomeText = language === 'el'
-                ? 'Γεια σου! 👋\nΕίμαι η Sima. Πώς μπορώ να σε βοηθήσω σήμερα;'
-                : 'Hi there! 👋\nI\'m Sima. How can I help you today?';
-            
             setMessages([{
                 id: 1,
                 text: welcomeText,
                 sender: 'bot'
             }]);
+        } else if (messages.length === 1 && messages[0].sender === 'bot') {
+            // Update the welcome message in place if it's the only message
+            // This ensures the greeting switches language dynamically
+            setMessages(prev => [{
+                ...prev[0],
+                text: welcomeText
+            }]);
         }
-    }, []);
+    }, [language, messages, setMessages]);
 
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);

@@ -27,7 +27,7 @@ function ChatbotBubble() {
         }, 1500); // Appears 1.5s after page load
 
         return () => clearTimeout(timer);
-    }, []);
+    }, [hasBeenOpened]);
 
     const openChat = () => {
         setHasBeenOpened(true);
