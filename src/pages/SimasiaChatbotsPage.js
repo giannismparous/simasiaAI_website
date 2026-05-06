@@ -40,7 +40,7 @@ const SimasiaChatbotsPage = () => {
         </div>
       </section>
 
-      <section className="product-features" style={{ padding: '6rem 0', position: 'relative', zIndex: 2 }}>
+      <section className="product-features" style={{ padding: '1.5rem 0 6rem', position: 'relative', zIndex: 2 }}>
         <div className="container">
           <SmoothReveal delay={0.1} yOffset={20}>
             <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>

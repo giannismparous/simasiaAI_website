@@ -152,6 +152,7 @@ export const translations = {
       chatbots: {
         name: "SimasiaChatbots",
         title: "Ασφαλή chatbots, σχεδιασμένα από ανθρώπους, για ανθρώπους",
+        offers: "Τι προσφέρουμε",
 
         features: [
           "Προσβασιμότητα από σχεδιασμό: εναλλακτικοί τρόποι εισόδου/εξόδου (κείμενο/ήχος), WCAG-oriented επιλογές.",
@@ -165,6 +166,7 @@ export const translations = {
       studio: {
         name: "SimasiaStudio",
         title: "Τεκμηριωμένη μετάφραση, επιμέλεια με ευθύνη",
+        offers: "Τι προσφέρουμε",
 
         features: [
           "Ανέβασμα και επιλογή οδηγών ύφους στη μετάφραση και στην επιμέλεια κειμένου.",
@@ -180,6 +182,7 @@ export const translations = {
       daily: {
         name: "SimasiaDaily",
         title: "Μικρά και αξιόπιστα εργαλεία, μεγάλη διαφορά.",
+        offers: "Τι προσφέρουμε",
 
         toolCategories: [
           {
@@ -231,6 +234,7 @@ export const translations = {
       edu: {
         name: "SimasiaEdu",
         title: "Θέματα διαγωνισμάτων, διορθώσεις, εξηγήσεις και λύσεις με συνέπεια",
+        offers: "Τι προσφέρουμε",
 
         features: [
           "Δημιουργία και αξιολόγηση διαγωνισμάτων για όλες τις βαθμίδες και μαθήματα, ευθυγραμμισμένων με τη διδακτέα ύλη και πρότυπα (π.χ. τράπεζα θεμάτων).",
@@ -496,6 +500,7 @@ export const translations = {
       chatbots: {
         name: "SimasiaChatbots",
         title: "Safe chatbots, designed by humans, for humans",
+        offers: "What we offer",
 
         features: [
           "Accessibility by design: alternative input/output methods (text/audio), WCAG-oriented options.",
@@ -509,6 +514,7 @@ export const translations = {
       studio: {
         name: "SimasiaStudio",
         title: "Documented translation, editing with responsibility",
+        offers: "What we offer",
 
         features: [
           "Upload and selection of style guides for translation and text editing.",
@@ -524,6 +530,7 @@ export const translations = {
       daily: {
         name: "SimasiaDaily",
         title: "Small and reliable tools, big difference.",
+        offers: "What we offer",
 
         toolCategories: [
           {
@@ -575,6 +582,7 @@ export const translations = {
       edu: {
         name: "SimasiaEdu",
         title: "Exam topics, corrections, explanations, and solutions with consistency",
+        offers: "What we offer",
 
         features: [
           "Creation and evaluation of exams for all levels and subjects, aligned with curriculum and standards (e.g., question bank).",
