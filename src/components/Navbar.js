@@ -29,6 +29,15 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleLogoClick = (e) => {
+    closeMobileMenu();
+
+    if (location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   const navLinks = [
     { path: "/", text: t('nav.home') },
     { path: "/about", text: t('nav.about') },
@@ -49,7 +58,7 @@ const Navbar = () => {
         <Link 
           to="/" 
           className="logo" 
-          onClick={closeMobileMenu}
+          onClick={handleLogoClick}
         >
           <img 
             src="/logos/simasiaai-logo.png" 

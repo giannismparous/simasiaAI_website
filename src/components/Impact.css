@@ -68,7 +68,8 @@
 }
 
 .impact-content {
-    max-width: 900px;
+    width: 100%;
+    max-width: none;
     margin: 3rem auto 0;
 }
 
@@ -91,7 +92,8 @@
     border-radius: 16px;
     text-align: center;
     position: relative;
-    min-height: 300px;
+    min-height: 430px;
+    height: 100%;
     z-index: 1;
     transition: all 0.3s ease;
 }
@@ -153,11 +155,113 @@
     font-weight: 700;
 }
 
+.collaboration-category-badge {
+    display: inline-block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+    padding: 0.3rem 0.7rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+}
+
 .collaboration-note {
     font-size: 1rem;
     opacity: 0.9;
     font-style: italic;
 }
+
+.impact-carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.impact-carousel-nav {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.impact-carousel-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+.impact-carousel-dots {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.impact-carousel-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 9999px;
+    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.impact-carousel-dot.is-active {
+    background: var(--white);
+    transform: scale(1.15);
+}
+
+.impact-carousel-viewport {
+    overflow: hidden;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 0.5rem 0 1rem;
+}
+
+.impact-carousel-track {
+    display: flex;
+    align-items: stretch;
+    gap: 1.5rem;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+.impact-carousel-viewport--instant .impact-carousel-track {
+    transition: none !important;
+}
+
+.impact-collaboration-slide {
+    flex: 0 0 auto;
+    width: min(80vw, 820px);
+    min-height: 430px;
+    max-width: 100%;
+    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.impact-collaboration-slide--inactive {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.impact-collaboration-slide--active {
+    opacity: 1;
+    transform: scale(1);
+}
+
 
 @keyframes fadeInUp {
     from {

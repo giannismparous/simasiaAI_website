@@ -276,14 +276,29 @@ export const translations = {
     collaborations: {
       title: "Συνεργασίες",
       current: {
-        title: "Τρέχουσες Συνεργασίες",
-        poamsk: {
-          name: "ΠΟΑΜΣΚΠ — Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση Κατά Πλάκας",
-          description: "Υποστηρικτικό chatbot για έγκυρη ενημέρωση σχετικά με τη Σκλήρυνση Κατά Πλάκας.",
-          note: "(Διατίθεται περιγραφική παρουσίαση κατόπιν επικοινωνίας.)",
-          contact: "Επικοινωνήστε για πρόσβαση",
-          bookDemo: "Κλείστε demo"
-        }
+        title: "Συνεργασίες",
+        contact: "Επικοινωνήστε για πρόσβαση",
+        bookDemo: "Κλείστε demo",
+        items: [
+          {
+            name: "Κέντρο Καθοδήγησης Καρκινοπαθών (Κ3)",
+            description: "Ο Ψηφιακός Πλοηγός Υγείας «Μυρτώ» προσφέρει έγκυρη καθοδήγηση και άμεση ενημέρωση για ασθενείς και οικογένειες.",
+            logo: "/Collaborations/Logos/Kapa3_logo.png",
+            category: "υγεία"
+          },
+          {
+            name: "Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση Κατά Πλάκας (ΠΟΑΜΣΚΠ)",
+            description: "Το υποστηρικτικό chatbot «ΣΚΠ-i» παρέχει αξιόπιστη πληροφόρηση και καθημερινή ψηφιακή υποστήριξη για την κοινότητα της ΣΚΠ.",
+            logo: "/Collaborations/Logos/poamsk_logo.png",
+            category: "υγεία"
+          },
+          {
+            name: "Φροντιστήριο Μ.Ε. «Δια ζώση»",
+            description: "Ψηφιακά εργαλεία εκπαιδευτικής υποστήριξης που ενισχύουν την εξατομικευμένη μάθηση.",
+            logo: "/Collaborations/Logos/dia_zwsis.png",
+            category: "εκπαίδευση"
+          }
+        ]
       },
       process: {
         title: "Πώς συνεργαζόμαστε",
@@ -624,14 +639,29 @@ export const translations = {
     collaborations: {
       title: "Collaborations",
       current: {
-        title: "Current Collaborations",
-        poamsk: {
-          name: "POAMSKP — Panhellenic Federation of People with Multiple Sclerosis",
-          description: "Supportive chatbot for reliable information about Multiple Sclerosis.",
-          note: "(A descriptive presentation is available upon contact.)",
-          contact: "Contact for access",
-          bookDemo: "Book demo"
-        }
+        title: "Collaborations",
+        contact: "Contact for access",
+        bookDemo: "Book demo",
+        items: [
+          {
+            name: "Cancer Guidance Center (K3)",
+            description: "The \"Myrto\" Digital Health Navigator provides trusted guidance and timely information for patients and their families.",
+            logo: "/Collaborations/Logos/Kapa3_logo.png",
+            category: "health"
+          },
+          {
+            name: "Panhellenic Federation of Persons with Multiple Sclerosis (POAMSKP)",
+            description: "The \"ΣΚΠ-i\" supportive chatbot delivers reliable information and everyday digital support for the MS community.",
+            logo: "/Collaborations/Logos/poamsk_logo.png",
+            category: "health"
+          },
+          {
+            name: "Frontistirio M.E. \"Dia zosi\"",
+            description: "Digital education support tools focused on personalized learning.",
+            logo: "/Collaborations/Logos/dia_zwsis.png",
+            category: "education"
+          }
+        ]
       },
       process: {
         title: "How we collaborate",
