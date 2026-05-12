@@ -6,11 +6,16 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
 import './Impact.css';
 
+const EMPTY_COLLAB_ITEMS = [];
+
 const Impact = () => {
   const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "200px" });
-  const collaborations = t('collaborations.current.items') || [];
+  const collaborations = useMemo(() => {
+    const items = t('collaborations.current.items');
+    return Array.isArray(items) ? items : EMPTY_COLLAB_ITEMS;
+  }, [t]);
   const viewportRef = useRef(null);
   const trackRef = useRef(null);
   const [positionIndex, setPositionIndex] = useState(0);
