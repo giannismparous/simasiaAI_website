@@ -37,7 +37,7 @@ const CollaborationsPage = () => {
 
       <section className="collaborations-content" style={{ padding: '0.5rem 0 6rem', position: 'relative', zIndex: 2 }}>
         <div className="container">
-          <div style={{ display: 'grid', gap: '2rem' }}>
+          <div className="collaborations-cards-grid">
             {collaborations.map((collaboration, index) => (
               <motion.div
                 key={index}
@@ -78,8 +78,7 @@ const CollaborationsPage = () => {
                   />
                 </motion.div>
                 <motion.div 
-                  className="collaboration-ctas"
-                  style={{ display: 'flex', gap: '1rem', marginTop: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}
+                  className="collaboration-ctas collaborations-page-ctas"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.5, delay: 0.35 + (index * 0.1) }}

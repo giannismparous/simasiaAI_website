@@ -179,11 +179,10 @@ const Impact = () => {
                       {item.description}
                     </motion.p>
                     <motion.div 
-                      className="collaboration-logo"
+                      className="collaboration-logo collaboration-logo--carousel"
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={isInView ? { opacity: 0.85, scale: 1 } : { opacity: 0, scale: 0.9 }}
                       transition={{ duration: 0.3, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                      style={{ marginTop: '2rem', marginBottom: '1rem' }}
                     >
                       <img 
                         src={item.logo || "/Collaborations/Logos/poamsk_logo.png"}
@@ -192,8 +191,7 @@ const Impact = () => {
                       />
                     </motion.div>
                     <motion.div 
-                      className="collaboration-ctas"
-                      style={{ display: 'flex', gap: '1rem', marginTop: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}
+                      className="collaboration-ctas collaboration-ctas--carousel"
                       initial={{ opacity: 0, y: 20 }}
                       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                       transition={{ duration: 0.5, delay: 0.45 }}
