@@ -6,6 +6,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 function ChatWindow({ onClose, isClosing, messages, setMessages }) {
     const { language } = useLanguage();
+    const lastResolvedQueryRef = useRef('');
 
     // Initialize welcome message if history is empty OR update it if language changes for the initial message
     useEffect(() => {
@@ -56,6 +57,12 @@ function ChatWindow({ onClose, isClosing, messages, setMessages }) {
         scrollToBottom();
     }, [messages]);
 
+    useEffect(() => {
+        if (messages.length <= 1) {
+            lastResolvedQueryRef.current = '';
+        }
+    }, [messages.length]);
+
     // Focus input on mount
     useEffect(() => {
         inputRef.current?.focus();
@@ -64,32 +71,37 @@ function ChatWindow({ onClose, isClosing, messages, setMessages }) {
     const handleSendMessage = async () => {
         if (!inputValue.trim() || isLoading) return;
 
+        const userText = inputValue.trim();
+        const historyBeforeSend = messages.slice();
+        const previousResolvedQuery = lastResolvedQueryRef.current;
+
         const userMessage = {
             id: Date.now(),
-            text: inputValue,
+            text: userText,
             sender: 'user'
         };
 
-        // Add user message
         setMessages(prev => [...prev, userMessage]);
+        lastResolvedQueryRef.current = userText;
         setInputValue('');
         setIsLoading(true);
 
         try {
             console.log('🚀 [ChatWindow] Sending question to chatbot...');
-            console.log('🕒 [ChatWindow] Waiting for answerQuestion...');
-            
-            // Let the chatService auto-detect language from the user's message
-            const response = await answerQuestion(inputValue);
-            
+
+            const response = await answerQuestion(userText, null, {
+                messages: historyBeforeSend,
+                lastResolvedQuery: previousResolvedQuery,
+                uiLanguage: language,
+            });
+
             console.log('✅ [ChatWindow] RAG Response received:', response);
 
-            // Add bot response
             const botMessage = {
                 id: Date.now() + 1,
                 text: response.answer,
                 sender: 'bot',
-                sources: response.sources,
+                sources: response.sources || [],
                 confidence: response.confidence
             };
 
@@ -97,7 +109,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages }) {
 
         } catch (error) {
             console.error('❌ [ChatWindow] Error getting response:', error);
-            
+
             const errorMessage = {
                 id: Date.now() + 1,
                 text: language === 'el'

@@ -1,144 +1,227 @@
 /**
- * Chat Service - RAG Orchestrator
- * Coordinates Retrieval-Augmented Generation flow
+ * Chat Service - RAG Orchestrator (multi-turn, scope-aware)
  */
 
 import { generateWithTimeout } from './geminiService';
-import { retrieveRelevantDocs, buildContext, detectLanguage } from './retriever';
+import {
+  retrieveRelevantDocsWithContext,
+  buildContext,
+  detectLanguage,
+} from './retriever';
+import {
+  resolveUserQuery,
+  buildConversationContext,
+  getLastBotMessage,
+  isContinuationDirective,
+  isLikelyLowInfoReply,
+} from './conversationContext';
+import {
+  isClearlyOffTopic,
+  buildOutOfScopeReply,
+  buildNoRetrievalReply,
+  toUserFacingError,
+  hasSimasiaTopicSignals,
+} from './scopeGuard';
+
+const MIN_RELEVANCE_SCORE = 0.28;
 
 /**
- * Answer user question using RAG (Retrieve → Augment → Generate)
- * 
- * @param {string} userQuestion - User's question
- * @param {string} language - Language preference ('greek' or 'english')
- * @returns {Promise<Object>} - Answer object with text, sources, and confidence
+ * @param {string} userQuestion - Raw user message
+ * @param {string|null} language - Optional 'el' | 'en'
+ * @param {Object} options
+ * @param {Array} options.messages - Chat history before current user message
+ * @param {string} options.lastResolvedQuery - Last substantive user topic
+ * @param {string|null} options.uiLanguage - UI language from LanguageContext
  */
-export async function answerQuestion(userQuestion, language = null) {
-  console.log(`💬 User Question: "${userQuestion}"`);
-  
-  // Auto-detect language if not specified
-  if (!language) {
-    language = detectLanguage(userQuestion);
-  }
-  
-  // Step 1: Retrieve relevant documents from knowledge base
-  // Reduced to 3 to focus on most relevant sources only
-  console.log('📖 Step 1: Retrieving relevant documents...');
-  const relevantDocs = await retrieveRelevantDocs(userQuestion, 3);
-  
-  // If no relevant documents found, return fallback
-  if (relevantDocs.length === 0) {
-    console.warn('⚠️  No relevant documents found');
+export async function answerQuestion(userQuestion, language = null, options = {}) {
+  const { messages = [], lastResolvedQuery = '', uiLanguage = null } = options;
+  const rawQuestion = String(userQuestion || '').trim();
+
+  console.log(`💬 User Question: "${rawQuestion}"`);
+
+  if (!rawQuestion) {
+    const lang = uiLanguage === 'en' ? 'en' : 'el';
     return {
-      answer: language === 'el' 
-        ? 'Συγγνώμη, δεν βρήκα σχετικές πληροφορίες για αυτό το ερώτημα. Μπορείς να το διατυπώσεις διαφορετικά;'
-        : 'Sorry, I couldn\'t find relevant information for this question. Could you rephrase it?',
+      answer: lang === 'el' ? 'Γράψε μου την ερώτησή σου και θα χαρώ να βοηθήσω.' : 'Type your question and I will be happy to help.',
       sources: [],
-      confidence: 0.0
+      confidence: 0,
     };
   }
-  
-  // Step 2: Build context from retrieved documents
-  console.log('🔨 Step 2: Building context...');
+
+  const resolved = resolveUserQuery(rawQuestion, messages, lastResolvedQuery);
+  const lang =
+    language ||
+    (uiLanguage === 'en' || uiLanguage === 'el' ? uiLanguage : null) ||
+    detectLanguage(`${rawQuestion} ${resolved.query}`);
+
+  if (isClearlyOffTopic(rawQuestion, messages, lastResolvedQuery) && !resolved.isFollowUp) {
+    console.warn('⚠️ Off-topic query blocked');
+    return {
+      answer: buildOutOfScopeReply(lang),
+      sources: [],
+      confidence: 0,
+      blocked: true,
+    };
+  }
+
+  const retrievalQuery = resolved.isFollowUp ? resolved.query : rawQuestion;
+
+  console.log('📖 Retrieving relevant documents...');
+  let relevantDocs;
+  try {
+    relevantDocs = await retrieveRelevantDocsWithContext(
+      retrievalQuery,
+      messages,
+      3,
+      lang,
+      lastResolvedQuery
+    );
+  } catch (retrievalError) {
+    console.error('❌ Retrieval failed:', retrievalError);
+    return {
+      answer: toUserFacingError(retrievalError, lang),
+      sources: [],
+      confidence: 0,
+      error: retrievalError.message,
+    };
+  }
+
+  const topScore = relevantDocs.length ? Number(relevantDocs[0].relevanceScore || 0) : 0;
+  const topicStillSimasia =
+    resolved.isFollowUp &&
+    hasSimasiaTopicSignals(`${lastResolvedQuery} ${buildConversationContext(messages, 4)}`);
+
+  const weakRetrieval = !relevantDocs.length || topScore < MIN_RELEVANCE_SCORE;
+  if (weakRetrieval && !topicStillSimasia) {
+    console.warn('⚠️ Weak or empty retrieval');
+    return {
+      answer: buildNoRetrievalReply(lang),
+      sources: [],
+      confidence: 0,
+    };
+  }
+
+  if (weakRetrieval && topicStillSimasia) {
+    return {
+      answer:
+        lang === 'el'
+          ? 'Δεν έχω αρκετές συγκεκριμένες πληροφορίες για αυτό ακριβώς, αλλά μπορώ να σε βοηθήσω με SimasiaAI, τα προϊόντα μας ή την επικοινωνία. Τι θα ήθελες να δεις πρώτα;'
+          : 'I do not have enough specific information on that exact point, but I can help with SimasiaAI, our products, or contact details. What would you like to explore first?',
+      sources: [],
+      confidence: 0.4,
+    };
+  }
+
   const context = buildContext(relevantDocs);
-  
-  // Step 3: Create RAG prompt
-  console.log('✍️  Step 3: Creating RAG prompt...');
-  const systemPrompt = createRAGPrompt(context, userQuestion, language);
-  
-  // Step 4: Generate answer using Gemini
-  console.log('🤖 Step 4: Generating answer with Gemini...');
+  const conversationContext = buildConversationContext(messages, 6);
+  const lastBotText = getLastBotMessage(messages);
+  const forceProgress = isContinuationDirective(resolved.query);
+  const questionForModel =
+    resolved.isFollowUp && isLikelyLowInfoReply(rawQuestion) ? resolved.query : rawQuestion;
+
+  const systemPrompt = createRAGPrompt(context, questionForModel, lang, {
+    conversationContext,
+    lastBotText,
+    forceProgress,
+  });
+
+  console.log('🤖 Generating answer with Gemini...');
   try {
     const answer = await generateWithTimeout(systemPrompt, {
       timeout: 30000,
       maxRetries: 2,
-      modelName: 'gemini-2.5-flash-lite'
+      modelName: 'gemini-2.5-flash-lite',
     });
-    
-    // Calculate confidence
-    const topScore = relevantDocs[0].relevanceScore;
-    const confidence = topScore > 0.6 ? 0.95 : topScore > 0.4 ? 0.8 : 0.6;
-    
-    console.log('✅ Answer generated successfully');
-    
-    // Filter sources: Prioritize products, limit to 2-3 max visually
-    // The UI receives all relevantDocs but the retrieval is already capped at 3
-    const finalSources = relevantDocs.map(doc => ({
+
+    const trimmed = String(answer || '').trim();
+    if (!trimmed || trimmed.startsWith('Σφάλμα:') || trimmed.startsWith('Το αίτημα έληξε')) {
+      throw new Error(trimmed || 'Empty model response');
+    }
+
+    const confidence = topScore > 0.6 ? 0.95 : topScore > 0.4 ? 0.8 : 0.65;
+
+    return {
+      answer: trimmed,
+      sources: relevantDocs.map((doc) => ({
         title: doc.title,
         url: doc.url,
-        category: doc.category
-    }));
-
-    return {
-      answer: answer.trim(),
-      sources: finalSources,
-      confidence: confidence
+        category: doc.category,
+      })),
+      confidence,
     };
-    
   } catch (error) {
     console.error('❌ Error generating answer:', error);
-    
     return {
-      answer: language === 'el'
-        ? 'Συγγνώμη, παρουσιάστηκε σφάλμα. Παρακαλώ δοκιμάστε ξανά.'
-        : 'Sorry, an error occurred. Please try again.',
+      answer: toUserFacingError(error, lang),
       sources: [],
-      confidence: 0.0,
-      error: error.message
+      confidence: 0,
+      error: error.message,
     };
   }
 }
 
+function createRAGPrompt(context, question, language, options = {}) {
+  const { conversationContext = '', lastBotText = '', forceProgress = false } = options;
 
-
-/**
- * Create RAG prompt with context and question
- */
-function createRAGPrompt(context, question, language) {
   if (language === 'el') {
-    return `Είσαι ο Simasia Bot, ο έξυπνος βοηθός της SimasiaAI. Απαντάς ερωτήσεις χρησιμοποιώντας ΜΟΝΟ τις πληροφορίες που παρέχονται παρακάτω.
-
-**ΚΑΝΟΝΕΣ:**
-1. **Μήκος Απάντησης**: 
-   - Για γενικές/απλές ερωτήσεις: 2-3 προτάσεις.
-   - Για εξειδικευμένες ερωτήσεις: 1-2 παράγραφοι το πολύ.
-2. **Σύνδεσμοι/Πηγές**: 
-   - **ΜΗΝ** συμπεριλαμβάνεις συνδέσμους (URL), πηγές ή παραπομπές τύπου [Πηγή 1] μέσα στο κείμενο.
-   - Οι πηγές εμφανίζονται αυτόματα κάτω από το μήνυμα.
-3. **Ύφος**: Φιλικό, φυσικό, όχι ρομποτικό.
-4. **Περιεχόμενο**: Μην εφεύρεις πληροφορίες. Αν δεν ξέρεις, πες το.
-
-**ΔΙΑΘΕΣΙΜΕΣ ΠΛΗΡΟΦΟΡΙΕΣ:**
-${context}
-
-**ΕΡΩΤΗΣΗ ΧΡΗΣΤΗ:** ${question}
-
-**ΑΠΑΝΤΗΣΗ:**`;
-  } else {
-    return `You are Simasia Bot, the smart assistant for SimasiaAI. Answer questions using ONLY the information provided below.
-
-**RULES:**
-1. **Response Length**: 
-   - For general/simple questions: 2-3 sentences.
-   - For specific/complex questions: Max 1-2 paragraphs.
-2. **Links/Sources**: 
-   - **DO NOT** include links (URLs), sources, or citations like [Source 1] within the answer text.
-   - Sources are automatically displayed below the message.
-3. **Tone**: Friendly, natural, not robotic.
-4. **Content**: Do not invent info. If unsure, say "I don't have enough info".
-
-**AVAILABLE INFORMATION:**
-${context}
-
-**USER QUESTION:** ${question}
-
-**ANSWER:**`;
+    return (
+      'Είσαι η Sima, η φιλική ψηφιακή βοηθός της SimasiaAI (γυναικείο πρόσωπο). ' +
+      'Απαντάς χρησιμοποιώντας ΜΟΝΟ τις πληροφορίες που ακολουθούν.\n\n' +
+      'ΚΑΝΟΝΕΣ:\n' +
+      '1) Μίλα πάντα σε πρώτο πρόσωπο θηλυκού (π.χ. «μπορώ», «δεν έχω», «σας βοηθώ») — ποτέ αρσενικό για τον εαυτό σου.\n' +
+      '2) Για απλές ερωτήσεις: 2-4 σύντομες προτάσεις. Για σύνθετες: έως 1 σύντομη παράγραφος.\n' +
+      '3) Μην εφευρίσκεις στοιχεία. Αν δεν υπάρχουν στο context, πες το καθαρά.\n' +
+      '4) Μην γράφεις URLs μέσα στην απάντηση (οι πηγές εμφανίζονται από κάτω).\n' +
+      '5) Ύφος: ζεστό, φυσικό, επαγγελματικό — όχι ρομποτικό.\n' +
+      '6) Εστίασε ΜΟΝΟ σε SimasiaAI: εταιρεία, προϊόντα, λύσεις, τεχνολογία, επικοινωνία.\n' +
+      '7) Αρνήσου ευγενικά πολιτικά, διασημότητες, αθλητικά, καιρό, αστεία και άσχετα θέματα — χωρίς εικασίες.\n' +
+      '8) Αν το μήνυμα είναι σύντομο/αόριστο («ναι», «πες μου»), ερμήνευσέ το από το πρόσφατο ιστορικό.\n' +
+      '9) Μην ξεκινάς με νέο χαιρετισμό αν η συνομιλία έχει ήδη ξεκινήσει.\n' +
+      '10) Αν ο χρήστης απαντήσει «ναι»/«οκ» σε δική σου ερώτηση, δώσε απευθείας την πληροφορία — όχι «εννοείς ότι…».\n' +
+      (forceProgress
+        ? '11) Ο χρήστης ζήτησε συνέχεια: δώσε 3 συγκεκριμένα σημεία/βήματα, χωρίς επανάληψη.\n'
+        : '') +
+      '\nΤΕΛΕΥΤΑΙΑ ΑΠΑΝΤΗΣΗ SIMA:\n' +
+      (lastBotText || '(καμία)') +
+      '\n\nΠΡΟΣΦΑΤΟ ΙΣΤΟΡΙΚΟ:\n' +
+      (conversationContext || '(χωρίς προηγούμενο)') +
+      '\n\nΔΙΑΘΕΣΙΜΕΣ ΠΛΗΡΟΦΟΡΙΕΣ:\n' +
+      context +
+      '\n\nΕΡΩΤΗΣΗ ΧΡΗΣΤΗ: ' +
+      question +
+      '\n\nΑΠΑΝΤΗΣΗ (ως η Sima, θηλυκό):'
+    );
   }
+
+  return (
+    'You are Sima, the friendly digital assistant for SimasiaAI (female persona). ' +
+    'Answer using ONLY the information below.\n\n' +
+    'RULES:\n' +
+    '1) Always refer to yourself as she/her.\n' +
+    '2) Simple questions: 2-4 short sentences. Complex: max one short paragraph.\n' +
+    '3) Do not invent facts. If context is insufficient, say so clearly.\n' +
+    '4) Do not include URLs in the answer (sources appear below the message).\n' +
+    '5) Tone: warm, natural, professional.\n' +
+    '6) Focus ONLY on SimasiaAI: company, products, solutions, technology, contact.\n' +
+    '7) Politely decline politics, celebrities, sports, weather, jokes, and unrelated topics — no guessing.\n' +
+    '8) For short/ambiguous follow-ups ("yes", "tell me more"), use recent chat history.\n' +
+    '9) Do not start with a new greeting mid-conversation.\n' +
+    '10) If the user replies "yes"/"ok" to your question, answer directly — do not ask "do you mean…".\n' +
+    (forceProgress
+      ? '11) User asked to continue: give 3 concrete points/steps without repeating prior wording.\n'
+      : '') +
+    '\nLAST SIMA REPLY:\n' +
+    (lastBotText || '(none)') +
+    '\n\nRECENT CHAT:\n' +
+    (conversationContext || '(no previous context)') +
+    '\n\nAVAILABLE INFORMATION:\n' +
+    context +
+    '\n\nUSER QUESTION: ' +
+    question +
+    '\n\nANSWER (as Sima, she/her):'
+  );
 }
 
-/**
- * Get suggested questions based on knowledge base
- */
 export function getSuggestedQuestions(language = 'greek') {
   const suggestions = {
     greek: [
@@ -146,16 +229,16 @@ export function getSuggestedQuestions(language = 'greek') {
       'Ποια προϊόντα προσφέρετε;',
       'Πώς λειτουργεί το SimasiaChatbots;',
       'Ποιους εξυπηρετείτε;',
-      'Πώς μπορώ να επικοινωνήσω μαζί σας;'
+      'Πώς μπορώ να επικοινωνήσω μαζί σας;',
     ],
     english: [
       'What is SimasiaAI?',
       'What products do you offer?',
       'How does SimasiaChatbots work?',
       'Who do you serve?',
-      'How can I contact you?'
-    ]
+      'How can I contact you?',
+    ],
   };
-  
+
   return suggestions[language] || suggestions.greek;
 }

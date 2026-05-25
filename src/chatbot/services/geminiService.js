@@ -97,24 +97,24 @@ export async function generateWithTimeout(prompt, options = {}) {
         console.error(`⏱️  Timeout generating content (${attemptInfo})`);
         
         if (attempt === maxRetries) {
-          return 'Το αίτημα έληξε. Παρακαλώ δοκιμάστε ξανά.';
+          throw new Error('Request timed out while generating answer');
         }
         
-        // Wait 1 second before retry (same as Frontistiriarxis)
         await new Promise(resolve => setTimeout(resolve, 1000));
         
       } else {
         console.error(`❌ Error generating content (${attemptInfo}):`, error.message);
         
         if (attempt < maxRetries) {
-          // Wait 2 seconds before retry (same as Frontistiriarxis)
           await new Promise(resolve => setTimeout(resolve, 2000));
         } else {
-          return `Σφάλμα: ${error.message}`;
+          throw error;
         }
       }
     }
   }
+
+  throw new Error('Failed to generate answer');
 }
 
 /**
