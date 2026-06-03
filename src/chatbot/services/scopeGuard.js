@@ -351,6 +351,60 @@ export function sanitizeBotAnswer(text) {
   return t.replace(/\n{3,}/g, '\n\n').trim();
 }
 
+/** Remove markdown artifacts; UI renders plain text, not markdown. */
+export function formatPlainTextAnswer(text) {
+  let t = String(text || '');
+  t = t.replace(/\r\n/g, '\n');
+  t = t.replace(/\*\*([^*]+)\*\*/g, '$1');
+  t = t.replace(/__([^_]+)__/g, '$1');
+  t = t.replace(/\*([^*\n]+)\*/g, '$1');
+  t = t.replace(/^#{1,6}\s+/gm, '');
+  t = t.replace(/`([^`]+)`/g, '$1');
+  t = t.replace(/^\s*[-*]\s+/gm, '• ');
+  t = t.replace(/\n{3,}/g, '\n\n');
+  return t.trim();
+}
+
+/** Drop re-introductions when the UI already showed the welcome message. */
+export function stripRepeatGreeting(text, language = 'el') {
+  let t = String(text || '').trim();
+  const patterns =
+    language === 'el'
+      ? [
+          /^γεια\s+σου[^\n]*\n+/i,
+          /^γειά\s+σου[^\n]*\n+/i,
+          /^είμαι\s+η\s+sima[^.!?\n]*[.!?]\s*/i,
+          /^χαίρω\s+που\s+σας\s+βοηθώ[^\n]*\n+/i,
+        ]
+      : [
+          /^hi\s+there[^\n]*\n+/i,
+          /^hello[^\n]*\n+/i,
+          /^i(?:'m| am)\s+sima[^\n]*[.\n]+/i,
+          /^i\s+am\s+sima[^\n]*[.\n]+/i,
+        ];
+
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const rx of patterns) {
+      if (rx.test(t)) {
+        t = t.replace(rx, '');
+        changed = true;
+      }
+    }
+  }
+  return t.trim();
+}
+
+export function polishBotAnswer(text, { language = 'el', conversationStarted = false } = {}) {
+  let t = sanitizeBotAnswer(text);
+  t = formatPlainTextAnswer(t);
+  if (conversationStarted) {
+    t = stripRepeatGreeting(t, language);
+  }
+  return t.trim();
+}
+
 
 
 export function isPublicWebsiteSource(doc) {

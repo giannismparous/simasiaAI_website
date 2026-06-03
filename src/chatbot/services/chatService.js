@@ -28,9 +28,9 @@ import {
   buildOutOfScopeReply,
   buildNoRetrievalReply,
   toUserFacingError,
-  sanitizeBotAnswer,
   refineLocationAnswer,
   asksLocationNotInContext,
+  polishBotAnswer,
   buildWebsiteSources,
 } from './scopeGuard.js';
 
@@ -87,6 +87,7 @@ export async function answerQuestion(userQuestion, language = null, options = {}
   }
 
   const resolved = resolveUserQuery(rawQuestion, messages, lastResolvedQuery);
+  const conversationStarted = (messages || []).some((m) => m && m.sender === 'bot');
   const lang =
     language ||
     (uiLanguage === 'en' || uiLanguage === 'el' ? uiLanguage : null) ||
@@ -195,6 +196,7 @@ export async function answerQuestion(userQuestion, language = null, options = {}
     conversationContext,
     lastBotText,
     forceProgress,
+    conversationStarted,
     externalOrgDeepDive: isExternalOrgDeepDive(rawQuestion),
     genderQuestion: /αρσενικ|θηλυκ|gender|she\/her|he\/him/i.test(rawQuestion),
     locationNotListed: asksLocationNotInContext(rawQuestion, context),
@@ -208,8 +210,12 @@ export async function answerQuestion(userQuestion, language = null, options = {}
       answer = await generateWithTimeout(prompt);
     }
 
-    let trimmed = sanitizeBotAnswer(String(answer || '').trim());
+    let trimmed = polishBotAnswer(String(answer || '').trim(), {
+      language: lang,
+      conversationStarted,
+    });
     trimmed = refineLocationAnswer(trimmed, rawQuestion, context, lang);
+    trimmed = polishBotAnswer(trimmed, { language: lang, conversationStarted });
     if (!trimmed) {
       throw new Error('Empty model response');
     }
@@ -240,6 +246,7 @@ function createRAGPrompt(context, question, language, options = {}) {
     externalOrgDeepDive = false,
     genderQuestion = false,
     locationNotListed = false,
+    conversationStarted = false,
   } = options;
 
   if (language === 'el') {
@@ -257,7 +264,11 @@ function createRAGPrompt(context, question, language, options = {}) {
       '7) Αρνήσου ευγενικά πολιτικά, διασημότητες, αθλητικά, καιρό, αστεία και άσχετα θέματα.\n' +
       '8) Σύντομα/αόριστα μηνύματα («ναι», «πες μου»): ερμήνευσέ τα από το ιστορικό.\n' +
       '9) Μην ξεκινάς με νέο χαιρετισμό αν η συνομιλία έχει ξεκινήσει.\n' +
+      (conversationStarted
+        ? '9β) Η Sima έχει ήδη χαιρετήσει στο chat — ΜΗΝ ξαναπείς «Είμαι η Sima» ούτε «Γεια σου». Ξεκίνα απευθείας με την ουσία.\n'
+        : '') +
       '10) Αν ο χρήστης απαντήσει «ναι»/«οκ» σε δική σου ερώτηση, δώσε απευθείας την πληροφορία.\n' +
+      '11) ΜΗΝ χρησιμοποιείς markdown (**, ##, `). Γράψε απλό κείμενο· λίστες με «•» ή «-».\n' +
       PROMPT_SECURITY_EL +
       (forceProgress
         ? '21) Ο χρήστης ζήτησε συνέχεια: δώσε 3 συγκεκριμένα σημεία, χωρίς επανάληψη.\n'
@@ -297,7 +308,11 @@ function createRAGPrompt(context, question, language, options = {}) {
     '7) Politely decline politics, celebrities, sports, weather, jokes, unrelated topics.\n' +
     '8) For short/ambiguous follow-ups, use recent chat history.\n' +
     '9) Do not start with a new greeting mid-conversation.\n' +
+    (conversationStarted
+      ? '9b) Sima already greeted in the chat — do NOT say "I\'m Sima" or "Hi" again. Answer directly.\n'
+      : '') +
     '10) If the user replies "yes"/"ok" to your question, answer directly.\n' +
+    '11) No markdown (**, ##, backticks). Plain text only; use "•" or "-" for lists.\n' +
     PROMPT_SECURITY_EN +
     (forceProgress
       ? '21) User asked to continue: give 3 concrete points without repeating prior wording.\n'
