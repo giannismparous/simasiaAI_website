@@ -12,6 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const OUT_DIR = path.join(ROOT, "public", "data");
 const OUT_FILE = path.join(OUT_DIR, "knowledge-index.json");
+const CORE_IDENTITY_FILE = path.join(ROOT, "data", "rag", "sima-core-identity.json");
 
 const translationsUrl = pathToFileURL(
   path.join(ROOT, "src", "translations", "translations.js")
@@ -76,7 +77,8 @@ function addDocs(docs, base) {
       category: category || "website",
       keywords: [...new Set([...keywords, ...extractKeywords(`${title} ${part}`)])],
       org: "simasia",
-      source: { type: "web" },
+      source: { type: base.sourceType || "web" },
+      priority: base.priority || 0,
     });
   });
 }
@@ -301,7 +303,33 @@ Why SimasiaAI chatbots: accessibility by design, multilingual support, bias redu
   return docs;
 }
 
+/** Core positioning RAG (data/rag/sima-core-identity.json) — high-priority chunks */
+function buildCoreIdentityDocs() {
+  if (!fs.existsSync(CORE_IDENTITY_FILE)) return [];
+  const payload = JSON.parse(fs.readFileSync(CORE_IDENTITY_FILE, "utf8"));
+  const docs = [];
+  for (const section of payload.sections || []) {
+    for (const lang of ["el", "en"]) {
+      const contentKey = lang === "el" ? "content_el" : "content_en";
+      const content = section[contentKey];
+      if (!content) continue;
+      addDocs(docs, {
+        title: section.title,
+        url: section.url || "/about",
+        lang,
+        category: "identity",
+        keywords: section.keywords || [],
+        content,
+        sourceType: "core_rag",
+        priority: 2,
+      });
+    }
+  }
+  return docs;
+}
+
 const allDocs = [
+  ...buildCoreIdentityDocs(),
   ...buildFromTranslations("el", translations.el),
   ...buildFromTranslations("en", translations.en),
   ...solutionsPageDocs(),
@@ -310,7 +338,15 @@ const allDocs = [
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   OUT_FILE,
-  JSON.stringify({ documents: allDocs, generatedAt: new Date().toISOString(), source: "website-translations" }, null, 2),
+  JSON.stringify(
+    {
+      documents: allDocs,
+      generatedAt: new Date().toISOString(),
+      source: "website-translations+core-identity-rag",
+    },
+    null,
+    2
+  ),
   "utf8"
 );
 

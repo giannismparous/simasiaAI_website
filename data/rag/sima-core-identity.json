@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "description": "Core SimasiaAI positioning for Sima RAG (Greek primary). Rebuild with npm run build:knowledge",
+  "sections": [
+    {
+      "id": "identity_mission",
+      "title": "SimasiaAI — ταυτότητα & αποστολή",
+      "url": "/about",
+      "keywords": [
+        "simasiaai", "simasia", "ποιοι ειστε", "τι ειναι", "εταιρεια", "deep-tech",
+        "ανθρωποκεντρικ", "b2b", "chatbot", "compliant", "ελληνικ"
+      ],
+      "content_el": "Η SimasiaAI είναι κορυφαία ελληνική deep-tech εταιρεία που εξειδικεύεται αποκλειστικά στην ανάπτυξη Ανθρωποκεντρικών Ψηφιακών Βοηθών (Compliant B2B AI Chatbots). Δεν μεταπωλούμε generic αμερικανικά εργαλεία. Σχεδιάζουμε αυτόνομες, έγκυρες και νομικά θωρακισμένες AI υποδομές για επιχειρήσεις, οργανισμούς και φορείς που θέλουν να εντάξουν την Τεχνητή Νοημοσύνη με απόλυτη ασφάλεια.",
+      "content_en": "SimasiaAI is a leading Greek deep-tech company focused exclusively on Human-Centered Digital Assistants (Compliant B2B AI Chatbots). We do not resell generic US tools. We design autonomous, accurate, legally protected AI infrastructure for organizations integrating AI safely."
+    },
+    {
+      "id": "human_centered_ai",
+      "title": "Ανθρωποκεντρική Τεχνητή Νοημοσύνη — ορισμός",
+      "url": "/about",
+      "keywords": [
+        "ανθρωποκεντρικ", "human-centered", "human side", "ορισμος", "definition",
+        "διαφαν", "υπευθυν", "ηθικ", "χρηστης", "ite", "forth"
+      ],
+      "content_el": "Ανθρωποκεντρική Τεχνητή Νοημοσύνη σημαίνει ότι ο άνθρωπος παραμένει ο απόλυτος ελεγκτής της τεχνολογίας. Μετατρέπει τα ευφυή συστήματα από «μαύρα κουτιά» σε διαφανή, υπεύθυνα και ευεξήγητα εργαλεία. Τα συστήματά μας προβλέπουν ανθρώπινες ανάγκες και είναι ηθικά ευθυγραμμισμένα με κοινωνικές αξίες, με τον τελικό χρήστη στο επίκεντρο (Πηγή: Ίδρυμα Τεχνολογίας και Έρευνας — ΙΤΕ, ICS-FORTH).",
+      "content_en": "Human-Centered AI means people remain in control. Systems become transparent, accountable, and explainable rather than opaque black boxes. Our systems anticipate human needs and align with societal values, with end users at the center of development (reference: FORTH-ICS / Hellenic research context)."
+    },
+    {
+      "id": "chatbots_four_pillars",
+      "title": "SimasiaAI Chatbots — 4 άξονες διαφοροποίησης",
+      "url": "/applications/simasia-chatbots",
+      "keywords": [
+        "simasiachatbots", "chatbot", "διαφοροποιηση", "compliance", "eu ai act",
+        "gdpr", "wcag", "προσβασιμ", "eaa", "hallucination", "τριανταφυλλιδη",
+        "γλωσσολογ", "στερεοτυπ", "bias", "νομικ"
+      ],
+      "content_el": "Τα SimasiaAI Chatbots διαφέρονται σε 4 άξονες: (1) Κανονιστική Συμμόρφωση — EU AI Act και GDPR, μηδενισμός νομικού ρίσκου. (2) Προσβασιμότητα WCAG 2.1 AA — φωνή, ήχος, αντίθεση, γραμματοσειές, By-Design για ΑμεΑ, σχετικά με European Accessibility Act (EAA). (3) Risk Mitigation — φίλτρα στερεοτύπων/προκαταλήψεων, απαντήσεις μόνο από εγκεκριμένα δεδομένα πελάτη, μείωση hallucinations. (4) Ελληνική Γλωσσολογική Υπεροχή — πολύγλωσσα με έμφαση σε φυσικά Ελληνικά, βασισμένα σε γλωσσολογική έρευνα (λογική Λεξικού Τριανταφυλλίδη), όχι πρόχειρη μηχανική μετάφραση.",
+      "content_en": "SimasiaAI Chatbots differ on four axes: (1) Legal compliance — EU AI Act and GDPR. (2) Accessibility WCAG 2.1 AA — voice, audio, contrast, fonts, by design for accessibility needs. (3) Risk mitigation — bias filters, answers only from approved client data. (4) Greek linguistic quality — natural Greek via linguistic research (Triantafyllidis dictionary logic), not crude machine translation."
+    },
+    {
+      "id": "social_proof",
+      "title": "SimasiaAI — αποδεδειγμένη εμπιστοσύνη",
+      "url": "/collaborations",
+      "keywords": [
+        "ποαμσκπ", "σκπ", "καπα3", "k3", "κρητη", "εμπιστοσυνη", "υγεια",
+        "εκπαιδευση", "συνεργασια", "myrto"
+      ],
+      "content_el": "Κορυφαίοι φορείς στον τομέα Υγείας και Εκπαίδευσης εμπιστεύονται τη SimasiaAI: Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση Κατά Πλάκας (ΠΟΑμΣΚΠ), Κέντρο Καθοδήγησης Καρκινοπαθών (Κάπα3), Πανεπιστήμιο Κρήτης — για έγκυρη καθοδήγηση χρηστών.",
+      "content_en": "Trusted by leading health and education organizations including POAmsKP (MS community), Kap3 cancer guidance center, and University of Crete — for reliable user guidance."
+    },
+    {
+      "id": "delivery_four_phases",
+      "title": "SimasiaAI — διαδικασία παράδοσης 4 φάσεων",
+      "url": "/solutions",
+      "keywords": [
+        "φαση", "πιλοτικ", "παραδοση", "crm", "erp", "integration", "branding",
+        "human-in-the-loop", "data ingestion", "πρωτοκολλ"
+      ],
+      "content_el": "Ανάπτυξη ψηφιακών βοηθών σε 4 φάσεις: Φάση 1 — Συν-σχεδιασμός & Data Ingestion (επίσημα δεδομένα/έγγραφα συνεργάτη). Φάση 2 — Έλεγχος & Πρωτόκολλα (ασφάλεια και γλωσσολογική ακρίβεια SimasiaAI). Φάση 3 — Πιλοτική Παράδοση & Εγγύηση (live μόνο αν ικανοποιεί πλήρως τον πελάτη). Φάση 4 — Integration, Branding & Training (brand πελάτη, CRM/ERP, εκπαίδευση προσωπικού, Human-in-the-Loop).",
+      "content_en": "Four-phase delivery: (1) Co-design and data ingestion. (2) Safety and linguistic QA protocols. (3) Pilot delivery — go live only when expectations are met. (4) Integration, branding, CRM/ERP, staff training, human-in-the-loop."
+    },
+    {
+      "id": "business_roi",
+      "title": "SimasiaAI Chatbots — επιχειρηματική αξία & ROI",
+      "url": "/solutions",
+      "keywords": [
+        "roi", "engagement", "support", "70", "πωλησει", "conversion", "b2b", "b2c",
+        "εμπιστοσυνη", "εξυπηρετηση"
+      ],
+      "content_el": "Εγγυημένα οφέλη: αύξηση engagement και ποιότητας εξυπηρέτησης/πληροφόρησης· μείωση φόρτου customer support έως 70%· αύξηση B2B/B2C πωλήσεων και conversions μέσω ανθρωποκεντρικού συστήματος εμπιστοσύνης.",
+      "content_en": "Business value: higher engagement and service quality; up to 70% reduction in support load; improved B2B/B2C sales and conversions through trustworthy human-centered AI."
+    },
+    {
+      "id": "sales_guidance",
+      "title": "SimasiaAI — οδηγίες demo & ενδιαφέροντος",
+      "url": "/book-demo",
+      "keywords": [
+        "demo", "προσφορα", "ενδιαφερον", "πωλησει", "widget", "compliant ai",
+        "δημητρης", "στεφανος", "email", "τηλεφωνο", "book-demo"
+      ],
+      "content_el": "Όταν ρωτούν «Ποιοι είστε;» ή «Τι είναι η SimasiaAI;»: σύντομη απάντηση από τα παραπάνω και μπορεί να κλείσει με: «Θέλετε να δείτε πώς το Compliant AI Widget μας μπορεί να θωρακίσει νομικά και να αναπτύξει εμπορικά την επιχείρησή σας;» Όταν εκδηλώνουν ενδιαφέρον: οδήγηση στη φόρμα /book-demo ή συλλογή email/τηλεφώνου για δωρεάν ζωντανό demo ~15 λεπτά με την ομάδα Sales. Επικοινωνία site: contact@simasiaai.gr.",
+      "content_en": "When asked who we are: brief identity answer, optional close: offer to show how our Compliant AI Widget can protect legally and grow their business. On interest: direct to /book-demo or contact@simasiaai.gr for a free live demo (~15 min) with the sales team."
+    }
+  ]
+}

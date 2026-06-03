@@ -2,6 +2,565 @@
   "documents": [
     {
       "id": "web_0001",
+      "title": "SimasiaAI — ταυτότητα & αποστολή",
+      "url": "/about",
+      "lang": "el",
+      "language": "el",
+      "content": "Η SimasiaAI είναι κορυφαία ελληνική deep-tech εταιρεία που εξειδικεύεται αποκλειστικά στην ανάπτυξη Ανθρωποκεντρικών Ψηφιακών Βοηθών (Compliant B2B AI Chatbots). Δεν μεταπωλούμε generic αμερικανικά εργαλεία. Σχεδιάζουμε αυτόνομες, έγκυρες και νομικά θωρακισμένες AI υποδομές για επιχειρήσεις, οργανισμούς και φορείς που θέλουν να εντάξουν την Τεχνητή Νοημοσύνη με απόλυτη ασφάλεια.",
+      "category": "identity",
+      "keywords": [
+        "simasiaai",
+        "simasia",
+        "ποιοι ειστε",
+        "τι ειναι",
+        "εταιρεια",
+        "deep-tech",
+        "ανθρωποκεντρικ",
+        "b2b",
+        "chatbot",
+        "compliant",
+        "ελληνικ",
+        "που",
+        "ταυτότητα",
+        "αποστολή",
+        "είναι",
+        "κορυφαία",
+        "ελληνική",
+        "εταιρεία",
+        "εξειδικεύεται",
+        "αποκλειστικά",
+        "στην",
+        "ανάπτυξη",
+        "ανθρωποκεντρικών"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0002",
+      "title": "SimasiaAI — ταυτότητα & αποστολή",
+      "url": "/about",
+      "lang": "en",
+      "language": "en",
+      "content": "SimasiaAI is a leading Greek deep-tech company focused exclusively on Human-Centered Digital Assistants (Compliant B2B AI Chatbots). We do not resell generic US tools. We design autonomous, accurate, legally protected AI infrastructure for organizations integrating AI safely.",
+      "category": "identity",
+      "keywords": [
+        "simasiaai",
+        "simasia",
+        "ποιοι ειστε",
+        "τι ειναι",
+        "εταιρεια",
+        "deep-tech",
+        "ανθρωποκεντρικ",
+        "b2b",
+        "chatbot",
+        "compliant",
+        "ελληνικ",
+        "ταυτότητα",
+        "αποστολή",
+        "leading",
+        "greek",
+        "company",
+        "focused",
+        "exclusively",
+        "human-centered",
+        "digital",
+        "assistants"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0003",
+      "title": "Ανθρωποκεντρική Τεχνητή Νοημοσύνη — ορισμός",
+      "url": "/about",
+      "lang": "el",
+      "language": "el",
+      "content": "Ανθρωποκεντρική Τεχνητή Νοημοσύνη σημαίνει ότι ο άνθρωπος παραμένει ο απόλυτος ελεγκτής της τεχνολογίας. Μετατρέπει τα ευφυή συστήματα από «μαύρα κουτιά» σε διαφανή, υπεύθυνα και ευεξήγητα εργαλεία. Τα συστήματά μας προβλέπουν ανθρώπινες ανάγκες και είναι ηθικά ευθυγραμμισμένα με κοινωνικές αξίες, με τον τελικό χρήστη στο επίκεντρο (Πηγή: Ίδρυμα Τεχνολογίας και Έρευνας — ΙΤΕ, ICS-FORTH).",
+      "category": "identity",
+      "keywords": [
+        "ανθρωποκεντρικ",
+        "human-centered",
+        "human side",
+        "ορισμος",
+        "definition",
+        "διαφαν",
+        "υπευθυν",
+        "ηθικ",
+        "χρηστης",
+        "ite",
+        "forth",
+        "ανθρωποκεντρική",
+        "τεχνητή",
+        "νοημοσύνη",
+        "τεχνολογίας",
+        "ορισμός",
+        "σημαίνει",
+        "ότι",
+        "άνθρωπος",
+        "παραμένει",
+        "απόλυτος",
+        "ελεγκτής",
+        "μετατρέπει",
+        "ευφυή",
+        "συστήματα"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0004",
+      "title": "Ανθρωποκεντρική Τεχνητή Νοημοσύνη — ορισμός",
+      "url": "/about",
+      "lang": "en",
+      "language": "en",
+      "content": "Human-Centered AI means people remain in control. Systems become transparent, accountable, and explainable rather than opaque black boxes. Our systems anticipate human needs and align with societal values, with end users at the center of development (reference: FORTH-ICS / Hellenic research context).",
+      "category": "identity",
+      "keywords": [
+        "ανθρωποκεντρικ",
+        "human-centered",
+        "human side",
+        "ορισμος",
+        "definition",
+        "διαφαν",
+        "υπευθυν",
+        "ηθικ",
+        "χρηστης",
+        "ite",
+        "forth",
+        "systems",
+        "ανθρωποκεντρική",
+        "τεχνητή",
+        "νοημοσύνη",
+        "ορισμός",
+        "means",
+        "people",
+        "remain",
+        "control",
+        "become",
+        "transparent",
+        "accountable",
+        "explainable"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0005",
+      "title": "SimasiaAI Chatbots — 4 άξονες διαφοροποίησης",
+      "url": "/applications/simasia-chatbots",
+      "lang": "el",
+      "language": "el",
+      "content": "Τα SimasiaAI Chatbots διαφέρονται σε 4 άξονες: (1) Κανονιστική Συμμόρφωση — EU AI Act και GDPR, μηδενισμός νομικού ρίσκου. (2) Προσβασιμότητα WCAG 2.1 AA — φωνή, ήχος, αντίθεση, γραμματοσειές, By-Design για ΑμεΑ, σχετικά με European Accessibility Act (EAA). (3) Risk Mitigation — φίλτρα στερεοτύπων/προκαταλήψεων, απαντήσεις μόνο από εγκεκριμένα δεδομένα πελάτη, μείωση hallucinations. (4) Ελληνική Γλωσσολογική Υπεροχή — πολύγλωσσα με έμφαση σε φυσικά Ελληνικά, βασισμένα σε γλωσσολογική έρευνα (λογική Λεξικού Τριανταφυλλίδη), όχι πρόχειρη μηχανική μετάφραση.",
+      "category": "identity",
+      "keywords": [
+        "simasiachatbots",
+        "chatbot",
+        "διαφοροποιηση",
+        "compliance",
+        "eu ai act",
+        "gdpr",
+        "wcag",
+        "προσβασιμ",
+        "eaa",
+        "hallucination",
+        "τριανταφυλλιδη",
+        "γλωσσολογ",
+        "στερεοτυπ",
+        "bias",
+        "νομικ",
+        "simasiaai",
+        "chatbots",
+        "άξονες",
+        "act",
+        "γλωσσολογική",
+        "διαφοροποίησης",
+        "διαφέρονται",
+        "κανονιστική",
+        "συμμόρφωση",
+        "μηδενισμός",
+        "νομικού",
+        "ρίσκου",
+        "προσβασιμότητα"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0006",
+      "title": "SimasiaAI Chatbots — 4 άξονες διαφοροποίησης",
+      "url": "/applications/simasia-chatbots",
+      "lang": "en",
+      "language": "en",
+      "content": "SimasiaAI Chatbots differ on four axes: (1) Legal compliance — EU AI Act and GDPR. (2) Accessibility WCAG 2.1 AA — voice, audio, contrast, fonts, by design for accessibility needs. (3) Risk mitigation — bias filters, answers only from approved client data. (4) Greek linguistic quality — natural Greek via linguistic research (Triantafyllidis dictionary logic), not crude machine translation.",
+      "category": "identity",
+      "keywords": [
+        "simasiachatbots",
+        "chatbot",
+        "διαφοροποιηση",
+        "compliance",
+        "eu ai act",
+        "gdpr",
+        "wcag",
+        "προσβασιμ",
+        "eaa",
+        "hallucination",
+        "τριανταφυλλιδη",
+        "γλωσσολογ",
+        "στερεοτυπ",
+        "bias",
+        "νομικ",
+        "simasiaai",
+        "chatbots",
+        "accessibility",
+        "greek",
+        "linguistic",
+        "άξονες",
+        "διαφοροποίησης",
+        "differ",
+        "four",
+        "axes",
+        "legal",
+        "act"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0007",
+      "title": "SimasiaAI — αποδεδειγμένη εμπιστοσύνη",
+      "url": "/collaborations",
+      "lang": "el",
+      "language": "el",
+      "content": "Κορυφαίοι φορείς στον τομέα Υγείας και Εκπαίδευσης εμπιστεύονται τη SimasiaAI: Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση Κατά Πλάκας (ΠΟΑμΣΚΠ), Κέντρο Καθοδήγησης Καρκινοπαθών (Κάπα3), Πανεπιστήμιο Κρήτης — για έγκυρη καθοδήγηση χρηστών.",
+      "category": "identity",
+      "keywords": [
+        "ποαμσκπ",
+        "σκπ",
+        "καπα3",
+        "k3",
+        "κρητη",
+        "εμπιστοσυνη",
+        "υγεια",
+        "εκπαιδευση",
+        "συνεργασια",
+        "myrto",
+        "simasiaai",
+        "αποδεδειγμένη",
+        "εμπιστοσύνη",
+        "κορυφαίοι",
+        "φορείς",
+        "στον",
+        "τομέα",
+        "υγείας",
+        "εκπαίδευσης",
+        "εμπιστεύονται",
+        "πανελλήνια",
+        "ομοσπονδία",
+        "ατόμων",
+        "σκλήρυνση"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0008",
+      "title": "SimasiaAI — αποδεδειγμένη εμπιστοσύνη",
+      "url": "/collaborations",
+      "lang": "en",
+      "language": "en",
+      "content": "Trusted by leading health and education organizations including POAmsKP (MS community), Kap3 cancer guidance center, and University of Crete — for reliable user guidance.",
+      "category": "identity",
+      "keywords": [
+        "ποαμσκπ",
+        "σκπ",
+        "καπα3",
+        "k3",
+        "κρητη",
+        "εμπιστοσυνη",
+        "υγεια",
+        "εκπαιδευση",
+        "συνεργασια",
+        "myrto",
+        "guidance",
+        "simasiaai",
+        "αποδεδειγμένη",
+        "εμπιστοσύνη",
+        "trusted",
+        "leading",
+        "health",
+        "education",
+        "organizations",
+        "including",
+        "poamskp",
+        "community",
+        "kap3",
+        "cancer"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0009",
+      "title": "SimasiaAI — διαδικασία παράδοσης 4 φάσεων",
+      "url": "/solutions",
+      "lang": "el",
+      "language": "el",
+      "content": "Ανάπτυξη ψηφιακών βοηθών σε 4 φάσεις: Φάση 1 — Συν-σχεδιασμός & Data Ingestion (επίσημα δεδομένα/έγγραφα συνεργάτη). Φάση 2 — Έλεγχος & Πρωτόκολλα (ασφάλεια και γλωσσολογική ακρίβεια SimasiaAI). Φάση 3 — Πιλοτική Παράδοση & Εγγύηση (live μόνο αν ικανοποιεί πλήρως τον πελάτη). Φάση 4 — Integration, Branding & Training (brand πελάτη, CRM/ERP, εκπαίδευση προσωπικού, Human-in-the-Loop).",
+      "category": "identity",
+      "keywords": [
+        "φαση",
+        "πιλοτικ",
+        "παραδοση",
+        "crm",
+        "erp",
+        "integration",
+        "branding",
+        "human-in-the-loop",
+        "data ingestion",
+        "πρωτοκολλ",
+        "φάση",
+        "simasiaai",
+        "πελάτη",
+        "διαδικασία",
+        "παράδοσης",
+        "φάσεων",
+        "ανάπτυξη",
+        "ψηφιακών",
+        "βοηθών",
+        "φάσεις",
+        "συν-σχεδιασμός",
+        "data",
+        "ingestion",
+        "επίσημα"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0010",
+      "title": "SimasiaAI — διαδικασία παράδοσης 4 φάσεων",
+      "url": "/solutions",
+      "lang": "en",
+      "language": "en",
+      "content": "Four-phase delivery: (1) Co-design and data ingestion. (2) Safety and linguistic QA protocols. (3) Pilot delivery — go live only when expectations are met. (4) Integration, branding, CRM/ERP, staff training, human-in-the-loop.",
+      "category": "identity",
+      "keywords": [
+        "φαση",
+        "πιλοτικ",
+        "παραδοση",
+        "crm",
+        "erp",
+        "integration",
+        "branding",
+        "human-in-the-loop",
+        "data ingestion",
+        "πρωτοκολλ",
+        "delivery",
+        "simasiaai",
+        "διαδικασία",
+        "παράδοσης",
+        "φάσεων",
+        "four-phase",
+        "co-design",
+        "data",
+        "ingestion",
+        "safety",
+        "linguistic",
+        "protocols",
+        "pilot",
+        "live"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0011",
+      "title": "SimasiaAI Chatbots — επιχειρηματική αξία & ROI",
+      "url": "/solutions",
+      "lang": "el",
+      "language": "el",
+      "content": "Εγγυημένα οφέλη: αύξηση engagement και ποιότητας εξυπηρέτησης/πληροφόρησης· μείωση φόρτου customer support έως 70%· αύξηση B2B/B2C πωλήσεων και conversions μέσω ανθρωποκεντρικού συστήματος εμπιστοσύνης.",
+      "category": "identity",
+      "keywords": [
+        "roi",
+        "engagement",
+        "support",
+        "70",
+        "πωλησει",
+        "conversion",
+        "b2b",
+        "b2c",
+        "εμπιστοσυνη",
+        "εξυπηρετηση",
+        "αύξηση",
+        "simasiaai",
+        "chatbots",
+        "επιχειρηματική",
+        "αξία",
+        "εγγυημένα",
+        "οφέλη",
+        "ποιότητας",
+        "εξυπηρέτησης",
+        "πληροφόρησης",
+        "μείωση",
+        "φόρτου"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0012",
+      "title": "SimasiaAI Chatbots — επιχειρηματική αξία & ROI",
+      "url": "/solutions",
+      "lang": "en",
+      "language": "en",
+      "content": "Business value: higher engagement and service quality; up to 70% reduction in support load; improved B2B/B2C sales and conversions through trustworthy human-centered AI.",
+      "category": "identity",
+      "keywords": [
+        "roi",
+        "engagement",
+        "support",
+        "70",
+        "πωλησει",
+        "conversion",
+        "b2b",
+        "b2c",
+        "εμπιστοσυνη",
+        "εξυπηρετηση",
+        "simasiaai",
+        "chatbots",
+        "επιχειρηματική",
+        "αξία",
+        "business",
+        "value",
+        "higher",
+        "service",
+        "quality",
+        "reduction",
+        "load"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0013",
+      "title": "SimasiaAI — οδηγίες demo & ενδιαφέροντος",
+      "url": "/book-demo",
+      "lang": "el",
+      "language": "el",
+      "content": "Όταν ρωτούν «Ποιοι είστε;» ή «Τι είναι η SimasiaAI;»: σύντομη απάντηση από τα παραπάνω και μπορεί να κλείσει με: «Θέλετε να δείτε πώς το Compliant AI Widget μας μπορεί να θωρακίσει νομικά και να αναπτύξει εμπορικά την επιχείρησή σας;» Όταν εκδηλώνουν ενδιαφέρον: οδήγηση στη φόρμα /book-demo ή συλλογή email/τηλεφώνου για δωρεάν ζωντανό demo ~15 λεπτά με την ομάδα Sales. Επικοινωνία site: contact@simasiaai.gr.",
+      "category": "identity",
+      "keywords": [
+        "demo",
+        "προσφορα",
+        "ενδιαφερον",
+        "πωλησει",
+        "widget",
+        "compliant ai",
+        "δημητρης",
+        "στεφανος",
+        "email",
+        "τηλεφωνο",
+        "book-demo",
+        "simasiaai",
+        "όταν",
+        "μπορεί",
+        "την",
+        "οδηγίες",
+        "ενδιαφέροντος",
+        "ρωτούν",
+        "ποιοι",
+        "είστε",
+        "είναι",
+        "σύντομη",
+        "απάντηση",
+        "από"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0014",
+      "title": "SimasiaAI — οδηγίες demo & ενδιαφέροντος",
+      "url": "/book-demo",
+      "lang": "en",
+      "language": "en",
+      "content": "When asked who we are: brief identity answer, optional close: offer to show how our Compliant AI Widget can protect legally and grow their business. On interest: direct to /book-demo or contact@simasiaai.gr for a free live demo (~15 min) with the sales team.",
+      "category": "identity",
+      "keywords": [
+        "demo",
+        "προσφορα",
+        "ενδιαφερον",
+        "πωλησει",
+        "widget",
+        "compliant ai",
+        "δημητρης",
+        "στεφανος",
+        "email",
+        "τηλεφωνο",
+        "book-demo",
+        "simasiaai",
+        "οδηγίες",
+        "ενδιαφέροντος",
+        "when",
+        "asked",
+        "who",
+        "are",
+        "brief",
+        "identity",
+        "answer",
+        "optional",
+        "close",
+        "offer"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0015",
       "title": "Αρχική — SimasiaAI (1/2)",
       "url": "/",
       "lang": "el",
@@ -30,10 +589,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0002",
+      "id": "web_0016",
       "title": "Αρχική — SimasiaAI (2/2)",
       "url": "/",
       "lang": "el",
@@ -62,10 +622,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0003",
+      "id": "web_0017",
       "title": "Σχετικά — SimasiaAI (1/2)",
       "url": "/about",
       "lang": "el",
@@ -95,10 +656,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0004",
+      "id": "web_0018",
       "title": "Σχετικά — SimasiaAI (2/2)",
       "url": "/about",
       "lang": "el",
@@ -128,10 +690,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0005",
+      "id": "web_0019",
       "title": "Εφαρμογές — Επισκόπηση",
       "url": "/applications",
       "lang": "el",
@@ -160,10 +723,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0006",
+      "id": "web_0020",
       "title": "SimasiaChatbots — Προϊόν",
       "url": "/applications/simasia-chatbots",
       "lang": "el",
@@ -190,10 +754,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0007",
+      "id": "web_0021",
       "title": "SimasiaEdu — Προϊόν",
       "url": "/applications/simasia-edu",
       "lang": "el",
@@ -221,10 +786,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0008",
+      "id": "web_0022",
       "title": "SimasiaStudio — Προϊόν",
       "url": "/applications/simasia-studio",
       "lang": "el",
@@ -252,10 +818,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0009",
+      "id": "web_0023",
       "title": "SimasiaDaily — Προϊόν (1/2)",
       "url": "/applications/simasia-daily",
       "lang": "el",
@@ -283,10 +850,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0010",
+      "id": "web_0024",
       "title": "SimasiaDaily — Προϊόν (2/2)",
       "url": "/applications/simasia-daily",
       "lang": "el",
@@ -314,10 +882,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0011",
+      "id": "web_0025",
       "title": "Ποιους αφορά",
       "url": "/target-audience",
       "lang": "el",
@@ -346,10 +915,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0012",
+      "id": "web_0026",
       "title": "Συνεργασίες (1/2)",
       "url": "/collaborations",
       "lang": "el",
@@ -378,10 +948,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0013",
+      "id": "web_0027",
       "title": "Συνεργασίες (2/2)",
       "url": "/collaborations",
       "lang": "el",
@@ -410,10 +981,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0014",
+      "id": "web_0028",
       "title": "Κλείστε demo",
       "url": "/book-demo",
       "lang": "el",
@@ -442,10 +1014,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0015",
+      "id": "web_0029",
       "title": "Επικοινωνία",
       "url": "/book-demo",
       "lang": "el",
@@ -473,10 +1046,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0016",
+      "id": "web_0030",
       "title": "Home — SimasiaAI (1/2)",
       "url": "/",
       "lang": "en",
@@ -504,10 +1078,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0017",
+      "id": "web_0031",
       "title": "Home — SimasiaAI (2/2)",
       "url": "/",
       "lang": "en",
@@ -535,10 +1110,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0018",
+      "id": "web_0032",
       "title": "About — SimasiaAI (1/2)",
       "url": "/about",
       "lang": "en",
@@ -568,10 +1144,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0019",
+      "id": "web_0033",
       "title": "About — SimasiaAI (2/2)",
       "url": "/about",
       "lang": "en",
@@ -600,10 +1177,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0020",
+      "id": "web_0034",
       "title": "Applications — Overview",
       "url": "/applications",
       "lang": "en",
@@ -632,10 +1210,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0021",
+      "id": "web_0035",
       "title": "SimasiaChatbots — Product",
       "url": "/applications/simasia-chatbots",
       "lang": "en",
@@ -662,10 +1241,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0022",
+      "id": "web_0036",
       "title": "SimasiaEdu — Product",
       "url": "/applications/simasia-edu",
       "lang": "en",
@@ -693,10 +1273,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0023",
+      "id": "web_0037",
       "title": "SimasiaStudio — Product",
       "url": "/applications/simasia-studio",
       "lang": "en",
@@ -724,10 +1305,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0024",
+      "id": "web_0038",
       "title": "SimasiaDaily — Product (1/2)",
       "url": "/applications/simasia-daily",
       "lang": "en",
@@ -755,10 +1337,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0025",
+      "id": "web_0039",
       "title": "SimasiaDaily — Product (2/2)",
       "url": "/applications/simasia-daily",
       "lang": "en",
@@ -786,10 +1369,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0026",
+      "id": "web_0040",
       "title": "Who It's For",
       "url": "/target-audience",
       "lang": "en",
@@ -819,10 +1403,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0027",
+      "id": "web_0041",
       "title": "Collaborations (1/2)",
       "url": "/collaborations",
       "lang": "en",
@@ -850,10 +1435,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0028",
+      "id": "web_0042",
       "title": "Collaborations (2/2)",
       "url": "/collaborations",
       "lang": "en",
@@ -881,10 +1467,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0029",
+      "id": "web_0043",
       "title": "Book a demo",
       "url": "/book-demo",
       "lang": "en",
@@ -912,10 +1499,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0030",
+      "id": "web_0044",
       "title": "Contact",
       "url": "/book-demo",
       "lang": "en",
@@ -943,10 +1531,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0031",
+      "id": "web_0045",
       "title": "Λύσεις με Σημασία",
       "url": "/solutions",
       "lang": "el",
@@ -975,10 +1564,11 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     },
     {
-      "id": "web_0032",
+      "id": "web_0046",
       "title": "Solutions with Meaning",
       "url": "/solutions",
       "lang": "en",
@@ -1006,9 +1596,10 @@
       "org": "simasia",
       "source": {
         "type": "web"
-      }
+      },
+      "priority": 0
     }
   ],
-  "generatedAt": "2026-06-03T15:39:37.106Z",
-  "source": "website-translations"
+  "generatedAt": "2026-06-03T18:23:08.839Z",
+  "source": "website-translations+core-identity-rag"
 }

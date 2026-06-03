@@ -2,27 +2,33 @@
   "entries": [
     {
       "id": "faq_simasia_identity",
-      "triggers": ["τι ειναι", "what is", "simasiaai", "simasia ai", "εταιρεια", "company"],
+      "triggers": ["τι ειναι", "what is", "simasiaai", "simasia ai", "εταιρεια", "company", "ποιοι ειστε", "who are"],
       "title": "SimasiaAI — ταυτότητα",
-      "content": "Η SimasiaAI είναι ελληνική startup με διεπιστημονική ομάδα σε Τεχνητή Νοημοσύνη, Γλωσσολογία και Ανάπτυξη Λογισμικού. Δημιουργούμε ανθρωποκεντρικές λύσεις AI. Tagline: «AI από την πλευρά του ανθρώπου» / «AI from the human side.»"
+      "content": "Η SimasiaAI είναι ελληνική deep-tech εταιρεία για Ανθρωποκεντρικούς Compliant B2B AI Chatbots — όχι μεταπώληση generic εργαλείων. Αυτονομές, έγκυρες, νομικά θωρακισμένες AI υποδομές. Tagline: «AI από την πλευρά του ανθρώπου»."
+    },
+    {
+      "id": "faq_chatbots_compliance",
+      "triggers": ["chatbot", "compliant", "gdpr", "ai act", "wcag", "προσβασιμ", "νομικ"],
+      "title": "SimasiaAI Chatbots — συμμόρφωση & διαφοροποίηση",
+      "content": "SimasiaAI Chatbots: EU AI Act + GDPR, WCAG 2.1 AA / EAA, φίλτρα bias, απαντήσεις μόνο από εγκεκριμένα δεδομένα πελάτη, φυσικά Ελληνικά (γλωσσολογική έρευνα / Τριανταφυλλίδης)."
     },
     {
       "id": "faq_contact",
-      "triggers": ["επικοινων", "contact", "email", "mail", "τηλ", "phone"],
-      "title": "SimasiaAI — επικοινωνία",
-      "content": "Email: contact@simasiaai.gr. Τοποθεσία: Αθήνα, Ελλάδα. LinkedIn: linkedin.com/in/simasiaai. Instagram: instagram.com/simasiaai. Για demo ή πρόταση συνεργασίας: φόρμα στο /book-demo — απαντάμε εντός 24 ωρών."
+      "triggers": ["επικοινων", "contact", "email", "mail", "τηλ", "phone", "demo"],
+      "title": "SimasiaAI — επικοινωνία & demo",
+      "content": "Email: contact@simasiaai.gr. Αθήνα, Ελλάδα. Demo/συνεργασία: φόρμα /book-demo — απάντηση εντός 24 ωρών. Δωρεάν ζωντανό demo ~15 λεπτά κατόπιν αιτήματος."
     },
     {
       "id": "faq_products_overview",
       "triggers": ["προιον", "προϊον", "product", "εφαρμογ", "application", "υπηρεσι"],
       "title": "Προϊόντα SimasiaAI",
-      "content": "Τέσσερα κύρια προϊόντα: SimasiaChatbots (ασφαλή chatbots ενημέρωσης/εξυπηρέτησης), SimasiaEdu (εκπαιδευτικά εργαλεία), SimasiaStudio (τεκμηριωμένη μετάφραση/επιμέλεια), SimasiaDaily (μικρά εργαλεία αυτοματοποίησης)."
+      "content": "Κύριο προϊόν-πυλώνας: SimasiaAI Chatbots (Compliant B2B). Επίσης: SimasiaEdu, SimasiaStudio, SimasiaDaily."
     },
     {
       "id": "faq_sima_bot",
       "triggers": ["sima", "σίμα", "σιμα", "βοηθος", "assistant"],
       "title": "Sima — ψηφιακή βοηθός",
-      "content": "Η Sima είναι η φιλική ψηφιακή βοηθός της SimasiaAI στο site. Απαντά μόνο για την εταιρεία, τα προϊόντα, τις λύσεις και την επικοινωνία — όχι για άσχετα θέματα."
+      "content": "Η Sima είναι η ψηφιακή βοηθός του site. Απαντά για SimasiaAI, chatbots, λύσεις και επικοινωνία — όχι για άσχετα θέματα."
     }
   ]
 }

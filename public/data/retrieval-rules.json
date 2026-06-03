@@ -13,7 +13,8 @@
     "moodle", "classroom", "lms", "ocr", "τιμολογ", "invoice", "μεταφρα",
     "επιμελ", "bulk", "sso", "crm", "helpdesk", "πιλοτικ", "linkedin", "instagram",
     "αθηνα", "athens", "θεσσαλονικ", "αρσενικ", "θηλυκ", "gender",
-    "ποαμσκπ", "σκπ", "myrto", "k3", "δια ζωσης", "σας", "μας", "σας "
+    "ποαμσκπ", "σκπ", "myrto", "k3", "δια ζωσης", "σας", "μας",
+    "compliant", "gdpr", "ai act", "eu ai", "wcag", "eaa", "deep-tech", "b2b", "roi", "forty", "forth"
   ],
   "domainPatterns": [
     {
@@ -92,8 +93,24 @@
       "query": ["ομαδα", "ομάδα", "μιληστε", "speak with", "talk to the team"],
       "blob": ["book-demo", "contact@", "επικοινων", "demo"],
       "add": 0.55
+    },
+    {
+      "query": ["ποιοι", "τι ειναι", "what is", "εταιρεια", "identity"],
+      "blob": ["deep-tech", "compliant", "b2b", "ανθρωποκεντρ", "identity"],
+      "add": 0.5
+    },
+    {
+      "query": ["gdpr", "ai act", "eu ai", "wcag", "eaa", "νομικ", "compliance"],
+      "blob": ["gdpr", "ai act", "wcag", "eaa", "compliant", "νομικ"],
+      "add": 0.48
+    },
+    {
+      "query": ["roi", "engagement", "support", "70"],
+      "blob": ["roi", "engagement", "70", "conversion"],
+      "add": 0.4
     }
   ],
+  "identityDocBoost": 0.28,
   "domainBoost": 0.45,
   "domainPenalty": 0.15
 }

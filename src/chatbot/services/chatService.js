@@ -269,6 +269,7 @@ function createRAGPrompt(context, question, language, options = {}) {
         : '') +
       '10) Αν ο χρήστης απαντήσει «ναι»/«οκ» σε δική σου ερώτηση, δώσε απευθείας την πληροφορία.\n' +
       '11) ΜΗΝ χρησιμοποιείς markdown (**, ##, `). Γράψε απλό κείμενο· λίστες με «•» ή «-».\n' +
+      '12) Για «τι είναι/ποιοι είστε»: χρησιμοποίησε τα στοιχεία identity/chatbots από το context. Προαιρετικό κλείσιμο με demo μόνο αν ταιριάζει (βλ. οδηγίες sales στο context), όχι σε κάθε απάντηση.\n' +
       PROMPT_SECURITY_EL +
       (forceProgress
         ? '21) Ο χρήστης ζήτησε συνέχεια: δώσε 3 συγκεκριμένα σημεία, χωρίς επανάληψη.\n'
@@ -313,6 +314,7 @@ function createRAGPrompt(context, question, language, options = {}) {
       : '') +
     '10) If the user replies "yes"/"ok" to your question, answer directly.\n' +
     '11) No markdown (**, ##, backticks). Plain text only; use "•" or "-" for lists.\n' +
+    '12) For "what is / who are you": use identity and chatbot facts from context. Optional demo CTA only when sales guidance in context applies — not on every reply.\n' +
     PROMPT_SECURITY_EN +
     (forceProgress
       ? '21) User asked to continue: give 3 concrete points without repeating prior wording.\n'

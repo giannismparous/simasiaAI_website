@@ -16,6 +16,8 @@ Website-only knowledge, POAMSKP-style guardrails, Gemini via Netlify function (k
 npm run build:knowledge
 ```
 
+Core positioning (identity, EU AI Act, 4 pillars, ROI, demo CTA) lives in `data/rag/sima-core-identity.json` and is merged into `public/data/knowledge-index.json` on build. Edit that JSON, then run `npm run build:knowledge` again.
+
 ## Local development
 
 Terminal 1:

@@ -226,6 +226,20 @@ function applyRetrievalRelevanceAdjustments(score, doc, queryNorm, topicContextN
     score += 0.55;
   }
 
+  const identityDoc = doc.category === 'identity' || doc.source?.type === 'core_rag';
+  if (identityDoc) {
+    score += Number(retrieverState.rules.identityDocBoost || 0.28);
+    if (
+      /ποιοι|τι ειναι|what is|chatbot|compliant|gdpr|ai act|wcag|demo|ανθρωποκεντρ|b2b|roi/i.test(
+        queryNorm
+      )
+    ) {
+      score += 0.22;
+    }
+  }
+
+  score += Number(doc.priority || 0) * 0.12;
+
   return score;
 }
 
