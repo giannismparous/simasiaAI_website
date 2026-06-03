@@ -19,27 +19,63 @@ export function pickApiKey(keys) {
   return keys[Math.floor(Math.random() * keys.length)];
 }
 
-export function parseAllowedOrigins() {
-  const raw = (process.env.SIMASIA_ALLOWED_ORIGINS || "").trim();
-  if (raw) {
-    return raw.split(",").map((o) => o.trim().toLowerCase()).filter(Boolean);
-  }
-  return [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:8888",
-    "http://127.0.0.1:8888",
-    "https://simasiaai.gr",
-    "https://www.simasiaai.gr",
+const DEFAULT_ORIGINS = [
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  "http://localhost:8888",
+  "http://127.0.0.1:8888",
+  "https://simasiaai.gr",
+  "https://www.simasiaai.gr",
+];
+
+/** Origins from Netlify deploy env (auto-trust current site URL). */
+export function netlifyDeployOrigins() {
+  const out = new Set();
+  const candidates = [
+    process.env.URL,
+    process.env.DEPLOY_PRIME_URL,
+    process.env.DEPLOY_URL,
   ];
+  candidates.forEach((value) => {
+    const v = String(value || "").trim();
+    if (!v) return;
+    try {
+      out.add(new URL(v).origin.toLowerCase());
+    } catch {
+      /* ignore invalid URL */
+    }
+  });
+  return [...out];
+}
+
+export function parseAllowedOrigins() {
+  const fromEnv = (process.env.SIMASIA_ALLOWED_ORIGINS || "")
+    .split(",")
+    .map((o) => o.trim().toLowerCase())
+    .filter(Boolean);
+  return [...new Set([...DEFAULT_ORIGINS, ...netlifyDeployOrigins(), ...fromEnv])];
 }
 
 export function isAllowedOrigin(origin, allowed) {
   if (!origin) return true;
   const o = origin.trim().toLowerCase();
   if (allowed.includes(o)) return true;
-  if (/^https:\/\/[a-z0-9-]+--[a-z0-9-]+\.netlify\.app$/i.test(o)) return true;
-  if (/^https:\/\/[a-z0-9-]+\.netlify\.app$/i.test(o)) return true;
+
+  // Local dev (any port)
+  if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(o)) return true;
+
+  // Netlify deploy / branch / preview URLs
+  if (/^https:\/\/[a-z0-9][a-z0-9-]*\.netlify\.app$/i.test(o)) return true;
+  if (/^https:\/\/[a-z0-9][a-z0-9-]*--[a-z0-9][a-z0-9-]*\.netlify\.app$/i.test(o)) return true;
+
+  // simasiaai.gr and subdomains
+  try {
+    const host = new URL(o).hostname.toLowerCase();
+    if (host === "simasiaai.gr" || host.endsWith(".simasiaai.gr")) return true;
+  } catch {
+    /* ignore */
+  }
+
   return false;
 }
 

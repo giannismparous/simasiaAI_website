@@ -38,7 +38,7 @@ npm start
 Set in Netlify UI:
 
 - `SIMASIA_GEMINI_API_KEYS` — comma-separated Gemini API keys
-- `SIMASIA_ALLOWED_ORIGINS` — optional, e.g. `https://simasiaai.gr,https://www.simasiaai.gr`
+- `SIMASIA_ALLOWED_ORIGINS` — optional extra origins (comma-separated). Netlify deploy URL is auto-allowed via `URL` / `DEPLOY_PRIME_URL`. Only add this if you use another custom domain.
 
 Build runs `npm run build:knowledge` automatically (see `netlify.toml`).
 

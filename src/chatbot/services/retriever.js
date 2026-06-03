@@ -268,7 +268,6 @@ async function initRetriever() {
       };
     });
     retrieverState.ready = true;
-    console.log(`✅ Knowledge ready: ${retrieverState.docs.length} website chunks`);
   })();
 
   await retrieverState.loading;

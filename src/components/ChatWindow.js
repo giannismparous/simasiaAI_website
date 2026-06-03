@@ -129,7 +129,6 @@ function ChatWindow({ onClose, isClosing, messages, setMessages }) {
                 ];
             });
         } catch (error) {
-            console.error('[ChatWindow] Error:', error);
             const errText =
                 language === 'el'
                     ? 'Συγγνώμη, κάτι πήγε στραβά. Προσπάθησε ξανά.'

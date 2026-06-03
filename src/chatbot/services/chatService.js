@@ -131,7 +131,6 @@ export async function answerQuestion(userQuestion, language = null, options = {}
       lastResolvedQuery
     );
   } catch (retrievalError) {
-    console.error('Retrieval failed:', retrievalError);
     return {
       answer: toUserFacingError(retrievalError, lang),
       sources: [],
@@ -224,7 +223,6 @@ export async function answerQuestion(userQuestion, language = null, options = {}
       confidence,
     };
   } catch (error) {
-    console.error('Error generating answer:', error);
     return {
       answer: toUserFacingError(error, lang),
       sources: [],
