@@ -18,8 +18,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:knowledge": "node scripts/build_knowledge_index.mjs",
+    "proxy:gemini": "node scripts/local-gemini-proxy.mjs",
+    "test:chatbot": "node scripts/run_simasia_e2e.mjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^3.0.5"
   },
   "eslintConfig": {
     "extends": [

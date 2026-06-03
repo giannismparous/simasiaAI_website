@@ -1,0 +1,99 @@
+{
+  "retrievePool": 20,
+  "sendToModel": 6,
+  "minScore": 0.18,
+  "minScoreOutOfScope": 0.22,
+  "retrievalScopeMinScore": 0.2,
+  "maxChunksPerUrl": 2,
+  "scopeSignals": [
+    "ιστοσελιδ", "website", "αναφερ", "προσφερ", "υποστηριζ", "μπορειτε", "μπορει ",
+    "wcag", "προσβασιμ", "accessibility", "τεχνητη", "νοημοσυνη", "artificial intelligence",
+    "συνδιαμορφ", "σχεδιαζ", "οραμα", "vision", "φιλοσοφ", "αξιες", "αποστολ",
+    "εμποδ", "δυνατοτητ", "κινδυν", "παραισθη", "προκαταληψ", "bias",
+    "moodle", "classroom", "lms", "ocr", "τιμολογ", "invoice", "μεταφρα",
+    "επιμελ", "bulk", "sso", "crm", "helpdesk", "πιλοτικ", "linkedin", "instagram",
+    "αθηνα", "athens", "θεσσαλονικ", "αρσενικ", "θηλυκ", "gender",
+    "ποαμσκπ", "σκπ", "myrto", "k3", "δια ζωσης", "σας", "μας", "σας "
+  ],
+  "domainPatterns": [
+    {
+      "org": "simasia",
+      "domains": ["simasiaai.gr", "simasiaai.netlify.app"],
+      "query": ["simasia", "σιμασια", "simasiaai", "sima"]
+    },
+    {
+      "org": "chatbots",
+      "domains": [],
+      "query": ["chatbot", "chatbots", "σκπ-i", "σκπι", "bot", "βοηθος"]
+    },
+    {
+      "org": "edu",
+      "domains": [],
+      "query": ["edu", "εκπαιδευ", "μαθητ", "διαγων", "σχολει", "φροντιστηρ"]
+    },
+    {
+      "org": "studio",
+      "domains": [],
+      "query": ["studio", "μεταφρασ", "επιμελει", "translation", "λεξικο"]
+    },
+    {
+      "org": "daily",
+      "domains": [],
+      "query": ["daily", "εργαλει", "tool", "invoice", "τιμολογ"]
+    }
+  ],
+  "topicBoosts": [
+    {
+      "query": ["επικοινων", "contact", "email", "mail"],
+      "blob": ["contact@simasiaai", "επικοινων", "email", "athens"],
+      "add": 0.5
+    },
+    {
+      "query": ["demo", "προταση", "proposal", "συνεργασ"],
+      "blob": ["demo", "book-demo", "προταση", "συνεργασ"],
+      "add": 0.45
+    },
+    {
+      "query": ["chatbot", "simasiachatbots"],
+      "blob": ["simasiachatbots", "chatbot", "προσβασιμ"],
+      "add": 0.4
+    },
+    {
+      "query": ["edu", "εκπαιδευ", "διαγων"],
+      "blob": ["simasiaedu", "εκπαιδευ", "διαγων", "μαθητ"],
+      "add": 0.4
+    },
+    {
+      "query": ["studio", "μεταφρασ"],
+      "blob": ["simasiastudio", "μεταφρασ", "επιμελει"],
+      "add": 0.4
+    },
+    {
+      "query": ["daily", "εργαλει"],
+      "blob": ["simasiadaily", "εργαλει", "αυτοματο"],
+      "add": 0.4
+    },
+    {
+      "query": ["ποιους", "αφορα", "audience", "target"],
+      "blob": ["ποιους", "target-audience", "audience"],
+      "add": 0.35
+    },
+    {
+      "query": ["συνεργασ", "collaboration", "k3", "ποαμσκπ"],
+      "blob": ["συνεργασ", "collaboration", "myrto", "ποαμσκπ"],
+      "add": 0.35
+    },
+    {
+      "query": ["τομει", "τομείς", "εργαζεστε", "domains", "fields"],
+      "blob": ["τεχνητη", "νοημοσυνη", "γλωσσολογ", "λογισμικ", "ai "],
+      "add": 0.45
+    },
+    {
+      "query": ["ομαδα", "ομάδα", "μιληστε", "speak with", "talk to the team"],
+      "blob": ["book-demo", "contact@", "επικοινων", "demo"],
+      "add": 0.55
+    }
+  ],
+  "domainBoost": 0.45,
+  "domainPenalty": 0.15
+}

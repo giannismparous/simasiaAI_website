@@ -68,71 +68,93 @@ function ChatWindow({ onClose, isClosing, messages, setMessages }) {
         inputRef.current?.focus();
     }, []);
 
-    const handleSendMessage = async () => {
-        if (!inputValue.trim() || isLoading) return;
+    const sendUserMessage = async (userText) => {
+        if (!userText.trim() || isLoading) return;
 
-        const userText = inputValue.trim();
         const historyBeforeSend = messages.slice();
         const previousResolvedQuery = lastResolvedQueryRef.current;
+        const botId = Date.now() + 1;
 
-        const userMessage = {
-            id: Date.now(),
-            text: userText,
-            sender: 'user'
-        };
-
-        setMessages(prev => [...prev, userMessage]);
-        lastResolvedQueryRef.current = userText;
-        setInputValue('');
+        setMessages(prev => [...prev, { id: Date.now(), text: userText.trim(), sender: 'user' }]);
+        lastResolvedQueryRef.current = userText.trim();
         setIsLoading(true);
 
-        try {
-            console.log('🚀 [ChatWindow] Sending question to chatbot...');
+        let streamMounted = false;
 
-            const response = await answerQuestion(userText, null, {
+        try {
+            const response = await answerQuestion(userText.trim(), null, {
                 messages: historyBeforeSend,
                 lastResolvedQuery: previousResolvedQuery,
                 uiLanguage: language,
+                stream: true,
+                onChunk: (chunk) => {
+                    if (!chunk) return;
+                    if (!streamMounted) {
+                        streamMounted = true;
+                        setMessages(prev => [
+                            ...prev,
+                            { id: botId, text: chunk, sender: 'bot', sources: [], confidence: 0 },
+                        ]);
+                    } else {
+                        setMessages(prev =>
+                            prev.map((m) => (m.id === botId ? { ...m, text: m.text + chunk } : m))
+                        );
+                    }
+                },
             });
 
-            console.log('✅ [ChatWindow] RAG Response received:', response);
-
-            const botMessage = {
-                id: Date.now() + 1,
-                text: response.answer,
-                sender: 'bot',
-                sources: response.sources || [],
-                confidence: response.confidence
-            };
-
-            setMessages(prev => [...prev, botMessage]);
-
+            setMessages(prev => {
+                const existing = prev.find((m) => m.id === botId);
+                if (existing) {
+                    return prev.map((m) =>
+                        m.id === botId
+                            ? {
+                                  ...m,
+                                  text: response.answer,
+                                  sources: response.sources || [],
+                                  confidence: response.confidence,
+                              }
+                            : m
+                    );
+                }
+                return [
+                    ...prev,
+                    {
+                        id: botId,
+                        text: response.answer,
+                        sender: 'bot',
+                        sources: response.sources || [],
+                        confidence: response.confidence,
+                    },
+                ];
+            });
         } catch (error) {
-            console.error('❌ [ChatWindow] Error getting response:', error);
-
-            const errorMessage = {
-                id: Date.now() + 1,
-                text: language === 'el'
+            console.error('[ChatWindow] Error:', error);
+            const errText =
+                language === 'el'
                     ? 'Συγγνώμη, κάτι πήγε στραβά. Προσπάθησε ξανά.'
-                    : 'Sorry, something went wrong. Please try again.',
-                sender: 'bot'
-            };
-
-            setMessages(prev => [...prev, errorMessage]);
+                    : 'Sorry, something went wrong. Please try again.';
+            setMessages(prev => {
+                if (streamMounted) {
+                    return prev.map((m) => (m.id === botId ? { ...m, text: errText, sources: [] } : m));
+                }
+                return [...prev, { id: botId, text: errText, sender: 'bot' }];
+            });
         } finally {
             setIsLoading(false);
-            console.log('🏁 [ChatWindow] Request cycle finished');
         }
     };
 
-    const handleQuestionClick = async (question) => {
-        setInputValue(question.text);
-        // Auto-send after a brief delay
-        setTimeout(() => {
-            if (inputRef.current) {
-                inputRef.current.focus();
-            }
-        }, 100);
+    const handleSendMessage = async () => {
+        if (!inputValue.trim() || isLoading) return;
+        const userText = inputValue.trim();
+        setInputValue('');
+        await sendUserMessage(userText);
+    };
+
+    const handleQuestionClick = (question) => {
+        if (isLoading) return;
+        sendUserMessage(question.text);
     };
 
     const handleKeyPress = (e) => {
@@ -207,7 +229,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages }) {
                     </div>
                 ))}
 
-                {isLoading && (
+                {isLoading && messages[messages.length - 1]?.sender !== 'bot' && (
                     <div className="message-bubble bot-message loading">
                         <div className="typing-indicator">
                             <span></span>

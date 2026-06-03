@@ -148,7 +148,7 @@ export function resolveUserQuery(userText, messages, lastResolvedQuery = '') {
     if (isEl) {
       return {
         query:
-          `Ο χρήστης απάντησε σύντομα ("${text}") στην τελευταία ερώτηση της Sima. ` +
+          `Ο χρήστης απάντησε σύντομα ("${text}") στην τελευταία ερώτηση της Sima (ψηφιακής βοηθού). ` +
           `Απάντησε άμεσα και συγκεκριμένα στην ερώτηση: "${lastBotQuestion}". ` +
           'Μην ζητήσεις επιβεβαίωση και μην επαναδιατυπώσεις την ίδια ερώτηση.',
         isFollowUp: true,

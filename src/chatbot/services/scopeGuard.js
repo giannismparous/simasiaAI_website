@@ -1,101 +1,476 @@
 /**
- * Scope and off-topic guards for Sima (SimasiaAI website assistant).
+
+ * Scope, jailbreak, and output sanitization (POAMSKP-style, Simasia topics).
+
  */
 
-import { normalize, getConversationTopic } from './conversationContext';
 
-const SIMASIA_SIGNAL_REGEX =
-  /simasia|σίμασια|σιμασια|sima\b|simasiachatbots|hammer\s*editor|frontistiriarxis|ai\s+from\s+the\s+human|προϊον|προιον|product|λύση|λυση|solution|εφαρμογ|application|επικοινων|contact|εταιρ|company|startup|chatbot/i;
+
+import { normalize, getConversationTopic } from './conversationContext.js';
+
+import {
+
+  hasSimasiaTopicSignals,
+
+  queryAlignsWithKnowledge,
+
+  getRetrievalScopeMinScore,
+
+} from './retriever.js';
+
+
 
 const OFF_TOPIC_REGEX =
-  /μητσοτακ|τσιπρα|παπανδρεου|κυβερνηση|κυβέρνηση|πρωθυπουργ|υπουργο|βουλη|εκλογ|πολιτικ|κομμα\b|κόμμα\b|trump|biden|putin|zelensky|celebrity|διασημο|ποδοσφαιρ|μπασκετ|weather|καιρος|καιρός|recipe|συνταγ|joke|αστειο|αστείο|gambl|καζινο|sex\b|porn|hack\s|crack\s/i;
+
+  /μητσοτακ|τσιπρα|παπανδρεου|κυβερνηση|κυβέρνηση|πρωθυπουργ|πολιτικ|κομμα\b|κόμμα\b|trump|biden|putin|zelensky|celebrity|διασημο|ποδοσφαιρ|μπασκετ|weather|καιρος|καιρός|recipe|συνταγ|joke|αστειο|αστείο|gambl|καζινο|sex\b|porn|hack\s|crack\s|bitcoin|crypto|football|gaming|eurovision|won\s+the\s+eurovision/i;
+
+
 
 const GREETING_ONLY_REGEX = /^(γεια|γειά|hello|hi|hey|καλημερα|καλησπερα|καληνυχτα)[\s!.?]*$/i;
 
-export function hasSimasiaTopicSignals(text) {
-  return SIMASIA_SIGNAL_REGEX.test(normalize(text || ''));
+
+
+const CRISIS_USER_REGEX =
+
+  /suicidal|αυτοκτον|σκοτωσω|kill\s+myself|what\s+pills\s+should\s+i\s+take|πια\s+χαπια|να\s+παρω\s+χαπια/i;
+
+
+
+const EXTERNAL_ORG_REGEX =
+
+  /ποαμσκπ|poamskp|msif|helani|kap3|δια\s*ζωσης|dia\s*zosis|myrto|k3\b/i;
+
+
+
+const EXTERNAL_ORG_DEEP_REGEX =
+
+  /λεπτομερ|in\s+detail|full\s+clinical|structure\s+in\s+detail|tuition\s+fees|appointment\s+at|ως\s+οργανισμ|not\s+simasia|comparison/i;
+
+
+
+export const JAILBREAK_USER_REGEX =
+
+  /(?:αγνοησε|αγνοηστε|ignore\s+(?:all\s+)?(?:previous|prior|above)|disregard\s+(?:all\s+)?(?:the\s+)?(?:rules|instructions|context)|pretend\s+you\s+are|you\s+are\s+now|jailbreak|dan\s+mode|developer\s+mode|(?:show|reveal|print|δωσε|δειξε|δείξε).{0,24}(?:api\s*key|secret|κλειδ|κωδικ)|repeat\s+(?:everything|all).{0,20}context|ολοκληρο\s+το\s+context|system\s+prompt|προτροπη\s+συστηματος|SOURCE_TITLE:|SOURCE_CONTENT:)/i;
+
+
+
+export const UNRELATED_TOPIC_REGEX =
+
+  /bitcoin|crypto|μετοχ|stock\s+market|συνταγ|recipe|μαγειρ|ποδοσφαι|football|ταινι|gaming|hack\s+/i;
+
+
+
+export function userMessageLooksSimasiaRelated(text) {
+
+  return hasSimasiaTopicSignals(text) || queryAlignsWithKnowledge(text);
+
 }
 
-export function isClearlyOffTopic(userText, messages = [], lastResolvedQuery = '') {
+
+
+export function isCrisisUserMessage(text) {
+
+  return CRISIS_USER_REGEX.test(normalize(text || ''));
+
+}
+
+
+
+export function isExternalOrgDeepDive(text) {
+
+  const n = normalize(text || '');
+
+  return EXTERNAL_ORG_REGEX.test(n) && EXTERNAL_ORG_DEEP_REGEX.test(n);
+
+}
+
+
+
+export function isBlockedUserMessage(text) {
+
+  const raw = String(text || '').trim();
+
+  if (!raw) return false;
+
+  if (JAILBREAK_USER_REGEX.test(raw)) return true;
+
+  if (!userMessageLooksSimasiaRelated(raw) && UNRELATED_TOPIC_REGEX.test(normalize(raw))) {
+
+    return true;
+
+  }
+
+  return false;
+
+}
+
+
+
+export function buildBlockedReply(language) {
+
+  if (language === 'el') {
+
+    return (
+
+      'Μπορώ να σε βοηθήσω μόνο με θέματα που σχετίζονται με την SimasiaAI — εταιρεία, προϊόντα, λύσεις και επικοινωνία. ' +
+
+      'Δεν μπορώ να εκτελέσω άλλες οδηγίες ή να μοιράσω εσωτερικά στοιχεία.'
+
+    );
+
+  }
+
+  return (
+
+    'I can only help with topics related to SimasiaAI — company, products, solutions, and contact. ' +
+
+    'I cannot follow other instructions or share internal details.'
+
+  );
+
+}
+
+
+
+export function buildCrisisSafetyReply(language) {
+
+  if (language === 'el') {
+
+    return (
+
+      'Δεν μπορώ να δώσω ιατρικές ή φαρμακευτικές συμβουλές. Αν βρίσκεστε σε άμεσο κίνδυνο, επικοινωνήστε με γραμμή βοήθειας (π.χ. 1018) ' +
+
+      'ή με επαγγελματία ψυχικής υγείας. Μπορώ να σας βοηθήσω μόνο με θέματα SimasiaAI — εταιρεία, προϊόντα και επικοινωνία.'
+
+    );
+
+  }
+
+  return (
+
+    'I cannot provide medical or medication advice. If you are in immediate danger, please contact a crisis helpline (e.g. 1018) ' +
+
+    'or a mental health professional. I can only help with SimasiaAI topics — company, products, and contact.'
+
+  );
+
+}
+
+
+
+/** Obvious off-topic only (politics, spam categories) — before retrieval. */
+
+export function isHardOffTopic(userText) {
+
   const raw = String(userText || '').trim();
+
   if (!raw) return true;
 
   const norm = normalize(raw);
+
   if (GREETING_ONLY_REGEX.test(norm)) return false;
 
   if (OFF_TOPIC_REGEX.test(norm)) return true;
 
-  // Very short generic spam with no prior Simasia topic
-  const topicContext = getConversationTopic(messages, lastResolvedQuery);
-  const combined = `${norm} ${normalize(topicContext)}`;
-  if (raw.length < 3 && !hasSimasiaTopicSignals(combined)) return true;
+  if (!userMessageLooksSimasiaRelated(raw) && UNRELATED_TOPIC_REGEX.test(norm)) return true;
 
-  // Long unrelated questions with zero Simasia signals and no ongoing Simasia thread
-  const wordCount = norm.split(/\s+/).filter(Boolean).length;
-  if (wordCount >= 4 && !hasSimasiaTopicSignals(combined) && !hasSimasiaTopicSignals(topicContext)) {
-    return true;
+  return false;
+
+}
+
+
+
+/**
+
+ * After retrieval: reject only when no topic signals AND weak KB match.
+
+ * @param {number} topScore
+
+ * @param {number} docCount
+
+ */
+
+export function shouldRejectAsOffTopic(
+
+  userText,
+
+  messages = [],
+
+  lastResolvedQuery = '',
+
+  topScore = 0,
+
+  docCount = 0
+
+) {
+
+  const raw = String(userText || '').trim();
+
+  if (!raw) return true;
+
+
+
+  const norm = normalize(raw);
+
+  if (GREETING_ONLY_REGEX.test(norm)) return false;
+
+  if (OFF_TOPIC_REGEX.test(norm)) return true;
+
+
+
+  const topicContext = getConversationTopic(messages, lastResolvedQuery);
+
+  const combined = `${norm} ${normalize(topicContext)}`;
+
+
+
+  if (userMessageLooksSimasiaRelated(combined) || userMessageLooksSimasiaRelated(topicContext)) {
+
+    return false;
+
   }
 
+
+
+  const minRetrieval = getRetrievalScopeMinScore();
+
+  if (docCount > 0 && topScore >= minRetrieval) return false;
+
+
+
+  if (raw.length < 3) return true;
+
+
+
+  const wordCount = norm.split(/\s+/).filter(Boolean).length;
+
+  if (wordCount >= 4) return true;
+
+
+
+  return false;
+
+}
+
+
+
+/** @deprecated Use isHardOffTopic + shouldRejectAsOffTopic */
+
+export function isClearlyOffTopic(userText, messages = [], lastResolvedQuery = '') {
+
+  return isHardOffTopic(userText) || shouldRejectAsOffTopic(userText, messages, lastResolvedQuery, 0, 0);
+
+}
+
+
+
+export function buildOutOfScopeReply(language) {
+
+  if (language === 'el') {
+
+    return (
+
+      'Μπορώ να σε βοηθήσω μόνο με θέματα που σχετίζονται με την SimasiaAI — εταιρεία, προϊόντα, λύσεις, τεχνολογία και επικοινωνία. ' +
+
+      'Ρώτησέ με π.χ. τι είναι η SimasiaAI, ποια προϊόντα προσφέρουμε ή πώς μπορεί να βοηθήσει την επιχείρησή σου.'
+
+    );
+
+  }
+
+  return (
+
+    'I can only help with topics related to SimasiaAI — company, products, solutions, technology, and contact. ' +
+
+    'Try asking what SimasiaAI is, which products we offer, or how we can help your business.'
+
+  );
+
+}
+
+
+
+export function buildNoRetrievalReply(language) {
+
+  if (language === 'el') {
+
+    return (
+
+      'Δεν βρήκα αρκετές σχετικές πληροφορίες στο υλικό του site για αυτό το ερώτημα. ' +
+
+      'Μπορείς να το διατυπώσεις διαφορετικά ή να ρωτήσεις για SimasiaAI, τα προϊόντα μας ή την επικοινωνία.'
+
+    );
+
+  }
+
+  return (
+
+    'I could not find enough relevant information on our website for that question. ' +
+
+    'Try rephrasing it, or ask about SimasiaAI, our products, or how to contact us.'
+
+  );
+
+}
+
+
+
+const ALT_LOCATION_QUERY_REGEX =
+  /θεσσαλονικ|thessaloniki|πατρα|patras|larisa|larissa|ηρακλει|heraklion|κρητη|crete/i;
+
+export function asksLocationNotInContext(question, contextBlob = '') {
+  const q = normalize(question || '');
+  const blob = normalize(contextBlob || '');
+  if (!ALT_LOCATION_QUERY_REGEX.test(q)) return false;
+  if (/αθηνα|athens/.test(blob) && !ALT_LOCATION_QUERY_REGEX.test(blob)) return true;
   return false;
 }
 
-export function buildOutOfScopeReply(language) {
+export function refineLocationAnswer(answer, question, _contextBlob, language) {
+  const q = normalize(question || '');
+  if (!ALT_LOCATION_QUERY_REGEX.test(q)) return answer;
+
   if (language === 'el') {
     return (
-      'Μπορώ να σε βοηθήσω μόνο με θέματα που σχετίζονται με την SimasiaAI — εταιρεία, προϊόντα, λύσεις, τεχνολογία και επικοινωνία. ' +
-      'Για πολιτικά ή άσχετα θέματα δεν έχω αξιόπιστες πληροφορίες. Ρώτησέ με π.χ. τι είναι η SimasiaAI, ποια προϊόντα προσφέρουμε ή πώς μπορεί να βοηθήσει την επιχείρησή σου.'
+      'Στο υλικό του site αναφέρεται έδρα στην Αθήνα, Ελλάδα — όχι άλλες πόλεις. ' +
+      'Μπορώ να σε βοηθήσω με SimasiaAI, τα προϊόντα μας ή την επικοινωνία (contact@simasiaai.gr).'
     );
   }
   return (
-    'I can only help with topics related to SimasiaAI — company, products, solutions, technology, and contact. ' +
-    'I do not have reliable information on politics or unrelated topics. Try asking what SimasiaAI is, which products we offer, or how we can help your business.'
+    'Our website lists Athens, Greece as our location — no other cities are mentioned. ' +
+    'I can help with SimasiaAI, our products, or contact (contact@simasiaai.gr).'
   );
 }
 
-export function buildNoRetrievalReply(language) {
-  if (language === 'el') {
-    return (
-      'Δεν βρήκα αρκετές σχετικές πληροφορίες στο υλικό μας για αυτό το ερώτημα. ' +
-      'Μπορείς να το διατυπώσεις με άλλα λόγια ή να ρωτήσεις για SimasiaAI, τα προϊόντα μας ή την επικοινωνία.'
-    );
-  }
-  return (
-    'I could not find enough relevant information in our materials for that question. ' +
-    'Try rephrasing it, or ask about SimasiaAI, our products, or how to contact us.'
-  );
+export function sanitizeBotAnswer(text) {
+  let t = String(text || '');
+  t = t.replace(/\bAIza[A-Za-z0-9_-]{20,}\b/g, '[removed]');
+  t = t.replace(/SOURCE_TITLE:\s*[^\n]+/gi, '');
+  t = t.replace(/SOURCE_CONTENT:[\s\S]*?(?=\n\n|$)/gi, '');
+  return t.replace(/\n{3,}/g, '\n\n').trim();
 }
+
+
+
+export function isPublicWebsiteSource(doc) {
+
+  if (!doc) return false;
+
+  if (doc.source?.type === 'faq') return false;
+
+  const url = String(doc.url || '').trim();
+
+  if (!url || url.startsWith('faq://')) return false;
+
+  return url.startsWith('/');
+
+}
+
+
+
+export function buildWebsiteSources(docs) {
+
+  const seen = new Set();
+
+  const out = [];
+
+  (docs || []).forEach((doc) => {
+
+    if (!isPublicWebsiteSource(doc)) return;
+
+    const url = String(doc.url || '').trim();
+
+    if (!url || seen.has(url)) return;
+
+    seen.add(url);
+
+    const title = String(doc.title || url).replace(/\s*\(\d+\/\d+\)\s*$/, '').trim();
+
+    out.push({
+
+      title,
+
+      url,
+
+      category: doc.category || 'website',
+
+    });
+
+  });
+
+  return out;
+
+}
+
+
 
 export function toUserFacingError(error, language) {
+
   const msg = String((error && error.message) || '').toLowerCase();
+
   const isEl = language === 'el';
 
-  if (msg.includes('no api key')) {
+
+
+  if (msg.includes('gemini_not_configured') || msg.includes('no api key') || msg.includes('keys missing')) {
+
     return isEl
-      ? 'Δεν έχει ρυθμιστεί κλειδί Gemini. Επικοινωνήστε με την ομάδα ανάπτυξης.'
-      : 'Gemini API key is not configured. Please contact the development team.';
-  }
-  if (msg.includes('403') || msg.includes('api key not valid') || msg.includes('permission')) {
-    return isEl
-      ? 'Πρόβλημα με το κλειδί API. Δοκιμάστε ξανά αργότερα.'
-      : 'There is an API key configuration issue. Please try again later.';
-  }
-  if (msg.includes('429') || msg.includes('quota') || msg.includes('resource_exhausted') || msg.includes('too many')) {
-    return isEl
-      ? 'Προσωρινό όριο χρήσης AI. Περιμένετε λίγο και δοκιμάστε ξανά.'
-      : 'Temporary AI rate limit reached. Please wait a moment and try again.';
-  }
-  if (msg.includes('timeout') || msg.includes('έληξε')) {
-    return isEl
-      ? 'Η απάντηση άργησε πολύ. Δοκιμάστε ξανά με πιο σύντομη ερώτηση.'
-      : 'The request timed out. Please try again with a shorter question.';
-  }
-  if (msg.includes('embedding')) {
-    return isEl
-      ? 'Δεν μπόρεσα να αναζητήσω πληροφορίες αυτή τη στιγμή. Δοκιμάστε ξανά σε λίγο.'
-      : 'Search is temporarily unavailable. Please try again shortly.';
+
+      ? 'Το chatbot δεν είναι ρυθμισμένο ακόμα στον server. Επικοινωνήστε με την ομάδα ανάπτυξης.'
+
+      : 'The chatbot is not configured on the server yet. Please contact the development team.';
+
   }
 
+  if (msg.includes('403') || msg.includes('origin_not_allowed') || msg.includes('permission')) {
+
+    return isEl
+
+      ? 'Πρόβλημα ρύθμισης πρόσβασης. Δοκιμάστε ξανά αργότερα.'
+
+      : 'There is an access configuration issue. Please try again later.';
+
+  }
+
+  if (msg.includes('429') || msg.includes('quota') || msg.includes('resource_exhausted') || msg.includes('too many')) {
+
+    return isEl
+
+      ? 'Προσωρινό όριο χρήσης AI. Περιμένετε λίγο και δοκιμάστε ξανά.'
+
+      : 'Temporary AI rate limit reached. Please wait a moment and try again.';
+
+  }
+
+  if (msg.includes('timeout') || msg.includes('έληξε')) {
+
+    return isEl
+
+      ? 'Η απάντηση άργησε πολύ. Δοκιμάστε ξανά με πιο σύντομη ερώτηση.'
+
+      : 'The request timed out. Please try again with a shorter question.';
+
+  }
+
+  if (msg.includes('prompt_blocked') || msg.includes('prompt_too_large')) {
+
+    return isEl
+
+      ? 'Δεν μπόρεσα να επεξεργαστώ αυτό το αίτημα. Δοκιμάστε μια πιο σύντομη ερώτηση.'
+
+      : 'Could not process this request. Try a shorter question.';
+
+  }
+
+
+
   return isEl
+
     ? 'Συγγνώμη, κάτι πήγε στραβά. Δοκιμάστε ξανά.'
+
     : 'Sorry, something went wrong. Please try again.';
+
 }
+
+

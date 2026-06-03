@@ -1,178 +1,90 @@
 /**
- * Retriever Service - Semantic Search using Gemini Embeddings
+ * Hybrid keyword retrieval (POAMSKP-style) — website chunks only, no client embeddings.
  */
 
-import knowledgeBase from '../knowledge/chatbotKnowledge.json';
-import { getEmbedding } from './geminiService';
-import { normalize } from './conversationContext';
-import { hasSimasiaTopicSignals } from './scopeGuard';
+import { normalize } from './conversationContext.js';
 
-const OFF_TOPIC_QUERY_REGEX =
-  /μητσοτακ|τσιπρα|παπανδρεου|κυβερνηση|κυβέρνηση|πρωθυπουργ|πολιτικ|trump|biden|putin|celebrity|διασημο/i;
+const BASE = (process.env.PUBLIC_URL || '').replace(/\/$/, '');
+const KNOWLEDGE_URL = `${BASE}/data/knowledge-index.json`;
+const RULES_URL = `${BASE}/data/retrieval-rules.json`;
+const FAQ_URL = `${BASE}/data/simasia-faq.json`;
 
-const SIMASIA_DOC_REGEX =
-  /simasia|σίμασια|σιμασια|hammer|chatbot|frontistiriarxis|product|προϊον|προιον|solution|λύση|λυση/i;
+const GREEKLISH = {
+  α: 'a', β: 'v', γ: 'g', δ: 'd', ε: 'e', ζ: 'z', η: 'i', θ: 'th',
+  ι: 'i', κ: 'k', λ: 'l', μ: 'm', ν: 'n', ξ: 'x', ο: 'o', π: 'p',
+  ρ: 'r', σ: 's', ς: 's', τ: 't', υ: 'y', φ: 'f', χ: 'ch', ψ: 'ps', ω: 'o',
+};
 
-class SemanticRetriever {
-  constructor(documents) {
-    this.documents = documents;
-    this.docEmbeddings = new Map();
-    this.isReady = false;
-    this.initEmbeddings();
-  }
+const QUERY_STOPWORDS_EL = new Set([
+  'και', 'της', 'των', 'στο', 'στη', 'για', 'με', 'απο', 'ποια', 'ποιο', 'πως', 'που',
+  'ειναι', 'μου', 'σας', 'δεν', 'ναι', 'οχι', 'θα', 'να', 'περισσοτερα',
+]);
 
-  async initEmbeddings() {
-    console.log('🏗️  Initializing Semantic Embeddings knowledge base...');
+const QUERY_STOPWORDS_EN = new Set([
+  'the', 'and', 'for', 'with', 'from', 'that', 'this', 'what', 'how', 'are', 'can', 'you',
+]);
 
-    const BATCH_SIZE = 3;
-    const chunks = [];
-    for (let i = 0; i < this.documents.length; i += BATCH_SIZE) {
-      chunks.push(this.documents.slice(i, i + BATCH_SIZE));
-    }
+const SIMASIA_SIGNAL_BASE =
+  'simasia|σίμασια|σιμασια|sima\\b|simasiachatbots|simasiaedu|simasiastudio|simasiadaily|ai\\s+from\\s+the\\s+human|ανθρωποκεντρ|προϊον|προιον|product|εφαρμογ|application|επικοινων|contact|εταιρ|company|startup|chatbot|slogan|σύνθημα|συνθημα|αποστολ|mission|demo|συνεργ|ομαδ|ομάδ|team|τομει|τομέ|εργαζ|έρευν|research|αξι|φιλοσοφ|vision|όραμα';
 
-    let processedCount = 0;
-    for (const chunk of chunks) {
-      const promises = chunk.map(async (doc) => {
-        try {
-          const textToEmbed = `${doc.title}\n${doc.content}\nKeywords: ${(doc.keywords || []).join(', ')}`;
-          const embedding = await getEmbedding(textToEmbed);
-          this.docEmbeddings.set(doc.id, embedding);
-        } catch (e) {
-          console.warn(`⚠️ Failed to embed doc ${doc.id}: ${e.message}`);
-        }
-      });
-      await Promise.allSettled(promises);
-      processedCount += chunk.length;
-      console.log(
-        `⏳ Indexed ${Math.min(processedCount, this.documents.length)}/${this.documents.length} documents...`
-      );
-    }
+let scopeSignalRegex = null;
 
-    this.isReady = true;
-    console.log(`✅ Embedding Database Ready: ${this.docEmbeddings.size} documents indexed.`);
-  }
+const retrieverState = {
+  docs: [],
+  rules: {},
+  faqEntries: [],
+  ready: false,
+  loading: null,
+};
 
-  cosineSimilarity(vecA, vecB) {
-    if (!vecA || !vecB || vecA.length !== vecB.length) return 0;
-    let dotProduct = 0;
-    let normA = 0;
-    let normB = 0;
-    for (let i = 0; i < vecA.length; i++) {
-      dotProduct += vecA[i] * vecB[i];
-      normA += vecA[i] * vecA[i];
-      normB += vecB[i] * vecB[i];
-    }
-    if (normA === 0 || normB === 0) return 0;
-    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
-  }
-
-  applyRelevanceAdjustments(score, doc, queryNorm, topicContextNorm = '') {
-    const blob = normalize(
-      `${doc.title || ''} ${doc.content || ''} ${(doc.keywords || []).join(' ')}`
-    );
-    const effectiveNorm = `${queryNorm} ${topicContextNorm || ''}`.trim();
-    const simasiaQuery = hasSimasiaTopicSignals(effectiveNorm);
-    const simasiaDoc = SIMASIA_DOC_REGEX.test(blob);
-    const offTopicQuery = OFF_TOPIC_QUERY_REGEX.test(queryNorm);
-
-    if (offTopicQuery) {
-      score *= 0.15;
-    } else if (simasiaQuery && simasiaDoc) {
-      score += 0.12;
-    } else if (simasiaQuery && !simasiaDoc) {
-      score *= 0.55;
-    }
-
-    if (/επικοινων|contact|email|τηλ/.test(effectiveNorm) && /επικοινων|contact|email|phone|τηλ/.test(blob)) {
-      score += 0.1;
-    }
-    if (/προϊον|προιον|product/.test(effectiveNorm) && /προϊον|προιον|product/.test(blob)) {
-      score += 0.1;
-    }
-
-    return score;
-  }
-
-  async search(query, language, topN = 5, topicContext = '') {
-    let checks = 0;
-    while (!this.isReady && checks < 25) {
-      console.log(`⏳ Embeddings still loading... waiting (${checks + 1}/25s)`);
-      await new Promise((r) => setTimeout(r, 1000));
-      checks++;
-    }
-
-    if (!this.isReady) {
-      console.warn('⚠️ Search running with partial index (timed out waiting for init)');
-    }
-
-    const topicContextNorm = normalize(topicContext || '');
-    const embedQuery =
-      topicContextNorm && topicContextNorm !== normalize(query)
-        ? `${query}\n${topicContext}`
-        : query;
-
-    console.log(`🤖 Semantic Search for: "${query}"`);
-
-    let queryVector;
-    try {
-      queryVector = await getEmbedding(embedQuery);
-    } catch (e) {
-      console.error('❌ Failed to embed query:', e);
-      throw new Error(`Embedding failed: ${e.message}`);
-    }
-
-    const queryNorm = normalize(query);
-    const queryWords = queryNorm.split(/\s+/).filter((w) => w.length > 2);
-
-    const scoredDocs = this.documents
-      .filter((doc) => doc.language === language)
-      .map((doc) => {
-        const docVector = this.docEmbeddings.get(doc.id);
-        let score = docVector ? this.cosineSimilarity(queryVector, docVector) : 0;
-        const semanticScore = score;
-
-        let keywordBonus = 0;
-        const titleNorm = normalize(doc.title || '');
-        if (titleNorm.includes(queryNorm)) keywordBonus += 0.3;
-
-        (doc.keywords || []).forEach((k) => {
-          const kNorm = normalize(k);
-          queryWords.forEach((qWord) => {
-            if (kNorm.includes(qWord) || qWord.includes(kNorm)) keywordBonus += 0.15;
-          });
-        });
-
-        score += keywordBonus;
-        score = this.applyRelevanceAdjustments(score, doc, queryNorm, topicContextNorm);
-
-        return {
-          ...doc,
-          relevanceScore: score,
-          debugScore: `Total: ${score.toFixed(3)} (Sem: ${semanticScore.toFixed(3)} + Boost: ${keywordBonus.toFixed(3)})`,
-        };
-      })
-      .sort((a, b) => b.relevanceScore - a.relevanceScore);
-
-    console.log('🔍 Top 3 hybrid matches:');
-    scoredDocs.slice(0, 3).forEach((d, i) =>
-      console.log(`   ${i + 1}. [${d.id}] ${d.title} | ${d.debugScore}`)
-    );
-
-    const minScore = OFF_TOPIC_QUERY_REGEX.test(queryNorm) ? 0.42 : 0.28;
-    const results = scoredDocs.filter((doc) => doc.relevanceScore > minScore).slice(0, topN);
-
-    console.log(`📊 Found ${results.length} relevant documents (score > ${minScore}):`);
-    return results;
-  }
+function escapeRegexToken(token) {
+  return String(token || '')
+    .trim()
+    .replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-let retrieverInstance = null;
+function buildScopeSignalRegex(rules = {}) {
+  const parts = new Set();
+  SIMASIA_SIGNAL_BASE.split('|').forEach((p) => parts.add(p));
 
-function getRetriever() {
-  if (!retrieverInstance) {
-    retrieverInstance = new SemanticRetriever(knowledgeBase.documents);
+  (rules.scopeSignals || []).forEach((t) => {
+    const n = normalize(t);
+    if (n.length >= 3) parts.add(escapeRegexToken(n));
+  });
+
+  (rules.domainPatterns || []).forEach((entry) => {
+    (entry.query || []).forEach((t) => {
+      const n = normalize(t);
+      if (n.length >= 3) parts.add(escapeRegexToken(n));
+    });
+  });
+
+  (rules.topicBoosts || []).forEach((boost) => {
+    (boost.query || []).forEach((t) => {
+      const n = normalize(t);
+      if (n.length >= 3) parts.add(escapeRegexToken(n));
+    });
+  });
+
+  return new RegExp(Array.from(parts).join('|'), 'i');
+}
+
+function getScopeSignalRegex() {
+  if (!scopeSignalRegex) {
+    scopeSignalRegex = buildScopeSignalRegex(retrieverState.rules);
   }
-  return retrieverInstance;
+  return scopeSignalRegex;
+}
+
+export function getRetrievalScopeMinScore() {
+  return Number(retrieverState.rules.retrievalScopeMinScore || 0.2);
+}
+
+function toGreeklish(text) {
+  return normalize(text)
+    .split('')
+    .map((c) => GREEKLISH[c] || c)
+    .join('');
 }
 
 export function detectLanguage(text) {
@@ -180,12 +92,267 @@ export function detectLanguage(text) {
   return greekChars && greekChars.length > 0 ? 'el' : 'en';
 }
 
-export async function retrieveRelevantDocs(query, topN = 5, preferredLanguage = null, topicContext = '') {
-  if (!query || !String(query).trim()) return [];
+function cleanQueryToken(token) {
+  return String(token || '').replace(/[^a-z0-9α-ω]/gi, '').trim();
+}
 
+function extractQueryWords(queryNorm, language) {
+  const stop = language === 'el' ? QUERY_STOPWORDS_EL : QUERY_STOPWORDS_EN;
+  return queryNorm
+    .split(/\s+/)
+    .map(cleanQueryToken)
+    .filter((w) => w.length > 2 && !stop.has(w));
+}
+
+function docTextBlob(doc) {
+  return normalize(
+    `${doc.title || ''} ${doc.content || ''} ${(doc.keywords || []).join(' ')}`
+  );
+}
+
+function docOrg(doc) {
+  if (doc.org) return String(doc.org);
+  const url = normalize(String(doc.url || ''));
+  if (url.includes('chatbot')) return 'chatbots';
+  if (url.includes('edu')) return 'edu';
+  if (url.includes('studio')) return 'studio';
+  if (url.includes('daily')) return 'daily';
+  return 'simasia';
+}
+
+function detectTargetOrgs(queryNorm) {
+  const targets = new Set();
+  (retrieverState.rules.domainPatterns || []).forEach((entry) => {
+    (entry.query || []).forEach((token) => {
+      const t = normalize(token);
+      if (queryNorm.includes(t) || t.includes(queryNorm)) {
+        targets.add(entry.org);
+      }
+    });
+  });
+  return targets;
+}
+
+function hasSimasiaTopicSignals(text) {
+  return getScopeSignalRegex().test(normalize(text || ''));
+}
+
+/** True when query terms overlap website KB (dynamic, not hardcoded per test). */
+export function queryAlignsWithKnowledge(text) {
+  const queryNorm = normalize(text || '');
+  if (!queryNorm || queryNorm.length < 4) return false;
+
+  const lang = detectLanguage(text);
+  const words = extractQueryWords(queryNorm, lang);
+  if (!words.length) return false;
+
+  let bestHits = 0;
+  for (const doc of retrieverState.docs) {
+    const blob = docTextBlob(doc);
+    const hits = words.filter((w) => blob.includes(w)).length;
+    if (hits > bestHits) bestHits = hits;
+    if (hits >= 2) return true;
+    if (words.length <= 3 && hits >= 1 && blob.length > 80) return true;
+  }
+  return false;
+}
+
+function faqDocsForQuery(query) {
+  const qn = normalize(query);
+  const out = [];
+  (retrieverState.faqEntries || []).forEach((entry) => {
+    const triggers = entry.triggers || [];
+    if (triggers.some((t) => qn.includes(normalize(t)))) {
+      out.push({
+        id: entry.id,
+        title: entry.title || 'FAQ',
+        content: entry.content || '',
+        keywords: triggers,
+        url: 'faq://simasia',
+        language: 'el',
+        category: 'faq',
+        source: { type: 'faq' },
+        org: 'simasia',
+        relevanceScore: 2.5,
+        _titleNorm: normalize(entry.title || ''),
+        _contentNorm: normalize(entry.content || ''),
+        _keywordNorms: triggers.map((t) => normalize(t)),
+        _titleGreeklish: toGreeklish(entry.title || ''),
+        _contentGreeklish: toGreeklish(entry.content || ''),
+        _keywordGreeklish: triggers.map((t) => toGreeklish(t)),
+      });
+    }
+  });
+  return out;
+}
+
+function applyRetrievalRelevanceAdjustments(score, doc, queryNorm, topicContextNorm = '') {
+  const targets = detectTargetOrgs(queryNorm);
+  const blob = docTextBlob(doc);
+  const effectiveNorm = `${queryNorm} ${topicContextNorm || ''}`.trim();
+  const simasiaQuery = hasSimasiaTopicSignals(effectiveNorm);
+  const simasiaDoc = getScopeSignalRegex().test(blob);
+  const org = docOrg(doc);
+
+  if (simasiaQuery && simasiaDoc) {
+    score += 0.22;
+  } else if (simasiaQuery && !simasiaDoc) {
+    score *= 0.5;
+  }
+
+  (retrieverState.rules.topicBoosts || []).forEach((boost) => {
+    const qHit = (boost.query || []).some((t) => queryNorm.includes(normalize(t)));
+    const bHit = (boost.blob || []).some((t) => blob.includes(normalize(t)));
+    if (qHit && bHit) score += Number(boost.add || 0.3);
+  });
+
+  if (targets.size) {
+    if (targets.has(org)) score += Number(retrieverState.rules.domainBoost || 0.45);
+    else if (org !== 'simasia' && !targets.has('simasia')) {
+      score *= Number(retrieverState.rules.domainPenalty || 0.15);
+    }
+  }
+
+  if (/επικοινων|contact|email|mail/.test(queryNorm) && /contact@|επικοινων|email|athens/.test(blob)) {
+    score += 0.45;
+  }
+
+  if (
+    /θεσσαλονικ|thessaloniki|πατρα|patras|γραφειο|εδρα|που ειστε|where are you/.test(
+      queryNorm
+    ) &&
+    /αθηνα|athens|contact@/.test(blob)
+  ) {
+    score += 0.55;
+  }
+
+  return score;
+}
+
+async function initRetriever() {
+  if (retrieverState.ready) return;
+  if (retrieverState.loading) {
+    await retrieverState.loading;
+    return;
+  }
+
+  retrieverState.loading = (async () => {
+    const [kbRes, rulesRes, faqRes] = await Promise.all([
+      fetch(KNOWLEDGE_URL, { cache: 'no-store' }),
+      fetch(RULES_URL, { cache: 'no-store' }),
+      fetch(FAQ_URL, { cache: 'no-store' }),
+    ]);
+
+    if (!kbRes.ok) throw new Error('Failed to load knowledge index');
+    const kb = await kbRes.json();
+    if (rulesRes.ok) {
+      retrieverState.rules = await rulesRes.json();
+      scopeSignalRegex = buildScopeSignalRegex(retrieverState.rules);
+    }
+    if (faqRes.ok) {
+      const faqPayload = await faqRes.json();
+      retrieverState.faqEntries = faqPayload.entries || [];
+    }
+
+    retrieverState.docs = (kb.documents || []).map((doc) => {
+      const lang = doc.language || doc.lang || 'en';
+      return {
+        ...doc,
+        language: lang,
+        _titleNorm: normalize(doc.title || ''),
+        _contentNorm: normalize(doc.content || ''),
+        _keywordNorms: (doc.keywords || []).map((k) => normalize(k)),
+        _titleGreeklish: toGreeklish(doc.title || ''),
+        _contentGreeklish: toGreeklish(doc.content || ''),
+        _keywordGreeklish: (doc.keywords || []).map((k) => toGreeklish(k)),
+      };
+    });
+    retrieverState.ready = true;
+    console.log(`✅ Knowledge ready: ${retrieverState.docs.length} website chunks`);
+  })();
+
+  await retrieverState.loading;
+}
+
+export async function retrieveRelevantDocs(query, topN = 6, preferredLanguage = null, topicContext = '') {
+  await initRetriever();
+
+  const rules = retrieverState.rules || {};
+  const retrievePool = Number(rules.retrievePool || 20);
+  const sendToModel = topN || Number(rules.sendToModel || 6);
+  const minScore = Number(rules.minScore || 0.18);
+  const maxChunksPerUrl = Number(rules.maxChunksPerUrl || 2);
   const language = preferredLanguage || detectLanguage(query);
-  const retriever = getRetriever();
-  return retriever.search(query, language, topN, topicContext);
+  const queryNorm = normalize(query);
+  const topicContextNorm = normalize(topicContext || '');
+  const queryGreeklish = toGreeklish(query);
+  const queryWords = extractQueryWords(queryNorm, language);
+  const queryGreeklishWords = extractQueryWords(queryGreeklish, language);
+
+  if (!queryWords.length && !faqDocsForQuery(query).length) return [];
+
+  const normalizeDocUrl = (url) => String(url || '').trim().replace(/\/+$/, '');
+
+  const scored = retrieverState.docs
+    .filter((doc) => doc.language === language)
+    .map((doc) => {
+      const titleNorm = doc._titleNorm || '';
+      const contentNorm = doc._contentNorm || '';
+      const keywordNorms = doc._keywordNorms || [];
+      const titleGreeklish = doc._titleGreeklish || '';
+      const contentGreeklish = doc._contentGreeklish || '';
+      const keywordGreeklish = doc._keywordGreeklish || [];
+
+      let score = 0;
+      if (titleNorm.includes(queryNorm)) score += 1.2;
+      if (language === 'el' && titleGreeklish.includes(queryGreeklish)) score += 1.0;
+
+      queryWords.forEach((w) => {
+        if (titleNorm.includes(w)) score += 0.5;
+        const keywordHits = keywordNorms.reduce(
+          (acc, k) => acc + (k.includes(w) || w.includes(k) ? 1 : 0),
+          0
+        );
+        if (keywordHits) score += Math.min(0.45, keywordHits * 0.15);
+        if (contentNorm.includes(w)) score += 0.08;
+      });
+
+      if (language === 'el') {
+        queryGreeklishWords.forEach((w) => {
+          if (titleGreeklish.includes(w)) score += 0.45;
+          const kwHits = keywordGreeklish.reduce(
+            (acc, k) => acc + (k.includes(w) || w.includes(k) ? 1 : 0),
+            0
+          );
+          if (kwHits) score += Math.min(0.4, kwHits * 0.12);
+          if (contentGreeklish.includes(w)) score += 0.06;
+        });
+      }
+
+      score = applyRetrievalRelevanceAdjustments(score, doc, queryNorm, topicContextNorm);
+      return { ...doc, relevanceScore: score };
+    })
+    .sort((a, b) => b.relevanceScore - a.relevanceScore)
+    .filter((doc) => doc.relevanceScore > minScore);
+
+  const uniqueByPage = [];
+  const urlCounts = new Map();
+  for (const doc of scored) {
+    const pageKey = normalizeDocUrl(doc.url) || doc.id;
+    const n = urlCounts.get(pageKey) || 0;
+    if (n >= maxChunksPerUrl) continue;
+    urlCounts.set(pageKey, n + 1);
+    uniqueByPage.push(doc);
+    if (uniqueByPage.length >= retrievePool) break;
+  }
+
+  const merged = new Map();
+  uniqueByPage.forEach((d) => merged.set(d.id, d));
+  faqDocsForQuery(query).forEach((d) => merged.set(d.id, d));
+
+  return Array.from(merged.values())
+    .sort((a, b) => b.relevanceScore - a.relevanceScore)
+    .slice(0, sendToModel);
 }
 
 export async function retrieveRelevantDocsWithContext(
@@ -209,7 +376,7 @@ export async function retrieveRelevantDocsWithContext(
   const baseHits = await retrieveRelevantDocs(base, Math.max(topN * 2, 6), lang, topicContext);
   const baseTopScore = baseHits.length ? Number(baseHits[0].relevanceScore || 0) : 0;
 
-  if (baseTopScore >= 0.4) {
+  if (baseTopScore >= 0.38) {
     return baseHits.slice(0, topN);
   }
 
@@ -257,6 +424,4 @@ export function buildContext(docs) {
     .join('\n\n---\n\n');
 }
 
-export function getSuggestedQuestions() {
-  return [];
-}
+export { hasSimasiaTopicSignals };
