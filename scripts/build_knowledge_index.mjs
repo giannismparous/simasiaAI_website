@@ -240,7 +240,7 @@ function buildFromTranslations(lang, t) {
       t.footer?.contact,
       "Email: contact@simasiaai.gr",
       t.footer?.location,
-      "LinkedIn: linkedin.com/in/simasiaai",
+      "LinkedIn: linkedin.com/company/simasiaai",
       "Instagram: instagram.com/simasiaai",
       t.contactForm?.subtitle,
       t.contactForm?.privacyNote,
