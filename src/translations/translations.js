@@ -330,7 +330,30 @@ export const translations = {
       location: "Αθήνα, Ελλάδα",
       poweredBy: "Powered by Empathy",
       established: "Est. 2025",
-      copyright: "SimasiaAI — \"AI από την πλευρά του ανθρώπου.\""
+      copyright: "SimasiaAI — \"AI από την πλευρά του ανθρώπου.\"",
+      legal: {
+        title: "Νομικά Στοιχεία Εταιρείας",
+        companyNameLabel: "1. Εταιρική Επωνυμία & Διακριτικός Τίτλος",
+        companyNameValue: "Σημασία-ΑΙ Ι.Κ.Ε. (διεθνώς: Simasia-AI P.C.) — Διακριτικός τίτλος: Σημασία ΑΙ (Simasia AI)",
+        gemiLabel: "2. Αριθμός ΓΕΜΗ",
+        gemiValue: "188174403000",
+        vatLabel: "3. Α.Φ.Μ. & αρμόδια Δ.Ο.Υ.",
+        vatValue: "Α.Φ.Μ. 803048250 — ΔΟΥ: ΚΕΦΟΔΕ Αττικής",
+        legalFormLabel: "4. Νομική Μορφή",
+        legalFormValue: "Ιδιωτική Κεφαλαιουχική Εταιρεία (Ι.Κ.Ε.)",
+        headquartersLabel: "5. Εταιρική Έδρα",
+        headquartersValue: "Ναρκίσσου 26, 15452 Παλαιό Ψυχικό, Δήμος Φιλοθέης-Ψυχικού, Αττική",
+        capitalLabel: "6. Εταιρικό Κεφάλαιο",
+        capitalValue: "100,00 € — ολοσχερώς καταβεβλημένο",
+        sharesLabel: "7. Συνολικός Αριθμός Εταιρικών Μεριδίων",
+        sharesValue: "10.000 μερίδια συνολικά (100 κεφαλαιακών εισφορών + 9.900 εξωκεφαλαιακών εισφορών + 0 εγγυητικών εισφορών)",
+        managerLabel: "8. Διαχειριστής",
+        managerValue: "Στέργιος Χατζηκυριακίδης (μεμονωμένη εκπροσώπηση/δέσμευση)",
+        partnersLabel: "9. Εταίροι & Είδος Εισφοράς",
+        partnersValue: "Στέργιος Χατζηκυριακίδης — 51% (κεφαλαιακές & εξωκεφαλαιακές) · Δημήτριος Παπαδάκης — 32% (κεφαλαιακές & εξωκεφαλαιακές) · Ιωάννης Μπάρους — 13% (κεφαλαιακές & εξωκεφαλαιακές) · Αναστασία Νατσίνα — 4% (κεφαλαιακές & εξωκεφαλαιακές)",
+        liquidationLabel: "10. Υπό εκκαθάριση;",
+        liquidationValue: "Όχι — η εταιρεία δεν τελεί υπό εκκαθάριση."
+      }
     },
     // CTA
     cta: {
@@ -693,7 +716,30 @@ export const translations = {
       location: "Athens, Greece",
       poweredBy: "Powered by Empathy",
       established: "Est. 2025",
-      copyright: "SimasiaAI — \"AI from the human side.\""
+      copyright: "SimasiaAI — \"AI from the human side.\"",
+      legal: {
+        title: "Company Legal Details",
+        companyNameLabel: "1. Company Name & Trade Name",
+        companyNameValue: "Simasia-AI P.C. (Greek legal name: Σημασία-ΑΙ Ι.Κ.Ε.) — Trade name: Simasia AI (Σημασία ΑΙ)",
+        gemiLabel: "2. GEMI Number",
+        gemiValue: "188174403000",
+        vatLabel: "3. VAT Number & Tax Office",
+        vatValue: "VAT: 803048250 — Tax Office: KEFODE Attikis",
+        legalFormLabel: "4. Legal Form",
+        legalFormValue: "Private Company (I.K.E.)",
+        headquartersLabel: "5. Registered Office",
+        headquartersValue: "Narkissou 26, 15452 Paleo Psychiko, Filothei-Psychiko Municipality, Attica, Greece",
+        capitalLabel: "6. Company Capital",
+        capitalValue: "EUR 100.00 — fully paid",
+        sharesLabel: "7. Total Number of Company Shares",
+        sharesValue: "10,000 shares in total (100 capital contributions + 9,900 non-capital contributions + 0 guarantee contributions)",
+        managerLabel: "8. Manager",
+        managerValue: "Stergios Chatzikyriakidis (sole representation/binding authority)",
+        partnersLabel: "9. Partners & Contribution Type",
+        partnersValue: "Stergios Chatzikyriakidis — 51% (capital & non-capital) · Dimitrios Papadakis — 32% (capital & non-capital) · Ioannis Barous — 13% (capital & non-capital) · Anastasia Natsina — 4% (capital & non-capital)",
+        liquidationLabel: "10. Under liquidation?",
+        liquidationValue: "No — the company is not under liquidation."
+      }
     },
     // CTA
     cta: {
