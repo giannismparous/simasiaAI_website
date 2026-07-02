@@ -55,7 +55,9 @@ const Hero = () => {
   useEffect(() => {
     const ua = navigator.userAgent || '';
     const platform = navigator.userAgentData?.platform || navigator.platform || '';
-    const isMac = /Mac|Macintosh|MacIntel/i.test(platform) || /Macintosh|Mac OS X/i.test(ua);
+    const isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Mac/i.test(platform) && navigator.maxTouchPoints > 1);
+    const isMacDesktop = /Mac|Macintosh|MacIntel/i.test(platform) || /Macintosh/i.test(ua);
+    const isMac = isMacDesktop && !isIOS;
     setUseSimpleBrandAnimation(isMac);
   }, []);
 
