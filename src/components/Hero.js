@@ -7,7 +7,7 @@ import './Hero.css';
 const Hero = () => {
   const { t } = useTranslation();
   const [isMouseInHero, setIsMouseInHero] = useState(false);
-  const [useSimpleBrandAnimation, setUseSimpleBrandAnimation] = useState(false);
+  const [useSimpleBrandAnimation] = useState(true);
   const [macTypeDone, setMacTypeDone] = useState(false);
   const heroRef = useRef(null);
   const containerVariants = {
@@ -50,15 +50,6 @@ const Hero = () => {
         heroElement.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, []);
-
-  useEffect(() => {
-    const ua = navigator.userAgent || '';
-    const platform = navigator.userAgentData?.platform || navigator.platform || '';
-    const isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Mac/i.test(platform) && navigator.maxTouchPoints > 1);
-    const isMacDesktop = /Mac|Macintosh|MacIntel/i.test(platform) || /Macintosh/i.test(ua);
-    const isMac = isMacDesktop && !isIOS;
-    setUseSimpleBrandAnimation(isMac);
   }, []);
 
   return (
@@ -293,43 +284,37 @@ const Hero = () => {
                 </div>
               </div>
 
-              {useSimpleBrandAnimation ? (
-                <div className="brandline brandline-mac" aria-hidden="true">
-                  {macTypeDone ? (
-                    <span className="typewriter-text mac-static-brand">
-                      <span className="mac-dark">/Σimas</span>
-                      <span className="mac-accent">i</span>
-                      <span className="mac-primary">aA</span>
-                      <span className="mac-accent">I</span>
-                      <span className="mac-dark">/</span>
-                    </span>
-                  ) : (
-                    <Typewriter
-                      onInit={(typewriter) => {
-                        typewriter
-                          .typeString('/ΣimasiaAI/')
-                          .callFunction(() => {
-                            setMacTypeDone(true);
-                          })
-                          .start();
-                      }}
-                      options={{
-                        autoStart: true,
-                        loop: false,
-                        delay: 85,
-                        cursor: '',
-                        wrapperClassName: 'typewriter-text',
-                        cursorClassName: 'typewriter-cursor'
-                      }}
-                    />
-                  )}
-                  <span className="typewriter-cursor typewriter-cursor-persistent">|</span>
-                </div>
-              ) : (
-                <div className="brandline brandline-rich" aria-hidden="true">
-                  <span className="slash-left">/</span><span className="prefix-s">Σ</span><span className="prefix-i">i</span><span className="prefix-m">m</span><span className="prefix-a">a</span><span className="prefix-s2">s</span><span className="ia-i">i</span><span className="ia-a">a</span><span className="word"><span className="AI-A">A</span><span className="AI-I">I</span></span><span className="slash-right">/</span><span className="cursor">|</span>
-                </div>
-              )}
+              <div className="brandline brandline-mac" aria-hidden="true">
+                {macTypeDone ? (
+                  <span className="typewriter-text mac-static-brand">
+                    <span className="mac-dark">/Σimas</span>
+                    <span className="mac-accent">i</span>
+                    <span className="mac-primary">aA</span>
+                    <span className="mac-accent">I</span>
+                    <span className="mac-dark">/</span>
+                  </span>
+                ) : (
+                  <Typewriter
+                    onInit={(typewriter) => {
+                      typewriter
+                        .typeString('/ΣimasiaAI/')
+                        .callFunction(() => {
+                          setMacTypeDone(true);
+                        })
+                        .start();
+                    }}
+                    options={{
+                      autoStart: true,
+                      loop: false,
+                      delay: 85,
+                      cursor: '',
+                      wrapperClassName: 'typewriter-text',
+                      cursorClassName: 'typewriter-cursor'
+                    }}
+                  />
+                )}
+                <span className="typewriter-cursor typewriter-cursor-persistent">|</span>
+              </div>
             </section>
           </div>
           
