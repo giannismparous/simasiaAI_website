@@ -1,11 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Typewriter from 'typewriter-effect';
 import { useTranslation } from '../hooks/useTranslation';
 import './Hero.css';
 
 const Hero = () => {
   const { t } = useTranslation();
   const [isMouseInHero, setIsMouseInHero] = useState(false);
+  const [useSimpleBrandAnimation, setUseSimpleBrandAnimation] = useState(false);
+  const [macTypeDone, setMacTypeDone] = useState(false);
   const heroRef = useRef(null);
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -47,6 +50,13 @@ const Hero = () => {
         heroElement.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
+  }, []);
+
+  useEffect(() => {
+    const ua = navigator.userAgent || '';
+    const platform = navigator.userAgentData?.platform || navigator.platform || '';
+    const isMac = /Mac|Macintosh|MacIntel/i.test(platform) || /Macintosh|Mac OS X/i.test(ua);
+    setUseSimpleBrandAnimation(isMac);
   }, []);
 
   return (
@@ -269,7 +279,7 @@ const Hero = () => {
           
           {/* Brand Animation in its own centered container */}
           <div className="brand-anim-container">
-            <section className="simasia-brand-anim" aria-label="Σimasia → /ΣimasiaAI/ with tagline">
+            <section className={`simasia-brand-anim ${useSimpleBrandAnimation ? 'brand-anim-simple' : 'brand-anim-rich'}`} aria-label="Σimasia → /ΣimasiaAI/ with tagline">
               <div className="taglines">
                 <div className="line1-wrapper">
                   <p className="line1a">{t('hero.line1a')}</p>
@@ -281,9 +291,43 @@ const Hero = () => {
                 </div>
               </div>
 
-              <div className="brandline" aria-hidden="true">
-                <span className="slash-left">/</span><span className="prefix-s">Σ</span><span className="prefix-i">i</span><span className="prefix-m">m</span><span className="prefix-a">a</span><span className="prefix-s2">s</span><span className="ia-i">i</span><span className="ia-a">a</span><span className="word"><span className="AI-A">A</span><span className="AI-I">I</span></span><span className="slash-right">/</span><span className="cursor">|</span>
-              </div>
+              {useSimpleBrandAnimation ? (
+                <div className="brandline brandline-mac" aria-hidden="true">
+                  {macTypeDone ? (
+                    <span className="typewriter-text mac-static-brand">
+                      <span className="mac-dark">/Σimas</span>
+                      <span className="mac-accent">i</span>
+                      <span className="mac-primary">aA</span>
+                      <span className="mac-accent">I</span>
+                      <span className="mac-dark">/</span>
+                    </span>
+                  ) : (
+                    <Typewriter
+                      onInit={(typewriter) => {
+                        typewriter
+                          .typeString('/ΣimasiaAI/')
+                          .callFunction(() => {
+                            setMacTypeDone(true);
+                          })
+                          .start();
+                      }}
+                      options={{
+                        autoStart: true,
+                        loop: false,
+                        delay: 85,
+                        cursor: '',
+                        wrapperClassName: 'typewriter-text',
+                        cursorClassName: 'typewriter-cursor'
+                      }}
+                    />
+                  )}
+                  <span className="typewriter-cursor typewriter-cursor-persistent">|</span>
+                </div>
+              ) : (
+                <div className="brandline brandline-rich" aria-hidden="true">
+                  <span className="slash-left">/</span><span className="prefix-s">Σ</span><span className="prefix-i">i</span><span className="prefix-m">m</span><span className="prefix-a">a</span><span className="prefix-s2">s</span><span className="ia-i">i</span><span className="ia-a">a</span><span className="word"><span className="AI-A">A</span><span className="AI-I">I</span></span><span className="slash-right">/</span><span className="cursor">|</span>
+                </div>
+              )}
             </section>
           </div>
           
@@ -758,6 +802,46 @@ const Hero = () => {
           overflow: visible;
           padding: 0 1rem;
           box-sizing: border-box;
+          opacity: 0;
+          animation: brandlineFadeIn 0.45s 0.25s ease-out forwards;
+        }
+        .brandline-mac .typewriter-text{
+          color: var(--dark-text);
+          font-family: "Crimson Pro", Georgia, serif;
+          font-weight: 700;
+          letter-spacing: -0.01em;
+        }
+        .brandline-mac .typewriter-cursor{
+          color: var(--secondary-warm);
+          font-weight: 600;
+          animation: blink 1s steps(1, end) infinite;
+        }
+        .brandline-mac .mac-static-brand{
+          display: inline-flex;
+          align-items: baseline;
+          gap: 0;
+        }
+        .brandline-mac .mac-dark{
+          color: var(--dark-text);
+        }
+        .brandline-mac .mac-primary{
+          color: var(--dark-text);
+          animation: macColorToPrimary 0.55s ease-out forwards;
+        }
+        .brandline-mac .mac-accent{
+          color: var(--dark-text);
+          animation: macColorToAccent 0.55s ease-out forwards;
+        }
+        .brandline-mac .typewriter-cursor-persistent{
+          margin-left: 0.08em;
+        }
+        @keyframes macColorToPrimary{
+          from { color: var(--dark-text); }
+          to { color: var(--primary-warm); }
+        }
+        @keyframes macColorToAccent{
+          from { color: var(--dark-text); }
+          to { color: var(--accent-warm); }
         }
         .word{
           position: relative;
@@ -790,80 +874,87 @@ const Hero = () => {
         .prefix-s, .prefix-i, .prefix-m, .prefix-a, .prefix-s2{
           color: var(--dark-text);
           display: inline-block;
-          overflow: hidden;
-          white-space: nowrap;
           border-right: .08em solid transparent;
           margin-right: -0.05em;
           vertical-align: baseline;
-          clip-path: inset(0 100% 0 0);
-          -webkit-clip-path: inset(0 100% 0 0);
           margin-left: 0;
           padding: 0;
           position: relative;
-          transform: translateZ(0);
-          will-change: clip-path;
+          opacity: 1 !important;
+          transform: translateY(0);
+          will-change: auto;
+          animation: none !important;
+          clip-path: none !important;
+          -webkit-clip-path: none !important;
         }
         .prefix-s{
-          animation: typeChar 0.2s 0.2s steps(1,end) forwards;
+          animation: none !important;
         }
         .prefix-i{
-          animation: typeChar 0.2s 0.4s steps(1,end) forwards;
+          animation: none !important;
         }
         .prefix-m{
-          animation: typeChar 0.2s 0.6s steps(1,end) forwards;
-          -webkit-clip-path: inset(0 100% 0 0);
-          clip-path: inset(0 100% 0 0);
+          animation: none !important;
         }
         .prefix-a{
-          animation: typeChar 0.2s 0.8s steps(1,end) forwards;
+          animation: none !important;
         }
         .prefix-s2{
-          animation: typeChar 0.2s 1.0s steps(1,end) forwards;
+          animation: none !important;
         }
         .prefix-typed{
           display: none;
         }
         @keyframes typeChar{
-          from{ 
-            clip-path: inset(0 100% 0 0);
-            -webkit-clip-path: inset(0 100% 0 0);
+          from{
+            opacity: 0;
+            transform: translateY(.06em);
           }
           to{ 
-            clip-path: inset(0 0% 0 0);
-            -webkit-clip-path: inset(0 0% 0 0);
+            opacity: 1;
+            transform: translateY(0);
           }
         }
         .ia-i, .ia-a{
           display: inline-block;
-          overflow: hidden;
-          white-space: nowrap;
           border-right: .08em solid transparent;
           margin-right: -0.05em;
           vertical-align: baseline;
-          clip-path: inset(0 100% 0 0);
           margin-left: 0;
           padding: 0;
+          opacity: 1 !important;
+          transform: translateY(0);
+          animation: none !important;
+          clip-path: none !important;
+          -webkit-clip-path: none !important;
         }
         .ia-i{
           color: var(--accent-warm);
-          animation: typeIaChar 0.25s 1.2s ease-out forwards, iaFadeRed .4s 1.6s ease-out forwards;
+          animation: none !important;
         }
         .ia-a{
           color: var(--primary-warm);
           margin-left: -0.05em;
-          animation: typeIaChar 0.25s 1.4s ease-out forwards, iaFadeGreen .4s 1.8s ease-out forwards;
+          animation: none !important;
         }
         @keyframes typeIaChar{
-          from{ clip-path: inset(0 100% 0 0); }
-          to{ clip-path: inset(0 0% 0 0); }
+          from{
+            opacity: 0;
+            transform: translateY(.06em);
+          }
+          to{
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         .prefix{
           color: var(--dark-text);
         }
         .AI-A, .AI-I{
-          transform: translateX(-0.6em) scale(0);
-          animation: aiPop .6s 1.8s cubic-bezier(.2,.9,.15,1.1) forwards;
+          transform: none;
+          animation: none !important;
           margin-left: 0;
+          opacity: 1 !important;
         }
         .AI-A{
           color: var(--primary-warm);
@@ -897,15 +988,15 @@ const Hero = () => {
           transform: translateY(.2em);
         }
         .slash-left, .slash-right{
-          opacity: 0;
+          opacity: 1;
           color: var(--dark-text);
-          transform: translateY(.2em);
+          transform: none;
         }
         .slash-left{
-          animation: slashIn .35s 0s ease-out forwards;
+          animation: none !important;
         }
         .slash-right{
-          animation: slashIn .35s 1.4s ease-out forwards;
+          animation: none !important;
         }
         @keyframes slashIn{
           to{
@@ -916,9 +1007,97 @@ const Hero = () => {
 
         .cursor{
           color: var(--secondary-warm);
-          opacity: 0;
+          opacity: 1;
           margin-left: .1em;
-          animation: blink 1.0s 2.2s steps(1,end) infinite;
+          animation: blink 1.0s steps(1,end) infinite;
+        }
+
+        /* Rich animation mode for non-Mac/non-Safari devices */
+        .brand-anim-rich .brandline{
+          opacity: 1;
+          animation: none;
+        }
+        .brand-anim-rich .prefix-s, .brand-anim-rich .prefix-i, .brand-anim-rich .prefix-m, .brand-anim-rich .prefix-a, .brand-anim-rich .prefix-s2{
+          opacity: 0 !important;
+          transform: none;
+          animation: none;
+          clip-path: inset(0 100% 0 0) !important;
+          -webkit-clip-path: inset(0 100% 0 0) !important;
+          will-change: clip-path;
+        }
+        .brand-anim-rich .prefix-s{ animation: typeChar 0.2s 0.2s steps(1,end) forwards !important; }
+        .brand-anim-rich .prefix-i{ animation: typeChar 0.2s 0.4s steps(1,end) forwards !important; }
+        .brand-anim-rich .prefix-m{ animation: typeChar 0.2s 0.6s steps(1,end) forwards !important; }
+        .brand-anim-rich .prefix-a{ animation: typeChar 0.2s 0.8s steps(1,end) forwards !important; }
+        .brand-anim-rich .prefix-s2{ animation: typeChar 0.2s 1.0s steps(1,end) forwards !important; }
+        .brand-anim-rich .ia-i, .brand-anim-rich .ia-a{
+          opacity: 0 !important;
+          transform: none;
+          animation: none;
+          clip-path: inset(0 100% 0 0) !important;
+          -webkit-clip-path: inset(0 100% 0 0) !important;
+        }
+        .brand-anim-rich .ia-i{
+          animation: typeIaChar 0.25s 1.2s ease-out forwards, iaFadeRed .4s 1.6s ease-out forwards !important;
+        }
+        .brand-anim-rich .ia-a{
+          animation: typeIaChar 0.25s 1.4s ease-out forwards, iaFadeGreen .4s 1.8s ease-out forwards !important;
+        }
+        .brand-anim-rich .AI-A, .brand-anim-rich .AI-I{
+          opacity: 1 !important;
+          transform: translateX(-0.6em) scale(0);
+          animation: aiPop .6s 1.8s cubic-bezier(.2,.9,.15,1.1) forwards !important;
+        }
+        .brand-anim-rich .slash-left, .brand-anim-rich .slash-right{
+          opacity: 0;
+          transform: translateY(.2em);
+        }
+        .brand-anim-rich .slash-left{ animation: slashIn .35s 0s ease-out forwards !important; }
+        .brand-anim-rich .slash-right{ animation: slashIn .35s 1.4s ease-out forwards !important; }
+        .brand-anim-rich .cursor{
+          opacity: 0;
+          animation: blink 1.0s 2.2s steps(1,end) infinite !important;
+        }
+
+        /* Simple/typewriter-safe mode for Mac/Safari devices */
+        .brand-anim-simple .brandline{
+          opacity: 1;
+          animation: brandlineFadeIn 0.35s 0.1s ease-out forwards;
+        }
+        .brand-anim-simple .prefix-s, .brand-anim-simple .prefix-i, .brand-anim-simple .prefix-m, .brand-anim-simple .prefix-a, .brand-anim-simple .prefix-s2,
+        .brand-anim-simple .ia-i, .brand-anim-simple .ia-a, .brand-anim-simple .AI-A, .brand-anim-simple .AI-I{
+          opacity: 0 !important;
+          transform: translateY(.04em);
+          animation: simpleCharIn 0.18s ease-out forwards !important;
+          clip-path: none !important;
+          -webkit-clip-path: none !important;
+        }
+        .brand-anim-simple .prefix-s{ animation-delay: 0.18s !important; }
+        .brand-anim-simple .prefix-i{ animation-delay: 0.34s !important; }
+        .brand-anim-simple .prefix-m{ animation-delay: 0.50s !important; }
+        .brand-anim-simple .prefix-a{ animation-delay: 0.66s !important; }
+        .brand-anim-simple .prefix-s2{ animation-delay: 0.82s !important; }
+        .brand-anim-simple .ia-i{ animation-delay: 0.98s !important; }
+        .brand-anim-simple .ia-a{ animation-delay: 1.12s !important; }
+        .brand-anim-simple .AI-A{ animation-delay: 1.28s !important; }
+        .brand-anim-simple .AI-I{ animation-delay: 1.44s !important; }
+        .brand-anim-simple .slash-left, .brand-anim-simple .slash-right{
+          opacity: 1;
+          transform: none;
+          animation: none !important;
+        }
+        .brand-anim-simple .cursor{
+          opacity: 0;
+          animation: blink 0.95s 1.6s steps(1,end) infinite !important;
+        }
+        @keyframes simpleCharIn{
+          from { opacity: 0; transform: translateY(.04em); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes brandlineFadeIn{
+          from { opacity: 0; transform: translateY(.08em); }
+          to { opacity: 1; transform: translateY(0); }
         }
         @keyframes blink{
           0%, 49%{ opacity: 1 }
@@ -926,10 +1105,18 @@ const Hero = () => {
         }
 
         @media (prefers-reduced-motion: reduce){
-          .line1,.line2,.ia,.AI,.slash,.cursor{
+          .prefix-s, .prefix-i, .prefix-m, .prefix-a, .prefix-s2,
+          .ia-i, .ia-a, .AI-A, .AI-I,
+          .slash-left, .slash-right, .cursor,
+          .line1a, .line1b, .line2{
             animation: none !important;
             opacity: 1;
             transform: none;
+            clip-path: none !important;
+            -webkit-clip-path: none !important;
+          }
+          .ia-i, .ia-a{
+            color: var(--dark-text) !important;
           }
         }
 
@@ -984,26 +1171,26 @@ const Hero = () => {
             font-size: 2rem;
           }
           /* Mobile fix: ensure characters are visible */
-          .prefix-s, .prefix-i, .prefix-m, .prefix-a, .prefix-s2{
+          .brand-anim-simple .prefix-s, .brand-anim-simple .prefix-i, .brand-anim-simple .prefix-m, .brand-anim-simple .prefix-a, .brand-anim-simple .prefix-s2{
             clip-path: none !important;
             -webkit-clip-path: none !important;
             width: auto !important;
             opacity: 0;
             animation: typeCharMobile 0.2s ease-out forwards;
           }
-          .prefix-s{
+          .brand-anim-simple .prefix-s{
             animation-delay: 0.2s;
           }
-          .prefix-i{
+          .brand-anim-simple .prefix-i{
             animation-delay: 0.4s;
           }
-          .prefix-m{
+          .brand-anim-simple .prefix-m{
             animation-delay: 0.6s;
           }
-          .prefix-a{
+          .brand-anim-simple .prefix-a{
             animation-delay: 0.8s;
           }
-          .prefix-s2{
+          .brand-anim-simple .prefix-s2{
             animation-delay: 1.0s;
           }
           @keyframes typeCharMobile{
