@@ -31,6 +31,9 @@ const CTA = () => {
             <SmoothReveal delay={0.1} yOffset={10}>
               <h2>{t('cta.title')}</h2>
             </SmoothReveal>
+            <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.05rem', maxWidth: '540px', margin: '0 auto 1.5rem', lineHeight: 1.7 }}>
+              {t('cta.subtitle')}
+            </p>
             <motion.div 
               className="cta-buttons"
               initial={{ opacity: 0, y: 20 }}

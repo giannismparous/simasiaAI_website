@@ -41,8 +41,7 @@ const Navbar = () => {
   const navLinks = [
     { path: "/", text: t('nav.home') },
     { path: "/about", text: t('nav.about') },
-    { path: "/target-audience", text: t('nav.targetAudience') },
-    { path: "/applications", text: t('nav.products') },
+    { path: "/applications/simasia-chatbots", text: t('nav.chatbots') },
     { path: "/collaborations", text: t('nav.collaborations') },
     { path: "/book-demo", text: t('nav.bookDemo'), isButton: true }
   ];

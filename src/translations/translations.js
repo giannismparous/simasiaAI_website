@@ -14,57 +14,210 @@ export const translations = {
     nav: {
       home: "Αρχική",
       about: "Σχετικά με εμάς",
-      targetAudience: "Ποιους αφορά",
-      products: "Εφαρμογές",
+      chatbots: "SimasiaChatbots",
       collaborations: "Συνεργασίες",
       bookDemo: "Ας συνεργαστούμε"
     },
     hero: {
-      line1a: "Το AI έχει σημασία όταν το δούμε",
-      line1b: "από την ανθρώπινη πλευρά.",
-      line2: "Ανθρωποκεντρικές εφαρμογές Τεχνητής Νοημοσύνης για οργανισμούς, φορείς και επιχειρήσεις.",
-      talkToTeam: "Μιλήστε με την ομάδα μας",
-      seeApplications: "Δείτε εφαρμογές"
+      badge: "★ Live deployment · Κέντρο Καθοδήγησης Καρκινοπαθών Κάπα3",
+      line1a: "AI που αποδεικνύει",
+      line1b: "ότι είναι σωστό.",
+      line2: "Ελληνόφωνα AI chatbots για υγεία, νομικά, δημόσιο τομέα, τουρισμό και επιχειρήσεις. Κάθε απάντηση συνοδεύεται από την πηγή της.",
+      talkToTeam: "Δείτε live demo",
+      seeApplications: "Πώς δουλεύει"
     },
     // Applications Page
     applications: {
-      title: "Εφαρμογές",
-      subtitle: "Διαθέσιμες για άμεση χρήση",
+      title: "SimasiaChatbots",
+      subtitle: "Ψηφιακοί Πλοηγοί με Τεχνητή Νοημοσύνη",
       requestProposal: "Ζητήστε πρόταση συνεργασίας"
     },
     // Book Demo Page
     bookDemo: {
       title: "Κλείστε ένα demo",
-      description: "Ας δημιουργήσουμε μαζί λύσεις με σημασία για τον άνθρωπο. Συμπληρώστε τη φόρμα και θα επικοινωνήσουμε μαζί σας άμεσα."
+      description: "Φέρτε 3 πραγματικές ερωτήσεις από τους χρήστες σας. 30 λεπτά demo call — θα τις απαντήσει live το chatbot μας με cited sources. Αν σας πείσει, ξεκινάμε pilot στο δικό σας domain σε 4 εβδομάδες."
     },
-    // What We Offer
+    // What We Offer — now SimasiaChatbots focused
     whatWeOffer: {
-      title: "Τι προσφέρουμε",
-      seeAll: "Δείτε τις διαθέσιμες εφαρμογές μας",
+      title: "SimasiaChatbots",
+      subtitle: "Ψηφιακοί Πλοηγοί — Δεν λέμε «πιθανόν είναι σωστό». Εγγυόμαστε μέσω κώδικα.",
+      seeAll: "Δείτε αναλυτικά τα SimasiaChatbots",
       cards: [
-        { name: "SimasiaChatbots", desc: "Ασφαλή, προσαρμοσμένα chatbots για ενημέρωση και εξυπηρέτηση.", link: "/applications/simasia-chatbots" },
-        { name: "SimasiaEdu", desc: "Εφαρμογές για εκπαιδευτικούς και μαθητές: ύλη, ασκήσεις, αξιολόγηση.", link: "/applications/simasia-edu" },
-        { name: "SimasiaStudio", desc: "Τεκμηριωμένη μετάφραση/επιμέλεια με συνέπεια και έλεγχο.", link: "/applications/simasia-studio" },
-        { name: "SimasiaDaily", desc: "Μικρά εργαλεία αυτοματοποίησης που εξοικονομούν χρόνο.", link: "/applications/simasia-daily" }
+        { name: "SimasiaChatbots", desc: "Ψηφιακοί πλοηγοί με νομική θωράκιση, φυσική ελληνική γλώσσα και αποδεικτικά σε κάθε απάντηση.", link: "/applications/simasia-chatbots" }
       ]
     },
-    // Who It's For (Homepage)
+    // Chatbot Showcase — 3 core promises
+    chatbotShowcase: {
+      title: "Τρεις υποσχέσεις. Καμία πιθανότητα.",
+      subtitle: "Δεν λέμε «πιθανόν είναι σωστό» — εγγυόμαστε μέσω κώδικα.",
+      promises: [
+        {
+          icon: "📄",
+          title: "Αποδείξιμα σωστό",
+          description: "Κάθε πρόταση που γράφει έχει αριθμό αναφοράς που οδηγεί στο ακριβές PDF ή ιστοσελίδα. Ο χρήστης κάνει click και ανοίγει το έγγραφο. Δεν μπορεί να επινοήσει πηγή — ο κώδικας το εμποδίζει.",
+          example: "«Δικαιούστε επίδομα 67% [ΦΕΚ 932/Β 2023]» → ο χρήστης κάνει click στο [ΦΕΚ 932/Β] → ανοίγει το ίδιο το ΦΕΚ."
+        },
+        {
+          icon: "🇬🇷",
+          title: "Καταλαβαίνει ελληνικά. Αληθινά.",
+          description: "Δεν είναι μεταφρασμένο ChatGPT. Είναι χτισμένο γύρω από το ελληνικό νομικό και ιατρικό πλαίσιο. Αναγνωρίζει ΚΕΠΑ, ΕΟΠΥΥ, ΑΑΔΕ, ΦΕΚ. Σαρώνει αυτόματα ελληνικά κρατικά portal για ενημερώσεις.",
+          example: "Ρωτήστε «Τι είναι το ΚΕΑ;» → ξέρει ότι εννοείτε Κοινωνικό Εισόδημα Αλληλεγγύης (όχι την Κάρτα Ελευθερίας Άδειας)."
+        },
+        {
+          icon: "🛡️",
+          title: "Ποτέ δεν επικίνδυνο",
+          description: "Αν κάποιος γράψει «πονάει το στήθος μου» ή εκφράσει αυτοκτονικότητα, το σύστημα δίνει ΑΜΕΣΑ τα τηλέφωνα έκτακτης ανάγκης (ΕΚΑΒ 166, Γραμμή Ζωής 1018). Χωρίς να ρωτήσει το AI πρώτα. Είναι γραμμή κώδικα, όχι «ελπίζουμε ότι θα κάνει το σωστό».",
+          example: "Εγγυημένη συμπεριφορά σε 7 κατηγορίες κρίσης. Audit-able από οποιονδήποτε compliance officer."
+        }
+      ],
+      featurePills: [
+        "EU AI Act ✓",
+        "WCAG ✓",
+        "Πολυγλωσσία ✓",
+        "GDPR ✓",
+        "Ελληνικές Διάλεκτοι ✓",
+        "Eco-Friendly ✓",
+        "Νομική Θωράκιση ✓",
+        "RAG Citations ✓"
+      ],
+      chatDemo: {
+        userMessage: "Τι δικαιώματα έχω ως ασθενής με σκλήρυνση κατά πλάκας;",
+        botReply: "Σύμφωνα με τον Ν.4387/2016 και τις εγκυκλίους ΕΦΚΑ, δικαιούστε:\n\n• Αναπηρική σύνταξη μέσω ΚΕΠΑ [ΦΕΚ 1256/Β/2017]\n• Κάλυψη φαρμακευτικής αγωγής από ΕΟΠΥΥ [Εγκύκλιος 2024/32]\n• Επίδομα βαρύτητας αναπηρίας [ΟΠΕΚΑ – Άρθρο 22]\n\nΘέλετε να σας καθοδηγήσω στη διαδικασία αίτησης;",
+        sources: "3 πηγές · 4.2s"
+      }
+    },
+    // Proof Numbers
+    proofNumbers: {
+      title: "Από το πραγματικό deployment μας",
+      subtitle: "MYRTO chatbot στο Κέντρο Καθοδήγησης Καρκινοπαθών Κάπα3. Αξιολογήθηκαν 84 πραγματικές ερωτήσεις ασθενών από πιστοποιημένο reviewer.",
+      stats: [
+        { number: "75", suffix: "%", label: "Verified-correct απαντήσεις (από 49% στο πρώτο iteration)" },
+        { number: "0", suffix: "", label: "Αποτυχίες σύνδεσης σε 84-query batch" },
+        { number: "1.766", suffix: "", label: "Indexed έγγραφα + σελίδες με αυτόματη ανανέωση" },
+        { number: "6", suffix: "s", label: "Μέσος χρόνος απόκρισης" }
+      ]
+    },
+    // Use Cases
+    useCases: {
+      title: "Για ποιους είναι",
+      subtitle: "Παντού όπου η σωστή απάντηση έχει συνέπεια — και η λάθος έχει κόστος.",
+      notYourDomain: "Δεν βλέπετε το δικό σας domain; Αν έχετε έγγραφα που οι χρήστες σας πρέπει να διαβάζουν, μπορούμε να χτίσουμε.",
+      categories: [
+        {
+          icon: "🏥",
+          name: "Υγεία",
+          items: [
+            { name: "ΜΚΟ υγείας", detail: "π.χ. Κάπα3, ΕΛΛΟΚ, ΑγκαΛιάζω, Φλόγα", desc: "Καθοδήγηση ασθενών: επιδόματα, ΚΕΠΑ, παροχές, διαδικασίες", status: "Live deployment" },
+            { name: "Νοσοκομεία", detail: "δημόσια / ιδιωτικά", desc: "Εσωτερική υποστήριξη: ΕΟΠΥΥ updates, ΦΕΚ alerts, αποζημιώσεις", status: "Available" },
+            { name: "Διαγνωστικά κέντρα", detail: "", desc: "Patient-facing: ραντεβού, οδηγίες, ασφαλιστική κάλυψη", status: "Available" },
+            { name: "Φαρμακευτικές", detail: "", desc: "Branded patient companion · κανονιστική επικοινωνία · παρενέργειες", status: "Available" },
+            { name: "Φαρμακεία (αλυσίδες)", detail: "", desc: "Αλληλεπιδράσεις φαρμάκων, οδηγίες χρήσης, ΕΟΠΥΥ συμμετοχή", status: "Available" },
+            { name: "Ασφαλιστικές υγείας", detail: "", desc: "Επεξήγηση συμβολαίων, διαδικασίες αποζημίωσης, κάλυψη", status: "Available" }
+          ]
+        },
+        {
+          icon: "✈️",
+          name: "Τουρισμός & Φιλοξενία",
+          items: [
+            { name: "Αεροδρόμια", detail: "MyrtoFly · Digital Gate V pilot", desc: "Cancer-aware airport companion · PRM assistance · multilingual", status: "Active pilot" },
+            { name: "Ξενοδοχεία / Resorts", detail: "", desc: "Concierge AI 24/7 · 5+ γλώσσες · cross-sell υπηρεσιών", status: "Available" },
+            { name: "Tour operators / agencies", detail: "", desc: "Pre-trip Q&A · destination info · visa · travel updates", status: "Available" },
+            { name: "Medical tourism", detail: "", desc: "Inbound patient navigation: νοσοκομεία, ΕΟΠΥΥ S2, διασυνοριακή περίθαλψη", status: "Available" },
+            { name: "Cruise lines / ναυτιλία", detail: "", desc: "Εκδρομές, υπηρεσίες onboard, customs, ΑμεΑ accessibility", status: "Available" },
+            { name: "Προορισμοί / Περιφέρειες", detail: "", desc: "Visit-X bot: αξιοθέατα, εκδηλώσεις, μεταφορές — branded ανά περιοχή", status: "Available" }
+          ]
+        },
+        {
+          icon: "🏢",
+          name: "Επιχειρήσεις",
+          items: [
+            { name: "HR / Onboarding", detail: "", desc: "Εταιρικές πολιτικές, παροχές, διαδικασίες αδειών, ΕΦΚΑ", status: "Available" },
+            { name: "Customer support", detail: "", desc: "Multi-language tier-1 support: products, returns, warranty — citation-backed", status: "Available" },
+            { name: "Internal knowledge base", detail: "", desc: "Q&A πάνω σε χιλιάδες εσωτερικά έγγραφα", status: "Available" },
+            { name: "B2B sales support", detail: "", desc: "Product specs, pricing rules, contract terms — σε δευτερόλεπτα", status: "Available" },
+            { name: "Λογιστικά γραφεία", detail: "", desc: "Φορολογικός σύμβουλος: μεταβολές, ΦΠΑ, ΑΑΔΕ/myCAR", status: "Available" }
+          ]
+        },
+        {
+          icon: "🏛️",
+          name: "Δημόσιος Τομέας",
+          items: [
+            { name: "Κεντρικές υπηρεσίες", detail: "ΕΦΚΑ, ΟΠΕΚΑ, ΑΑΔΕ, ΔΥΠΑ", desc: "Citizen-facing assistant: μείωση φόρτου call-center 30-50%", status: "Tender" },
+            { name: "Δήμοι / Περιφέρειες", detail: "", desc: "Δημοτικά τέλη, ΚΕΑ, ΕΕΕ, ΑμεΑ παροχές, εκδηλώσεις", status: "Available" },
+            { name: "Εκπαίδευση", detail: "πανεπιστήμια, ΙΕΚ", desc: "Student services: γραμματεία FAQ, υποτροφίες, εγγραφές", status: "Available" },
+            { name: "Κλειστά επαγγέλματα", detail: "Δικηγορικός / Ιατρικός / ΤΕΕ Σύλλογος", desc: "Ασφαλιστικά, εφημερίες, δεοντολογία, εγκύκλιοι", status: "Available" }
+          ]
+        },
+        {
+          icon: "💼",
+          name: "Χρηματοοικονομικά",
+          items: [
+            { name: "Τράπεζες / fintech", detail: "", desc: "Λογαριασμοί, κάρτες, δάνεια, KYC — citation-backed", status: "Available" },
+            { name: "Ασφαλιστικές (γενικές)", detail: "", desc: "Παροχές, αποζημιώσεις, ζημιές, αναγγελίες", status: "Available" },
+            { name: "Real estate / property mgmt", detail: "", desc: "Συμβόλαια, ΕΝΦΙΑ, μισθώσεις, E9", status: "Available" },
+            { name: "Επενδυτικές πλατφόρμες", detail: "", desc: "Investor Q&A: prospectus, φορολογία — όλα cited", status: "Available" }
+          ]
+        },
+        {
+          icon: "🌐",
+          name: "Λοιπές",
+          items: [
+            { name: "Energy / utilities", detail: "ΔΕΗ, ΕΥΔΑΠ, gas providers", desc: "Λογαριασμοί, τιμολόγηση, κοινωνικά τιμολόγια", status: "Available" },
+            { name: "Telecom / ISPs", detail: "", desc: "Πακέτα, χρεώσεις, τεχνικά, φορητότητα", status: "Available" },
+            { name: "Retail / e-commerce", detail: "", desc: "Pre-sale Q&A · Post-sale: επιστροφές, εγγυήσεις", status: "Available" },
+            { name: "Εκκλησιαστικοί φορείς", detail: "μητροπόλεις, ΜΚΟ", desc: "Εκδηλώσεις, μυστήρια, φιλανθρωπικά", status: "Available" },
+            { name: "Συνδικαλιστικοί φορείς", detail: "", desc: "Εργατικά δικαιώματα, ασφαλιστικά, νομική υποστήριξη", status: "Available" },
+            { name: "Ομογένεια / Greeks abroad", detail: "", desc: "Συντάξεις εξωτερικού, διπλή υπηκοότητα, προξενεία", status: "Available" }
+          ]
+        }
+      ]
+    },
+    // Green AI
+    greenAI: {
+      title: "Green & Reliable AI",
+      subtitle: "Το πιο πράσινο token είναι αυτό που δεν παράγεις ποτέ. Φτιάχνουμε bots φθηνά να τρέχουν και φθηνά σε ενέργεια — χωρίς να θυσιάζουμε ποιότητα frontier μοντέλου.",
+      ladderTitle: "Η αρχή: escalation ladder",
+      ladderSubtitle: "Κάθε query σερβίρεται στο φθηνότερο επίπεδο που μπορεί να το απαντήσει σωστά. Ανεβαίνει στο επόμενο μόνο όταν το προηγούμενο δηλώσει αβεβαιότητα.",
+      steps: [
+        { level: "1", title: "Cache", description: "Έχει ήδη απαντηθεί παρόμοια ερώτηση; Επιστροφή. Ένα φθηνό embedding, μηδέν generation.", color: "green" },
+        { level: "2", title: "Symbolic", description: "Factual/relational query; Classifier δρομολογεί σε DB ή knowledge graph. Καμία hallucination, ακριβές αποτέλεσμα.", color: "green" },
+        { level: "3", title: "Small model", description: "In-domain, routine NL; Quantized, domain-tuned μικρό μοντέλο. Συχνά καλύτερο από γενικό giant μοντέλο, στο 1/10 της ενέργειας.", color: "gold" },
+        { level: "4", title: "Frontier", description: "Πραγματικά novel ή reasoning-heavy; Καλούμε το καλύτερο διαθέσιμο μοντέλο. Δεν το σπαταλάμε σε «τι ώρα κλείνετε».", color: "coral" }
+      ],
+      disclaimer: "Δεν είναι quality compromise. Symbolic lookups δίνουν ακριβείς απαντήσεις αντί για πιθανοφανείς εικασίες. Templated responses δεν drift-άρουν. Και κρατάμε το frontier για queries που πραγματικά το χρειάζονται.",
+      cards: [
+        { title: "Μετράμε, δεν ισχυριζόμαστε", desc: "Self-hosted: πραγματική ενέργεια από GPU + CPU, live grid carbon intensity. Energy & CO₂ per query, attributed across pipeline." },
+        { title: "Headline metric", desc: "Ποιο ποσοστό του traffic εξυπηρετήθηκε σε ποιο tier. Όσο πιο χαμηλά στη σκάλα, τόσο μεγαλύτερη η οικονομία." },
+        { title: "Economic retrieval", desc: "Cache-augmented generation για μικρά stable corpora. KV-caching static prompt prefixes. Top-2 retrieval. Λιγότερα tokens, ίδιες απαντήσεις." }
+      ]
+    },
+    // Compliance
+    compliance: {
+      title: "Compliance & ασφάλεια",
+      subtitle: "Χτισμένα από την αρχή για ρυθμιζόμενους τομείς. Auditable, transparent, ασφαλή by design.",
+      cards: [
+        { title: "GDPR-aware", desc: "Anonymized sessions, μηδέν PII storage by default. Data deletion flow ενσωματωμένο. Data Processor Agreement template διαθέσιμο." },
+        { title: "EU AI Act ready", desc: "Δομημένο για high-risk classification: documented data flow, human oversight hooks, audit logs. Συνεργαζόμαστε με νομικούς συμβούλους για DPIA / FRIA." },
+        { title: "Auditable safety", desc: "Κάθε safety απόφαση είναι γραμμή κώδικα ή κανόνας σε YAML — όχι μαύρο κουτί. Compliance officer το διαβάζει και το επικυρώνει." }
+      ]
+    },
+    // Who It's For (Homepage) — now chatbot focused
     whoItsFor: {
       title: "Ποιους αφορά",
       items: [
-        "Φορείς & οργανισμοί με κοινωνικό ρόλο",
-        "Εκπαίδευση (φροντιστήρια, σχολεία, ΙΕΚ, πανεπιστήμια)",
-        "Εκδοτικοί οίκοι & μεταφραστικά κέντρα",
-        "Επιχειρήσεις με μεγάλη απεύθυνση & ανάγκες εξατομίκευσης"
+        "Φορείς & οργανισμοί υγείας",
+        "Δημόσιος τομέας & αυτοδιοίκηση",
+        "Τουρισμός & φιλοξενία",
+        "Επιχειρήσεις με μεγάλη απεύθυνση"
       ]
     },
     // How We Work
     howWeWork: {
       title: "Πώς δουλεύουμε",
       steps: [
-        "Επιλέγουμε από κοινού την εφαρμογή που σας ταιριάζει.",
-        "Την προσαρμόζουμε στα δεδομένα και στις ροές σας.",
-        "Την παραδίδουμε και τη βελτιώνουμε μαζί στην πράξη."
+        "Χαρτογραφούμε τις ανάγκες σας, το περιεχόμενο και τις ροές πληροφορίας.",
+        "Δοκιμάζουμε λύσεις σε πραγματικά σενάρια με μετρήσεις και ανατροφοδότηση.",
+        "Παραδίδουμε pilot στο δικό σας domain σε 4 εβδομάδες."
       ]
     },
     // Obstacles
@@ -92,7 +245,7 @@ export const translations = {
     // Mission
     mission: {
       title: "Η αποστολή μας",
-      text: "Να δημιουργούμε τεχνολογικές λύσεις με επίκεντρο τον άνθρωπο. Εργαζόμαστε, ώστε κάθε μας λύση να λειτουργεί ως γέφυρα κατανόησης. Απλή στη χρήση, αξιόπιστη στην πράξη, ουσιαστική για το κοινωνικό σύνολο."
+      text: "Να δημιουργούμε ανθρωποκεντρικές εφαρμογές τεχνητής νοημοσύνης — εφαρμογές με επίκεντρο τον άνθρωπο και την κοινωνία, που λύνουν προβλήματα στο μέτρο που εξυπηρετούν τις πραγματικές ανθρώπινες ανάγκες. Διαμεσολαβούμε μεταξύ των ανθρωπίνων αναγκών και της τεχνητής νοημοσύνης, μαζί με τους ειδικούς πεδίου, φέρνοντας την ΤΝ στα μέτρα κάθε φορέα."
     },
     // Values
     values: {
@@ -146,104 +299,52 @@ export const translations = {
       title: "Ποιοι είμαστε",
       text: "Είμαστε μια ελληνική startup με διεπιστημονική ομάδα ερευνητών και ερευνητριών, προγραμματιστών και επαγγελματιών στους τομείς της Τεχνητής Νοημοσύνης, της Γλωσσολογίας και της Ανάπτυξης Λογισμικού. Η εμπειρία μας στην έρευνα, στην ανάπτυξη εφαρμογών και στις πωλήσεις μάς βοηθά να κατανοούμε σε βάθος τις ανάγκες των ανθρώπων και να δημιουργούμε εξατομικευμένα και αξιόπιστα συστήματα Τεχνητής Νοημοσύνης."
     },
-    // Products
+    // Products — kept for SimasiaChatbots product page
     products: {
-      title: "Υπηρεσίες",
+      title: "SimasiaChatbots",
       chatbots: {
         name: "SimasiaChatbots",
-        title: "Ασφαλή chatbots, σχεδιασμένα από ανθρώπους, για ανθρώπους",
+        title: "Ψηφιακοί Πλοηγοί — AI που αποδεικνύει ότι είναι σωστό",
         offers: "Τι προσφέρουμε",
-
         features: [
-          "Προσβασιμότητα από σχεδιασμό: εναλλακτικοί τρόποι εισόδου/εξόδου (κείμενο/ήχος), WCAG-oriented επιλογές.",
-          "Πολυγλωσσία: υποστήριξη πολλών ευρωπαϊκών και παγκόσμιων γλωσσών (ενδεικτικά: κινεζικά—μανδαρινικά/καντονέζικα, ιαπωνικά, κορεατικά, αραβικά, χίντι, μπενγκάλι κ.ά.) και τοπικές ελληνικές ποικιλίες (π.χ. κυπριακά, ποντιακά) όπου είναι εφικτό ή κατόπιν στοχευμένης εκπαίδευσης.",
-          "Μείωση προκαταλήψεων: ροές αξιολόγησης και πολιτικές ισότητας/συμπερίληψης ενσωματωμένες στον σχεδιασμό.",
-          "Εκπαίδευση σε δικό σας περιεχόμενο: τεκμηριωμένες πηγές, εγχειρίδια, οδηγίες για ειδικές καταστάσεις.",
-          "Συνέπεια & ασφάλεια: απαντήσεις βασισμένες σε εγκεκριμένο περιεχόμενο με ελεγχόμενα αποδεικτικά.",
-          "Κλιμάκωση και ειδοποιήσεις: δυνατότητα αποστολής ειδοποίησης (τηλεφωνικής/γραπτής) σε οριζόμενα πρόσωπα/υπηρεσίες όταν ανιχνεύονται ροές που το απαιτούν, μόνο κατόπιν ρητής συμφωνίας και πολιτικής κλιμάκωσης."
+          "Νομική θωράκιση σύμφωνα με το EU AI Act, χωρίς μαύρα κουτιά.",
+          "Προσβασιμότητα από σχεδιασμό: WCAG-oriented, εναλλακτικοί τρόποι εισόδου/εξόδου.",
+          "Φυσικότητα στη χρήση της ελληνικής γλώσσας — και σε ελληνικές διαλέκτους (κυπριακά, ποντιακά).",
+          "Πολυγλωσσία: 20+ ευρωπαϊκές και παγκόσμιες γλώσσες.",
+          "Δικλείδες ασφαλείας για καταστάσεις κινδύνου — ΕΚΑΒ 166, Γραμμή Ζωής 1018 αυτόματα.",
+          "Μείωση παραισθήσεων μέσω RAG με citations σε κάθε απάντηση.",
+          "Eco-friendly: escalation ladder που εξοικονομεί ενέργεια χωρίς θυσία ποιότητας.",
+          "Ακριβείς πληροφορίες πάνω στο περιεχόμενο που εκπαιδεύονται — τεκμηριωμένες πηγές.",
+          "Προσαρμογή στο ύφος και τις ειδικές οδηγίες κάθε φορέα.",
+          "Λειτουργούν ως ψηφιακοί πλοηγοί — δεν απλά απαντούν, καθοδηγούν."
         ]
       },
       studio: {
         name: "SimasiaStudio",
         title: "Τεκμηριωμένη μετάφραση, επιμέλεια με ευθύνη",
         offers: "Τι προσφέρουμε",
-
         features: [
           "Ανέβασμα και επιλογή οδηγών ύφους στη μετάφραση και στην επιμέλεια κειμένου.",
           "Πρόσβαση σε έγκριτη ορολογία/γλωσσάρια.",
-          "Επιμέλεια ελληνικών κειμένων με το Λεξικό Τριανταφυλλίδη (υποστήριξη/ενσωμάτωση εναλλακτικών λεξικών- επέκταση σε επιπλέον γλώσσα κατ' επιλογή).",
+          "Επιμέλεια ελληνικών κειμένων με το Λεξικό Τριανταφυλλίδη.",
           "Αναλυτικές προτάσεις διόρθωσης και εξαγωγή αρχείων \"Παρακολούθησης αλλαγών\" (DOCX/PDF).",
-          "Εξειδικευμένη μετάφραση/επιμέλεια ανά πεδίο, με σαφή μεταφραστική κατεύθυνση και τεκμηριωμένη ορολογία (ιατρική, νομική, ακαδημαϊκή γραφή, λογοτεχνικό ύφος), με προσαρμογή ύφους και ορολογίας κατ' επιλογή.",
+          "Εξειδικευμένη μετάφραση/επιμέλεια ανά πεδίο.",
           "Μαζική επεξεργασία και συνδέσεις (Google Drive/Dropbox/S3).",
           "Ρυθμιζόμενη ευαισθησία σε προκαταλήψεις γένους, κοινωνικών ομάδων, στερεοτύπων.",
-          "Προσαρμοσμένος ορθογραφικός/γραμματικός έλεγχος για EL/EN, άλλες γλώσσες και ελληνικές διαλέκτους."
+          "Προσαρμοσμένος ορθογραφικός/γραμματικός έλεγχος για EL/EN και ελληνικές διαλέκτους."
         ]
       },
       daily: {
         name: "SimasiaDaily",
         title: "Μικρά και αξιόπιστα εργαλεία, μεγάλη διαφορά.",
         offers: "Τι προσφέρουμε",
-
-        toolCategories: [
-          {
-            category: "Μετρητής Κειμένου",
-            tools: ["Λέξεις, χαρακτήρες, προτάσεις."]
-          },
-          {
-            category: "Αναδιατύπωση Κειμένου",
-            tools: ["Από ανεπίσημο → επίσημο με AI."]
-          },
-          {
-            category: "Έξυπνος Δημιουργός Τιμολογίων",
-            tools: ["Στοιχεία εκδότη/λήπτη, γραμμές ειδών, υπολογισμός φόρων, εξαγωγή PDF."]
-          },
-          {
-            category: "Προγραμματιστής Συναντήσεων Πολλαπλών Ζωνών Ώρας",
-            tools: ["Προγραμματισμός σε πολλές ζώνες, έξυπνες προτάσεις χρόνου, εξαγωγή ημερολογίου (.ics)."]
-          },
-          {
-            category: "Πρότυπο Πρακτικών Συνάντησης",
-            tools: ["Συμμετέχοντες, θέματα ημερήσιας διάταξης, σημεία συζήτησης, ενέργειες, επόμενη συνάντηση, επιλογές εξαγωγής."]
-          },
-          {
-            category: "Μετατροπέας Αρχείων (15+ μετατροπές)",
-            tools: ["DOCX↔PDF, LaTeX↔PDF/DOCX, TXT→PDF, DOC→PDF, CSV↔JSON, MP3↔WAV, PNG↔JPEG, PDF→εικόνα."]
-          },
-          {
-            category: "Εργαλεία Εικόνας (3)",
-            tools: ["Δημιουργία «σκαναρισμένης» εικόνας, αλλαγή μεγέθους, μετατροπή εικόνας σε Base64."]
-          },
-          {
-            category: "Εργαλεία επεξεργασία κειμένου",
-            tools: ["Μετατροπή γραμμάτων σε κεφαλαία, πεζά, μετατροπή τίτλων σε κεφαλαίων, αφαίρεση περιττών κενών, δημιουργία αρκτικολέξων με AI."]
-          },
-          {
-            category: "Εργαλεία Δεδομένων & Κώδικα",
-            tools: ["Μορφοποίηση JSON, περίληψη κειμένου/μελέτης (ανέβασμα .txt → σύνοψη + λέξεις-κλειδιά)."]
-          },
-          {
-            category: "Βοηθητικά Εργαλεία",
-            tools: ["Δημιουργός QR κωδικών, δημιουργός κωδικών πρόσβασης, προηγμένο OCR (εξαγωγή κειμένου + περιγραφή εικόνας με AI)."]
-          },
-          {
-            category: "Διασκεδαστικά/Πειραματικά Εργαλεία",
-            tools: ["Αυτόματη επιστολή συγγνώμης (AI), μεταφραστής «εταιρικής» σε ανθρώπινη γλώσσα (jargon → απλά), τυχαίος δημιουργός ψευδωνύμων, δημιουργός κομπλιμέντων (AI), μετατροπέας CV σε σύντομο βιογραφικό (AI) (επερχόμενες προσθήκες)."]
-          }
-        ]
+        toolCategories: []
       },
       edu: {
         name: "SimasiaEdu",
         title: "Θέματα διαγωνισμάτων, διορθώσεις, εξηγήσεις και λύσεις με συνέπεια",
         offers: "Τι προσφέρουμε",
-
-        features: [
-          "Δημιουργία και αξιολόγηση διαγωνισμάτων για όλες τις βαθμίδες και μαθήματα, ευθυγραμμισμένων με τη διδακτέα ύλη και πρότυπα (π.χ. τράπεζα θεμάτων).",
-          "Προσαρμογή δυσκολίας και χρήση αξιολόγησης.",
-          "Άμεση βαθμολόγηση και ανατροφοδότηση σε πραγματικό χρόνο από ανέβασμα φωτογραφίας ή PDF πραγματικού γραπτού.",
-          "Πρότυπες λύσεις με βήμα-βήμα εξηγήσεις και στοχευμένες διορθώσεις ανά λάθος.",
-          "Εξαγωγή υλικού (θέματα, λύσεις, βαθμολογίες) σε DOCX/PDF/CSV και συμβατότητα με LMS (Moodle, Classroom, Canvas).",
-          "Προσβασιμότητα από τον σχεδιασμό (WCAG) και πολυγλωσσική υποστήριξη (EL/EN +)."
-        ]
+        features: []
       }
     },
     // Target Audience
@@ -251,24 +352,24 @@ export const translations = {
       title: "Ποιους αφορά",
       audienceCards: [
         { 
-          title: "Φορείς, Οργανισμοί & Επιχειρήσεις με κοινωνικό ρόλο", 
+          title: "Φορείς Υγείας & ΜΚΟ", 
           product: "SimasiaChatbots",
           link: "/applications/simasia-chatbots"
         },
         { 
-          title: "Φροντιστήρια, Εκπαιδευτικοί οργανισμοί, Καθηγητές/τριες, Μαθητές/τριες", 
-          product: "SimasiaEdu",
-          link: "/applications/simasia-edu"
+          title: "Δημόσιος Τομέας & Αυτοδιοίκηση", 
+          product: "SimasiaChatbots",
+          link: "/applications/simasia-chatbots"
         },
         { 
-          title: "Εκδοτικοί Οίκοι, Μεταφραστικά κέντρα, Πρεσβείες, Προξενεία, Εταιρείες με διεθνείς συναλλαγές", 
-          product: "SimasiaStudio",
-          link: "/applications/simasia-studio"
+          title: "Τουρισμός & Φιλοξενία", 
+          product: "SimasiaChatbots",
+          link: "/applications/simasia-chatbots"
         },
         { 
-          title: "Επιχειρήσεις, Φορείς, Ατομική χρήση", 
-          product: "SimasiaDaily",
-          link: "/applications/simasia-daily"
+          title: "Επιχειρήσεις & Χρηματοοικονομικά", 
+          product: "SimasiaChatbots",
+          link: "/applications/simasia-chatbots"
         }
       ]
     },
@@ -323,24 +424,25 @@ export const translations = {
     },
     // Footer
     footer: {
-      tagline: "AI από την πλευρά του ανθρώπου.",
+      tagline: "AI που αποδεικνύει ότι είναι σωστό.",
       navigation: "Πλοήγηση",
       contact: "Επικοινωνία",
       social: "Social Media",
       location: "Αθήνα, Ελλάδα",
       poweredBy: "Powered by Empathy",
       established: "Est. 2025",
-      copyright: "SimasiaAI — \"AI από την πλευρά του ανθρώπου.\""
+      copyright: "SimasiaAI — \"AI που αποδεικνύει ότι είναι σωστό.\""
     },
     // CTA
     cta: {
-      title: "Ζητήστε πρόταση συνεργασίας",
-      button: "Ζητήστε πρόταση συνεργασίας"
+      title: "Φέρτε 3 πραγματικές ερωτήσεις από τους χρήστες σας.",
+      subtitle: "30 λεπτά demo call. Θα τις απαντήσει live το chatbot μας με cited sources. Αν σας πείσει, ξεκινάμε pilot στο δικό σας domain σε 4 εβδομάδες.",
+      button: "Κλείστε demo →"
     },
     // Contact Form
     contactForm: {
       title: "Φόρμα Επικοινωνίας",
-      subtitle: "Προτείνετέ μας τη λύση που οραματίζεστε να συνδημιουργήσουμε. Απαντάμε εντός 24 ωρών.",
+      subtitle: "Φέρτε 3 πραγματικές ερωτήσεις από τους χρήστες σας. Απαντάμε εντός 24 ωρών.",
       firstName: "Όνομα",
       lastName: "Επίθετο",
       email: "Email",
@@ -377,57 +479,210 @@ export const translations = {
     nav: {
       home: "Home",
       about: "About Us",
-      targetAudience: "Who It's For",
-      products: "Applications",
+      chatbots: "SimasiaChatbots",
       collaborations: "Collaborations",
       bookDemo: "Let's collaborate"
     },
     hero: {
-      line1a: "AI matters when we look at it",
-      line1b: "from the human side.",
-      line2: "Human-centered AI applications for organizations, institutions, and businesses.",
-      talkToTeam: "Talk to our team",
-      seeApplications: "See applications"
+      badge: "★ Live deployment · Cancer Guidance Center Κάπα3",
+      line1a: "AI that proves",
+      line1b: "it's right.",
+      line2: "Domain-specific AI chatbots for healthcare, legal, public sector, tourism & enterprise. Every answer comes with its source.",
+      talkToTeam: "See live demo",
+      seeApplications: "How it works"
     },
     // Applications Page
     applications: {
-      title: "Applications",
-      subtitle: "Available for immediate use",
+      title: "SimasiaChatbots",
+      subtitle: "AI-Powered Digital Navigators",
       requestProposal: "Request collaboration proposal"
     },
     // Book Demo Page
     bookDemo: {
       title: "Book a demo",
-      description: "Let's create solutions that matter for people together. Fill out the form and we will contact you immediately."
+      description: "Bring 3 real questions from your users. 30-minute demo call — our chatbot will answer them live with cited sources. If it convinces you, we start a pilot on your domain in 4 weeks."
     },
-    // What We Offer
+    // What We Offer — now SimasiaChatbots focused
     whatWeOffer: {
-      title: "What we offer",
-      seeAll: "See all available applications",
+      title: "SimasiaChatbots",
+      subtitle: "Digital Navigators — We don't say 'probably correct'. We guarantee it through code.",
+      seeAll: "See SimasiaChatbots in detail",
       cards: [
-        { name: "SimasiaChatbots", desc: "Secure, tailored chatbots for information and customer support.", link: "/applications/simasia-chatbots" },
-        { name: "SimasiaEdu", desc: "AI applications for educators and students: curriculum, exercises, assessment.", link: "/applications/simasia-edu" },
-        { name: "SimasiaStudio", desc: "Evidence-based translation and editing with consistency and quality control.", link: "/applications/simasia-studio" },
-        { name: "SimasiaDaily", desc: "Lightweight workflow automation tools that save time.", link: "/applications/simasia-daily" }
+        { name: "SimasiaChatbots", desc: "Digital navigators with legal compliance, natural Greek language, and citations in every answer.", link: "/applications/simasia-chatbots" }
       ]
     },
-    // Who It's For (Homepage)
+    // Chatbot Showcase — 3 core promises
+    chatbotShowcase: {
+      title: "Three promises. Zero probability.",
+      subtitle: "We don't say 'probably correct' — we guarantee it through code.",
+      promises: [
+        {
+          icon: "📄",
+          title: "Provably correct",
+          description: "Every sentence it writes has a reference number leading to the exact PDF or webpage. The user clicks and opens the document. It cannot fabricate a source — the code prevents it.",
+          example: "'You are entitled to a 67% benefit [FEK 932/B 2023]' → the user clicks [FEK 932/B] → the actual government gazette opens."
+        },
+        {
+          icon: "🇬🇷",
+          title: "Understands Greek. Truly.",
+          description: "It's not translated ChatGPT. It's built around the Greek legal and medical framework. It recognizes KEPA, EOPYY, AADE, FEK. It automatically scans Greek government portals for updates.",
+          example: "Ask 'What is KEA?' → it knows you mean Social Solidarity Income (not Freedom License Card)."
+        },
+        {
+          icon: "🛡️",
+          title: "Never dangerous",
+          description: "If someone writes 'my chest hurts' or expresses suicidality, the system IMMEDIATELY provides emergency numbers (EKAV 166, Life Line 1018). Without asking AI first. It's a line of code, not 'hoping it does the right thing'.",
+          example: "Guaranteed behavior in 7 crisis categories. Audit-able by any compliance officer."
+        }
+      ],
+      featurePills: [
+        "EU AI Act ✓",
+        "WCAG ✓",
+        "Multilingual ✓",
+        "GDPR ✓",
+        "Greek Dialects ✓",
+        "Eco-Friendly ✓",
+        "Legal Compliance ✓",
+        "RAG Citations ✓"
+      ],
+      chatDemo: {
+        userMessage: "What rights do I have as a patient with multiple sclerosis?",
+        botReply: "According to Law 4387/2016 and EFKA circulars, you are entitled to:\n\n• Disability pension through KEPA [FEK 1256/B/2017]\n• Medication coverage from EOPYY [Circular 2024/32]\n• Disability severity benefit [OPEKA – Article 22]\n\nWould you like me to guide you through the application process?",
+        sources: "3 sources · 4.2s"
+      }
+    },
+    // Proof Numbers
+    proofNumbers: {
+      title: "From our real deployment",
+      subtitle: "MYRTO chatbot at Cancer Guidance Center Kapa3. 84 real patient questions evaluated by a certified reviewer.",
+      stats: [
+        { number: "75", suffix: "%", label: "Verified-correct answers (from 49% in first iteration)" },
+        { number: "0", suffix: "", label: "Connection failures in 84-query batch" },
+        { number: "1,766", suffix: "", label: "Indexed documents + pages with auto-refresh" },
+        { number: "6", suffix: "s", label: "Average response time" }
+      ]
+    },
+    // Use Cases
+    useCases: {
+      title: "Who it's for",
+      subtitle: "Wherever the right answer has consequence — and the wrong one has cost.",
+      notYourDomain: "Don't see your domain? If you have documents your users need to read, we can build it.",
+      categories: [
+        {
+          icon: "🏥",
+          name: "Healthcare",
+          items: [
+            { name: "Health NGOs", detail: "e.g. Kapa3, ELLOK, AgkaLiazo, Floga", desc: "Patient guidance: benefits, KEPA, provisions, procedures", status: "Live deployment" },
+            { name: "Hospitals", detail: "public / private", desc: "Internal support: EOPYY updates, FEK alerts, reimbursements", status: "Available" },
+            { name: "Diagnostic centers", detail: "", desc: "Patient-facing: appointments, preparation guidelines, insurance coverage", status: "Available" },
+            { name: "Pharmaceuticals", detail: "", desc: "Branded patient companion · regulatory communication · side effects", status: "Available" },
+            { name: "Pharmacy chains", detail: "", desc: "Drug interactions, usage instructions, EOPYY co-pay", status: "Available" },
+            { name: "Health insurers", detail: "", desc: "Contract explanation, reimbursement procedures, coverage", status: "Available" }
+          ]
+        },
+        {
+          icon: "✈️",
+          name: "Tourism & Hospitality",
+          items: [
+            { name: "Airports", detail: "MyrtoFly · Digital Gate V pilot", desc: "Cancer-aware airport companion · PRM assistance · multilingual", status: "Active pilot" },
+            { name: "Hotels / Resorts", detail: "", desc: "24/7 AI concierge · 5+ languages · service cross-sell", status: "Available" },
+            { name: "Tour operators / agencies", detail: "", desc: "Pre-trip Q&A · destination info · visa · travel updates", status: "Available" },
+            { name: "Medical tourism", detail: "", desc: "Inbound patient navigation: hospitals, EOPYY S2, cross-border care", status: "Available" },
+            { name: "Cruise lines / shipping", detail: "", desc: "Excursions, onboard services, customs, accessibility", status: "Available" },
+            { name: "Destinations / Regions", detail: "", desc: "Visit-X bot: attractions, events, transport — branded per area", status: "Available" }
+          ]
+        },
+        {
+          icon: "🏢",
+          name: "Enterprise",
+          items: [
+            { name: "HR / Onboarding", detail: "", desc: "Corporate policies, benefits, leave procedures, EFKA", status: "Available" },
+            { name: "Customer support", detail: "", desc: "Multi-language tier-1 support: products, returns, warranty — citation-backed", status: "Available" },
+            { name: "Internal knowledge base", detail: "", desc: "Q&A across thousands of internal documents", status: "Available" },
+            { name: "B2B sales support", detail: "", desc: "Product specs, pricing rules, contract terms — in seconds", status: "Available" },
+            { name: "Accounting firms", detail: "", desc: "Tax advisor: changes, VAT, AADE/myCAR procedures", status: "Available" }
+          ]
+        },
+        {
+          icon: "🏛️",
+          name: "Public Sector",
+          items: [
+            { name: "Central agencies", detail: "EFKA, OPEKA, AADE, DYPA", desc: "Citizen-facing assistant: 30-50% call-center load reduction", status: "Tender" },
+            { name: "Municipalities / Regions", detail: "", desc: "Municipal fees, KEA, EEE, disability benefits, events", status: "Available" },
+            { name: "Education", detail: "universities, vocational", desc: "Student services: registrar FAQ, scholarships, enrollment", status: "Available" },
+            { name: "Professional associations", detail: "Bar / Medical / Engineering", desc: "Insurance, on-call, ethics, legislation, circulars", status: "Available" }
+          ]
+        },
+        {
+          icon: "💼",
+          name: "Finance",
+          items: [
+            { name: "Banks / fintech", detail: "", desc: "Accounts, cards, loans, KYC — citation-backed", status: "Available" },
+            { name: "Insurance (general)", detail: "", desc: "Benefits, claims, damages, notifications", status: "Available" },
+            { name: "Real estate / property mgmt", detail: "", desc: "Contracts, ENFIA, leases, E9", status: "Available" },
+            { name: "Investment platforms", detail: "", desc: "Investor Q&A: prospectus, taxation — all cited", status: "Available" }
+          ]
+        },
+        {
+          icon: "🌐",
+          name: "Others",
+          items: [
+            { name: "Energy / utilities", detail: "DEI, EYDAP, gas providers", desc: "Bills, pricing, social tariffs, provider switching", status: "Available" },
+            { name: "Telecom / ISPs", detail: "", desc: "Plans, charges, technical, portability", status: "Available" },
+            { name: "Retail / e-commerce", detail: "", desc: "Pre-sale Q&A · Post-sale: returns, warranties", status: "Available" },
+            { name: "Religious organizations", detail: "dioceses, NGOs", desc: "Events, sacraments, charity programs", status: "Available" },
+            { name: "Trade unions", detail: "", desc: "Labor rights, insurance, legal support", status: "Available" },
+            { name: "Diaspora / Greeks abroad", detail: "", desc: "Pensions abroad, dual citizenship, consular procedures", status: "Available" }
+          ]
+        }
+      ]
+    },
+    // Green AI
+    greenAI: {
+      title: "Green & Reliable AI",
+      subtitle: "The greenest token is the one you never generate. We build bots that are cheap to run and cheap on energy — without sacrificing frontier model quality.",
+      ladderTitle: "The principle: escalation ladder",
+      ladderSubtitle: "Every query is served at the cheapest level that can answer it correctly. It escalates only when the previous level declares uncertainty.",
+      steps: [
+        { level: "1", title: "Cache", description: "Has a similar question already been answered? Return it. One cheap embedding, zero generation.", color: "green" },
+        { level: "2", title: "Symbolic", description: "Factual/relational query; Classifier routes to DB or knowledge graph. Zero hallucination, exact result.", color: "green" },
+        { level: "3", title: "Small model", description: "In-domain, routine NL; Quantized, domain-tuned small model. Often better than a generic giant model, at 1/10 the energy.", color: "gold" },
+        { level: "4", title: "Frontier", description: "Truly novel or reasoning-heavy; We call the best available model. We don't waste it on 'what time do you close'.", color: "coral" }
+      ],
+      disclaimer: "This is not a quality compromise. Symbolic lookups give exact answers instead of probabilistic guesses. Templated responses don't drift. And we reserve the frontier for queries that truly need it.",
+      cards: [
+        { title: "We measure, not claim", desc: "Self-hosted: real energy from GPU + CPU, live grid carbon intensity. Energy & CO₂ per query, attributed across pipeline." },
+        { title: "Headline metric", desc: "What percentage of traffic was served at which tier. The lower on the ladder, the greater the economy." },
+        { title: "Economic retrieval", desc: "Cache-augmented generation for small stable corpora. KV-caching static prompt prefixes. Top-2 retrieval. Fewer tokens, same answers." }
+      ]
+    },
+    // Compliance
+    compliance: {
+      title: "Compliance & Security",
+      subtitle: "Built from the ground up for regulated sectors. Auditable, transparent, secure by design.",
+      cards: [
+        { title: "GDPR-aware", desc: "Anonymized sessions, zero PII storage by default. Data deletion flow built-in. Data Processor Agreement template available." },
+        { title: "EU AI Act ready", desc: "Structured for high-risk classification: documented data flow, human oversight hooks, audit logs. We work with legal advisors for DPIA / FRIA." },
+        { title: "Auditable safety", desc: "Every safety decision is a line of code or a rule in YAML — not a black box. A compliance officer reads it and validates it." }
+      ]
+    },
+    // Who It's For (Homepage) — now chatbot focused
     whoItsFor: {
       title: "Who it's for",
       items: [
-        "Institutions and organizations with a social mission",
-        "Education (tutoring centers, schools, vocational institutes, universities)",
-        "Publishers and translation centers",
-        "Customer-facing businesses with personalization needs at scale"
+        "Healthcare institutions & NGOs",
+        "Public sector & local government",
+        "Tourism & hospitality",
+        "Customer-facing businesses at scale"
       ]
     },
     // How We Work
     howWeWork: {
       title: "How we work",
       steps: [
-        "We choose the right application together.",
-        "We tailor it to your data and workflows.",
-        "We deliver it and improve it together in real use."
+        "We map your needs, content, and information flows.",
+        "We test solutions in real scenarios with measurements and feedback.",
+        "We deliver a pilot on your domain in 4 weeks."
       ]
     },
     // Obstacles
@@ -455,7 +710,7 @@ export const translations = {
     // Mission
     mission: {
       title: "Our mission",
-      text: "To create technology solutions centered on people. We work so that every solution functions as a bridge of understanding. Simple to use, reliable in practice, meaningful for society."
+      text: "To create human-centered AI applications — technology centered on people and society, solving problems to the extent they serve real human needs. We mediate between human needs and artificial intelligence, together with domain experts, bringing AI to the measure of every organization."
     },
     // Values
     values: {
@@ -509,104 +764,52 @@ export const translations = {
       title: "Who we are",
       text: "We are a Greek startup with an interdisciplinary team of researchers, developers, and professionals in the fields of Artificial Intelligence, Linguistics, and Software Development. Our experience in research, application development, and sales helps us deeply understand people's needs and create customized and reliable Artificial Intelligence systems."
     },
-    // Products
+    // Products — kept for SimasiaChatbots product page
     products: {
-      title: "Services",
+      title: "SimasiaChatbots",
       chatbots: {
         name: "SimasiaChatbots",
-        title: "Safe chatbots, designed by humans, for humans",
+        title: "Digital Navigators — AI that proves it's right",
         offers: "What we offer",
-
         features: [
-          "Accessibility by design: alternative input/output methods (text/audio), WCAG-oriented options.",
-          "Multilingualism: support for many European and global languages (indicatively: Chinese—Mandarin/Cantonese, Japanese, Korean, Arabic, Hindi, Bengali, etc.) and local Greek varieties (e.g., Cypriot, Pontic) where feasible or following targeted training.",
-          "Bias reduction: evaluation flows and equality/inclusion policies integrated into the design.",
-          "Training on your own content: documented sources, manuals, guidelines for specific situations.",
-          "Consistency & safety: responses based on approved content with controlled evidence.",
-          "Escalation and notifications: ability to send notifications (phone/written) to designated persons/services when flows requiring it are detected, only following explicit agreement and escalation policy."
+          "Legal compliance with the EU AI Act, no black boxes.",
+          "Accessibility by design: WCAG-oriented, alternative input/output methods.",
+          "Natural Greek language usage — including Greek dialects (Cypriot, Pontic).",
+          "Multilingual: 20+ European and global languages.",
+          "Safety guardrails for crisis situations — EKAV 166, Life Line 1018 automatically.",
+          "Hallucination reduction through RAG with citations in every answer.",
+          "Eco-friendly: escalation ladder that saves energy without sacrificing quality.",
+          "Accurate information on trained content — documented sources.",
+          "Adaptation to the style and specific guidelines of each organization.",
+          "Function as digital navigators — they don't just answer, they guide."
         ]
       },
       studio: {
         name: "SimasiaStudio",
         title: "Documented translation, editing with responsibility",
         offers: "What we offer",
-
         features: [
           "Upload and selection of style guides for translation and text editing.",
           "Access to approved terminology/glossaries.",
-          "Editing of Greek texts with the Triantafyllidis Dictionary (support/integration of alternative dictionaries—extension to additional language by choice).",
+          "Editing of Greek texts with the Triantafyllidis Dictionary.",
           "Detailed correction suggestions and export of \"Track Changes\" files (DOCX/PDF).",
-          "Specialized translation/editing by field, with clear translation direction and documented terminology (medical, legal, academic writing, literary style), with style and terminology adaptation by choice.",
+          "Specialized translation/editing by field.",
           "Bulk processing and connections (Google Drive/Dropbox/S3).",
           "Adjustable sensitivity to gender biases, social groups, stereotypes.",
-          "Customized spelling/grammar check for EL/EN, other languages, and Greek dialects."
+          "Customized spelling/grammar check for EL/EN and Greek dialects."
         ]
       },
       daily: {
         name: "SimasiaDaily",
         title: "Small and reliable tools, big difference.",
         offers: "What we offer",
-
-        toolCategories: [
-          {
-            category: "Text Counter",
-            tools: ["Words, characters, sentences."]
-          },
-          {
-            category: "Text Rephrasing",
-            tools: ["From informal → formal with AI."]
-          },
-          {
-            category: "Smart Invoice Generator",
-            tools: ["Issuer/recipient details, item lines, tax calculation, PDF export."]
-          },
-          {
-            category: "Multi-Time Zone Meeting Scheduler",
-            tools: ["Scheduling across multiple zones, smart time suggestions, calendar export (.ics)."]
-          },
-          {
-            category: "Meeting Minutes Template",
-            tools: ["Participants, agenda topics, discussion points, actions, next meeting, export options."]
-          },
-          {
-            category: "File Converter (15+ conversions)",
-            tools: ["DOCX↔PDF, LaTeX↔PDF/DOCX, TXT→PDF, DOC→PDF, CSV↔JSON, MP3↔WAV, PNG↔JPEG, PDF→image."]
-          },
-          {
-            category: "Image Tools (3)",
-            tools: ["Create \"scanned\" image, resize, convert image to Base64."]
-          },
-          {
-            category: "Text Processing Tools",
-            tools: ["Convert letters to uppercase, lowercase, convert titles to uppercase, remove extra spaces, create acronyms with AI."]
-          },
-          {
-            category: "Data & Code Tools",
-            tools: ["Format JSON, text/study summary (upload .txt → summary + keywords)."]
-          },
-          {
-            category: "Utility Tools",
-            tools: ["QR code generator, password generator, advanced OCR (text extraction + image description with AI)."]
-          },
-          {
-            category: "Fun/Experimental Tools",
-            tools: ["Automatic apology letter (AI), translator of \"corporate\" to human language (jargon → simple), random nickname generator, compliment generator (AI), CV to short bio converter (AI) (upcoming additions)."]
-          }
-        ]
+        toolCategories: []
       },
       edu: {
         name: "SimasiaEdu",
         title: "Exam topics, corrections, explanations, and solutions with consistency",
         offers: "What we offer",
-
-        features: [
-          "Creation and evaluation of exams for all levels and subjects, aligned with curriculum and standards (e.g., question bank).",
-          "Difficulty adjustment and use of assessment.",
-          "Instant grading and feedback in real time from uploading a photo or PDF of actual written work.",
-          "Model solutions with step-by-step explanations and targeted corrections per error.",
-          "Export of material (topics, solutions, grades) to DOCX/PDF/CSV and compatibility with LMS (Moodle, Classroom, Canvas).",
-          "Accessibility by design (WCAG) and multilingual support (EL/EN +)."
-        ]
+        features: []
       }
     },
     // Target Audience
@@ -614,24 +817,24 @@ export const translations = {
       title: "Who It's For",
       audienceCards: [
         { 
-          title: "Institutions, organizations, and businesses with a social mission", 
+          title: "Healthcare Organizations & NGOs", 
           product: "SimasiaChatbots",
           link: "/applications/simasia-chatbots"
         },
         { 
-          title: "Tutoring centers, educational organizations, teachers, students", 
-          product: "SimasiaEdu",
-          link: "/applications/simasia-edu"
+          title: "Public Sector & Local Government", 
+          product: "SimasiaChatbots",
+          link: "/applications/simasia-chatbots"
         },
         { 
-          title: "Publishers, translation centers, embassies, consulates, companies with international operations", 
-          product: "SimasiaStudio",
-          link: "/applications/simasia-studio"
+          title: "Tourism & Hospitality", 
+          product: "SimasiaChatbots",
+          link: "/applications/simasia-chatbots"
         },
         { 
-          title: "Businesses, institutions, individual use", 
-          product: "SimasiaDaily",
-          link: "/applications/simasia-daily"
+          title: "Enterprise & Financial Services", 
+          product: "SimasiaChatbots",
+          link: "/applications/simasia-chatbots"
         }
       ]
     },
@@ -651,7 +854,7 @@ export const translations = {
           },
           {
             name: "Panhellenic Federation of Persons with Multiple Sclerosis (POAMSKP)",
-            description: "The \"ΣΚΠ-i\" supportive chatbot delivers reliable information and everyday digital support for the MS community.",
+            description: "The \"SKP-i\" supportive chatbot delivers reliable information and everyday digital support for the MS community.",
             logo: "/Collaborations/Logos/poamsk_logo.png",
             category: "health"
           },
@@ -686,24 +889,25 @@ export const translations = {
     },
     // Footer
     footer: {
-      tagline: "AI from the human side.",
+      tagline: "AI that proves it's right.",
       navigation: "Navigation",
       contact: "Contact",
       social: "Social Media",
       location: "Athens, Greece",
       poweredBy: "Powered by Empathy",
       established: "Est. 2025",
-      copyright: "SimasiaAI — \"AI from the human side.\""
+      copyright: "SimasiaAI — \"AI that proves it's right.\""
     },
     // CTA
     cta: {
-      title: "Request a collaboration proposal",
-      button: "Request a collaboration proposal"
+      title: "Bring 3 real questions from your users.",
+      subtitle: "30-minute demo call. Our chatbot will answer them live with cited sources. If it convinces you, we start a pilot on your domain in 4 weeks.",
+      button: "Book demo →"
     },
     // Contact Form
     contactForm: {
       title: "Contact Form",
-      subtitle: "Propose the solution you envision we can co-create. We respond within 24 hours.",
+      subtitle: "Bring 3 real questions from your users. We respond within 24 hours.",
       firstName: "First Name",
       lastName: "Last Name",
       email: "Email",
@@ -726,4 +930,3 @@ export const translations = {
     }
   }
 };
-

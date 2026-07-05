@@ -270,6 +270,24 @@ const Hero = () => {
           {/* Brand Animation in its own centered container */}
           <div className="brand-anim-container">
             <section className="simasia-brand-anim" aria-label="Σimasia → /ΣimasiaAI/ with tagline">
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05, duration: 0.5 }}
+                style={{
+                  display: 'inline-block',
+                  padding: '6px 16px',
+                  background: 'rgba(44, 122, 123, 0.08)',
+                  color: 'var(--primary-warm)',
+                  borderRadius: '100px',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.3px',
+                  marginBottom: '1rem',
+                  fontFamily: '"Inter", sans-serif'
+                }}
+              >
+                {t('hero.badge')}</motion.div>
               <div className="taglines">
                 <div className="line1-wrapper">
                   <p className="line1a">{t('hero.line1a')}</p>

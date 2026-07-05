@@ -1,0 +1,220 @@
+/* ===== UseCases Section ===== */
+.use-cases-section {
+  padding: 6rem 0;
+  background: var(--light-bg);
+}
+
+.use-cases-section .section-title {
+  text-align: center;
+}
+
+.usecases-subtitle {
+  text-align: center;
+  color: var(--gray-medium);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+/* Tab Bar */
+.usecases-tabs {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.usecases-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--white);
+  border: 1.5px solid var(--gray-light);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-medium);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: "Inter", sans-serif;
+}
+
+.usecases-tab:hover {
+  border-color: var(--primary-warm);
+  color: var(--primary-warm);
+}
+
+.usecases-tab.active {
+  background: var(--primary-warm);
+  border-color: var(--primary-warm);
+  color: white;
+}
+
+.usecases-tab .tab-icon {
+  font-size: 1.1rem;
+}
+
+/* Content Area */
+.usecases-content {
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid var(--gray-light);
+  overflow: hidden;
+  min-height: 300px;
+}
+
+.usecases-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.usecases-table th {
+  text-align: left;
+  padding: 1rem 1.5rem;
+  background: var(--light-bg);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--gray-medium);
+  font-weight: 600;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.usecases-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--gray-light);
+  font-size: 0.95rem;
+  vertical-align: top;
+}
+
+.usecases-table tr:last-child td {
+  border-bottom: none;
+}
+
+.usecases-table td strong {
+  color: var(--dark-text);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.usecases-table td .detail {
+  font-size: 0.8rem;
+  color: var(--gray-medium);
+}
+
+.usecases-table td .desc {
+  color: var(--gray-medium);
+}
+
+/* Status Pills */
+.status-pill {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-pill.live {
+  background: rgba(224, 122, 95, 0.12);
+  color: var(--accent-warm);
+}
+
+.status-pill.pilot {
+  background: rgba(224, 122, 95, 0.08);
+  color: #c96a4a;
+}
+
+.status-pill.available {
+  background: rgba(44, 122, 123, 0.1);
+  color: var(--primary-warm);
+}
+
+.status-pill.tender {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+}
+
+/* Bottom Note */
+.usecases-bottom-note {
+  text-align: center;
+  margin-top: 2.5rem;
+  color: var(--gray-medium);
+  font-size: 1rem;
+}
+
+.usecases-bottom-note strong {
+  color: var(--primary-warm);
+}
+
+/* Mobile Cards */
+.usecases-mobile-cards {
+  display: none;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.usecase-mobile-card {
+  padding: 1.25rem;
+  background: var(--light-bg);
+  border-radius: 12px;
+  border-left: 3px solid var(--primary-warm);
+}
+
+.usecase-mobile-card h4 {
+  font-size: 1rem;
+  color: var(--dark-text);
+  margin-bottom: 0.25rem;
+}
+
+.usecase-mobile-card .detail {
+  font-size: 0.8rem;
+  color: var(--gray-medium);
+  margin-bottom: 0.5rem;
+}
+
+.usecase-mobile-card .desc {
+  font-size: 0.9rem;
+  color: var(--gray-medium);
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .use-cases-section {
+    padding: 4rem 0;
+  }
+
+  .usecases-tabs {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .usecases-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .usecases-tab {
+    flex-shrink: 0;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .usecases-table {
+    display: none;
+  }
+
+  .usecases-mobile-cards {
+    display: flex;
+  }
+}

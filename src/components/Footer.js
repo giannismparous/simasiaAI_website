@@ -17,8 +17,7 @@ const Footer = () => {
             <h3>{t('footer.navigation')}</h3>
             <a href="/">{t('nav.home')}</a>
             <a href="/about">{t('nav.about')}</a>
-            <a href="/target-audience">{t('nav.targetAudience')}</a>
-            <a href="/products">{t('nav.products')}</a>
+            <a href="/applications/simasia-chatbots">{t('nav.chatbots')}</a>
             <a href="/collaborations">{t('nav.collaborations')}</a>
           </div>
           

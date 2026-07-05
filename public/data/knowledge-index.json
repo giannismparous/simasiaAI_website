@@ -1040,8 +1040,8 @@
         "σας",
         "αθήνα",
         "ελλάδα",
-        "προτείνετέ",
-        "λύση"
+        "company",
+        "προτείνετέ"
       ],
       "org": "simasia",
       "source": {
@@ -1523,10 +1523,10 @@
         "your",
         "athens",
         "greece",
+        "company",
         "propose",
         "solution",
-        "envision",
-        "can"
+        "envision"
       ],
       "org": "simasia",
       "source": {
@@ -1600,6 +1600,6 @@
       "priority": 0
     }
   ],
-  "generatedAt": "2026-06-03T18:23:08.839Z",
+  "generatedAt": "2026-07-01T10:35:25.896Z",
   "source": "website-translations+core-identity-rag"
 }

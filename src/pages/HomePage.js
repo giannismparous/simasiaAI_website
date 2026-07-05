@@ -1,19 +1,21 @@
 import React from 'react';
 import Hero from '../components/Hero';
-import WhatWeOffer from '../components/WhatWeOffer';
-import WhoItsFor from '../components/WhoItsFor';
-import HowWeWork from '../components/HowWeWork';
-import Impact from '../components/Impact';
+import ChatbotShowcase from '../components/ChatbotShowcase';
+import ProofNumbers from '../components/ProofNumbers';
+import UseCases from '../components/UseCases';
+import GreenAI from '../components/GreenAI';
+import ComplianceSection from '../components/ComplianceSection';
 import ContactForm from '../components/ContactForm';
 
 const HomePage = () => {
   return (
     <>
       <Hero />
-      <WhatWeOffer />
-      <WhoItsFor />
-      <HowWeWork />
-      <Impact />
+      <ChatbotShowcase />
+      <ProofNumbers />
+      <UseCases />
+      <GreenAI />
+      <ComplianceSection />
       <ContactForm />
     </>
   );

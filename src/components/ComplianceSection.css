@@ -1,0 +1,84 @@
+/* ===== ComplianceSection ===== */
+.compliance-section {
+  padding: 6rem 0;
+  background: var(--light-bg);
+}
+
+.compliance-section .section-title {
+  text-align: center;
+}
+
+.compliance-subtitle {
+  text-align: center;
+  color: var(--gray-medium);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+.compliance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.compliance-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid var(--gray-light);
+  border-left: 4px solid var(--primary-warm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.compliance-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(44, 122, 123, 0.1);
+}
+
+.compliance-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(44, 122, 123, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.compliance-card h3 {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-warm);
+  margin-bottom: 0.75rem;
+}
+
+.compliance-card p {
+  color: var(--gray-medium);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .compliance-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .compliance-section {
+    padding: 4rem 0;
+  }
+
+  .compliance-card {
+    padding: 1.5rem;
+  }
+}
