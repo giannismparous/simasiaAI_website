@@ -1,0 +1,111 @@
+/* ===== ARCHITECTURE SECTION ===== */
+.architecture-section {
+  padding: 5.5rem 0;
+  background: var(--white);
+  border-top: 1px solid var(--sand);
+  scroll-margin-top: 80px;
+}
+
+.architecture-header {
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+
+.architecture-lead {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  margin-top: 0.875rem;
+  max-width: 700px;
+}
+
+/* Three-tier grid */
+.architecture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.arch-card {
+  background: var(--card-bg);
+  border-radius: 6px;
+  padding: 2rem 1.75rem;
+  border: 1px solid var(--sand);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.arch-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 3px;
+}
+
+.arch-card.color-terracotta::before { background: var(--terracotta); }
+.arch-card.color-kapa::before { background: var(--kapa-red); }
+.arch-card.color-sage::before { background: var(--sage); }
+
+.arch-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(26, 26, 46, 0.09);
+}
+
+.arch-icon {
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.arch-card h3 {
+  font-family: var(--forbes-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.875rem;
+  line-height: 1.25;
+}
+
+.arch-card.color-terracotta h3 { color: var(--terracotta); }
+.arch-card.color-kapa h3 { color: var(--kapa-red); }
+.arch-card.color-sage h3 { color: var(--sage); }
+
+.arch-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  flex: 1;
+}
+
+.arch-card p strong {
+  color: var(--ink);
+}
+
+.arch-target {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--stone);
+  margin-top: 1.5rem;
+  padding-top: 0.875rem;
+  border-top: 1px dashed var(--sand);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .architecture-grid {
+    grid-template-columns: 1fr;
+    max-width: 540px;
+  }
+}
+
+@media (max-width: 768px) {
+  .architecture-section {
+    padding: 3.5rem 0;
+  }
+}

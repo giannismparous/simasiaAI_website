@@ -1,0 +1,85 @@
+/* ===== EXPLANATION — 3 PILLARS ===== */
+.explanation-section {
+  padding: 5rem 0;
+  background: var(--white);
+  border-top: 1px solid var(--light-gray);
+  scroll-margin-top: 80px;
+}
+
+.explanation-intro {
+  max-width: 640px;
+  margin-bottom: 4rem;
+}
+
+.explanation-intro h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 1.25rem;
+}
+
+.explanation-intro p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+
+/* Pillars grid */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.pillar {
+  padding: 0;
+}
+
+.pillar-number {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 0.875rem;
+  display: block;
+}
+
+.pillar h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 0.875rem;
+  line-height: 1.25;
+}
+
+.pillar-concept {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+
+/* Colored top border */
+.pillar::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.pillar.orange::before { background: var(--orange); }
+.pillar.blue::before { background: var(--blue); }
+.pillar.green::before { background: var(--green); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    max-width: 520px;
+  }
+}

@@ -1,0 +1,100 @@
+/* ===== COMPARISON TABLE ===== */
+.comparison-section {
+  padding: 5rem 0;
+  background: var(--light);
+  border-top: 1px solid var(--light-gray);
+}
+
+.comparison-section h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+
+.comparison-subtitle {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  margin-bottom: 2.5rem;
+}
+
+.comparison-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.92rem;
+}
+
+.comparison-table thead th {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 1rem 1.25rem;
+  text-align: left;
+  border-bottom: 2px solid var(--dark);
+  color: var(--dark);
+  white-space: nowrap;
+}
+
+.comparison-table thead th:first-child {
+  color: var(--stone);
+}
+
+.comparison-table thead th:last-child {
+  color: var(--orange);
+}
+
+.comparison-table tbody td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--light-gray);
+  color: var(--dark);
+  line-height: 1.6;
+  vertical-align: top;
+}
+
+.comparison-table tbody td:first-child {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.comparison-table tbody td:nth-child(2) {
+  color: var(--stone);
+}
+
+.comparison-table tbody td:last-child {
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.comparison-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Hover */
+.comparison-table tbody tr {
+  transition: background 0.15s;
+}
+
+.comparison-table tbody tr:hover {
+  background: var(--white);
+}
+
+@media (max-width: 640px) {
+  .comparison-section { padding: 3.5rem 0; }
+  .comparison-table { font-size: 0.85rem; }
+  .comparison-table thead th,
+  .comparison-table tbody td {
+    padding: 0.75rem 0.875rem;
+  }
+}

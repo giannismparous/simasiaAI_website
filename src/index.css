@@ -5,14 +5,35 @@
 }
 
 :root {
+    /* Anthropic palette */
+    --dark: #141413;
+    --light: #faf9f5;
+    --mid-gray: #b0aea5;
+    --light-gray: #e8e6dc;
+    --orange: #d97757;
+    --blue: #6a9bcc;
+    --green: #788c5d;
+
+    /* SimasiaAI brand tokens mapped to Anthropic palette */
     --primary-warm: #2C7A7B;
     --secondary-warm: #5FB3B4;
-    --accent-warm: #E07A5F;
-    --dark-text: #111111;
-    --light-bg: #F7F3E8;
+    --accent-warm: #d97757;
+    --dark-text: #141413;
+    --light-bg: #faf9f5;
     --white: #FFFFFF;
-    --gray-light: #EEE7DA;
-    --gray-medium: #6B7280;
+    --gray-light: #e8e6dc;
+    --gray-medium: #b0aea5;
+
+    /* Forbes editorial palette (kept for sub-pages) */
+    --ink: #141413;
+    --ink-soft: #5a5a58;
+    --terracotta: #d97757;
+    --kapa-red: #b03030;
+    --sage: #788c5d;
+    --sand: #e8e6dc;
+    --card-bg: #faf9f5;
+    --stone: #b0aea5;
+    --forbes-serif: 'Lora', Georgia, serif;
 }
 
 /* Custom font - uncomment when you add font files to public/fonts/ directory */
@@ -28,26 +49,26 @@
 */
 
 body {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+    font-family: "Lora", Georgia, serif;
     line-height: 1.7;
-    color: var(--dark-text);
-    background: var(--white);
+    color: var(--dark);
+    background: var(--light);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "kern" 1, "liga" 1;
 }
 
-/* Literary serif for headings */
+/* Anthropic headings — Poppins */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: "Crimson Pro", Georgia, serif;
+    font-family: "Poppins", Arial, sans-serif;
     font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
 }
 
 #root {
@@ -139,51 +160,42 @@ section.impact-wrapper:hover .impact .section-title {
     color: var(--dark-text) !important;
 }
 
-/* Global button styles */
+/* Global button styles — Anthropic */
 .btn {
-    padding: 1.1rem 2.5rem;
-    font-size: 1.05rem;
-    border-radius: 12px;
-    font-weight: 600;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
+    padding: 0.85rem 1.75rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.2s;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 2px solid transparent;
+    border: none;
     text-decoration: none;
     cursor: pointer;
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", Arial, sans-serif;
 }
 
 .btn-primary {
-    background: var(--primary-warm);
-    color: var(--white);
-    border-color: var(--primary-warm);
+    background: var(--dark);
+    color: #fff;
 }
 
 .btn-primary:hover {
-    background: var(--accent-warm);
-    border-color: var(--accent-warm);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 35px rgba(224, 120, 86, 0.45);
+    background: var(--orange);
+    transform: translateY(-1px);
 }
 
 .btn-secondary {
-    background: var(--white);
-    color: var(--dark-text);
-    border: 2px solid var(--primary-warm);
+    background: transparent;
+    color: var(--dark);
+    border: 1px solid var(--light-gray);
 }
 
 .btn-secondary:hover {
-    background: var(--light-bg);
-    border-color: var(--accent-warm);
-    color: var(--accent-warm);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(44, 122, 123, 0.3);
+    border-color: var(--mid-gray);
+    color: var(--orange);
 }
 
 /* Global mobile responsive styles */
@@ -395,4 +407,21 @@ section.impact-wrapper:hover .impact .section-title {
     .collaborations-hero .section-title {
         font-size: 1.5rem !important;
     }
+}
+
+/* ==========================================================================
+   GLOBAL ANTHROPIC TYPOGRAPHY OVERRIDE (APPLIES TO ALL PAGES & COMPONENTS)
+   ========================================================================== */
+
+/* Body copy, paragraphs, list items, quotes, table cells, form inputs */
+body, p, li, td, input, textarea, select, label, blockquote, .card-text, .desc, .description {
+    font-family: "Lora", Georgia, serif !important;
+}
+
+/* Headings, titles, navigation, buttons, table headers, badges */
+h1, h2, h3, h4, h5, h6,
+th, button, .btn, .btn-primary, .btn-secondary,
+[class*="title"], [class*="heading"], [class*="header"], [class*="btn"], [class*="button"], [class*="badge"], [class*="label"], [class*="nav"],
+.nav-links a, .cta-primary, .cta-link, .chat-header-name, .chat-header-status, .chat-msg-label, .collab-product-name {
+    font-family: "Poppins", Arial, sans-serif !important;
 }

@@ -1,0 +1,207 @@
+/* ===== MYRTO SECTION ===== */
+.myrto-section {
+  padding: 5.5rem 0;
+  background: var(--card-bg);
+  border-top: 1px solid var(--sand);
+}
+
+.myrto-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.myrto-left {}
+
+.myrto-lead {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  margin-top: 0.875rem;
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+/* Behavior list */
+.myrto-principles {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.myrto-principle {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid var(--sand);
+  transition: all 0.25s;
+}
+
+.myrto-principle:hover {
+  border-color: var(--terracotta);
+  transform: translateX(4px);
+}
+
+.principle-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background: rgba(200, 80, 60, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.principle-content strong {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.principle-content span {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* Quote block */
+.myrto-quote {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 6px;
+  padding: 2rem 2.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.myrto-quote::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  font-family: var(--forbes-serif);
+  font-size: 10rem;
+  color: rgba(255,255,255,0.05);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.myrto-quote p {
+  font-family: var(--forbes-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 0.875rem;
+  position: relative;
+  z-index: 1;
+}
+
+.myrto-quote cite {
+  font-size: 0.8rem;
+  color: var(--terracotta);
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Right: visual breakdown */
+.myrto-right {}
+
+.myrto-stat-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: 1px solid var(--sand);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.myrto-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  gap: 1rem;
+}
+
+.myrto-stat-row:nth-child(even) {
+  background: var(--card-bg);
+}
+
+.stat-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.stat-val {
+  font-family: var(--forbes-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--terracotta);
+  white-space: nowrap;
+}
+
+.stat-sublabel {
+  font-size: 0.72rem;
+  color: var(--stone);
+  display: block;
+  font-weight: 400;
+}
+
+/* KAPA3 callout */
+.kapa3-callout {
+  background: #fff;
+  border: 1px solid var(--sand);
+  border-left: 4px solid var(--kapa-red);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+}
+
+.kapa3-callout h4 {
+  font-family: var(--forbes-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--kapa-red);
+  margin-bottom: 0.5rem;
+}
+
+.kapa3-callout p {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.kapa3-callout a {
+  color: var(--kapa-red);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.kapa3-callout a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .myrto-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .myrto-section {
+    padding: 3.5rem 0;
+  }
+}

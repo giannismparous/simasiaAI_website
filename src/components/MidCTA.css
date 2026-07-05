@@ -1,0 +1,38 @@
+/* ===== MID CTA — Anthropic Style ===== */
+.mid-cta {
+  padding: 4rem 0;
+  background: var(--light);
+  border-top: 1px solid var(--light-gray);
+  text-align: center;
+}
+
+.mid-cta-inner {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.mid-cta p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  margin-bottom: 1.75rem;
+}
+
+.mid-cta .cta-primary {
+  display: inline-block;
+  padding: 0.85rem 1.75rem;
+  background: var(--dark);
+  color: #fff;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.mid-cta .cta-primary:hover {
+  background: var(--orange);
+  transform: translateY(-1px);
+}

@@ -41,7 +41,7 @@ const Navbar = () => {
   const navLinks = [
     { path: "/", text: t('nav.home') },
     { path: "/about", text: t('nav.about') },
-    { path: "/applications/simasia-chatbots", text: t('nav.chatbots') },
+    { path: "/applications/simasia-chatbots", text: 'SimasiaDialogue' },
     { path: "/collaborations", text: t('nav.collaborations') },
     { path: "/book-demo", text: t('nav.bookDemo'), isButton: true }
   ];
@@ -60,7 +60,7 @@ const Navbar = () => {
           onClick={handleLogoClick}
         >
           <img 
-            src="/logos/simasiaai-logo.png" 
+            src="/logos/simasiaai.PNG" 
             alt="SimasiaAI Logo" 
             className="logo-img"
           />

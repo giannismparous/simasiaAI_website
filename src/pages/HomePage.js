@@ -1,22 +1,31 @@
 import React from 'react';
-import Hero from '../components/Hero';
-import ChatbotShowcase from '../components/ChatbotShowcase';
-import ProofNumbers from '../components/ProofNumbers';
-import UseCases from '../components/UseCases';
-import GreenAI from '../components/GreenAI';
-import ComplianceSection from '../components/ComplianceSection';
-import ContactForm from '../components/ContactForm';
+import ForbesHero from '../components/ForbesHero';
+import LiveDemoSection from '../components/LiveDemoSection';
+import MidCTA from '../components/MidCTA';
+import ComparisonTable from '../components/ComparisonTable';
+import PartnershipsSection from '../components/PartnershipsSection';
+import EnterpriseCTA from '../components/EnterpriseCTA';
 
 const HomePage = () => {
   return (
     <>
-      <Hero />
-      <ChatbotShowcase />
-      <ProofNumbers />
-      <UseCases />
-      <GreenAI />
-      <ComplianceSection />
-      <ContactForm />
+      {/* 1. Hero with logo */}
+      <ForbesHero />
+
+      {/* 2. Live Demonstration — auto-typing chatbot */}
+      <LiveDemoSection />
+
+      {/* 3. CTA */}
+      <MidCTA />
+
+      {/* 4. Comparison table */}
+      <ComparisonTable />
+
+      {/* 5. Collaborations — 4 cards */}
+      <PartnershipsSection />
+
+      {/* 6. CTA */}
+      <EnterpriseCTA />
     </>
   );
 };
