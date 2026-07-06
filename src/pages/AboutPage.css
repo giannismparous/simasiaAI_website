@@ -8,9 +8,9 @@
   display: flex;
   align-items: center;
 }
-.ap-hero-inner { max-width: 640px; }
+.ap-hero-inner { max-width: var(--hero-inner-max); }
 .ap-eyebrow {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -28,11 +28,10 @@
   margin-bottom: 1.5rem;
 }
 .ap-hero-sub {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.1rem;
   line-height: 1.8;
   color: rgba(250, 249, 245, 0.6);
-  max-width: 520px;
 }
 
 /* Marquee */
@@ -47,7 +46,7 @@
   animation: marquee 25s linear infinite;
 }
 .ap-marquee-word {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -69,7 +68,7 @@
   padding: 1rem 0 1rem 2.5rem;
 }
 .ap-ceo-badge {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -86,7 +85,7 @@
   letter-spacing: -0.02em;
 }
 .ap-ceo-title {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--ink-soft, #5a5a58);
@@ -96,7 +95,7 @@
   letter-spacing: 0.02em;
 }
 .ap-ceo-desc {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.1rem;
   line-height: 1.85;
   color: var(--dark, #141413);
@@ -118,7 +117,7 @@
   margin-bottom: 0.75rem;
 }
 .ap-team-header p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.05rem;
   color: var(--ink-soft, #5a5a58);
 }
@@ -156,7 +155,7 @@
   margin: 0;
 }
 .ap-member-card h4 {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--orange, #d97757);
@@ -166,7 +165,7 @@
   line-height: 1.4;
 }
 .ap-member-card p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 0.9rem;
   line-height: 1.65;
   color: var(--ink-soft, #5a5a58);
@@ -190,7 +189,7 @@
   margin-bottom: 0.75rem;
 }
 .ap-principles-header p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1rem;
   color: var(--ink-soft, #5a5a58);
 }
@@ -205,7 +204,7 @@
 }
 .ap-principle-item:last-child { border-bottom: 1px solid var(--light-gray, #e8e6dc); }
 .ap-principle-num {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--stone, #b0aea5);
@@ -219,7 +218,7 @@
   margin-bottom: 0.5rem;
 }
 .ap-principle-body p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 0.95rem;
   line-height: 1.7;
   color: var(--ink-soft, #5a5a58);
@@ -239,7 +238,7 @@
   margin-bottom: 1.5rem;
 }
 .ap-mission-text {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.1rem;
   line-height: 1.85;
   color: var(--ink-soft, #5a5a58);

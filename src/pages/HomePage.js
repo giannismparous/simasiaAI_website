@@ -21,7 +21,7 @@ const HomePage = () => {
       {/* 4. Comparison table */}
       <ComparisonTable />
 
-      {/* 5. Collaborations — 4 cards */}
+      {/* 5. Collaborations — trust section */}
       <PartnershipsSection />
 
       {/* 6. CTA */}

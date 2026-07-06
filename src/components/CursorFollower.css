@@ -44,7 +44,7 @@
 .cursor-ring.dark-bg.hovering { border-color: var(--orange, #d97757); background: rgba(217,119,87,0.1); }
 
 .cursor-label {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.58rem;
   font-weight: 600;
   color: var(--orange, #d97757);

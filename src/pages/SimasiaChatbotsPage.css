@@ -10,7 +10,7 @@
 }
 
 .scp-eyebrow {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -30,11 +30,10 @@
 }
 
 .scp-hero-sub {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.1rem;
   line-height: 1.8;
   color: rgba(250, 249, 245, 0.6);
-  max-width: 500px;
 }
 
 /* Narrative Section */
@@ -74,7 +73,7 @@
 }
 
 .lang-tag {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.68rem;
   font-weight: 700;
   color: var(--stone, #b0aea5);
@@ -84,7 +83,7 @@
 }
 
 .scp-narrative-block p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 0.98rem;
   line-height: 1.8;
   color: var(--dark, #141413);
@@ -133,7 +132,7 @@
 }
 
 .scp-pillar-num {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--stone, #b0aea5);
@@ -149,7 +148,7 @@
 }
 
 .scp-pillar-body p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 0.92rem;
   line-height: 1.7;
   color: var(--ink-soft, #5a5a58);
@@ -170,7 +169,7 @@
 }
 
 .scp-cta p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.05rem;
   color: rgba(250, 249, 245, 0.6);
   margin-bottom: 2.5rem;
@@ -188,7 +187,7 @@
 }
 
 .scp-email-link {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.88rem;
   color: rgba(250, 249, 245, 0.5);
   text-decoration: none;
@@ -218,7 +217,7 @@
 }
 
 .scp-audience-header p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.05rem;
   color: var(--ink-soft, #5a5a58);
 }
@@ -259,7 +258,7 @@
 }
 
 .scp-audience-card p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 0.92rem;
   line-height: 1.7;
   color: var(--ink-soft, #5a5a58);

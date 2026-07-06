@@ -32,7 +32,7 @@ const pillars = [
   {
     num: '01',
     title: 'Fluency & Context (Ουσιαστικός Διάλογος)',
-    body: 'Driven by advanced computational linguistics, SimaHermes AI adapts perfectly to institutional tone, masters complex Greek dialects, and maps out user interactions proactively.',
+    body: 'Driven by advanced computational linguistics, Simaki adapts perfectly to institutional tone, masters complex Greek dialects, and maps out user interactions proactively.',
   },
   {
     num: '02',
@@ -42,7 +42,7 @@ const pillars = [
   {
     num: '03',
     title: 'Sustainable AI (Πράσινος Διάλογος)',
-    body: 'Ethical engineering means environmental responsibility. Through our proprietary Optimized RAG architecture, SimaHermes AI slashes computational strain and carbon footprint per query, ensuring eco-friendly enterprise scaling.',
+    body: 'Ethical engineering means environmental responsibility. Through our proprietary Optimized RAG architecture, Simaki slashes computational strain and carbon footprint per query, ensuring eco-friendly enterprise scaling.',
   },
 ];
 
@@ -95,7 +95,7 @@ const SimasiaChatbotsPage = () => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="scp-eyebrow">The era of generic chatbots is over.</span>
-            <h1>Meet SimaHermes AI.</h1>
+            <h1>Meet Simaki.</h1>
             <p className="scp-hero-sub">
               An autonomous Language Navigator that bridge the gap between complex organizational data and real human needs.
             </p>
@@ -115,7 +115,7 @@ const SimasiaChatbotsPage = () => {
             >
               <span className="lang-tag">EN</span>
               <p>
-                Traditional AI models operate in isolation; they merely predict words. <strong>SimaHermes AI</strong> is engineered as an autonomous Language Navigator. Inspired by the Greek roots of communication and interpretation, it acts as the ultimate messenger between complex organizational data and real human needs. It combines the intuitive intelligence of next-generation language entities with rigorous academic validation, guiding users through critical workflows with absolute clarity, empathy, and structural precision.
+                Traditional AI models operate in isolation; they merely predict words. <strong>Simaki</strong> is engineered as an autonomous Language Navigator. Inspired by the Greek roots of communication and interpretation, it acts as the ultimate messenger between complex organizational data and real human needs. It combines the intuitive intelligence of next-generation language entities with rigorous academic validation, guiding users through critical workflows with absolute clarity, empathy, and structural precision.
               </p>
             </motion.div>
             <motion.div 
@@ -126,7 +126,7 @@ const SimasiaChatbotsPage = () => {
             >
               <span className="lang-tag">EL</span>
               <p>
-                Τα παραδοσιακά μοντέλα AI λειτουργούν αποκομμένα· απλώς προβλέπουν λέξεις. Το <strong>SimaHermes AI</strong> είναι σχεδιασμένο ως ένας αυτόνομος Ψηφιακός Πλοηγός Γλώσσας. Αντλώντας έμπνευση από τις ελληνικές ρίζες της επικοινωνίας και της ερμηνείας, λειτουργεί ως ο απόλυτος αγγελιοφόρος ανάμεσα στα σύνθετα δεδομένα ενός οργανισμού και τις πραγματικές ανθρώπινες ανάγκες. Συνδυάζει την ευφυΐα των γλωσσικών μοντέλων νέας γενιάς με την αυστηρή ακαδημαϊκή εγκυρότητα, καθοδηγώντας τον χρήστη με απόλυτη σαφήνεια, ενσυναίσθηση και δομική ακρίβεια.
+                Τα παραδοσιακά μοντέλα AI λειτουργούν αποκομμένα· απλώς προβλέπουν λέξεις. Το <strong>Simaki</strong> είναι σχεδιασμένο ως ένας αυτόνομος Ψηφιακός Πλοηγός Γλώσσας. Αντλώντας έμπνευση από τις ελληνικές ρίζες της επικοινωνίας και της ερμηνείας, λειτουργεί ως ο απόλυτος αγγελιοφόρος ανάμεσα στα σύνθετα δεδομένα ενός οργανισμού και τις πραγματικές ανθρώπινες ανάγκες. Συνδυάζει την ευφυΐα των γλωσσικών μοντέλων νέας γενιάς με την αυστηρή ακαδημαϊκή εγκυρότητα, καθοδηγώντας τον χρήστη με απόλυτη σαφήνεια, ενσυναίσθηση και δομική ακρίβεια.
               </p>
             </motion.div>
           </div>
@@ -170,7 +170,7 @@ const SimasiaChatbotsPage = () => {
         <div className="container">
           <div className="scp-pillars-header">
             <h2>5 Μοναδικά Χαρακτηριστικά</h2>
-            <p>Γιατί το SimaHermes AI αποτελεί το πιο εξελιγμένο σύστημα διαλόγου στην Ελλάδα.</p>
+            <p>Γιατί το Simaki αποτελεί το πιο εξελιγμένο σύστημα διαλόγου στην Ελλάδα.</p>
           </div>
           <div className="scp-pillars-list">
             {characteristics.map((char, i) => (
@@ -199,7 +199,7 @@ const SimasiaChatbotsPage = () => {
             transition={{ duration: 0.6 }}
           >
             <h2>Ποιους αφορά</h2>
-            <p>Το SimaHermes AI προσαρμόζεται στις ιδιαίτερες απαιτήσεις κάθε κλάδου.</p>
+            <p>Το Simaki προσαρμόζεται στις ιδιαίτερες απαιτήσεις κάθε κλάδου.</p>
           </motion.div>
 
           <div className="scp-audience-grid">
@@ -224,10 +224,10 @@ const SimasiaChatbotsPage = () => {
       {/* Confident CTA "Έλα πάρτο" */}
       <section className="scp-cta">
         <div className="container">
-          <h2>Αποκτήστε το κορυφαίο SimaHermes AI στην Ελλάδα.</h2>
+          <h2>Αποκτήστε το κορυφαίο Simaki στην Ελλάδα.</h2>
           <p>
             Μην συμβιβάζεστε με generic λύσεις που μπερδεύουν τους χρήστες σας. 
-            Κάντε τη διαφορά με το SimaHermes AI και κερδίστε την εμπιστοσύνη των πελατών σας από την πρώτη μέρα.
+            Κάντε τη διαφορά με το Simaki και κερδίστε την εμπιστοσύνη των πελατών σας από την πρώτη μέρα.
           </p>
           <div className="scp-cta-actions">
             <Link to="/book-demo" className="btn btn-primary btn-large">Έλα πάρτο — Κλείστε Demo</Link>

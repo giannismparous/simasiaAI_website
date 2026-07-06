@@ -79,7 +79,7 @@ const packages = [
     highlight: false,
     features: [
       'Πλήρης AI transformation',
-      'Εγκατάσταση SimaHermes AI',
+      'Εγκατάσταση Simaki',
       'Εκπαίδευση όλου του προσωπικού',
       'Συνεχής στρατηγική υποστήριξη',
       'SLA & dedicated support team',

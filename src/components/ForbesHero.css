@@ -1,38 +1,61 @@
 .fh-section {
   position: relative;
-  min-height: 100vh;
+  min-height: 100svh;
   background: var(--dark, #141413);
   display: flex;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
-  padding: 6rem 2rem;
+  padding: 5.5rem 2rem 4.5rem;
+}
+
+.fh-section::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -100vh;
+  height: 100vh;
+  background: var(--dark, #141413);
+  pointer-events: none;
+}
+
+.fh-layout {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  padding: 0 clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .fh-inner {
-  position: relative;
-  z-index: 2;
-  max-width: 780px;
-  width: 100%;
-  text-align: center;
+  grid-column: 1;
+  max-width: min(44rem, 100%);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  text-align: left;
   gap: 1.5rem;
+  transform: translate(15px, calc(2vh - 150px));
+  padding-left: clamp(0.5rem, 4vw, 3rem);
 }
 
 .fh-headline {
-  font-family: 'Poppins', Arial, sans-serif;
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-family: var(--font-sans);
+  font-size: clamp(2.75rem, 5.8vw, 5.25rem);
   font-weight: 700;
   color: var(--light, #faf9f5);
   line-height: 1.05;
   letter-spacing: -0.04em;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.25em;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 0.2em;
   margin: 0;
+  white-space: nowrap;
 }
 
 .fh-word { display: inline-block; }
@@ -46,20 +69,26 @@
 }
 
 .fh-sub {
-  font-family: 'Lora', Georgia, serif;
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: rgba(250, 249, 245, 0.65);
   line-height: 1.8;
-  max-width: 580px;
+  max-width: 32rem;
   margin: 0;
 }
 
 .fh-sub em { color: rgba(250, 249, 245, 0.9); font-style: italic; }
 
-.fh-ctas { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; justify-content: center; }
+.fh-ctas {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
 
 .fh-btn-primary {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-weight: 600;
   font-size: 0.9rem;
   padding: 0.875rem 1.875rem;
@@ -73,7 +102,7 @@
 .fh-btn-primary:hover { background: var(--orange, #d97757); color: #fff; transform: translateY(-2px); }
 
 .fh-btn-ghost {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-weight: 500;
   font-size: 0.88rem;
   color: rgba(250, 249, 245, 0.55);
@@ -89,16 +118,32 @@
 .fh-btn-ghost:hover .fh-arrow { transform: translateY(3px); }
 
 .fh-coord {
-  font-family: 'Poppins', Arial, sans-serif;
+  position: absolute;
+  left: 50%;
+  bottom: 4.25rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-family: var(--font-sans);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(250, 249, 245, 0.22);
-  margin-top: 0.5rem;
+  margin: 0;
+  white-space: nowrap;
 }
 
-.fh-scroll-indicator { margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; }
+.fh-scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 1.75rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .fh-scroll-line {
   width: 1.5px;
   height: 36px;
@@ -107,8 +152,30 @@
   transform-origin: top;
 }
 
+@media (max-width: 960px) {
+  .fh-layout {
+    grid-template-columns: 1fr;
+    padding: 0 clamp(1.25rem, 5vw, 2rem);
+  }
+  .fh-inner {
+    grid-column: 1;
+    max-width: min(44rem, 100%);
+    padding-left: clamp(0.25rem, 2vw, 1rem);
+  }
+  .fh-headline {
+    font-size: clamp(2.2rem, 6.5vw, 3.5rem);
+  }
+}
+
 @media (max-width: 640px) {
-  .fh-section { padding: 5rem 1.25rem; }
-  .fh-ctas { flex-direction: column; gap: 0.875rem; }
+  .fh-section { padding: 4.75rem 1.25rem 4rem; }
+  .fh-inner { transform: translate(15px, calc(1vh - 150px)); max-width: 100%; }
+  .fh-headline {
+    font-size: clamp(1.65rem, 7.2vw, 2.4rem);
+    letter-spacing: -0.03em;
+  }
+  .fh-coord { bottom: 3.5rem; font-size: 0.62rem; }
+  .fh-scroll-indicator { bottom: 1.25rem; }
+  .fh-ctas { flex-direction: column; gap: 0.875rem; align-items: stretch; }
   .fh-btn-primary { width: 100%; text-align: center; }
 }

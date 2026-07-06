@@ -376,6 +376,13 @@ export const translations = {
     // Collaborations
     collaborations: {
       title: "Συνεργασίες",
+      home: {
+        headline: "Το Simaki υλοποιείται σε οργανισμούς με κοινωνικό αντίκτυπο",
+        paragraph1: "Οι συνεργασίες μας περιλαμβάνουν το Κέντρο Κ3 (Μυρτώ), την ΠΟΑμΣΚΠ (ΣΚΠ-i), το Φροντιστήριο «Δια ζώση», και προγράμματα σε εξέλιξη όπως BPAN και Perfectaki Able.",
+        paragraph2: "Εργαζόμαστε σε κάθετολόγια όπου η ακρίβεια, η προσβασιμότητα και η ανθρώπινη κλιμάκωση είναι κρίσιμες — υγεία, εκπαίδευση και κοινωνικές υπηρεσίες.",
+        paragraph3: "Μαζί πετυχαίνουμε σαφείς απαντήσεις σε σύνθετες διαδικασίες, διαφάνεια γνώσης από εγκεκριμένες πηγές και ψηφιακή ένταξη για κοινότητες που το χρειάζονται.",
+        viewAll: "Όλες οι συνεργασίες →"
+      },
       current: {
         title: "Συνεργασίες",
         contact: "Επικοινωνήστε για πρόσβαση",
@@ -841,6 +848,13 @@ export const translations = {
     // Collaborations
     collaborations: {
       title: "Collaborations",
+      home: {
+        headline: "Simaki is being built with organizations that put people first",
+        paragraph1: "Our collaborations include the K3 Cancer Guidance Center (Myrto), POAMSKP (SKP-i), Frontistirio Dia zosi, and programs in progress such as BPAN and Perfectaki Able.",
+        paragraph2: "We work across verticals where accuracy, accessibility, and human escalation matter most — health, education, and social services.",
+        paragraph3: "Together we deliver clear answers to complex processes, knowledge transparency from approved sources, and digital inclusion for communities that need it.",
+        viewAll: "View all collaborations →"
+      },
       current: {
         title: "Collaborations",
         contact: "Contact for access",

@@ -13,7 +13,7 @@
 }
 
 .comparison-subtitle {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1rem;
   color: var(--ink-soft);
   margin-bottom: 2.5rem;
@@ -27,12 +27,12 @@
 .comparison-table {
   width: 100%;
   border-collapse: collapse;
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 0.92rem;
 }
 
 .comparison-table thead th {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.82rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -61,7 +61,7 @@
 }
 
 .comparison-table tbody td:first-child {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-weight: 500;
   font-size: 0.85rem;
   color: var(--ink-soft);

@@ -19,7 +19,7 @@
 }
 
 .explanation-intro p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.05rem;
   line-height: 1.8;
   color: var(--ink-soft);
@@ -37,7 +37,7 @@
 }
 
 .pillar-number {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 1px;
@@ -56,7 +56,7 @@
 }
 
 .pillar-concept {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 0.95rem;
   line-height: 1.75;
   color: var(--ink-soft);

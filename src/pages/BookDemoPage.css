@@ -8,7 +8,7 @@
   align-items: center;
 }
 .bdp-eyebrow {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -25,11 +25,10 @@
   margin-bottom: 1.25rem;
 }
 .bdp-hero-sub {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.05rem;
   line-height: 1.8;
   color: rgba(250, 249, 245, 0.6);
-  max-width: 480px;
 }
 
 .bdp-form-section { padding: 5rem 0; }
@@ -56,7 +55,7 @@
   gap: 0.875rem;
 }
 .bdp-list li {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 0.95rem;
   color: var(--ink-soft, #5a5a58);
   padding-left: 1.25rem;
@@ -70,7 +69,7 @@
   color: var(--orange, #d97757);
 }
 .bdp-note {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.82rem;
   color: var(--stone, #b0aea5);
   margin-top: 1rem;
@@ -87,14 +86,14 @@
 }
 .bdp-field { display: flex; flex-direction: column; gap: 0.5rem; }
 .bdp-field label {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--dark, #141413);
   letter-spacing: 0.02em;
 }
 .bdp-field input, .bdp-field textarea {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 0.95rem;
   color: var(--dark, #141413);
   background: transparent;
@@ -110,7 +109,7 @@
 .bdp-field input:focus, .bdp-field textarea:focus { border-bottom-color: var(--orange, #d97757); }
 .bdp-field input::placeholder, .bdp-field textarea::placeholder { color: var(--stone, #b0aea5); }
 .bdp-submit {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.9rem;
   font-weight: 600;
   background: var(--dark, #141413);
@@ -133,7 +132,7 @@
   text-align: center;
 }
 .bdp-success h3 { font-size: 1.5rem; color: var(--dark, #141413); margin-bottom: 0.75rem; }
-.bdp-success p { font-family: 'Lora', Georgia, serif; color: var(--ink-soft, #5a5a58); }
+.bdp-success p { font-family: var(--font-serif); color: var(--ink-soft, #5a5a58); }
 
 @media (max-width: 768px) {
   .bdp-two-col { grid-template-columns: 1fr; gap: 2rem; }

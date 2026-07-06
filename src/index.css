@@ -18,7 +18,9 @@
     --terracotta: #d97757;
     --kapa-red: #b03030;
     --sage: #788c5d;
-    --forbes-serif: 'Lora', Georgia, serif;
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: 'Source Serif 4', ui-serif, Georgia, 'Times New Roman', Times, serif;
+    --forbes-serif: var(--font-serif);
     --primary-warm: #2C7A7B;
     --secondary-warm: #5FB3B4;
     --accent-warm: #d97757;
@@ -35,17 +37,31 @@
     --ease-in-out: cubic-bezier(0.25, 0.1, 0.25, 1);
     --z-nav: 1000;
     --z-cursor: 9999;
-}
-
-@media (pointer: fine) {
-    html, body { cursor: none; }
+    --hero-inner-max: min(1140px, 92vw);
+    --hero-sub-max: min(900px, 88vw);
 }
 
 ::selection { background: var(--orange); color: #fff; }
 ::-moz-selection { background: var(--orange); color: #fff; }
 
+html {
+    background-color: var(--dark, #141413);
+}
+
+html.page-backdrop-dark,
+html.page-backdrop-dark body,
+html.page-backdrop-dark #root {
+    background-color: #141413;
+}
+
+html.page-backdrop-light,
+html.page-backdrop-light body,
+html.page-backdrop-light #root {
+    background-color: #faf9f5;
+}
+
 body {
-    font-family: "Lora", Georgia, serif;
+    font-family: var(--font-serif);
     line-height: 1.7;
     color: var(--dark);
     background: var(--light);
@@ -56,7 +72,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Poppins", Arial, sans-serif;
+    font-family: var(--font-sans);
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.15;
@@ -71,6 +87,37 @@ html { scroll-behavior: smooth; }
     padding: 0 2rem;
 }
 @media (max-width: 768px) { .container { padding: 0 1.25rem; } }
+
+/* Page hero widths — match home ForbesHero */
+.ap-hero .container,
+.bdp-hero .container,
+.cp-hero .container,
+.consulting-hero .container,
+.edu-hero .container,
+.scp-hero .container,
+.solutions-hero .container,
+.applications-hero .container,
+.products-hero .container,
+.product-hero .container,
+.target-audience-hero .container {
+    max-width: var(--hero-inner-max);
+}
+
+.ap-hero-inner {
+    max-width: var(--hero-inner-max);
+}
+
+.ap-hero-sub,
+.bdp-hero-sub,
+.cp-hero-sub,
+.consulting-hero-sub,
+.edu-hero-sub,
+.scp-hero-sub,
+.solutions-hero-sub,
+.solutions-hero .container p,
+.product-hero .container p {
+    max-width: var(--hero-sub-max);
+}
 
 .scroll-reveal {
     opacity: 0;
@@ -96,7 +143,7 @@ section.impact-wrapper:hover .impact .section-title { color: var(--dark-text) !i
     border: none;
     text-decoration: none;
     cursor: pointer;
-    font-family: "Poppins", Arial, sans-serif;
+    font-family: var(--font-sans);
     letter-spacing: 0.01em;
 }
 .btn-primary { background: var(--dark); color: #fff; }
@@ -149,12 +196,12 @@ section.impact-wrapper:hover .impact .section-title { color: var(--dark-text) !i
 }
 
 body, p, li, td, input, textarea, select, label, blockquote, .card-text, .desc, .description {
-    font-family: "Lora", Georgia, serif !important;
+    font-family: var(--font-serif) !important;
 }
 
 h1, h2, h3, h4, h5, h6,
 th, button, .btn, .btn-primary, .btn-secondary,
 [class*="title"], [class*="heading"], [class*="header"], [class*="btn"], [class*="button"], [class*="badge"], [class*="label"], [class*="nav"],
 .nav-links a, .cta-primary, .cta-link, .chat-header-name, .chat-header-status, .chat-msg-label, .collab-product-name {
-    font-family: "Poppins", Arial, sans-serif !important;
+    font-family: var(--font-sans) !important;
 }

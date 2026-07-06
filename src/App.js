@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CursorFollower from './components/CursorFollower';
 import ScrollToTop from './components/ScrollToTop';
+import OverscrollFill from './components/OverscrollFill';
 import HomePage from './pages/HomePage';
 import SolutionsPage from './pages/SolutionsPage';
 import CollaborationsPage from './pages/CollaborationsPage';
@@ -27,6 +28,7 @@ function App() {
     <LanguageProvider>
       <Router>
         <ScrollToTop />
+        <OverscrollFill />
         <div className="App">
           <CursorFollower />
           <Navbar />

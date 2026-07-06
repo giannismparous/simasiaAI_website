@@ -38,7 +38,7 @@ const CollaborationsPage = () => {
           >
             <span className="cp-eyebrow">SimasiaAI</span>
             <h1>Συνεργασίες</h1>
-            <p className="cp-hero-sub">Τέσσερα προγράμματα SimaHermes AI σε υλοποίηση για οργανισμούς που εργάζονται με εμπάθεια και ανθρώπινη μέριμνα.</p>
+            <p className="cp-hero-sub">Τέσσερα προγράμματα Simaki σε υλοποίηση για οργανισμούς που εργάζονται με εμπάθεια και ανθρώπινη μέριμνα.</p>
           </motion.div>
         </div>
       </section>

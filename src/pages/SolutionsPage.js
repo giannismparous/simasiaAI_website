@@ -176,7 +176,7 @@ const SolutionsPage = () => {
               </h1>
             </SmoothReveal>
             <SmoothReveal delay={0.2} yOffset={15}>
-              <p style={{ fontSize: '1.25rem', color: 'var(--gray-medium)', maxWidth: '800px', margin: '0 auto', lineHeight: 1.8 }}>
+              <p className="solutions-hero-sub" style={{ fontSize: '1.25rem', color: 'var(--gray-medium)', margin: '0 auto', lineHeight: 1.8 }}>
                 <WordReveal 
                   text="Για Επιχειρήσεις, Φορείς, Οργανισμούς. Συνεργαζόμαστε για λύσεις που ενισχύουν την κοινωνική συνοχή και υποστηρίζουν καθαρή, προσβάσιμη επικοινωνία."
                   delay={0.25}

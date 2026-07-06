@@ -18,7 +18,7 @@ const EnterpriseCTA = () => {
         <h2>Είστε έτοιμοι να ξεκινήσετε;</h2>
         <p className="enterprise-cta-lead">
           Φέρτε την Τεχνητή Νοημοσύνη στα μέτρα του οργανισμού σας.
-          Δημιουργήστε ένα SimaHermes AI προσαρμοσμένο στις πραγματικές
+          Δημιουργήστε ένα Simaki προσαρμοσμένο στις πραγματικές
           ανάγκες των χρηστών σας.
         </p>
         <div className="enterprise-cta-buttons">

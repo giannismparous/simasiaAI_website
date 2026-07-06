@@ -16,7 +16,7 @@
 }
 
 .edu-eyebrow {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -36,11 +36,10 @@
 }
 
 .edu-hero-sub {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.1rem;
   line-height: 1.8;
   color: rgba(250, 249, 245, 0.65);
-  max-width: 540px;
   margin-bottom: 2.5rem;
 }
 
@@ -52,7 +51,7 @@
 }
 
 .edu-ghost-link {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.88rem;
   font-weight: 500;
   color: rgba(250, 249, 245, 0.5);
@@ -83,7 +82,7 @@
   margin-bottom: 0.75rem;
 }
 .edu-section-header p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1rem;
   color: var(--ink-soft, #5a5a58);
 }
@@ -102,7 +101,7 @@
 }
 .edu-group-item:last-child { border-bottom: 1px solid var(--light-gray, #e8e6dc); }
 .edu-group-num {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--stone, #b0aea5);
@@ -116,7 +115,7 @@
   margin-bottom: 0.5rem;
 }
 .edu-group-body p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 0.95rem;
   line-height: 1.7;
   color: var(--ink-soft, #5a5a58);
@@ -155,7 +154,7 @@
 
 .edu-workshop-tag {
   display: inline-block;
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -175,7 +174,7 @@
   margin: 0;
 }
 .edu-workshop-card p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 0.92rem;
   line-height: 1.7;
   color: var(--ink-soft, #5a5a58);
@@ -184,7 +183,7 @@
 }
 
 .edu-workshop-cta {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
@@ -210,7 +209,7 @@
   margin-right: auto;
 }
 .edu-banner p {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.05rem;
   line-height: 1.8;
   color: rgba(250, 249, 245, 0.65);
