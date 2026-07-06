@@ -36,7 +36,7 @@ const Navbar = () => {
   const navLinks = [
     { path: '/', text: t('nav.home') },
     { path: '/about', text: t('nav.about') },
-    { path: '/applications/simasia-chatbots', text: 'SimasiaDialogue' },
+    { path: '/applications/simasia-chatbots', text: 'SimaHermes AI' },
     { path: '/services/consulting', text: 'Συμβουλευτική' },
     { path: '/services/education', text: 'Εκπαίδευση' },
     { path: '/collaborations', text: t('nav.collaborations') },

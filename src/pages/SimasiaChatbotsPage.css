@@ -37,6 +37,66 @@
   max-width: 500px;
 }
 
+/* Narrative Section */
+.scp-narrative {
+  padding: 6rem 0;
+  background: var(--light, #faf9f5);
+  border-bottom: 1px solid var(--light-gray, #e8e6dc);
+}
+
+.scp-narrative-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+@media (max-width: 768px) {
+  .scp-narrative-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.scp-narrative-block {
+  padding: 2.5rem;
+  background: var(--white, #fff);
+  border: 1px solid var(--light-gray, #e8e6dc);
+  border-radius: 8px;
+  position: relative;
+}
+
+.scp-narrative-block.en {
+  border-left: 3px solid var(--orange, #d97757);
+}
+
+.scp-narrative-block.el {
+  border-left: 3px solid var(--primary-warm, #2C7A7B);
+}
+
+.lang-tag {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--stone, #b0aea5);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.scp-narrative-block p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: var(--dark, #141413);
+  margin: 0;
+}
+
+.scp-narrative-block strong {
+  color: var(--dark, #141413);
+  font-weight: 600;
+}
+
+
 /* Pillars */
 .scp-pillars {
   padding: 5rem 0;

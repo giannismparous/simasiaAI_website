@@ -56,15 +56,129 @@
   margin-right: 2rem;
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* CEO Section */
+.ap-ceo-section {
+  padding: 6rem 0 3rem;
+  background: var(--white, #fff);
+  border-bottom: 1px solid var(--light-gray, #e8e6dc);
+}
+.ap-ceo-card {
+  max-width: 900px;
+  margin: 0 auto;
+  border-left: 3px solid var(--orange, #d97757);
+  padding: 1rem 0 1rem 2.5rem;
+}
+.ap-ceo-badge {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange, #d97757);
+  margin-bottom: 1rem;
+  display: block;
+}
+.ap-ceo-card h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--dark, #141413);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+.ap-ceo-title {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-soft, #5a5a58);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.ap-ceo-desc {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--dark, #141413);
+}
+
+/* Team Grid Section */
+.ap-team-section {
+  padding: 6rem 0;
+  background: var(--light, #faf9f5);
+}
+.ap-team-header {
+  max-width: 550px;
+  margin-bottom: 4rem;
+}
+.ap-team-header h2 {
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  color: var(--dark, #141413);
+  margin-bottom: 0.75rem;
+}
+.ap-team-header p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--ink-soft, #5a5a58);
+}
+.ap-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 960px) {
+  .ap-team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .ap-team-grid { grid-template-columns: 1fr; }
+}
+
+.ap-member-card {
+  background: var(--white, #fff);
+  border: 1px solid var(--light-gray, #e8e6dc);
+  border-radius: 8px;
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.ap-member-card:hover {
+  border-color: var(--orange, #d97757);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+.ap-member-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--dark, #141413);
+  margin: 0;
+}
+.ap-member-card h4 {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--orange, #d97757);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1.4;
+}
+.ap-member-card p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ink-soft, #5a5a58);
+  margin: 0;
+  flex: 1;
 }
 
 /* Principles */
 .ap-principles {
-  padding: 5rem 0;
-  background: var(--light, #faf9f5);
+  padding: 6rem 0;
+  background: var(--white, #fff);
+  border-top: 1px solid var(--light-gray, #e8e6dc);
 }
 .ap-principles-header {
   max-width: 480px;
@@ -114,8 +228,8 @@
 
 /* Mission */
 .ap-mission {
-  padding: 5rem 0;
-  background: var(--white, #fff);
+  padding: 6rem 0;
+  background: var(--light, #faf9f5);
   border-top: 1px solid var(--light-gray, #e8e6dc);
 }
 .ap-mission-inner { max-width: 680px; }
@@ -134,6 +248,7 @@
 
 @media (max-width: 640px) {
   .ap-hero { padding: 7rem 0 3.5rem; }
+  .ap-ceo-card { padding-left: 1.25rem; }
+  .ap-team-section, .ap-ceo-section, .ap-principles, .ap-mission { padding: 4rem 0; }
   .ap-principle-item { grid-template-columns: 50px 1fr; gap: 1rem; }
-  .ap-mission { padding: 3.5rem 0; }
 }

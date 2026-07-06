@@ -18,7 +18,7 @@ const Footer = () => {
             <h4>{t('footer.navigation')}</h4>
             <Link to="/">{t('nav.home')}</Link>
             <Link to="/about">{t('nav.about')}</Link>
-            <Link to="/applications/simasia-chatbots">SimasiaDialogue</Link>
+            <Link to="/applications/simasia-chatbots">SimaHermes AI</Link>
             <Link to="/collaborations">{t('nav.collaborations')}</Link>
           </div>
           <div className="footer-col">

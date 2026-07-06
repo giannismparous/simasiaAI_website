@@ -138,7 +138,7 @@ const LiveDemoSection = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2>SimasiaDialogue</h2>
+          <h2>SimaHermes AI</h2>
           <p className="live-demo-subtitle">Live Demonstration</p>
         </motion.div>
 
@@ -152,11 +152,11 @@ const LiveDemoSection = () => {
           <div className="chat-header">
             <img
               src="/logos/simasiaai.PNG"
-              alt="SimasiaDialogue"
+              alt="SimaHermes AI"
               className="chat-avatar"
             />
             <div className="chat-header-info">
-              <div className="chat-header-name">SimasiaDialogue</div>
+              <div className="chat-header-name">SimaHermes AI</div>
               <div className="chat-header-status">
                 <span className="online-dot" />
                 Online
@@ -170,7 +170,7 @@ const LiveDemoSection = () => {
               <React.Fragment key={i}>
                 <div className={`chat-msg ${m.type}`}>
                   <span className="chat-msg-label">
-                    {m.type === 'user' ? 'Εσείς' : 'SimasiaDialogue'}
+                    {m.type === 'user' ? 'Εσείς' : 'SimaHermes AI'}
                   </span>
                   <div className="chat-msg-bubble">
                     {m.text.split('\n').map((line, j) => (
@@ -195,7 +195,7 @@ const LiveDemoSection = () => {
             {/* Bot typing live */}
             {currentText && (
               <div className="chat-msg bot">
-                <span className="chat-msg-label">SimasiaDialogue</span>
+                <span className="chat-msg-label">SimaHermes AI</span>
                 <div className="chat-msg-bubble">
                   {currentText.split('\n').map((line, j) => (
                     <span key={j}>{line}{j < currentText.split('\n').length - 1 && <br />}</span>

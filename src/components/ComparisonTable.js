@@ -42,7 +42,7 @@ const ComparisonTable = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2>Τι κάνει το SimasiaDialogue διαφορετικό;</h2>
+          <h2>Τι κάνει το SimaHermes AI διαφορετικό;</h2>
           <p className="comparison-subtitle">
             Σύγκριση με τα παραδοσιακά chatbot.
           </p>
@@ -59,7 +59,7 @@ const ComparisonTable = () => {
               <tr>
                 <th>Χαρακτηριστικό</th>
                 <th>Παραδοσιακά Chatbots</th>
-                <th>SimasiaDialogue</th>
+                <th>SimaHermes AI</th>
               </tr>
             </thead>
             <tbody>

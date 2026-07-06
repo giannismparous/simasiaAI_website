@@ -14,7 +14,7 @@ const targetAudience = [
   {
     icon: '🏛️',
     title: 'Δημόσιος Τομέας & Δήμοι',
-    desc: 'Αμεση εξυπηρέτηση δημοτών, εύρεση δικαιολογητικών και ψηφιακή καθοδήγηση χωρίς γραφειοκρατία.',
+    desc: 'Άμεση εξυπηρέτηση δημοτών, εύρεση δικαιολογητικών και ψηφιακή καθοδήγηση χωρίς γραφειοκρατία.',
   },
   {
     icon: '💼',
@@ -31,36 +31,57 @@ const targetAudience = [
 const pillars = [
   {
     num: '01',
-    title: 'Φυσική Γλώσσα & Τοπικές Διάλεκτοι',
-    body: 'Το μοναδικό chatbot στην Ελλάδα που αντιλαμβάνεται τη γλώσσα μας ακριβώς όπως τη μιλάμε, μαζί με τοπικές διαλέκτους και συναισθηματικές αποχρώσεις.',
+    title: 'Fluency & Context (Ουσιαστικός Διάλογος)',
+    body: 'Driven by advanced computational linguistics, SimaHermes AI adapts perfectly to institutional tone, masters complex Greek dialects, and maps out user interactions proactively.',
   },
   {
     num: '02',
-    title: 'EU AI Act Compliance',
-    body: 'Απόλυτη ασφάλεια δεδομένων. Σχεδιασμένο από την αρχή με βάση τους αυστηρότερους ευρωπαϊκούς κανονισμούς για την τεχνητή νοημοσύνη.',
+    title: 'Ethics & Compliance (Υπεύθυνος Διάλογος)',
+    body: 'Built with absolute EU AI Act Compliance. Features universal accessibility for individuals with disabilities (PwD/ΑμεΑ), strict safety guardrails for crisis scenarios, and an engineered minimization of hallucinations.',
+  },
+  {
+    num: '03',
+    title: 'Sustainable AI (Πράσινος Διάλογος)',
+    body: 'Ethical engineering means environmental responsibility. Through our proprietary Optimized RAG architecture, SimaHermes AI slashes computational strain and carbon footprint per query, ensuring eco-friendly enterprise scaling.',
+  },
+];
+
+const characteristics = [
+  {
+    num: '01',
+    title: 'Φυσική Γλώσσα & Τοπικές Διάλεκτοι',
+    body: 'Το μοναδικό σύστημα στην Ελλάδα που αντιλαμβάνεται τη γλώσσα μας ακριβώς όπως τη μιλάμε, μαζί με τοπικές διαλέκτους και συναισθηματικές αποχρώσεις.',
+  },
+  {
+    num: '02',
+    title: 'Απόλυτη Κανονιστική Συμμόρφωση',
+    body: 'Σχεδιασμένο εξαρχής με βάση τους αυστηρότερους ευρωπαϊκούς κανονισμούς (EU AI Act) για την ασφάλεια και την προστασία των προσωπικών δεδομένων.',
   },
   {
     num: '03',
     title: 'Καθολική Σχεδίαση για ΑμεΑ',
-    body: 'Προσβάσιμο σε όλους. Ενσωματώνει πρότυπα προσβασιμότητας για άτομα με οπτικές, ακουστικές ή κινητικές δυσκολίες.',
+    body: 'Πλήρης προσβασιμότητα για άτομα με οπτικές, ακουστικές ή κινητικές δυσκολίες, εξασφαλίζοντας ίση πρόσβαση στην πληροφορία.',
   },
   {
     num: '04',
     title: 'Eco-Friendly Optimized RAG',
-    body: 'Πράσινη τεχνολογία. Βελτιστοποιημένο σύστημα ανάκτησης δεδομένων (RAG) που μειώνει δραστικά την κατανάλωση ενέργειας και το αποτύπωμα άνθρακα.',
+    body: 'Μειώνουμε δραστικά την κατανάλωση ενέργειας και το αποτύπωμα άνθρακα ανά ερώτημα με την έξυπνη υβριδική μας αρχιτεκτονική.',
   },
   {
     num: '05',
     title: 'Προληπτικός Ψηφιακός Πλοηγός',
-    body: 'Δεν απαντά απλώς σε ερωτήσεις. Καθοδηγεί ενεργά τον χρήστη, προβλέπει τις ανάγκες του και προσφέρει λύσεις πριν καν ζητηθούν.',
+    body: 'Δεν απαντά απλώς σε ερωτήσεις· προβλέπει τις ανάγκες του χρήστη και τον καθοδηγεί με ακρίβεια στα επόμενα βήματα.',
   },
 ];
 
 const SimasiaChatbotsPage = () => {
   const heroRef = useRef(null);
+  const narrativeRef = useRef(null);
   const featRef = useRef(null);
-  const featInView = useInView(featRef, { once: true, margin: '100px' });
   const audienceRef = useRef(null);
+
+  const narrativeInView = useInView(narrativeRef, { once: true, margin: '100px' });
+  const featInView = useInView(featRef, { once: true, margin: '100px' });
   const audienceInView = useInView(audienceRef, { once: true, margin: '100px' });
 
   return (
@@ -73,17 +94,46 @@ const SimasiaChatbotsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="scp-eyebrow">Το Πιο Εξειδικευμένο Chatbot στην Ελλάδα</span>
-            <h1>SimasiaDialogue</h1>
+            <span className="scp-eyebrow">The era of generic chatbots is over.</span>
+            <h1>Meet SimaHermes AI.</h1>
             <p className="scp-hero-sub">
-              Σχεδιάζουμε τον μοναδικό, ανθρωποκεντρικό ψηφιακό πλοηγό που συνδυάζει 
-              κορυφαία τεχνολογία, ελληνική εντοπιότητα και απόλυτη συμμόρφωση.
+              An autonomous Language Navigator that bridge the gap between complex organizational data and real human needs.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Pillars */}
+      {/* Narrative Section */}
+      <section className="scp-narrative" ref={narrativeRef}>
+        <div className="container">
+          <div className="scp-narrative-grid">
+            <motion.div 
+              className="scp-narrative-block en"
+              initial={{ opacity: 0, x: -30 }}
+              animate={narrativeInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="lang-tag">EN</span>
+              <p>
+                Traditional AI models operate in isolation; they merely predict words. <strong>SimaHermes AI</strong> is engineered as an autonomous Language Navigator. Inspired by the Greek roots of communication and interpretation, it acts as the ultimate messenger between complex organizational data and real human needs. It combines the intuitive intelligence of next-generation language entities with rigorous academic validation, guiding users through critical workflows with absolute clarity, empathy, and structural precision.
+              </p>
+            </motion.div>
+            <motion.div 
+              className="scp-narrative-block el"
+              initial={{ opacity: 0, x: 30 }}
+              animate={narrativeInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="lang-tag">EL</span>
+              <p>
+                Τα παραδοσιακά μοντέλα AI λειτουργούν αποκομμένα· απλώς προβλέπουν λέξεις. Το <strong>SimaHermes AI</strong> είναι σχεδιασμένο ως ένας αυτόνομος Ψηφιακός Πλοηγός Γλώσσας. Αντλώντας έμπνευση από τις ελληνικές ρίζες της επικοινωνίας και της ερμηνείας, λειτουργεί ως ο απόλυτος αγγελιοφόρος ανάμεσα στα σύνθετα δεδομένα ενός οργανισμού και τις πραγματικές ανθρώπινες ανάγκες. Συνδυάζει την ευφυΐα των γλωσσικών μοντέλων νέας γενιάς με την αυστηρή ακαδημαϊκή εγκυρότητα, καθοδηγώντας τον χρήστη με απόλυτη σαφήνεια, ενσυναίσθηση και δομική ακρίβεια.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Three Architectural Pillars */}
       <section className="scp-pillars" ref={featRef}>
         <div className="container">
           <motion.div className="scp-pillars-header"
@@ -91,8 +141,8 @@ const SimasiaChatbotsPage = () => {
             animate={featInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2>5 Μοναδικά Χαρακτηριστικά</h2>
-            <p>Γιατί το SimasiaDialogue διαφέρει από οποιοδήποτε άλλο chatbot της αγοράς.</p>
+            <h2>The Three Architectural Pillars</h2>
+            <p>Our core framework driving next-generation enterprise conversational architecture.</p>
           </motion.div>
           <div className="scp-pillars-list">
             {pillars.map((p, i) => (
@@ -115,6 +165,27 @@ const SimasiaChatbotsPage = () => {
       {/* Live Demo */}
       <LiveDemoSection />
 
+      {/* Product Characteristics */}
+      <section className="scp-chars">
+        <div className="container">
+          <div className="scp-pillars-header">
+            <h2>5 Μοναδικά Χαρακτηριστικά</h2>
+            <p>Γιατί το SimaHermes AI αποτελεί το πιο εξελιγμένο σύστημα διαλόγου στην Ελλάδα.</p>
+          </div>
+          <div className="scp-pillars-list">
+            {characteristics.map((char, i) => (
+              <div key={i} className="scp-pillar">
+                <span className="scp-pillar-num">{char.num}</span>
+                <div className="scp-pillar-body">
+                  <h3>{char.title}</h3>
+                  <p>{char.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Comparison Table */}
       <ComparisonTable />
 
@@ -128,7 +199,7 @@ const SimasiaChatbotsPage = () => {
             transition={{ duration: 0.6 }}
           >
             <h2>Ποιους αφορά</h2>
-            <p>Το SimasiaDialogue προσαρμόζεται στις ιδιαίτερες απαιτήσεις κάθε κλάδου.</p>
+            <p>Το SimaHermes AI προσαρμόζεται στις ιδιαίτερες απαιτήσεις κάθε κλάδου.</p>
           </motion.div>
 
           <div className="scp-audience-grid">
@@ -153,10 +224,10 @@ const SimasiaChatbotsPage = () => {
       {/* Confident CTA "Έλα πάρτο" */}
       <section className="scp-cta">
         <div className="container">
-          <h2>Αποκτήστε το κορυφαίο Chatbot στην Ελλάδα.</h2>
+          <h2>Αποκτήστε το κορυφαίο SimaHermes AI στην Ελλάδα.</h2>
           <p>
             Μην συμβιβάζεστε με generic λύσεις που μπερδεύουν τους χρήστες σας. 
-            Κάντε τη διαφορά με το SimasiaDialogue και κερδίστε την εμπιστοσύνη των πελατών σας από την πρώτη μέρα.
+            Κάντε τη διαφορά με το SimaHermes AI και κερδίστε την εμπιστοσύνη των πελατών σας από την πρώτη μέρα.
           </p>
           <div className="scp-cta-actions">
             <Link to="/book-demo" className="btn btn-primary btn-large">Έλα πάρτο — Κλείστε Demo</Link>

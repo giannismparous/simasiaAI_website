@@ -16,7 +16,7 @@ const MidCTA = () => {
         transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
       >
         <p>
-          Δοκιμάστε τα SimasiaDialogues στον οργανισμό σας.
+          Δοκιμάστε το SimaHermes AI στον οργανισμό σας.
           30 λεπτά αρκούν για να δείτε πώς λειτουργεί.
         </p>
         <Link to="/book-demo" className="cta-primary">
