@@ -38,7 +38,7 @@
 }
 
 @media (pointer: fine) {
-    *, *::before, *::after { cursor: none !important; }
+    html, body { cursor: none; }
 }
 
 ::selection { background: var(--orange); color: #fff; }
@@ -95,7 +95,7 @@ section.impact-wrapper:hover .impact .section-title { color: var(--dark-text) !i
     justify-content: center;
     border: none;
     text-decoration: none;
-    cursor: none;
+    cursor: pointer;
     font-family: "Poppins", Arial, sans-serif;
     letter-spacing: 0.01em;
 }

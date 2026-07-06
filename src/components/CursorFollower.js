@@ -1,17 +1,32 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './CursorFollower.css';
 
-const MAGNETIC_SELECTORS = ['a','button','.btn','.cta-primary','.nav-demo-button','.value-item','.achievement-item','.collaboration-card','.collab-card','.process-step','.capability-item'];
+const MAGNETIC_SELECTORS = [
+  'a','button','.btn','.cta-primary','.nav-demo-button',
+  '.fh-btn-primary','.fh-btn-ghost','.bdp-submit',
+  '.scp-cta .btn','.value-item','.achievement-item',
+  '.collaboration-card','.cp-card','.collab-card',
+  '.process-step','.capability-item','.pkg-card',
+];
 
 const getLabel = (el) => {
   if (!el) return '';
   const tag = el.tagName?.toLowerCase();
-  const cls = (el.className || '') + ' ' + (el.closest?.('a')?.className || '');
+  const cls = (el.className || '').toString();
   if (cls.includes('demo') || cls.includes('book')) return 'Demo';
-  if (cls.includes('cta') || cls.includes('btn')) return 'Click';
-  if (tag === 'a') return 'Open →';
+  if (cls.includes('pkg') || cls.includes('price') || cls.includes('package')) return 'Επιλογή';
+  if (cls.includes('submit') || cls.includes('send')) return 'Αποστολή';
+  if (cls.includes('cta') || cls.includes('primary')) return 'Έναρξη';
+  if (tag === 'a') return 'Άνοιγμα →';
   if (tag === 'button') return 'Click';
   return '';
+};
+
+const DARK_BG_SELECTORS = ['.fh-section','.scp-hero','.scp-cta','.ap-hero','.cp-hero','.bdp-hero','.site-footer','.solutions-hero'];
+
+const isDarkBackground = (el) => {
+  if (!el) return false;
+  return DARK_BG_SELECTORS.some(sel => el.closest?.(sel));
 };
 
 const CursorFollower = () => {
@@ -19,12 +34,11 @@ const CursorFollower = () => {
   const [ring, setRing] = useState({ x: -200, y: -200 });
   const [hovering, setHovering] = useState(false);
   const [label, setLabel] = useState('');
-  const [visible, setVisible] = useState(false);
+  const [darkBg, setDarkBg] = useState(false);
   const [clicking, setClicking] = useState(false);
   const [ripples, setRipples] = useState([]);
   const rafRef = useRef(null);
   const ringTarget = useRef({ x: -200, y: -200 });
-  const timeoutRef = useRef(null);
 
   const animateRing = useCallback(() => {
     setRing(prev => ({
@@ -42,17 +56,20 @@ const CursorFollower = () => {
   const handleMouseMove = useCallback((e) => {
     setPos({ x: e.clientX, y: e.clientY });
     ringTarget.current = { x: e.clientX, y: e.clientY };
-    setVisible(true);
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => setVisible(false), 4000);
+    // Check dark background
+    setDarkBg(isDarkBackground(e.target));
   }, []);
 
   const handleMouseOver = useCallback((e) => {
     const el = e.target;
+    setDarkBg(isDarkBackground(el));
     const matched = MAGNETIC_SELECTORS.some(sel => el.matches?.(sel) || el.closest?.(sel));
     if (matched) {
       setHovering(true);
-      const target = MAGNETIC_SELECTORS.reduce((f, sel) => f || el.closest?.(sel) || (el.matches?.(sel) ? el : null), null);
+      const target = MAGNETIC_SELECTORS.reduce(
+        (f, sel) => f || el.closest?.(sel) || (el.matches?.(sel) ? el : null),
+        null
+      );
       setLabel(getLabel(target || el));
     } else {
       setHovering(false);
@@ -68,7 +85,6 @@ const CursorFollower = () => {
   }, []);
 
   const handleMouseUp = useCallback(() => setTimeout(() => setClicking(false), 100), []);
-  const handleMouseLeave = useCallback(() => setVisible(false), []);
 
   useEffect(() => {
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -77,27 +93,29 @@ const CursorFollower = () => {
     window.addEventListener('mouseover', handleMouseOver, { passive: true });
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('mouseleave', handleMouseLeave);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [handleMouseMove, handleMouseOver, handleMouseDown, handleMouseUp, handleMouseLeave]);
+  }, [handleMouseMove, handleMouseOver, handleMouseDown, handleMouseUp]);
 
-  const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  const isTouch = typeof window !== 'undefined' &&
+    ('ontouchstart' in window || navigator.maxTouchPoints > 0);
   if (isTouch) return null;
 
   return (
     <>
-      <div className={`cursor-dot${clicking ? ' clicking' : ''}${!visible ? ' hidden' : ''}`}
-        style={{ transform: `translate(${pos.x - 4}px, ${pos.y - 4}px)` }} />
-      <div className={`cursor-ring${hovering ? ' hovering' : ''}${clicking ? ' clicking' : ''}${!visible ? ' hidden' : ''}`}
-        style={{ transform: `translate(${ring.x - 20}px, ${ring.y - 20}px)` }}>
+      <div
+        className={`cursor-dot${clicking ? ' clicking' : ''}${darkBg ? ' dark-bg' : ''}`}
+        style={{ transform: `translate(${pos.x - 4}px, ${pos.y - 4}px)` }}
+      />
+      <div
+        className={`cursor-ring${hovering ? ' hovering' : ''}${clicking ? ' clicking' : ''}${darkBg ? ' dark-bg' : ''}`}
+        style={{ transform: `translate(${ring.x - 20}px, ${ring.y - 20}px)` }}
+      >
         {label && <span className="cursor-label">{label}</span>}
       </div>
       {ripples.map(r => (

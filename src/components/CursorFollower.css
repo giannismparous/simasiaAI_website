@@ -9,10 +9,11 @@
   pointer-events: none;
   z-index: 9999;
   will-change: transform;
-  transition: width 0.15s, height 0.15s, background 0.15s, opacity 0.3s;
+  transition: width 0.15s, height 0.15s, background 0.15s, opacity 0.4s;
+  opacity: 1;
 }
 .cursor-dot.clicking { background: var(--orange, #d97757); width: 6px; height: 6px; }
-.cursor-dot.hidden { opacity: 0; }
+.cursor-dot.dark-bg { background: rgba(250,249,245,0.9); }
 
 .cursor-ring {
   position: fixed;
@@ -28,12 +29,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: width 0.3s cubic-bezier(0.16,1,0.3,1), height 0.3s cubic-bezier(0.16,1,0.3,1), border-color 0.3s, background 0.3s, opacity 0.3s;
+  transition:
+    width 0.3s cubic-bezier(0.16,1,0.3,1),
+    height 0.3s cubic-bezier(0.16,1,0.3,1),
+    border-color 0.3s,
+    background 0.3s,
+    opacity 0.4s;
   overflow: hidden;
+  opacity: 1;
 }
 .cursor-ring.hovering { width: 72px; height: 72px; border-color: var(--orange, #d97757); background: rgba(217,119,87,0.06); }
 .cursor-ring.clicking { width: 30px; height: 30px; border-color: var(--dark, #141413); }
-.cursor-ring.hidden { opacity: 0; }
+.cursor-ring.dark-bg { border-color: rgba(250,249,245,0.4); }
+.cursor-ring.dark-bg.hovering { border-color: var(--orange, #d97757); background: rgba(217,119,87,0.1); }
 
 .cursor-label {
   font-family: 'Poppins', Arial, sans-serif;

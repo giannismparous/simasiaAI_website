@@ -17,6 +17,8 @@ import SimasiaChatbotsPage from './pages/SimasiaChatbotsPage';
 import SimasiaStudioPage from './pages/SimasiaStudioPage';
 import SimasiaDailyPage from './pages/SimasiaDailyPage';
 import SimasiaEduPage from './pages/SimasiaEduPage';
+import ConsultingPage from './pages/ConsultingPage';
+import EducationPage from './pages/EducationPage';
 import ChatbotBubble from './components/ChatbotBubble';
 import './App.css';
 
@@ -37,7 +39,8 @@ function App() {
             <Route path="/book-demo" element={<BookDemoPage />} />
             <Route path="/target-audience" element={<TargetAudiencePage />} />
             <Route path="/products" element={<ProductsPage />} />
-            <Route path="/applications" element={<ProductsPage />} />
+            <Route path="/services/consulting" element={<ConsultingPage />} />
+            <Route path="/services/education" element={<EducationPage />} />
             <Route path="/applications/simasia-chatbots" element={<SimasiaChatbotsPage />} />
             <Route path="/applications/simasia-studio" element={<SimasiaStudioPage />} />
             <Route path="/applications/simasia-daily" element={<SimasiaDailyPage />} />

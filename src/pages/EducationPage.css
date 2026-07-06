@@ -1,0 +1,227 @@
+/* ============================================
+   EDUCATION PAGE
+   ============================================ */
+
+.edu-page { background: var(--light, #faf9f5); }
+
+/* === HERO === */
+.edu-hero {
+  position: relative;
+  padding: 10rem 0 6rem;
+  background: var(--dark, #141413);
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.edu-eyebrow {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange, #d97757);
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.edu-hero h1 {
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--light, #faf9f5);
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin-bottom: 1.5rem;
+}
+
+.edu-hero-sub {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(250, 249, 245, 0.65);
+  max-width: 540px;
+  margin-bottom: 2.5rem;
+}
+
+.edu-hero-ctas {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.edu-ghost-link {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: rgba(250, 249, 245, 0.5);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s;
+}
+.edu-ghost-link:hover { color: var(--light, #faf9f5); }
+.edu-ghost-link span { transition: transform 0.3s; display: inline-block; }
+.edu-ghost-link:hover span { transform: translateY(3px); }
+
+/* === TARGET GROUPS === */
+.edu-groups {
+  padding: 5rem 0;
+  background: var(--white, #fff);
+  border-top: 1px solid var(--light-gray, #e8e6dc);
+}
+.edu-section-header {
+  max-width: 540px;
+  margin-bottom: 3.5rem;
+}
+.edu-section-header h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  color: var(--dark, #141413);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.edu-section-header p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1rem;
+  color: var(--ink-soft, #5a5a58);
+}
+
+.edu-groups-list {
+  display: flex;
+  flex-direction: column;
+}
+.edu-group-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--light-gray, #e8e6dc);
+  align-items: start;
+}
+.edu-group-item:last-child { border-bottom: 1px solid var(--light-gray, #e8e6dc); }
+.edu-group-num {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--stone, #b0aea5);
+  letter-spacing: 0.05em;
+  padding-top: 0.2rem;
+}
+.edu-group-body h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark, #141413);
+  margin-bottom: 0.5rem;
+}
+.edu-group-body p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--ink-soft, #5a5a58);
+  margin: 0;
+}
+
+/* === WORKSHOPS === */
+.edu-workshops-sec {
+  padding: 5rem 0;
+  background: var(--light, #faf9f5);
+}
+.edu-workshops-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 768px) {
+  .edu-workshops-grid { grid-template-columns: 1fr; }
+}
+
+.edu-workshop-card {
+  background: var(--white, #fff);
+  border: 1px solid var(--light-gray, #e8e6dc);
+  border-radius: 8px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.edu-workshop-card:hover {
+  border-color: var(--orange, #d97757);
+  box-shadow: 0 6px 32px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+.edu-workshop-tag {
+  display: inline-block;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange, #d97757);
+  border: 1px solid var(--orange, #d97757);
+  background: rgba(217,119,87,0.06);
+  border-radius: 4px;
+  padding: 0.25rem 0.6rem;
+  width: fit-content;
+}
+
+.edu-workshop-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--dark, #141413);
+  margin: 0;
+}
+.edu-workshop-card p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--ink-soft, #5a5a58);
+  margin: 0;
+  flex: 1;
+}
+
+.edu-workshop-cta {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--dark, #141413);
+  transition: color 0.2s;
+  margin-top: 0.5rem;
+}
+.edu-workshop-cta:hover { color: var(--orange, #d97757); }
+
+/* === BANNER === */
+.edu-banner {
+  padding: 6rem 0;
+  background: var(--dark, #141413);
+  color: var(--light, #faf9f5);
+  text-align: center;
+}
+.edu-banner h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.edu-banner p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(250, 249, 245, 0.65);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .edu-hero { padding: 7rem 0 4rem; }
+  .edu-hero-ctas { flex-direction: column; align-items: flex-start; }
+  .edu-groups, .edu-workshops-sec { padding: 3.5rem 0; }
+  .edu-group-item { grid-template-columns: 50px 1fr; gap: 1rem; }
+  .edu-banner { padding: 4.5rem 0; }
+}

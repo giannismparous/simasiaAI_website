@@ -139,9 +139,84 @@
   color: var(--light, #faf9f5);
 }
 
-@media (max-width: 640px) {
+/* Audience Section */
+.scp-audience {
+  padding: 5rem 0;
+  background: var(--white, #fff);
+  border-top: 1px solid var(--light-gray, #e8e6dc);
+}
+
+.scp-audience-header {
+  margin-bottom: 3rem;
+}
+
+.scp-audience-header h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  color: var(--dark, #141413);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.scp-audience-header p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--ink-soft, #5a5a58);
+}
+
+.scp-audience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.scp-audience-card {
+  background: var(--light, #faf9f5);
+  border: 1px solid var(--light-gray, #e8e6dc);
+  border-radius: 8px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.scp-audience-card:hover {
+  border-color: var(--orange, #d97757);
+  box-shadow: 0 6px 32px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+.scp-audience-icon {
+  font-size: 2rem;
+  display: block;
+}
+
+.scp-audience-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--dark, #141413);
+  margin: 0;
+}
+
+.scp-audience-card p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--ink-soft, #5a5a58);
+  margin: 0;
+}
+
+/* Button sizing */
+.btn-large {
+  font-size: 1rem !important;
+  padding: 1rem 2.2rem !important;
+  font-weight: 600 !important;
+}
+
+@media (max-width: 768px) {
+  .scp-audience-grid { grid-template-columns: 1fr; }
   .scp-hero { padding: 7rem 0 3.5rem; }
   .scp-pillar { grid-template-columns: 50px 1fr; gap: 1rem; }
-  .scp-pillars, .scp-cta { padding: 3.5rem 0; }
+  .scp-pillars, .scp-cta, .scp-audience { padding: 3.5rem 0; }
   .scp-cta-actions { flex-direction: column; }
 }

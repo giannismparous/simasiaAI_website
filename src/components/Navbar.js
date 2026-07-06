@@ -37,6 +37,8 @@ const Navbar = () => {
     { path: '/', text: t('nav.home') },
     { path: '/about', text: t('nav.about') },
     { path: '/applications/simasia-chatbots', text: 'SimasiaDialogue' },
+    { path: '/services/consulting', text: 'Συμβουλευτική' },
+    { path: '/services/education', text: 'Εκπαίδευση' },
     { path: '/collaborations', text: t('nav.collaborations') },
     { path: '/book-demo', text: t('nav.bookDemo'), isButton: true },
   ];
