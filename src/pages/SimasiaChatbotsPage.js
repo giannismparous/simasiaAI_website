@@ -1,108 +1,107 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { useTranslation } from '../hooks/useTranslation';
-import ChatbotShowcase from '../components/ChatbotShowcase';
-import ProofNumbers from '../components/ProofNumbers';
-import UseCases from '../components/UseCases';
-import GreenAI from '../components/GreenAI';
-import ComplianceSection from '../components/ComplianceSection';
-import CTA from '../components/CTA';
+import LiveDemoSection from '../components/LiveDemoSection';
+import ComparisonTable from '../components/ComparisonTable';
+import { Link } from 'react-router-dom';
+import './SimasiaChatbotsPage.css';
 
 const SimasiaChatbotsPage = () => {
-  const { t } = useTranslation();
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "200px" });
+  const heroRef = useRef(null);
+  const featRef = useRef(null);
+  const featInView = useInView(featRef, { once: true, margin: '100px' });
 
-  const features = t('products.chatbots.features');
+  const pillars = [
+    {
+      num: '01',
+      title: 'Φυσική Γλώσσα & Τοπικές Διάλεκτοι',
+      body: 'Αντιλαμβάνεται την ελληνική γλώσσα όπως μιλιέται — με τοπικισμούς, ιδιωματισμούς και συναισθηματικές αποχρώσεις.',
+    },
+    {
+      num: '02',
+      title: 'EU AI Act Compliance',
+      body: 'Πλήρης κανονιστική συμμόρφωση. Τα δεδομένα σας είναι ασφαλή, διαφανή και ελέγξιμα.',
+    },
+    {
+      num: '03',
+      title: 'Καθολική Σχεδίαση για ΑμεΑ',
+      body: 'Σχεδιασμένο για να είναι προσβάσιμο σε όλους: άτομα με κινητικές, οπτικές ή γνωστικές δυσκολίες.',
+    },
+    {
+      num: '04',
+      title: 'Eco-Friendly Optimized RAG',
+      body: 'Ελαχιστοποιούμε το ενεργειακό αποτύπωμα χωρίς να θυσιάζουμε την επίδοση.',
+    },
+    {
+      num: '05',
+      title: 'Προληπτικός Ψηφιακός Πλοηγός',
+      body: 'Δεν απαντά μόνο — καθοδηγεί, ενημερώνει, και προβλέπει την επόμενη ανάγκη του χρήστη.',
+    },
+  ];
 
   return (
-    <div className="product-page-wrapper" style={{ position: 'relative', overflow: 'visible' }}>
+    <div className="scp-page">
       {/* Hero */}
-      <section className="product-hero" style={{ padding: '8rem 0 4rem', position: 'relative' }}>
+      <section className="scp-hero" ref={heroRef}>
         <div className="container">
           <motion.div
-            ref={ref}
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8 }}
-            style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              style={{
-                display: 'inline-block',
-                padding: '6px 16px',
-                background: 'rgba(44, 122, 123, 0.08)',
-                color: 'var(--primary-warm)',
-                borderRadius: '100px',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                marginBottom: '1.5rem'
-              }}
-            >
-              {t('hero.badge')}
-            </motion.div>
-            <h1 className="section-title" style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}>
-              {t('products.chatbots.name')}
-            </h1>
-            <p style={{ fontSize: '1.35rem', color: 'var(--primary-warm)', marginBottom: '1rem', maxWidth: '640px', marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.5 }}>
-              {t('products.chatbots.title')}
+            <span className="scp-eyebrow">Flagship Product</span>
+            <h1>SimasiaDialogue</h1>
+            <p className="scp-hero-sub">
+              Ανθρωποκεντρικοί ψηφιακοί πλοηγοί για οργανισμούς που νοιάζονται.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="product-features" style={{ padding: '1.5rem 0 4rem', position: 'relative', zIndex: 2 }}>
+      {/* Pillars */}
+      <section className="scp-pillars" ref={featRef}>
         <div className="container">
-          <motion.h2
-            className="section-title"
-            style={{ fontSize: '2rem', marginBottom: '2.5rem', textAlign: 'center' }}
+          <motion.div className="scp-pillars-header"
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            animate={featInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
           >
-            {t('products.chatbots.offers')}
-          </motion.h2>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(350px, 100%), 1fr))', gap: '1.25rem' }}>
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.5, delay: 0.2 + (index * 0.08) }}
-                whileHover={{ 
-                  y: -6, 
-                  transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
-                  boxShadow: '0 16px 48px rgba(224, 120, 86, 0.2)'
-                }}
-                style={{
-                  padding: '1.5rem',
-                  background: 'var(--light-bg)',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(44, 122, 123, 0.1)',
-                  borderLeft: '3px solid var(--primary-warm)',
-                  transition: 'box-shadow 0.3s ease'
-                }}
+            <h2>Τι κάνει το SimasiaDialogue μοναδικό</h2>
+          </motion.div>
+          <div className="scp-pillars-list">
+            {pillars.map((p, i) => (
+              <motion.div key={i} className="scp-pillar"
+                initial={{ opacity: 0, y: 20 }}
+                animate={featInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
               >
-                <p style={{ fontSize: '1rem', lineHeight: 1.7 }}>
-                  {feature}
-                </p>
+                <span className="scp-pillar-num">{p.num}</span>
+                <div className="scp-pillar-body">
+                  <h3>{p.title}</h3>
+                  <p>{p.body}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <ChatbotShowcase />
-      <ProofNumbers />
-      <UseCases />
-      <GreenAI />
-      <ComplianceSection />
-      <CTA />
+      {/* Live Demo */}
+      <LiveDemoSection />
+
+      {/* Comparison Table */}
+      <ComparisonTable />
+
+      {/* CTA */}
+      <section className="scp-cta">
+        <div className="container">
+          <h2>Έτοιμοι να ξεκινήσετε;</h2>
+          <p>Κλείστε ένα 30λεπτο demo και δείτε το SimasiaDialogue σε πραγματικό διάλογο.</p>
+          <div className="scp-cta-actions">
+            <Link to="/book-demo" className="btn btn-primary">Κλείστε Demo</Link>
+            <a href="mailto:contact@simasiaai.gr" className="scp-email-link">contact@simasiaai.gr</a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

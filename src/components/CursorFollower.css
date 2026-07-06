@@ -1,41 +1,65 @@
-.cursor-follower {
-    position: fixed;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(44, 122, 123, 0.35) 0%, rgba(95, 179, 180, 0.25) 40%, transparent 70%);
-    pointer-events: none;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    mix-blend-mode: normal;
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                height 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                background 0.4s ease,
-                opacity 1.2s ease-in-out;
-    will-change: transform, opacity;
-    filter: blur(1px);
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dark, #141413);
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  transition: width 0.15s, height 0.15s, background 0.15s, opacity 0.3s;
 }
+.cursor-dot.clicking { background: var(--orange, #d97757); width: 6px; height: 6px; }
+.cursor-dot.hidden { opacity: 0; }
 
-.cursor-follower.hovering {
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle, rgba(224, 120, 95, 0.45) 0%, rgba(95, 179, 180, 0.3) 40%, transparent 70%);
-    filter: blur(2px);
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(20, 20, 19, 0.3);
+  pointer-events: none;
+  z-index: 9998;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.3s cubic-bezier(0.16,1,0.3,1), height 0.3s cubic-bezier(0.16,1,0.3,1), border-color 0.3s, background 0.3s, opacity 0.3s;
+  overflow: hidden;
 }
+.cursor-ring.hovering { width: 72px; height: 72px; border-color: var(--orange, #d97757); background: rgba(217,119,87,0.06); }
+.cursor-ring.clicking { width: 30px; height: 30px; border-color: var(--dark, #141413); }
+.cursor-ring.hidden { opacity: 0; }
 
-/* Keep default cursor visible - bubble is just an enhancement */
-
-@media (max-width: 768px) {
-    .cursor-follower {
-        display: none !important;
-    }
+.cursor-label {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: var(--orange, #d97757);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.2s;
 }
+.cursor-ring.hovering .cursor-label { opacity: 1; }
 
-/* Touch device detection */
-@media (hover: none) and (pointer: coarse) {
-    .cursor-follower {
-        display: none !important;
-    }
+.cursor-ripple {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--orange, #d97757);
+  pointer-events: none;
+  z-index: 9997;
+  transform: translate(-50%, -50%);
+  animation: cursor-ripple-anim 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
 }
-
+@keyframes cursor-ripple-anim {
+  0% { width: 0; height: 0; opacity: 0.8; }
+  100% { width: 80px; height: 80px; opacity: 0; }
+}

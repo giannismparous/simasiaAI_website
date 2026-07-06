@@ -1,38 +1,65 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import StarCanvas from './StarCanvas';
 import './ForbesHero.css';
+
+const words = ['Μέτρο', 'μας;', 'Ο', 'άνθρωπος.'];
 
 const ForbesHero = () => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-
   return (
-    <section className="hero-section" ref={ref}>
-      <div className="container">
-        <motion.div
-          className="hero-inner"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+    <section className="fh-section" ref={ref}>
+      <StarCanvas />
+      <div className="fh-inner">
+        <h1 className="fh-headline" aria-label="Μέτρο μας; Ο άνθρωπος.">
+          {words.map((word, i) => (
+            <motion.span key={i} className="fh-word"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+            >{word}</motion.span>
+          ))}
+        </h1>
+        <motion.div className="fh-rule"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        />
+        <motion.p className="fh-sub"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
         >
-          <img
-            src="/logos/simasiaai.PNG"
-            alt="SimasiaAI"
-            className="hero-logo"
+          Στην εποχή των γενικών chatbot Τεχνητής Νοημοσύνης, σχεδιάζουμε τους{' '}
+          <em>ανθρωποκεντρικούς ψηφιακούς πλοηγούς SimasiaDialogue</em>.
+        </motion.p>
+        <motion.div className="fh-ctas"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Link to="/book-demo" className="fh-btn-primary">Κλείστε Demo</Link>
+          <a href="#live-demo" className="fh-btn-ghost">
+            Δείτε το SimasiaDialogue <span className="fh-arrow">↓</span>
+          </a>
+        </motion.div>
+        <motion.div className="fh-coord"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.6 }}
+        >
+          37.9795° N / 23.7162° E — Athens
+        </motion.div>
+        <motion.div className="fh-scroll-indicator"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.8 }}
+        >
+          <motion.div className="fh-scroll-line"
+            animate={{ scaleY: [1, 0.3, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <h1>Μέτρο μας; Ο άνθρωπος.</h1>
-          <p className="hero-sub">
-            Στην εποχή των γενικών chatbot Τεχνητής Νοημοσύνης, σχεδιάζουμε τους ανθρωποκεντρικούς ψηφιακούς πλοηγούς <em>SimasiaDialogue</em>.
-          </p>
-          <div className="hero-ctas">
-            <Link to="/book-demo" className="cta-primary">
-              Κλείστε ένα Demo
-            </Link>
-            <a href="#live-demo" className="cta-link">
-              Δείτε το SimasiaDialogue →
-            </a>
-          </div>
         </motion.div>
       </div>
     </section>

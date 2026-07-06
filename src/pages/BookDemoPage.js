@@ -1,44 +1,90 @@
-import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { SmoothReveal, WordReveal } from '../components/TextReveal';
-import ContactForm from '../components/ContactForm';
-import { useTranslation } from '../hooks/useTranslation';
-import '../components/ContactForm.css';
+import React, { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import './BookDemoPage.css';
 
 const BookDemoPage = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "200px" });
-  const { t } = useTranslation();
+  const inView = useInView(ref, { once: true });
+  const [form, setForm] = useState({ name: '', org: '', email: '', message: '' });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: connect email service
+    setSubmitted(true);
+  };
 
   return (
-    <section className="book-demo-page" style={{ padding: '8rem 0 6rem', minHeight: '80vh' }}>
-      <div className="container">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-        >
-          <SmoothReveal delay={0.1} yOffset={20}>
-            <h1 className="section-title" style={{ fontSize: '3.5rem', marginBottom: '1.5rem', textAlign: 'center' }}>
-              {t('bookDemo.title') || 'Κλείστε ένα demo'}
-            </h1>
-          </SmoothReveal>
-          <SmoothReveal delay={0.2} yOffset={15}>
-            <p style={{ fontSize: '1.25rem', color: 'var(--gray-medium)', maxWidth: '700px', margin: '0 auto 4rem', textAlign: 'center', lineHeight: 1.8 }}>
-              <WordReveal 
-                text={t('bookDemo.description') || 'Ας δημιουργήσουμε μαζί λύσεις με σημασία για τον άνθρωπο. Συμπληρώστε τη φόρμα και θα επικοινωνήσουμε μαζί σας άμεσα.'}
-                delay={0.25}
-                duration={0.25}
-              />
-            </p>
-          </SmoothReveal>
-        </motion.div>
-        
-        <ContactForm />
-      </div>
-    </section>
+    <div className="bdp-page">
+      <section className="bdp-hero">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="bdp-eyebrow">30′ Demo</span>
+            <h1>Αρχίστε τον διάλογο.</h1>
+            <p className="bdp-hero-sub">Μία 30λεπτη συνάντηση για να δείτε πώς το SimasiaDialogue θα εξυπηρετήσει τον οργανισμό σας.</p>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="bdp-form-section" ref={ref}>
+        <div className="container">
+          <div className="bdp-two-col">
+            <motion.div className="bdp-left"
+              initial={{ opacity: 0, x: -20 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <h2>Τι θα δείτε</h2>
+              <ul className="bdp-list">
+                <li>Σε ποιον απευθύνεται το SimasiaDialogue</li>
+                <li>Live αποδεικτικό με πραγματικές ερωτήσεις</li>
+                <li>Αρχιτεκτονική EU AI Act συμβατότητα</li>
+                <li>Τιμολόγιο ταιριασμένο για τον οργανισμό σας</li>
+              </ul>
+              <p className="bdp-note">contact@simasiaai.gr</p>
+            </motion.div>
+
+            <motion.div className="bdp-right"
+              initial={{ opacity: 0, x: 20 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {submitted ? (
+                <div className="bdp-success">
+                  <h3>Ευχαριστούμε!</h3>
+                  <p>Θα επικοινωνήσουμε μαζί σας σύντομα.</p>
+                </div>
+              ) : (
+                <form className="bdp-form" onSubmit={handleSubmit}>
+                  <div className="bdp-field">
+                    <label htmlFor="name">Όνομα</label>
+                    <input id="name" name="name" type="text" required value={form.name} onChange={handleChange} placeholder="Κώστας Παπαδόπουλος" />
+                  </div>
+                  <div className="bdp-field">
+                    <label htmlFor="org">Οργανισμός</label>
+                    <input id="org" name="org" type="text" required value={form.org} onChange={handleChange} placeholder="Ονομασία Οργανισμού" />
+                  </div>
+                  <div className="bdp-field">
+                    <label htmlFor="email">Email</label>
+                    <input id="email" name="email" type="email" required value={form.email} onChange={handleChange} placeholder="you@org.gr" />
+                  </div>
+                  <div className="bdp-field">
+                    <label htmlFor="message">Μήνυμα (προαιρετικό)</label>
+                    <textarea id="message" name="message" rows={4} value={form.message} onChange={handleChange} placeholder="Περιγράψτε συνοπτικά την ανάγκη σας..." />
+                  </div>
+                  <button type="submit" className="bdp-submit">Αίτηση Demo</button>
+                </form>
+              )}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 

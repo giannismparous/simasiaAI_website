@@ -1,92 +1,114 @@
-/* ===== HERO ===== */
-.hero-section {
-  min-height: 90vh;
+.fh-section {
+  position: relative;
+  min-height: 100vh;
+  background: var(--dark, #141413);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--light);
-  padding: 10rem 0 5rem;
-  text-align: center;
+  overflow: hidden;
+  padding: 6rem 2rem;
 }
 
-.hero-inner {
-  max-width: 680px;
-  margin: 0 auto;
+.fh-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  width: 100%;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.hero-logo {
-  width: 140px;
-  height: auto;
-  margin-bottom: 2.5rem;
-}
-
-.hero-inner h1 {
-  font-size: clamp(2.5rem, 5vw, 3.6rem);
-  font-weight: 600;
-  color: var(--dark);
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.03em;
-}
-
-.hero-inner .hero-sub {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: var(--ink-soft);
-  margin-bottom: 2.5rem;
-  max-width: 560px;
-}
-
-.hero-inner .hero-sub em {
-  color: var(--dark);
-  font-style: italic;
-}
-
-.hero-ctas {
-  display: flex;
   gap: 1.5rem;
-  align-items: center;
 }
 
-.cta-primary {
-  display: inline-block;
-  padding: 0.85rem 1.75rem;
-  background: var(--dark);
-  color: #fff;
+.fh-headline {
   font-family: 'Poppins', Arial, sans-serif;
-  font-weight: 500;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 700;
+  color: var(--light, #faf9f5);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25em;
+  margin: 0;
+}
+
+.fh-word { display: inline-block; }
+
+.fh-rule {
+  width: 60px;
+  height: 1.5px;
+  background: var(--orange, #d97757);
+  transform-origin: left;
+  border-radius: 1px;
+}
+
+.fh-sub {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: rgba(250, 249, 245, 0.65);
+  line-height: 1.8;
+  max-width: 580px;
+  margin: 0;
+}
+
+.fh-sub em { color: rgba(250, 249, 245, 0.9); font-style: italic; }
+
+.fh-ctas { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; justify-content: center; }
+
+.fh-btn-primary {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-weight: 600;
   font-size: 0.9rem;
+  padding: 0.875rem 1.875rem;
+  background: var(--light, #faf9f5);
+  color: var(--dark, #141413);
   border-radius: 6px;
   text-decoration: none;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  letter-spacing: 0.01em;
 }
+.fh-btn-primary:hover { background: var(--orange, #d97757); color: #fff; transform: translateY(-2px); }
 
-.cta-primary:hover {
-  background: var(--orange);
-  transform: translateY(-1px);
-}
-
-.cta-link {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 0.95rem;
-  color: var(--dark);
+.fh-btn-ghost {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-weight: 500;
+  font-size: 0.88rem;
+  color: rgba(250, 249, 245, 0.55);
   text-decoration: none;
-  border-bottom: 1px solid var(--dark);
-  padding-bottom: 2px;
-  transition: color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s;
+  padding: 0.875rem 0;
+}
+.fh-btn-ghost:hover { color: var(--light, #faf9f5); }
+.fh-arrow { display: inline-block; transition: transform 0.3s; }
+.fh-btn-ghost:hover .fh-arrow { transform: translateY(3px); }
+
+.fh-coord {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 245, 0.22);
+  margin-top: 0.5rem;
 }
 
-.cta-link:hover {
-  color: var(--orange);
-  border-color: var(--orange);
+.fh-scroll-indicator { margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; }
+.fh-scroll-line {
+  width: 1.5px;
+  height: 36px;
+  background: linear-gradient(to bottom, rgba(250,249,245,0.35), transparent);
+  border-radius: 1px;
+  transform-origin: top;
 }
 
 @media (max-width: 640px) {
-  .hero-section { padding: 7rem 0 3rem; min-height: auto; }
-  .hero-logo { width: 100px; }
-  .hero-ctas { flex-direction: column; gap: 1rem; }
+  .fh-section { padding: 5rem 1.25rem; }
+  .fh-ctas { flex-direction: column; gap: 0.875rem; }
+  .fh-btn-primary { width: 100%; text-align: center; }
 }

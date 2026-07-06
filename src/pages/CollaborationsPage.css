@@ -1,146 +1,127 @@
-.collaborations-page-wrapper {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
+.collabs-page { background: var(--light, #faf9f5); }
+
+.cp-hero {
+  padding: 10rem 0 5rem;
+  background: var(--dark, #141413);
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+}
+.cp-eyebrow {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange, #d97757);
+  display: block;
+  margin-bottom: 1.25rem;
+}
+.cp-hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--light, #faf9f5);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+.cp-hero-sub {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(250, 249, 245, 0.6);
+  max-width: 520px;
 }
 
-.collaborations-hero {
-    padding-top: 10rem;
-    padding-bottom: 0.5rem;
+.cp-cards { padding: 5rem 0; }
+.cp-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
 }
 
-.section-title {
-    font-size: 3.5rem;
-    margin-bottom: 0.5rem;
+.cp-card {
+  background: var(--white, #fff);
+  border: 1px solid var(--light-gray, #e8e6dc);
+  border-radius: 8px;
+  padding: 2rem;
+  border-left: 3px solid transparent;
+  transition: border-left-color 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.cp-card:hover {
+  border-left-color: var(--orange, #d97757);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
 }
 
-.collaborations-page-wrapper .collaboration-category-badge {
-    background: rgba(44, 122, 123, 0.12);
-    border: 1px solid rgba(44, 122, 123, 0.35);
-    color: var(--primary-warm);
+.cp-card-logo-wrap { margin-bottom: 0.25rem; }
+.cp-card-logo { height: 44px; width: auto; object-fit: contain; }
+
+.cp-card-badge {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stone, #b0aea5);
 }
 
-.collaborations-cards-grid {
-    display: grid;
-    gap: 2rem;
+.cp-card-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--dark, #141413);
+  line-height: 1.3;
+  margin: 0;
 }
 
-.collaborations-page-ctas {
-    display: flex;
-    gap: 0.85rem;
-    margin-top: 1.25rem;
-    flex-wrap: wrap;
-    justify-content: center;
+.cp-card-product {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--orange, #d97757);
+  margin: 0;
 }
+
+.cp-card-desc {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--ink-soft, #5a5a58);
+  margin: 0;
+  flex: 1;
+}
+
+.cp-card-footer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--light-gray, #e8e6dc);
+}
+
+.cp-card-link, .cp-card-cta {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.cp-card-link { color: var(--ink-soft, #5a5a58); }
+.cp-card-link:hover { color: var(--orange, #d97757); }
+.cp-card-cta {
+  margin-left: auto;
+  color: var(--dark, #141413);
+  border: 1px solid var(--light-gray, #e8e6dc);
+  padding: 0.35rem 0.8rem;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+.cp-card-cta:hover { background: var(--dark, #141413); color: #fff; }
 
 @media (max-width: 768px) {
-    .collaborations-hero {
-        padding-top: 8rem !important;
-    }
-
-    .section-title {
-        font-size: 2.5rem !important;
-    }
-
-    .collaborations-content {
-        padding: 0.5rem 0.75rem 3rem !important;
-    }
-
-    .collaborations-cards-grid {
-        gap: 1.25rem;
-    }
-
-    .collaborations-page-wrapper .collaboration-card {
-        padding: 1.25rem 1rem !important;
-        min-height: 0 !important;
-    }
-
-    .collaborations-page-wrapper .collaboration-card h3 {
-        font-size: 1.1rem !important;
-        line-height: 1.35 !important;
-        margin-bottom: 0.65rem !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        text-align: center;
-    }
-
-    .collaborations-page-wrapper .collaboration-description {
-        font-size: 0.9rem !important;
-        line-height: 1.55 !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    .collaborations-page-wrapper .collaboration-logo {
-        margin-top: 0.75rem !important;
-        margin-bottom: 0.25rem !important;
-    }
-
-    .collaborations-page-wrapper .poamsk-logo {
-        max-width: 140px !important;
-        max-height: 70px !important;
-    }
-
-    /* Flow layout: badge above title so title stays visually centered */
-    .collaborations-page-wrapper .collaboration-category-badge {
-        position: static !important;
-        top: auto !important;
-        right: auto !important;
-        display: block;
-        width: fit-content;
-        max-width: 100%;
-        margin: 0 auto 0.45rem !important;
-        font-size: 0.62rem !important;
-        padding: 0.14rem 0.42rem !important;
-        letter-spacing: 0.06em;
-    }
-
-    .collaborations-page-wrapper .collaboration-ctas {
-        margin-top: 0.75rem !important;
-        gap: 0.45rem !important;
-    }
-
-    .collaborations-page-wrapper .collaboration-ctas .btn {
-        font-size: 0.72rem !important;
-        padding: 0.45rem 0.65rem !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .collaborations-page-wrapper .collaboration-card {
-        padding: 1rem 0.85rem !important;
-    }
-
-    .collaborations-page-wrapper .collaboration-card h3 {
-        font-size: 1rem !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .collaborations-page-wrapper .collaboration-category-badge {
-        font-size: 0.58rem !important;
-        padding: 0.12rem 0.36rem !important;
-        margin-bottom: 0.4rem !important;
-    }
-
-    .collaborations-page-wrapper .collaboration-description {
-        font-size: 0.85rem !important;
-    }
-
-    .collaborations-page-wrapper .poamsk-logo {
-        max-width: 120px !important;
-        max-height: 60px !important;
-    }
-
-    .collaborations-page-wrapper .collaboration-ctas .btn {
-        font-size: 0.68rem !important;
-        padding: 0.42rem 0.55rem !important;
-    }
-
-    .collaborations-cards-grid {
-        gap: 1rem;
-    }
-
-    .section-title {
-        font-size: 1.85rem !important;
-    }
+  .cp-cards-grid { grid-template-columns: 1fr; }
+  .cp-hero { padding: 7rem 0 3.5rem; }
 }

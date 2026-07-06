@@ -107,8 +107,8 @@ const SolutionsPage = () => {
   }, [originalPoints, remapPoint, animationDelays, animationDuration]);
 
   return (
-    <div className="solutions-page-wrapper" style={{ position: 'relative', overflow: 'hidden', width: '100%', maxWidth: '100vw', background: 'transparent' }}>
-      <section className="solutions-hero" style={{ padding: '8rem 0 4rem', position: 'relative', background: 'transparent' }}>
+    <div className="solutions-page-wrapper" style={{ position: 'relative', overflow: 'hidden', width: '100%', maxWidth: '100vw', background: 'var(--light, #faf9f5)' }}>
+      <section className="solutions-hero" style={{ padding: '8rem 0 4rem', position: 'relative', background: 'var(--dark, #141413)', color: 'var(--light, #faf9f5)', minHeight: '60vh', display: 'flex', alignItems: 'center' }}>
         <div className="container">
           <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, pointerEvents: 'none', zIndex: 1 }}>
             <div 

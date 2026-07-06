@@ -1,0 +1,147 @@
+/* === SimasiaDialogue Product Page === */
+.scp-page { background: var(--light, #faf9f5); }
+
+.scp-hero {
+  padding: 10rem 0 5rem;
+  background: var(--dark, #141413);
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.scp-eyebrow {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange, #d97757);
+  display: block;
+  margin-bottom: 1.25rem;
+}
+
+.scp-hero h1 {
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 700;
+  color: var(--light, #faf9f5);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+}
+
+.scp-hero-sub {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(250, 249, 245, 0.6);
+  max-width: 500px;
+}
+
+/* Pillars */
+.scp-pillars {
+  padding: 5rem 0;
+  background: var(--white, #fff);
+  border-top: 1px solid var(--light-gray, #e8e6dc);
+}
+
+.scp-pillars-header {
+  margin-bottom: 2.5rem;
+}
+
+.scp-pillars-header h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--dark, #141413);
+  font-weight: 600;
+}
+
+.scp-pillars-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.scp-pillar {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--light-gray, #e8e6dc);
+  align-items: start;
+}
+
+.scp-pillar:last-child {
+  border-bottom: 1px solid var(--light-gray, #e8e6dc);
+}
+
+.scp-pillar-num {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--stone, #b0aea5);
+  letter-spacing: 0.05em;
+  padding-top: 0.2rem;
+}
+
+.scp-pillar-body h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--dark, #141413);
+  margin-bottom: 0.5rem;
+}
+
+.scp-pillar-body p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--ink-soft, #5a5a58);
+  margin: 0;
+}
+
+/* CTA */
+.scp-cta {
+  padding: 5rem 0;
+  background: var(--dark, #141413);
+  text-align: center;
+}
+
+.scp-cta h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--light, #faf9f5);
+  margin-bottom: 1rem;
+}
+
+.scp-cta p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.05rem;
+  color: rgba(250, 249, 245, 0.6);
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.scp-cta-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.scp-email-link {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 0.88rem;
+  color: rgba(250, 249, 245, 0.5);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.scp-email-link:hover {
+  color: var(--light, #faf9f5);
+}
+
+@media (max-width: 640px) {
+  .scp-hero { padding: 7rem 0 3.5rem; }
+  .scp-pillar { grid-template-columns: 50px 1fr; gap: 1rem; }
+  .scp-pillars, .scp-cta { padding: 3.5rem 0; }
+  .scp-cta-actions { flex-direction: column; }
+}
