@@ -22,7 +22,6 @@
   font-family: var(--font-sans);
   text-align: left;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
-  animation: launcherIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
 }
 
 .chat-launcher-pill:hover {
@@ -30,6 +29,16 @@
   box-shadow:
     0 4px 16px rgba(20, 20, 19, 0.09),
     0 16px 44px rgba(217, 119, 87, 0.14);
+}
+
+.chat-launcher-pill.launcher-returning {
+  animation: launcherReturn 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.chat-launcher-pill.launcher-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px) scale(0.985);
+  pointer-events: none;
 }
 
 .launcher-avatar {
@@ -70,6 +79,17 @@
   to {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes launcherReturn {
+  from {
+    opacity: 0.78;
+    transform: translateX(-50%) translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
   }
 }
 

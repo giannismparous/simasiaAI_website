@@ -220,6 +220,14 @@ export const translations = {
         "Παραδίδουμε pilot στο δικό σας domain σε 4 εβδομάδες."
       ]
     },
+    learningLoop: {
+      index: "06",
+      title: "Η Simaki εξελίσσεται με κάθε αλληλεπίδραση",
+      lead: "Κάθε συνομιλία τροφοδοτεί έναν κύκλο συνεχούς βελτίωσης: ανάλυση, εκπαίδευση, δοκιμή και παραγωγική διάθεση.",
+      body: "Έτσι, όσο ο οργανισμός σας αλλάζει, οι απαντήσεις γίνονται πιο ακριβείς, πιο χρήσιμες και πιο προσαρμοσμένες στις πραγματικές ανάγκες των χρηστών σας.",
+      aria: "Κύκλος συνεχούς βελτίωσης",
+      steps: ["Analyze", "Train", "Test", "Deploy"]
+    },
     // Obstacles
     obstacles: {
       title: "Εμπόδια που συναντούμε όλες και όλοι",
@@ -691,6 +699,14 @@ export const translations = {
         "We test solutions in real scenarios with measurements and feedback.",
         "We deliver a pilot on your domain in 4 weeks."
       ]
+    },
+    learningLoop: {
+      index: "06",
+      title: "Simaki improves with every interaction",
+      lead: "Every conversation feeds a continuous improvement loop: analyze, train, test, and deploy.",
+      body: "As your organization evolves, responses become more accurate, more useful, and better aligned with your users' real needs.",
+      aria: "Continuous improvement cycle",
+      steps: ["Analyze", "Train", "Test", "Deploy"]
     },
     // Obstacles
     obstacles: {

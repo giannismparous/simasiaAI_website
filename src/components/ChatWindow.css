@@ -31,6 +31,7 @@
 
 .chat-window.chat-closing {
   animation: chatSlideDown 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  pointer-events: none;
 }
 
 @keyframes chatSlideDown {

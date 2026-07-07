@@ -3,6 +3,7 @@ import ForbesHero from '../components/ForbesHero';
 import LiveDemoSection from '../components/LiveDemoSection';
 import MidCTA from '../components/MidCTA';
 import ComparisonTable from '../components/ComparisonTable';
+import LearningLoopSection from '../components/LearningLoopSection';
 import PartnershipsSection from '../components/PartnershipsSection';
 import EnterpriseCTA from '../components/EnterpriseCTA';
 
@@ -21,10 +22,13 @@ const HomePage = () => {
       {/* 4. Comparison table */}
       <ComparisonTable />
 
-      {/* 5. Collaborations — trust section */}
+      {/* 5. Continuous learning loop */}
+      <LearningLoopSection />
+
+      {/* 6. Collaborations — trust section */}
       <PartnershipsSection />
 
-      {/* 6. CTA */}
+      {/* 7. CTA */}
       <EnterpriseCTA />
     </>
   );

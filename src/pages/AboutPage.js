@@ -2,6 +2,14 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './AboutPage.css';
+import avatarFox from '../assets/avatar-fox.svg';
+import avatarPanda from '../assets/avatar-panda.svg';
+import avatarRabbit from '../assets/avatar-rabbit.svg';
+import avatarOwl from '../assets/avatar-owl.svg';
+import giannisReal from '../assets/giannis-real.png';
+import dimitrisReal from '../assets/dimitris-real.png';
+import anastasiaReal from '../assets/anastasia-real.png';
+import stergiosReal from '../assets/stergios-real.png';
 
 const AboutPage = () => {
   const heroRef = useRef(null);
@@ -20,40 +28,53 @@ const AboutPage = () => {
     { num: '04', title: 'Ελληνικός', body: 'Σχεδιασμένοι για την ελληνική γλώσσα, τις τοπικές διαλέκτους και τις ελληνικές ανάγκες.' },
   ];
 
-  const marqueeWords = ['Ανθρωποκεντρικός', '·', 'Υπεύθυνος', '·', 'Πράσινος', '·', 'Ελληνικός', '·'];
 
   const team = [
     {
       name: 'Δημήτρης Παπαδάκης',
       role: 'Head of Sales, Co-Founder & Head of Operations',
       desc: 'Με εξειδικευμένες σπουδές στη γλωσσολογία και ερευνητικό έργο στην υπολογιστική γλωσσολογία. Διαθέτει εκτενή εργασιακή εμπειρία στην ανάλυση δεδομένων (Data Analysis), στον συντονισμό και τη διαχείριση σύνθετων έργων (Project Management), με ενεργή συμβολή στις ανθρωπιστικές επιστήμες, σε κέντρα λήψης αποφάσεων, εργαστήρια πληροφορικής και στη διδασκαλία.',
+      avatar: dimitrisReal,
     },
     {
       name: 'Γιάννης',
       role: 'CTO & Co-Founder',
       desc: 'Υποψήφιος διδάκτωρ Πληροφορικής στο UCL στην California. Διαθέτει μακρά εργασιακή και ερευνητική εμπειρία στην ανάπτυξη enterprise εφαρμογών, στο software engineering και στην αρχιτεκτονική συστημάτων Τεχνητής Νοημοσύνης.',
+      avatar: giannisReal,
+      avatarClass: 'ap-avatar-giannis',
     },
     {
       name: 'Αναστασία',
       role: 'Chief Communications Officer (CCO) & Co-Founder',
       desc: 'Αναπληρώτρια Καθηγήτρια Νεοελληνικής Φιλολογίας και Πρόεδρος του τμήματος Φιλολογίας του Πανεπιστημίου Κρήτης. Υπεύθυνη για τις δημόσιες σχέσεις, την εταιρική εξωστρέφεια και τη στρατηγική συγγραφή κειμένων και θέσεων στον τύπο.',
+      avatar: anastasiaReal,
     },
     {
       name: 'Έλενα',
       role: 'Marketing Strategist',
       desc: 'Πρώην Marketing Director στην EBAN (τον κορυφαίο ευρωπαϊκό φορέα σύνδεσης angel investors με startups). Διαθέτει βαθιά εμπειρία στο growth marketing, τη στρατηγική κοινωνικών δικτύων, το filmmaking και το premium copywriting.',
+      avatar: avatarOwl,
     },
     {
       name: 'Στέφανος',
       role: 'Sales Manager',
       desc: 'Ιδιοκτήτης πρότυπου εκπαιδευτικού οργανισμού μέσης εκπαίδευσης και εξειδικευμένου κέντρου διδασκαλίας αγγλικής ορολογίας για στελέχη ασφαλιστικών εταιρειών. Διακρίνεται για τις άριστες επικοινωνιακές δεξιότητες και τη στρατηγική προσέγγιση B2B πωλήσεων.',
+      avatar: avatarFox,
     },
     {
       name: 'Παντελής Νικολόπουλος',
       role: 'Content Creator & Storyteller',
       desc: 'Ένα πολυσχιδές 360° δημιουργικό ταλέντο, υπεύθυνος για την παραγωγή high-end οπτικοακουστικού περιεχομένου, το visual storytelling και την οργανική ανάπτυξη της ψηφιακής παρουσίας και των κοινωνικών δικτύων του brand.',
+      avatar: avatarPanda,
     },
   ];
+
+  const getInitials = (name) => {
+    if (!name) return 'SI';
+    const parts = name.split(' ').filter(Boolean);
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return `${parts[0][0] || ''}${parts[1][0] || ''}`.toUpperCase();
+  };
 
   return (
     <div className="about-page">
@@ -72,15 +93,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Marquee */}
-      <div className="ap-marquee-wrap">
-        <div className="ap-marquee-inner">
-          {[...marqueeWords, ...marqueeWords, ...marqueeWords, ...marqueeWords].map((w, i) => (
-            <span key={i} className="ap-marquee-word">{w}</span>
-          ))}
-        </div>
-      </div>
-
       {/* Executive Leadership (CEO focus) */}
       <section className="ap-ceo-section" ref={s2Ref}>
         <div className="container">
@@ -90,14 +102,19 @@ const AboutPage = () => {
             animate={s2InView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="ap-ceo-badge">Executive Leadership</span>
-            <h2>Καθηγητής Στέργιος Χατζηκυριακίδης</h2>
-            <h3 className="ap-ceo-title">Chief Executive Officer / Πρωτοπόρος Καθηγητής Υπολογιστικής Γλωσσολογίας, Μηχανικής Μάθησης και Τεχνητής Νοημοσύνης στο Πανεπιστήμιο Κρήτης</h3>
-            <p className="ap-ceo-desc">
-              Με σπουδαίο διεθνές ερευνητικό και διδακτικό έργο, ο καθηγητής Στέργιος Χατζηκυριακίδης 
-              κατέχει καθοριστική συμβολή στην εξέλιξη των ανθρωπιστικών επιστημών και στην εκλαϊκευση 
-              της Τεχνητής Νοημοσύνης στην Ελλάδα, θέτοντας τα θεμέλια για την ακαδημαϊκή εγκυρότητα της SimasiaAI.
-            </p>
+            <div className="ap-ceo-layout">
+              <div className="ap-ceo-copy">
+                <span className="ap-ceo-badge">Executive Leadership</span>
+                <blockquote className="ap-ceo-quote">
+                  «Η τεχνητή νοημοσύνη αποκτά αξία όταν σχεδιάζεται με <span>μέτρο τον άνθρωπο</span> και λειτουργεί με διαφάνεια, ευθύνη και επιστημονική ακρίβεια.»
+                </blockquote>
+                <h2>Καθηγητής Στέργιος Χατζηκυριακίδης</h2>
+                <h3 className="ap-ceo-title">Chief Executive Officer · Υπολογιστική Γλωσσολογία & Τεχνητή Νοημοσύνη</h3>
+              </div>
+              <div className="ap-ceo-portrait" aria-hidden="true">
+                <img src={stergiosReal} alt="" />
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -115,7 +132,7 @@ const AboutPage = () => {
             <p>Η ομάδα πίσω από την ανάπτυξη, το όραμα και την υλοποίηση της SimasiaAI.</p>
           </motion.div>
 
-          <div className="ap-team-grid">
+          <div className="ap-team-grid ap-team-strip">
             {team.map((member, i) => (
               <motion.div 
                 key={i}
@@ -125,9 +142,23 @@ const AboutPage = () => {
                 transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ y: -4 }}
               >
-                <h3>{member.name}</h3>
-                <h4>{member.role}</h4>
-                <p>{member.desc}</p>
+                <div className="ap-member-portrait" aria-hidden="true">
+                  {member.avatar ? (
+                    <img
+                      src={member.avatar}
+                      alt=""
+                      className={`${member.avatar.includes('avatar-') ? 'ap-avatar-illustration' : ''} ${member.avatarClass || ''}`.trim()}
+                    />
+                  ) : (
+                    <span>{getInitials(member.name)}</span>
+                  )}
+                </div>
+                <div className="ap-member-top">
+                  <div className="ap-member-name-wrap">
+                    <h3>{member.name}</h3>
+                    <h4>{member.role}</h4>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>

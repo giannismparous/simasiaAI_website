@@ -37,7 +37,7 @@ function ChatbotBubble() {
       setIsOpen(false);
       setIsClosing(false);
       setShowOptions(false);
-    }, 350);
+    }, 320);
   };
 
   return (
@@ -52,26 +52,26 @@ function ChatbotBubble() {
         />
       )}
 
-      {!isOpen && (
-        <button
-          type="button"
-          className="chat-launcher-pill"
-          onClick={() => openChat(true)}
-          aria-label="Open Simaki chat"
-        >
-          <span className="launcher-avatar">
-            <SimakiAvatar size={34} />
-          </span>
-          <span className="launcher-field">
-            <TypewriterPlaceholder phrases={phrases} />
-          </span>
-          <span className="launcher-send" aria-hidden="true">
-            <svg viewBox="0 0 16 16" fill="none">
-              <path d="M8 3V13M8 3L4.5 6.5M8 3L11.5 6.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-        </button>
-      )}
+      <button
+        type="button"
+        className={`chat-launcher-pill${isOpen && !isClosing ? ' launcher-hidden' : ''}${isClosing ? ' launcher-returning' : ''}`}
+        onClick={() => openChat(true)}
+        aria-label="Open Simaki chat"
+        aria-hidden={isOpen && !isClosing}
+        tabIndex={isOpen && !isClosing ? -1 : 0}
+      >
+        <span className="launcher-avatar">
+          <SimakiAvatar size={34} />
+        </span>
+        <span className="launcher-field">
+          <TypewriterPlaceholder phrases={phrases} />
+        </span>
+        <span className="launcher-send" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none">
+            <path d="M8 3V13M8 3L4.5 6.5M8 3L11.5 6.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+      </button>
     </>
   );
 }
