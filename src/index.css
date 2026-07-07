@@ -44,6 +44,12 @@
 ::selection { background: var(--orange); color: #fff; }
 ::-moz-selection { background: var(--orange); color: #fff; }
 
+/* Brand name: DialogosAI — always italic, inherits weight/color */
+.brand-dialogos {
+    font-style: italic;
+    font-family: inherit;
+}
+
 html {
     background-color: var(--dark, #141413);
 }

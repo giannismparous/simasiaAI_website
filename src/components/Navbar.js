@@ -37,7 +37,7 @@ const Navbar = () => {
   const navLinks = [
     { path: '/', text: t('nav.home') },
     { path: '/about', text: t('nav.about') },
-    { path: '/applications/simasia-chatbots', text: 'Simaki' },
+    { path: '/applications/simasia-chatbots', text: <em className="brand-dialogos">DialogosAI</em> },
     { path: '/services/consulting', text: 'Συμβουλευτική' },
     { path: '/services/education', text: 'Εκπαίδευση' },
     { path: '/collaborations', text: t('nav.collaborations') },

@@ -22,12 +22,12 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
 
   const suggestedQuestions = language === 'el'
     ? [
-        { id: 1, text: 'Τι μπορεί να κάνει το Simaki για μένα;' },
+        { id: 1, text: 'Τι μπορεί να κάνει ο DialogosAI για μένα;' },
         { id: 2, text: 'Πώς βοηθά η SimasiaAI οργανισμούς;' },
         { id: 3, text: 'Μπορώ να κλείσω demo;' },
       ]
     : [
-        { id: 1, text: 'What can Simaki do for me?' },
+        { id: 1, text: 'What can DialogosAI do for me?' },
         { id: 2, text: 'How does SimasiaAI help organizations?' },
         { id: 3, text: 'Can I book a demo?' },
       ];
@@ -158,7 +158,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
             <SimakiAvatar size={32} />
           </div>
           <div className="bot-info">
-            <h3>Simaki</h3>
+            <h3><em className="brand-dialogos">DialogosAI</em></h3>
             {isLoading && (
               <span className="bot-status bot-status-typing">
                 {language === 'el' ? 'Σκέφτεται' : 'Thinking'}

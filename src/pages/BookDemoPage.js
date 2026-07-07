@@ -26,7 +26,7 @@ const BookDemoPage = () => {
           >
             <span className="bdp-eyebrow">30′ Demo</span>
             <h1>Αρχίστε τον διάλογο.</h1>
-            <p className="bdp-hero-sub">Μία 30λεπτη συνάντηση για να δείτε πώς το Simaki θα εξυπηρετήσει τον οργανισμό σας.</p>
+            <p className="bdp-hero-sub">Μία 30λεπτη συνάντηση για να δείτε πώς ο <em className="brand-dialogos">DialogosAI</em> θα εξυπηρετήσει τον οργανισμό σας.</p>
           </motion.div>
         </div>
       </section>
@@ -41,7 +41,7 @@ const BookDemoPage = () => {
             >
               <h2>Τι θα δείτε</h2>
               <ul className="bdp-list">
-                <li>Σε ποιον απευθύνεται το Simaki</li>
+                <li>Σε ποιον απευθύνεται ο <em className="brand-dialogos">DialogosAI</em></li>
                 <li>Live αποδεικτικό με πραγματικές ερωτήσεις</li>
                 <li>Αρχιτεκτονική EU AI Act συμβατότητα</li>
                 <li>Τιμολόγιο ταιριασμένο για τον οργανισμό σας</li>

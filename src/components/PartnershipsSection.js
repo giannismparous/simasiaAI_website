@@ -1,15 +1,13 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
 import './PartnershipsSection.css';
 
 const HOME_LOGOS = [
-  { src: '/logos/kapa3.png', alt: 'Μυρτώ / ΚΑΠΑ3' },
-  { src: '/logos/poamskp.png', alt: 'ΣΚΠ-i / ΠΟΑμΣΚΠ' },
-  { src: '/Collaborations/Logos/dia_zwsis.png', alt: 'Δια ζώση' },
-  { src: '/logos/bepan.png', alt: 'BPAN Heroes' },
-  { src: '/logos/perfectaki.png', alt: 'Perfectaki Able' },
+  { src: '/logos/kapa3.png', alt: 'Μυρτώ / ΚΑΠΑ3', href: 'https://www.kapa3.gr' },
+  { src: '/logos/poamskp.png', alt: 'ΣΚΠ-i / ΠΟΑμΣΚΠ', href: 'https://www.poamskp.gr' },
+  { src: '/logos/bepan.png', alt: 'BPAN Heroes', href: 'https://bpanheroes.gr' },
+  { src: '/logos/perfectaki.png', alt: 'Perfectaki Able', href: 'https://perfectaki.com' },
 ];
 
 const ease = [0.16, 1, 0.3, 1];
@@ -28,13 +26,13 @@ const PartnershipsSection = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease }}
         >
-          <h2>{t('collaborations.home.headline')}</h2>
-          <p>{t('collaborations.home.paragraph1')}</p>
-          <p>{t('collaborations.home.paragraph2')}</p>
-          <p>{t('collaborations.home.paragraph3')}</p>
-          <Link to="/collaborations" className="collabs-view-all">
+          <h2 dangerouslySetInnerHTML={{ __html: t('collaborations.home.headline') }} />
+          <p dangerouslySetInnerHTML={{ __html: t('collaborations.home.paragraph1') }} />
+          <p dangerouslySetInnerHTML={{ __html: t('collaborations.home.paragraph2') }} />
+          <p dangerouslySetInnerHTML={{ __html: t('collaborations.home.paragraph3') }} />
+          <a href="/collaborations" className="collabs-view-all">
             {t('collaborations.home.viewAll')}
-          </Link>
+          </a>
         </motion.div>
 
         <motion.div
@@ -44,14 +42,21 @@ const PartnershipsSection = () => {
           transition={{ duration: 0.6, delay: 0.15, ease }}
         >
           {HOME_LOGOS.map((logo, i) => (
-            <div key={logo.src} className="collab-logo-cell">
+            <a
+              key={logo.src}
+              href={logo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="collab-logo-cell collab-logo-link"
+              title={logo.alt}
+              style={{ transitionDelay: `${i * 40}ms` }}
+            >
               <img
                 src={logo.src}
                 alt={logo.alt}
                 loading="lazy"
-                style={{ transitionDelay: `${i * 40}ms` }}
               />
-            </div>
+            </a>
           ))}
         </motion.div>
       </div>

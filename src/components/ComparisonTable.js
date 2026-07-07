@@ -42,7 +42,7 @@ const ComparisonTable = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2>Τι κάνει το Simaki διαφορετικό;</h2>
+          <h2>Τι κάνει τον <em className="brand-dialogos">DialogosAI</em> διαφορετικό;</h2>
           <p className="comparison-subtitle">
             Σύγκριση με τα παραδοσιακά chatbot.
           </p>
@@ -59,7 +59,7 @@ const ComparisonTable = () => {
               <tr>
                 <th>Χαρακτηριστικό</th>
                 <th>Παραδοσιακά Chatbots</th>
-                <th>Simaki</th>
+                <th><em className="brand-dialogos">DialogosAI</em></th>
               </tr>
             </thead>
             <tbody>

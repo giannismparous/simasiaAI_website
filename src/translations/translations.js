@@ -222,9 +222,9 @@ export const translations = {
     },
     learningLoop: {
       index: "06",
-      title: "Η Simaki εξελίσσεται με κάθε αλληλεπίδραση",
-      lead: "Κάθε συνομιλία τροφοδοτεί έναν κύκλο συνεχούς βελτίωσης: ανάλυση, εκπαίδευση, δοκιμή και παραγωγική διάθεση.",
-      body: "Έτσι, όσο ο οργανισμός σας αλλάζει, οι απαντήσεις γίνονται πιο ακριβείς, πιο χρήσιμες και πιο προσαρμοσμένες στις πραγματικές ανάγκες των χρηστών σας.",
+      title: "Τι κάνει τον <em class=\"brand-dialogos\">DialogosAI</em> ξεχωριστό;",
+      lead: "O <em class=\"brand-dialogos\">DialogosAI</em> εξελίσσεται με κάθε αλληλεπίδραση. Κάθε συνομιλία τροφοδοτεί έναν κύκλο συνεχούς βελτίωσης: ανάλυση, εκπαίδευση, δοκιμή και περαιτέρω ανάπτυξη.",
+      body: "Έτσι, ο <em class=\"brand-dialogos\">DialogosAI</em> γίνεται τελικά ο διάλογος που εσείς θέλετε να έχετε με τους ανθρώπους που σχετίζεται ο οργανισμός σας, με τις απαντήσεις να γίνονται πιο ακριβείς, πιο χρήσιμες και πιο προσαρμοσμένες στις πραγματικές τους ανάγκες.",
       aria: "Κύκλος συνεχούς βελτίωσης",
       steps: ["Analyze", "Train", "Test", "Deploy"]
     },
@@ -385,10 +385,10 @@ export const translations = {
     collaborations: {
       title: "Συνεργασίες",
       home: {
-        headline: "Το Simaki υλοποιείται σε οργανισμούς με κοινωνικό αντίκτυπο",
-        paragraph1: "Οι συνεργασίες μας περιλαμβάνουν το Κέντρο Κ3 (Μυρτώ), την ΠΟΑμΣΚΠ (ΣΚΠ-i), το Φροντιστήριο «Δια ζώση», και προγράμματα σε εξέλιξη όπως BPAN και Perfectaki Able.",
-        paragraph2: "Εργαζόμαστε σε κάθετολόγια όπου η ακρίβεια, η προσβασιμότητα και η ανθρώπινη κλιμάκωση είναι κρίσιμες — υγεία, εκπαίδευση και κοινωνικές υπηρεσίες.",
-        paragraph3: "Μαζί πετυχαίνουμε σαφείς απαντήσεις σε σύνθετες διαδικασίες, διαφάνεια γνώσης από εγκεκριμένες πηγές και ψηφιακή ένταξη για κοινότητες που το χρειάζονται.",
+        headline: "Ο ψηφιακός πλοηγός <em class=\"brand-dialogos\">DialogosAI</em> υλοποιείται ήδη σε οργανισμούς με κοινωνικό αντίκτυπο",
+        paragraph1: "Οι συνεργασίες μας περιλαμβάνουν το Κέντρο Καθοδήγησης Καρκινοπαθών (Μυρτώ), την ΠΟΑμΣΚΠ (ΣΚΠ-i), ενώ χαράσσουμε κοινή πορεία για άλλους δύο <em class=\"brand-dialogos\">DialogosAI</em> μαζί με την Bpanheroes και το Perfectaki Able.",
+        paragraph2: "Εργαζόμαστε σε τομείς Τεχνητής Νοημοσύνης ρυθμιζόμενου ρίσκου όπου η ακρίβεια, η προσβασιμότητα και η ανθρώπινη κλιμάκωση είναι κρίσιμες, όπως η υγεία, η εκπαίδευση και οι κοινωνικές υπηρεσίες.",
+        paragraph3: "Μαζί πετυχαίνουμε σαφείς απαντήσεις σε σύνθετες διαδικασίες, διαφάνεια γνώσης από εγκεκριμένες πηγές και ψηφιακή ένταξη για κοινότητες που το χρειάζονται. Γι' αυτήν του την υπεύθυνη και αξιόπιστη εφαρμογή, ο <em class=\"brand-dialogos\">DialogosAI</em> μπορεί να προσαρμοστεί σε μεγάλο εύρος πεδίων όπου χρειάζεται καθοδήγηση χρηστών.",
         viewAll: "Όλες οι συνεργασίες →"
       },
       current: {
@@ -409,9 +409,15 @@ export const translations = {
             category: "υγεία"
           },
           {
-            name: "Φροντιστήριο Μ.Ε. «Δια ζώση»",
-            description: "Ψηφιακά εργαλεία εκπαιδευτικής υποστήριξης που ενισχύουν την εξατομικευμένη μάθηση.",
-            logo: "/Collaborations/Logos/dia_zwsis.png",
+            name: "Bpanheroes",
+            description: "Ψηφιακός πλοηγός για την κοινότητα BPAN — σε εξέλιξη.",
+            logo: "/logos/bepan.png",
+            category: "υγεία"
+          },
+          {
+            name: "Perfectaki Able",
+            description: "Ψηφιακός πλοηγός για προσβάσιμη εκπαίδευση — σε εξέλιξη.",
+            logo: "/logos/perfectaki.png",
             category: "εκπαίδευση"
           }
         ]
@@ -702,9 +708,9 @@ export const translations = {
     },
     learningLoop: {
       index: "06",
-      title: "Simaki improves with every interaction",
-      lead: "Every conversation feeds a continuous improvement loop: analyze, train, test, and deploy.",
-      body: "As your organization evolves, responses become more accurate, more useful, and better aligned with your users' real needs.",
+      title: "What makes <em class=\"brand-dialogos\">DialogosAI</em> stand out?",
+      lead: "<em class=\"brand-dialogos\">DialogosAI</em> improves with every interaction. Every conversation feeds a continuous improvement loop: analyze, train, test, and further develop.",
+      body: "<em class=\"brand-dialogos\">DialogosAI</em> ultimately becomes the dialogue you want to have with the people your organization serves, with responses growing more accurate, more useful, and better aligned with their real needs.",
       aria: "Continuous improvement cycle",
       steps: ["Analyze", "Train", "Test", "Deploy"]
     },
@@ -865,10 +871,10 @@ export const translations = {
     collaborations: {
       title: "Collaborations",
       home: {
-        headline: "Simaki is being built with organizations that put people first",
-        paragraph1: "Our collaborations include the K3 Cancer Guidance Center (Myrto), POAMSKP (SKP-i), Frontistirio Dia zosi, and programs in progress such as BPAN and Perfectaki Able.",
-        paragraph2: "We work across verticals where accuracy, accessibility, and human escalation matter most — health, education, and social services.",
-        paragraph3: "Together we deliver clear answers to complex processes, knowledge transparency from approved sources, and digital inclusion for communities that need it.",
+        headline: "<em class=\"brand-dialogos\">DialogosAI</em> is already deployed in organizations with social impact",
+        paragraph1: "Our collaborations include the Cancer Guidance Center (Myrto), POAMSKP (SKP-i), while we are charting a shared path for two more <em class=\"brand-dialogos\">DialogosAI</em> instances together with Bpanheroes and Perfectaki Able.",
+        paragraph2: "We work in regulated-risk AI sectors where accuracy, accessibility, and human escalation are critical — health, education, and social services.",
+        paragraph3: "Together we deliver clear answers to complex processes, knowledge transparency from approved sources, and digital inclusion for communities that need it. For this responsible and reliable deployment, <em class=\"brand-dialogos\">DialogosAI</em> can be adapted to a wide range of fields where user guidance is needed.",
         viewAll: "View all collaborations →"
       },
       current: {
@@ -889,9 +895,15 @@ export const translations = {
             category: "health"
           },
           {
-            name: "Frontistirio M.E. \"Dia zosi\"",
-            description: "Digital education support tools focused on personalized learning.",
-            logo: "/Collaborations/Logos/dia_zwsis.png",
+            name: "Bpanheroes",
+            description: "Digital navigator for the BPAN community — in progress.",
+            logo: "/logos/bepan.png",
+            category: "health"
+          },
+          {
+            name: "Perfectaki Able",
+            description: "Digital navigator for accessible education — in progress.",
+            logo: "/logos/perfectaki.png",
             category: "education"
           }
         ]

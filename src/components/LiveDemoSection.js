@@ -494,7 +494,7 @@ const LiveDemoSection = () => {
 
   const renderBotBubble = (text, meta) => (
     <div className="fin-bubble fin-bubble-bot">
-      <strong className="fin-bot-name">Simaki</strong>
+      <strong className="fin-bot-name"><em className="brand-dialogos">DialogosAI</em></strong>
       <p className="fin-bot-text">{text}</p>
       {meta?.warning && (
         <p className="fin-warning-inline">{meta.warning}</p>
@@ -521,7 +521,7 @@ const LiveDemoSection = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2>Simaki</h2>
+          <h2><em className="brand-dialogos">DialogosAI</em></h2>
           <p className="live-demo-subtitle">Live Demonstration</p>
         </motion.div>
 
@@ -547,7 +547,7 @@ const LiveDemoSection = () => {
                     <span className="fin-header-logo">
                       <SimakiAvatar />
                     </span>
-                    <span className="fin-header-name">Simaki</span>
+                    <span className="fin-header-name"><em className="brand-dialogos">DialogosAI</em></span>
                   </div>
                   <div className="fin-header-actions">
                     <button type="button" className="fin-header-btn" aria-label="Menu">⋯</button>

@@ -41,7 +41,7 @@ const ExplanationSection = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease }}
         >
-          <h2>Simaki</h2>
+          <h2><em className="brand-dialogos">DialogosAI</em></h2>
           <p>
             Δεν σχεδιάζουμε απλές μηχανές απαντήσεων.
             Δημιουργούμε ψηφιακούς συνομιλητές και πλοηγούς που αναπτύσσουν

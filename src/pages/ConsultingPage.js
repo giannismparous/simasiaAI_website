@@ -79,7 +79,7 @@ const packages = [
     highlight: false,
     features: [
       'Πλήρης AI transformation',
-      'Εγκατάσταση Simaki',
+      'Εγκατάσταση <em class="brand-dialogos">DialogosAI</em>',
       'Εκπαίδευση όλου του προσωπικού',
       'Συνεχής στρατηγική υποστήριξη',
       'SLA & dedicated support team',
@@ -226,7 +226,7 @@ const ConsultingPage = () => {
                   {pkg.features.map((f, j) => (
                     <li key={j}>
                       <span className="pkg-check">✓</span>
-                      {f}
+                      <span dangerouslySetInnerHTML={{ __html: f }} />
                     </li>
                   ))}
                 </ul>

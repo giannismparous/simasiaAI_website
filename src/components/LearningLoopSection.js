@@ -82,9 +82,9 @@ const LearningLoopSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
         >
-          <h2 className="forbes-section-title">{t('learningLoop.title')}</h2>
-          <p className="learning-loop-lead">{t('learningLoop.lead')}</p>
-          <p className="learning-loop-body">{t('learningLoop.body')}</p>
+          <h2 className="forbes-section-title" dangerouslySetInnerHTML={{ __html: t('learningLoop.title') }} />
+          <p className="learning-loop-lead" dangerouslySetInnerHTML={{ __html: t('learningLoop.lead') }} />
+          <p className="learning-loop-body" dangerouslySetInnerHTML={{ __html: t('learningLoop.body') }} />
         </motion.div>
 
         <motion.div

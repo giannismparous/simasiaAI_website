@@ -17,9 +17,8 @@ const EnterpriseCTA = () => {
       >
         <h2>Είστε έτοιμοι να ξεκινήσετε;</h2>
         <p className="enterprise-cta-lead">
-          Φέρτε την Τεχνητή Νοημοσύνη στα μέτρα του οργανισμού σας.
-          Δημιουργήστε ένα Simaki προσαρμοσμένο στις πραγματικές
-          ανάγκες των χρηστών σας.
+          Μαζί, φέρνομε την Τεχνητή Νοημοσύνη στα μέτρα του οργανισμού σας.{' '}
+          Προσαρμόστε σήμερα τον <em className="brand-dialogos">DialogosAI</em> στις πραγματικές ανάγκες των χρηστών σας.
         </p>
         <div className="enterprise-cta-buttons">
           <Link to="/book-demo" className="btn-cta-primary">

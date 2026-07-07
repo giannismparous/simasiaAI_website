@@ -51,7 +51,7 @@
 /* Monochrome logo grid */
 .collabs-logo-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2.5rem 2rem;
   margin-top: 4rem;
   align-items: center;
@@ -80,6 +80,17 @@
   filter: grayscale(0%);
   opacity: 1;
   transform: scale(1.06);
+}
+
+.collab-logo-link {
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease;
+}
+
+.collab-logo-link:hover {
+  box-shadow: 0 0 0 2px var(--orange, #e05c1a);
 }
 
 @media (max-width: 900px) {

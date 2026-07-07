@@ -6,13 +6,13 @@ import { useLanguage } from '../contexts/LanguageContext';
 import './ChatbotBubble.css';
 
 const LAUNCHER_PHRASES_EL = [
-  'Τι μπορεί να κάνει το Simaki;',
+  'Τι μπορεί να κάνει ο DialogosAI;',
   'Πώς βοηθά η SimasiaAI;',
   'Μπορώ να κλείσω demo;',
 ];
 
 const LAUNCHER_PHRASES_EN = [
-  'What can Simaki do for me?',
+  'What can DialogosAI do for me?',
   'How does SimasiaAI help?',
   'Can I book a demo?',
 ];
@@ -56,7 +56,7 @@ function ChatbotBubble() {
         type="button"
         className={`chat-launcher-pill${isOpen && !isClosing ? ' launcher-hidden' : ''}${isClosing ? ' launcher-returning' : ''}`}
         onClick={() => openChat(true)}
-        aria-label="Open Simaki chat"
+        aria-label="Open DialogosAI chat"
         aria-hidden={isOpen && !isClosing}
         tabIndex={isOpen && !isClosing ? -1 : 0}
       >

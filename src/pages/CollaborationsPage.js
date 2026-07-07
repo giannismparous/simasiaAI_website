@@ -6,15 +6,41 @@ import './CollaborationsPage.css';
 
 const LOGO_MAP = {
   'ΠΟΑμΣΚΠ': '/logos/poamskp.png',
-  'BPAN Heroes': '/logos/bepan.png',
-  'Perfectaki Able': '/logos/perfectaki.png',
+  'POAMSKP': '/logos/poamskp.png',
+  'ΠΟΑΜΣΚΠ': '/logos/poamskp.png',
+  'BPAN': '/logos/bepan.png',
+  'bepan': '/logos/bepan.png',
+  'Bpan': '/logos/bepan.png',
+  'Perfectaki': '/logos/perfectaki.png',
   'Μυρτώ': '/logos/kapa3.png',
   'ΚΑΠΑ3': '/logos/kapa3.png',
+  'Κ3': '/logos/kapa3.png',
+  'Cancer': '/logos/kapa3.png',
+};
+
+const LINK_MAP = {
+  'Κ3': 'https://www.kapa3.gr',
+  'ΚΑΠΑ3': 'https://www.kapa3.gr',
+  'Cancer': 'https://www.kapa3.gr',
+  'ΠΟΑμΣΚΠ': 'https://www.poamskp.gr',
+  'POAMSKP': 'https://www.poamskp.gr',
+  'ΠΟΑΜΣΚΠ': 'https://www.poamskp.gr',
+  'BPAN': 'https://bpanheroes.gr',
+  'bepan': 'https://bpanheroes.gr',
+  'Bpan': 'https://bpanheroes.gr',
+  'Perfectaki': 'https://perfectaki.com',
 };
 
 const getLogoForCollab = (name) => {
   for (const [key, path] of Object.entries(LOGO_MAP)) {
     if (name?.includes(key)) return path;
+  }
+  return null;
+};
+
+const getLinkForCollab = (name) => {
+  for (const [key, url] of Object.entries(LINK_MAP)) {
+    if (name?.includes(key)) return url;
   }
   return null;
 };
@@ -38,7 +64,7 @@ const CollaborationsPage = () => {
           >
             <span className="cp-eyebrow">SimasiaAI</span>
             <h1>Συνεργασίες</h1>
-            <p className="cp-hero-sub">Τέσσερα προγράμματα Simaki σε υλοποίηση για οργανισμούς που εργάζονται με εμπάθεια και ανθρώπινη μέριμνα.</p>
+            <p className="cp-hero-sub">Τέσσερα προγράμματα <em className="brand-dialogos">DialogosAI</em> σε υλοποίηση για οργανισμούς που εργάζονται με εμπάθεια και ανθρώπινη μέριμνα.</p>
           </motion.div>
         </div>
       </section>
@@ -48,7 +74,8 @@ const CollaborationsPage = () => {
         <div className="container">
           <div className="cp-cards-grid">
             {collaborations.map((collab, i) => {
-              const logoSrc = getLogoForCollab(collab.name);
+              const logoSrc = collab.logo || getLogoForCollab(collab.name);
+              const collabLink = getLinkForCollab(collab.name) || collab.link;
               return (
                 <motion.div
                   key={i}
@@ -60,7 +87,13 @@ const CollaborationsPage = () => {
                 >
                   {logoSrc && (
                     <div className="cp-card-logo-wrap">
-                      <img src={logoSrc} alt={collab.name} className="cp-card-logo" />
+                      {collabLink ? (
+                        <a href={collabLink} target="_blank" rel="noopener noreferrer">
+                          <img src={logoSrc} alt={collab.name} className="cp-card-logo" />
+                        </a>
+                      ) : (
+                        <img src={logoSrc} alt={collab.name} className="cp-card-logo" />
+                      )}
                     </div>
                   )}
                   {collab.category && (
@@ -70,8 +103,8 @@ const CollaborationsPage = () => {
                   {collab.product && <p className="cp-card-product">{collab.product}</p>}
                   {collab.description && <p className="cp-card-desc">{collab.description}</p>}
                   <div className="cp-card-footer">
-                    {collab.link && (
-                      <a href={collab.link} target="_blank" rel="noopener noreferrer" className="cp-card-link">
+                    {collabLink && (
+                      <a href={collabLink} target="_blank" rel="noopener noreferrer" className="cp-card-link">
                         Περισσότερα →
                       </a>
                     )}

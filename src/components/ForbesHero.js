@@ -38,8 +38,8 @@ const ForbesHero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
           >
-            Στην εποχή των γενικών chatbot Τεχνητής Νοημοσύνης, σχεδιάζουμε τον{' '}
-            <em>ανθρωποκεντρικό ψηφιακό πλοηγό Simaki</em>.
+            Στην εποχή των γενικών chatbot Τεχνητής Νοημοσύνης, σχεδιάσαμε τον{' '}
+            <em>ανθρωποκεντρικό ψηφιακό πλοηγό DialogosAI</em>.
           </motion.p>
           <motion.div
             className="fh-ctas"
@@ -49,7 +49,7 @@ const ForbesHero = () => {
           >
             <Link to="/book-demo" className="fh-btn-primary">Κλείστε Demo</Link>
             <a href="#live-demo" className="fh-btn-ghost">
-              Δείτε το Simaki <span className="fh-arrow">↓</span>
+              Δείτε τον <em className="brand-dialogos">DialogosAI</em> <span className="fh-arrow">↓</span>
             </a>
           </motion.div>
         </div>

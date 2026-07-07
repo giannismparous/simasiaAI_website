@@ -1,30 +1,76 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import LiveDemoSection from '../components/LiveDemoSection';
 import ComparisonTable from '../components/ComparisonTable';
 import { Link } from 'react-router-dom';
 import './SimasiaChatbotsPage.css';
 
+// CountUp Component for live increasing stats
+const CountUp = ({ end, duration = 1500, suffix = '', decimals = 0 }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!inView) return;
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const current = progress * end;
+      setCount(current);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }, [end, duration, inView]);
+
+  return <span ref={ref}>{count.toFixed(decimals)}{suffix}</span>;
+};
+
+const sloganWords = [
+  { text: 'Ο', italic: false, bold: false },
+  { text: 'DialogosAI', italic: true, bold: false },
+  { text: 'δεν', italic: false, bold: false },
+  { text: 'μπορεί', italic: false, bold: false },
+  { text: 'παρά', italic: false, bold: false },
+  { text: 'να', italic: false, bold: false },
+  { text: 'μην', italic: false, bold: false },
+  { text: 'έχει', italic: false, bold: false },
+  { text: 'μέτρο', italic: false, bold: true },
+  { text: 'τον', italic: false, bold: true },
+  { text: 'άνθρωπο', italic: false, bold: true },
+  { text: 'στη', italic: false, bold: false },
+  { text: 'συνθήκη', italic: false, bold: false },
+  { text: 'αλληλεπίδρασης', italic: false, bold: false },
+  { text: 'ανθρώπου', italic: false, bold: false },
+  { text: 'με', italic: false, bold: false },
+  { text: 'την', italic: false, bold: false },
+  { text: 'Τεχνητή', italic: false, bold: false },
+  { text: 'Νοημοσύνη.', italic: false, bold: false }
+];
+
 const targetAudience = [
   {
     icon: '🏥',
     title: 'Υγεία & Κοινωνική Μέριμνα',
-    desc: 'Υποστήριξη ασθενών, ενημέρωση για παροχές και καθοδήγηση σε ευαίσθητα κοινωνικά θέματα με απόλυτη ενσυναίσθηση.',
+    desc: 'Υποστήριξη ασθενών, έγκυρη καθοδήγηση σε ευαίσθητα ιατρικά και κοινωνικά θέματα με απόλυτη ενσυναίσθηση και εχεμύθεια.',
   },
   {
     icon: '🏛️',
     title: 'Δημόσιος Τομέας & Δήμοι',
-    desc: 'Άμεση εξυπηρέτηση δημοτών, εύρεση δικαιολογητικών και ψηφιακή καθοδήγηση χωρίς γραφειοκρατία.',
+    desc: 'Άμεση καθοδήγηση δημοτών, αυτόματη εύρεση εγγράφων και διαδικασιών χωρίς ταλαιπωρία και γραφειοκρατία.',
   },
   {
     icon: '💼',
-    title: 'Επιχειρήσεις & E-commerce',
-    desc: 'Μετατροπή των απλών επισκεπτών σε πελάτες, υποστήριξη 24/7 και αύξηση πωλήσεων με φυσικό διάλογο.',
+    title: 'Επιχειρήσεις & Οργανισμοί',
+    desc: 'Αυθεντικός ψηφιακός διάλογος που μετατρέπει τους επισκέπτες σε υποστηρικτές, 24/7 εξυπηρέτηση και μείωση κόστους λειτουργίας.',
   },
   {
     icon: '🎓',
-    title: 'Εκπαιδευτικοί Φορείς',
-    desc: 'Υποστήριξη μαθητών, γονέων και καθηγητών με άμεση πρόσβαση σε εκπαιδευτικό υλικό και πληροφορίες.',
+    title: 'Εκπαίδευση & Κατάρτιση',
+    desc: 'Εξατομικευμένη υποστήριξη εκπαιδευομένων, γονέων και καθηγητών με άμεση πρόσβαση σε εγκεκριμένο υλικό.',
   },
 ];
 
@@ -32,17 +78,17 @@ const pillars = [
   {
     num: '01',
     title: 'Fluency & Context (Ουσιαστικός Διάλογος)',
-    body: 'Driven by advanced computational linguistics, Simaki adapts perfectly to institutional tone, masters complex Greek dialects, and maps out user interactions proactively.',
+    body: 'Βασισμένος στην <strong>υπολογιστική γλωσσολογία</strong>, ο <em className="brand-dialogos">DialogosAI</em> προσαρμόζεται στο ύφος του οργανισμού σας, αντιλαμβάνεται <strong>τοπικές διαλέκτους</strong> και καθοδηγεί τον χρήστη προληπτικά.',
   },
   {
     num: '02',
     title: 'Ethics & Compliance (Υπεύθυνος Διάλογος)',
-    body: 'Built with absolute EU AI Act Compliance. Features universal accessibility for individuals with disabilities (PwD/ΑμεΑ), strict safety guardrails for crisis scenarios, and an engineered minimization of hallucinations.',
+    body: 'Σχεδιασμένος με απόλυτη συμμόρφωση στο <strong>EU AI Act</strong>. Εξασφαλίζει καθολική προσβασιμότητα για <strong>ΑμεΑ</strong>, φίλτρα ασφαλείας για κρίσιμες καταστάσεις και ελαχιστοποίηση ψευδαισθήσεων.',
   },
   {
     num: '03',
     title: 'Sustainable AI (Πράσινος Διάλογος)',
-    body: 'Ethical engineering means environmental responsibility. Through our proprietary Optimized RAG architecture, Simaki slashes computational strain and carbon footprint per query, ensuring eco-friendly enterprise scaling.',
+    body: 'Η έξυπνη RAG αρχιτεκτονική μας <strong>μειούμε δραστικά την κατανάλωση ενέργειας</strong> και το υπολογιστικό κόστος ανά ερώτημα, κάνοντας την τεχνολογία βιώσιμη.',
   },
 ];
 
@@ -50,7 +96,7 @@ const characteristics = [
   {
     num: '01',
     title: 'Φυσική Γλώσσα & Τοπικές Διάλεκτοι',
-    body: 'Το μοναδικό σύστημα στην Ελλάδα που αντιλαμβάνεται τη γλώσσα μας ακριβώς όπως τη μιλάμε, μαζί με τοπικές διαλέκτους και συναισθηματικές αποχρώσεις.',
+    body: 'Το μοναδικό σύστημα στην Ελλάδα που αντιλαμβάνεται τη γλώσσα μας ακριβώς όπως τη μιλάμε, μαζί με τοπικές ιδιαιτερότητες και συναισθηματικές αποχρώσεις.',
   },
   {
     num: '02',
@@ -93,43 +139,81 @@ const SimasiaChatbotsPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="scp-hero-content"
           >
-            <span className="scp-eyebrow">The era of generic chatbots is over.</span>
-            <h1>Meet Simaki.</h1>
-            <p className="scp-hero-sub">
-              An autonomous Language Navigator that bridge the gap between complex organizational data and real human needs.
-            </p>
+            <h1>
+              <em className="brand-dialogos">DialogosAI</em>
+            </h1>
+            <div className="scp-slogan-wrap">
+              <motion.p 
+                className="scp-slogan"
+                variants={{
+                  visible: { transition: { staggerChildren: 0.05 } }
+                }}
+                initial="hidden"
+                animate="visible"
+              >
+                {sloganWords.map((word, i) => (
+                  <motion.span
+                    key={i}
+                    style={{ display: 'inline-block', marginRight: '0.25em' }}
+                    variants={{
+                      hidden: { opacity: 0, y: 4 },
+                      visible: { opacity: 1, y: 0 }
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className={word.italic ? 'brand-dialogos' : ''}
+                  >
+                    {word.bold ? <strong>{word.text}</strong> : word.text}
+                  </motion.span>
+                ))}
+              </motion.p>
+            </div>
+            <div className="scp-hero-ctas">
+              <Link to="/book-demo" className="btn btn-primary btn-large">Κλείστε ένα Demo</Link>
+              <a href="#live-demo" className="btn btn-secondary btn-large">Δείτε το Live</a>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Narrative Section */}
+      {/* Value Indicator Bar */}
+      <section className="scp-stats-bar">
+        <div className="container scp-stats-grid">
+          <div className="scp-stat-item">
+            <span className="scp-stat-num">
+              <CountUp end={99.4} decimals={1} suffix="%" />
+            </span>
+            <span className="scp-stat-label">Ακρίβεια Απαντήσεων (RAG Validation)</span>
+          </div>
+          <div className="scp-stat-item">
+            <span className="scp-stat-num">
+              <CountUp end={100} decimals={0} suffix="%" />
+            </span>
+            <span className="scp-stat-label">Συμμόρφωση με το EU AI Act</span>
+          </div>
+          <div className="scp-stat-item">
+            <span className="scp-stat-num">
+              <CountUp end={4} decimals={0} suffix="" />
+            </span>
+            <span className="scp-stat-label">Εβδομάδες Custom Pilot</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Narrative Section - Anthropic UI inspired typographically clean layout */}
       <section className="scp-narrative" ref={narrativeRef}>
         <div className="container">
-          <div className="scp-narrative-grid">
-            <motion.div 
-              className="scp-narrative-block en"
-              initial={{ opacity: 0, x: -30 }}
-              animate={narrativeInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <span className="lang-tag">EN</span>
-              <p>
-                Traditional AI models operate in isolation; they merely predict words. <strong>Simaki</strong> is engineered as an autonomous Language Navigator. Inspired by the Greek roots of communication and interpretation, it acts as the ultimate messenger between complex organizational data and real human needs. It combines the intuitive intelligence of next-generation language entities with rigorous academic validation, guiding users through critical workflows with absolute clarity, empathy, and structural precision.
-              </p>
-            </motion.div>
-            <motion.div 
-              className="scp-narrative-block el"
-              initial={{ opacity: 0, x: 30 }}
-              animate={narrativeInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <span className="lang-tag">EL</span>
-              <p>
-                Τα παραδοσιακά μοντέλα AI λειτουργούν αποκομμένα· απλώς προβλέπουν λέξεις. Το <strong>Simaki</strong> είναι σχεδιασμένο ως ένας αυτόνομος Ψηφιακός Πλοηγός Γλώσσας. Αντλώντας έμπνευση από τις ελληνικές ρίζες της επικοινωνίας και της ερμηνείας, λειτουργεί ως ο απόλυτος αγγελιοφόρος ανάμεσα στα σύνθετα δεδομένα ενός οργανισμού και τις πραγματικές ανθρώπινες ανάγκες. Συνδυάζει την ευφυΐα των γλωσσικών μοντέλων νέας γενιάς με την αυστηρή ακαδημαϊκή εγκυρότητα, καθοδηγώντας τον χρήστη με απόλυτη σαφήνεια, ενσυναίσθηση και δομική ακρίβεια.
-              </p>
-            </motion.div>
-          </div>
+          <motion.div 
+            className="scp-narrative-anthropic-text"
+            initial={{ opacity: 0, y: 20 }}
+            animate={narrativeInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p>
+              Τα παραδοσιακά μοντέλα AI λειτουργούν αποκομμένα· απλώς προβλέπουν λέξεις. Ο <em className="brand-dialogos">DialogosAI</em> είναι σχεδιασμένος ως ένας αυτόνομος <strong>Ψηφιακός Πλοηγός Γλώσσας</strong>. Αντλώντας έμπνευση από τις ελληνικές ρίζες της επικοινωνίας και της ερμηνείας, λειτουργεί ως ο απόλυτος αγγελιοφόρος ανάμεσα στα σύνθετα δεδομένα ενός οργανισμού και τις <strong>πραγματικές ανθρώπινες ανάγκες</strong>. Συνδυάζει την ευφυΐα των γλωσσικών μοντέλων νέας γενιάς με την αυστηρή ακαδημαϊκή εγκυρότητα, καθοδηγώντας τον χρήστη με <strong>απόλυτη σαφήνεια, ενσυναίσθηση και δομική ακρίβεια</strong>.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -141,8 +225,8 @@ const SimasiaChatbotsPage = () => {
             animate={featInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2>The Three Architectural Pillars</h2>
-            <p>Our core framework driving next-generation enterprise conversational architecture.</p>
+            <h2>Οι Τρεις Αρχιτεκτονικοί Πυλώνες</h2>
+            <p>Το τεχνολογικό υπόβαθρο που καθιστά τον ψηφιακό μας πλοηγό ηγέτη στην αγορά.</p>
           </motion.div>
           <div className="scp-pillars-list">
             {pillars.map((p, i) => (
@@ -154,7 +238,7 @@ const SimasiaChatbotsPage = () => {
                 <span className="scp-pillar-num">{p.num}</span>
                 <div className="scp-pillar-body">
                   <h3>{p.title}</h3>
-                  <p>{p.body}</p>
+                  <p dangerouslySetInnerHTML={{ __html: p.body }} />
                 </div>
               </motion.div>
             ))}
@@ -170,7 +254,7 @@ const SimasiaChatbotsPage = () => {
         <div className="container">
           <div className="scp-pillars-header">
             <h2>5 Μοναδικά Χαρακτηριστικά</h2>
-            <p>Γιατί το Simaki αποτελεί το πιο εξελιγμένο σύστημα διαλόγου στην Ελλάδα.</p>
+            <p>Γιατί ο <em className="brand-dialogos">DialogosAI</em> αποτελεί το πιο εξελιγμένο σύστημα διαλόγου στην ελληνική αγορά.</p>
           </div>
           <div className="scp-pillars-list">
             {characteristics.map((char, i) => (
@@ -199,7 +283,7 @@ const SimasiaChatbotsPage = () => {
             transition={{ duration: 0.6 }}
           >
             <h2>Ποιους αφορά</h2>
-            <p>Το Simaki προσαρμόζεται στις ιδιαίτερες απαιτήσεις κάθε κλάδου.</p>
+            <p>Ο <em className="brand-dialogos">DialogosAI</em> προσαρμόζεται στις ιδιαίτερες ανάγκες και προκλήσεις κάθε κλάδου.</p>
           </motion.div>
 
           <div className="scp-audience-grid">
@@ -221,16 +305,15 @@ const SimasiaChatbotsPage = () => {
         </div>
       </section>
 
-      {/* Confident CTA "Έλα πάρτο" */}
+      {/* Confident CTA */}
       <section className="scp-cta">
         <div className="container">
-          <h2>Αποκτήστε το κορυφαίο Simaki στην Ελλάδα.</h2>
+          <h2>Αποκτήστε τον κορυφαίο ψηφιακό πλοηγό στην Ελλάδα.</h2>
           <p>
-            Μην συμβιβάζεστε με generic λύσεις που μπερδεύουν τους χρήστες σας. 
-            Κάντε τη διαφορά με το Simaki και κερδίστε την εμπιστοσύνη των πελατών σας από την πρώτη μέρα.
+            Μην συμβιβάζεστε με απλά chatbots που μπερδεύουν τους χρήστες. Κάντε τη διαφορά με τον <em className="brand-dialogos">DialogosAI</em> και κερδίστε την εμπιστοσύνη των χρηστών σας από την πρώτη μέρα.
           </p>
           <div className="scp-cta-actions">
-            <Link to="/book-demo" className="btn btn-primary btn-large">Έλα πάρτο — Κλείστε Demo</Link>
+            <Link to="/book-demo" className="btn btn-primary btn-large">Ξεκινήστε Σήμερα — Book Demo</Link>
             <a href="mailto:contact@simasiaai.gr" className="scp-email-link">contact@simasiaai.gr</a>
           </div>
         </div>
