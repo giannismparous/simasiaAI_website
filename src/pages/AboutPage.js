@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import './AboutPage.css';
 import avatarFox from '../assets/avatar-fox.svg';
 import avatarPanda from '../assets/avatar-panda.svg';
-import avatarRabbit from '../assets/avatar-rabbit.svg';
 import avatarOwl from '../assets/avatar-owl.svg';
 import giannisReal from '../assets/giannis-real.png';
 import dimitrisReal from '../assets/dimitris-real.png';

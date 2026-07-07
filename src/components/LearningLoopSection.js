@@ -59,11 +59,11 @@ const LearningLoopSection = () => {
     setHighlightStep(0);
     setFlowStep(null);
     startShuffleThenFlow(0);
-
     return () => {
       timeoutsRef.current.forEach(clearTimeout);
       timeoutsRef.current = [];
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

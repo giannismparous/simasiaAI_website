@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ChatWindow.css';
@@ -20,17 +20,19 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
   const inputRef = useRef(null);
   const panelRef = useRef(null);
 
-  const suggestedQuestions = language === 'el'
-    ? [
-        { id: 1, text: 'Τι μπορεί να κάνει ο DialogosAI για μένα;' },
-        { id: 2, text: 'Πώς βοηθά η SimasiaAI οργανισμούς;' },
-        { id: 3, text: 'Μπορώ να κλείσω demo;' },
-      ]
-    : [
-        { id: 1, text: 'What can DialogosAI do for me?' },
-        { id: 2, text: 'How does SimasiaAI help organizations?' },
-        { id: 3, text: 'Can I book a demo?' },
-      ];
+  const suggestedQuestions = useMemo(() => {
+    return language === 'el'
+      ? [
+          { id: 1, text: 'Τι μπορεί να κάνει ο DialogosAI για μένα;' },
+          { id: 2, text: 'Πώς βοηθά η SimasiaAI οργανισμούς;' },
+          { id: 3, text: 'Μπορώ να κλείσω demo;' },
+        ]
+      : [
+          { id: 1, text: 'What can DialogosAI do for me?' },
+          { id: 2, text: 'How does SimasiaAI help organizations?' },
+          { id: 3, text: 'Can I book a demo?' },
+        ];
+  }, [language]);
 
   const hasConversation = messages.length > 0;
   const showSuggestionChips = showOptions && !isLoading;
