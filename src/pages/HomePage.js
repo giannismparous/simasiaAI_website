@@ -2,8 +2,8 @@ import React from 'react';
 import ForbesHero from '../components/ForbesHero';
 import LiveDemoSection from '../components/LiveDemoSection';
 import MidCTA from '../components/MidCTA';
-import ComparisonTable from '../components/ComparisonTable';
 import LearningLoopSection from '../components/LearningLoopSection';
+import AboutSection from '../components/AboutSection';
 import PartnershipsSection from '../components/PartnershipsSection';
 import EnterpriseCTA from '../components/EnterpriseCTA';
 
@@ -19,11 +19,11 @@ const HomePage = () => {
       {/* 3. CTA */}
       <MidCTA />
 
-      {/* 4. Comparison table */}
-      <ComparisonTable />
-
-      {/* 5. Continuous learning loop */}
+      {/* 4. Continuous learning loop */}
       <LearningLoopSection />
+
+      {/* 5. About — Team, Principles, Mission */}
+      <AboutSection />
 
       {/* 6. Collaborations — trust section */}
       <PartnershipsSection />

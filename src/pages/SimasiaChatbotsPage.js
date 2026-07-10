@@ -51,26 +51,34 @@ const sloganWords = [
   { text: 'Νοημοσύνη.', italic: false, bold: false }
 ];
 
-const targetAudience = [
+const dialogueSectors = [
   {
-    icon: '🏥',
+    num: '01',
     title: 'Υγεία & Κοινωνική Μέριμνα',
-    desc: 'Υποστήριξη ασθενών, έγκυρη καθοδήγηση σε ευαίσθητα ιατρικά και κοινωνικά θέματα με απόλυτη ενσυναίσθηση και εχεμύθεια.',
+    badge: 'proven',
+    badgeLabel: 'ΑΠΟΔΕΔΕΙΓΜΕΝΟ',
+    desc: 'Υποστήριξη ασθενών και καθοδήγηση σε ευαίσθητα ιατρικά θέματα. Ήδη σε λειτουργία σε οργανισμούς υγείας με απόλυτη ενσυναίσθηση και εχεμύθεια.',
   },
   {
-    icon: '🏛️',
+    num: '02',
     title: 'Δημόσιος Τομέας & Δήμοι',
-    desc: 'Άμεση καθοδήγηση δημοτών, αυτόματη εύρεση εγγράφων και διαδικασιών χωρίς ταλαιπωρία και γραφειοκρατία.',
+    badge: 'proven',
+    badgeLabel: 'ΑΠΟΔΕΔΕΙΓΜΕΝΟ',
+    desc: 'Καθοδήγηση πολιτών, αυτόματη εύρεση εγγράφων και διαδικασιών. Δοκιμασμένο σε πραγματικές συνθήκες δημόσιας διοίκησης.',
   },
   {
-    icon: '💼',
+    num: '03',
     title: 'Επιχειρήσεις & Οργανισμοί',
-    desc: 'Αυθεντικός ψηφιακός διάλογος που μετατρέπει τους επισκέπτες σε υποστηρικτές, 24/7 εξυπηρέτηση και μείωση κόστους λειτουργίας.',
+    badge: 'ready',
+    badgeLabel: 'ΕΤΟΙΜΟ',
+    desc: 'Αυθεντικός ψηφιακός διάλογος που μετατρέπει επισκέπτες σε υποστηρικτές, με 24/7 εξυπηρέτηση και μείωση κόστους λειτουργίας.',
   },
   {
-    icon: '🎓',
+    num: '04',
     title: 'Εκπαίδευση & Κατάρτιση',
-    desc: 'Εξατομικευμένη υποστήριξη εκπαιδευομένων, γονέων και καθηγητών με άμεση πρόσβαση σε εγκεκριμένο υλικό.',
+    badge: 'ready',
+    badgeLabel: 'ΕΤΟΙΜΟ',
+    desc: 'Εξατομικευμένη υποστήριξη εκπαιδευομένων, γονέων και καθηγητών με πρόσβαση σε εγκεκριμένο υλικό.',
   },
 ];
 
@@ -134,6 +142,7 @@ const SimasiaChatbotsPage = () => {
     <div className="scp-page">
       {/* Hero */}
       <section className="scp-hero" ref={heroRef}>
+        <div className="scp-neural-bg" aria-hidden="true" />
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -273,35 +282,81 @@ const SimasiaChatbotsPage = () => {
       {/* Comparison Table */}
       <ComparisonTable />
 
-      {/* Whom it concerns */}
-      <section className="scp-audience" ref={audienceRef}>
+      {/* Communication Framework */}
+      <section className="scp-dialogue" ref={audienceRef}>
         <div className="container">
           <motion.div
-            className="scp-audience-header"
+            className="scp-dialogue-header"
             initial={{ opacity: 0, y: 20 }}
             animate={audienceInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2>Ποιους αφορά</h2>
-            <p>Ο <em className="brand-dialogos">DialogosAI</em> προσαρμόζεται στις ιδιαίτερες ανάγκες και προκλήσεις κάθε κλάδου.</p>
+            <h2>Κάθε οργανισμός επικοινωνεί.<br />Ο <em className="brand-dialogos">DialogosAI</em> εξασφαλίζει ότι αυτή η επικοινωνία είναι αξιόπιστη.</h2>
+            <p>Ένα κανάλι ασφαλούς, υπεύθυνου και καθοδηγητικού διαλόγου ανάμεσα στον οργανισμό σας και τους ανθρώπους που εξυπηρετεί. Σχεδιασμένο ακριβώς όπως εσείς το οραματίζεστε.</p>
           </motion.div>
 
-          <div className="scp-audience-grid">
-            {targetAudience.map((item, i) => (
+          {/* Communication Flow */}
+          <motion.div
+            className="scp-comm-flow"
+            initial={{ opacity: 0, y: 16 }}
+            animate={audienceInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <div className="scp-comm-node">
+              <span className="scp-comm-label">Ο Οργανισμός σας</span>
+            </div>
+            <div className="scp-comm-arrow">
+              <span>→</span>
+            </div>
+            <div className="scp-comm-node scp-comm-node--center">
+              <span className="scp-comm-label"><em className="brand-dialogos">DialogosAI</em></span>
+            </div>
+            <div className="scp-comm-arrow">
+              <span>→</span>
+            </div>
+            <div className="scp-comm-node">
+              <span className="scp-comm-label">Οι Άνθρωποί σας</span>
+            </div>
+          </motion.div>
+
+          {/* Sector Items */}
+          <div className="scp-dialogue-items">
+            {dialogueSectors.map((item, i) => (
               <motion.div
                 key={i}
-                className="scp-audience-card"
-                initial={{ opacity: 0, y: 24 }}
+                className="scp-dialogue-item"
+                initial={{ opacity: 0, y: 20 }}
                 animate={audienceInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -4 }}
+                transition={{ duration: 0.5, delay: 0.15 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               >
-                <span className="scp-audience-icon">{item.icon}</span>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
+                <span className="scp-dialogue-num">{item.num}</span>
+                <div className="scp-dialogue-body">
+                  <div className="scp-dialogue-title-row">
+                    <h3>{item.title}</h3>
+                    <span className={`scp-dialogue-badge scp-dialogue-badge--${item.badge}`}>
+                      {item.badgeLabel}
+                    </span>
+                  </div>
+                  <p>{item.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Connecting Narrative */}
+          <motion.div
+            className="scp-dialogue-closing"
+            initial={{ opacity: 0, y: 16 }}
+            animate={audienceInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <p>
+              Αν ο <em className="brand-dialogos">DialogosAI</em> εξασφαλίζει αξιόπιστο διάλογο στους πιο ευαίσθητους τομείς, φανταστείτε τι μπορεί να κάνει για τον δικό σας οργανισμό. Σχεδιάστε τον διάλογο που θέλετε — ασφαλή, υπεύθυνο, καθοδηγητικό — ακριβώς όπως τον οραματίζεστε.
+            </p>
+            <Link to="/book-demo" className="scp-dialogue-cta-link">
+              Σχεδιάστε τον δικό σας <em className="brand-dialogos">DialogosAI</em> →
+            </Link>
+          </motion.div>
         </div>
       </section>
 

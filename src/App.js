@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -10,7 +10,6 @@ import HomePage from './pages/HomePage';
 import SolutionsPage from './pages/SolutionsPage';
 import CollaborationsPage from './pages/CollaborationsPage';
 import ApplicationsPage from './pages/ApplicationsPage';
-import AboutPage from './pages/AboutPage';
 import BookDemoPage from './pages/BookDemoPage';
 import TargetAudiencePage from './pages/TargetAudiencePage';
 import ProductsPage from './pages/ProductsPage';
@@ -18,8 +17,7 @@ import SimasiaChatbotsPage from './pages/SimasiaChatbotsPage';
 import SimasiaStudioPage from './pages/SimasiaStudioPage';
 import SimasiaDailyPage from './pages/SimasiaDailyPage';
 import SimasiaEduPage from './pages/SimasiaEduPage';
-import ConsultingPage from './pages/ConsultingPage';
-import EducationPage from './pages/EducationPage';
+import ServicesPage from './pages/ServicesPage';
 import ChatbotBubble from './components/ChatbotBubble';
 import './App.css';
 
@@ -37,12 +35,13 @@ function App() {
             <Route path="/solutions" element={<SolutionsPage />} />
             <Route path="/collaborations" element={<CollaborationsPage />} />
             <Route path="/applications" element={<ApplicationsPage />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="/about" element={<Navigate to="/#about" replace />} />
             <Route path="/book-demo" element={<BookDemoPage />} />
             <Route path="/target-audience" element={<TargetAudiencePage />} />
             <Route path="/products" element={<ProductsPage />} />
-            <Route path="/services/consulting" element={<ConsultingPage />} />
-            <Route path="/services/education" element={<EducationPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/consulting" element={<Navigate to="/services#consulting" replace />} />
+            <Route path="/services/education" element={<Navigate to="/services#education" replace />} />
             <Route path="/applications/simasia-chatbots" element={<SimasiaChatbotsPage />} />
             <Route path="/applications/simasia-studio" element={<SimasiaStudioPage />} />
             <Route path="/applications/simasia-daily" element={<SimasiaDailyPage />} />
