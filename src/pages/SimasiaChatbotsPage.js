@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import LiveDemoSection from '../components/LiveDemoSection';
 import ComparisonTable from '../components/ComparisonTable';
+import InteractiveConstellation from '../components/InteractiveConstellation';
 import { Link } from 'react-router-dom';
 import './SimasiaChatbotsPage.css';
 
@@ -142,7 +143,7 @@ const SimasiaChatbotsPage = () => {
     <div className="scp-page">
       {/* Hero */}
       <section className="scp-hero" ref={heroRef}>
-        <div className="scp-neural-bg" aria-hidden="true" />
+        <InteractiveConstellation pattern="neural" />
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -362,6 +363,7 @@ const SimasiaChatbotsPage = () => {
 
       {/* Confident CTA */}
       <section className="scp-cta">
+        <InteractiveConstellation pattern="minimal" />
         <div className="container">
           <h2>Αποκτήστε τον κορυφαίο ψηφιακό πλοηγό στην Ελλάδα.</h2>
           <p>

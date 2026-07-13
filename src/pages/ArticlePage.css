@@ -1,0 +1,99 @@
+/* ===== ARTICLE PAGE ===== */
+.ap-article-page { background: var(--light, #faf9f5); }
+
+.ap-article-hero {
+  padding: 10rem 0 4rem;
+  background: var(--dark, #141413);
+  position: relative;
+}
+.ap-back-link {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(250,249,245,0.5);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+.ap-back-link:hover { color: var(--orange, #d97757); }
+.ap-article-meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.ap-article-category {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--orange, #d97757);
+  border: 1px solid var(--orange, #d97757);
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+}
+.ap-article-date {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: rgba(250,249,245,0.4);
+}
+.ap-article-hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--light, #faf9f5);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  max-width: 800px;
+}
+
+.ap-article-content {
+  padding: 4rem 0 6rem;
+}
+.ap-article-body {
+  max-width: 720px;
+}
+.ap-article-body p {
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  line-height: 1.9;
+  color: var(--ink-soft, #5a5a58);
+  margin-bottom: 1.75rem;
+}
+.ap-article-body p:first-child::first-letter {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--dark, #141413);
+  float: left;
+  line-height: 1;
+  margin-right: 0.15rem;
+  margin-top: 0.1rem;
+}
+
+.ap-article-footer {
+  max-width: 720px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 3rem;
+  border-top: 1px solid var(--light-gray, #e8e6dc);
+  margin-top: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.ap-back-btn {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--dark, #141413);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.ap-back-btn:hover { color: var(--orange, #d97757); }
+
+@media (max-width: 768px) {
+  .ap-article-hero { padding: 7rem 0 3rem; }
+  .ap-article-content { padding: 3rem 0 4rem; }
+  .ap-article-body p { font-size: 1rem; }
+}

@@ -2,6 +2,8 @@
 .enterprise-cta {
   padding: 6rem 0;
   background: var(--dark);
+  position: relative;
+  overflow: hidden;
 }
 
 .enterprise-cta-inner {

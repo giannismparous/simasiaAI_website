@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import InteractiveConstellation from '../components/InteractiveConstellation';
 import './ServicesPage.css';
 
 const packages = [
@@ -155,7 +156,7 @@ const ServicesPage = () => {
             </div>
           </motion.div>
         </div>
-        <div className="svc-hero-grid" aria-hidden="true" />
+        <InteractiveConstellation pattern="briefcase" />
       </section>
 
       {/* Two Offers Introduction */}
@@ -375,6 +376,7 @@ const ServicesPage = () => {
 
       {/* Empathy Banner */}
       <section className="svc-empathy-banner">
+        <InteractiveConstellation pattern="minimal" />
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -393,6 +395,7 @@ const ServicesPage = () => {
 
       {/* Final CTA */}
       <section className="svc-final-cta">
+        <InteractiveConstellation pattern="minimal" />
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

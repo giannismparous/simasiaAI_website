@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import InteractiveConstellation from '../components/InteractiveConstellation';
 import './BookDemoPage.css';
 
 const BookDemoPage = () => {
@@ -18,6 +19,7 @@ const BookDemoPage = () => {
   return (
     <div className="bdp-page">
       <section className="bdp-hero">
+        <InteractiveConstellation pattern="calendar" />
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

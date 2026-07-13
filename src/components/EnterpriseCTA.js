@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import InteractiveConstellation from './InteractiveConstellation';
 import './EnterpriseCTA.css';
 
 const EnterpriseCTA = () => {
@@ -9,6 +10,7 @@ const EnterpriseCTA = () => {
 
   return (
     <section className="enterprise-cta" ref={ref}>
+      <InteractiveConstellation pattern="minimal" />
       <motion.div
         className="enterprise-cta-inner"
         initial={{ opacity: 0, y: 20 }}

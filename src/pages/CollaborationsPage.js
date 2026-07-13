@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
+import InteractiveConstellation from '../components/InteractiveConstellation';
 import './CollaborationsPage.css';
 
 const LOGO_MAP = {
@@ -56,6 +57,7 @@ const CollaborationsPage = () => {
     <div className="collabs-page">
       {/* Hero */}
       <section className="cp-hero">
+        <InteractiveConstellation pattern="handshake" />
         <div className="container" ref={heroRef}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}

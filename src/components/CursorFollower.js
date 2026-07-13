@@ -22,7 +22,7 @@ const getLabel = (el) => {
   return '';
 };
 
-const DARK_BG_SELECTORS = ['.fh-section','.scp-hero','.scp-cta','.ap-hero','.cp-hero','.bdp-hero','.site-footer','.solutions-hero'];
+const DARK_BG_SELECTORS = ['.fh-section','.scp-hero','.scp-cta','.ap-hero','.cp-hero','.bdp-hero','.site-footer','.solutions-hero','.tp-hero','.np-hero','.svc-hero','.svc-empathy-banner','.svc-final-cta','.enterprise-cta'];
 
 const isDarkBackground = (el) => {
   if (!el) return false;
