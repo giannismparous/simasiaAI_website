@@ -24,8 +24,9 @@ const ArticlePage = () => {
           >
             <Link to="/news" className="ap-back-link">← Νέα & Άρθρα</Link>
             <div className="ap-article-meta">
-              <span className="ap-article-category">{article.categoryLabel}</span>
+              <span className={`ap-article-category-tag ${article.category}`}>{article.categoryLabel}</span>
               <span className="ap-article-date">{article.date}</span>
+              <span className="ap-article-time">{article.readTime}</span>
             </div>
             <h1>{article.title}</h1>
           </motion.div>
@@ -47,7 +48,7 @@ const ArticlePage = () => {
           </motion.div>
 
           <div className="ap-article-footer">
-            <Link to="/news" className="ap-back-btn">← Πίσω στα Νέα</Link>
+            <Link to="/news" className="ap-back-btn">← Πίσω στα Νέα &amp; Άρθρα</Link>
             <Link to="/book-demo" className="btn btn-primary">Κλείστε Demo</Link>
           </div>
         </div>

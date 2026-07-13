@@ -1,4 +1,4 @@
-/* ===== ARTICLE PAGE ===== */
+/* ===== EDITORIAL ARTICLE PAGE ===== */
 .ap-article-page { background: var(--light, #faf9f5); }
 
 .ap-article-hero {
@@ -17,42 +17,61 @@
   transition: color 0.2s;
 }
 .ap-back-link:hover { color: var(--orange, #d97757); }
+
 .ap-article-meta {
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem;
   align-items: center;
   margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
-.ap-article-category {
+.ap-article-category-tag {
   font-family: var(--font-sans);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.ap-article-category-tag.news {
+  background: rgba(217, 119, 87, 0.12);
   color: var(--orange, #d97757);
-  border: 1px solid var(--orange, #d97757);
-  padding: 0.2rem 0.6rem;
-  border-radius: 3px;
+  border-color: rgba(217, 119, 87, 0.3);
+}
+.ap-article-category-tag.articles {
+  background: rgba(250, 249, 245, 0.08);
+  color: rgba(250, 249, 245, 0.6);
+  border-color: rgba(250, 249, 245, 0.2);
 }
 .ap-article-date {
   font-family: var(--font-sans);
   font-size: 0.78rem;
   color: rgba(250,249,245,0.4);
+  font-weight: 500;
 }
+.ap-article-time {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: rgba(250,249,245,0.3);
+}
+
 .ap-article-hero h1 {
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
   color: var(--light, #faf9f5);
   letter-spacing: -0.02em;
   line-height: 1.15;
-  max-width: 800px;
+  max-width: 900px;
 }
 
 .ap-article-content {
-  padding: 4rem 0 6rem;
+  padding: 5rem 0 7rem;
 }
 .ap-article-body {
   max-width: 720px;
+  margin: 0 auto;
 }
 .ap-article-body p {
   font-family: var(--font-serif);
@@ -67,18 +86,18 @@
   color: var(--dark, #141413);
   float: left;
   line-height: 1;
-  margin-right: 0.15rem;
+  margin-right: 0.25rem;
   margin-top: 0.1rem;
 }
 
 .ap-article-footer {
   max-width: 720px;
+  margin: 4rem auto 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 3rem;
   border-top: 1px solid var(--light-gray, #e8e6dc);
-  margin-top: 2rem;
   gap: 1rem;
   flex-wrap: wrap;
 }
