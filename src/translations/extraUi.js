@@ -257,9 +257,9 @@ export const extraUiEn = {
     },
   },
   forbesHero: {
-    words: ['Our', 'measure?', 'The', 'human.'],
-    ariaLabel: 'Our measure? The human.',
-    humanWord: 'human.',
+    words: ['Human', 'Standard'],
+    ariaLabel: 'Human Standard',
+    humanWord: 'Human',
     subBefore: 'In the age of generic AI chatbots, we designed the',
     subEm: 'human-centered digital navigator DialogosAI',
     ctaDemo: 'Book a Demo',
