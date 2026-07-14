@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
 import InteractiveConstellation from '../components/InteractiveConstellation';
+import ContactForm from '../components/ContactForm';
 import './CollaborationsPage.css';
 
 const LOGO_MAP = {
@@ -65,8 +66,12 @@ const CollaborationsPage = () => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="cp-eyebrow">SimasiaAI</span>
-            <h1>Συνεργασίες</h1>
-            <p className="cp-hero-sub">Τέσσερα προγράμματα <em className="brand-dialogos">DialogosAI</em> σε υλοποίηση για οργανισμούς που εργάζονται με εμπάθεια και ανθρώπινη μέριμνα.</p>
+            <h1>{t('collaborationsPage.title')}</h1>
+            <p className="cp-hero-sub">
+              {t('collaborationsPage.heroSubBefore')}{' '}
+              <em className="brand-dialogos">DialogosAI</em>{' '}
+              {t('collaborationsPage.heroSubAfter')}
+            </p>
           </motion.div>
         </div>
       </section>
@@ -107,10 +112,10 @@ const CollaborationsPage = () => {
                   <div className="cp-card-footer">
                     {collabLink && (
                       <a href={collabLink} target="_blank" rel="noopener noreferrer" className="cp-card-link">
-                        Περισσότερα →
+                        {t('collaborationsPage.more')}
                       </a>
                     )}
-                    <Link to="/book-demo" className="cp-card-cta">ενδιαφέρομαι</Link>
+                    <Link to="/book-demo" className="cp-card-cta">{t('collaborationsPage.interest')}</Link>
                   </div>
                 </motion.div>
               );
@@ -118,6 +123,8 @@ const CollaborationsPage = () => {
           </div>
         </div>
       </section>
+
+      <ContactForm />
     </div>
   );
 };

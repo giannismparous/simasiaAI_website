@@ -22,7 +22,7 @@
 .mid-cta .cta-primary {
   display: inline-block;
   padding: 0.85rem 1.75rem;
-  background: var(--dark);
+  background: var(--orange, #d97757);
   color: #fff;
   font-family: var(--font-sans);
   font-weight: 500;
@@ -33,6 +33,28 @@
 }
 
 .mid-cta .cta-primary:hover {
-  background: var(--orange);
+  background: #c0603e;
   transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .mid-cta {
+    padding: 3rem 0;
+  }
+
+  .mid-cta-inner {
+    max-width: 100%;
+    padding: 0 0.25rem;
+  }
+
+  .mid-cta p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .mid-cta .cta-primary {
+    width: 100%;
+    max-width: 20rem;
+    text-align: center;
+  }
 }

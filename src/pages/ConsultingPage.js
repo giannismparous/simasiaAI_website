@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import PageHeroBackdrop from '../components/PageHeroBackdrop';
 import './ConsultingPage.css';
 
 const packages = [
@@ -101,6 +102,7 @@ const ConsultingPage = () => {
     <div className="consulting-page">
       {/* Hero */}
       <section className="consulting-hero" ref={heroRef}>
+        <PageHeroBackdrop />
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -22,7 +22,7 @@ const Footer = () => {
             <h4>Πλοήγηση</h4>
             <Link to="/">{t('nav.home')}</Link>
             <Link to="/applications/simasia-chatbots"><em className="brand-dialogos">DialogosAI</em></Link>
-            <Link to="/services">Υπηρεσίες</Link>
+            <Link to="/services">{t('nav.services') || 'Υπηρεσίες'}</Link>
             <Link to="/team">Η ομάδα μας</Link>
             <Link to="/collaborations">{t('nav.collaborations')}</Link>
             <Link to="/news">Νέα & Άρθρα</Link>
@@ -51,7 +51,7 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p>© {year} Σημασία ΑΙ (Simasia AI) · Ιδιωτική Κεφαλαιουχική Εταιρεία (Ι.Κ.Ε.)</p>
-          <span className="footer-badge">EU AI Act Compliant</span>
+          <span className="footer-badge">{t('footer.complianceBadge') || 'EU AI Act Compliant'}</span>
         </div>
       </div>
     </footer>

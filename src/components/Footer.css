@@ -128,7 +128,44 @@
 @media (max-width: 900px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
 }
+@media (max-width: 640px) {
+  .site-footer {
+    padding: 3.5rem 0 2rem;
+    text-align: center;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    justify-items: center;
+  }
+  .footer-brand,
+  .footer-col {
+    width: 100%;
+    text-align: center;
+  }
+  .footer-logo {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer-tagline {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer-col a,
+  .footer-col p {
+    text-align: center;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 0.85rem;
+  }
+}
+
 @media (max-width: 480px) {
   .footer-grid { grid-template-columns: 1fr; }
-  .site-footer { padding: 3.5rem 0 2rem; }
+  .site-footer { padding: 3rem 0 1.75rem; }
 }

@@ -29,7 +29,7 @@
 }
 
 .scp-hero h1 {
-  font-size: clamp(3.2rem, 8vw, 5.5rem);
+  font-size: clamp(2.4rem, 8vw, 5.5rem);
   font-weight: 700;
   color: var(--light, #faf9f5);
   letter-spacing: -0.04em;
@@ -59,9 +59,48 @@
 
 .scp-hero-ctas {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.scp-hero-ctas .btn-primary {
+  background: var(--orange, #d97757);
+  color: #fff;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.scp-hero-ctas .btn-primary:hover {
+  background: #c0603e;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(217, 119, 87, 0.35);
+}
+
+.scp-hero-ctas .btn-secondary {
+  background: rgba(250, 249, 245, 0.06);
+  color: var(--light, #faf9f5);
+  border: 1px solid rgba(250, 249, 245, 0.38);
+  backdrop-filter: blur(6px);
+}
+
+.scp-hero-ctas .btn-secondary:hover {
+  background: rgba(250, 249, 245, 0.14);
+  border-color: rgba(250, 249, 245, 0.72);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.scp-btn-arrow {
+  display: inline-block;
+  margin-left: 0.35rem;
+  transition: transform 0.25s ease;
+}
+
+.scp-hero-ctas .btn-secondary:hover .scp-btn-arrow {
+  transform: translateY(3px);
 }
 
 /* Stats Bar */
@@ -249,17 +288,7 @@
   color: var(--light, #faf9f5);
 }
 
-/* Neural Asterism */
-.scp-neural-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(circle, rgba(250,249,245,0.06) 1.5px, transparent 1.5px),
-    radial-gradient(circle, rgba(217,119,87,0.04) 1px, transparent 1px);
-  background-size: 60px 60px, 90px 90px;
-  background-position: 0 0, 30px 30px;
-}
+/* Neural Asterism — replaced by PageHeroBackdrop / StarCanvas */
 
 /* Dialogue / Communication Framework Section */
 .scp-dialogue {
@@ -464,12 +493,22 @@
   .scp-comm-flow { flex-direction: column; gap: 0.5rem; }
   .scp-comm-arrow span { transform: rotate(90deg); }
   .scp-comm-node { max-width: 100%; width: 100%; }
-  .scp-hero { padding: 9rem 0 5rem; }
-  .scp-hero-ctas { flex-direction: column; width: 100%; }
+  .scp-hero { padding: 8.5rem 0 4.25rem; text-align: center; }
+  .scp-slogan { text-align: center; }
+  .scp-hero-ctas { flex-direction: column; width: 100%; align-items: stretch; }
   .scp-hero-ctas .btn { width: 100%; text-align: center; }
   .scp-pillar { grid-template-columns: 50px 1fr; gap: 1.25rem; }
   .scp-pillars, .scp-cta, .scp-dialogue { padding: 4rem 0; }
   .scp-cta-actions { flex-direction: column; gap: 1.5rem; }
   .scp-narrative-card { padding: 2rem; }
+  .scp-hero h1 { font-size: clamp(2.1rem, 11vw, 3rem); }
+  .scp-cta h2 { font-size: clamp(1.55rem, 6vw, 2.2rem); }
+  .scp-dialogue-header h2 { font-size: clamp(1.45rem, 5.5vw, 2rem); }
+}
+
+@media (max-width: 480px) {
+  .scp-pillar { grid-template-columns: 1fr; gap: 0.65rem; }
+  .scp-stats-bar { padding: 2rem 0; }
+  .scp-stat-label { font-size: 0.85rem; }
 }
 

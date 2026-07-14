@@ -55,14 +55,14 @@
   font-weight: 600;
   font-size: 0.9rem;
   padding: 0.9rem 2rem;
-  background: var(--light, #faf9f5);
-  color: var(--dark, #141413);
+  background: var(--orange, #d97757);
+  color: #fff;
   border-radius: 6px;
   text-decoration: none;
   transition: background 0.2s, color 0.2s, transform 0.2s;
   border: none;
 }
-.btn-light:hover { background: var(--orange, #d97757); color: #fff; transform: translateY(-2px); }
+.btn-light:hover { background: #c0603e; color: #fff; transform: translateY(-2px); }
 
 .consulting-ghost-link {
   font-family: var(--font-sans);
@@ -323,18 +323,19 @@
   text-decoration: none;
   padding: 0.85rem 1.5rem;
   border-radius: 6px;
-  border: 1.5px solid var(--light-gray, #e8e6dc);
-  color: var(--dark, #141413);
+  border: 1.5px solid var(--orange, #d97757);
+  background: var(--orange, #d97757);
+  color: #fff;
   transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
   margin-top: auto;
 }
-.pkg-cta:hover { background: var(--dark, #141413); color: #fff; border-color: var(--dark, #141413); transform: translateY(-1px); }
+.pkg-cta:hover { background: #c0603e; color: #fff; border-color: #c0603e; transform: translateY(-1px); }
 .pkg-cta--primary {
   background: var(--orange, #d97757);
   color: #fff;
   border-color: var(--orange, #d97757);
 }
-.pkg-cta--primary:hover { background: #c4663e; border-color: #c4663e; }
+.pkg-cta--primary:hover { background: #c0603e; border-color: #c0603e; }
 
 /* === FINAL CTA === */
 .consulting-final-cta {

@@ -38,8 +38,8 @@
 .btn-cta-primary {
   display: inline-block;
   padding: 0.85rem 1.75rem;
-  background: #fff;
-  color: var(--dark);
+  background: var(--orange, #d97757);
+  color: #fff;
   font-family: var(--font-sans);
   font-weight: 500;
   font-size: 0.9rem;
@@ -49,7 +49,7 @@
 }
 
 .btn-cta-primary:hover {
-  background: var(--orange);
+  background: #c0603e;
   color: #fff;
   transform: translateY(-1px);
 }

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import PageHeroBackdrop from '../components/PageHeroBackdrop';
 import './EducationPage.css';
 
 const targetGroups = [
@@ -45,6 +46,7 @@ const EducationPage = () => {
     <div className="edu-page">
       {/* Hero */}
       <section className="edu-hero" ref={heroRef}>
+        <PageHeroBackdrop />
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

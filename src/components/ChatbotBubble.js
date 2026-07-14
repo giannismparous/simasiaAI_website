@@ -56,7 +56,7 @@ function ChatbotBubble() {
         type="button"
         className={`chat-launcher-pill${isOpen && !isClosing ? ' launcher-hidden' : ''}${isClosing ? ' launcher-returning' : ''}`}
         onClick={() => openChat(true)}
-        aria-label="Open DialogosAI chat"
+        aria-label={language === 'el' ? 'Άνοιγμα συνομιλίας DialogosAI' : 'Open DialogosAI chat'}
         aria-hidden={isOpen && !isClosing}
         tabIndex={isOpen && !isClosing ? -1 : 0}
       >

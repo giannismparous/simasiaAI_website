@@ -122,11 +122,14 @@ const isInFigureZone = (x, y, zone) => {
   return dx * dx + dy * dy <= 1;
 };
 
-const randomBgStarPos = (width, height, zone) => {
+const randomBgStarPos = (width, height, zone, avoidFigureZone = true) => {
   for (let n = 0; n < 32; n += 1) {
     const pick = Math.random();
     let x;
     let y;
+    if (!avoidFigureZone) {
+      return { x: Math.random() * width, y: Math.random() * height };
+    }
     if (pick < 0.36) {
       x = Math.random() * width * 0.56;
       y = Math.random() * height;
@@ -162,7 +165,7 @@ const mapFigurePoint = (p, width, height) => {
   };
 };
 
-const StarCanvas = () => {
+const StarCanvas = ({ showFigure = true }) => {
   const canvasRef = useRef(null);
   const starsRef = useRef([]);
   const mouseRef = useRef({ x: -9999, y: -9999 });
@@ -184,34 +187,58 @@ const StarCanvas = () => {
     };
 
     const initStars = () => {
-      revealRanksRef.current = shuffleRevealRanks(FIGURE_POINTS.length);
-      const ranks = revealRanksRef.current;
+      const zone = getFigureZone(canvas.width, canvas.height);
+      const avoidFigureZone = showFigure;
 
-      const figureStars = FIGURE_POINTS.map((p, i) => {
-        const { x, y } = mapFigurePoint(p, canvas.width, canvas.height);
-        return {
-          x,
-          y,
-          ox: 0,
-          oy: 0,
-          vx: 0,
-          vy: 0,
-          r: Math.random() * 1.2 + 0.65,
-          opacity: Math.random() * 0.28 + 0.22,
-          twinkleOffset: Math.random() * Math.PI * 2,
-          twinkleSpeed: Math.random() * 0.02 + 0.005,
-          motionPhase: Math.random() * Math.PI * 2,
-          motionAmp: 0.75 + Math.random() * 0.55,
-          motionSpeed: 0.009 + Math.random() * 0.005,
-          isFigure: true,
-          figureIndex: i,
-          revealRank: ranks[i],
-        };
-      });
+      if (showFigure) {
+        revealRanksRef.current = shuffleRevealRanks(FIGURE_POINTS.length);
+        const ranks = revealRanksRef.current;
 
-      const bgStars = Array.from({ length: NUM_BG_STARS }, () => {
-        const zone = getFigureZone(canvas.width, canvas.height);
-        const { x, y } = randomBgStarPos(canvas.width, canvas.height, zone);
+        const figureStars = FIGURE_POINTS.map((p, i) => {
+          const { x, y } = mapFigurePoint(p, canvas.width, canvas.height);
+          return {
+            x,
+            y,
+            ox: 0,
+            oy: 0,
+            vx: 0,
+            vy: 0,
+            r: Math.random() * 1.2 + 0.65,
+            opacity: Math.random() * 0.28 + 0.22,
+            twinkleOffset: Math.random() * Math.PI * 2,
+            twinkleSpeed: Math.random() * 0.02 + 0.005,
+            motionPhase: Math.random() * Math.PI * 2,
+            motionAmp: 0.75 + Math.random() * 0.55,
+            motionSpeed: 0.009 + Math.random() * 0.005,
+            isFigure: true,
+            figureIndex: i,
+            revealRank: ranks[i],
+          };
+        });
+
+        const bgStars = Array.from({ length: NUM_BG_STARS }, () => {
+          const { x, y } = randomBgStarPos(canvas.width, canvas.height, zone, avoidFigureZone);
+          return {
+            x,
+            y,
+            ox: 0,
+            oy: 0,
+            vx: 0,
+            vy: 0,
+            r: Math.random() * 1.5 + 0.3,
+            opacity: Math.random() * 0.35 + 0.08,
+            twinkleOffset: Math.random() * Math.PI * 2,
+            twinkleSpeed: Math.random() * 0.02 + 0.005,
+            isFigure: false,
+          };
+        });
+
+        starsRef.current = [...figureStars, ...bgStars];
+        return;
+      }
+
+      starsRef.current = Array.from({ length: NUM_BG_STARS }, () => {
+        const { x, y } = randomBgStarPos(canvas.width, canvas.height, zone, false);
         return {
           x,
           y,
@@ -226,8 +253,6 @@ const StarCanvas = () => {
           isFigure: false,
         };
       });
-
-      starsRef.current = [...figureStars, ...bgStars];
     };
 
     resize();
@@ -269,28 +294,37 @@ const StarCanvas = () => {
       frame++;
 
       const stars = starsRef.current;
-      const figureStars = stars.filter((s) => s.isFigure);
+      const figureStars = showFigure ? stars.filter((s) => s.isFigure) : [];
+      const figureZone = showFigure ? getFigureZone(canvas.width, canvas.height) : null;
 
-      const getStarReveal = (star) => getPointReveal(star.revealRank, pointCount, figureReveal);
-
-      const revealedCount = figureStars.filter((s) => getStarReveal(s) > 0.02).length;
-      const figureFormed = revealedCount >= pointCount * 0.92;
-      const floatY = Math.sin(frame * 0.006) * 2 * (figureFormed ? 1 : figureReveal);
-      const motionScale = figureFormed ? 1 : 0.15 + figureReveal * 0.85;
-
-      const figureAnchor = figureStars.reduce(
-        (acc, s) => ({ x: acc.x + s.x / figureStars.length, y: acc.y + s.y / figureStars.length }),
-        { x: 0, y: 0 }
+      const getStarReveal = (star) => (
+        showFigure ? getPointReveal(star.revealRank, FIGURE_POINTS.length, figureReveal) : 1
       );
 
-      const figDist = Math.hypot(mx - figureAnchor.x, my - figureAnchor.y);
-      const nearFigure = figDist < WAVE_RADIUS;
+      const revealedCount = showFigure
+        ? figureStars.filter((s) => getStarReveal(s) > 0.02).length
+        : 0;
+      const figureFormed = showFigure && revealedCount >= FIGURE_POINTS.length * 0.92;
+      const floatY = showFigure ? Math.sin(frame * 0.006) * 2 * (figureFormed ? 1 : figureReveal) : 0;
+      const motionScale = showFigure ? (figureFormed ? 1 : 0.15 + figureReveal * 0.85) : 1;
+
+      const figureAnchor = showFigure && figureStars.length
+        ? figureStars.reduce(
+            (acc, s) => ({ x: acc.x + s.x / figureStars.length, y: acc.y + s.y / figureStars.length }),
+            { x: 0, y: 0 }
+          )
+        : { x: 0, y: 0 };
+
+      const figDist = showFigure ? Math.hypot(mx - figureAnchor.x, my - figureAnchor.y) : Infinity;
+      const nearFigure = showFigure && figDist < WAVE_RADIUS;
       const waveTarget = nearFigure ? 1 : 0;
       const waveLerp = waveTarget > waveSmoothRef.current ? 0.01 : 0.022;
-      waveSmoothRef.current += (waveTarget - waveSmoothRef.current) * waveLerp;
+      if (showFigure) {
+        waveSmoothRef.current += (waveTarget - waveSmoothRef.current) * waveLerp;
+      } else {
+        waveSmoothRef.current = 0;
+      }
       const waveSmooth = waveSmoothRef.current;
-
-      const figureZone = getFigureZone(canvas.width, canvas.height);
 
       stars.forEach((star) => {
         if (star.isFigure) return;
@@ -315,7 +349,7 @@ const StarCanvas = () => {
         star.oy += star.vy;
       });
 
-      const figMouse = Math.max(0, 1 - figDist / (INFLUENCE_RADIUS * 1.3));
+      const figMouse = showFigure ? Math.max(0, 1 - figDist / (INFLUENCE_RADIUS * 1.3)) : 0;
 
       const getStableFigurePos = (star) => {
         const phase = frame * star.motionSpeed + star.motionPhase;
@@ -364,7 +398,7 @@ const StarCanvas = () => {
         if (a.isFigure) return;
         const ax = a.x + a.ox;
         const ay = a.y + a.oy;
-        if (isInFigureZone(ax, ay, figureZone)) return;
+        if (figureZone && isInFigureZone(ax, ay, figureZone)) return;
         const mdist = Math.hypot(mx - ax, my - ay);
         if (mdist > INFLUENCE_RADIUS * 1.5) return;
 
@@ -373,7 +407,7 @@ const StarCanvas = () => {
           if (b.isFigure) continue;
           const bx = b.x + b.ox;
           const by = b.y + b.oy;
-          if (isInFigureZone(bx, by, figureZone)) continue;
+          if (figureZone && isInFigureZone(bx, by, figureZone)) continue;
           const d = Math.hypot(ax - bx, ay - by);
           if (d < CONNECT_DIST) {
             const alpha =
@@ -420,8 +454,10 @@ const StarCanvas = () => {
         });
       };
 
-      drawFigureEdges(FIGURE_EDGES, 1);
-      ctx.setLineDash([]);
+      if (showFigure) {
+        drawFigureEdges(FIGURE_EDGES, 1);
+        ctx.setLineDash([]);
+      }
 
       const drawStar = (star) => {
         let sx = star.x + star.ox;
@@ -460,7 +496,9 @@ const StarCanvas = () => {
       };
 
       stars.filter((s) => !s.isFigure).forEach(drawStar);
-      figureStars.forEach(drawStar);
+      if (showFigure) {
+        figureStars.forEach(drawStar);
+      }
 
       burstRef.current = burstRef.current.filter((b) => b.t < 1);
       burstRef.current.forEach((burst) => {
@@ -484,7 +522,7 @@ const StarCanvas = () => {
       window.removeEventListener('mousemove', handleMouse);
       window.removeEventListener('click', handleClick);
     };
-  }, []);
+  }, [showFigure]);
 
   return <canvas ref={canvasRef} className="star-canvas" aria-hidden="true" />;
 };

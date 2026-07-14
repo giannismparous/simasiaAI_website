@@ -167,7 +167,8 @@
 }
 .as-member-portrait {
   width: 100%;
-  height: 180px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   position: relative;
   border-radius: 2px;
   border: none;
@@ -311,7 +312,10 @@
   .as-principle-item { grid-template-columns: 50px 1fr; gap: 1rem; }
   .as-member-card h3 { font-size: 0.68rem; }
   .as-member-card h4 { font-size: 0.66rem; }
-  .as-member-portrait { height: 152px; }
+  .as-member-portrait {
+    aspect-ratio: 1 / 1;
+    height: auto;
+  }
   .as-team-header h2 { white-space: normal; line-height: 1.12; }
   .as-section-title { padding: 3.5rem 0 0; }
 }

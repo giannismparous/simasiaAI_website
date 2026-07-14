@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { useTranslation } from '../hooks/useTranslation';
 import './LiveDemoSection.css';
 
 const CHAR_DELAY = 26;
@@ -10,164 +11,6 @@ const PAUSE_AFTER_TURN = 3200;
 const FADE_DURATION = 500;
 const INTERNALS_FADE_MS = 850;
 const PRE_INTERNALS_MS = 450;
-
-const conversations = [
-  {
-    turns: [
-      {
-        user: 'Πώς μπορεί η ΠΟΑμΣΚΠ να με βοηθήσει;',
-        bot: 'Η ΠΟΑμΣΚΠ διενεργεί πανελλαδική έρευνα για τις ανάγκες των ατόμων με ΣΚΠ και στηρίζει την κοινότητα με ενημέρωση και υποστήριξη. Θα θέλατε κάτι πιο συγκεκριμένο;',
-        internals: [
-          {
-            stepId: '01',
-            lines: [
-              { icon: 'nodes', text: 'Parse user intent · οργανισμός / υποστήριξη' },
-              { icon: 'dot', text: 'Match domain → υγεία · ΣΚΠ', accent: true },
-            ],
-          },
-          {
-            stepId: '02',
-            lines: [
-              { icon: 'nodes', text: 'Retrieve verified sources (poamskp.gr)' },
-              { icon: 'branch', text: 'RAG context assembled · 3 chunks' },
-            ],
-          },
-          {
-            stepId: '03',
-            lines: [
-              { icon: 'branch', text: 'Generate response · ελληνικά · cited' },
-              { icon: 'dot', text: 'Compliance check passed', accent: true },
-            ],
-          },
-        ],
-      },
-      {
-        user: 'Ναι, τι δράσεις ενημέρωσης έχει;',
-        bot: 'Οργανώνει ημερίδες, webinars και εκπαιδευτικό υλικό για οικογένειες και επαγγελματίες. Μπορείτε να δείτε το ημερολόγιο στο poamskp.gr.',
-        internals: [
-          {
-            stepId: '01',
-            lines: [
-              { icon: 'nodes', text: 'Follow-up intent · ενημέρωση / δράσεις' },
-              { icon: 'dot', text: 'Context carry-over · POAMSKP', accent: true },
-            ],
-          },
-          {
-            stepId: '02',
-            lines: [
-              { icon: 'branch', text: 'Generate response · events calendar' },
-              { icon: 'dot', text: 'Ready to respond', accent: true },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    turns: [
-      {
-        user: 'Ποιες υπηρεσίες προσφέρει το ΚΑΠΑ3;',
-        bot: 'Το Κέντρο Καθοδήγησης Καρκινοπαθών «Κάπα3» παρέχει πλοήγηση σε δικαιώματα και παροχές, διοικητική υποστήριξη και ψυχοκοινωνική καθοδήγηση. Επικοινωνία: 210 52 21 424.',
-        internals: [
-          {
-            stepId: '01',
-            lines: [
-              { icon: 'nodes', text: 'Classify query · υπηρεσίες φορέα' },
-              { icon: 'dot', text: 'Entity match → ΚΑΠΑ3 / Μυρτώ', accent: true },
-            ],
-          },
-          {
-            stepId: '02',
-            lines: [
-              { icon: 'nodes', text: 'Load approved knowledge base' },
-              { icon: 'branch', text: 'Cross-check kapa3.gr sources' },
-            ],
-          },
-          {
-            stepId: '03',
-            lines: [
-              { icon: 'branch', text: 'Draft answer · προσβασιμότητα ON' },
-              { icon: 'dot', text: 'Ready to respond', accent: true },
-            ],
-          },
-        ],
-      },
-      {
-        user: 'Μπορώ να κλείσω ραντεβού;',
-        bot: 'Ναι — καλέστε 210 52 21 424 ή στείλτε email. Η ομάδα σας καθοδηγεί βήμα-βήμα στα δικαιώματα και τις παροχές.',
-        internals: [
-          {
-            stepId: '01',
-            lines: [
-              { icon: 'nodes', text: 'Intent · ραντεβού / επικοινωνία' },
-              { icon: 'dot', text: 'Entity lock → ΚΑΠΑ3', accent: true },
-            ],
-          },
-          {
-            stepId: '02',
-            lines: [
-              { icon: 'branch', text: 'Return contact workflow' },
-              { icon: 'dot', text: 'Ready to respond', accent: true },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    turns: [
-      {
-        user: 'Τι είναι η BPAN;',
-        bot: 'Η BPAN είναι σπάνια νευροεκφυλιστική νόσος από μετάλλαξη WDR45. Ο Σύλλογος «Ήρωες της BPAN» στηρίζει παιδιά και οικογένειες στην Ελλάδα.',
-        internals: [
-          {
-            stepId: '01',
-            lines: [
-              { icon: 'nodes', text: 'Detect medical terminology · BPAN' },
-              { icon: 'dot', text: 'Risk tier → elevated · safety layer', accent: true },
-            ],
-          },
-          {
-            stepId: '02',
-            lines: [
-              { icon: 'nodes', text: 'Fetch cited documents [4, 7, 12]' },
-              { icon: 'branch', text: 'Attach mandatory disclaimer' },
-            ],
-          },
-          {
-            stepId: '03',
-            lines: [
-              { icon: 'branch', text: 'Generate response · sources linked' },
-              { icon: 'dot', text: 'Human escalation flag · standby', accent: true },
-            ],
-          },
-        ],
-      },
-      {
-        user: 'Υπάρχουν θεραπείες;',
-        bot: 'Η έρευνα εξελίσσεται — υπάρχουν κλινικές δοκιμές και συμπτωματική υποστήριξη. Ο σύλλογος BPAN μπορεί να σας συνδέσει με ειδικούς.',
-        warning: 'Είμαι βοηθός ΤΝ. Οι πληροφορίες δεν υποκαθιστούν ιατρικές συμβουλές.',
-        sources: 'Πηγές: ΣΥΛΛΟΓΟΣ-BPAN · Wilson-Consensus-Guideline',
-        internals: [
-          {
-            stepId: '01',
-            lines: [
-              { icon: 'nodes', text: 'Medical follow-up · θεραπείες' },
-              { icon: 'dot', text: 'Safety layer · disclaimer required', accent: true },
-            ],
-          },
-          {
-            stepId: '02',
-            lines: [
-              { icon: 'branch', text: 'Attach sources · clinical trials' },
-              { icon: 'dot', text: 'Escalation flag · standby', accent: true },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-];
 
 const SimakiAvatar = () => (
   <svg className="simaki-avatar" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -190,7 +33,7 @@ const parseSources = (sources) => {
   return cleaned.split(/\s*·\s*|\s*,\s*/).filter(Boolean);
 };
 
-const ThinkingIndicator = () => (
+const ThinkingIndicator = ({ label }) => (
   <div className="fin-thinking-row" aria-live="polite">
     <span className="fin-thinking-circle" aria-hidden="true">
       <svg viewBox="0 0 20 20" fill="none">
@@ -207,7 +50,7 @@ const ThinkingIndicator = () => (
         />
       </svg>
     </span>
-    <span className="fin-thinking-text">Σκέφτεται...</span>
+    <span className="fin-thinking-text">{label}</span>
   </div>
 );
 
@@ -237,6 +80,11 @@ const nextMessageId = () => {
 };
 
 const LiveDemoSection = () => {
+  const { t, language } = useTranslation();
+  const conversations = t('liveDemo.conversations');
+  const conversationsRef = useRef(Array.isArray(conversations) ? conversations : []);
+  conversationsRef.current = Array.isArray(conversations) ? conversations : [];
+
   const [inputText, setInputText] = useState('');
   const [messages, setMessages] = useState([]);
   const [isThinking, setIsThinking] = useState(false);
@@ -381,7 +229,9 @@ const LiveDemoSection = () => {
   }, [typeChars, updateLineText, wait]);
 
   const runConversation = useCallback(async (index) => {
-    const convo = conversations[index % conversations.length];
+    const list = conversationsRef.current;
+    if (!list.length) return;
+    const convo = list[index % list.length];
 
     setChatFading(false);
     setInputText('');
@@ -398,22 +248,18 @@ const LiveDemoSection = () => {
       const turn = convo.turns[turnIndex];
       if (!activeRef.current) return;
 
-      // 1. User types in input
       await typeChars(turn.user, CHAR_DELAY, setInputText);
       if (!(await wait(350))) return;
 
-      // 2. Send message
       setInputText('');
       setMessages((prev) => [...prev, { id: nextMessageId(), role: 'user', text: turn.user }]);
       if (!(await wait(500))) return;
 
-      // 3. Thinking + internals
       setIsThinking(true);
       if (!(await wait(PRE_INTERNALS_MS))) return;
       await runInternals(turn.internals);
       if (!activeRef.current) return;
 
-      // 4. Bot reply — stream in place (no live/commit swap = no flash)
       setIsThinking(false);
       setInternalsHiding(true);
 
@@ -464,6 +310,17 @@ const LiveDemoSection = () => {
   useEffect(() => {
     if (!inView) return undefined;
 
+    activeRef.current = false;
+    clearTimers();
+    setInputText('');
+    setMessages([]);
+    setIsThinking(false);
+    setInternalSteps([]);
+    setInternalsHiding(false);
+    setActiveTypingLineId(null);
+    setChatFading(false);
+    setUpwardShift(0);
+
     activeRef.current = true;
     runConversation(0);
 
@@ -471,7 +328,7 @@ const LiveDemoSection = () => {
       activeRef.current = false;
       clearTimers();
     };
-  }, [inView, runConversation, clearTimers]);
+  }, [inView, language, runConversation, clearTimers]);
 
   useEffect(() => {
     updateUpwardShift();
@@ -501,7 +358,7 @@ const LiveDemoSection = () => {
       )}
       {meta?.sources && (
         <div className="fin-sources-block">
-          <span className="fin-sources-label">Πηγές</span>
+          <span className="fin-sources-label">{t('liveDemo.sources')}</span>
           <ul className="fin-sources-list">
             {parseSources(meta.sources).map((src) => (
               <li key={src}>{src}</li>
@@ -522,7 +379,7 @@ const LiveDemoSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2><em className="brand-dialogos">DialogosAI</em></h2>
-          <p className="live-demo-subtitle">Live Demonstration</p>
+          <p className="live-demo-subtitle">{t('liveDemo.subtitle')}</p>
         </motion.div>
 
         <div className="demo-stage">
@@ -538,7 +395,7 @@ const LiveDemoSection = () => {
             <div className="fin-chat-stack">
               <div className={`fin-chat${chatFading ? ' fin-chat-fading' : ''}`}>
                 <header className="fin-chat-header">
-                  <button type="button" className="fin-header-btn" aria-label="Back">
+                  <button type="button" className="fin-header-btn" aria-label={t('liveDemo.a11y.back')}>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
@@ -550,8 +407,8 @@ const LiveDemoSection = () => {
                     <span className="fin-header-name"><em className="brand-dialogos">DialogosAI</em></span>
                   </div>
                   <div className="fin-header-actions">
-                    <button type="button" className="fin-header-btn" aria-label="Menu">⋯</button>
-                    <button type="button" className="fin-header-btn" aria-label="Expand">
+                    <button type="button" className="fin-header-btn" aria-label={t('liveDemo.a11y.menu')}>⋯</button>
+                    <button type="button" className="fin-header-btn" aria-label={t('liveDemo.a11y.expand')}>
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                         <path d="M2 5V2H5M9 2H12V5M12 9V12H9M5 12H2V9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
                       </svg>
@@ -598,7 +455,7 @@ const LiveDemoSection = () => {
                           exit={{ opacity: 0, transition: { duration: 0.28, ease: msgEase } }}
                           transition={{ duration: 0.3, ease: msgEase }}
                         >
-                          <ThinkingIndicator />
+                          <ThinkingIndicator label={t('liveDemo.thinking')} />
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -608,15 +465,15 @@ const LiveDemoSection = () => {
                 <div className="fin-chat-input">
                   <input
                     type="text"
-                    placeholder="Γράψτε ένα μήνυμα..."
+                    placeholder={t('liveDemo.placeholder')}
                     value={inputText}
                     readOnly
-                    aria-label="Message input"
+                    aria-label={t('liveDemo.a11y.input')}
                   />
                   <button
                     type="button"
                     className={`fin-send-btn${inputText ? ' fin-send-btn-active' : ''}`}
-                    aria-label="Send"
+                    aria-label={t('liveDemo.a11y.send')}
                   >
                     ↑
                   </button>
@@ -627,7 +484,7 @@ const LiveDemoSection = () => {
                 <div
                   className={`demo-internals${internalsHiding ? ' is-hiding' : ''}`}
                   aria-live="polite"
-                  aria-label="Internal process"
+                  aria-label={t('liveDemo.internalsLabel')}
                 >
                   {internalSteps.map((group) => (
                     <div key={group.stepId} className="intern-group">

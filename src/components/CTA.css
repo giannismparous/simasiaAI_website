@@ -118,9 +118,9 @@
 }
 
 .cta-section .btn-primary {
-    background: var(--primary-warm);
+    background: var(--orange, #d97757);
     color: var(--white);
-    border-color: var(--primary-warm);
+    border-color: var(--orange, #d97757);
     transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
@@ -129,16 +129,16 @@
 }
 
 .cta-section .btn-primary:hover {
-    background: var(--accent-warm);
-    border-color: var(--accent-warm);
+    background: #c0603e;
+    border-color: #c0603e;
     transform: translateY(-4px);
-    box-shadow: 0 12px 35px rgba(224, 120, 86, 0.45);
+    box-shadow: 0 12px 35px rgba(217, 119, 87, 0.45);
 }
 
 .cta-section .btn-secondary {
     background: var(--white);
     color: var(--dark-text);
-    border: 2px solid var(--primary-warm);
+    border: 2px solid var(--orange, #d97757);
 }
 
 .cta-section .btn-secondary::before {
@@ -148,7 +148,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, var(--primary-warm) 0%, var(--accent-warm) 100%);
+    background: linear-gradient(135deg, var(--orange, #d97757) 0%, #e8a07a 100%);
     opacity: 0;
     transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 0;

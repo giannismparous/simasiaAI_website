@@ -4,9 +4,12 @@ import { useInView } from 'framer-motion';
 import { SmoothReveal, WordReveal } from '../components/TextReveal';
 import CTA from '../components/CTA';
 import ContactForm from '../components/ContactForm';
+import PageHeroBackdrop from '../components/PageHeroBackdrop';
+import { useTranslation } from '../hooks/useTranslation';
 import '../components/Mission.css';
 
 const SolutionsPage = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const isInView = useInView(ref, { once: true, margin: "200px" });
@@ -106,10 +109,16 @@ const SolutionsPage = () => {
     };
   }, [originalPoints, remapPoint, animationDelays, animationDuration]);
 
+  const outcomes = t('solutionsPage.outcomes') || [];
+  const processSteps = t('solutionsPage.processSteps') || [];
+  const capabilities = t('solutionsPage.capabilities') || [];
+  const whyItems = t('solutionsPage.whyItems') || [];
+
   return (
     <div className="solutions-page-wrapper" style={{ position: 'relative', overflow: 'hidden', width: '100%', maxWidth: '100vw', background: 'var(--light, #faf9f5)' }}>
-      <section className="solutions-hero" style={{ padding: '8rem 0 4rem', position: 'relative', background: 'var(--dark, #141413)', color: 'var(--light, #faf9f5)', minHeight: '60vh', display: 'flex', alignItems: 'center' }}>
-        <div className="container">
+      <section className="solutions-hero" style={{ padding: '8rem 0 4rem', position: 'relative', background: 'var(--dark, #141413)', color: 'var(--light, #faf9f5)', minHeight: '60vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+        <PageHeroBackdrop />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, pointerEvents: 'none', zIndex: 1 }}>
             <div 
               ref={ref}
@@ -172,13 +181,13 @@ const SolutionsPage = () => {
           >
             <SmoothReveal delay={0.1} yOffset={20}>
               <h1 className="section-title" style={{ fontSize: '3.5rem', marginBottom: '2rem' }}>
-                Λύσεις με Σημασία
+                {t('solutionsPage.heroTitle')}
               </h1>
             </SmoothReveal>
             <SmoothReveal delay={0.2} yOffset={15}>
               <p className="solutions-hero-sub" style={{ fontSize: '1.25rem', color: 'var(--gray-medium)', margin: '0 auto', lineHeight: 1.8 }}>
                 <WordReveal 
-                  text="Για Επιχειρήσεις, Φορείς, Οργανισμούς. Συνεργαζόμαστε για λύσεις που ενισχύουν την κοινωνική συνοχή και υποστηρίζουν καθαρή, προσβάσιμη επικοινωνία."
+                  text={t('solutionsPage.heroSub')}
                   delay={0.25}
                   duration={0.25}
                 />
@@ -191,17 +200,11 @@ const SolutionsPage = () => {
       <section className="solutions-achievements" style={{ padding: '6rem 0', position: 'relative', zIndex: 2, background: 'transparent' }}>
         <div className="container">
           <SmoothReveal delay={0.1} yOffset={20}>
-            <h2 className="section-title">Τι πετυχαίνουμε μαζί</h2>
+            <h2 className="section-title">{t('solutionsPage.outcomesTitle')}</h2>
           </SmoothReveal>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: '2rem', marginTop: '3rem' }}>
-            {[
-              "Σαφείς απαντήσεις και λιγότερη χρονοτριβή σε συχνές ερωτήσεις/σύνθετες διαδικασίες.",
-              "Διαφάνεια γνώσης με τεκμηρίωση από εγκεκριμένες πηγές.",
-              "Προσβασιμότητα & συμπερίληψη στην ψηφιακή επικοινωνία.",
-              "Ενδυνάμωση κοινοτήτων (υγεία, εκπαίδευση, κοινωνικές υπηρεσίες, πολιτισμός κ.ά.) με έγκυρη, ανθρώπινη καθοδήγηση σε συνεργασία με ειδικούς/ες.",
-              "Ομαλή ενσωμάτωση στις υπάρχουσες ροές και συστήματα."
-            ].map((item, index) => (
+            {outcomes.map((item, index) => (
               <motion.div
                 key={index}
                 className="achievement-item"
@@ -228,16 +231,11 @@ const SolutionsPage = () => {
       <section className="solutions-process" style={{ padding: '6rem 0', background: 'transparent' }}>
         <div className="container">
           <SmoothReveal delay={0.1} yOffset={20}>
-            <h2 className="section-title">Πώς συνεργαζόμαστε</h2>
+            <h2 className="section-title">{t('solutionsPage.processTitle')}</h2>
           </SmoothReveal>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', gap: '2rem', marginTop: '3rem' }}>
-            {[
-              { title: "Διερεύνηση", desc: "Χαρτογραφούμε ανάγκες ανθρώπων/ομάδων, περιεχόμενο και ροές πληροφορίας." },
-              { title: "Πιλοτική εφαρμογή", desc: "Δοκιμή λύσεων σε πραγματικά σενάρια, μετρήσεις και ανατροφοδότηση." },
-              { title: "Παραγωγική ένταξη & Ενσωματώσεις", desc: "Προσαρμογή στο περιβάλλον σας, εκπαίδευση ομάδων, SSO/CRM/Helpdesk." },
-              { title: "Υποστήριξη & Εξέλιξη", desc: "Συνεχής βελτίωση και επεκτασιμότητα." }
-            ].map((step, index) => (
+            {processSteps.map((step, index) => (
               <motion.div
                 key={index}
                 className="process-step"
@@ -267,7 +265,7 @@ const SolutionsPage = () => {
           <SmoothReveal delay={0.1} yOffset={20}>
             <p style={{ fontSize: '1.2rem', color: 'var(--gray-medium)', maxWidth: '900px', margin: '0 auto', lineHeight: 1.8, textAlign: 'center' }}>
               <WordReveal 
-                text="Σήμερα εστιάζουμε σε συνομιλιακές λύσεις (chatbots). Η αρχιτεκτονική μας επιτρέπει επεκτάσεις σε επιπλέον εφαρμογές AI, ανάλογα με την ανάγκη."
+                text={t('solutionsPage.focusText')}
                 delay={0.15}
                 duration={0.25}
               />
@@ -279,16 +277,11 @@ const SolutionsPage = () => {
       <section className="solutions-capabilities" style={{ padding: '6rem 0', background: 'transparent' }}>
         <div className="container">
           <SmoothReveal delay={0.1} yOffset={20}>
-            <h2 className="section-title">Τι μπορούμε να αναπτύξουμε για εσάς (ενδεικτικά)</h2>
+            <h2 className="section-title">{t('solutionsPage.capabilitiesTitle')}</h2>
           </SmoothReveal>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: '2rem', marginTop: '3rem' }}>
-            {[
-              "Υποστηρικτικά chatbots 24/7 για ενημέρωση, υποδοχή αιτημάτων, καθοδήγηση διαδικασιών.",
-              "Εξειδικευμένα assistants (π.χ., πολιτικές/κανονισμοί οργανισμού, onboarding προσωπικού, knowledge bases).",
-              "Εκπαιδευτικά εργαλεία AI (αυτόματη δημιουργία/διόρθωση αξιολογήσεων, εξατομίκευση δυσκολίας, υποστήριξη εκπαιδευτικών).",
-              "Πολυγλωσσική διαμεσολάβηση & προσβασιμότητα (π.χ., απλούστευση κειμένου, μετατροπή μορφών)."
-            ].map((item, index) => (
+            {capabilities.map((item, index) => (
               <motion.div
                 key={index}
                 className="capability-item"
@@ -315,18 +308,11 @@ const SolutionsPage = () => {
       <section className="solutions-why" style={{ padding: '6rem 0', position: 'relative', zIndex: 2, background: 'transparent' }}>
         <div className="container">
           <SmoothReveal delay={0.1} yOffset={20}>
-            <h2 className="section-title">Γιατί να επιλέξετε τα chatbots της \ΣimasiaAI\</h2>
+            <h2 className="section-title">{t('solutionsPage.whyTitle')}</h2>
           </SmoothReveal>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: '2rem', marginTop: '3rem' }}>
-            {[
-              { title: "Προσβασιμότητα από σχεδιασμό", desc: "Εναλλακτικοί τρόποι εισόδου/εξόδου (κείμενο/ήχος), WCAG-oriented επιλογές." },
-              { title: "Πολυγλωσσία", desc: "Υποστήριξη πολλών ευρωπαϊκών και παγκόσμιων γλωσσών (ενδεικτικά: κινεζικά—μανδαρινικά/καντονέζικα, ιαπωνικά, κορεατικά, αραβικά, χίντι, μπενγκάλι κ.ά.) και τοπικές ελληνικές ποικιλίες (π.χ. κυπριακά, ποντιακά) όπου είναι εφικτό ή κατόπιν στοχευμένης εκπαίδευσης." },
-              { title: "Μείωση προκαταλήψεων", desc: "Ροές αξιολόγησης και πολιτικές ισότητας/συμπερίληψης ενσωματωμένες στο design." },
-              { title: "Εκπαίδευση σε δικό σας περιεχόμενο", desc: "Τεκμηριωμένες πηγές, εγχειρίδια, guidelines για ειδικές καταστάσεις." },
-              { title: "Συνέπεια & ασφάλεια", desc: "Απαντήσεις βασισμένες σε εγκεκριμένο περιεχόμενο με ελεγχόμενα αποδεικτικά." },
-              { title: "Κλιμάκωση και ειδοποιήσεις", desc: "Δυνατότητα αποστολής ειδοποίησης (τηλεφωνικής/γραπτής) σε οριζόμενα πρόσωπα/υπηρεσίες όταν ανιχνεύονται ροές που το απαιτούν—μόνο κατόπιν ρητής συμφωνίας και πολιτικής κλιμάκωσης." }
-            ].map((item, index) => (
+            {whyItems.map((item, index) => (
               <motion.div
                 key={index}
                 className="why-item"
@@ -358,4 +344,3 @@ const SolutionsPage = () => {
 };
 
 export default SolutionsPage;
-

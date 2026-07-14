@@ -7,6 +7,7 @@ import { SmoothReveal, WordReveal } from '../components/TextReveal';
 import { StudioAnimation } from '../components/ProductAnimations';
 import { useTranslation } from '../hooks/useTranslation';
 import CTA from '../components/CTA';
+import ContactForm from '../components/ContactForm';
 
 const SimasiaStudioPage = () => {
   const { t } = useTranslation();
@@ -90,6 +91,7 @@ const SimasiaStudioPage = () => {
       </section>
 
       <CTA />
+      <ContactForm />
     </div>
   );
 };

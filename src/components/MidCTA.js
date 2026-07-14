@@ -1,11 +1,13 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from '../hooks/useTranslation';
 import './MidCTA.css';
 
 const MidCTA = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '100px' });
+  const { t } = useTranslation();
 
   return (
     <section className="mid-cta" ref={ref}>
@@ -16,11 +18,10 @@ const MidCTA = () => {
         transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
       >
         <p>
-          Δοκιμάστε τον <em className="brand-dialogos">DialogosAI</em> στον οργανισμό σας.
-          30 λεπτά αρκούν για να δείτε πώς λειτουργεί.
+          {t('midCta.bodyBefore')} <em className="brand-dialogos">DialogosAI</em> {t('midCta.bodyAfter')}
         </p>
         <Link to="/book-demo" className="cta-primary">
-          Προγραμματίστε Demo
+          {t('midCta.cta')}
         </Link>
       </motion.div>
     </section>

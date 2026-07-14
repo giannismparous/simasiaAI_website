@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 /**
  * Build chatbot knowledge-index.json from website translations + page routes.
- * Website-only sources (no Drive). Run: node scripts/build_knowledge_index.mjs
+ * Website-only sources (no Drive). Run: npm run build:knowledge
  */
 
 import fs from "fs";
 import path from "path";
+import { register } from "node:module";
 import { fileURLToPath, pathToFileURL } from "url";
+
+register("./esm-ext-resolve.mjs", import.meta.url);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -253,7 +256,7 @@ function buildFromTranslations(lang, t) {
   return docs;
 }
 
-/** Solutions page (Greek-heavy in component; bilingual summary) */
+/** Solutions page bilingual summary (backup if pageI18n missing) */
 function solutionsPageDocs() {
   const el = {
     title: "Λύσεις με Σημασία",
@@ -303,6 +306,214 @@ Why SimasiaAI chatbots: accessibility by design, multilingual support, bias redu
   return docs;
 }
 
+function flattenValue(v, acc = []) {
+  if (v == null) return acc;
+  if (typeof v === "string") {
+    const s = v.replace(/<[^>]+>/g, " ").trim();
+    if (s) acc.push(s);
+    return acc;
+  }
+  if (typeof v === "number" || typeof v === "boolean") return acc;
+  if (Array.isArray(v)) {
+    v.forEach((x) => flattenValue(x, acc));
+    return acc;
+  }
+  if (typeof v === "object") {
+    Object.values(v).forEach((x) => flattenValue(x, acc));
+  }
+  return acc;
+}
+
+/** Extra homepage / product namespaces from merged translations */
+function buildFromExtraNamespaces(lang, t) {
+  const docs = [];
+  const L = lang;
+  const blocks = [
+    {
+      title: L === "el" ? "Hero — DialogosAI" : "Hero — DialogosAI",
+      url: "/",
+      keys: ["forbesHero", "midCta", "enterpriseCta", "hero"],
+      category: "company",
+      keywords: ["dialogosai", "hero", "demo"],
+    },
+    {
+      title: L === "el" ? "Σχετικά με εμάς (ενότητα)" : "About section",
+      url: "/#about",
+      keys: ["aboutSection"],
+      category: "company",
+      keywords: ["about", "ομαδα", "founders", "σχετικα"],
+    },
+    {
+      title: L === "el" ? "Κύκλος μάθησης" : "Learning loop",
+      url: "/",
+      keys: ["learningLoop"],
+      category: "product",
+      keywords: ["learning", "loop", "analyze", "train", "test", "deploy"],
+    },
+    {
+      title: L === "el" ? "Ελεγχόμενη βελτίωση" : "Controlled improvement",
+      url: "/",
+      keys: ["controlledImprovement"],
+      category: "product",
+      keywords: ["improvement", "flywheel", "approval", "ελεγχος"],
+    },
+    {
+      title: L === "el" ? "Insights Dashboard" : "Insights Dashboard",
+      url: "/",
+      keys: ["insightsDashboard"],
+      category: "product",
+      keywords: ["insights", "dashboard", "analytics"],
+    },
+    {
+      title: L === "el" ? "Σύγκριση DialogosAI" : "DialogosAI comparison",
+      url: "/applications/simasia-chatbots",
+      keys: ["comparison"],
+      category: "products",
+      keywords: ["comparison", "συγκριση", "chatbots"],
+    },
+    {
+      title: "DialogosAI — product page",
+      url: "/applications/simasia-chatbots",
+      keys: ["chatbotsPage"],
+      category: "products",
+      keywords: ["dialogosai", "chatbots", "pillars", "sectors"],
+    },
+    {
+      title: L === "el" ? "Υπηρεσίες" : "Services",
+      url: "/services",
+      keys: ["servicesPage"],
+      category: "services",
+      keywords: ["services", "υπηρεσιες", "consulting", "education", "packages"],
+    },
+    {
+      title: L === "el" ? "Λύσεις (pageI18n)" : "Solutions (pageI18n)",
+      url: "/solutions",
+      keys: ["solutionsPage"],
+      category: "solutions",
+      keywords: ["solutions", "λυσεις"],
+    },
+    {
+      title: L === "el" ? "Κλείστε Demo (σελίδα)" : "Book Demo page",
+      url: "/book-demo",
+      keys: ["bookDemoPage", "bookDemo"],
+      category: "contact",
+      keywords: ["demo", "book"],
+    },
+  ];
+
+  for (const block of blocks) {
+    const parts = [];
+    for (const key of block.keys) {
+      if (t[key]) flattenValue(t[key], parts);
+    }
+    if (!parts.length) continue;
+    addDocs(docs, {
+      title: block.title,
+      url: block.url,
+      lang: L,
+      category: block.category,
+      keywords: block.keywords,
+      content: parts.join("\n"),
+      sourceType: "page_i18n",
+      priority: 1,
+    });
+  }
+  return docs;
+}
+
+/** Parse data/rag/*.txt docs split by «Κείμενο N:» and JSON core identity */
+function buildFromRagFolder() {
+  const ragDir = path.join(ROOT, "data", "rag");
+  if (!fs.existsSync(ragDir)) return [];
+  const docs = [];
+
+  for (const file of fs.readdirSync(ragDir)) {
+    const full = path.join(ragDir, file);
+    if (!fs.statSync(full).isFile()) continue;
+
+    if (file.endsWith(".json")) {
+      // handled by buildCoreIdentityDocs for sima-core-identity.json shape
+      if (file === "sima-core-identity.json") continue;
+      try {
+        const payload = JSON.parse(fs.readFileSync(full, "utf8"));
+        for (const section of payload.sections || []) {
+          for (const lang of ["el", "en"]) {
+            const content = section[lang === "el" ? "content_el" : "content_en"] || section.content;
+            if (!content) continue;
+            addDocs(docs, {
+              title: section.title || file,
+              url: section.url || "/",
+              lang,
+              category: "identity",
+              keywords: section.keywords || [],
+              content,
+              sourceType: "rag_json",
+              priority: 2,
+            });
+          }
+        }
+      } catch (err) {
+        console.warn(`Skip JSON ${file}:`, err.message);
+      }
+      continue;
+    }
+
+    if (!/\.(txt|md)$/i.test(file)) continue;
+    const raw = fs.readFileSync(full, "utf8");
+    const parts = raw.split(/(?=Κείμενο\s+\d+\s*:)/u).map((p) => p.trim()).filter(Boolean);
+
+    if (parts.length <= 1) {
+      addDocs(docs, {
+        title: file.replace(/\.(txt|md)$/i, ""),
+        url: "/applications/simasia-chatbots",
+        lang: "el",
+        category: "rag_upload",
+        keywords: ["dialogosai", "simasia", "rag"],
+        content: raw,
+        sourceType: "rag_txt",
+        priority: 3,
+      });
+      continue;
+    }
+
+    for (const part of parts) {
+      if (/Οδηγία για το RAG/i.test(part) && !/Τίτλος:/u.test(part)) {
+        addDocs(docs, {
+          title: "RAG system guidance (sales) — DialogosAI",
+          url: "/book-demo",
+          lang: "el",
+          category: "rag_guidance",
+          keywords: ["demo", "book", "access", "sales"],
+          content: part,
+          sourceType: "rag_txt",
+          priority: 2,
+        });
+        continue;
+      }
+      const titleMatch = part.match(/Τίτλος:\s*(.+)/u);
+      const headMatch = part.match(/^Κείμενο\s+\d+\s*:\s*(.+)/u);
+      const contentMatch = part.match(/Περιεχόμενο:\s*([\s\S]*?)(?=(?:\nΚείμενο\s+\d+|$))/u);
+      const title = (titleMatch?.[1] || headMatch?.[1] || "DialogosAI RAG").trim();
+      let content = (contentMatch?.[1] || part).trim();
+      // Strip trailing global RAG instruction from last chunk if glued
+      content = content.replace(/\nΟδηγία για το RAG[\s\S]*$/u, "").trim();
+      if (!content) continue;
+      addDocs(docs, {
+        title,
+        url: "/applications/simasia-chatbots",
+        lang: "el",
+        category: "rag_upload",
+        keywords: extractKeywords(title + " " + content, 18),
+        content,
+        sourceType: "rag_txt",
+        priority: 3,
+      });
+    }
+  }
+
+  return docs;
+}
+
 /** Core positioning RAG (data/rag/sima-core-identity.json) — high-priority chunks */
 function buildCoreIdentityDocs() {
   if (!fs.existsSync(CORE_IDENTITY_FILE)) return [];
@@ -330,8 +541,11 @@ function buildCoreIdentityDocs() {
 
 const allDocs = [
   ...buildCoreIdentityDocs(),
+  ...buildFromRagFolder(),
   ...buildFromTranslations("el", translations.el),
   ...buildFromTranslations("en", translations.en),
+  ...buildFromExtraNamespaces("el", translations.el),
+  ...buildFromExtraNamespaces("en", translations.en),
   ...solutionsPageDocs(),
 ];
 
@@ -342,7 +556,7 @@ fs.writeFileSync(
     {
       documents: allDocs,
       generatedAt: new Date().toISOString(),
-      source: "website-translations+core-identity-rag",
+      source: "website-translations+page-i18n+core-identity+rag-uploads",
     },
     null,
     2

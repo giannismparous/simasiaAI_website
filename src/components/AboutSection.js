@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from '../hooks/useTranslation';
 import './AboutSection.css';
 import avatarFox from '../assets/avatar-fox.svg';
 import avatarPanda from '../assets/avatar-panda.svg';
@@ -10,48 +11,19 @@ import dimitrisReal from '../assets/dimitris-real.png';
 import anastasiaReal from '../assets/anastasia-real.png';
 import stergiosReal from '../assets/stergios-real.png';
 
-const principles = [
-  { num: '01', title: 'Ανθρωποκεντρικότητα', body: 'Ο σχεδιασμός μας ξεκινά και τελειώνει με την ανθρώπινη εμπειρία, όχι με την τεχνολογία.' },
-  { num: '02', title: 'Υπευθυνότητα και Κανονιστική Συμμόρφωση', body: 'EU AI Act Compliance σε κάθε υλοποίηση. Ασφάλεια δεδομένων, διαφάνεια αποφάσεων και σεβασμός στον χρήστη.' },
-  { num: '03', title: 'Οικολογική Καινοτομία', body: 'Eco-Friendly Optimized RAG: ελαχιστοποιούμε το ενεργειακό αποτύπωμα χωρίς να θυσιάζουμε την επίδοση.' },
-  { num: '04', title: 'Με Επίκεντρο την Ελλάδα:', body: 'Σχεδιάζουμε για την ελληνική γλώσσα, τις τοπικές διαλέκτους και τις ανάγκες της ελληνικής κοινωνίας.' },
-];
-
-const team = [
-  {
-    name: 'Δημήτρης Παπαδάκης',
-    role: 'Head of Sales, Co-Founder & Head of Operations',
-    avatar: dimitrisReal,
-  },
-  {
-    name: 'Γιάννης',
-    role: 'CTO & Co-Founder',
-    avatar: giannisReal,
-    avatarClass: 'as-avatar-giannis',
-  },
-  {
-    name: 'Αναστασία',
-    role: 'Chief Communications Officer (CCO) & Co-Founder',
-    avatar: anastasiaReal,
-  },
-  {
-    name: 'Έλενα',
-    role: 'Marketing Strategist',
-    avatar: avatarOwl,
-  },
-  {
-    name: 'Στέφανος',
-    role: 'Sales Manager',
-    avatar: avatarFox,
-  },
-  {
-    name: 'Παντελής Νικολόπουλος',
-    role: 'Content Creator & Storyteller',
-    avatar: avatarPanda,
-  },
-];
+const avatarByIndex = [dimitrisReal, giannisReal, anastasiaReal, avatarOwl, avatarFox, avatarPanda];
+const avatarClassByIndex = ['', 'as-avatar-giannis', '', '', '', ''];
 
 const AboutSection = () => {
+  const { t } = useTranslation();
+  const principles = t('aboutSection.principles');
+  const teamCopy = t('aboutSection.team');
+  const team = teamCopy.map((member, i) => ({
+    ...member,
+    avatar: avatarByIndex[i],
+    avatarClass: avatarClassByIndex[i],
+  }));
+
   const ceoRef = useRef(null);
   const teamRef = useRef(null);
   const principlesRef = useRef(null);
@@ -62,7 +34,6 @@ const AboutSection = () => {
 
   return (
     <div id="about" className="about-section-wrap">
-      {/* Section Title */}
       <div className="as-section-title">
         <div className="container">
           <motion.div
@@ -71,13 +42,12 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2>Ποιοι Είμαστε</h2>
-            <p>Η ομάδα, οι αρχές και η αποστολή πίσω από την SimasiaAI.</p>
+            <h2>{t('aboutSection.title')}</h2>
+            <p>{t('aboutSection.subtitle')}</p>
           </motion.div>
         </div>
       </div>
 
-      {/* Executive Leadership (CEO focus) */}
       <section className="as-ceo-section" ref={ceoRef}>
         <div className="container">
           <motion.div
@@ -88,12 +58,10 @@ const AboutSection = () => {
           >
             <div className="as-ceo-layout">
               <div className="as-ceo-copy">
-                <span className="as-ceo-badge">Executive Leadership</span>
-                <blockquote className="as-ceo-quote">
-                  «Η τεχνητή νοημοσύνη αποκτά αξία όταν σχεδιάζεται με <span>μέτρο τον άνθρωπο</span> και λειτουργεί με διαφάνεια, ευθύνη και επιστημονική ακρίβεια.»
-                </blockquote>
-                <h2>Καθηγητής Στέργιος Χατζηκυριακίδης</h2>
-                <h3 className="as-ceo-title">Chief Executive Officer · Υπολογιστική Γλωσσολογία & Τεχνητή Νοημοσύνη</h3>
+                <span className="as-ceo-badge">{t('aboutSection.ceoBadge')}</span>
+                <blockquote className="as-ceo-quote">{t('aboutSection.ceoQuote')}</blockquote>
+                <h2>{t('aboutSection.ceoName')}</h2>
+                <h3 className="as-ceo-title">{t('aboutSection.ceoTitle')}</h3>
               </div>
               <div className="as-ceo-portrait" aria-hidden="true">
                 <img src={stergiosReal} alt="" />
@@ -103,7 +71,6 @@ const AboutSection = () => {
         </div>
       </section>
 
-      {/* Co-Founders & Strategic Management Grid */}
       <section className="as-team-section" ref={teamRef}>
         <div className="container">
           <motion.div
@@ -112,14 +79,14 @@ const AboutSection = () => {
             animate={teamInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2>Συνιδρυτές & Στρατηγική Ομάδα</h2>
-            <p>Η ομάδα πίσω από την ανάπτυξη, το όραμα και την υλοποίηση της SimasiaAI.</p>
+            <h2>{t('aboutSection.teamTitle')}</h2>
+            <p>{t('aboutSection.teamSubtitle')}</p>
           </motion.div>
 
           <div className="as-team-grid as-team-strip">
             {team.map((member, i) => (
               <motion.div
-                key={i}
+                key={member.name}
                 className="as-member-card"
                 initial={{ opacity: 0, y: 20 }}
                 animate={teamInView ? { opacity: 1, y: 0 } : {}}
@@ -131,10 +98,10 @@ const AboutSection = () => {
                     <img
                       src={member.avatar}
                       alt=""
-                      className={`${member.avatar.includes && member.avatar.includes('avatar-') ? 'as-avatar-illustration' : ''} ${member.avatarClass || ''}`.trim()}
+                      className={`${typeof member.avatar === 'string' && member.avatar.includes('avatar-') ? 'as-avatar-illustration' : ''} ${member.avatarClass || ''}`.trim()}
                     />
                   ) : (
-                    <span>{member.name.split(' ').map(p => p[0]).join('').toUpperCase()}</span>
+                    <span>{member.name.split(' ').map((p) => p[0]).join('').toUpperCase()}</span>
                   )}
                 </div>
                 <div className="as-member-top">
@@ -149,7 +116,6 @@ const AboutSection = () => {
         </div>
       </section>
 
-      {/* Principles */}
       <section className="as-principles" ref={principlesRef}>
         <div className="container">
           <motion.div
@@ -158,13 +124,13 @@ const AboutSection = () => {
             animate={principlesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2>Αρχές</h2>
-            <p>Τέσσερις αρχές που καθορίζουν κάθε απόφαση που παίρνουμε.</p>
+            <h2>{t('aboutSection.principlesTitle')}</h2>
+            <p>{t('aboutSection.principlesSubtitle')}</p>
           </motion.div>
           <div className="as-principles-list">
             {principles.map((p, i) => (
               <motion.div
-                key={i}
+                key={p.num}
                 className="as-principle-item"
                 initial={{ opacity: 0, y: 20 }}
                 animate={principlesInView ? { opacity: 1, y: 0 } : {}}
@@ -181,7 +147,6 @@ const AboutSection = () => {
         </div>
       </section>
 
-      {/* Mission */}
       <section className="as-mission">
         <div className="container">
           <motion.div
@@ -191,12 +156,13 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2>Η Αποστολή μας</h2>
+            <h2>{t('aboutSection.missionTitle')}</h2>
             <p className="as-mission-text">
-              Δεν σχεδιάζουμε μία απλή μηχανή απαντήσεων.{' '}
-              Δημιουργήσαμε τον ανθρωποκεντρικό πλοηγό <em className="brand-dialogos">DialogosAI</em> που αναπτύσσει έναν αυθεντικό, ασφαλή και προσαρμοσμένο διάλογο με τους χρήστες, με σεβασμό στην ελληνική γλώσσα, την προσβασιμότητα για όλες και όλους, αναλαμβάνοντας την ευθύνη της χρήσης της τεχνολογίας που συνδράμει σε πραγματικές ανάγκες.
+              {t('aboutSection.missionBefore')}{' '}
+              <em className="brand-dialogos">DialogosAI</em>{' '}
+              {t('aboutSection.missionAfter')}
             </p>
-            <Link to="/book-demo" className="btn btn-primary">Κλείστε Demo</Link>
+            <Link to="/book-demo" className="btn btn-primary">{t('aboutSection.cta')}</Link>
           </motion.div>
         </div>
       </section>

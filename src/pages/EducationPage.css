@@ -187,11 +187,11 @@
   font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
-  color: var(--dark, #141413);
+  color: var(--orange, #d97757);
   transition: color 0.2s;
   margin-top: 0.5rem;
 }
-.edu-workshop-cta:hover { color: var(--orange, #d97757); }
+.edu-workshop-cta:hover { color: #c0603e; }
 
 /* === BANNER === */
 .edu-banner {

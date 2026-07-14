@@ -1,4 +1,6 @@
-export const translations = {
+import { mergeExtraUi } from './extraUi';
+
+const baseTranslations = {
   el: {
     // Common
     common: {
@@ -226,7 +228,46 @@ export const translations = {
       lead: "O <em class=\"brand-dialogos\">DialogosAI</em> εξελίσσεται με κάθε αλληλεπίδραση. Κάθε συνομιλία τροφοδοτεί έναν κύκλο συνεχούς βελτίωσης: ανάλυση, εκπαίδευση, δοκιμή και περαιτέρω ανάπτυξη.",
       body: "Έτσι, ο <em class=\"brand-dialogos\">DialogosAI</em> γίνεται τελικά ο διάλογος που εσείς θέλετε να έχετε με τους ανθρώπους που σχετίζεται ο οργανισμός σας, με τις απαντήσεις να γίνονται πιο ακριβείς, πιο χρήσιμες και πιο προσαρμοσμένες στις πραγματικές τους ανάγκες.",
       aria: "Κύκλος συνεχούς βελτίωσης",
-      steps: ["Analyze", "Train", "Test", "Deploy"]
+      steps: ["Ανάλυση", "Εκπαίδευση", "Δοκιμή", "Ανάπτυξη"]
+    },
+    insightsDashboard: {
+      overline: "Insights για οργανισμούς",
+      title: "Τι χρειάζονται πραγματικά οι άνθρωποι;",
+      lead: "Ακούστε τις ανάγκες των ανθρώπων, σε κλίμακα.",
+      body: "Οι ανώνυμες συνομιλίες αποκαλύπτουν τι ζητούν οι χρήστες, πού δυσκολεύονται και ποια πληροφόρηση λείπει — χωρίς να μετατρέπουν την υποστήριξη σε απρόσωπους αριθμούς.",
+      aria: "Προεπισκόπηση πίνακα αναλυτικών στοιχείων DialogosAI",
+      nav: [
+        "Δημοφιλέστερες κατηγορίες αναγκών",
+        "Νέα ή αυξανόμενα θέματα",
+        "Ερωτήσεις που δεν απαντήθηκαν επαρκώς",
+        "Περιπτώσεις που παραπέμφθηκαν σε άνθρωπο",
+        "Σημεία όπου οι χρήστες δυσκολεύονται",
+        "Πηγές που χρησιμοποιούνται περισσότερο",
+        "Αυτόματες ενημερώσεις & νέες πηγές"
+      ]
+    },
+    controlledImprovement: {
+      overline: "Βελτίωση με έλεγχο",
+      title: "Βελτιώνεται με κάθε πραγματική ανάγκη — πάντα με τον δικό σας έλεγχο.",
+      lead: "Οι συνομιλίες αναδεικνύουν κενά γνώσης και προτείνουν συγκεκριμένες βελτιώσεις. Όμως τίποτα δεν περνά στην παραγωγή χωρίς επιβεβαίωση.",
+      body: "Η βελτίωση δεν σημαίνει «εκπαίδευση πάνω σε προσωπικές συνομιλίες». Σημαίνει ότι αναλύουμε ανώνυμα μοτίβα, εντοπίζουμε τι λείπει, και χτίζουμε ενημερώσεις που περνούν από έλεγχο, δοκιμές και έγκριση.",
+      guards: [
+        "Ανώνυμα & συγκεντρωτικά insights — όχι αποθήκευση προσωπικών δεδομένων by default.",
+        "Προτάσεις βελτίωσης που ελέγχονται από την ομάδα σας (human review).",
+        "Δοκιμές σε πραγματικά σενάρια πριν ενεργοποίηση (QA & safety).",
+        "Έγκριση πριν από κάθε αλλαγή — εσείς ορίζετε τι «μπαίνει»."
+      ],
+      flywheel: {
+        aria: "Flywheel ελεγχόμενης βελτίωσης DialogosAI",
+        gate: "Έλεγχος & Έγκριση",
+        gateSub: "Έλεγχος, δοκιμή, έγκριση πριν την παραγωγή",
+        steps: [
+          { kicker: "Συνομιλίες", title: "Ανώνυμα μοτίβα αναγκών & δυσκολιών" },
+          { kicker: "Κενά γνώσης", title: "Τι λείπει, τι μπερδεύει, τι αλλάζει" },
+          { kicker: "Βελτιώσεις", title: "Πηγές, ροές καθοδήγησης, κανόνες ασφαλείας" },
+          { kicker: "Ανάπτυξη", title: "Νέα έκδοση — με μετρήσιμη επίδραση" }
+        ]
+      }
     },
     // Obstacles
     obstacles: {
@@ -714,6 +755,45 @@ export const translations = {
       aria: "Continuous improvement cycle",
       steps: ["Analyze", "Train", "Test", "Deploy"]
     },
+    insightsDashboard: {
+      overline: "Insights for organizations",
+      title: "What do people actually need?",
+      lead: "Hear people's needs at scale.",
+      body: "Anonymous conversations reveal what users ask for, where they struggle, and what information is missing — without turning support into impersonal numbers.",
+      aria: "DialogosAI analytics dashboard preview",
+      nav: [
+        "Most popular need categories",
+        "New or rising topics",
+        "Questions not answered adequately",
+        "Cases escalated to a human",
+        "Points where users struggle",
+        "Most-used sources",
+        "Automatic updates & new sources"
+      ]
+    },
+    controlledImprovement: {
+      overline: "Improvement with control",
+      title: "Improves with real needs — always under your control.",
+      lead: "Conversations surface knowledge gaps and generate concrete improvement recommendations. But nothing ships without verification.",
+      body: "Improvement does not mean “secretly training on personal conversations”. It means analyzing anonymous patterns, identifying what’s missing, and building updates that go through review, testing, and approval.",
+      guards: [
+        "Anonymous, aggregated insights — no personal data stored by default.",
+        "Improvement suggestions reviewed by your team (human review).",
+        "Tested on real scenarios before enabling (QA & safety).",
+        "Approval before every change — you decide what goes live."
+      ],
+      flywheel: {
+        aria: "DialogosAI controlled improvement flywheel",
+        gate: "Review & Approval",
+        gateSub: "Review, test, approve before production",
+        steps: [
+          { kicker: "Conversations", title: "Anonymous patterns of needs & friction" },
+          { kicker: "Gaps", title: "What’s missing, confusing, or changing" },
+          { kicker: "Updates", title: "Sources, guidance flows, safety rules" },
+          { kicker: "Release", title: "New version — with measurable impact" }
+        ]
+      }
+    },
     // Obstacles
     obstacles: {
       title: "Obstacles we all encounter",
@@ -972,3 +1052,5 @@ export const translations = {
     }
   }
 };
+
+export const translations = mergeExtraUi(baseTranslations.el, baseTranslations.en);

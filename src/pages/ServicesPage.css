@@ -29,7 +29,7 @@
   margin-bottom: 1.5rem;
 }
 .svc-hero h1 {
-  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  font-size: clamp(2.1rem, 6vw, 4.5rem);
   font-weight: 700;
   color: var(--light, #faf9f5);
   letter-spacing: -0.03em;
@@ -307,21 +307,22 @@
   display: block;
   text-align: center;
   padding: 0.8rem 1.5rem;
-  background: transparent;
-  color: var(--dark, #141413);
+  background: var(--orange, #d97757);
+  color: #fff;
   font-family: var(--font-sans);
   font-weight: 500;
   font-size: 0.88rem;
-  border: 1px solid var(--light-gray, #e8e6dc);
+  border: 1px solid var(--orange, #d97757);
   border-radius: 6px;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
   margin-top: auto;
 }
 .svc-pkg-cta:hover {
-  background: var(--dark, #141413);
-  color: var(--light, #faf9f5);
-  border-color: var(--dark, #141413);
+  background: #c0603e;
+  color: #fff;
+  border-color: #c0603e;
+  transform: translateY(-1px);
 }
 .svc-pkg-cta--primary {
   background: var(--orange, #d97757);
@@ -384,13 +385,13 @@
 .svc-workshop-cta {
   font-family: var(--font-sans);
   font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--dark, #141413);
+  font-weight: 600;
+  color: var(--orange, #d97757);
   text-decoration: none;
   transition: color 0.2s;
 }
 .svc-workshop-cta:hover {
-  color: var(--orange, #d97757);
+  color: #c0603e;
 }
 
 /* Empathy Banner */
@@ -468,19 +469,21 @@
 .svc-btn-outline {
   display: inline-block;
   padding: 0.85rem 1.75rem;
-  background: transparent;
-  color: rgba(255,255,255,0.7);
+  background: var(--orange, #d97757);
+  color: #fff;
   font-family: var(--font-sans);
   font-weight: 500;
   font-size: 0.9rem;
   border-radius: 6px;
   text-decoration: none;
-  border: 1px solid rgba(255,255,255,0.15);
-  transition: color 0.2s, border-color 0.2s;
+  border: 1px solid var(--orange, #d97757);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
 }
 .svc-btn-outline:hover {
+  background: #c0603e;
+  border-color: #c0603e;
   color: #fff;
-  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-1px);
 }
 
 /* Responsive */
@@ -494,8 +497,10 @@
 }
 
 @media (max-width: 640px) {
-  .svc-hero { padding: 7rem 0 3.5rem; min-height: auto; }
-  .svc-hero-ctas { flex-direction: column; gap: 1rem; align-items: flex-start; }
+  .svc-hero { padding: 7rem 0 3.5rem; min-height: auto; text-align: center; }
+  .svc-hero-ctas { flex-direction: column; gap: 1rem; align-items: stretch; }
+  .svc-hero-ctas .btn,
+  .svc-ghost-link { width: 100%; text-align: center; justify-content: center; }
   .svc-packages-grid { grid-template-columns: 1fr; }
   .svc-consulting, .svc-packages, .svc-education, .svc-workshops { padding: 4rem 0; }
   .svc-offers { padding: 3rem 0; }
@@ -511,4 +516,6 @@
     max-width: 280px;
     text-align: center;
   }
+  .svc-hero h1 { font-size: clamp(1.85rem, 8vw, 2.6rem); }
+  .svc-section-header h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
 }

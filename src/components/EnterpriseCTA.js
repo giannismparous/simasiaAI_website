@@ -2,11 +2,13 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import InteractiveConstellation from './InteractiveConstellation';
+import { useTranslation } from '../hooks/useTranslation';
 import './EnterpriseCTA.css';
 
 const EnterpriseCTA = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '100px' });
+  const { t } = useTranslation();
 
   return (
     <section className="enterprise-cta" ref={ref}>
@@ -17,14 +19,15 @@ const EnterpriseCTA = () => {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        <h2>Είστε έτοιμοι να ξεκινήσετε;</h2>
+        <h2>{t('enterpriseCta.title')}</h2>
         <p className="enterprise-cta-lead">
-          Μαζί, φέρνομε την Τεχνητή Νοημοσύνη στα μέτρα του οργανισμού σας.{' '}
-          Προσαρμόστε σήμερα τον <em className="brand-dialogos">DialogosAI</em> στις πραγματικές ανάγκες των χρηστών σας.
+          {t('enterpriseCta.leadBefore')}{' '}
+          <em className="brand-dialogos">DialogosAI</em>{' '}
+          {t('enterpriseCta.leadAfter')}
         </p>
         <div className="enterprise-cta-buttons">
           <Link to="/book-demo" className="btn-cta-primary">
-            Κλείστε ένα Demo
+            {t('enterpriseCta.cta')}
           </Link>
           <a href="mailto:contact@simasiaai.gr" className="btn-cta-secondary">
             contact@simasiaai.gr

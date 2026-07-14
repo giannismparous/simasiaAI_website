@@ -1,0 +1,410 @@
+.controlled-improvement-section {
+  padding: 5.25rem 0;
+  background: var(--paper);
+  border-top: 1px solid var(--sand);
+}
+
+.controlled-improvement-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 2.75rem;
+  align-items: center;
+}
+
+.controlled-improvement-overline {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.7rem;
+}
+
+.controlled-improvement-copy .forbes-section-title {
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+  max-width: 28ch;
+  font-weight: 600;
+}
+
+.controlled-improvement-lead,
+.controlled-improvement-body {
+  max-width: 460px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.controlled-improvement-lead {
+  font-size: 0.92rem;
+  margin-bottom: 0.5rem;
+}
+
+.controlled-improvement-body {
+  font-size: 0.88rem;
+  margin-bottom: 1rem;
+}
+
+.controlled-improvement-guards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+  max-width: 560px;
+}
+
+.controlled-improvement-guards li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.55rem;
+  align-items: start;
+  padding: 0.55rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid var(--sand);
+  background: rgba(250, 249, 245, 0.7);
+}
+
+.cig-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  margin-top: 0.45rem;
+  box-shadow: 0 0 0 6px rgba(217, 119, 87, 0.12);
+}
+
+.controlled-improvement-guards li span:last-child {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.controlled-improvement-visual {
+  display: grid;
+  place-items: center;
+}
+
+.cig-flywheel {
+  position: relative;
+  width: min(540px, 100%);
+  padding: 1.25rem;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(217, 119, 87, 0.1), transparent 48%),
+    radial-gradient(circle at 74% 78%, rgba(106, 155, 204, 0.1), transparent 55%),
+    linear-gradient(180deg, rgba(250, 249, 245, 0.95), rgba(250, 249, 245, 0.78));
+  border: 1px solid var(--sand);
+  box-shadow: 0 24px 70px rgba(20, 20, 19, 0.08);
+}
+
+.cig-orbit {
+  position: absolute;
+  inset: 12%;
+  width: 76%;
+  height: auto;
+  margin: auto;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.cig-orbit-ring {
+  fill: none;
+  stroke: rgba(26, 26, 46, 0.14);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 7;
+}
+
+.cig-orbit-flow {
+  fill: none;
+  stroke: rgba(217, 119, 87, 0.55);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 186;
+  stroke-dashoffset: 186;
+  animation: cigOrbitDraw 5.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.cig-orbit-flow-2 { animation-delay: 0.15s; }
+.cig-orbit-flow-3 { animation-delay: 0.3s; }
+.cig-orbit-flow-4 { animation-delay: 0.45s; }
+
+@keyframes cigOrbitDraw {
+  0% { stroke-dashoffset: 186; opacity: 0.15; }
+  25% { opacity: 1; }
+  55% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.15; }
+}
+
+.cig-board {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.05fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 0.85rem 0.75rem;
+  align-items: center;
+}
+
+.cig-node {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: 14px;
+  border: 1px solid var(--sand);
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(20, 20, 19, 0.05);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.cig-num {
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 6px;
+  background: rgba(217, 119, 87, 0.12);
+  color: var(--terracotta);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  margin-top: 0.05rem;
+}
+
+.cig-node-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cig-node-kicker {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--stone);
+  margin-bottom: 0.2rem;
+}
+
+.cig-node-title {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cig-node-1 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.cig-node-2 {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.cig-node-3 {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.cig-node-4 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.cig-gate {
+  grid-column: 2;
+  grid-row: 2;
+  z-index: 2;
+  text-align: center;
+  padding: 0.85rem 0.8rem;
+  border-radius: 16px;
+  border: 1px solid rgba(217, 119, 87, 0.28);
+  background: #fff;
+  box-shadow:
+    0 0 0 6px rgba(217, 119, 87, 0.08),
+    0 12px 28px rgba(20, 20, 19, 0.06);
+}
+
+.cig-gate-pill {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.3rem;
+}
+
+.cig-gate-sub {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  line-height: 1.35;
+}
+
+@media (max-width: 1024px) {
+  .controlled-improvement-grid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    align-items: start;
+  }
+
+  /* Text first, diagram below — same flywheel as desktop */
+  .controlled-improvement-copy {
+    order: 1;
+  }
+
+  .controlled-improvement-visual {
+    order: 2;
+  }
+
+  .controlled-improvement-copy .forbes-section-title {
+    max-width: none;
+  }
+
+  .cig-flywheel {
+    width: min(560px, 100%);
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .controlled-improvement-section {
+    padding: 3.75rem 0;
+  }
+
+  .cig-flywheel {
+    width: 100%;
+    padding: 0.85rem;
+    box-sizing: border-box;
+  }
+
+  /* Keep the same flywheel node layout as desktop — just tighter */
+  .cig-board {
+    gap: 0.55rem 0.45rem;
+  }
+
+  .cig-node {
+    padding: 0.55rem 0.5rem;
+    gap: 0.4rem;
+  }
+
+  .cig-num {
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: 0.65rem;
+  }
+
+  .cig-node-kicker {
+    font-size: 0.52rem;
+  }
+
+  .cig-node-title {
+    font-size: 0.68rem;
+    line-height: 1.25;
+  }
+
+  .cig-gate {
+    padding: 0.65rem 0.5rem;
+    min-width: 0;
+  }
+
+  .cig-gate-pill {
+    font-size: 0.58rem;
+  }
+
+  .cig-gate-sub {
+    font-size: 0.64rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+
+  .cig-orbit {
+    inset: 14%;
+    width: 72%;
+  }
+
+  .controlled-improvement-copy {
+    text-align: left;
+  }
+}
+
+/* Very narrow phones — stack cleanly in flow order (avoid crooked flywheel) */
+@media (max-width: 420px) {
+  .cig-flywheel {
+    padding: 0.75rem;
+  }
+
+  .cig-orbit {
+    display: none;
+  }
+
+  .cig-board {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .cig-node-1,
+  .cig-node-2,
+  .cig-node-3,
+  .cig-node-4,
+  .cig-gate {
+    grid-column: unset;
+    grid-row: unset;
+    width: 100%;
+  }
+
+  .cig-node-1 { order: 1; }
+  .cig-node-2 { order: 2; }
+  .cig-gate { order: 3; }
+  .cig-node-3 { order: 4; }
+  .cig-node-4 { order: 5; }
+
+  .cig-node {
+    padding: 0.7rem 0.75rem;
+  }
+
+  .cig-node-title {
+    font-size: 0.74rem;
+  }
+
+  .cig-gate {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cig-gate-pill {
+    font-size: 0.62rem;
+  }
+
+  .cig-gate-sub {
+    font-size: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cig-orbit-flow {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 0.55;
+  }
+}

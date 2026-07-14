@@ -1,23 +1,40 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import StarCanvas from './StarCanvas';
+import { useTranslation } from '../hooks/useTranslation';
 import './ForbesHero.css';
 
-const words = ['Μέτρο', 'μας;', 'Ο', 'άνθρωπος.'];
+const COMPACT_MQ = '(max-width: 920px)';
 
 const ForbesHero = () => {
   const ref = useRef(null);
+  const { t } = useTranslation();
+  const words = t('forbesHero.words');
+  const humanWord = t('forbesHero.humanWord');
+  const [isCompact, setIsCompact] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia(COMPACT_MQ).matches : false
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia(COMPACT_MQ);
+    const sync = () => setIsCompact(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
+
   return (
     <section className="fh-section" ref={ref}>
-      <StarCanvas />
+      {/* Human figure only above 920px — compact screens get stars-only backdrop */}
+      <StarCanvas showFigure={!isCompact} />
       <div className="fh-layout">
         <div className="fh-inner">
-          <h1 className="fh-headline" aria-label="Μέτρο μας; Ο άνθρωπος.">
+          <h1 className="fh-headline" aria-label={t('forbesHero.ariaLabel')}>
             {words.map((word, i) => (
               <motion.span
-                key={i}
-                className={`fh-word ${word === 'άνθρωπος.' ? 'fh-word-human' : ''}`}
+                key={`${word}-${i}`}
+                className={`fh-word ${word === humanWord ? 'fh-word-human' : ''}`}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
@@ -38,8 +55,8 @@ const ForbesHero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
           >
-            Στην εποχή των γενικών chatbot Τεχνητής Νοημοσύνης, σχεδιάσαμε τον{' '}
-            <em>ανθρωποκεντρικό ψηφιακό πλοηγό DialogosAI</em>.
+            {t('forbesHero.subBefore')}{' '}
+            <em>{t('forbesHero.subEm')}</em>.
           </motion.p>
           <motion.div
             className="fh-ctas"
@@ -47,9 +64,12 @@ const ForbesHero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Link to="/book-demo" className="fh-btn-primary">Κλείστε Demo</Link>
+            <Link to="/book-demo" className="fh-btn-primary">{t('forbesHero.ctaDemo')}</Link>
             <a href="#live-demo" className="fh-btn-ghost">
-              Δείτε τον <em className="brand-dialogos">DialogosAI</em> <span className="fh-arrow">↓</span>
+              {t('forbesHero.ctaLiveBefore')}{' '}
+              <em className="brand-dialogos">DialogosAI</em>
+              {t('forbesHero.ctaLiveAfter') ? ` ${t('forbesHero.ctaLiveAfter')}` : ''}{' '}
+              <span className="fh-arrow">↓</span>
             </a>
           </motion.div>
         </div>
@@ -60,7 +80,7 @@ const ForbesHero = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.6 }}
       >
-        37.9795° N / 23.7162° E — Athens
+        {t('forbesHero.coords')}
       </motion.div>
       <motion.div
         className="fh-scroll-indicator"

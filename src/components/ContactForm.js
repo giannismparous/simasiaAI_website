@@ -1,38 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
+import { mapEmailJsError, sendContactEmail } from '../services/emailService';
 import './ContactForm.css';
+
+const emptyForm = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  organization: '',
+  organizationType: '',
+  companyName: '',
+  description: '',
+  attachment: '',
+};
 
 const ContactForm = () => {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    organization: '',
-    organizationType: '',
-    companyName: '',
-    description: '',
-    attachment: ''
-  });
-
+  const [formData, setFormData] = useState(emptyForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: null, message: '' });
 
-  // Initialize EmailJS
-  useEffect(() => {
-    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-    if (publicKey) {
-      emailjs.init(publicKey);
-    }
-  }, []);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -42,81 +35,25 @@ const ContactForm = () => {
     setSubmitStatus({ type: null, message: '' });
 
     try {
-      // EmailJS configuration
-      const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'your_service_id';
-      const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'your_template_id';
-      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'your_public_key';
-
-      // Validate configuration
-      if (serviceID === 'your_service_id' || templateID === 'your_template_id' || publicKey === 'your_public_key') {
-        throw new Error('EmailJS configuration is missing. Please check your environment variables.');
-      }
-
-      const templateParams = {
-        from_name: `${formData.firstName} ${formData.lastName}`,
-        from_email: formData.email,
-        organization_type: formData.organizationType,
-        company_name: formData.companyName || formData.organization || 'N/A',
+      await sendContactEmail({
+        fromName: `${formData.firstName} ${formData.lastName}`.trim(),
+        fromEmail: formData.email,
+        organizationType: formData.organizationType,
+        companyName: formData.companyName || formData.organization || 'N/A',
         message: formData.description || 'N/A',
         attachment: formData.attachment || 'N/A',
-        to_email: 'contact@simasiaai.gr',
-        reply_to: formData.email
-      };
-
-      // Send email with retry logic for network errors
-      let retries = 2;
-      let lastError = null;
-      
-      while (retries >= 0) {
-        try {
-          await emailjs.send(serviceID, templateID, templateParams, publicKey);
-          break; // Success, exit retry loop
-        } catch (error) {
-          lastError = error;
-          if (retries > 0 && (error.text?.includes('fetch') || error.message?.includes('fetch'))) {
-            // Network error, retry after a short delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            retries--;
-          } else {
-            throw error; // Not a network error or no retries left
-          }
-        }
-      }
-      
-      if (lastError && retries < 0) {
-        throw lastError; // All retries failed
-      }
-
-      setSubmitStatus({ 
-        type: 'success', 
-        message: t('contactForm.successMessage')
       });
-      
-      // Reset form
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        organization: '',
-        organizationType: '',
-        companyName: '',
-        description: '',
-        attachment: ''
+
+      setSubmitStatus({
+        type: 'success',
+        message: t('contactForm.successMessage'),
       });
+      setFormData(emptyForm);
     } catch (error) {
       console.error('EmailJS Error:', error);
-      
-      // Provide more specific error messages
-      let errorMessage = t('contactForm.errorMessage');
-      if (error.text?.includes('fetch') || error.message?.includes('fetch') || error.message?.includes('Failed to fetch')) {
-        errorMessage = 'Network error. Please check your internet connection and try again.';
-      } else if (error.text?.includes('Public Key')) {
-        errorMessage = 'Email configuration error. Please contact support.';
-      }
-      
-      setSubmitStatus({ 
-        type: 'error', 
-        message: errorMessage
+      setSubmitStatus({
+        type: 'error',
+        message: mapEmailJsError(error, t('contactForm.errorMessage')),
       });
     } finally {
       setIsSubmitting(false);
@@ -128,7 +65,7 @@ const ContactForm = () => {
       <div className="container">
         <h2 className="section-title">{t('contactForm.title')}</h2>
         <p className="form-subtitle">{t('contactForm.subtitle')}</p>
-        
+
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">
@@ -142,7 +79,7 @@ const ContactForm = () => {
                 required
               />
             </div>
-            
+
             <div className="form-group">
               <label htmlFor="lastName">{t('contactForm.lastName')} *</label>
               <input
@@ -168,7 +105,7 @@ const ContactForm = () => {
                 required
               />
             </div>
-            
+
             <div className="form-group">
               <label htmlFor="organizationType">{t('contactForm.organizationType')} *</label>
               <select
@@ -222,14 +159,14 @@ const ContactForm = () => {
             />
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="btn btn-primary submit-btn"
             disabled={isSubmitting}
           >
             {isSubmitting ? t('contactForm.submitting') : t('contactForm.submit')}
           </button>
-          
+
           <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--gray-medium)', textAlign: 'center' }}>
             {t('contactForm.privacyNote')}
           </p>
@@ -244,13 +181,11 @@ const ContactForm = () => {
                 padding: '1rem',
                 borderRadius: '8px',
                 textAlign: 'center',
-                backgroundColor: submitStatus.type === 'success' 
-                  ? 'rgba(44, 122, 123, 0.1)' 
-                  : 'rgba(224, 120, 86, 0.1)',
-                color: submitStatus.type === 'success' 
-                  ? 'var(--primary-warm)' 
-                  : 'var(--accent-warm)',
-                fontWeight: '500'
+                backgroundColor: submitStatus.type === 'success'
+                  ? 'rgba(217, 119, 87, 0.12)'
+                  : 'rgba(217, 119, 87, 0.1)',
+                color: 'var(--orange, #d97757)',
+                fontWeight: '500',
               }}
             >
               {submitStatus.message}
@@ -263,4 +198,3 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
-

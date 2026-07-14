@@ -250,15 +250,20 @@
 
   .learning-loop-visual {
     min-height: 300px;
+    overflow: hidden;
   }
 
   .stage-node {
-    min-width: 92px;
+    min-width: 0;
+    max-width: 42%;
     font-size: 0.68rem;
-    padding: 0.36rem 0.5rem;
+    padding: 0.36rem 0.45rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
   }
 
-  .stage-node-2 { right: -1%; }
-  .stage-node-4 { left: -1%; }
+  .stage-node-2 { right: 2%; transform: translateY(-50%); }
+  .stage-node-4 { left: 2%; transform: translateY(-50%); }
 }
 

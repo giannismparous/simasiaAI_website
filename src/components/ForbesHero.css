@@ -96,14 +96,14 @@
   font-weight: 600;
   font-size: 0.9rem;
   padding: 0.875rem 1.875rem;
-  background: var(--light, #faf9f5);
-  color: var(--dark, #141413);
+  background: var(--orange, #d97757);
+  color: #fff;
   border-radius: 6px;
   text-decoration: none;
   transition: background 0.2s, color 0.2s, transform 0.2s;
   letter-spacing: 0.01em;
 }
-.fh-btn-primary:hover { background: var(--orange, #d97757); color: #fff; transform: translateY(-2px); }
+.fh-btn-primary:hover { background: #c0603e; color: #fff; transform: translateY(-2px); }
 
 .fh-btn-ghost {
   font-family: var(--font-sans);
@@ -156,30 +156,105 @@
   transform-origin: top;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 920px) {
+  .fh-section {
+    min-height: auto;
+    height: auto;
+    padding: 6.75rem 1.5rem 4.75rem;
+    align-items: center;
+  }
   .fh-layout {
     grid-template-columns: 1fr;
+    justify-items: center;
     padding: 0 clamp(1.25rem, 5vw, 2rem);
+    width: 100%;
+    margin-top: 0;
   }
   .fh-inner {
     grid-column: 1;
-    max-width: min(44rem, 100%);
-    padding-left: clamp(0.25rem, 2vw, 1rem);
+    max-width: min(36rem, 100%);
+    padding-left: 0;
+    transform: none;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
   }
   .fh-headline {
-    font-size: clamp(1.45rem, 4.6vw, 2.1rem);
+    font-size: clamp(1.4rem, 4.8vw, 2.1rem);
+    justify-content: center;
+    flex-wrap: wrap;
+    white-space: normal;
+    row-gap: 0.15em;
+  }
+  .fh-rule {
+    transform-origin: center;
+    margin-inline: auto;
+  }
+  .fh-sub {
+    margin-inline: auto;
+  }
+  .fh-ctas {
+    justify-content: center;
+  }
+  .fh-coord {
+    bottom: 2.75rem;
+  }
+  .fh-scroll-indicator {
+    bottom: 1rem;
   }
 }
 
 @media (max-width: 640px) {
-  .fh-section { padding: 4.75rem 1.25rem 4rem; }
-  .fh-inner { transform: translate(24px, calc(1vh - 128px)); max-width: 100%; }
-  .fh-headline {
-    font-size: clamp(1.2rem, 5.8vw, 1.7rem);
-    letter-spacing: -0.03em;
+  .fh-section {
+    padding: 6.5rem 1.25rem 4.5rem;
   }
-  .fh-coord { bottom: 3.5rem; font-size: 0.62rem; }
-  .fh-scroll-indicator { bottom: 1.25rem; }
-  .fh-ctas { flex-direction: column; gap: 0.875rem; align-items: stretch; }
-  .fh-btn-primary { width: 100%; text-align: center; }
+  .fh-inner {
+    max-width: 100%;
+    gap: 1.15rem;
+  }
+  .fh-headline {
+    font-size: clamp(1.35rem, 6.2vw, 1.75rem);
+    letter-spacing: -0.03em;
+    max-width: 17ch;
+  }
+  .fh-sub {
+    font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+    line-height: 1.65;
+    max-width: 28rem;
+    padding: 0 0.25rem;
+  }
+  .fh-ctas {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+    width: min(100%, 20rem);
+  }
+  .fh-btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+  .fh-btn-ghost {
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+  .fh-coord {
+    bottom: 2.35rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    max-width: calc(100% - 2rem);
+    white-space: normal;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .fh-scroll-indicator { bottom: 0.75rem; }
+}
+
+@media (max-width: 380px) {
+  .fh-headline {
+    font-size: 1.28rem;
+    max-width: 14ch;
+  }
+  .fh-sub {
+    font-size: 0.92rem;
+  }
 }

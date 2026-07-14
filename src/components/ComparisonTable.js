@@ -1,38 +1,14 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useTranslation } from '../hooks/useTranslation';
 import './ComparisonTable.css';
-
-const rows = [
-  {
-    feature: 'Γλωσσική Προσέγγιση',
-    traditional: 'Τυποποιημένες λέξεις-κλειδιά',
-    simasia: 'Φυσική γλώσσα & τοπικές διάλεκτοι',
-  },
-  {
-    feature: 'Κανονιστική Συμμόρφωση',
-    traditional: 'Ασαφής / Ρίσκο δεδομένων',
-    simasia: 'Πλήρες EU AI Act Compliance',
-  },
-  {
-    feature: 'Προσβασιμότητα',
-    traditional: 'Σπάνια ή υποτυπώδης',
-    simasia: 'Καθολική σχεδίαση για ΑμεΑ',
-  },
-  {
-    feature: 'Ενεργειακό Αποτύπωμα',
-    traditional: 'Υψηλό / Ανεξέλεγκτο',
-    simasia: 'Eco-Friendly Optimized RAG',
-  },
-  {
-    feature: 'Ρόλος στη Συζήτηση',
-    traditional: 'Αντιδραστικός (Μόνο απαντήσεις)',
-    simasia: 'Προληπτικός (Ψηφιακός Πλοηγός)',
-  },
-];
 
 const ComparisonTable = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '100px' });
+  const { t } = useTranslation();
+  const rows = t('comparison.rows');
+  const headers = t('comparison.headers');
 
   return (
     <section className="comparison-section" ref={ref}>
@@ -42,10 +18,12 @@ const ComparisonTable = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2>Τι κάνει τον <em className="brand-dialogos">DialogosAI</em> διαφορετικό;</h2>
-          <p className="comparison-subtitle">
-            Σύγκριση με τα παραδοσιακά chatbot.
-          </p>
+          <h2>
+            {t('comparison.titleBefore')}{' '}
+            <em className="brand-dialogos">DialogosAI</em>{' '}
+            {t('comparison.titleAfter')}
+          </h2>
+          <p className="comparison-subtitle">{t('comparison.subtitle')}</p>
         </motion.div>
 
         <motion.div
@@ -57,17 +35,17 @@ const ComparisonTable = () => {
           <table className="comparison-table">
             <thead>
               <tr>
-                <th>Χαρακτηριστικό</th>
-                <th>Παραδοσιακά Chatbots</th>
-                <th><em className="brand-dialogos">DialogosAI</em></th>
+                <th>{headers.feature}</th>
+                <th>{headers.traditional}</th>
+                <th><em className="brand-dialogos">{headers.dialogos}</em></th>
               </tr>
             </thead>
             <tbody>
-              {rows.map((row, i) => (
-                <tr key={i}>
+              {rows.map((row) => (
+                <tr key={row.feature}>
                   <td>{row.feature}</td>
                   <td>{row.traditional}</td>
-                  <td>{row.simasia}</td>
+                  <td>{row.dialogos}</td>
                 </tr>
               ))}
             </tbody>

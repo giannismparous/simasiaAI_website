@@ -37,7 +37,7 @@ const Navbar = () => {
   const navLinks = [
     { path: '/', text: t('nav.home') },
     { path: '/applications/simasia-chatbots', text: <em className="brand-dialogos">DialogosAI</em> },
-    { path: '/services', text: 'Υπηρεσίες' },
+    { path: '/services', text: t('nav.services') || 'Υπηρεσίες' },
     { path: '/team', text: 'Η ομάδα μας' },
     { path: '/collaborations', text: t('nav.collaborations') },
     { path: '/news', text: 'Νέα' },
@@ -60,7 +60,7 @@ const Navbar = () => {
           <button
             className={`mobile-menu-toggle${isMobileMenuOpen ? ' open' : ''}`}
             onClick={() => setIsMobileMenuOpen(v => !v)}
-            aria-label="Toggle menu"
+            aria-label={t('nav.toggleMenu')}
           >
             <span /><span /><span />
           </button>
@@ -80,8 +80,8 @@ const Navbar = () => {
                 )}
               </li>
             ))}
-            <li style={{ display: 'flex', alignItems: 'center' }}>
-              <button onClick={toggleLanguage} className="language-switcher" aria-label="Switch language">
+            <li className="nav-lang-item">
+              <button onClick={toggleLanguage} className="language-switcher" aria-label={t('nav.switchLanguage')}>
                 {language === 'el'
                   ? <ReactCountryFlag countryCode="GR" svg style={{ width: '24px', height: '24px' }} />
                   : <ReactCountryFlag countryCode="GB" svg style={{ width: '24px', height: '24px' }} />}
