@@ -290,7 +290,6 @@ const StarCanvas = ({ showFigure = true }) => {
       const t = Math.min(1, (now - revealStartRef.current) / REVEAL_DURATION);
       const figureReveal = easeInOutCubic(t);
       const reveal = easeOutSmooth(t);
-      const pointCount = FIGURE_POINTS.length;
       frame++;
 
       const stars = starsRef.current;
