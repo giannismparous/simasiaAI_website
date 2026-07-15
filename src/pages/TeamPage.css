@@ -462,58 +462,120 @@
   text-align: center;
 }
 
-.tp-mission-writer-box {
-  background: #1e1e1e;
-  border-radius: 8px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-  overflow: hidden;
-  border: 1px solid #333;
+.tp-mission-writer-box,
+.tp-editor-box {
+  background: #1e1e2e;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  border: 1px solid #313244;
 }
-.tp-terminal-header {
-  background: #2d2d2d;
-  padding: 0.75rem 1.25rem;
+.tp-editor-titlebar {
+  background: #181825;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid #313244;
+}
+.tp-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.tp-dot.red { background: #f38ba8; }
+.tp-dot.yellow { background: #f9e2af; }
+.tp-dot.green { background: #a6e3a1; }
+
+.tp-editor-tabs {
+  background: #1e1e2e;
+  padding: 0;
+  display: flex;
+  border-bottom: 1px solid #313244;
+}
+.tp-tab {
   display: flex;
   align-items: center;
   gap: 6px;
-  border-bottom: 1px solid #1a1a1a;
+  padding: 0.55rem 1.25rem;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.72rem;
+  color: #6c7086;
+  border-right: 1px solid #313244;
+  cursor: default;
 }
-.tp-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+.tp-tab.active {
+  background: #11111b;
+  color: #cdd6f4;
+  border-bottom: 2px solid var(--orange, #d97757);
 }
-.tp-dot.red { background: #ff5f56; }
-.tp-dot.yellow { background: #ffbd2e; }
-.tp-dot.green { background: #27c93f; }
-.tp-terminal-title {
-  font-family: var(--font-sans);
-  font-size: 0.68rem;
-  color: #888;
-  margin-left: 10px;
-  letter-spacing: 0.05em;
-}
-.tp-terminal-body {
-  padding: 2.5rem;
-  min-height: 200px;
-}
-.tp-mission-text {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  line-height: 1.85;
-  color: #d4d4d4;
-  margin: 0;
-}
-.tp-cursor {
-  color: var(--orange, #d97757);
-  font-weight: 700;
-  animation: blink 1s step-end infinite;
-  margin-left: 2px;
+.tp-tab-icon {
+  font-size: 0.85rem;
 }
 
-@keyframes blink {
-  from, to { color: transparent }
-  50% { color: var(--orange, #d97757) }
+.tp-editor-body {
+  padding: 1.75rem 1.5rem 2rem;
+  min-height: 220px;
+  background: #11111b;
+  border-radius: 0 0 12px 12px;
 }
+
+/* Line-by-line live code output */
+.tp-code-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.tp-code-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  line-height: 2;
+  min-height: 1.8em;
+}
+.tp-line-num {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.78rem;
+  color: #45475a;
+  min-width: 2.5rem;
+  text-align: right;
+  padding-right: 1.25rem;
+  user-select: none;
+  flex-shrink: 0;
+  line-height: 2;
+}
+.tp-line-text {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.92rem;
+  color: #cdd6f4;
+  line-height: 2;
+  word-break: break-word;
+}
+.tp-done-mark {
+  color: #a6e3a1;
+  font-style: italic;
+}
+
+.tp-cursor {
+  color: var(--orange, #d97757);
+  font-weight: 400;
+  animation: tp-blink 1s step-end infinite;
+  margin-left: 1px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.92rem;
+  line-height: 2;
+}
+
+@keyframes tp-blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Legacy — keep old terminal classes working */
+.tp-terminal-header { display: none; }
+.tp-terminal-body { display: none; }
+.tp-terminal-title { display: none; }
+.tp-mission-text { display: none; }
 
 .tp-mission-cta {
   margin-top: 3rem;
@@ -537,6 +599,7 @@
   .tp-principles-content { min-height: auto; }
   .tp-active-principle-card { padding: 2rem; }
   .tp-ceo, .tp-team, .tp-principles, .tp-mission { padding: 4rem 0; }
-  .tp-terminal-body { padding: 1.5rem; }
-  .tp-mission-text { font-size: 1.05rem; }
+  .tp-editor-body { padding: 1.25rem 1rem 1.5rem; }
+  .tp-line-text { font-size: 0.82rem; }
+  .tp-line-num { font-size: 0.7rem; min-width: 2rem; padding-right: 0.75rem; }
 }

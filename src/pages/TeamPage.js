@@ -20,28 +20,52 @@ const AVATARS = {
 
 const ease = [0.16, 1, 0.3, 1];
 
-// Typewriter component for the Mission section
-const TypewriterText = ({ text }) => {
-  const [displayedText, setDisplayedText] = useState('');
+// Live-coding typewriter — IDE-style with line numbers
+const LiveCodingText = ({ text }) => {
+  const [charIndex, setCharIndex] = useState(0);
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: '-50px' });
 
   useEffect(() => {
-    if (!isInView) return;
-    let i = 0;
-    const interval = setInterval(() => {
-      setDisplayedText((prev) => prev + text.charAt(i));
-      i++;
-      if (i >= text.length) clearInterval(interval);
-    }, 15);
-    return () => clearInterval(interval);
-  }, [isInView, text]);
+    if (!isInView || charIndex >= text.length) return;
+    const delay = text.charAt(charIndex) === '.' ? 120 : text.charAt(charIndex) === ',' ? 80 : 22;
+    const timer = setTimeout(() => setCharIndex((c) => c + 1), delay);
+    return () => clearTimeout(timer);
+  }, [isInView, charIndex, text]);
+
+  // Break displayed text into lines of ~70 chars at word boundaries
+  const displayed = text.slice(0, charIndex);
+  const lines = [];
+  let remaining = displayed;
+  while (remaining.length > 0) {
+    if (remaining.length <= 72) {
+      lines.push(remaining);
+      break;
+    }
+    let breakAt = remaining.lastIndexOf(' ', 72);
+    if (breakAt <= 0) breakAt = 72;
+    lines.push(remaining.slice(0, breakAt));
+    remaining = remaining.slice(breakAt + 1);
+  }
 
   return (
-    <span ref={containerRef}>
-      {displayedText}
-      <span className="tp-cursor">|</span>
-    </span>
+    <div ref={containerRef} className="tp-code-lines">
+      {lines.map((line, i) => (
+        <div key={i} className="tp-code-line">
+          <span className="tp-line-num">{String(i + 1).padStart(2, ' ')}</span>
+          <span className="tp-line-text">{line}</span>
+          {i === lines.length - 1 && charIndex < text.length && (
+            <span className="tp-cursor">▌</span>
+          )}
+        </div>
+      ))}
+      {charIndex >= text.length && (
+        <div className="tp-code-line tp-code-done">
+          <span className="tp-line-num">{String(lines.length + 1).padStart(2, ' ')}</span>
+          <span className="tp-line-text tp-done-mark">✓ complete</span>
+        </div>
+      )}
+    </div>
   );
 };
 
@@ -231,7 +255,7 @@ const TeamPage = () => {
         </div>
       </section>
 
-      {/* Mission with typewriter */}
+      {/* Mission — live coding */}
       <section className="tp-mission" ref={missionRef}>
         <div className="container">
           <motion.div
@@ -241,17 +265,20 @@ const TeamPage = () => {
             transition={{ duration: 0.6 }}
           >
             <h2>{t('teamPage.missionTitle')}</h2>
-            <div className="tp-mission-writer-box">
-              <div className="tp-terminal-header">
+            <div className="tp-editor-box">
+              <div className="tp-editor-titlebar">
                 <span className="tp-dot red"></span>
                 <span className="tp-dot yellow"></span>
                 <span className="tp-dot green"></span>
-                <span className="tp-terminal-title">{t('teamPage.terminalFile')}</span>
               </div>
-              <div className="tp-terminal-body">
-                <p className="tp-mission-text">
-                  <TypewriterText text={t('teamPage.missionText')} />
-                </p>
+              <div className="tp-editor-tabs">
+                <div className="tp-tab active">
+                  <span className="tp-tab-icon">📄</span>
+                  <span>{t('teamPage.terminalFile')}</span>
+                </div>
+              </div>
+              <div className="tp-editor-body">
+                <LiveCodingText text={t('teamPage.missionText')} />
               </div>
             </div>
             <div className="tp-mission-cta">
