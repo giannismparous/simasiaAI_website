@@ -14,22 +14,22 @@ const Footer = () => {
         <div className="footer-grid">
           <div className="footer-brand">
             <img src="/logos/simasiaai.PNG" alt="SimasiaAI" className="footer-logo" />
-            <p className="footer-phrase">Μέτρο μας, ο Άνθρωπος.</p>
+            <p className="footer-phrase">{t('footer.phrase')}</p>
             <p className="footer-tagline">{t('footer.tagline')}</p>
           </div>
 
           <div className="footer-col">
-            <h4>Πλοήγηση</h4>
+            <h4>{t('footer.navTitle')}</h4>
             <Link to="/">{t('nav.home')}</Link>
             <Link to="/applications/simasia-chatbots"><em className="brand-dialogos">DialogosAI</em></Link>
             <Link to="/services">{t('nav.services') || 'Υπηρεσίες'}</Link>
-            <Link to="/team">Η ομάδα μας</Link>
+            <Link to="/team">{t('footer.teamLink')}</Link>
             <Link to="/collaborations">{t('nav.collaborations')}</Link>
-            <Link to="/news">Νέα & Άρθρα</Link>
+            <Link to="/news">{t('footer.newsLink')}</Link>
           </div>
 
           <div className="footer-col">
-            <h4>Εταιρικά Στοιχεία</h4>
+            <h4>{t('footer.companyTitle')}</h4>
             <p className="footer-legal-name">Σημασία-ΑΙ Ι.Κ.Ε.</p>
             <p className="footer-legal-intl">(Simasia-AI P.C.)</p>
             <p>ΓΕΜΗ: 188174403000</p>
@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
 
           <div className="footer-col">
-            <h4>{t('footer.contact')}</h4>
+            <h4>{t('footer.contactTitle')}</h4>
             <a href="mailto:contact@simasiaai.gr">contact@simasiaai.gr</a>
             <p>Ναρκίσσου 26, 15452</p>
             <p>Παλαιό Ψυχικό, Αττική</p>
@@ -50,7 +50,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>© {year} Σημασία ΑΙ (Simasia AI) · Ιδιωτική Κεφαλαιουχική Εταιρεία (Ι.Κ.Ε.)</p>
+          <p>© {year} {t('footer.copyright')}</p>
           <span className="footer-badge">{t('footer.complianceBadge') || 'EU AI Act Compliant'}</span>
         </div>
       </div>

@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import LiveDemoSection from '../components/LiveDemoSection';
 import ComparisonTable from '../components/ComparisonTable';
+import InsightsDashboardSection from '../components/InsightsDashboardSection';
+import ControlledImprovementSection from '../components/ControlledImprovementSection';
 import InteractiveConstellation from '../components/InteractiveConstellation';
 import ContactForm from '../components/ContactForm';
 import { Link } from 'react-router-dom';
@@ -270,6 +272,12 @@ const SimasiaChatbotsPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Insights Dashboard — what people actually need */}
+      <InsightsDashboardSection />
+
+      {/* Controlled Improvement flywheel */}
+      <ControlledImprovementSection />
 
       {/* Confident CTA */}
       <section className="scp-cta">

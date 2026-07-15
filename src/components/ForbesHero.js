@@ -65,12 +65,6 @@ const ForbesHero = () => {
             transition={{ duration: 0.6, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <Link to="/book-demo" className="fh-btn-primary">{t('forbesHero.ctaDemo')}</Link>
-            <a href="#live-demo" className="fh-btn-ghost">
-              {t('forbesHero.ctaLiveBefore')}{' '}
-              <em className="brand-dialogos">DialogosAI</em>
-              {t('forbesHero.ctaLiveAfter') ? ` ${t('forbesHero.ctaLiveAfter')}` : ''}{' '}
-              <span className="fh-arrow">↓</span>
-            </a>
           </motion.div>
         </div>
       </div>
