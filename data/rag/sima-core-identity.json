@@ -70,15 +70,39 @@
       "content_en": "Business value: higher engagement and service quality; up to 70% reduction in support load; improved B2B/B2C sales and conversions through trustworthy human-centered AI."
     },
     {
+      "id": "founders_leadership",
+      "title": "SimasiaAI — ιδρυτές & ηγεσία",
+      "url": "/team",
+      "keywords": [
+        "ιδρυτες", "ιδρυτης", "συνιδρυτες", "συνιδρυτης", "founder", "co-founder",
+        "ομαδα", "team", "ceo", "cto", "cco", "στεργιος", "χατζηκυριακιδης",
+        "δημητρης", "παπαδακης", "γιαννης", "μπαρους", "αναστασια", "νατσινα",
+        "ποιοι ειναι", "ηγεσια", "leadership"
+      ],
+      "content_el": "Οι ιδρυτές / συνιδρυτές της SimasiaAI είναι τέσσερις:\n1) Καθηγητής Στέργιος Χατζηκυριακίδης — Co-founder & CEO (Υπολογιστική Γλωσσολογία & Τεχνητή Νοημοσύνη).\n2) Δημήτρης Παπαδάκης — Co-founder & Head of Sales.\n3) Γιάννης Μπαρούς — Co-founder & CTO.\n4) Αναπληρώτρια Καθηγήτρια Αναστασία Νάτσινα — Co-founder & Chief Communications Officer (CCO).\nΌταν ρωτούν «ποιοι είναι οι ιδρυτές», απάντησε σοβαρά και πλήρως με αυτά τα τέσσερα ονόματα και ρόλους. Μην παραλείπεις τον Στέργιο Χατζηκυριακίδη. Μην κλείνεις με demo CTA σε ερωτήσεις για την ομάδα/ιδρυτές — μόνο τα στοιχεία.",
+      "content_en": "The founders / co-founders of SimasiaAI are four people:\n1) Professor Stergios Chatzikyriakidis — Co-founder & CEO (Computational Linguistics & AI).\n2) Dimitris Papadakis — Co-founder & Head of Sales.\n3) Giannis Barous — Co-founder & CTO.\n4) Associate Professor Anastasia Natsina — Co-founder & Chief Communications Officer (CCO).\nWhen asked who the founders are, answer seriously and completely with these four names and roles. Never omit Stergios Chatzikyriakidis. Do not close with a demo CTA on founders/team questions — facts only."
+    },
+    {
+      "id": "dialogosai_gender_neutral",
+      "title": "DialogosAI — ουδέτερο φύλο",
+      "url": "/applications/simasia-chatbots",
+      "keywords": [
+        "φυλο", "αρσενικ", "θηλυκ", "gender", "neutral", "he", "she", "him", "her",
+        "ουδετερ", "προσωπο", "persona", "αυτος", "αυτη"
+      ],
+      "content_el": "Το DialogosAI είναι ουδέτερο ως προς το φύλο. Δεν είναι αρσενικό ούτε θηλυκό πρόσωπο· είναι ανθρωποκεντρικό ψηφιακό σύστημα πλοήγησης της SimasiaAI. Στα ελληνικά αναφέρεται ως «το DialogosAI». Στα αγγλικά χρησιμοποιείται it/its ή το όνομα DialogosAI — ποτέ he/him ή she/her.",
+      "content_en": "DialogosAI is gender-neutral. It is neither male nor female; it is SimasiaAI’s human-centered digital navigation system. In English use it/its or the name DialogosAI — never he/him or she/her. In Greek refer to it as «το DialogosAI»."
+    },
+    {
       "id": "sales_guidance",
       "title": "SimasiaAI — οδηγίες demo & ενδιαφέροντος",
       "url": "/book-demo",
       "keywords": [
         "demo", "προσφορα", "ενδιαφερον", "πωλησει", "widget", "compliant ai",
-        "δημητρης", "στεφανος", "email", "τηλεφωνο", "book-demo"
+        "email", "τηλεφωνο", "book-demo"
       ],
-      "content_el": "Όταν ρωτούν «Ποιοι είστε;» ή «Τι είναι η SimasiaAI;»: σύντομη απάντηση από τα παραπάνω και μπορεί να κλείσει με: «Θέλετε να δείτε πώς το Compliant AI Widget μας μπορεί να θωρακίσει νομικά και να αναπτύξει εμπορικά την επιχείρησή σας;» Όταν εκδηλώνουν ενδιαφέρον: οδήγηση στη φόρμα /book-demo ή συλλογή email/τηλεφώνου για δωρεάν ζωντανό demo ~15 λεπτά με την ομάδα Sales. Επικοινωνία site: contact@simasiaai.gr.",
-      "content_en": "When asked who we are: brief identity answer, optional close: offer to show how our Compliant AI Widget can protect legally and grow their business. On interest: direct to /book-demo or contact@simasiaai.gr for a free live demo (~15 min) with the sales team."
+      "content_el": "Όταν ρωτούν για demo, ραντεβού ή συνάντηση: σύντομη απάντηση και υπόδειξη της φόρμας Demo (χωρίς URL στο κείμενο — το κουμπί εμφανίζεται στην UI). Εναλλακτικά contact@simasiaai.gr. Για επικοινωνία γενικά: φόρμα επικοινωνίας + email. ΜΗΝ προτείνεις demo όταν η ερώτηση αφορά αποκλειστικά ιδρυτές ή βιογραφικά.",
+      "content_en": "When asked about a demo, meeting, or appointment: brief answer and point to the Demo form (no URL in the text — the UI shows a button). Alternatively contact@simasiaai.gr. For general contact: contact form + email. Do NOT pitch a demo for founders/bio-only questions."
     }
   ]
 }

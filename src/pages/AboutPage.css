@@ -126,7 +126,10 @@
     #efede6;
   display: grid;
   place-items: center;
-  min-height: 250px;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .ap-ceo-portrait span {
@@ -141,7 +144,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   border-radius: 2px;
+  display: block;
 }
 
 /* Team Grid Section */
@@ -196,7 +201,8 @@
 
 .ap-member-portrait {
   width: 100%;
-  height: 180px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   position: relative;
   border-radius: 2px;
   border: none;
@@ -239,6 +245,10 @@
 .ap-member-portrait img.ap-avatar-giannis {
   object-position: center top;
   transform: none;
+}
+
+.ap-member-portrait img.ap-avatar-pantelis {
+  object-position: center 60%;
 }
 
 .ap-member-top {
@@ -346,7 +356,9 @@
     padding: 0.35rem 0.2rem;
   }
   .ap-ceo-portrait {
-    min-height: 220px;
+    aspect-ratio: 1 / 1;
+    max-width: 260px;
+    margin: 0 auto;
   }
   .ap-team-section, .ap-ceo-section, .ap-principles, .ap-mission { padding: 4rem 0; }
   .ap-principle-item { grid-template-columns: 50px 1fr; gap: 1rem; }
@@ -357,7 +369,9 @@
     font-size: 0.66rem;
   }
   .ap-member-portrait {
-    height: 152px;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: auto;
   }
   .ap-team-header h2 {
     white-space: normal;

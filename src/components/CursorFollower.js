@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useTranslation } from '../hooks/useTranslation';
 import './CursorFollower.css';
 
 const MAGNETIC_SELECTORS = [
@@ -9,16 +10,16 @@ const MAGNETIC_SELECTORS = [
   '.process-step','.capability-item','.pkg-card',
 ];
 
-const getLabel = (el) => {
+const getLabel = (el, labels) => {
   if (!el) return '';
   const tag = el.tagName?.toLowerCase();
   const cls = (el.className || '').toString();
-  if (cls.includes('demo') || cls.includes('book')) return 'Demo';
-  if (cls.includes('pkg') || cls.includes('price') || cls.includes('package')) return 'Επιλογή';
-  if (cls.includes('submit') || cls.includes('send')) return 'Αποστολή';
-  if (cls.includes('cta') || cls.includes('primary')) return 'Έναρξη';
-  if (tag === 'a') return 'Άνοιγμα →';
-  if (tag === 'button') return 'Click';
+  if (cls.includes('demo') || cls.includes('book')) return labels.demo;
+  if (cls.includes('pkg') || cls.includes('price') || cls.includes('package')) return labels.choose;
+  if (cls.includes('submit') || cls.includes('send')) return labels.send;
+  if (cls.includes('cta') || cls.includes('primary')) return labels.start;
+  if (tag === 'a') return labels.open;
+  if (tag === 'button') return labels.click;
   return '';
 };
 
@@ -30,6 +31,10 @@ const isDarkBackground = (el) => {
 };
 
 const CursorFollower = () => {
+  const { language } = useTranslation();
+  const labels = language === 'en'
+    ? { demo: 'Demo', choose: 'Select', send: 'Send', start: 'Start', open: 'Open →', click: 'Click' }
+    : { demo: 'Demo', choose: 'Επιλογή', send: 'Αποστολή', start: 'Έναρξη', open: 'Άνοιγμα →', click: 'Click' };
   const [pos, setPos] = useState({ x: -200, y: -200 });
   const [ring, setRing] = useState({ x: -200, y: -200 });
   const [hovering, setHovering] = useState(false);
@@ -39,6 +44,8 @@ const CursorFollower = () => {
   const [ripples, setRipples] = useState([]);
   const rafRef = useRef(null);
   const ringTarget = useRef({ x: -200, y: -200 });
+  const labelsRef = useRef(labels);
+  labelsRef.current = labels;
 
   const animateRing = useCallback(() => {
     setRing(prev => ({
@@ -70,7 +77,7 @@ const CursorFollower = () => {
         (f, sel) => f || el.closest?.(sel) || (el.matches?.(sel) ? el : null),
         null
       );
-      setLabel(getLabel(target || el));
+      setLabel(getLabel(target || el, labelsRef.current));
     } else {
       setHovering(false);
       setLabel('');

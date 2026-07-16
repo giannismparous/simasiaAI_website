@@ -7,6 +7,36 @@ import { useLanguage } from '../contexts/LanguageContext';
 import SimakiAvatar from './SimakiAvatar';
 
 const msgEase = [0.16, 1, 0.3, 1];
+/** Fast reveal: ms between ticks; multiple chars per tick. */
+const TYPE_MS = 6;
+const CHARS_PER_TICK = 3;
+const SOURCE_CHARS_PER_TICK = 4;
+const SOURCE_GAP_MS = 28;
+
+function renderMessageText(text) {
+  const parts = String(text || '').split(/(\/#contact|\/book-demo)/gi);
+  return parts.map((part, i) => {
+    if (/^\/book-demo$/i.test(part)) {
+      return (
+        <Link key={`bd-${i}`} to="/book-demo" className="message-inline-link">
+          /book-demo
+        </Link>
+      );
+    }
+    if (/^\/#contact$/i.test(part)) {
+      return (
+        <Link
+          key={`ct-${i}`}
+          to={{ pathname: '/', hash: 'contact' }}
+          className="message-inline-link"
+        >
+          /#contact
+        </Link>
+      );
+    }
+    return <React.Fragment key={`t-${i}`}>{part}</React.Fragment>;
+  });
+}
 
 function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOptions = false }) {
   const { language } = useLanguage();
@@ -19,11 +49,12 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
   const [hasPrefilled, setHasPrefilled] = useState(false);
   const inputRef = useRef(null);
   const panelRef = useRef(null);
+  const typewriterRef = useRef(null);
 
   const suggestedQuestions = useMemo(() => {
     return language === 'el'
       ? [
-          { id: 1, text: 'Τι μπορεί να κάνει ο DialogosAI για μένα;' },
+          { id: 1, text: 'Τι μπορεί να κάνει το DialogosAI για μένα;' },
           { id: 2, text: 'Πώς βοηθά η SimasiaAI οργανισμούς;' },
           { id: 3, text: 'Μπορώ να κλείσω demo;' },
         ]
@@ -46,6 +77,194 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
     }
   }, [initialShowOptions, hasPrefilled, messages.length, suggestedQuestions]);
 
+  useEffect(() => {
+    return () => {
+      if (typewriterRef.current?.timer) clearTimeout(typewriterRef.current.timer);
+    };
+  }, []);
+
+  const stopTypewriter = () => {
+    if (typewriterRef.current?.timer) {
+      clearTimeout(typewriterRef.current.timer);
+      typewriterRef.current.timer = null;
+    }
+  };
+
+  /**
+   * Reveal bot text, then Πηγές label + each source title, with a smooth typewriter.
+   */
+  const startTypewriter = (botId, initialTarget = '') => {
+    stopTypewriter();
+    const sourcesLabel = language === 'el' ? 'Πηγές' : 'Sources';
+    const state = {
+      botId,
+      target: initialTarget,
+      shown: 0,
+      sources: [],
+      confidence: 0,
+      bookDemoCta: false,
+      contactCta: false,
+      done: false,
+      phase: 'text', // text → sourcesLabel → sourcesItems → idle
+      labelTarget: sourcesLabel,
+      labelShown: 0,
+      sourceIndex: 0,
+      sourceChar: 0,
+      timer: null,
+    };
+    typewriterRef.current = state;
+
+    const patchBot = (patch) => {
+      setMessages((prev) =>
+        prev.map((m) => (m.id === botId ? { ...m, ...patch } : m))
+      );
+    };
+
+    const tick = () => {
+      const tw = typewriterRef.current;
+      if (!tw || tw.botId !== botId) return;
+
+      if (tw.phase === 'text') {
+        if (tw.shown < tw.target.length) {
+          tw.shown = Math.min(tw.target.length, tw.shown + CHARS_PER_TICK);
+          patchBot({
+            text: tw.target.slice(0, tw.shown),
+            isTyping: true,
+            isTypingSources: false,
+            sources: [],
+            typedSourcesLabel: '',
+            typedSourceCount: 0,
+            typingSourceTitle: '',
+            confidence: 0,
+          });
+          tw.timer = setTimeout(tick, TYPE_MS);
+          return;
+        }
+
+        if (!tw.done) {
+          tw.timer = setTimeout(tick, 28);
+          return;
+        }
+
+        // Text finished — move to sources (or finish if none)
+        if (!tw.sources?.length) {
+          patchBot({
+            text: tw.target,
+            sources: [],
+            confidence: tw.confidence,
+            bookDemoCta: tw.bookDemoCta,
+            contactCta: tw.contactCta,
+            isTyping: false,
+            isTypingSources: false,
+            typedSourcesLabel: '',
+            typedSourceCount: 0,
+            typingSourceTitle: '',
+          });
+          tw.timer = null;
+          return;
+        }
+
+        tw.phase = 'sourcesLabel';
+        tw.labelShown = 0;
+        patchBot({
+          text: tw.target,
+          isTyping: false,
+          isTypingSources: true,
+          sources: tw.sources,
+          bookDemoCta: tw.bookDemoCta,
+          contactCta: tw.contactCta,
+          typedSourcesLabel: '',
+          typedSourceCount: 0,
+          typingSourceTitle: '',
+          confidence: tw.confidence,
+        });
+        tw.timer = setTimeout(tick, SOURCE_GAP_MS);
+        return;
+      }
+
+      if (tw.phase === 'sourcesLabel') {
+        if (tw.labelShown < tw.labelTarget.length) {
+          tw.labelShown = Math.min(tw.labelTarget.length, tw.labelShown + SOURCE_CHARS_PER_TICK);
+          patchBot({
+            typedSourcesLabel: tw.labelTarget.slice(0, tw.labelShown),
+            isTypingSources: true,
+          });
+          tw.timer = setTimeout(tick, TYPE_MS);
+          return;
+        }
+        tw.phase = 'sourcesItems';
+        tw.sourceIndex = 0;
+        tw.sourceChar = 0;
+        tw.timer = setTimeout(tick, SOURCE_GAP_MS);
+        return;
+      }
+
+      if (tw.phase === 'sourcesItems') {
+        const list = tw.sources || [];
+        if (tw.sourceIndex >= list.length) {
+          patchBot({
+            text: tw.target,
+            sources: list,
+            confidence: tw.confidence,
+            bookDemoCta: tw.bookDemoCta,
+            contactCta: tw.contactCta,
+            isTyping: false,
+            isTypingSources: false,
+            typedSourcesLabel: tw.labelTarget,
+            typedSourceCount: list.length,
+            typingSourceTitle: '',
+          });
+          tw.timer = null;
+          return;
+        }
+
+        const title = String(list[tw.sourceIndex]?.title || '');
+        if (tw.sourceChar < title.length) {
+          tw.sourceChar = Math.min(title.length, tw.sourceChar + SOURCE_CHARS_PER_TICK);
+          patchBot({
+            typedSourcesLabel: tw.labelTarget,
+            typedSourceCount: tw.sourceIndex,
+            typingSourceTitle: title.slice(0, tw.sourceChar),
+            isTypingSources: true,
+          });
+          tw.timer = setTimeout(tick, TYPE_MS);
+          return;
+        }
+
+        tw.sourceIndex += 1;
+        tw.sourceChar = 0;
+        patchBot({
+          typedSourcesLabel: tw.labelTarget,
+          typedSourceCount: tw.sourceIndex,
+          typingSourceTitle: '',
+          isTypingSources: true,
+        });
+        tw.timer = setTimeout(tick, SOURCE_GAP_MS);
+        return;
+      }
+    };
+
+    state.timer = setTimeout(tick, TYPE_MS);
+    return state;
+  };
+
+  const updateTypewriterTarget = (
+    botId,
+    target,
+    { done = false, sources = [], confidence = 0, bookDemoCta = false, contactCta = false } = {}
+  ) => {
+    const tw = typewriterRef.current;
+    if (!tw || tw.botId !== botId) return;
+    tw.target = String(target || '');
+    if (done) {
+      tw.done = true;
+      tw.sources = sources || [];
+      tw.confidence = confidence || 0;
+      tw.bookDemoCta = Boolean(bookDemoCta);
+      tw.contactCta = Boolean(contactCta);
+    }
+  };
+
   const sendUserMessage = async (userText) => {
     if (!userText.trim() || isLoading) return;
 
@@ -59,6 +278,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
     setIsLoading(true);
 
     let streamMounted = false;
+    let streamBuffer = '';
 
     try {
       const response = await answerQuestion(userText.trim(), null, {
@@ -68,53 +288,80 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
         stream: true,
         onChunk: (chunk) => {
           if (!chunk) return;
+          streamBuffer += chunk;
           if (!streamMounted) {
             streamMounted = true;
             setMessages((prev) => [
               ...prev,
-              { id: botId, text: chunk, sender: 'bot', sources: [], confidence: 0 },
+              {
+                id: botId,
+                text: '',
+                sender: 'bot',
+                sources: [],
+                confidence: 0,
+                isTyping: true,
+                isTypingSources: false,
+                typedSourcesLabel: '',
+                typedSourceCount: 0,
+                typingSourceTitle: '',
+              },
             ]);
+            startTypewriter(botId, streamBuffer);
           } else {
-            setMessages((prev) =>
-              prev.map((m) => (m.id === botId ? { ...m, text: m.text + chunk } : m))
-            );
+            updateTypewriterTarget(botId, streamBuffer);
           }
         },
       });
 
-      setMessages((prev) => {
-        const existing = prev.find((m) => m.id === botId);
-        if (existing) {
-          return prev.map((m) =>
-            m.id === botId
-              ? {
-                  ...m,
-                  text: response.answer,
-                  sources: response.sources || [],
-                  confidence: response.confidence,
-                }
-              : m
-          );
-        }
-        return [
+      const finalAnswer = response.answer || streamBuffer || '';
+      if (!streamMounted) {
+        streamMounted = true;
+        setMessages((prev) => [
           ...prev,
           {
             id: botId,
-            text: response.answer,
+            text: '',
             sender: 'bot',
-            sources: response.sources || [],
-            confidence: response.confidence,
+            sources: [],
+            confidence: 0,
+            isTyping: true,
+            isTypingSources: false,
+            typedSourcesLabel: '',
+            typedSourceCount: 0,
+            typingSourceTitle: '',
           },
-        ];
+        ]);
+        startTypewriter(botId, finalAnswer);
+      }
+      updateTypewriterTarget(botId, finalAnswer, {
+        done: true,
+        sources: response.sources || [],
+        confidence: response.confidence,
+        bookDemoCta: Boolean(response.bookDemoCta),
+        contactCta: Boolean(response.contactCta),
       });
     } catch (error) {
+      stopTypewriter();
       const errText =
         language === 'el'
           ? 'Συγγνώμη, κάτι πήγε στραβά. Προσπάθησε ξανά.'
           : 'Sorry, something went wrong. Please try again.';
       setMessages((prev) => {
         if (streamMounted) {
-          return prev.map((m) => (m.id === botId ? { ...m, text: errText, sources: [] } : m));
+          return prev.map((m) =>
+            m.id === botId
+              ? {
+                  ...m,
+                  text: errText,
+                  sources: [],
+                  isTyping: false,
+                  isTypingSources: false,
+                  typedSourcesLabel: '',
+                  typedSourceCount: 0,
+                  typingSourceTitle: '',
+                }
+              : m
+          );
         }
         return [...prev, { id: botId, text: errText, sender: 'bot' }];
       });
@@ -230,25 +477,81 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
                   </div>
                 )}
                 <div className={`message-bubble ${message.sender}-message`}>
-                  <p className="message-text">{message.text}</p>
-                  {message.sources && message.sources.length > 0 && (
-                    <div className="message-sources">
-                      <p className="sources-label">{language === 'el' ? 'Πηγές' : 'Sources'}</p>
-                      <ul>
-                        {message.sources.map((source, idx) => (
-                          <li key={idx}>
-                            {source.url.startsWith('/') ? (
-                              <Link to={source.url}>{source.title}</Link>
-                            ) : (
-                              <a href={source.url} target="_blank" rel="noopener noreferrer">
-                                {source.title}
-                              </a>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <p className={`message-text${message.isTyping ? ' is-typing' : ''}`}>
+                    {message.isTyping ? message.text : renderMessageText(message.text)}
+                    {message.isTyping && <span className="typing-cursor" aria-hidden="true" />}
+                  </p>
+                  {!message.isTyping && !message.isTypingSources && message.bookDemoCta && (
+                    <Link to="/book-demo" className="message-demo-cta" onClick={onClose}>
+                      {language === 'el' ? 'Άνοιγμα φόρμας Demo' : 'Open Demo form'}
+                    </Link>
                   )}
+                  {!message.isTyping && !message.isTypingSources && message.contactCta && (
+                    <Link
+                      to={{ pathname: '/', hash: 'contact' }}
+                      className="message-demo-cta"
+                      onClick={onClose}
+                    >
+                      {language === 'el' ? 'Άνοιγμα φόρμας επικοινωνίας' : 'Open contact form'}
+                    </Link>
+                  )}
+                  {(() => {
+                    const hasSources = (message.sources || []).length > 0;
+                    const revealing = Boolean(message.isTypingSources);
+                    const finished = !message.isTyping && !revealing && hasSources;
+                    if (!revealing && !finished) return null;
+
+                    const label =
+                      message.typedSourcesLabel ||
+                      (finished ? (language === 'el' ? 'Πηγές' : 'Sources') : '');
+                    const doneCount = finished
+                      ? message.sources.length
+                      : message.typedSourceCount || 0;
+                    const doneItems = (message.sources || []).slice(0, doneCount);
+                    const typingTitle = revealing ? message.typingSourceTitle : '';
+                    const typingLabel =
+                      revealing && doneCount === 0 && !typingTitle;
+
+                    return (
+                      <div className={`message-sources${revealing ? ' is-typing' : ''}`}>
+                        {label && (
+                          <p className="sources-label">
+                            {label}
+                            {typingLabel && (
+                              <span className="typing-cursor typing-cursor-inline" aria-hidden="true" />
+                            )}
+                          </p>
+                        )}
+                        <ul>
+                          {doneItems.map((source, idx) => {
+                            const isHashContact =
+                              source.url === '/#contact' || source.url === '/#contact/';
+                            return (
+                            <li key={`${source.url}-${idx}`}>
+                              {isHashContact ? (
+                                <Link to={{ pathname: '/', hash: 'contact' }} onClick={onClose}>
+                                  {source.title}
+                                </Link>
+                              ) : source.url.startsWith('/') ? (
+                                <Link to={source.url} onClick={onClose}>{source.title}</Link>
+                              ) : (
+                                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                                  {source.title}
+                                </a>
+                              )}
+                            </li>
+                            );
+                          })}
+                          {typingTitle ? (
+                            <li className="source-typing">
+                              <span>{typingTitle}</span>
+                              <span className="typing-cursor typing-cursor-inline" aria-hidden="true" />
+                            </li>
+                          ) : null}
+                        </ul>
+                      </div>
+                    );
+                  })()}
                 </div>
               </motion.div>
             ))}

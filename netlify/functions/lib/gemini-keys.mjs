@@ -1,6 +1,6 @@
 /** Server-only Gemini key pool (never sent to the browser). */
 
-const MODEL_DEFAULT = "gemini-2.5-flash-lite";
+const MODEL_DEFAULT = "gemini-flash-lite-latest";
 
 export function getModelName() {
   return (process.env.SIMASIA_GEMINI_MODEL || MODEL_DEFAULT).trim();

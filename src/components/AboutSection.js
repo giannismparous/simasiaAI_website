@@ -1,28 +1,39 @@
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
 import './AboutSection.css';
-import avatarFox from '../assets/avatar-fox.svg';
-import avatarPanda from '../assets/avatar-panda.svg';
-import avatarOwl from '../assets/avatar-owl.svg';
 import giannisReal from '../assets/giannis-real.png';
 import dimitrisReal from '../assets/dimitris-real.png';
 import anastasiaReal from '../assets/anastasia-real.png';
 import stergiosReal from '../assets/stergios-real.png';
+import pantelisImg from '../assets/pantelis.png';
 
-const avatarByIndex = [dimitrisReal, giannisReal, anastasiaReal, avatarOwl, avatarFox, avatarPanda];
-const avatarClassByIndex = ['', 'as-avatar-giannis', '', '', '', ''];
+const avatarById = {
+  stergios: stergiosReal,
+  dimitris: dimitrisReal,
+  giannis: giannisReal,
+  anastasia: anastasiaReal,
+  pantelis: pantelisImg,
+};
+
+const avatarClassById = {
+  giannis: 'as-avatar-giannis',
+  pantelis: 'as-avatar-pantelis',
+};
 
 const AboutSection = () => {
   const { t } = useTranslation();
   const principles = t('aboutSection.principles');
   const teamCopy = t('aboutSection.team');
-  const team = teamCopy.map((member, i) => ({
-    ...member,
-    avatar: avatarByIndex[i],
-    avatarClass: avatarClassByIndex[i],
-  }));
+  const team = useMemo(() => {
+    if (!Array.isArray(teamCopy)) return [];
+    return teamCopy.map((member) => ({
+      ...member,
+      avatar: avatarById[member.id],
+      avatarClass: avatarClassById[member.id] || '',
+    }));
+  }, [teamCopy]);
 
   const ceoRef = useRef(null);
   const teamRef = useRef(null);
@@ -86,7 +97,7 @@ const AboutSection = () => {
           <div className="as-team-grid as-team-strip">
             {team.map((member, i) => (
               <motion.div
-                key={member.name}
+                key={member.id || member.name}
                 className="as-member-card"
                 initial={{ opacity: 0, y: 20 }}
                 animate={teamInView ? { opacity: 1, y: 0 } : {}}
@@ -98,7 +109,7 @@ const AboutSection = () => {
                     <img
                       src={member.avatar}
                       alt=""
-                      className={`${typeof member.avatar === 'string' && member.avatar.includes('avatar-') ? 'as-avatar-illustration' : ''} ${member.avatarClass || ''}`.trim()}
+                      className={member.avatarClass || undefined}
                     />
                   ) : (
                     <span>{member.name.split(' ').map((p) => p[0]).join('').toUpperCase()}</span>

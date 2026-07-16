@@ -8,7 +8,6 @@ const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <footer className="site-footer">
-      {/* Subtle floating dots background */}
       <div className="footer-dots" aria-hidden="true" />
       <div className="container">
         <div className="footer-grid">
@@ -22,7 +21,7 @@ const Footer = () => {
             <h4>{t('footer.navTitle')}</h4>
             <Link to="/">{t('nav.home')}</Link>
             <Link to="/applications/simasia-chatbots"><em className="brand-dialogos">DialogosAI</em></Link>
-            <Link to="/services">{t('nav.services') || 'Υπηρεσίες'}</Link>
+            <Link to="/services">{t('nav.services')}</Link>
             <Link to="/team">{t('footer.teamLink')}</Link>
             <Link to="/collaborations">{t('nav.collaborations')}</Link>
             <Link to="/news">{t('footer.newsLink')}</Link>
@@ -30,18 +29,18 @@ const Footer = () => {
 
           <div className="footer-col">
             <h4>{t('footer.companyTitle')}</h4>
-            <p className="footer-legal-name">Σημασία-ΑΙ Ι.Κ.Ε.</p>
-            <p className="footer-legal-intl">(Simasia-AI P.C.)</p>
-            <p>ΓΕΜΗ: 188174403000</p>
-            <p>Α.Φ.Μ.: 803048250</p>
-            <p>ΔΟΥ: ΚΕΦΟΔΕ Αττικής</p>
+            <p className="footer-legal-name">{t('footer.legalName')}</p>
+            <p className="footer-legal-intl">{t('footer.legalIntl')}</p>
+            <p>{t('footer.gemi')}</p>
+            <p>{t('footer.afm')}</p>
+            <p>{t('footer.taxOffice')}</p>
           </div>
 
           <div className="footer-col">
             <h4>{t('footer.contactTitle')}</h4>
             <a href="mailto:contact@simasiaai.gr">contact@simasiaai.gr</a>
-            <p>Ναρκίσσου 26, 15452</p>
-            <p>Παλαιό Ψυχικό, Αττική</p>
+            <p>{t('footer.addressLine1')}</p>
+            <p>{t('footer.addressLine2')}</p>
             <div className="footer-social-links">
               <a href="https://www.linkedin.com/company/simasiaai" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               <a href="https://www.instagram.com/simasiaai/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -51,7 +50,7 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p>© {year} {t('footer.copyright')}</p>
-          <span className="footer-badge">{t('footer.complianceBadge') || 'EU AI Act Compliant'}</span>
+          <span className="footer-badge">{t('footer.complianceBadge')}</span>
         </div>
       </div>
     </footer>

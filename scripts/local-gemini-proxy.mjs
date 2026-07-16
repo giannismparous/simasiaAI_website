@@ -42,7 +42,7 @@ function sanitizeDetail(text) {
     .slice(0, 500);
 }
 
-const MODEL = (process.env.SIMASIA_GEMINI_MODEL || 'gemini-2.5-flash-lite').trim();
+const MODEL = (process.env.SIMASIA_GEMINI_MODEL || 'gemini-flash-lite-latest').trim();
 
 function pickKey() {
   if (!keys.length) throw new Error('SIMASIA_GEMINI_API_KEYS missing in .env');
@@ -60,7 +60,10 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  if (req.url !== '/.netlify/functions/gemini-chat' || req.method !== 'POST') {
+  const urlPath = (req.url || '').split('?')[0];
+  const isChat =
+    urlPath === '/.netlify/functions/gemini-chat' || urlPath === '/gemini-chat';
+  if (!isChat || req.method !== 'POST') {
     res.writeHead(404);
     res.end('Not found');
     return;
@@ -77,7 +80,7 @@ const server = http.createServer(async (req, res) => {
       const googleBase = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(MODEL)}`;
       const googleBody = JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { maxOutputTokens: 512, temperature: 0.4 },
+        generationConfig: { maxOutputTokens: 1024, temperature: 0.4 },
       });
       const headers = { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey };
 

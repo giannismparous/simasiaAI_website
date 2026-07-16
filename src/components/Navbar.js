@@ -37,10 +37,10 @@ const Navbar = () => {
   const navLinks = [
     { path: '/', text: t('nav.home') },
     { path: '/applications/simasia-chatbots', text: <em className="brand-dialogos">DialogosAI</em> },
-    { path: '/services', text: t('nav.services') || 'Υπηρεσίες' },
-    { path: '/team', text: 'Η ομάδα μας' },
+    { path: '/services', text: t('nav.services') },
+    { path: '/team', text: t('nav.team') },
     { path: '/collaborations', text: t('nav.collaborations') },
-    { path: '/news', text: 'Νέα' },
+    { path: '/news', text: t('nav.news') },
     { path: '/book-demo', text: t('nav.bookDemo'), isButton: true },
   ];
 
@@ -60,7 +60,8 @@ const Navbar = () => {
           <button
             className={`mobile-menu-toggle${isMobileMenuOpen ? ' open' : ''}`}
             onClick={() => setIsMobileMenuOpen(v => !v)}
-            aria-label={t('nav.toggleMenu')}
+            aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.toggleMenu')}
+            aria-expanded={isMobileMenuOpen}
           >
             <span /><span /><span />
           </button>

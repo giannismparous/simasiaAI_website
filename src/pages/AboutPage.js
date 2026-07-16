@@ -2,13 +2,11 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './AboutPage.css';
-import avatarFox from '../assets/avatar-fox.svg';
-import avatarPanda from '../assets/avatar-panda.svg';
-import avatarOwl from '../assets/avatar-owl.svg';
 import giannisReal from '../assets/giannis-real.png';
 import dimitrisReal from '../assets/dimitris-real.png';
 import anastasiaReal from '../assets/anastasia-real.png';
 import stergiosReal from '../assets/stergios-real.png';
+import pantelisImg from '../assets/pantelis.png';
 
 const AboutPage = () => {
   const heroRef = useRef(null);
@@ -30,41 +28,36 @@ const AboutPage = () => {
 
   const team = [
     {
-      name: 'Δημήτρης',
-      role: 'Head of Sales, Co-Founder & Head of Operations',
+      name: 'Καθηγητής Στέργιος Χατζηκυριακίδης',
+      role: 'Co-founder & CEO',
+      desc: 'Καθηγητής Υπολογιστικής Γλωσσολογίας με διεθνή ακαδημαϊκή και επιχειρηματική εμπειρία.',
+      avatar: stergiosReal,
+    },
+    {
+      name: 'Δημήτρης Παπαδάκης',
+      role: 'Co-founder & Head of Sales',
       desc: 'Με εξειδικευμένες σπουδές στη γλωσσολογία και ερευνητικό έργο στην υπολογιστική γλωσσολογία. Διαθέτει εκτενή εργασιακή εμπειρία στην ανάλυση δεδομένων (Data Analysis), στον συντονισμό και τη διαχείριση σύνθετων έργων (Project Management), με ενεργή συμβολή στις ανθρωπιστικές επιστήμες, σε κέντρα λήψης αποφάσεων, εργαστήρια πληροφορικής και στη διδασκαλία.',
       avatar: dimitrisReal,
     },
     {
-      name: 'Γιάννης',
-      role: 'CTO & Co-Founder',
+      name: 'Γιάννης Μπαρούς',
+      role: 'Co-founder & CTO',
       desc: 'Υποψήφιος διδάκτωρ Πληροφορικής στο UCL στην California. Διαθέτει μακρά εργασιακή και ερευνητική εμπειρία στην ανάπτυξη enterprise εφαρμογών, στο software engineering και στην αρχιτεκτονική συστημάτων Τεχνητής Νοημοσύνης.',
       avatar: giannisReal,
       avatarClass: 'ap-avatar-giannis',
     },
     {
-      name: 'Αναστασία',
+      name: 'Αναπληρώτρια Καθ. Αναστασία Νάτσινα',
       role: 'Chief Communications Officer (CCO) & Co-Founder',
       desc: 'Αναπληρώτρια Καθηγήτρια Νεοελληνικής Φιλολογίας και Πρόεδρος του τμήματος Φιλολογίας του Πανεπιστημίου Κρήτης. Υπεύθυνη για τις δημόσιες σχέσεις, την εταιρική εξωστρέφεια και τη στρατηγική συγγραφή κειμένων και θέσεων στον τύπο.',
       avatar: anastasiaReal,
     },
     {
-      name: 'Έλενα',
-      role: 'Marketing Strategist',
-      desc: 'Πρώην Marketing Director στην EBAN (τον κορυφαίο ευρωπαϊκό φορέα σύνδεσης angel investors με startups). Διαθέτει βαθιά εμπειρία στο growth marketing, τη στρατηγική κοινωνικών δικτύων, το filmmaking και το premium copywriting.',
-      avatar: avatarOwl,
-    },
-    {
-      name: 'Στέφανος',
-      role: 'Sales Manager',
-      desc: 'Ιδιοκτήτης πρότυπου εκπαιδευτικού οργανισμού μέσης εκπαίδευσης και εξειδικευμένου κέντρου διδασκαλίας αγγλικής ορολογίας για στελέχη ασφαλιστικών εταιρειών. Διακρίνεται για τις άριστες επικοινωνιακές δεξιότητες και τη στρατηγική προσέγγιση B2B πωλήσεων.',
-      avatar: avatarFox,
-    },
-    {
       name: 'Παντελής Νικολόπουλος',
       role: 'Content Creator & Storyteller',
       desc: 'Ένα πολυσχιδές 360° δημιουργικό ταλέντο, υπεύθυνος για την παραγωγή high-end οπτικοακουστικού περιεχομένου, το visual storytelling και την οργανική ανάπτυξη της ψηφιακής παρουσίας και των κοινωνικών δικτύων του brand.',
-      avatar: avatarPanda,
+      avatar: pantelisImg,
+      avatarClass: 'ap-avatar-pantelis',
     },
   ];
 
@@ -204,7 +197,7 @@ const AboutPage = () => {
           >
             <h2>Η Αποστολή μας</h2>
             <p className="ap-mission-text">Δεν σχεδιάζουμε μία απλή μηχανή απαντήσεων.{' '}
-              Δημιουργήσαμε τον ανθρωποκεντρικό πλοηγό <em className="brand-dialogos">DialogosAI</em> που αναπτύσσει έναν αυθεντικό, ασφαλή και προσαρμοσμένο διάλογο με τους χρήστες, με σεβασμό στην ελληνική γλώσσα, την προσβασιμότητα για όλες και όλους, αναλαμβάνοντας την ευθύνη της χρήσης της τεχνολογίας που συνδράμει σε πραγματικές ανάγκες.
+              Δημιουργήσαμε το ανθρωποκεντρικό σύστημα πλοήγησης <em className="brand-dialogos">DialogosAI</em> που αναπτύσσει έναν αυθεντικό, ασφαλή και προσαρμοσμένο διάλογο με τους χρήστες, με σεβασμό στην ελληνική γλώσσα, την προσβασιμότητα για όλες και όλους, αναλαμβάνοντας την ευθύνη της χρήσης της τεχνολογίας που συνδράμει σε πραγματικές ανάγκες.
             </p>
             <Link to="/book-demo" className="btn btn-primary">Κλείστε Demo</Link>
           </motion.div>

@@ -1,72 +1,37 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import InteractiveConstellation from '../components/InteractiveConstellation';
+import { useTranslation } from '../hooks/useTranslation';
+import { newsArticlesByLang } from '../translations/newsArticles';
 import './NewsPage.css';
-
-const articles = [
-  {
-    slug: 'myrto-ai-cancer-support',
-    category: 'news',
-    categoryLabel: 'Νέα',
-    title: 'Μυρτώ: Η ανθρωποκεντρική Τεχνητή Νοημοσύνη στα καλύτερά της',
-    excerpt: 'Η ψηφιακή βοηθός «Μυρτώ», σε συνεργασία με το Κάπα3 και Ιδρυτικό χορηγό το ΤΙΜΑ Κοινωφελές Ίδρυμα, υποστηρίζει καρκινοπαθείς με ενσυναίσθηση και έγκυρη πληροφόρηση.',
-    date: '13 Ιουλίου 2026',
-    readTime: '4 λεπτά ανάγνωση',
-    featured: true,
-    content: [
-      'Αν δεν έχει διαγνωστεί κανείς με καρκίνο, δύσκολα φαντάζεται ότι ένας καρκινοπαθής μπορεί να αγωνιά για οτιδήποτε άλλο μέσα στη μέρα πέρα από την αποκατάσταση της υγείας του. Κι όμως. Οι πολύωρες αναμονές στον ΕΟΠΥΥ για να πάρεις τα ογκολογικά φάρμακα, το κόστος συμμετοχής για την υπόλοιπη φαρμακευτική αγωγή, οι μετακινήσεις από την επαρχία στις μεγάλες πόλεις για θεραπεία, το μακρύ γραφειοκρατικό ταξίδι ανάμεσα σε ΚΕΠΑ, ΕΟΠΥΥ και κοινωνικές υπηρεσίες για την αναπηρική σύνταξη, τα έξοδα για βοηθητικό εξοπλισμό, η ανύπαρκτη ψυχολογική υποστήριξη ασθενών αλλά και φροντιστών είναι μια σειρά προκλήσεων που είναι ίσως αόρατες για το ευρύ κοινό, αλλά αποτελούν κρίσιμα ζητήματα για τους ασθενείς και το περιβάλλον τους.',
-      'Το Κάπα3 (Κέντρο Καθοδήγησης Καρκινοπαθών – Κ3) ιδρύθηκε το 2020 από ανθρώπους που έζησαν το πρόβλημα και αποφάσισαν να βοηθήσουν τους εαυτούς τους και τους άλλους. Είναι ένας μην κερδοσκοπικός οργανισμός που φτιάχτηκε «από τα κάτω», προσπαθώντας να συλλέξει τις πολύτιμες, πολύπλοκες και ραγδαία μεταβαλλόμενες πληροφορίες γύρω από όλα τα καθημερινά ζητήματα που αντιμετωπίζουν οι καρκινοπαθείς. Το 2021 δημιούργησε το πρόγραμμα του Προσωπικού Βοηθού - Διαχείριση Φακέλων Ασθενών, όπου κάθε αίτημα δημιουργεί ένα φάκελο προς επεξεργασία από ομάδα επαγγελματιών υγείας που μελετά, ενημερώνει και καθοδηγεί. Με δράσεις σε όλη την ελληνική επικράτεια και πρότυπες και βραβευμένες παρεμβάσεις σε Αθήνα, Θεσσαλονίκη και Αλεξανδρούπολη και, παρά τους περιορισμένους οικονομικούς πόρους του, έχει εξυπηρετήσει μέχρι σήμερα περί τα 7.000 άτομα.',
-      'Το 2026 συνέπραξε με την εταιρεία ανθρωποκεντρικών εφαρμογών Τεχνητής Νοημοσύνης SimasiaAI για να δημιουργήσουν την ψηφιακή βοηθό «Μυρτώ» με Ιδρυτικό χορηγό το ΤΙΜΑ Κοινωφελές ίδρυμα. Το Κάπα3 έφερε την πολύτιμη γνώση του για όλα τα μέρη όπου βρίσκονται διάσπαρτες οι πληροφορίες που χρειάζονται οι καρκινοπαθείς· τα συχνά ερωτήματα, τις υποπεριπτώσεις και τις παραμέτρους τους· τα ΦΕΚ, τις ερμηνευτικές εγκυκλίους που ανανεώνονται διαρκώς, και τις ποικίλες οδηγίες των φορέων· ποια είναι εκείνα τα σημάδια στον λόγο του ασθενούς ή του φροντιστή που φανερώνουν ότι απέναντί σου έχεις έναν άνθρωπο που δεν ξέρει να κάνει τη σωστή ερώτηση, που αγνοεί μια διευκόλυνση που δικαιούται, που βρίσκεται σε οικονομικό αδιέξοδο, που σκέφτεται να εγκαταλείψει τη θεραπεία, που έχει φτάσει στα όριά του.',
-      'Η SimasiaAI έφερε την τεχνογνωσία, την ενσυναίσθηση και τις τεχνικές για τον συνδυασμό τους· το πότε και πώς να θέσεις ένα διευκρινιστικό ερώτημα και μέχρι πού μπορεί να φτάσει αυτό· την ψηφιακή αναγνώριση συναισθημάτων και τη σήμανση εκείνων των περιπτώσεων που χρειάζονται επείγουσα ανθρώπινη παρέμβαση· την αυστηρή οριοθέτηση και την απόλυτη υπευθυνότητα στις απαντήσεις· την πρόνοια για έναν λόγο συμπεριληπτικό, απαλλαγμένο από ρατσισμό, σεξισμό, ομο/τρανσφοβία· την πλήρη προσβασιμότητα για άτομα με αναπηρίες.',
-      'Η Μυρτώ είναι μια ψηφιακή βοηθός που συγκεντρώνει έναν πλούτο από καίριες, συχνά δυσεύρετες και διαρκώς επικαιροποιούμενες πληροφορίες· δείχνει ενσυναίσθηση απέναντι σε ανθρώπους που αντιμετωπίζουν σημαντικές και κάποτε ακραίες δυσκολίες· γνωρίζει τα όριά της και παραπέμπει σε ανθρώπινη επικοινωνία αν δεν έχει έγκυρη πληροφορία· αποφεύγει την προκατάληψη που μπορεί να γεννήσουν τα γλωσσικά λάθη, η προφορά, το φύλο ή οποιαδήποτε πλευρά της ταυτότητας των χρηστών – αντίθετα, δείχνει ενσυναίσθηση για τις πρόσθετες δυσκολίες που μπορεί να αντιμετωπίζουν. Η Μυρτώ πολλαπλασιάζει τις δυνατότητες του Κάπα3, προσφέροντας την πολύτιμη γνώση του σε ένα πολύ μεγαλύτερο κοινό χρηστών και αποτελεί ένα εξαιρετικό παράδειγμα για τι σημαίνει ανθρωποκεντρική Τεχνητή Νοημοσύνη: Τεχνητή Νοημοσύνη από τον άνθρωπο για τον συνάνθρωπο.',
-    ],
-  },
-  {
-    slug: 'poamsk-national-garden-event',
-    category: 'news',
-    categoryLabel: 'Νέα',
-    title: 'Μια Κυριακή στον Εθνικό Κήπο με την ΠΟΑμΣΚ και τη SimasiaAI',
-    excerpt: 'Η SimasiaAI συμμετείχε στον συμβολικό περίπατο της ΠΟΑμΣΚ για την Πολλαπλή Σκλήρυνση, προσφέροντας μια εφαρμογή που προσέλκυε το μοίρασμα μαρτυριών.',
-    date: '28 Ιουνίου 2026',
-    readTime: '5 λεπτά ανάγνωση',
-    featured: false,
-    content: [
-      'Ήταν Κυριακή, στον Εθνικό Κήπο. Τέλος φθινοπώρου, καιρός ζεστός. Τα νήπια χοροπηδούσαν τραβολογώντας το χέρι των μεγάλων, που προσπαθούσαν να θυμηθούν από πού πάνε για τις πάπιες. Νεαροί έτρεχαν ελαφρά με τα σορτσάκια τους. Στη χλόη μια παρέα μεσηλίκων έκανε γιόγκα με μεγάλη ευλυγισία. Μεγαλύτερες κυρίες, κρατημένες διακριτικά αγκαζέ από τις συνοδούς τους, μάζευαν τα οφέλη του περπατήματος και της κοινωνικότητας μαζί με άφθονη βιταμίνη D. Ανάμεσά τους, ένα μοναχικό αναπηρικό αμαξίδιο αψήφησε το ψιλό χαλικάκι και έφτασε μέχρι το τραπεζάκι της ΠΟΑμΣΚ με τα πορτοκαλί και λευκά μπαλόνια που έγραφαν MS (:Multiple Sclerosis), Περπατάμε για την Πολλαπλή Σκλήρυνση. Ήταν η πρώτη συμμετέχουσα στον συμβολικό περίπατο της ΠΟΑμΣΚ.',
-      'Η Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση κατά Πλάκας είναι ο φορέας που συνενώνει και υποστηρίζει τους διαφορετικούς συλλόγους ασθενών με πολλαπλή σκλήρυνση (ΠΣ) ανά την Ελλάδα. Ενημερώνει και εκπαιδεύει το κοινό για την ΠΣ, προσφέρει ψυχολογική και κοινωνική υποστήριξη ασθενών και φροντιστών, ερευνά τις ανάγκες, χαρτογραφεί την προσβασιμότητα και πιέζει για την αύξησή της, παρεμβαίνει θεσμικά για να διασφαλίσει ίση μεταχείριση, δικαιώματα και πρόσβαση σε θεραπείες για τα 21.000 άτομα που εκπροσωπεί.',
-      'Η ΠΟΑμΣΚ δίνει αρκετή βαρύτητα στην ενημέρωση του κοινού για μια ασθένεια που συχνά είναι αόρατη, αν και προκαλεί μεγάλες δυσκολίες στους πάσχοντες, που φτάνουν μέχρι τη βαριά αναπηρία. Αυτή η «αόρατη» δυσκολία, πριν ή ανεξάρτητα από τις βαρύτερες και ορατές επιπτώσεις της ασθένειας, είναι ένα από τα σημαντικότερα κοινωνικά χαρακτηριστικά της. Η βαριά κόπωση, οι δυσκολίες μνήμης και συγκέντρους, ο πόνος και η σπαστικότητα, η μυϊκή δυσκαμψία και η δυσκολία στην ισορροπία, η κατάθλιψη και το άγχος είναι συμπτώματα που δύσκολα γίνονται αντιληπτά από ένα μη εξασκημένο μάτι.',
-      'Στο πλαίσιο του στόχου της να προσφέρει τις υπηρεσίες της με τη μέγιστη αποτελεσματικότητα, η ΠΟΑμΣΚ απευθύνθηκε στην εταιρεία ανθρωποκεντρικής Τεχνητής Νοημοσύνης SimasiaAI, για την αναβάθμιση του ιστοχώρου της και τη δημιουργία ψηφιακού βοηθού. Για να σηματοδοτήσει την αρχή της συνεργασίας τους, η SimasiaAI συμμετείχε στον συμβολικό περίπατο της ΠΟΑμΣΚ προσφέροντας ως χορηγία μια εφαρμογή που προσέλκυε ακριβώς το μοίρασμα μαρτυριών για την πολλαπλή σκλήρυνση. Οι χρήστες, απαντώντας σε μια προτροπή, μπορούσαν να πουν ή να γράψουν τι είναι αυτό που τους δυσκολεύει περισσότερο, πώς νιώθουν, τι αποκρύπτουν απ\' το κοινωνικό και το εργασιακό τους περιβάλλον.',
-      'Η εφαρμογή κατέγραφε τη μαρτυρία, έκανε μια ερώτηση που βοηθούσε την περαιτέρω ανάπτυξη των σκέψεων του χρήστη, και τελικά ανταποκρινόταν με ενσυναίσθηση και πραγματισμό. Αυτός ο διάλογος με ένα ψηφιακό βοηθό, που ήταν εφοδιασμένος με βασικές ιατρικές αλλά και κοινωνικές γνώσεις για την ασθένεια και προγραμματισμένος να απαντά με προσοχή και ενσυναίσθηση, απέδωσε: αρκετές νέες μαρτυρίες, λίγο αναβιωμένο θυμό για τις δυσκολίες, αρκετά χαμόγελα ανακούφισης για το μοίρασμα και το παιχνίδι με την εφαρμογή. Καμιά φορά είναι ευκολότερο να μιλήσεις σε ένα μηχάνημα για πράγματα που σε θυμώνουν, για άλλα που έχεις μάθει να ντρέπεσαι, και για εκείνα που σε φοβίζουν. Είναι ακόμα ευκολότερο όταν κάποιος σκύβει μαζί σου για να σου δείξει τη χρήση της εφαρμογής, ο ήλιος λάμπει μέσα στο πράσινο, και γύρω είναι άνθρωποι που σε καταλαβαίνουν. Αυτό θα πει ανθρωποκεντρική Τεχνητή Νοημοσύνη, δεν είναι τίποτα πολύπλοκο.',
-      'Σύντομα περισσότερα αμαξίδια μαζεύτηκαν στο τραπεζάκι, αλλά και άνθρωποι με σορτσάκια και νήπια που ήθελαν μπαλόνι. Άνθρωποι που τους νόμιζες φροντιστές ή περαστικούς αποδείχθηκαν πάσχοντες, ενημέρωναν όσους κοντοστέκονταν, έδιναν μπαλόνια στα παιδιά, έκαναν αστεία μεταξύ τους. Ποιος ξέρει αν δεν ήταν πάσχων και κάποιος από την παρέα της γιόγκα, ίσως εκείνος ο κύριος που δεν μπορούσε να ισορροπήσει στη στάση του δέντρου και ήρθε τελικά να περπατήσει μαζί μας.',
-    ],
-  },
-];
-
-export { articles };
 
 const ease = [0.16, 1, 0.3, 1];
 
 const NewsPage = () => {
+  const { t, language } = useTranslation();
   const [filter, setFilter] = useState('all');
   const gridRef = useRef(null);
   const gridInView = useInView(gridRef, { once: true, margin: '100px' });
 
-  // Calculate dynamic article counts for tab categories
+  const articles = useMemo(
+    () => newsArticlesByLang[language] || newsArticlesByLang.el,
+    [language],
+  );
+
   const countAll = articles.length;
-  const countNews = articles.filter(a => a.category === 'news').length;
-  const countArticles = articles.filter(a => a.category === 'articles').length;
+  const countNews = articles.filter((a) => a.category === 'news').length;
+  const countArticles = articles.filter((a) => a.category === 'articles').length;
 
-  const filtered = filter === 'all' ? articles : articles.filter(a => a.category === filter);
+  const filtered = filter === 'all' ? articles : articles.filter((a) => a.category === filter);
 
-  // Split featured and regular grid articles
-  const featuredArticle = filtered.find(a => a.featured && filter === 'all');
+  const featuredArticle = filtered.find((a) => a.featured && filter === 'all');
   const gridArticles = featuredArticle
-    ? filtered.filter(a => a.slug !== featuredArticle.slug)
+    ? filtered.filter((a) => a.slug !== featuredArticle.slug)
     : filtered;
 
   return (
     <div className="np-page">
-      {/* Hero */}
       <section className="np-hero">
         <InteractiveConstellation pattern="book" />
         <div className="container">
@@ -76,47 +41,45 @@ const NewsPage = () => {
             transition={{ duration: 0.8, ease }}
           >
             <span className="np-eyebrow">SimasiaAI</span>
-            <h1>Νέα & Άρθρα</h1>
-            <p className="np-hero-sub">
-              Ενημερώσεις, ανακοινώσεις και αναλύσεις γύρω από τις ανθρωποκεντρικές εφαρμογές της SimasiaAI.
-            </p>
+            <h1>{t('newsPage.heroTitle')}</h1>
+            <p className="np-hero-sub">{t('newsPage.heroSub')}</p>
           </motion.div>
         </div>
       </section>
 
-      {/* Category Filter Navigation */}
       <section className="np-filter">
         <div className="container">
           <div className="np-filter-wrapper">
-            <span className="np-filter-label">Κατηγοριοποίηση:</span>
+            <span className="np-filter-label">{t('newsPage.filterLabel')}</span>
             <div className="np-filter-tabs">
               <button
+                type="button"
                 className={`np-tab${filter === 'all' ? ' np-tab--active' : ''}`}
                 onClick={() => setFilter('all')}
               >
-                Όλα <span className="np-tab-count">{countAll}</span>
+                {t('newsPage.filterAll')} <span className="np-tab-count">{countAll}</span>
               </button>
               <button
+                type="button"
                 className={`np-tab${filter === 'news' ? ' np-tab--active' : ''}`}
                 onClick={() => setFilter('news')}
               >
-                Νέα <span className="np-tab-count">{countNews}</span>
+                {t('newsPage.filterNews')} <span className="np-tab-count">{countNews}</span>
               </button>
               <button
+                type="button"
                 className={`np-tab${filter === 'articles' ? ' np-tab--active' : ''}`}
                 onClick={() => setFilter('articles')}
               >
-                Άρθρα <span className="np-tab-count">{countArticles}</span>
+                {t('newsPage.filterArticles')} <span className="np-tab-count">{countArticles}</span>
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Premium Content Hub */}
       <section className="np-grid-section" ref={gridRef}>
         <div className="container">
-          {/* Featured Article Span (Only when filtering 'all') */}
           {featuredArticle && (
             <motion.div
               className="np-featured-wrap"
@@ -126,21 +89,20 @@ const NewsPage = () => {
             >
               <Link to={`/news/${featuredArticle.slug}`} className="np-featured-card">
                 <div className="np-featured-content">
-                  <div className="np-featured-badge">FEATURED NEWS</div>
+                  <div className="np-featured-badge">{t('newsPage.featuredBadge')}</div>
                   <div className="np-card-meta">
-                    <span className="np-card-category-tag news">Νέα</span>
+                    <span className="np-card-category-tag news">{featuredArticle.categoryLabel}</span>
                     <span className="np-card-date">{featuredArticle.date}</span>
                     <span className="np-card-time">{featuredArticle.readTime}</span>
                   </div>
                   <h2>{featuredArticle.title}</h2>
                   <p>{featuredArticle.excerpt}</p>
-                  <span className="np-featured-read">Ανάγνωση άρθρου →</span>
+                  <span className="np-featured-read">{t('newsPage.readArticle')}</span>
                 </div>
               </Link>
             </motion.div>
           )}
 
-          {/* Grid Layout of Other Articles */}
           {gridArticles.length > 0 ? (
             <div className="np-articles-grid">
               {gridArticles.map((article, i) => (
@@ -162,7 +124,7 @@ const NewsPage = () => {
                       <p>{article.excerpt}</p>
                       <div className="np-card-footer-info">
                         <span className="np-card-time">{article.readTime}</span>
-                        <span className="np-card-read">Ανάγνωση →</span>
+                        <span className="np-card-read">{t('newsPage.readShort')}</span>
                       </div>
                     </div>
                   </Link>
@@ -173,8 +135,8 @@ const NewsPage = () => {
             !featuredArticle && (
               <div className="np-empty-state">
                 <div className="np-empty-icon">📰</div>
-                <h3>Δεν βρέθηκαν δημοσιεύσεις</h3>
-                <p>Δεν υπάρχουν καταχωρημένα άρθρα σε αυτήν την κατηγορία προς το παρόν.</p>
+                <h3>{t('newsPage.emptyTitle')}</h3>
+                <p>{t('newsPage.emptyBody')}</p>
               </div>
             )
           )}

@@ -203,14 +203,14 @@ export const pageI18nEl = {
       'Εβδομάδες Custom Pilot',
     ],
     narrativeHtml:
-      'Τα παραδοσιακά μοντέλα AI λειτουργούν αποκομμένα· απλώς προβλέπουν λέξεις. Ο <em class="brand-dialogos">DialogosAI</em> είναι σχεδιασμένος ως ένας αυτόνομος <strong>Ψηφιακός Πλοηγός Γλώσσας</strong>. Αντλώντας έμπνευση από τις ελληνικές ρίζες της επικοινωνίας και της ερμηνείας, λειτουργεί ως ο απόλυτος αγγελιοφόρος ανάμεσα στα σύνθετα δεδομένα ενός οργανισμού και τις <strong>πραγματικές ανθρώπινες ανάγκες</strong>. Συνδυάζει την ευφυΐα των γλωσσικών μοντέλων νέας γενιάς με την αυστηρή ακαδημαϊκή εγκυρότητα, καθοδηγώντας τον χρήστη με <strong>απόλυτη σαφήνεια, ενσυναίσθηση και δομική ακρίβεια</strong>.',
+      'Τα παραδοσιακά μοντέλα AI λειτουργούν αποκομμένα· απλώς προβλέπουν λέξεις. Το <em class="brand-dialogos">DialogosAI</em> είναι σχεδιασμένο ως ένα αυτόνομο <strong>Ψηφιακό Σύστημα Πλοήγησης Γλώσσας</strong>. Αντλώντας έμπνευση από τις ελληνικές ρίζες της επικοινωνίας και της ερμηνείας, λειτουργεί ως απόλυτος αγγελιοφόρος ανάμεσα στα σύνθετα δεδομένα ενός οργανισμού και τις <strong>πραγματικές ανθρώπινες ανάγκες</strong>. Συνδυάζει την ευφυΐα των γλωσσικών μοντέλων νέας γενιάς με την αυστηρή ακαδημαϊκή εγκυρότητα, καθοδηγώντας τον χρήστη με <strong>απόλυτη σαφήνεια, ενσυναίσθηση και δομική ακρίβεια</strong>.',
     pillarsHeader: 'Οι Τρεις Αρχιτεκτονικοί Πυλώνες',
     pillarsSub: 'Το τεχνολογικό υπόβαθρο που καθιστά τον ψηφιακό μας πλοηγό ηγέτη στην αγορά.',
     pillars: [
       {
         num: '01',
         title: 'Fluency & Context (Ουσιαστικός Διάλογος)',
-        body: 'Βασισμένος στην <strong>υπολογιστική γλωσσολογία</strong>, ο <em class="brand-dialogos">DialogosAI</em> προσαρμόζεται στο ύφος του οργανισμού σας, αντιλαμβάνεται <strong>τοπικές διαλέκτους</strong> και καθοδηγεί τον χρήστη προληπτικά.',
+        body: 'Βασισμένο στην <strong>υπολογιστική γλωσσολογία</strong>, το <em class="brand-dialogos">DialogosAI</em> προσαρμόζεται στο ύφος του οργανισμού σας, αντιλαμβάνεται <strong>τοπικές διαλέκτους</strong> και καθοδηγεί τον χρήστη προληπτικά.',
       },
       {
         num: '02',
@@ -225,7 +225,7 @@ export const pageI18nEl = {
     ],
     charsHeader: '5 Μοναδικά Χαρακτηριστικά',
     charsSubHtml:
-      'Γιατί ο <em class="brand-dialogos">DialogosAI</em> αποτελεί το πιο εξελιγμένο σύστημα διαλόγου στην ελληνική αγορά.',
+      'Γιατί το <em class="brand-dialogos">DialogosAI</em> αποτελεί το πιο εξελιγμένο σύστημα διαλόγου στην ελληνική αγορά.',
     characteristics: [
       {
         num: '01',
@@ -249,12 +249,12 @@ export const pageI18nEl = {
       },
       {
         num: '05',
-        title: 'Προληπτικός Ψηφιακός Πλοηγός',
+        title: 'Προληπτικό Ψηφιακό Σύστημα Πλοήγησης',
         body: 'Δεν απαντά απλώς σε ερωτήσεις· προβλέπει τις ανάγκες του χρήστη και τον καθοδηγεί με ακρίβεια στα επόμενα βήματα.',
       },
     ],
     dialogueHeaderHtml:
-      'Κάθε οργανισμός επικοινωνεί.<br />Ο <em class="brand-dialogos">DialogosAI</em> εξασφαλίζει ότι αυτή η επικοινωνία είναι αξιόπιστη.',
+      'Κάθε οργανισμός επικοινωνεί.<br />Το <em class="brand-dialogos">DialogosAI</em> εξασφαλίζει ότι αυτή η επικοινωνία είναι αξιόπιστη.',
     dialogueSub:
       'Ένα κανάλι ασφαλούς, υπεύθυνου και καθοδηγητικού διαλόγου ανάμεσα στον οργανισμό σας και τους ανθρώπους που εξυπηρετεί. Σχεδιασμένο ακριβώς όπως εσείς το οραματίζεστε.',
     flowOrg: 'Ο Οργανισμός σας',
@@ -290,12 +290,12 @@ export const pageI18nEl = {
       },
     ],
     dialogueClosingHtml:
-      'Αν ο <em class="brand-dialogos">DialogosAI</em> εξασφαλίζει αξιόπιστο διάλογο στους πιο ευαίσθητους τομείς, φανταστείτε τι μπορεί να κάνει για τον δικό σας οργανισμό. Σχεδιάστε τον διάλογο που θέλετε — ασφαλή, υπεύθυνο, καθοδηγητικό — ακριβώς όπως τον οραματίζεστε.',
+      'Αν το <em class="brand-dialogos">DialogosAI</em> εξασφαλίζει αξιόπιστο διάλογο στους πιο ευαίσθητους τομείς, φανταστείτε τι μπορεί να κάνει για τον δικό σας οργανισμό. Σχεδιάστε τον διάλογο που θέλετε — ασφαλή, υπεύθυνο, καθοδηγητικό — ακριβώς όπως τον οραματίζεστε.',
     dialogueCtaHtml:
       'Σχεδιάστε τον δικό σας <em class="brand-dialogos">DialogosAI</em> →',
-    finalTitle: 'Αποκτήστε τον κορυφαίο ψηφιακό πλοηγό στην Ελλάδα.',
+    finalTitle: 'Αποκτήστε το κορυφαίο ψηφιακό σύστημα πλοήγησης στην Ελλάδα.',
     finalBodyHtml:
-      'Μην συμβιβάζεστε με απλά chatbots που μπερδεύουν τους χρήστες. Κάντε τη διαφορά με τον <em class="brand-dialogos">DialogosAI</em> και κερδίστε την εμπιστοσύνη των χρηστών σας από την πρώτη μέρα.',
+      'Μην συμβιβάζεστε με απλά chatbots που μπερδεύουν τους χρήστες. Κάντε τη διαφορά με το <em class="brand-dialogos">DialogosAI</em> και κερδίστε την εμπιστοσύνη των χρηστών σας από την πρώτη μέρα.',
     finalCta: 'Ξεκινήστε Σήμερα — Book Demo',
   },
 
@@ -799,7 +799,7 @@ export const pageI18nEn = {
       },
       {
         num: '05',
-        title: 'Proactive Digital Navigator',
+        title: 'Proactive Digital Navigation System',
         body: 'It does not merely answer questions; it anticipates user needs and guides them precisely through the next steps.',
       },
     ],
@@ -843,7 +843,7 @@ export const pageI18nEn = {
       'If <em class="brand-dialogos">DialogosAI</em> delivers trustworthy dialogue in the most sensitive domains, imagine what it can do for your own organization. Design the dialogue you want — safe, responsible, guiding — exactly as you envision it.',
     dialogueCtaHtml:
       'Design your own <em class="brand-dialogos">DialogosAI</em> →',
-    finalTitle: 'Get Greece’s leading digital navigator.',
+    finalTitle: 'Get Greece’s leading digital navigation system.',
     finalBodyHtml:
       'Don’t settle for simple chatbots that confuse users. Make the difference with <em class="brand-dialogos">DialogosAI</em> and earn your users’ trust from day one.',
     finalCta: 'Start Today — Book Demo',

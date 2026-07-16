@@ -424,40 +424,139 @@ export function isPublicWebsiteSource(doc) {
 
 
 export function buildWebsiteSources(docs) {
-
   const seen = new Set();
-
   const out = [];
-
   (docs || []).forEach((doc) => {
-
     if (!isPublicWebsiteSource(doc)) return;
-
     const url = String(doc.url || '').trim();
-
     if (!url || seen.has(url)) return;
-
     seen.add(url);
-
     const title = String(doc.title || url).replace(/\s*\(\d+\/\d+\)\s*$/, '').trim();
-
     out.push({
-
       title,
-
       url,
-
       category: doc.category || 'website',
-
     });
-
   });
-
   return out;
-
 }
 
+/** User wants to book demo / meeting / appointment */
+export function isBookingOrMeetingIntent(text) {
+  const q = normalize(String(text || ''));
+  if (!q) return false;
+  if (
+    /book[\s-]*demo|κλεισ(?:ω|τε|ετε)?\s*(?:demo|ραντεβ|συναντ)|ραντεβ|προγραμ+ατισ|schedule\s*(?:a\s*)?(?:demo|meeting|call)|κλειστε\s+ραντεβ|φορμα\s*demo|φόρμα\s*demo|meeting|appointment|δηλωσ(?:η|τε)\s*ενδιαφερ|ενδιαφερομαι|ας\s+συνεργαστ|κλεισ(?:ω|τε)\s+συναντ/i.test(
+      q
+    )
+  ) {
+    return true;
+  }
+  return /demo/.test(q) && /κλεισ|book|ραντεβ|θελω|θέλω|μπορω|μπορώ|πως|πώς|φορμα|φόρμα/.test(q);
+}
 
+/** User asks how to contact / email / contact form (not specifically demo) */
+export function isContactIntent(text) {
+  const q = normalize(String(text || ''));
+  if (!q) return false;
+  if (isBookingOrMeetingIntent(q)) return false;
+  return (
+    /επικοινων|contact\b|email|e-mail|mail\b|τηλεφων|phone|φορμα\s*επικοινων|φόρμα\s*επικοινων|contact\s*form|πως\s+(?:να\s+)?(?:σας\s+)?(?:βρω|επικοινων)|πώς\s+(?:να\s+)?(?:σας\s+)?(?:βρω|επικοινων)|στελ(?:ω|τε|ετε)\s*(?:μηνυμα|email|μέιλ)|write\s+(?:to\s+)?(?:you|us)|get\s+in\s+touch|reach\s+(?:you|us)/i.test(
+      q
+    )
+  );
+}
+
+export function bookDemoSource(language = 'el') {
+  return {
+    title: language === 'el' ? 'Κλείστε Demo — φόρμα' : 'Book a Demo — form',
+    url: '/book-demo',
+    category: 'contact',
+  };
+}
+
+export function contactFormSource(language = 'el') {
+  return {
+    title: language === 'el' ? 'Φόρμα επικοινωνίας' : 'Contact form',
+    url: '/#contact',
+    category: 'contact',
+  };
+}
+
+/** Keep booking answers clean — CTA button + sources carry the link. */
+export function ensureBookDemoInAnswer(answer, language = 'el') {
+  let t = String(answer || '').trim();
+  if (!t) return t;
+  // Drop raw path mentions; the UI button opens the form.
+  t = t
+    .replace(/\s*(?:εδώ|here)?\s*:?\s*\/book-demo\b/gi, '')
+    .replace(/\/book-demo\b/gi, '')
+    .replace(
+      /\s*(?:μέσω της φόρμας|στη φόρμα|στην φόρμα|via the form|through the form|at the form)\s*(?:στο|at|on)?\s*$/gim,
+      ''
+    )
+    .replace(/\s+στο\s*[.,;:]?\s*$/gim, '.')
+    .replace(/\s{2,}/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+  // If a sentence ended mid-way after stripping the path, soften it
+  t = t
+    .replace(
+      /μέσω της φόρμας\s*(?:στο)?\s*[.,]?\s*(ή να επικοινωνήσετε)/gi,
+      'μέσω της φόρμας Demo παρακάτω, $1'
+    )
+    .replace(
+      /via the (?:Demo )?form\s*(?:at|on)?\s*[.,]?\s*(or contact)/gi,
+      'via the Demo form below, $1'
+    )
+    .replace(/φόρμας\s+στο\s*[.,]/gi, 'φόρμας Demo παρακάτω.')
+    .replace(/form\s+at\s*[.,]/gi, 'form below.');
+  if (/φορμα|φόρμα|form|demo|ραντεβ|book/i.test(t)) return t;
+  const line =
+    language === 'el'
+      ? 'Μπορείτε να κλείσετε το ραντεβού σας μέσω της φόρμας Demo παρακάτω.'
+      : 'You can book your appointment via the Demo form below.';
+  return `${t}\n\n${line}`;
+}
+
+/** Keep contact answers clean — CTA button + sources carry the link. */
+export function ensureContactFormInAnswer(answer, language = 'el') {
+  let t = String(answer || '').trim();
+  if (!t) return t;
+  t = t
+    .replace(/\s*(?:εδώ|here)?\s*:?\s*\/#contact\b/gi, '')
+    .replace(/\/#contact\b/gi, '')
+    .replace(/[ \t]+\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+  if (/φορμα|φόρμα|form|επικοινων|contact@/i.test(t)) {
+    if (!/contact@simasiaai\.gr/i.test(t)) {
+      return language === 'el'
+        ? `${t}\n\nEmail: contact@simasiaai.gr`
+        : `${t}\n\nEmail: contact@simasiaai.gr`;
+    }
+    return t;
+  }
+  const line =
+    language === 'el'
+      ? 'Μπορείτε να μας γράψετε στη φόρμα επικοινωνίας παρακάτω.\nEmail: contact@simasiaai.gr'
+      : 'You can reach us via the contact form below.\nEmail: contact@simasiaai.gr';
+  return `${t}\n\n${line}`;
+}
+
+export function withBookDemoSource(sources, language = 'el') {
+  const list = Array.isArray(sources)
+    ? sources.filter((s) => s && s.url !== '/book-demo')
+    : [];
+  return [bookDemoSource(language), ...list];
+}
+
+export function withContactFormSource(sources, language = 'el') {
+  const list = Array.isArray(sources)
+    ? sources.filter((s) => s && s.url !== '/#contact' && s.url !== '/')
+    : [];
+  return [contactFormSource(language), ...list];
+}
 
 export function toUserFacingError(error, language) {
 

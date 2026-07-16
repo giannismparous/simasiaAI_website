@@ -13,7 +13,9 @@ export const useTranslation = () => {
       value = value?.[k];
     }
 
-    return value || key; // Return key if translation not found
+    // Allow empty strings (e.g. optional suffixes); only fall back when missing
+    if (value === undefined || value === null) return key;
+    return value;
   }, [language]);
 
   return { t, language };

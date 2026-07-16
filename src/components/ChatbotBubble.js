@@ -6,7 +6,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import './ChatbotBubble.css';
 
 const LAUNCHER_PHRASES_EL = [
-  'Τι μπορεί να κάνει ο DialogosAI;',
+  'Τι μπορεί να κάνει το DialogosAI;',
   'Πώς βοηθά η SimasiaAI;',
   'Μπορώ να κλείσω demo;',
 ];

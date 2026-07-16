@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { articles } from './NewsPage';
+import { useTranslation } from '../hooks/useTranslation';
+import { newsArticlesByLang } from '../translations/newsArticles';
 import './ArticlePage.css';
 
 const ArticlePage = () => {
   const { slug } = useParams();
-  const article = articles.find(a => a.slug === slug);
+  const { t, language } = useTranslation();
+
+  const article = useMemo(() => {
+    const list = newsArticlesByLang[language] || newsArticlesByLang.el;
+    return list.find((a) => a.slug === slug);
+  }, [language, slug]);
 
   if (!article) {
     return <Navigate to="/news" replace />;
@@ -14,7 +20,6 @@ const ArticlePage = () => {
 
   return (
     <div className="ap-article-page">
-      {/* Hero */}
       <section className="ap-article-hero">
         <div className="container">
           <motion.div
@@ -22,7 +27,7 @@ const ArticlePage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Link to="/news" className="ap-back-link">← Νέα & Άρθρα</Link>
+            <Link to="/news" className="ap-back-link">{t('newsPage.backToNews')}</Link>
             <div className="ap-article-meta">
               <span className={`ap-article-category-tag ${article.category}`}>{article.categoryLabel}</span>
               <span className="ap-article-date">{article.date}</span>
@@ -33,7 +38,6 @@ const ArticlePage = () => {
         </div>
       </section>
 
-      {/* Content */}
       <section className="ap-article-content">
         <div className="container">
           <motion.div
@@ -48,8 +52,8 @@ const ArticlePage = () => {
           </motion.div>
 
           <div className="ap-article-footer">
-            <Link to="/news" className="ap-back-btn">← Πίσω στα Νέα &amp; Άρθρα</Link>
-            <Link to="/book-demo" className="btn btn-primary">Κλείστε Demo</Link>
+            <Link to="/news" className="ap-back-btn">{t('newsPage.backToNewsBtn')}</Link>
+            <Link to="/book-demo" className="btn btn-primary">{t('newsPage.cta')}</Link>
           </div>
         </div>
       </section>

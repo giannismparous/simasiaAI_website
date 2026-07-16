@@ -131,7 +131,6 @@ const TeamPage = () => {
                 </blockquote>
                 <h2>{t('teamPage.ceoName')}</h2>
                 <h3 className="tp-ceo-title">{t('teamPage.ceoRole')}</h3>
-                <p className="tp-ceo-bio">{t('teamPage.ceoBio')}</p>
               </div>
             </div>
           </motion.div>
@@ -167,7 +166,11 @@ const TeamPage = () => {
                     {/* Front */}
                     <div className="tp-card-front">
                       <div className="tp-member-portrait">
-                        <img src={AVATARS[member.id]} alt={member.name} />
+                        <img
+                          src={AVATARS[member.id]}
+                          alt={member.name}
+                          className={member.id === 'pantelis' ? 'tp-avatar-pantelis' : undefined}
+                        />
                         <div className="tp-flip-indicator">
                           <span>{t('teamPage.flipLabel')}</span>
                         </div>

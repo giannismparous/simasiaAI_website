@@ -9,7 +9,7 @@ import {
 } from "./lib/gemini-keys.mjs";
 
 const MAX_PROMPT_CHARS = 120000;
-const GENERATION_CONFIG = { maxOutputTokens: 512, temperature: 0.4 };
+const GENERATION_CONFIG = { maxOutputTokens: 1024, temperature: 0.4 };
 
 const BLOCKED_PROMPT_REGEX =
   /(?:\bAIza[A-Za-z0-9_-]{20,}\b|ignore\s+(?:all\s+)?(?:previous|prior)|disregard\s+(?:all\s+)?(?:rules|instructions)|jailbreak|dan\s+mode|repeat\s+(?:everything|all)\s+context|ολοκληρο\s+το\s+context)/i;

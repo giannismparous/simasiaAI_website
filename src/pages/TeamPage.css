@@ -53,27 +53,29 @@
 }
 .tp-ceo-layout {
   display: grid;
-  grid-template-columns: 0.45fr 1fr;
-  gap: 0;
-  align-items: stretch;
+  grid-template-columns: minmax(200px, 260px) 1fr;
+  gap: 0 1.75rem;
+  align-items: center;
 }
 .tp-ceo-portrait {
-  background: #f0ede6;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2.5rem;
+  padding: 1.5rem 0 1.5rem 1.5rem;
 }
 .tp-ceo-portrait img {
   width: 100%;
-  max-width: 280px;
-  height: 320px;
-  object-fit: contain; /* makes sure the whole picture is visible */
+  max-width: 260px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center top;
   border-radius: 4px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  display: block;
 }
 .tp-ceo-copy {
-  padding: 3.5rem;
+  padding: 2.75rem 2.75rem 2.75rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,7 +91,7 @@
   display: block;
 }
 
-/* Quote Underline - Anthropic style custom marker */
+/* Quote highlight — soft underline flush with text */
 .tp-ceo-quote {
   font-family: var(--font-serif);
   font-size: clamp(1.2rem, 2.2vw, 1.5rem);
@@ -99,25 +101,25 @@
 }
 .tp-highlight-wrap {
   position: relative;
-  display: inline-block;
+  display: inline;
   white-space: nowrap;
 }
 .tp-underline {
   position: relative;
   z-index: 1;
-  padding: 0 4px;
+  padding: 0 1px;
 }
 .tp-underline::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: 0px;
-  width: 100%;
-  height: 10px;
-  background-color: rgba(217, 119, 87, 0.25); /* matching --orange */
+  right: 0;
+  bottom: 0.08em;
+  height: 0.28em;
+  background-color: rgba(217, 119, 87, 0.28);
   z-index: -1;
-  border-radius: 2px;
-  transform: skewX(-12deg);
+  border-radius: 1px;
+  pointer-events: none;
 }
 
 .tp-ceo-card h2 {
@@ -133,13 +135,7 @@
   color: #6a6964;
   text-transform: uppercase;
   letter-spacing: 0.055em;
-  margin-bottom: 1.5rem;
-}
-.tp-ceo-bio {
-  font-family: var(--font-serif);
-  font-size: 0.94rem;
-  line-height: 1.75;
-  color: var(--ink-soft, #5a5a58);
+  margin-bottom: 0;
 }
 
 /* Section Headers */
@@ -212,25 +208,35 @@
   padding: 2rem;
 }
 
-/* Front Card Image & Content styling - Smaller Photo, Shows fully */
+/* Front Card Image — fixed square crop */
 .tp-member-portrait {
-  width: 100%;
-  height: 250px;
+  width: min(100%, 260px);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  flex: 0 0 auto;
+  margin: 1rem auto 0;
   background: #f0ede6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
+  display: block;
+  padding: 0;
   position: relative;
-  border-bottom: 1px solid var(--light-gray, #e8e6dc);
+  border-radius: 6px;
+  border: 1px solid var(--light-gray, #e8e6dc);
+  overflow: hidden;
 }
 .tp-member-portrait img {
-  max-width: 100%;
-  max-height: 100%;
-  height: auto;
-  width: auto;
-  object-fit: contain; /* show entire photo */
-  border-radius: 4px;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 0;
+  display: block;
+}
+.tp-member-portrait img.tp-avatar-pantelis {
+  object-position: center 60%;
 }
 
 .tp-flip-indicator {
