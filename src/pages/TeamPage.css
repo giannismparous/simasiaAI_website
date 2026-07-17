@@ -171,8 +171,10 @@
 /* 3D Flip Layout */
 .tp-card-scene {
   perspective: 1500px;
+  -webkit-perspective: 1500px;
   cursor: pointer;
   height: 480px;
+  min-height: 420px;
 }
 .tp-card-flip {
   position: relative;
@@ -180,9 +182,11 @@
   height: 100%;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 .tp-card-flip.is-flipped {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 
 .tp-card-front, .tp-card-back {
@@ -191,6 +195,7 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   border-radius: 8px;
   border: 1px solid var(--light-gray, #e8e6dc);
   background: var(--light, #faf9f5);
@@ -198,10 +203,19 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  /* Keep faces visible on iOS Safari */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.tp-card-front {
+  transform: rotateY(0deg) translateZ(0);
+  -webkit-transform: rotateY(0deg) translateZ(0);
 }
 
 .tp-card-back {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(0);
+  -webkit-transform: rotateY(180deg) translateZ(0);
   background: var(--dark, #141413);
   color: var(--light, #faf9f5);
   border-color: rgba(255,255,255,0.1);
@@ -531,13 +545,24 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.tp-char-probe {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.92rem;
+  white-space: pre;
 }
 .tp-code-line {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0;
-  line-height: 2;
-  min-height: 1.8em;
+  line-height: 1.75;
+  min-height: 1.75em;
 }
 .tp-line-num {
   font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
@@ -548,14 +573,18 @@
   padding-right: 1.25rem;
   user-select: none;
   flex-shrink: 0;
-  line-height: 2;
+  line-height: 1.75;
 }
 .tp-line-text {
   font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
   font-size: 0.92rem;
   color: #cdd6f4;
-  line-height: 2;
-  word-break: break-word;
+  line-height: 1.75;
+  white-space: pre;
+  overflow: hidden;
+  text-overflow: clip;
+  flex: 1;
+  min-width: 0;
 }
 .tp-done-mark {
   color: #a6e3a1;
@@ -596,16 +625,90 @@
 
 @media (max-width: 768px) {
   .tp-hero { padding: 7rem 0 3.5rem; min-height: auto; }
-  .tp-ceo-layout { grid-template-columns: 1fr; }
-  .tp-ceo-portrait { min-height: 280px; padding: 2rem; }
-  .tp-ceo-copy { padding: 2rem 1.5rem; }
-  .tp-team-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .tp-card-scene { height: 460px; max-width: 420px; margin: 0 auto; }
+  .tp-ceo-layout { grid-template-columns: 1fr; gap: 0; }
+  .tp-ceo-portrait {
+    max-width: 200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 0;
+    min-height: 0;
+  }
+  .tp-ceo-portrait img {
+    max-width: 200px;
+    aspect-ratio: 1 / 1;
+  }
+  .tp-ceo-copy { padding: 1.5rem; }
+  .tp-team-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .tp-card-scene {
+    height: auto;
+    min-height: 440px;
+    max-width: 360px;
+    margin: 0 auto;
+    width: 100%;
+    /* Avoid iOS blank faces on small screens */
+    perspective: none;
+    -webkit-perspective: none;
+  }
+  .tp-card-flip {
+    transform-style: flat;
+    -webkit-transform-style: flat;
+    min-height: 440px;
+  }
+  .tp-card-flip.is-flipped {
+    transform: none;
+    -webkit-transform: none;
+  }
+  .tp-card-front,
+  .tp-card-back {
+    position: relative;
+    inset: auto;
+    height: auto;
+    min-height: 440px;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+  .tp-card-back {
+    display: none;
+  }
+  .tp-card-flip.is-flipped .tp-card-front {
+    display: none;
+  }
+  .tp-card-flip.is-flipped .tp-card-back {
+    display: flex;
+  }
+  .tp-member-portrait {
+    width: min(100%, 220px);
+    aspect-ratio: 1 / 1;
+  }
+  .tp-flip-indicator {
+    opacity: 1;
+    transform: none;
+  }
   .tp-interactive-principles { grid-template-columns: 1fr; gap: 2rem; }
   .tp-principles-content { min-height: auto; }
   .tp-active-principle-card { padding: 2rem; }
   .tp-ceo, .tp-team, .tp-principles, .tp-mission { padding: 4rem 0; }
   .tp-editor-body { padding: 1.25rem 1rem 1.5rem; }
-  .tp-line-text { font-size: 0.82rem; }
-  .tp-line-num { font-size: 0.7rem; min-width: 2rem; padding-right: 0.75rem; }
+  .tp-line-text { font-size: 0.8rem; }
+  .tp-char-probe { font-size: 0.8rem; }
+  .tp-line-num { font-size: 0.68rem; min-width: 2rem; padding-right: 0.75rem; }
+  .tp-code-line { line-height: 1.65; min-height: 1.65em; }
+}
+
+@media (max-width: 420px) {
+  .tp-ceo-portrait { max-width: 180px; }
+  .tp-ceo-portrait img { max-width: 180px; }
+  .tp-card-scene,
+  .tp-card-flip,
+  .tp-card-front,
+  .tp-card-back {
+    max-width: 100%;
+    min-height: 420px;
+  }
+  .tp-member-portrait { width: min(100%, 200px); }
 }

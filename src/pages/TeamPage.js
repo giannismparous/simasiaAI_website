@@ -20,11 +20,56 @@ const AVATARS = {
 
 const ease = [0.16, 1, 0.3, 1];
 
-// Live-coding typewriter — IDE-style with line numbers
+const wrapAtWidth = (text, maxChars) => {
+  if (!text) return [];
+  const lines = [];
+  let remaining = text;
+  const limit = Math.max(16, maxChars);
+  while (remaining.length > 0) {
+    if (remaining.length <= limit) {
+      lines.push(remaining);
+      break;
+    }
+    let breakAt = remaining.lastIndexOf(' ', limit);
+    if (breakAt <= 0) breakAt = limit;
+    lines.push(remaining.slice(0, breakAt));
+    remaining = remaining.slice(breakAt).trimStart();
+  }
+  return lines;
+};
+
+// Live-coding typewriter — IDE-style with line numbers sized to the editor width
 const LiveCodingText = ({ text }) => {
   const [charIndex, setCharIndex] = useState(0);
+  const [maxChars, setMaxChars] = useState(72);
   const containerRef = useRef(null);
+  const measureRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: '-50px' });
+
+  useEffect(() => {
+    setCharIndex(0);
+  }, [text]);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    const probe = measureRef.current;
+    if (!el || !probe) return;
+
+    const update = () => {
+      const available = el.clientWidth - 48; // gutter + padding
+      const charW = probe.getBoundingClientRect().width || 8;
+      setMaxChars(Math.max(16, Math.floor(available / charW)));
+    };
+
+    update();
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(update) : null;
+    ro?.observe(el);
+    window.addEventListener('resize', update);
+    return () => {
+      ro?.disconnect();
+      window.removeEventListener('resize', update);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isInView || charIndex >= text.length) return;
@@ -33,23 +78,14 @@ const LiveCodingText = ({ text }) => {
     return () => clearTimeout(timer);
   }, [isInView, charIndex, text]);
 
-  // Break displayed text into lines of ~70 chars at word boundaries
   const displayed = text.slice(0, charIndex);
-  const lines = [];
-  let remaining = displayed;
-  while (remaining.length > 0) {
-    if (remaining.length <= 72) {
-      lines.push(remaining);
-      break;
-    }
-    let breakAt = remaining.lastIndexOf(' ', 72);
-    if (breakAt <= 0) breakAt = 72;
-    lines.push(remaining.slice(0, breakAt));
-    remaining = remaining.slice(breakAt + 1);
-  }
+  const lines = wrapAtWidth(displayed, maxChars);
 
   return (
     <div ref={containerRef} className="tp-code-lines">
+      <span ref={measureRef} className="tp-char-probe" aria-hidden="true">
+        M
+      </span>
       {lines.map((line, i) => (
         <div key={i} className="tp-code-line">
           <span className="tp-line-num">{String(i + 1).padStart(2, ' ')}</span>
@@ -61,7 +97,7 @@ const LiveCodingText = ({ text }) => {
       ))}
       {charIndex >= text.length && (
         <div className="tp-code-line tp-code-done">
-          <span className="tp-line-num">{String(lines.length + 1).padStart(2, ' ')}</span>
+          <span className="tp-line-num">{String(Math.max(lines.length, 1) + 1).padStart(2, ' ')}</span>
           <span className="tp-line-text tp-done-mark">✓ complete</span>
         </div>
       )}
@@ -86,8 +122,8 @@ const TeamPage = () => {
 
   const [activePrinciple, setActivePrinciple] = useState(0);
 
-  const teamMembers = t('teamPage.team');
-  const principles = t('teamPage.principles');
+  const teamMembers = Array.isArray(t('teamPage.team')) ? t('teamPage.team') : [];
+  const principles = Array.isArray(t('teamPage.principles')) ? t('teamPage.principles') : [];
 
   return (
     <div className="tp-page">
@@ -143,7 +179,8 @@ const TeamPage = () => {
           <motion.div
             className="tp-section-header"
             initial={{ opacity: 0, y: 20 }}
-            animate={teamInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
           >
             <h2>{t('teamPage.teamTitle')}</h2>
@@ -158,8 +195,9 @@ const TeamPage = () => {
                   key={member.id}
                   className="tp-card-scene"
                   initial={{ opacity: 0, y: 24 }}
-                  animate={teamInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: i * 0.1, ease }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.55, delay: Math.min(i * 0.08, 0.4), ease }}
                   onClick={() => toggleFlip(member.id)}
                 >
                   <div className={`tp-card-flip ${isFlipped ? 'is-flipped' : ''}`}>
