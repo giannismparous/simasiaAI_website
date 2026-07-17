@@ -113,7 +113,6 @@ const TeamPage = () => {
   const missionRef = useRef(null);
 
   const ceoInView = useInView(ceoRef, { once: true, margin: '100px' });
-  const teamInView = useInView(teamRef, { once: true, margin: '100px' });
   const principlesInView = useInView(principlesRef, { once: true, margin: '100px' });
   const missionInView = useInView(missionRef, { once: true, margin: '100px' });
 
