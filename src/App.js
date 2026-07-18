@@ -22,6 +22,7 @@ import TeamPage from './pages/TeamPage';
 import NewsPage from './pages/NewsPage';
 import ArticlePage from './pages/ArticlePage';
 import ChatbotBubble from './components/ChatbotBubble';
+import DocumentTitle from './components/DocumentTitle';
 import './App.css';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
     <LanguageProvider>
       <Router>
         <ScrollToTop />
+        <DocumentTitle />
         <OverscrollFill />
         <div className="App">
           <CursorFollower />

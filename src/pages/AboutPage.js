@@ -40,7 +40,7 @@ const AboutPage = () => {
       avatar: dimitrisReal,
     },
     {
-      name: 'Γιάννης Μπαρούς',
+      name: 'Γιάννης',
       role: 'Co-founder & CTO',
       desc: 'Υποψήφιος διδάκτωρ Πληροφορικής στο UCL στην California. Διαθέτει μακρά εργασιακή και ερευνητική εμπειρία στην ανάπτυξη enterprise εφαρμογών, στο software engineering και στην αρχιτεκτονική συστημάτων Τεχνητής Νοημοσύνης.',
       avatar: giannisReal,

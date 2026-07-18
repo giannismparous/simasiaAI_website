@@ -288,7 +288,7 @@ function createRAGPrompt(context, question, language, options = {}) {
       '10) Αν ο χρήστης απαντήσει «ναι»/«οκ» σε δική σου ερώτηση, δώσε απευθείας την πληροφορία.\n' +
       '11) ΜΗΝ χρησιμοποιείς markdown (**, ##, `). Γράψε απλό κείμενο· λίστες με «•» ή «-».\n' +
       '12) Για «τι είναι η SimasiaAI»: χρησιμοποίησε identity από το context. Demo CTA μόνο αν ταιριάζει εμπορικά — όχι σε κάθε απάντηση.\n' +
-      '12β) Για «ποιοι είναι οι ιδρυτές / συνιδρυτές / η ομάδα»: απάντησε σοβαρά με ΠΛΗΡΗ ονόματα και ρόλους από το context (Στέργιος Χατζηκυριακίδης CEO, Δημήτρης Παπαδάκης, Γιάννης Μπαρούς, Αναστασία Νάτσινα). ΜΗΝ παραλείπεις τον Στέργιο. ΜΗΝ κλείνεις με demo.\n' +
+      '12β) Για «ποιοι είναι οι ιδρυτές / συνιδρυτές / η ομάδα»: απάντησε σοβαρά με ΠΛΗΡΗ ονόματα και ρόλους από το context (Στέργιος Χατζηκυριακίδης CEO, Δημήτρης Παπαδάκης, Γιάννης, Αναστασία Νάτσινα). ΜΗΝ παραλείπεις τον Στέργιο. ΜΗΝ κλείνεις με demo.\n' +
       '12γ) Για demo/ραντεβού: πες ότι μπορούν να κλείσουν μέσω της φόρμας Demo (χωρίς URL). Για επικοινωνία: φόρμα επικοινωνίας + contact@simasiaai.gr αν υπάρχει στο context — χωρίς URL.\n' +
       PROMPT_SECURITY_EL +
       (forceProgress
@@ -335,7 +335,7 @@ function createRAGPrompt(context, question, language, options = {}) {
     '10) If the user replies "yes"/"ok" to your question, answer directly.\n' +
     '11) No markdown (**, ##, backticks). Plain text only; use "•" or "-" for lists.\n' +
     '12) For "what is SimasiaAI": use identity from context. Demo CTA only when commercially appropriate — not on every reply.\n' +
-    '12b) For "who are the founders / co-founders / team": answer seriously with FULL names and roles from context (Stergios Chatzikyriakidis CEO, Dimitris Papadakis, Giannis Barous, Anastasia Natsina). Never omit Stergios. Never close with a demo pitch.\n' +
+    '12b) For "who are the founders / co-founders / team": answer seriously with FULL names and roles from context (Stergios Chatzikyriakidis CEO, Dimitris Papadakis, Giannis, Anastasia Natsina). Never omit Stergios. Never close with a demo pitch.\n' +
     '12c) For demo/meeting: say they can book via the Demo form (no URL). For contact: contact form + contact@simasiaai.gr when in context — no URL.\n' +
     PROMPT_SECURITY_EN +
     (forceProgress
