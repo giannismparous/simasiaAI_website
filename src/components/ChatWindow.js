@@ -408,14 +408,6 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
           </div>
           <div className="bot-info">
             <h3><em className="brand-dialogos">DialogosAI</em></h3>
-            {isLoading && (
-              <span className="bot-status bot-status-typing">
-                {language === 'el' ? 'Σκέφτεται' : 'Thinking'}
-                <span className="status-typing-dots" aria-hidden="true">
-                  <span /><span /><span />
-                </span>
-              </span>
-            )}
           </div>
         </div>
         <button

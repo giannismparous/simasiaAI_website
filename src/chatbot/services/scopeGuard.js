@@ -455,6 +455,32 @@ export function isBookingOrMeetingIntent(text) {
   return /demo/.test(q) && /κλεισ|book|ραντεβ|θελω|θέλω|μπορω|μπορώ|πως|πώς|φορμα|φόρμα/.test(q);
 }
 
+/**
+ * Bot answer invites booking a demo (even if the user didn't ask).
+ * Used to show the Demo CTA button whenever the reply pitches the form.
+ */
+export function answerInvitesBookDemo(text) {
+  const raw = String(text || '');
+  if (!raw.trim()) return false;
+  if (/\/book-demo/i.test(raw)) return true;
+  const t = normalize(raw);
+  if (
+    /κλεισ(?:τε|ετε|ουμε|ω|ει).{0,48}demo|demo.{0,48}κλεισ|book.{0,24}demo|schedule.{0,24}demo|κλεισ(?:τε|ετε|ουμε|ω).{0,40}ραντεβ/.test(
+      t
+    )
+  ) {
+    return true;
+  }
+  if (
+    /φορμα.{0,20}demo|demo.{0,20}φορμα|μεσω τησ φορμασ|στη(?:ν)? φορμα|via the (?:demo )?form|through the (?:demo )?form|open demo form|ζητηστε προσβαση/.test(
+      t
+    )
+  ) {
+    return true;
+  }
+  return false;
+}
+
 /** User asks how to contact / email / contact form (not specifically demo) */
 export function isContactIntent(text) {
   const q = normalize(String(text || ''));
@@ -491,31 +517,41 @@ export function ensureBookDemoInAnswer(answer, language = 'el') {
   t = t
     .replace(/\s*(?:εδώ|here)?\s*:?\s*\/book-demo\b/gi, '')
     .replace(/\/book-demo\b/gi, '')
-    .replace(
-      /\s*(?:μέσω της φόρμας|στη φόρμα|στην φόρμα|via the form|through the form|at the form)\s*(?:στο|at|on)?\s*$/gim,
-      ''
-    )
-    .replace(/\s+στο\s*[.,;:]?\s*$/gim, '.')
     .replace(/\s{2,}/g, ' ')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
-  // If a sentence ended mid-way after stripping the path, soften it
-  t = t
-    .replace(
-      /μέσω της φόρμας\s*(?:στο)?\s*[.,]?\s*(ή να επικοινωνήσετε)/gi,
-      'μέσω της φόρμας Demo παρακάτω, $1'
-    )
-    .replace(
-      /via the (?:Demo )?form\s*(?:at|on)?\s*[.,]?\s*(or contact)/gi,
-      'via the Demo form below, $1'
-    )
-    .replace(/φόρμας\s+στο\s*[.,]/gi, 'φόρμας Demo παρακάτω.')
-    .replace(/form\s+at\s*[.,]/gi, 'form below.');
+
+  // Point to the button below instead of a vague “via the form”.
+  if (language === 'el') {
+    t = t
+      .replace(
+        /μέσω της φόρμας(?!\s*Demo\s*παρακάτω)/gi,
+        'μέσω της φόρμας Demo παρακάτω'
+      )
+      .replace(
+        /στη(?:ν)? φόρμα(?!\s*Demo\s*παρακάτω)(?!\s*επικοινων)/gi,
+        'στη φόρμα Demo παρακάτω'
+      );
+  } else {
+    t = t
+      .replace(
+        /via the (?:Demo )?form(?!\s*below)/gi,
+        'via the Demo form below'
+      )
+      .replace(
+        /through the (?:Demo )?form(?!\s*below)/gi,
+        'through the Demo form below'
+      );
+  }
+
+  if (/φορμα\s*demo\s*παρακάτω|demo form below|φόρμας Demo παρακάτω/i.test(t)) {
+    return t;
+  }
   if (/φορμα|φόρμα|form|demo|ραντεβ|book/i.test(t)) return t;
   const line =
     language === 'el'
-      ? 'Μπορείτε να κλείσετε το ραντεβού σας μέσω της φόρμας Demo παρακάτω.'
-      : 'You can book your appointment via the Demo form below.';
+      ? 'Μπορείτε να κλείσετε demo μέσω της φόρμας Demo παρακάτω.'
+      : 'You can book a demo via the Demo form below.';
   return `${t}\n\n${line}`;
 }
 

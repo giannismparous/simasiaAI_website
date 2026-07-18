@@ -432,8 +432,16 @@ export async function retrieveRelevantDocsWithContext(
 
 export function buildContext(docs) {
   if (!docs || docs.length === 0) return '';
+  // Cap each chunk so we never ship near-full pages into the prompt.
+  const MAX_CONTENT = 1400;
   return docs
-    .map((doc) => `SOURCE_TITLE: ${doc.title}\nSOURCE_CONTENT:\n${doc.content}`)
+    .map((doc) => {
+      let content = String(doc.content || '').trim();
+      if (content.length > MAX_CONTENT) {
+        content = `${content.slice(0, MAX_CONTENT - 1)}…`;
+      }
+      return `SOURCE_TITLE: ${doc.title}\nSOURCE_CONTENT:\n${content}`;
+    })
     .join('\n\n---\n\n');
 }
 

@@ -12,7 +12,6 @@ import {
 import {
   resolveUserQuery,
   buildConversationContext,
-  getLastBotMessage,
   isContinuationDirective,
   isLikelyLowInfoReply,
   getConversationTopic,
@@ -34,6 +33,7 @@ import {
   buildWebsiteSources,
   isBookingOrMeetingIntent,
   isContactIntent,
+  answerInvitesBookDemo,
   ensureBookDemoInAnswer,
   ensureContactFormInAnswer,
   withBookDemoSource,
@@ -192,16 +192,17 @@ export async function answerQuestion(userQuestion, language = null, options = {}
   }
 
   const context = buildContext(relevantDocs);
+  // History only once — do not also paste last bot reply / expanded follow-up query
+  // into the prompt (that used to triple-bill the same tokens every turn).
   const conversationContext = buildConversationContext(messages, 6);
-  const lastBotText = getLastBotMessage(messages);
   const forceProgress = isContinuationDirective(resolved.query);
-  const questionForModel =
-    resolved.isFollowUp && isLikelyLowInfoReply(rawQuestion) ? resolved.query : rawQuestion;
+  const shortFollowUp =
+    resolved.isFollowUp && isLikelyLowInfoReply(rawQuestion);
 
-  const prompt = createRAGPrompt(context, questionForModel, lang, {
+  const prompt = createRAGPrompt(context, rawQuestion, lang, {
     conversationContext,
-    lastBotText,
     forceProgress,
+    shortFollowUp,
     conversationStarted,
     externalOrgDeepDive: isExternalOrgDeepDive(rawQuestion),
     genderQuestion: /αρσενικ|θηλυκ|gender|she\/her|he\/him/i.test(rawQuestion),
@@ -228,13 +229,15 @@ export async function answerQuestion(userQuestion, language = null, options = {}
 
     const confidence = topScore > 0.8 ? 0.95 : topScore > 0.5 ? 0.8 : 0.65;
     let sources = buildWebsiteSources(relevantDocs);
-    const bookingIntent = isBookingOrMeetingIntent(rawQuestion);
-    const contactIntent = isContactIntent(rawQuestion);
+    // Show Demo button when the user asks to book OR the bot pitches the form.
+    const bookingCta =
+      isBookingOrMeetingIntent(rawQuestion) || answerInvitesBookDemo(trimmed);
+    const contactCta = !bookingCta && isContactIntent(rawQuestion);
 
-    if (bookingIntent) {
+    if (bookingCta) {
       trimmed = ensureBookDemoInAnswer(trimmed, lang);
       sources = withBookDemoSource(sources, lang);
-    } else if (contactIntent) {
+    } else if (contactCta) {
       trimmed = ensureContactFormInAnswer(trimmed, lang);
       sources = withContactFormSource(sources, lang);
     }
@@ -243,8 +246,8 @@ export async function answerQuestion(userQuestion, language = null, options = {}
       answer: trimmed,
       sources,
       confidence,
-      bookDemoCta: bookingIntent,
-      contactCta: contactIntent,
+      bookDemoCta: bookingCta,
+      contactCta,
     };
   } catch (error) {
     return {
@@ -259,8 +262,8 @@ export async function answerQuestion(userQuestion, language = null, options = {}
 function createRAGPrompt(context, question, language, options = {}) {
   const {
     conversationContext = '',
-    lastBotText = '',
     forceProgress = false,
+    shortFollowUp = false,
     externalOrgDeepDive = false,
     genderQuestion = false,
     locationNotListed = false,
@@ -291,6 +294,9 @@ function createRAGPrompt(context, question, language, options = {}) {
       '12β) Για «ποιοι είναι οι ιδρυτές / συνιδρυτές / η ομάδα»: απάντησε σοβαρά με ΠΛΗΡΗ ονόματα και ρόλους από το context (Στέργιος Χατζηκυριακίδης CEO, Δημήτρης Παπαδάκης, Γιάννης, Αναστασία Νάτσινα). ΜΗΝ παραλείπεις τον Στέργιο. ΜΗΝ κλείνεις με demo.\n' +
       '12γ) Για demo/ραντεβού: πες ότι μπορούν να κλείσουν μέσω της φόρμας Demo (χωρίς URL). Για επικοινωνία: φόρμα επικοινωνίας + contact@simasiaai.gr αν υπάρχει στο context — χωρίς URL.\n' +
       PROMPT_SECURITY_EL +
+      (shortFollowUp
+        ? '21α) Το μήνυμα χρήστη είναι σύντομο follow-up: ερμήνευσέ το ΜΟΝΟ από το ΠΡΟΣΦΑΤΟ ΙΣΤΟΡΙΚΟ (ανοιχτή ερώτηση / θέμα) και απάντησε άμεσα — χωρίς επιβεβαίωση.\n'
+        : '') +
       (forceProgress
         ? '21) Ο χρήστης ζήτησε συνέχεια: δώσε 3 συγκεκριμένα σημεία, χωρίς επανάληψη.\n'
         : '') +
@@ -303,9 +309,7 @@ function createRAGPrompt(context, question, language, options = {}) {
       (locationNotListed
         ? '24) Αν ρωτούν για πόλη που ΔΕΝ υπάρχει στο context: πες μόνο ότι στο site αναφέρεται Αθήνα· μην επαναλάβεις «γραφείο στη Θεσσαλονίκη».\n'
         : '') +
-      '\nΤΕΛΕΥΤΑΙΑ ΑΠΑΝΤΗΣΗ DIALOGOSAI:\n' +
-      (lastBotText || '(καμία)') +
-      '\n\nΠΡΟΣΦΑΤΟ ΙΣΤΟΡΙΚΟ:\n' +
+      '\nΠΡΟΣΦΑΤΟ ΙΣΤΟΡΙΚΟ:\n' +
       (conversationContext || '(χωρίς προηγούμενο)') +
       '\n\nΔΙΑΘΕΣΙΜΕΣ ΠΛΗΡΟΦΟΡΙΕΣ (από το site):\n' +
       context +
@@ -338,6 +342,9 @@ function createRAGPrompt(context, question, language, options = {}) {
     '12b) For "who are the founders / co-founders / team": answer seriously with FULL names and roles from context (Stergios Chatzikyriakidis CEO, Dimitris Papadakis, Giannis, Anastasia Natsina). Never omit Stergios. Never close with a demo pitch.\n' +
     '12c) For demo/meeting: say they can book via the Demo form (no URL). For contact: contact form + contact@simasiaai.gr when in context — no URL.\n' +
     PROMPT_SECURITY_EN +
+    (shortFollowUp
+      ? '21a) The user message is a short follow-up: interpret it ONLY from RECENT CHAT (open question / topic) and answer directly — no confirmation ask.\n'
+      : '') +
     (forceProgress
       ? '21) User asked to continue: give 3 concrete points without repeating prior wording.\n'
       : '') +
@@ -350,9 +357,7 @@ function createRAGPrompt(context, question, language, options = {}) {
     (locationNotListed
       ? '24) If asked about a city not in context: say only Athens is listed on the site; do not phrase it as having an office in that other city.\n'
       : '') +
-    '\nLAST DIALOGOSAI REPLY:\n' +
-    (lastBotText || '(none)') +
-    '\n\nRECENT CHAT:\n' +
+    '\nRECENT CHAT:\n' +
     (conversationContext || '(no previous context)') +
     '\n\nAVAILABLE INFORMATION (from website):\n' +
     context +

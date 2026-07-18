@@ -197,12 +197,28 @@ export function resolveUserQuery(userText, messages, lastResolvedQuery = '') {
   };
 }
 
-export function buildConversationContext(messages, maxTurns = 6) {
+function clipForPrompt(text, maxChars) {
+  const t = String(text || '').trim();
+  if (t.length <= maxChars) return t;
+  return `${t.slice(0, Math.max(0, maxChars - 1))}…`;
+}
+
+/**
+ * Compact recent chat for the model prompt.
+ * Caps message count and length so history is not re-billed as a growing dump.
+ * @param {Array} messages
+ * @param {number} maxMessages — last N messages (not full turns)
+ */
+export function buildConversationContext(messages, maxMessages = 6) {
   const usable = (messages || [])
     .filter((m) => m && typeof m.text === 'string' && m.text.trim())
-    .slice(-maxTurns);
+    .slice(-maxMessages);
   return usable
-    .map((m) => `${m.sender === 'user' ? 'USER' : 'DIALOGOSAI'}: ${m.text.trim()}`)
+    .map((m) => {
+      const role = m.sender === 'user' ? 'USER' : 'DIALOGOSAI';
+      const max = m.sender === 'bot' ? 420 : 280;
+      return `${role}: ${clipForPrompt(m.text, max)}`;
+    })
     .join('\n');
 }
 
