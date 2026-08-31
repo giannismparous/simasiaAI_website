@@ -180,42 +180,77 @@
 }
 
 @media (max-width: 960px) {
-  .home-pyxida-module-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 1fr);
+  .home-pyxida-modules {
+    border-top: none;
+    padding-top: clamp(1.5rem, 3vw, 2rem);
   }
 
-  .home-pyxida-module-grid > .home-pyxida-module-copy {
-    grid-column: 1;
+  .home-pyxida-module + .home-pyxida-module {
+    border-top: none;
   }
 
-  .home-pyxida-module-grid > .home-pyxida-module-visual {
-    grid-column: 2;
+  .home-pyxida-module {
+    padding: clamp(1.25rem, 3vw, 1.75rem) 0;
   }
 
-  .home-pyxida-module--visual-first .home-pyxida-module-grid > .home-pyxida-module-copy {
-    grid-column: 2;
-  }
-
-  .home-pyxida-module--visual-first .home-pyxida-module-grid > .home-pyxida-module-visual {
-    grid-column: 1;
-  }
-}
-
-@media (max-width: 720px) {
   .home-pyxida-module-grid {
     grid-template-columns: 1fr;
     gap: 1.35rem;
   }
 
+  /* Small screens: copy always above visual */
   .home-pyxida-module-grid > .home-pyxida-module-copy,
   .home-pyxida-module--visual-first .home-pyxida-module-grid > .home-pyxida-module-copy {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 1;
   }
 
   .home-pyxida-module-grid > .home-pyxida-module-visual,
   .home-pyxida-module--visual-first .home-pyxida-module-grid > .home-pyxida-module-visual {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 2;
+  }
+
+  /* Fixed visual height — avoids vh resize thrash on mobile browsers */
+  .home-pyxida-offer .home-pyxida-module-visual.ol-pyxida-scene-visual-wrap,
+  .home-pyxida-offer .home-pyxida-module-visual.ol-pyxida-scene-visual-wrap--praxi {
+    max-height: none;
+    min-height: 0;
+    height: auto;
+    contain: layout style;
+    isolation: isolate;
+  }
+
+  .home-pyxida-offer .home-pyxida-module-visual .ol-visual-stage,
+  .home-pyxida-offer .home-pyxida-module-visual .ol-visual-stage--pyxida {
+    min-height: 15.5rem;
+    max-height: 15.5rem;
+    height: 15.5rem;
+    flex: none;
+    will-change: auto;
+  }
+
+  .home-pyxida-offer .home-pyxida-module-visual .ol-visual-wrap,
+  .home-pyxida-offer .home-pyxida-module-visual .ol-product-frame {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .home-pyxida-offer .home-pyxida-module-visual .ol-wave-bar {
+    animation: none !important;
+    transform: scaleY(0.65);
+  }
+
+  .home-pyxida-offer .home-pyxida-module-copy .ol-praxi-module-features li::before {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-pyxida-offer .home-pyxida-module-visual .ol-visual-stage,
+  .home-pyxida-offer .home-pyxida-module-visual .ol-visual-stage--pyxida {
+    min-height: 14rem;
+    max-height: 14rem;
+    height: 14rem;
   }
 }

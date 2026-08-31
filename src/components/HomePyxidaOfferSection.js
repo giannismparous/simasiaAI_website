@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
 import { ProductVisualLanguageProvider } from '../contexts/ProductVisualLanguageContext';
@@ -11,7 +11,7 @@ const PYXIDA_NAME = 'Pyxida';
 
 const moduleIndexLabel = (prefix, index) => `${prefix || 'Module'} ${index + 1}`;
 
-const HomePraxiModule = ({ tier, index, offer, setupPrice }) => {
+const HomePraxiModule = memo(({ tier, index, offer, setupPrice }) => {
   const features = tier.scrollFeatures || tier.features?.slice(0, 4) || [];
   const perMonth = offer.billingPerMonth || '/μήνα';
   const monthlyAmount = tier.priceMonthly || tier.price;
@@ -56,7 +56,9 @@ const HomePraxiModule = ({ tier, index, offer, setupPrice }) => {
       </div>
     </article>
   );
-};
+});
+
+HomePraxiModule.displayName = 'HomePraxiModule';
 
 const renderFeatureText = (text, brandName) => {
   if (!text || !brandName || !text.includes(brandName)) return text;
