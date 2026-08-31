@@ -1,18 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
 import './Footer.css';
 
 const Footer = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
   const year = new Date().getFullYear();
+
+  const handleBrandClick = (e) => {
+    e.preventDefault();
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    navigate('/');
+  };
+
   return (
     <footer className="site-footer">
       <div className="footer-dots" aria-hidden="true" />
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link to="/" className="footer-logo-lockup" aria-label="SimasiaAI">
+            <Link to="/" className="footer-logo-lockup" onClick={handleBrandClick} aria-label="SimasiaAI">
               <img src="/logos/simasiaai.PNG" alt="" className="footer-logo" />
               <span className="footer-wordmark">imasiaAI</span>
             </Link>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ReactCountryFlag from 'react-country-flag';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTranslation } from '../hooks/useTranslation';
@@ -11,6 +11,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
   const { language, toggleLanguage } = useLanguage();
   const { t } = useTranslation();
   const isDarkHero = DARK_HERO_ROUTES.includes(location.pathname);
@@ -29,9 +30,14 @@ const Navbar = () => {
 
   useEffect(() => { setIsMobileMenuOpen(false); }, [location.pathname]);
 
-  const handleLogoClick = (e) => {
+  const handleBrandClick = (e) => {
+    e.preventDefault();
     setIsMobileMenuOpen(false);
-    if (location.pathname === '/') { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    navigate('/');
   };
 
   const navLinks = [
@@ -50,7 +56,7 @@ const Navbar = () => {
         className={`navbar${scrolled ? ' scrolled' : ''}${isDarkHero && !scrolled ? ' dark-hero' : ''}`}
       >
         <div className="container">
-          <Link to="/" className="logo" onClick={handleLogoClick} aria-label="SimasiaAI">
+          <Link to="/" className="logo" onClick={handleBrandClick} aria-label="SimasiaAI">
             <span className="logo-lockup">
               <img src="/logos/simasiaai.PNG" alt="" className="logo-img" />
               <span className="logo-wordmark">imasiaAI</span>

@@ -118,7 +118,11 @@
   display: inline-flex;
   align-items: flex-end;
   min-height: 1.49rem;
-  min-width: 1.56rem;
+  width: calc(1.56rem + 0.11rem + 8.8rem);
+  min-width: calc(1.56rem + 0.11rem + 8.8rem);
+  transition:
+    width 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
+    min-width 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
 }
 .logo-img {
   width: 1.56rem;
@@ -148,12 +152,18 @@
   overflow: hidden;
   opacity: 1;
   visibility: visible;
-  pointer-events: none;
   transition:
     transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0s,
     max-width 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
     opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
     visibility 0s linear 0s;
+}
+.navbar.scrolled .logo-lockup {
+  width: 1.56rem;
+  min-width: 1.56rem;
+  transition:
+    width 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0s,
+    min-width 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0s;
 }
 .navbar.scrolled .logo-wordmark {
   max-width: 0;
