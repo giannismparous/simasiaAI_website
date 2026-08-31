@@ -1,3 +1,4 @@
+# Netlify deploy config
 [build]
   command = "npm run build:knowledge && npm run build"
   publish = "build"
