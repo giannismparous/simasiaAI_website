@@ -177,6 +177,23 @@
   .footer-col p {
     text-align: center;
   }
+  .footer-col h4 {
+    text-align: center;
+  }
+  .footer-social-links {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0.65rem;
+    margin-top: 0.75rem;
+  }
+  .footer-social-links a {
+    display: block;
+    width: auto;
+    text-align: center;
+    margin-bottom: 0;
+  }
   .footer-bottom {
     flex-direction: column;
     justify-content: center;
