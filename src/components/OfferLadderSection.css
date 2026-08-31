@@ -1375,6 +1375,11 @@
   .ol-pyxida-offer-billing-hint-badge {
     animation: none;
   }
+
+  .ol-wave-bar--animated {
+    animation: none;
+    transform: scaleY(0.55);
+  }
 }
 
 .ol-pyxida-offer-billing-switch-btn {
@@ -4956,6 +4961,18 @@
   transform-origin: center;
 }
 
+@keyframes ol-wave-bar-dance {
+  0%, 100% { transform: scaleY(0.35); }
+  25% { transform: scaleY(1); }
+  50% { transform: scaleY(0.5); }
+  75% { transform: scaleY(0.85); }
+}
+
+.ol-wave-bar--animated {
+  animation: ol-wave-bar-dance 1.15s ease-in-out infinite;
+  animation-delay: calc(var(--wave-i, 0) * 0.05s);
+}
+
 .ol-voice-caption {
   text-align: center;
   font-size: 0.8rem;
@@ -5756,12 +5773,5 @@
   .ol-crm-rows--large .ol-crm-tag,
   .ol-crm-rows--large .ol-crm-time {
     font-size: 0.54rem;
-  }
-
-  .ol-visual-stage--pyxida .ol-chat-live-dot,
-  .ol-visual-stage--pyxida .ol-voice-live-dot,
-  .ol-visual-stage--pyxida .ol-crm-toast-dot,
-  .ol-visual-stage--pyxida .ol-typing span {
-    animation: none !important;
   }
 }

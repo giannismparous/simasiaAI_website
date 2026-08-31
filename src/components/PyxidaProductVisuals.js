@@ -1,25 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { useProductVisualLanguage } from '../contexts/ProductVisualLanguageContext';
 import { getProductVisualCopy } from '../translations/productVisualCopy';
-
-const MOBILE_VISUAL_MQ = '(max-width: 960px)';
-
-const useIsMobileVisual = () => {
-  const [isMobile, setIsMobile] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia(MOBILE_VISUAL_MQ).matches
-  );
-
-  useEffect(() => {
-    const mq = window.matchMedia(MOBILE_VISUAL_MQ);
-    const onChange = (event) => setIsMobile(event.matches);
-    setIsMobile(mq.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
-
-  return isMobile;
-};
 
 const useCopy = () => getProductVisualCopy(useProductVisualLanguage());
 
@@ -580,7 +561,6 @@ const RecoveryVisual = () => {
 
 const VoiceVisual = () => {
   const c = useCopy().praxiVoice;
-  const isMobile = useIsMobileVisual();
 
   return (
     <ProductFrame title={c.frameTitle} badge="Live 24/7" variant="praxi-voice">
@@ -597,26 +577,13 @@ const VoiceVisual = () => {
           <strong className="ol-voice-caller">{c.caller}</strong>
           <span className="ol-voice-context">{c.context}</span>
           <div className="ol-wave-bars ol-wave-bars--voice">
-            {Array.from({ length: 20 }, (_, i) => {
-              const scaleY = 0.35 + (i % 5) * 0.12;
-              if (isMobile) {
-                return (
-                  <span
-                    key={i}
-                    className="ol-wave-bar"
-                    style={{ transform: `scaleY(${scaleY})` }}
-                  />
-                );
-              }
-              return (
-                <motion.span
-                  key={i}
-                  className="ol-wave-bar"
-                  animate={{ scaleY: [0.3, 1, 0.5, 0.85, 0.35] }}
-                  transition={{ duration: 1.15, repeat: Infinity, delay: i * 0.05, ease: 'easeInOut' }}
-                />
-              );
-            })}
+            {Array.from({ length: 20 }, (_, i) => (
+              <span
+                key={i}
+                className="ol-wave-bar ol-wave-bar--animated"
+                style={{ '--wave-i': i }}
+              />
+            ))}
           </div>
           <div className="ol-voice-actions" aria-hidden="true">
             <span className="ol-voice-btn ol-voice-btn--end">{c.end}</span>

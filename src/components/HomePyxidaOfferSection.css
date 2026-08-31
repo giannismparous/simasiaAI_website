@@ -256,10 +256,6 @@
     line-height: 1.32;
   }
 
-  .home-pyxida-offer .home-pyxida-module-visual .ol-wave-bar {
-    animation: none !important;
-  }
-
   .home-pyxida-offer .home-pyxida-module-copy .ol-praxi-module-features li::before {
     animation: none !important;
   }
