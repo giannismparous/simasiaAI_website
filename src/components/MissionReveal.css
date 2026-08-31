@@ -1,0 +1,38 @@
+/* MissionReveal — blur-cascade word reveal */
+
+.mr-root {
+  margin: 0;
+  /* inline so words wrap naturally */
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(0.92rem, 1.7vw, 1.22rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.65;
+  color: rgba(250, 249, 245, 0.68);
+  /* let words flow inline */
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* Each regular word — inline so they wrap naturally */
+.mr-word {
+  display: inline;
+  white-space: pre-wrap;
+  will-change: opacity, filter;
+}
+
+/* "Pyxida" — inline-block so scale animates correctly */
+.mr-pyxida {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.05em;
+  letter-spacing: 0.03em;
+  color: var(--orange, #d97757);
+  text-shadow:
+    0 0 18px rgba(217, 119, 87, 0.55),
+    0 0 40px rgba(217, 119, 87, 0.25);
+  will-change: opacity, filter, transform;
+}

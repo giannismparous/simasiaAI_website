@@ -476,14 +476,14 @@ const baseTranslations = {
     },
     // Footer
     footer: {
-      tagline: "AI που αποδεικνύει ότι είναι σωστό.",
+      tagline: "",
       navigation: "Πλοήγηση",
       contact: "Επικοινωνία",
       social: "Social Media",
       location: "Αθήνα, Ελλάδα",
       poweredBy: "Powered by Empathy",
       established: "Est. 2025",
-      copyright: "SimasiaAI — \"AI που αποδεικνύει ότι είναι σωστό.\""
+      copyright: "SimasiaAI — Μέτρο μας ο Άνθρωπος"
     },
     // CTA
     cta: {
@@ -991,14 +991,14 @@ const baseTranslations = {
     },
     // Footer
     footer: {
-      tagline: "AI that proves it's right.",
+      tagline: "",
       navigation: "Navigation",
       contact: "Contact",
       social: "Social Media",
       location: "Athens, Greece",
       poweredBy: "Powered by Empathy",
       established: "Est. 2025",
-      copyright: "SimasiaAI — \"AI that proves it's right.\""
+      copyright: "SimasiaAI — The Human Standard"
     },
     // CTA
     cta: {

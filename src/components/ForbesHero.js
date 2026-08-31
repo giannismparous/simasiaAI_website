@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import StarCanvas from './StarCanvas';
 import HeroCareVisual from './HeroCareVisual';
 import { useTranslation } from '../hooks/useTranslation';
+import MissionReveal from './MissionReveal';
 import './ForbesHero.css';
 
 const COMPACT_MQ = '(max-width: 920px)';
@@ -68,14 +69,17 @@ const ForbesHero = () => {
             </motion.div>
           )}
           {isCompact && (
-            <motion.p
-              className="fh-mission fh-mission--inline"
+            <motion.div
+              className="fh-mission-block fh-mission-block--inline"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 1.08, ease: [0.16, 1, 0.3, 1] }}
             >
-              {t('forbesHero.missionLine')}
-            </motion.p>
+              <p className="fh-mission fh-mission-label">{t('forbesHero.missionLine')}</p>
+              {t('forbesHero.missionLineBold') && (
+                <MissionReveal text={t('forbesHero.missionLineBold')} />
+              )}
+            </motion.div>
           )}
           <motion.div
             className="fh-ctas"
@@ -98,7 +102,10 @@ const ForbesHero = () => {
               <HeroCareVisual />
             </div>
             <aside className="fh-aside" aria-label={t('forbesHero.missionLine')}>
-              <p className="fh-mission">{t('forbesHero.missionLine')}</p>
+              <p className="fh-mission fh-mission-label">{t('forbesHero.missionLine')}</p>
+              {t('forbesHero.missionLineBold') && (
+                <MissionReveal text={t('forbesHero.missionLineBold')} />
+              )}
             </aside>
           </motion.div>
         )}

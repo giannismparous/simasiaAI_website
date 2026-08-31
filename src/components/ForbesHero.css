@@ -142,6 +142,38 @@
   margin-inline: auto;
 }
 
+.fh-mission-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.fh-mission-block--inline {
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+.fh-mission-label {
+  font-family: var(--font-sans);
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(250, 249, 245, 0.45);
+  margin: 0;
+}
+
+.fh-mission-bold {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.9vw, 1.35rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(250, 249, 245, 0.75);
+  margin: 0;
+}
+
 .fh-ctas {
   display: flex;
   gap: 1.25rem;
