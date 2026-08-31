@@ -1666,6 +1666,16 @@ const getNavActiveId = (progress, praxiTiers) => {
   return 'pyxida';
 };
 
+const getModuleEntryThresholds = (moduleCount) => {
+  const first = JOURNEY.modKleinei[0] - SCENE_CROSSFADE;
+  const second = JOURNEY.modules[0][0] - SCENE_CROSSFADE;
+  const third = JOURNEY.modules[1][0] - SCENE_CROSSFADE;
+  if (moduleCount >= 3) return [first, second, third];
+  if (moduleCount === 2) return [first, second];
+  if (moduleCount === 1) return [first];
+  return [];
+};
+
 const OfferChapterNav = ({ visible, offer, journeyRef, praxiTiers }) => {
   const { scrollYProgress } = useScroll({
     target: journeyRef,
@@ -1676,24 +1686,14 @@ const OfferChapterNav = ({ visible, offer, journeyRef, praxiTiers }) => {
   const praxiTierIds = praxiTiers.map((tier) => tier.id).join(',');
   const moduleCount = praxiTiers.length;
 
-  const seg0Scale = useTransform(
-    scrollYProgress,
-    [JOURNEY.intro[0], JOURNEY.modKleinei[0]],
-    [0, 1],
-    { clamp: true }
-  );
-  const seg1Scale = useTransform(
-    scrollYProgress,
-    [JOURNEY.modKleinei[0], JOURNEY.modules[0][0]],
-    [0, 1],
-    { clamp: true }
-  );
-  const seg2Scale = useTransform(
-    scrollYProgress,
-    [JOURNEY.modules[0][0], JOURNEY.modules[1][0]],
-    [0, 1],
-    { clamp: true }
-  );
+  const moduleEntryThresholds = getModuleEntryThresholds(moduleCount);
+  const firstEntry = moduleEntryThresholds[0] ?? JOURNEY.modKleinei[0];
+  const secondEntry = moduleEntryThresholds[1] ?? JOURNEY.modules[0][0];
+  const thirdEntry = moduleEntryThresholds[2] ?? JOURNEY.modules[1][0];
+
+  const seg0Scale = useTransform(scrollYProgress, [JOURNEY.intro[0], firstEntry], [0, 1], { clamp: true });
+  const seg1Scale = useTransform(scrollYProgress, [firstEntry, secondEntry], [0, 1], { clamp: true });
+  const seg2Scale = useTransform(scrollYProgress, [secondEntry, thirdEntry], [0, 1], { clamp: true });
   const segmentScales = moduleCount >= 3
     ? [seg0Scale, seg1Scale, seg2Scale]
     : moduleCount === 2
