@@ -6,7 +6,6 @@ import { generateWithTimeout, generateStream } from './geminiService.js';
 import {
   retrieveRelevantDocsWithContext,
   buildContext,
-  detectLanguage,
   detectReplyLanguage,
   expandProductAliases,
   hasSimasiaTopicSignals,

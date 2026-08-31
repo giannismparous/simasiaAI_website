@@ -33,7 +33,6 @@ const useCompactOfferPanels = () => {
 const ease = [0.16, 1, 0.3, 1];
 const SCENE_CROSSFADE = 0.024;
 const CONTENT_REVEAL = 0.36; // stagger content in first 36% of each scene; rest is hold
-const INTRO_CONTENT_REVEAL = 0.26;
 const OFFER_CONTENT_REVEAL = 0.58; // offer scene needs more scroll room for long bullet lists + tail exit
 const scrollEase = easeInOut;
 const PYXIDA_FEAT_START = 0.11;
@@ -91,9 +90,6 @@ const scrollToJourneyProgress = (journeyEl, progress, offset = JOURNEY_NAV_OFFSE
 
 const journeySceneCenter = (start, end) => start + (end - start) * 0.5;
 
-const journeySceneEntry = (start, end, holdFactor = 0.5) =>
-  start + (end - start) * CONTENT_REVEAL * holdFactor;
-
 const getPyxidaScrollTarget = () => journeySceneCenter(...JOURNEY.intro);
 
 const getModuleScrollTarget = (index) => {
@@ -108,13 +104,6 @@ const sceneRange = (start, end) => ({
   holdOut: end - SCENE_CROSSFADE,
   fadeOut: end,
 });
-
-const BrandWordmark = ({ name, subtitle, variant = 'pyxida', size = 'hero' }) => (
-  <div className={`ol-brand ol-brand--${variant} ol-brand--${size}`}>
-    <span className="ol-brand-name">{name}</span>
-    {subtitle && <span className="ol-brand-sub">{subtitle}</span>}
-  </div>
-);
 
 const moduleIndexLabel = (prefix, index) => `${prefix || 'Module'} ${index + 1}`;
 
@@ -519,14 +508,6 @@ const useScrollReveal = (scrollYProgress, start, end, step, totalSteps, revealRa
   return { opacity, y };
 };
 
-/** Intro scene — visible as soon as the journey pins (no blank scroll-in) */
-const useIntroReveal = (scrollYProgress, start, end, step, totalSteps, revealRatio = INTRO_CONTENT_REVEAL) => {
-  const [, fadeOut] = sceneStep(start, end, step, totalSteps, revealRatio);
-  const opacity = useTransform(scrollYProgress, [0, fadeOut, end], [1, 1, 1], { ease: scrollEase });
-  const y = useTransform(scrollYProgress, [0, fadeOut], [0, 0], { ease: scrollEase });
-  return { opacity, y };
-};
-
 /** Intro shell — visible before the journey pins so the handoff from hero is not blank */
 const useIntroShellMotion = (scrollYProgress, start, end) => {
   const { holdIn, holdOut, fadeOut } = sceneRange(start, end);
@@ -746,7 +727,6 @@ const useOfferFloatingPrice = (scrollYProgress, tailTiming, offerOpenRef, costSl
   const {
     solutionRevealStart,
     solutionRevealEnd,
-    costFadeOutStart,
     priceTravelStart,
     settleEnd,
   } = tailTiming;
