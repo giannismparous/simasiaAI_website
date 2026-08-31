@@ -731,89 +731,134 @@ const useOfferFloatingPrice = (scrollYProgress, tailTiming, offerOpenRef, costSl
     settleEnd,
   } = tailTiming;
   const morphStartAnchorRef = useRef(null);
-  const morphEndAnchorRef = useRef(null);
+  const preTravelCostAnchorRef = useRef(null);
+  const minPriceYRef = useRef(0);
 
-  useEffect(() => {
-    const resetAnchors = () => {
-      morphStartAnchorRef.current = null;
-      morphEndAnchorRef.current = null;
-    };
-    window.addEventListener('resize', resetAnchors);
-    return () => window.removeEventListener('resize', resetAnchors);
+  const resetAnchors = useCallback(() => {
+    morphStartAnchorRef.current = null;
+    preTravelCostAnchorRef.current = null;
   }, []);
 
-  const measureCostAnchor = () => {
+  const measureMinPriceY = useCallback(() => {
+    const open = offerOpenRef.current;
+    if (!open) return 0;
+    const core = open.querySelector('.ol-pyxida-offer-core');
+    if (!core) return 0;
+    const openRect = open.getBoundingClientRect();
+    const coreRect = core.getBoundingClientRect();
+    return Math.max(coreRect.bottom - openRect.top + 10, 0);
+  }, [offerOpenRef]);
+
+  useEffect(() => {
+    const open = offerOpenRef.current;
+    if (!open) return undefined;
+
+    const refreshLayout = () => {
+      minPriceYRef.current = measureMinPriceY();
+      resetAnchors();
+    };
+
+    refreshLayout();
+    const resizeObserver = typeof ResizeObserver !== 'undefined'
+      ? new ResizeObserver(refreshLayout)
+      : null;
+    resizeObserver?.observe(open);
+    window.addEventListener('resize', refreshLayout);
+    return () => {
+      resizeObserver?.disconnect();
+      window.removeEventListener('resize', refreshLayout);
+    };
+  }, [offerOpenRef, measureMinPriceY, resetAnchors]);
+
+  const measureCostAnchor = useCallback(() => {
     const open = offerOpenRef.current;
     const cost = costSlotRef.current;
     if (!open || !cost) return null;
 
     const openRect = open.getBoundingClientRect();
     const costRect = cost.getBoundingClientRect();
+    if (costRect.height < 1 || costRect.width < 1) return null;
 
-    return {
+    const anchor = {
       y: costRect.top - openRect.top,
       x: costRect.left - openRect.left + costRect.width / 2,
     };
-  };
 
-  const measureFinalSettleAnchor = (scroll) => {
+    if (anchor.y < minPriceYRef.current) return null;
+    return anchor;
+  }, [offerOpenRef, costSlotRef]);
+
+  const measureFinalSettleAnchor = useCallback((scroll) => {
     const open = offerOpenRef.current;
     const settle = settleSlotRef.current;
     if (!open || !settle) return null;
 
     const openRect = open.getBoundingClientRect();
     const settleRect = settle.getBoundingClientRect();
-    const settleYNow = getSettleYOffset(scroll, tailTiming);
+    if (settleRect.height < 1 || settleRect.width < 1) return null;
 
-    return {
+    const settleYNow = getSettleYOffset(scroll, tailTiming);
+    const anchor = {
       y: settleRect.top - openRect.top + (SETTLE_Y_FINAL - settleYNow),
       x: settleRect.left - openRect.left + settleRect.width / 2,
     };
-  };
 
-  const lockMorphAnchors = (scroll) => {
-    if (morphStartAnchorRef.current && morphEndAnchorRef.current) return;
-    const start = measureCostAnchor();
+    if (anchor.y < minPriceYRef.current) return null;
+    return anchor;
+  }, [offerOpenRef, settleSlotRef, tailTiming]);
+
+  const resolvePricePosition = useCallback((scroll) => {
+    const costAnchor = measureCostAnchor();
+
+    if (scroll < solutionRevealStart) {
+      resetAnchors();
+      return null;
+    }
+
+    if (scroll < priceTravelStart) {
+      morphStartAnchorRef.current = null;
+      if (costAnchor) preTravelCostAnchorRef.current = costAnchor;
+      return costAnchor;
+    }
+
+    if (!morphStartAnchorRef.current) {
+      morphStartAnchorRef.current = preTravelCostAnchorRef.current || costAnchor;
+    }
+
+    const start = morphStartAnchorRef.current;
     const end = measureFinalSettleAnchor(scroll);
-    if (!start || !end) return;
-    morphStartAnchorRef.current = start;
-    morphEndAnchorRef.current = end;
-  };
+    if (!start || !end) return costAnchor || preTravelCostAnchorRef.current;
+
+    const progress = getOfferPriceMorphProgress(scroll, priceTravelStart, settleEnd);
+    return {
+      x: start.x + (end.x - start.x) * progress,
+      y: start.y + (end.y - start.y) * progress,
+    };
+  }, [
+    measureCostAnchor,
+    measureFinalSettleAnchor,
+    priceTravelStart,
+    resetAnchors,
+    settleEnd,
+    solutionRevealStart,
+  ]);
 
   const priceOpacity = useTransform(scrollYProgress, (scroll) => {
+    const position = resolvePricePosition(scroll);
+    if (!position) return 0;
     if (scroll <= solutionRevealStart) return 0;
     if (scroll >= solutionRevealEnd) return 1;
     return (scroll - solutionRevealStart) / (solutionRevealEnd - solutionRevealStart);
   });
 
   const priceTop = useTransform(scrollYProgress, (scroll) => {
-    if (scroll < priceTravelStart) {
-      morphStartAnchorRef.current = null;
-      morphEndAnchorRef.current = null;
-      return measureCostAnchor()?.y ?? 0;
-    }
-
-    lockMorphAnchors(scroll);
-    const start = morphStartAnchorRef.current;
-    const end = morphEndAnchorRef.current;
-    if (!start || !end) return measureCostAnchor()?.y ?? 0;
-
-    const progress = getOfferPriceMorphProgress(scroll, priceTravelStart, settleEnd);
-    return start.y + (end.y - start.y) * progress;
+    const position = resolvePricePosition(scroll);
+    return position?.y ?? minPriceYRef.current;
   });
 
   const priceLeft = useTransform(scrollYProgress, (scroll) => {
-    if (scroll < priceTravelStart) {
-      return measureCostAnchor()?.x ?? 0;
-    }
-
-    lockMorphAnchors(scroll);
-    const start = morphStartAnchorRef.current;
-    const end = morphEndAnchorRef.current;
-    if (!start || !end) return measureCostAnchor()?.x ?? 0;
-
-    const progress = getOfferPriceMorphProgress(scroll, priceTravelStart, settleEnd);
-    return start.x + (end.x - start.x) * progress;
+    const position = resolvePricePosition(scroll);
+    return position?.x ?? 0;
   });
 
   return { priceOpacity, priceTop, priceLeft };
@@ -1691,7 +1736,7 @@ const OfferChapterNav = ({ visible, offer, journeyRef, praxiTiers, scrollYProgre
   const firstEntry = moduleEntryThresholds[0] ?? JOURNEY.modKleinei[0];
   const secondEntry = moduleEntryThresholds[1] ?? JOURNEY.modules[0][0];
   const thirdEntry = moduleEntryThresholds[2] ?? JOURNEY.modules[1][0];
-  const seg0Start = JOURNEY.lead[0];
+  const seg0Start = PYXIDA_OFFER_START;
 
   const seg0Scale = useTransform(scrollYProgress, [seg0Start, firstEntry], [0, 1], { clamp: true });
   const seg1Scale = useTransform(scrollYProgress, [firstEntry, secondEntry], [0, 1], { clamp: true });
