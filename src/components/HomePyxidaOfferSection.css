@@ -223,9 +223,9 @@
 
   .home-pyxida-offer .home-pyxida-module-visual .ol-visual-stage,
   .home-pyxida-offer .home-pyxida-module-visual .ol-visual-stage--pyxida {
-    min-height: 18.5rem !important;
-    max-height: none !important;
-    height: auto !important;
+    min-height: 14.5rem !important;
+    max-height: 15rem !important;
+    height: 15rem !important;
     flex: none;
     will-change: auto;
     overflow: hidden;
@@ -268,6 +268,8 @@
 @media (max-width: 480px) {
   .home-pyxida-offer .home-pyxida-module-visual .ol-visual-stage,
   .home-pyxida-offer .home-pyxida-module-visual .ol-visual-stage--pyxida {
-    min-height: 17rem !important;
+    min-height: 13.25rem !important;
+    max-height: 13.75rem !important;
+    height: 13.5rem !important;
   }
 }

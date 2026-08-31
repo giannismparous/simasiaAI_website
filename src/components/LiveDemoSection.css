@@ -692,9 +692,9 @@
   }
 
   .fin-chat {
-    min-height: 22.5rem;
-    height: 22.5rem;
-    max-height: 22.5rem;
+    min-height: 18rem;
+    height: 18rem;
+    max-height: 18rem;
     width: 100%;
     border-radius: 18px;
   }
