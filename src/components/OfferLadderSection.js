@@ -1676,11 +1676,12 @@ const getModuleEntryThresholds = (moduleCount) => {
   return [];
 };
 
-const OfferChapterNav = ({ visible, offer, journeyRef, praxiTiers }) => {
-  const { scrollYProgress } = useScroll({
+const OfferChapterNav = ({ visible, offer, journeyRef, praxiTiers, scrollYProgress: externalScrollYProgress }) => {
+  const fallbackScroll = useScroll({
     target: journeyRef,
     offset: ['start start', 'end end'],
   });
+  const scrollYProgress = externalScrollYProgress ?? fallbackScroll.scrollYProgress;
 
   const [activeId, setActiveId] = useState('pyxida');
   const praxiTierIds = praxiTiers.map((tier) => tier.id).join(',');
@@ -1690,8 +1691,9 @@ const OfferChapterNav = ({ visible, offer, journeyRef, praxiTiers }) => {
   const firstEntry = moduleEntryThresholds[0] ?? JOURNEY.modKleinei[0];
   const secondEntry = moduleEntryThresholds[1] ?? JOURNEY.modules[0][0];
   const thirdEntry = moduleEntryThresholds[2] ?? JOURNEY.modules[1][0];
+  const seg0Start = JOURNEY.lead[0];
 
-  const seg0Scale = useTransform(scrollYProgress, [JOURNEY.intro[0], firstEntry], [0, 1], { clamp: true });
+  const seg0Scale = useTransform(scrollYProgress, [seg0Start, firstEntry], [0, 1], { clamp: true });
   const seg1Scale = useTransform(scrollYProgress, [firstEntry, secondEntry], [0, 1], { clamp: true });
   const seg2Scale = useTransform(scrollYProgress, [secondEntry, thirdEntry], [0, 1], { clamp: true });
   const segmentScales = moduleCount >= 3
@@ -2204,6 +2206,7 @@ const OfferLadderSection = ({ heroPrefix = null }) => {
         offer={offer}
         journeyRef={offerJourneyRef}
         praxiTiers={praxiTiers}
+        scrollYProgress={chapterScroll?.scrollYProgress}
       />
 
       <div className="ol-chapter" ref={chapterRef}>
