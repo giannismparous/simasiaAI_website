@@ -692,13 +692,21 @@
   }
 
   .fin-chat {
-    height: min(480px, 68vh);
+    min-height: 22.5rem;
+    height: 22.5rem;
+    max-height: 22.5rem;
     width: 100%;
     border-radius: 18px;
   }
 
   .fin-chat-body {
-    padding: 1.2rem 1rem 1.1rem;
+    padding: 1rem 0.85rem 0.95rem;
+    font-size: 0.82rem;
+  }
+
+  .fin-chat-body .fin-msg {
+    font-size: 0.78rem;
+    line-height: 1.42;
   }
 
   .demo-internals {

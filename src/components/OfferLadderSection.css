@@ -5026,7 +5026,7 @@
   }
 }
 
-@media (max-height: 780px) {
+@media (max-height: 780px) and (min-width: 961px) {
   .ol-pyxida-scene-slot {
     height: min(82vh, 640px);
   }
@@ -5075,11 +5075,13 @@
   }
 
   .ol-pyxida-scene-visual-wrap {
-    max-height: min(38vh, 300px);
+    max-height: none;
+    min-height: 18.5rem;
   }
 
   .ol-pyxida-scene-visual-wrap .ol-visual-stage {
-    max-height: min(38vh, 300px);
+    max-height: none;
+    min-height: 18.5rem;
   }
 
   .ol-pyxida-scene-grid,
@@ -5104,8 +5106,9 @@
   }
 
   .ol-visual-stage--pyxida {
-    min-height: clamp(220px, 36vh, 340px);
-    max-height: min(40vh, 340px);
+    min-height: 18.5rem;
+    max-height: none;
+    height: auto;
   }
 
   .ol-crm-stats {
@@ -5429,7 +5432,8 @@
     order: 2 !important;
     flex-shrink: 0;
     align-self: stretch;
-    max-height: min(34vh, 280px);
+    max-height: none !important;
+    min-height: 18.5rem;
     width: 100%;
     margin: 0;
     padding-top: 0;
@@ -5438,8 +5442,8 @@
   }
 
   .ol-pyxida-scene-visual-wrap--praxi .ol-visual-stage--pyxida {
-    min-height: clamp(200px, 32vh, 280px);
-    max-height: min(34vh, 280px);
+    min-height: 18.5rem;
+    max-height: none !important;
     height: auto;
   }
 
@@ -5581,12 +5585,13 @@
   }
 
   .ol-pyxida-scene-visual-wrap--praxi {
-    max-height: min(32vh, 260px);
+    max-height: none !important;
+    min-height: 17rem;
   }
 
   .ol-pyxida-scene-visual-wrap--praxi .ol-visual-stage--pyxida {
-    min-height: clamp(190px, 30vh, 260px);
-    max-height: min(32vh, 260px);
+    min-height: 17rem;
+    max-height: none !important;
   }
 
   .ol-praxi-module-copy .ol-scene-title {
@@ -5595,5 +5600,167 @@
 
   .ol-praxi-module-copy .ol-praxi-module-features {
     max-height: 4.2rem;
+  }
+}
+
+/* Mobile product mocks — fit content, stable layout, no motion jank */
+@media (max-width: 960px) {
+  .ol-visual-stage--pyxida .ol-visual-wrap {
+    padding: 0.45rem;
+  }
+
+  .ol-product-chrome {
+    padding: 0.42rem 0.58rem;
+    gap: 0.35rem;
+  }
+
+  .ol-product-title {
+    font-size: 0.68rem;
+  }
+
+  .ol-product-badge {
+    font-size: 0.54rem;
+    padding: 0.2rem 0.42rem;
+  }
+
+  .ol-product-screen {
+    padding: 0.42rem;
+  }
+
+  .ol-chat-app-header {
+    padding: 0.42rem 0.52rem;
+    gap: 0.4rem;
+  }
+
+  .ol-chat-app-header strong {
+    font-size: 0.66rem;
+  }
+
+  .ol-chat-app-header span {
+    font-size: 0.56rem;
+  }
+
+  .ol-chat-app-avatar {
+    width: 1.4rem;
+    height: 1.4rem;
+    font-size: 0.56rem;
+  }
+
+  .ol-chat-app-compose {
+    padding: 0.38rem 0.5rem;
+    font-size: 0.56rem;
+  }
+
+  .ol-chat-ui {
+    gap: 0.32rem;
+    padding: 0.32rem;
+  }
+
+  .ol-bubble {
+    font-size: 0.6rem;
+    padding: 0.36rem 0.46rem;
+    line-height: 1.32;
+  }
+
+  .ol-chat-avatar {
+    width: 1.35rem;
+    height: 1.35rem;
+    font-size: 0.56rem;
+  }
+
+  .ol-chat-time {
+    font-size: 0.5rem;
+  }
+
+  .ol-gcal-title {
+    font-size: 0.78rem;
+  }
+
+  .ol-gcal-month,
+  .ol-gcal-view-btn,
+  .ol-gcal-today {
+    font-size: 0.58rem;
+  }
+
+  .ol-gcal-dayhead {
+    font-size: 0.52rem;
+  }
+
+  .ol-gcal-block-title {
+    font-size: 0.52rem;
+  }
+
+  .ol-gcal-block-time {
+    font-size: 0.48rem;
+  }
+
+  .ol-kanban-head {
+    font-size: 0.62rem;
+  }
+
+  .ol-kanban-card strong {
+    font-size: 0.72rem;
+  }
+
+  .ol-kanban-card span {
+    font-size: 0.58rem;
+  }
+
+  .ol-recovery-ui .ol-rec-row strong {
+    font-size: 0.68rem;
+  }
+
+  .ol-recovery-ui .ol-rec-row p {
+    font-size: 0.58rem;
+  }
+
+  .ol-voice-avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 0.68rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .ol-voice-caller {
+    font-size: 0.74rem;
+  }
+
+  .ol-voice-context {
+    font-size: 0.58rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .ol-wave-bars--voice {
+    height: 26px;
+    margin-bottom: 0.35rem;
+  }
+
+  .ol-voice-btn {
+    font-size: 0.54rem;
+    padding: 0.26rem 0.5rem;
+  }
+
+  .ol-voice-stat span {
+    font-size: 0.52rem;
+  }
+
+  .ol-voice-stat strong {
+    font-size: 0.68rem;
+  }
+
+  .ol-crm-rows--large .ol-crm-name {
+    font-size: 0.66rem;
+  }
+
+  .ol-crm-rows--large .ol-crm-tag,
+  .ol-crm-rows--large .ol-crm-time {
+    font-size: 0.54rem;
+  }
+
+  .ol-visual-stage--pyxida .ol-chat-live-dot,
+  .ol-visual-stage--pyxida .ol-voice-live-dot,
+  .ol-visual-stage--pyxida .ol-crm-toast-dot,
+  .ol-visual-stage--pyxida .ol-typing span {
+    animation: none !important;
   }
 }

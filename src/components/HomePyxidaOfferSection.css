@@ -211,23 +211,24 @@
     grid-row: 2;
   }
 
-  /* Fixed visual height — avoids vh resize thrash on mobile browsers */
+  /* Fixed visual height — stable on mobile browsers (min-height only, no vh) */
   .home-pyxida-offer .home-pyxida-module-visual.ol-pyxida-scene-visual-wrap,
   .home-pyxida-offer .home-pyxida-module-visual.ol-pyxida-scene-visual-wrap--praxi {
-    max-height: none;
+    max-height: none !important;
     min-height: 0;
     height: auto;
-    contain: layout style;
-    isolation: isolate;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   .home-pyxida-offer .home-pyxida-module-visual .ol-visual-stage,
   .home-pyxida-offer .home-pyxida-module-visual .ol-visual-stage--pyxida {
-    min-height: 15.5rem;
-    max-height: 15.5rem;
-    height: 15.5rem;
+    min-height: 18.5rem !important;
+    max-height: none !important;
+    height: auto !important;
     flex: none;
     will-change: auto;
+    overflow: hidden;
   }
 
   .home-pyxida-offer .home-pyxida-module-visual .ol-visual-wrap,
@@ -236,9 +237,27 @@
     height: 100%;
   }
 
+  .home-pyxida-offer .home-pyxida-module-visual .ol-product-title {
+    font-size: 0.68rem;
+  }
+
+  .home-pyxida-offer .home-pyxida-module-visual .ol-product-badge {
+    font-size: 0.54rem;
+    padding: 0.2rem 0.42rem;
+  }
+
+  .home-pyxida-offer .home-pyxida-module-visual .ol-product-screen {
+    padding: 0.42rem;
+  }
+
+  .home-pyxida-offer .home-pyxida-module-visual .ol-bubble {
+    font-size: 0.6rem;
+    padding: 0.38rem 0.48rem;
+    line-height: 1.32;
+  }
+
   .home-pyxida-offer .home-pyxida-module-visual .ol-wave-bar {
     animation: none !important;
-    transform: scaleY(0.65);
   }
 
   .home-pyxida-offer .home-pyxida-module-copy .ol-praxi-module-features li::before {
@@ -249,8 +268,6 @@
 @media (max-width: 480px) {
   .home-pyxida-offer .home-pyxida-module-visual .ol-visual-stage,
   .home-pyxida-offer .home-pyxida-module-visual .ol-visual-stage--pyxida {
-    min-height: 14rem;
-    max-height: 14rem;
-    height: 14rem;
+    min-height: 17rem !important;
   }
 }
