@@ -3,7 +3,7 @@
 }
 
 .target-audience-hero {
-    padding: 8rem 0 3rem;
+    padding: calc(var(--hero-nav-extra, 1.05rem) + 8rem) 0 3rem;
     background: var(--white);
 }
 
@@ -79,7 +79,7 @@
 
 @media (max-width: 768px) {
     .target-audience-hero {
-        padding: 8rem 0 2rem !important;
+        padding: calc(var(--hero-nav-extra, 1.05rem) + 8rem) 0 2rem !important;
     }
 
     .audience-card {

@@ -6,8 +6,28 @@
   scroll-margin-top: 80px;
 }
 
+.collabs-copy h2 .brand-pyxida-link {
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.brand-pyxida-link {
+  color: #4a7ab5;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, #4a7ab5 35%, transparent);
+  text-underline-offset: 0.14em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.brand-pyxida-link:hover {
+  color: #2d5a8a;
+  text-decoration-color: #2d5a8a;
+}
+
 .collabs-copy {
-  max-width: 680px;
+  max-width: none;
+  width: 100%;
 }
 
 .collabs-copy h2 {
@@ -26,7 +46,7 @@
   line-height: 1.75;
   color: var(--ink-soft);
   margin-bottom: 1.25rem;
-  max-width: 620px;
+  max-width: none;
 }
 
 .collabs-copy p:last-of-type {

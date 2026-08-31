@@ -462,7 +462,7 @@ export function isBookingOrMeetingIntent(text) {
 export function answerInvitesBookDemo(text) {
   const raw = String(text || '');
   if (!raw.trim()) return false;
-  if (/\/book-demo/i.test(raw)) return true;
+  if (/\/demo/i.test(raw)) return true;
   const t = normalize(raw);
   if (
     /κλεισ(?:τε|ετε|ουμε|ω|ει).{0,48}demo|demo.{0,48}κλεισ|book.{0,24}demo|schedule.{0,24}demo|κλεισ(?:τε|ετε|ουμε|ω).{0,40}ραντεβ/.test(
@@ -496,17 +496,13 @@ export function isContactIntent(text) {
 export function bookDemoSource(language = 'el') {
   return {
     title: language === 'el' ? 'Κλείστε Demo — φόρμα' : 'Book a Demo — form',
-    url: '/book-demo',
+    url: '/demo',
     category: 'contact',
   };
 }
 
 export function contactFormSource(language = 'el') {
-  return {
-    title: language === 'el' ? 'Φόρμα επικοινωνίας' : 'Contact form',
-    url: '/#contact',
-    category: 'contact',
-  };
+  return bookDemoSource(language);
 }
 
 /** Keep booking answers clean — CTA button + sources carry the link. */
@@ -515,8 +511,8 @@ export function ensureBookDemoInAnswer(answer, language = 'el') {
   if (!t) return t;
   // Drop raw path mentions; the UI button opens the form.
   t = t
-    .replace(/\s*(?:εδώ|here)?\s*:?\s*\/book-demo\b/gi, '')
-    .replace(/\/book-demo\b/gi, '')
+    .replace(/\s*(?:εδώ|here)?\s*:?\s*\/demo\b/gi, '')
+    .replace(/\/demo\b/gi, '')
     .replace(/\s{2,}/g, ' ')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
@@ -555,43 +551,131 @@ export function ensureBookDemoInAnswer(answer, language = 'el') {
   return `${t}\n\n${line}`;
 }
 
-/** Keep contact answers clean — CTA button + sources carry the link. */
+/** Contact intents use the same demo form CTA. */
 export function ensureContactFormInAnswer(answer, language = 'el') {
-  let t = String(answer || '').trim();
-  if (!t) return t;
-  t = t
-    .replace(/\s*(?:εδώ|here)?\s*:?\s*\/#contact\b/gi, '')
-    .replace(/\/#contact\b/gi, '')
-    .replace(/[ \t]+\n/g, '\n')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
-  if (/φορμα|φόρμα|form|επικοινων|contact@/i.test(t)) {
-    if (!/contact@simasiaai\.gr/i.test(t)) {
-      return language === 'el'
-        ? `${t}\n\nEmail: contact@simasiaai.gr`
-        : `${t}\n\nEmail: contact@simasiaai.gr`;
-    }
-    return t;
-  }
-  const line =
-    language === 'el'
-      ? 'Μπορείτε να μας γράψετε στη φόρμα επικοινωνίας παρακάτω.\nEmail: contact@simasiaai.gr'
-      : 'You can reach us via the contact form below.\nEmail: contact@simasiaai.gr';
-  return `${t}\n\n${line}`;
+  return ensureBookDemoInAnswer(answer, language);
 }
 
 export function withBookDemoSource(sources, language = 'el') {
   const list = Array.isArray(sources)
-    ? sources.filter((s) => s && s.url !== '/book-demo')
+    ? sources.filter((s) => s && s.url !== '/demo')
     : [];
   return [bookDemoSource(language), ...list];
 }
 
 export function withContactFormSource(sources, language = 'el') {
-  const list = Array.isArray(sources)
-    ? sources.filter((s) => s && s.url !== '/#contact' && s.url !== '/')
-    : [];
-  return [contactFormSource(language), ...list];
+  return withBookDemoSource(sources, language);
+}
+
+const NAV_PAGE_LABELS = {
+  '/ypodochi': { el: 'Δείτε το Pyxida', en: 'Explore Pyxida' },
+  '/collaborations': { el: 'Δείτε τις συνεργασίες', en: 'View collaborations' },
+  '/team': { el: 'Γνωρίστε την ομάδα', en: 'Meet the team' },
+  '/news': { el: 'Νέα & άρθρα', en: 'News & articles' },
+  '/': { el: 'SimasiaAI — αρχική', en: 'SimasiaAI home' },
+};
+
+const MODULE_TIER_LABELS = {
+  apanta: { el: 'Δείτε το Απαντάει', en: 'Explore Apanta' },
+  kleinei: { el: 'Δείτε το module Κλείνει', en: 'Explore Kleinei' },
+  fernei: { el: 'Δείτε το module Φέρνει Πίσω', en: 'Explore Fernei' },
+  sikonei: { el: 'Δείτε το module Σηκώνει', en: 'Explore Sikonei' },
+};
+
+function detectModuleTier(text) {
+  const q = normalize(String(text || ''));
+  const tiers = [
+    ['kleinei', /kleinei|κλεινει|module\s*1\b|κρατηση|ραντεβου/],
+    ['fernei', /fernei|φερνει|module\s*2\b|πισω|recall|leads/],
+    ['sikonei', /sikonei|σηκωνει|module\s*3\b|φωνη|voice|τηλεφων/],
+    ['apanta', /apanta|απαντα|απανταει|core\b|βαση\b|βασικ/],
+  ];
+  for (const [id, rx] of tiers) {
+    if (rx.test(q)) return id;
+  }
+  return null;
+}
+
+/** User is exploring a product/page topic (not booking demo or contact). */
+export function isProductExploreIntent(text) {
+  const q = normalize(String(text || ''));
+  if (!q) return false;
+  if (isBookingOrMeetingIntent(q) || isContactIntent(q)) return false;
+  return /pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|apanta|απαντα|module|modules|kleinei|fernei|sikonei|κλεινει|φερνει|σηκωνει|product|προιον|τιμ|price|feature|λειτουργ|τι κανει|what does|tell me about|ypodochi|συνεργ|sinerg|synerg|collabor|partner|ομαδ|omada|team|founder|ιδρυτ|νεα|news|αρθρ|τι ειναι|what is|πακετο|tier|προσφορ/i.test(
+    q
+  );
+}
+
+/**
+ * CTA to a navbar page inferred from retrieval + question (not FAQ hardcoding).
+ * @returns {{ url: string, label: string } | null}
+ */
+export function resolveProductPageCta({
+  question = '',
+  answer = '',
+  docs = [],
+  language = 'el',
+  showDemoCta = false,
+} = {}) {
+  if (showDemoCta) return null;
+
+  const exploreQ = isProductExploreIntent(question);
+  const exploreA = isProductExploreIntent(answer);
+  if (!exploreQ && !exploreA) return null;
+
+  const lang = language === 'en' ? 'en' : 'el';
+  const combined = `${question} ${answer}`;
+
+  const tier = detectModuleTier(combined);
+  if (tier && MODULE_TIER_LABELS[tier]) {
+    return {
+      url: `/ypodochi#tier-${tier}`,
+      label: MODULE_TIER_LABELS[tier][lang],
+    };
+  }
+
+  const allowed = new Set(['/ypodochi', '/collaborations', '/team', '/news', '/']);
+  const scores = new Map();
+
+  (docs || []).forEach((doc) => {
+    if (!doc || doc.source?.type === 'faq') return;
+    let url = String(doc.url || '').trim().replace(/\/+$/, '') || '';
+    if (!allowed.has(url)) return;
+    const weight = Number(doc.relevanceScore || 0.5);
+    scores.set(url, (scores.get(url) || 0) + weight);
+  });
+
+  const q = normalize(question);
+  if (/pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|module|ypodochi|απαντα/.test(q)) {
+    scores.set('/ypodochi', (scores.get('/ypodochi') || 0) + 1.5);
+  }
+  if (/συνεργ|sinerg|synerg|collabor|partner|poamskp|myrto/.test(q)) {
+    scores.set('/collaborations', (scores.get('/collaborations') || 0) + 1.5);
+  }
+  if (/ομαδ|omada|team|founder|ιδρυτ|μελη/.test(q)) {
+    scores.set('/team', (scores.get('/team') || 0) + 1.5);
+  }
+  if (/νεα|news|αρθρ|article/.test(q)) {
+    scores.set('/news', (scores.get('/news') || 0) + 1.5);
+  }
+
+  let bestUrl = null;
+  let bestScore = 0;
+  scores.forEach((score, url) => {
+    if (score > bestScore) {
+      bestScore = score;
+      bestUrl = url;
+    }
+  });
+
+  if (!bestUrl || bestScore < 0.35) {
+    if (/pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|module/.test(q)) bestUrl = '/ypodochi';
+    else return null;
+  }
+
+  const labels = NAV_PAGE_LABELS[bestUrl];
+  if (!labels) return null;
+  return { url: bestUrl, label: labels[lang] };
 }
 
 export function toUserFacingError(error, language) {
@@ -610,6 +694,32 @@ export function toUserFacingError(error, language) {
 
       : 'The chatbot is not configured on the server yet. Please contact the development team.';
 
+  }
+
+  if (
+    msg.includes('401') ||
+    msg.includes('invalid authentication') ||
+    msg.includes('gemini_upstream_error') ||
+    msg.includes('api key not valid')
+  ) {
+    return isEl
+      ? 'Το chatbot δεν μπορεί να συνδεθεί με το AI — το API key δεν είναι έγκυρο. Χρειάζεται έγκυρο Google Gemini key στο server.'
+      : 'The chatbot cannot reach AI — the API key is invalid. A valid Google Gemini key is required on the server.';
+  }
+
+  if (
+    msg.includes('econnrefused') ||
+    msg.includes('failed to fetch') ||
+    msg.includes('networkerror') ||
+    msg.includes('proxy url not configured') ||
+    msg.includes('504') ||
+    msg.includes('gateway timeout') ||
+    msg.includes('gemini stream failed') ||
+    msg.includes('proxy:')
+  ) {
+    return isEl
+      ? 'Δεν βρέθηκε ο server του chatbot. Τοπικά: τρέξτε «npm run proxy:gemini» σε δεύτερο terminal μαζί με npm start.'
+      : 'Chatbot server not reachable. Locally: run «npm run proxy:gemini» in a second terminal alongside npm start.';
   }
 
   if (msg.includes('403') || msg.includes('origin_not_allowed') || msg.includes('permission')) {

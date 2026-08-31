@@ -200,7 +200,7 @@ const Impact = () => {
                         {t('collaborations.current.contact')}
                       </a>
                       <Link 
-                        to="/book-demo" 
+                        to="/demo" 
                         className="btn btn-primary"
                         style={{ background: 'rgba(255, 255, 255, 0.2)', border: '2px solid rgba(255, 255, 255, 0.5)', color: 'var(--white)' }}
                       >

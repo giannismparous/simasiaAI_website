@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 5.5rem 2rem 4.5rem;
+  padding: calc(var(--hero-nav-extra, 1.05rem) + 5.5rem) 2rem 4.5rem;
 }
 
 .fh-section::before {
@@ -26,26 +26,26 @@
   max-width: none;
   margin: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   align-items: center;
   padding: 0 clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .fh-inner {
   grid-column: 1;
-  max-width: min(44rem, 100%);
+  max-width: min(52rem, 100%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  gap: 1.5rem;
+  gap: 1.25rem;
   transform: translate(42px, calc(2vh - 112px));
   padding-left: clamp(0.5rem, 4vw, 3rem);
 }
 
 .fh-headline {
   font-family: var(--font-sans);
-  font-size: clamp(1.7rem, 3.4vw, 2.75rem);
+  font-size: clamp(2rem, 4.5vw, 3.35rem);
   font-weight: 700;
   color: var(--light, #faf9f5);
   line-height: 1.05;
@@ -74,14 +74,73 @@
 
 .fh-sub {
   font-family: var(--font-serif);
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1.1rem, 2.4vw, 1.45rem);
   color: rgba(250, 249, 245, 0.65);
   line-height: 1.8;
-  max-width: 32rem;
+  max-width: 42rem;
   margin: 0;
 }
 
 .fh-sub em { color: rgba(250, 249, 245, 0.9); font-style: italic; }
+
+.fh-right-col {
+  position: relative;
+  grid-column: 2;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  max-width: min(36rem, 100%);
+  justify-self: center;
+  min-height: clamp(30rem, 58vh, 40rem);
+  transform: translateY(calc(2vh - 72px + clamp(4rem, 11vh, 7rem)));
+  pointer-events: none;
+}
+
+.fh-visual {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) translateY(clamp(3rem, 7vh, 5rem));
+  width: min(24rem, 100%);
+  pointer-events: auto;
+}
+
+.fh-visual--inline {
+  position: static;
+  transform: none;
+  width: min(14rem, 52vw);
+  margin-inline: auto;
+}
+
+.fh-mission {
+  margin: 0;
+  max-width: none;
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.15vw, 1.62rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: rgba(250, 249, 245, 0.62);
+  text-align: center;
+}
+
+.fh-aside {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.fh-mission--inline {
+  max-width: 40rem;
+  font-size: clamp(1rem, 3.6vw, 1.18rem);
+  margin-inline: auto;
+}
 
 .fh-ctas {
   display: flex;
@@ -94,8 +153,8 @@
 .fh-btn-primary {
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: 0.9rem;
-  padding: 0.875rem 1.875rem;
+  font-size: 1rem;
+  padding: 0.95rem 2rem;
   background: var(--orange, #d97757);
   color: #fff;
   border-radius: 6px;
@@ -108,7 +167,7 @@
 .fh-btn-ghost {
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 0.88rem;
+  font-size: 0.98rem;
   color: rgba(250, 249, 245, 0.55);
   text-decoration: none;
   display: flex;
@@ -160,7 +219,7 @@
   .fh-section {
     min-height: auto;
     height: auto;
-    padding: 6.75rem 1.5rem 4.75rem;
+    padding: calc(var(--hero-nav-extra, 1.05rem) + 6.75rem) 1.5rem 4.75rem;
     align-items: center;
   }
   .fh-layout {
@@ -172,7 +231,7 @@
   }
   .fh-inner {
     grid-column: 1;
-    max-width: min(36rem, 100%);
+    max-width: min(42rem, 100%);
     padding-left: 0;
     transform: none;
     align-items: center;
@@ -180,11 +239,12 @@
     gap: 1.25rem;
   }
   .fh-headline {
-    font-size: clamp(1.4rem, 4.8vw, 2.1rem);
+    font-size: clamp(1.65rem, 5.5vw, 2.45rem);
     justify-content: center;
     flex-wrap: wrap;
     white-space: normal;
     row-gap: 0.15em;
+    max-width: min(34rem, 100%);
   }
   .fh-rule {
     transform-origin: center;
@@ -192,6 +252,10 @@
   }
   .fh-sub {
     margin-inline: auto;
+  }
+  .fh-mission--inline {
+    text-align: center;
+    padding: 0 0.5rem;
   }
   .fh-ctas {
     justify-content: center;
@@ -206,21 +270,21 @@
 
 @media (max-width: 640px) {
   .fh-section {
-    padding: 6.5rem 1.25rem 4.5rem;
+    padding: calc(var(--hero-nav-extra, 1.05rem) + 6.5rem) 1.25rem 4.5rem;
   }
   .fh-inner {
     max-width: 100%;
     gap: 1.15rem;
   }
   .fh-headline {
-    font-size: clamp(1.35rem, 6.2vw, 1.75rem);
+    font-size: clamp(1.5rem, 7vw, 2rem);
     letter-spacing: -0.03em;
-    max-width: 17ch;
+    max-width: min(30rem, 100%);
   }
   .fh-sub {
-    font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+    font-size: clamp(1.05rem, 4.2vw, 1.22rem);
     line-height: 1.65;
-    max-width: 28rem;
+    max-width: 36rem;
     padding: 0 0.25rem;
   }
   .fh-ctas {
@@ -251,10 +315,10 @@
 
 @media (max-width: 380px) {
   .fh-headline {
-    font-size: 1.28rem;
-    max-width: 14ch;
+    font-size: 1.45rem;
+    max-width: min(26rem, 100%);
   }
   .fh-sub {
-    font-size: 0.92rem;
+    font-size: 1rem;
   }
 }

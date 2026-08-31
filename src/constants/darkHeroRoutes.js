@@ -1,7 +1,8 @@
 export const DARK_HERO_ROUTES = [
   '/',
+  '/ypodochi',
+  '/demo',
   '/collaborations',
-  '/book-demo',
   '/services',
   '/services/consulting',
   '/services/education',

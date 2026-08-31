@@ -6,6 +6,10 @@
 .bdp-hero,
 .edu-hero,
 .solutions-hero,
+.tp-hero,
+.np-hero,
+.demo-hero,
+.ap-hero,
 .fh-section {
   position: relative;
   overflow: hidden;
@@ -19,6 +23,10 @@
 .bdp-hero > .container,
 .edu-hero > .container,
 .solutions-hero > .container,
+.tp-hero > .container,
+.np-hero > .container,
+.demo-hero > .container,
+.ap-hero > .container,
 .fh-layout {
   position: relative;
   z-index: 2;

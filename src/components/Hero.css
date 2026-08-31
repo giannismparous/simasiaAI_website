@@ -1,5 +1,5 @@
 .hero {
-    padding: 8rem 0 4rem;
+    padding: calc(var(--hero-nav-extra, 1.05rem) + 8rem) 0 4rem;
     background: var(--light-bg);
     min-height: 60vh;
     display: flex;
@@ -39,7 +39,7 @@
 
 @media (max-width: 768px) {
     .hero {
-        padding: 6rem 0 3rem;
+        padding: calc(var(--hero-nav-extra, 1.05rem) + 6rem) 0 3rem;
         min-height: auto;
     }
 

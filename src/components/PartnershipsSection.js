@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
+import CollaborationsIntroCopy from './CollaborationsIntroCopy';
 import './PartnershipsSection.css';
 
 const HOME_LOGOS = [
@@ -21,18 +22,11 @@ const PartnershipsSection = () => {
     <section className="collabs-section" ref={ref}>
       <div className="container">
         <motion.div
-          className="collabs-copy"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease }}
         >
-          <h2 dangerouslySetInnerHTML={{ __html: t('collaborations.home.headline') }} />
-          <p dangerouslySetInnerHTML={{ __html: t('collaborations.home.paragraph1') }} />
-          <p dangerouslySetInnerHTML={{ __html: t('collaborations.home.paragraph2') }} />
-          <p dangerouslySetInnerHTML={{ __html: t('collaborations.home.paragraph3') }} />
-          <a href="/collaborations" className="collabs-view-all">
-            {t('collaborations.home.viewAll')}
-          </a>
+          <CollaborationsIntroCopy showViewAll />
         </motion.div>
 
         <motion.div

@@ -1,0 +1,56 @@
+.pi-greece-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  aspect-ratio: 1;
+  opacity: 0.95;
+}
+
+.pi-human-link {
+  stroke-dasharray: 36;
+  animation: piLinkPulse 3.6s ease-in-out infinite;
+}
+
+@keyframes piLinkPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.pi-plant-stem {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: piGrowStem 1.8s ease-out forwards;
+}
+
+.pi-plant-leaf,
+.pi-plant-sprout {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  transform: scale(0.15);
+  animation: piGrowLeaf 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.pi-plant-leaf--l { animation-delay: 0.55s; }
+.pi-plant-leaf--r { animation-delay: 0.8s; }
+.pi-plant-sprout { animation-delay: 1.05s; }
+
+@keyframes piGrowStem {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes piGrowLeaf {
+  to { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pi-human-link,
+  .pi-plant-stem,
+  .pi-plant-leaf,
+  .pi-plant-sprout {
+    animation: none;
+    opacity: 1;
+    stroke-dashoffset: 0;
+    transform: none;
+  }
+}

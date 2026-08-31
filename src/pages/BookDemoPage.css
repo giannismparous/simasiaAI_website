@@ -1,7 +1,7 @@
 .bdp-page { background: var(--light, #faf9f5); }
 
 .bdp-hero {
-  padding: 10rem 0 5rem;
+  padding: calc(var(--hero-nav-extra, 1.05rem) + 10rem) 0 5rem;
   background: var(--dark, #141413);
   min-height: 55vh;
   display: flex;
@@ -164,7 +164,7 @@
     width: 100%;
     max-width: 100%;
   }
-  .bdp-hero { padding: 7rem 0 3.5rem; text-align: center; }
+  .bdp-hero { padding: calc(var(--hero-nav-extra, 1.05rem) + 7rem) 0 3.5rem; text-align: center; }
   .bdp-form-section { padding: 3.5rem 0; }
   .bdp-hero h1 { font-size: clamp(1.85rem, 8vw, 2.6rem); }
   .bdp-left,

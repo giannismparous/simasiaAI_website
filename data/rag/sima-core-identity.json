@@ -1,40 +1,50 @@
 {
-  "version": 1,
-  "description": "Core SimasiaAI positioning for Sima RAG (Greek primary). Rebuild with npm run build:knowledge",
+  "version": 2,
+  "description": "Core SimasiaAI + Pyxida positioning for chatbot RAG. Rebuild with npm run build:knowledge",
   "sections": [
     {
       "id": "identity_mission",
       "title": "SimasiaAI — ταυτότητα & αποστολή",
-      "url": "/about",
+      "url": "/",
       "keywords": [
         "simasiaai", "simasia", "ποιοι ειστε", "τι ειναι", "εταιρεια", "deep-tech",
-        "ανθρωποκεντρικ", "b2b", "chatbot", "compliant", "ελληνικ"
+        "ανθρωποκεντρικ", "b2b", "chatbot", "compliant", "ελληνικ", "pyxida"
       ],
-      "content_el": "Η SimasiaAI είναι κορυφαία ελληνική deep-tech εταιρεία που εξειδικεύεται αποκλειστικά στην ανάπτυξη Ανθρωποκεντρικών Ψηφιακών Βοηθών (Compliant B2B AI Chatbots). Δεν μεταπωλούμε generic αμερικανικά εργαλεία. Σχεδιάζουμε αυτόνομες, έγκυρες και νομικά θωρακισμένες AI υποδομές για επιχειρήσεις, οργανισμούς και φορείς που θέλουν να εντάξουν την Τεχνητή Νοημοσύνη με απόλυτη ασφάλεια.",
-      "content_en": "SimasiaAI is a leading Greek deep-tech company focused exclusively on Human-Centered Digital Assistants (Compliant B2B AI Chatbots). We do not resell generic US tools. We design autonomous, accurate, legally protected AI infrastructure for organizations integrating AI safely."
+      "content_el": "Η SimasiaAI είναι κορυφαία ελληνική deep-tech εταιρεία που εξειδικεύεται στην ανθρωποκεντρική ψηφιακή υποδοχή για ιατρεία, κλινικές και οργανισμούς. Το κύριο προϊόν είναι το Pyxida — ψηφιακή υποδοχή που απαντά 24/7, καθοδηγεί επισκέπτες και κλείνει ραντεβού. Δεν μεταπωλούμε generic αμερικανικά εργαλεία· σχεδιάζουμε έγκυρες, νομικά θωρακισμένες AI υποδομές.",
+      "content_en": "SimasiaAI is a leading Greek deep-tech company focused on human-centered digital reception for clinics and organizations. The main product is Pyxida — digital reception that answers 24/7, guides visitors, and books appointments. We design accurate, legally protected AI infrastructure rather than reselling generic tools."
+    },
+    {
+      "id": "pyxida_product",
+      "title": "Pyxida — ψηφιακή υποδοχή",
+      "url": "/ypodochi",
+      "keywords": [
+        "pyxida", "πυξιδα", "ψηφιακη", "υποδοχη", "ιατρειο", "κλινικη", "clinic",
+        "reception", "απανταει", "praxi", "ραντεβου", "24/7", "bot", "crm"
+      ],
+      "content_el": "Το Pyxida είναι η ψηφιακή υποδοχή της SimasiaAI για ιατρεία και οργανισμούς. Η βάση (Απαντάει) περιλαμβάνει bot, CRM και απαντήσεις 24/7. Προαιρετικά modules Praxi (π.χ. Φέρνει Πίσω, Φέρνει Μπροστά). Live σε 48 ώρες, εγγύηση ακρίβειας ≥90% ή δωρεάν. Σελίδα προϊόντος: /ypodochi.",
+      "content_en": "Pyxida is SimasiaAI's digital reception for clinics and organizations. The core (Apanta) includes bot, CRM, and 24/7 answers. Optional Praxi modules. Live in 48 hours with ≥90% accuracy guarantee or free. Product page: /ypodochi."
     },
     {
       "id": "human_centered_ai",
       "title": "Ανθρωποκεντρική Τεχνητή Νοημοσύνη — ορισμός",
-      "url": "/about",
+      "url": "/team",
       "keywords": [
         "ανθρωποκεντρικ", "human-centered", "human side", "ορισμος", "definition",
         "διαφαν", "υπευθυν", "ηθικ", "χρηστης", "ite", "forth"
       ],
-      "content_el": "Ανθρωποκεντρική Τεχνητή Νοημοσύνη σημαίνει ότι ο άνθρωπος παραμένει ο απόλυτος ελεγκτής της τεχνολογίας. Μετατρέπει τα ευφυή συστήματα από «μαύρα κουτιά» σε διαφανή, υπεύθυνα και ευεξήγητα εργαλεία. Τα συστήματά μας προβλέπουν ανθρώπινες ανάγκες και είναι ηθικά ευθυγραμμισμένα με κοινωνικές αξίες, με τον τελικό χρήστη στο επίκεντρο (Πηγή: Ίδρυμα Τεχνολογίας και Έρευνας — ΙΤΕ, ICS-FORTH).",
-      "content_en": "Human-Centered AI means people remain in control. Systems become transparent, accountable, and explainable rather than opaque black boxes. Our systems anticipate human needs and align with societal values, with end users at the center of development (reference: FORTH-ICS / Hellenic research context)."
+      "content_el": "Ανθρωποκεντρική Τεχνητή Νοημοσύνη σημαίνει ότι ο άνθρωπος παραμένει ο απόλυτος ελεγκτής της τεχνολογίας. Το Pyxida και τα συστήματά μας είναι διαφανή, υπεύθυνα και ευεξήγητα — με τον τελικό χρήστη στο επίκεντρο.",
+      "content_en": "Human-Centered AI means people remain in control. Pyxida and our systems are transparent, accountable, and explainable — with end users at the center."
     },
     {
-      "id": "chatbots_four_pillars",
-      "title": "SimasiaAI Chatbots — 4 άξονες διαφοροποίησης",
-      "url": "/applications/simasia-chatbots",
+      "id": "pyxida_compliance",
+      "title": "Pyxida — συμμόρφωση & διαφοροποίηση",
+      "url": "/ypodochi",
       "keywords": [
-        "simasiachatbots", "chatbot", "διαφοροποιηση", "compliance", "eu ai act",
-        "gdpr", "wcag", "προσβασιμ", "eaa", "hallucination", "τριανταφυλλιδη",
-        "γλωσσολογ", "στερεοτυπ", "bias", "νομικ"
+        "pyxida", "compliance", "eu ai act", "gdpr", "wcag", "προσβασιμ", "eaa",
+        "hallucination", "γλωσσολογ", "ελληνικ", "greeklish"
       ],
-      "content_el": "Τα SimasiaAI Chatbots διαφέρονται σε 4 άξονες: (1) Κανονιστική Συμμόρφωση — EU AI Act και GDPR, μηδενισμός νομικού ρίσκου. (2) Προσβασιμότητα WCAG 2.1 AA — φωνή, ήχος, αντίθεση, γραμματοσειές, By-Design για ΑμεΑ, σχετικά με European Accessibility Act (EAA). (3) Risk Mitigation — φίλτρα στερεοτύπων/προκαταλήψεων, απαντήσεις μόνο από εγκεκριμένα δεδομένα πελάτη, μείωση hallucinations. (4) Ελληνική Γλωσσολογική Υπεροχή — πολύγλωσσα με έμφαση σε φυσικά Ελληνικά, βασισμένα σε γλωσσολογική έρευνα (λογική Λεξικού Τριανταφυλλίδη), όχι πρόχειρη μηχανική μετάφραση.",
-      "content_en": "SimasiaAI Chatbots differ on four axes: (1) Legal compliance — EU AI Act and GDPR. (2) Accessibility WCAG 2.1 AA — voice, audio, contrast, fonts, by design for accessibility needs. (3) Risk mitigation — bias filters, answers only from approved client data. (4) Greek linguistic quality — natural Greek via linguistic research (Triantafyllidis dictionary logic), not crude machine translation."
+      "content_el": "Το Pyxida διαφέρει σε: (1) Κανονιστική συμμόρφωση — EU AI Act και GDPR. (2) Προσβασιμότητα WCAG 2.1 AA. (3) Απαντήσεις μόνο από εγκεκριμένα δεδομένα — μείωση ψευδαισθήσεων. (4) Φυσικά Ελληνικά, Αγγλικά και Greeklish.",
+      "content_en": "Pyxida offers: (1) EU AI Act and GDPR compliance. (2) WCAG 2.1 AA accessibility. (3) Answers only from approved data. (4) Natural Greek, English, and Greeklish support."
     },
     {
       "id": "social_proof",
@@ -44,30 +54,8 @@
         "ποαμσκπ", "σκπ", "καπα3", "k3", "κρητη", "εμπιστοσυνη", "υγεια",
         "εκπαιδευση", "συνεργασια", "myrto"
       ],
-      "content_el": "Κορυφαίοι φορείς στον τομέα Υγείας και Εκπαίδευσης εμπιστεύονται τη SimasiaAI: Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση Κατά Πλάκας (ΠΟΑμΣΚΠ), Κέντρο Καθοδήγησης Καρκινοπαθών (Κάπα3), Πανεπιστήμιο Κρήτης — για έγκυρη καθοδήγηση χρηστών.",
-      "content_en": "Trusted by leading health and education organizations including POAmsKP (MS community), Kap3 cancer guidance center, and University of Crete — for reliable user guidance."
-    },
-    {
-      "id": "delivery_four_phases",
-      "title": "SimasiaAI — διαδικασία παράδοσης 4 φάσεων",
-      "url": "/solutions",
-      "keywords": [
-        "φαση", "πιλοτικ", "παραδοση", "crm", "erp", "integration", "branding",
-        "human-in-the-loop", "data ingestion", "πρωτοκολλ"
-      ],
-      "content_el": "Ανάπτυξη ψηφιακών βοηθών σε 4 φάσεις: Φάση 1 — Συν-σχεδιασμός & Data Ingestion (επίσημα δεδομένα/έγγραφα συνεργάτη). Φάση 2 — Έλεγχος & Πρωτόκολλα (ασφάλεια και γλωσσολογική ακρίβεια SimasiaAI). Φάση 3 — Πιλοτική Παράδοση & Εγγύηση (live μόνο αν ικανοποιεί πλήρως τον πελάτη). Φάση 4 — Integration, Branding & Training (brand πελάτη, CRM/ERP, εκπαίδευση προσωπικού, Human-in-the-Loop).",
-      "content_en": "Four-phase delivery: (1) Co-design and data ingestion. (2) Safety and linguistic QA protocols. (3) Pilot delivery — go live only when expectations are met. (4) Integration, branding, CRM/ERP, staff training, human-in-the-loop."
-    },
-    {
-      "id": "business_roi",
-      "title": "SimasiaAI Chatbots — επιχειρηματική αξία & ROI",
-      "url": "/solutions",
-      "keywords": [
-        "roi", "engagement", "support", "70", "πωλησει", "conversion", "b2b", "b2c",
-        "εμπιστοσυνη", "εξυπηρετηση"
-      ],
-      "content_el": "Εγγυημένα οφέλη: αύξηση engagement και ποιότητας εξυπηρέτησης/πληροφόρησης· μείωση φόρτου customer support έως 70%· αύξηση B2B/B2C πωλήσεων και conversions μέσω ανθρωποκεντρικού συστήματος εμπιστοσύνης.",
-      "content_en": "Business value: higher engagement and service quality; up to 70% reduction in support load; improved B2B/B2C sales and conversions through trustworthy human-centered AI."
+      "content_el": "Κορυφαίοι φορείς στον τομέα Υγείας και Εκπαίδευσης εμπιστεύονται τη SimasiaAI: Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση Κατά Πλάκας (ΠΟΑμΣΚΠ), Κέντρο Καθοδήγησης Καρκινοπαθών (Κάπα3), Πανεπιστήμιο Κρήτης.",
+      "content_en": "Trusted by leading health and education organizations including POAmsKP, Kap3 cancer guidance center, and University of Crete."
     },
     {
       "id": "founders_leadership",
@@ -75,34 +63,45 @@
       "url": "/team",
       "keywords": [
         "ιδρυτες", "ιδρυτης", "συνιδρυτες", "συνιδρυτης", "founder", "co-founder",
-        "ομαδα", "team", "ceo", "cto", "cco", "στεργιος", "χατζηκυριακιδης",
+        "ομαδα", "omada", "team", "ceo", "cto", "cco", "στεργιος", "χατζηκυριακιδης",
         "δημητρης", "παπαδακης", "γιαννης", "αναστασια", "νατσινα",
-        "ποιοι ειναι", "ηγεσια", "leadership"
+        "ποιοι ειναι", "poia einai", "poioi einai", "ηγεσια", "leadership", "μελη", "melh"
       ],
-      "content_el": "Οι ιδρυτές / συνιδρυτές της SimasiaAI είναι τέσσερις:\n1) Καθηγητής Στέργιος Χατζηκυριακίδης — Co-founder & CEO (Υπολογιστική Γλωσσολογία & Τεχνητή Νοημοσύνη).\n2) Δημήτρης Παπαδάκης — Co-founder & Head of Sales.\n3) Γιάννης — Co-founder & CTO.\n4) Αναπληρώτρια Καθηγήτρια Αναστασία Νάτσινα — Co-founder & Chief Communications Officer (CCO).\nΌταν ρωτούν «ποιοι είναι οι ιδρυτές», απάντησε σοβαρά και πλήρως με αυτά τα τέσσερα ονόματα και ρόλους. Μην παραλείπεις τον Στέργιο Χατζηκυριακίδη. Μην κλείνεις με demo CTA σε ερωτήσεις για την ομάδα/ιδρυτές — μόνο τα στοιχεία.",
-      "content_en": "The founders / co-founders of SimasiaAI are four people:\n1) Professor Stergios Chatzikyriakidis — Co-founder & CEO (Computational Linguistics & AI).\n2) Dimitris Papadakis — Co-founder & Head of Sales.\n3) Giannis — Co-founder & CTO.\n4) Associate Professor Anastasia Natsina — Co-founder & Chief Communications Officer (CCO).\nWhen asked who the founders are, answer seriously and completely with these four names and roles. Never omit Stergios Chatzikyriakidis. Do not close with a demo CTA on founders/team questions — facts only."
+      "content_el": "Οι ιδρυτές / συνιδρυτές της SimasiaAI είναι τέσσερις:\n1) Καθηγητής Στέργιος Χατζηκυριακίδης — Co-founder & CEO.\n2) Δημήτρης Παπαδάκης — Co-founder & Head of Sales.\n3) Γιάννης — Co-founder & CTO.\n4) Αναπληρώτρια Καθηγήτρια Αναστασία Νάτσινα — Co-founder & CCO.\nΔημιουργήσαμε το Pyxida — ανθρωποκεντρική ψηφιακή υποδοχή με σεβασμό στην ελληνική γλώσσα και την προσβασιμότητα. Μην κλείνεις με demo CTA σε ερωτήσεις για την ομάδα.",
+      "content_en": "The founders / co-founders of SimasiaAI are four people:\n1) Professor Stergios Chatzikyriakidis — Co-founder & CEO.\n2) Dimitris Papadakis — Co-founder & Head of Sales.\n3) Giannis — Co-founder & CTO.\n4) Associate Professor Anastasia Natsina — Co-founder & CCO.\nWe created Pyxida — human-centered digital reception. Do not close with a demo CTA on founders/team questions."
     },
     {
-      "id": "dialogosai_gender_neutral",
-      "title": "DialogosAI — ουδέτερο φύλο",
-      "url": "/applications/simasia-chatbots",
+      "id": "pyxida_gender_neutral",
+      "title": "Pyxida — ουδέτερο φύλο",
+      "url": "/ypodochi",
       "keywords": [
         "φυλο", "αρσενικ", "θηλυκ", "gender", "neutral", "he", "she", "him", "her",
-        "ουδετερ", "προσωπο", "persona", "αυτος", "αυτη"
+        "ουδετερ", "προσωπο", "persona", "αυτος", "αυτη", "pyxida"
       ],
-      "content_el": "Το DialogosAI είναι ουδέτερο ως προς το φύλο. Δεν είναι αρσενικό ούτε θηλυκό πρόσωπο· είναι ανθρωποκεντρικό ψηφιακό σύστημα πλοήγησης της SimasiaAI. Στα ελληνικά αναφέρεται ως «το DialogosAI». Στα αγγλικά χρησιμοποιείται it/its ή το όνομα DialogosAI — ποτέ he/him ή she/her.",
-      "content_en": "DialogosAI is gender-neutral. It is neither male nor female; it is SimasiaAI’s human-centered digital navigation system. In English use it/its or the name DialogosAI — never he/him or she/her. In Greek refer to it as «το DialogosAI»."
+      "content_el": "Το Pyxida είναι ουδέτερο ως προς το φύλο. Δεν είναι αρσενικό ούτε θηλυκό πρόσωπο· είναι η ψηφιακή υποδοχή της SimasiaAI. Στα ελληνικά αναφέρεται ως «το Pyxida». Στα αγγλικά χρησιμοποιείται it/its ή το όνομα Pyxida — ποτέ he/him ή she/her.",
+      "content_en": "Pyxida is gender-neutral. It is neither male nor female; it is SimasiaAI's digital reception. In English use it/its or the name Pyxida — never he/him or she/her. In Greek refer to it as «το Pyxida»."
+    },
+    {
+      "id": "pyxida_modules",
+      "title": "Pyxida — Απαντάει & Praxi modules",
+      "url": "/ypodochi",
+      "keywords": [
+        "module", "modules", "module 1", "module 2", "module 3", "praxi", "apanta", "απαντα",
+        "kleinei", "fernei", "sikonei", "κλεινει", "φερνει", "σηκωνει", "πακετο", "tier"
+      ],
+      "content_el": "Η βάση Pyxida λέγεται ΑΠΑΝΤΑΕΙ: bot + CRM + απαντήσεις 24/7. Προαιρετικά Praxi modules: (Module 1) ΚΛΕΙΝΕΙ — κράτηση/αλλαγή/ακύρωση ραντεβού, WhatsApp/Viber/Instagram/Facebook. (Module 2) ΦΕΡΝΕΙ ΠΙΣΩ — ανάκτηση χαμένων leads, υπενθυμίσεις, recall, SMS/Viber. (Module 3) ΣΗΚΩΝΕΙ ΤΟ ΤΗΛΕΦΩΝΟ — ζωντανή φωνή 24/7 στον αριθμό σας. Σελίδα: /ypodochi.",
+      "content_en": "Pyxida core is Apanta: bot + CRM + 24/7 answers. Optional Praxi modules: (Module 1) Kleinei — booking & channels. (Module 2) Fernei Piso — lead recovery & reminders. (Module 3) Sikonei — live voice 24/7. See /ypodochi."
     },
     {
       "id": "sales_guidance",
       "title": "SimasiaAI — οδηγίες demo & ενδιαφέροντος",
-      "url": "/book-demo",
+      "url": "/demo",
       "keywords": [
         "demo", "προσφορα", "ενδιαφερον", "πωλησει", "widget", "compliant ai",
-        "email", "τηλεφωνο", "book-demo"
+        "email", "τηλεφωνο", "book-demo", "pyxida"
       ],
-      "content_el": "Όταν ρωτούν για demo, ραντεβού ή συνάντηση: σύντομη απάντηση και υπόδειξη της φόρμας Demo (χωρίς URL στο κείμενο — το κουμπί εμφανίζεται στην UI). Εναλλακτικά contact@simasiaai.gr. Για επικοινωνία γενικά: φόρμα επικοινωνίας + email. ΜΗΝ προτείνεις demo όταν η ερώτηση αφορά αποκλειστικά ιδρυτές ή βιογραφικά.",
-      "content_en": "When asked about a demo, meeting, or appointment: brief answer and point to the Demo form (no URL in the text — the UI shows a button). Alternatively contact@simasiaai.gr. For general contact: contact form + email. Do NOT pitch a demo for founders/bio-only questions."
+      "content_el": "Όταν ρωτούν για demo, ραντεβού ή συνάντηση: σύντομη απάντηση και υπόδειξη της φόρμας Demo στο /demo (χωρίς URL στο κείμενο). Εναλλακτικά contact@simasiaai.gr. ΜΗΝ προτείνεις demo όταν η ερώτηση αφορά αποκλειστικά ιδρυτές ή βιογραφικά.",
+      "content_en": "When asked about a demo or meeting: brief answer and point to the Demo form at /demo (no URL in the text). Alternatively contact@simasiaai.gr. Do NOT pitch a demo for founders/bio-only questions."
     }
   ]
 }

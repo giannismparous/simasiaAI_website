@@ -1,11 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { SmoothReveal } from '../components/TextReveal';
 import HorizontalScrollCards from '../components/HorizontalScrollCards';
 import CTA from '../components/CTA';
-import ContactForm from '../components/ContactForm';
 import { useTranslation } from '../hooks/useTranslation';
 import './ApplicationsPage.css';
 
@@ -123,13 +123,13 @@ const ProductSection = ({ product, index }) => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
             transition={{ duration: 0.4, delay: 0.4 }}
           >
-            <a 
-              href="#contact" 
+            <Link 
+              to="/demo" 
               className="btn btn-primary"
               style={{ display: 'inline-flex' }}
             >
               {t('applications.requestProposal') || 'Ζητήστε πρόταση συνεργασίας'}
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
@@ -180,7 +180,6 @@ const ApplicationsPage = () => {
       </section>
 
       <CTA />
-      <ContactForm />
     </div>
   );
 };

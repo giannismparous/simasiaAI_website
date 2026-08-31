@@ -18,7 +18,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setScrolled(scrollY > 48);
+      setScrolled(scrollY > 53);
       const docH = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(docH > 0 ? (scrollY / docH) * 100 : 0);
     };
@@ -36,12 +36,11 @@ const Navbar = () => {
 
   const navLinks = [
     { path: '/', text: t('nav.home') },
-    { path: '/applications/simasia-chatbots', text: <em className="brand-dialogos">DialogosAI</em> },
-    { path: '/services', text: t('nav.services') },
-    { path: '/team', text: t('nav.team') },
+    { path: '/ypodochi', text: t('nav.ypodochi') },
     { path: '/collaborations', text: t('nav.collaborations') },
     { path: '/news', text: t('nav.news') },
-    { path: '/book-demo', text: t('nav.bookDemo'), isButton: true },
+    { path: '/team', text: t('nav.team') },
+    { path: '/demo', text: t('nav.demo'), isButton: true },
   ];
 
   return (
@@ -75,7 +74,12 @@ const Navbar = () => {
                   </Link>
                 ) : (
                   <Link to={link.path} onClick={() => setIsMobileMenuOpen(false)}
-                    className={location.pathname === link.path ? 'active' : ''}>
+                    className={
+                      location.pathname === link.path
+                      || (link.path === '/news' && location.pathname.startsWith('/news/'))
+                        ? 'active'
+                        : ''
+                    }>
                     {link.text}
                   </Link>
                 )}
@@ -84,8 +88,8 @@ const Navbar = () => {
             <li className="nav-lang-item">
               <button onClick={toggleLanguage} className="language-switcher" aria-label={t('nav.switchLanguage')}>
                 {language === 'el'
-                  ? <ReactCountryFlag countryCode="GR" svg style={{ width: '24px', height: '24px' }} />
-                  : <ReactCountryFlag countryCode="GB" svg style={{ width: '24px', height: '24px' }} />}
+                  ? <ReactCountryFlag countryCode="GR" svg style={{ width: '26px', height: '26px' }} />
+                  : <ReactCountryFlag countryCode="GB" svg style={{ width: '26px', height: '26px' }} />}
               </button>
             </li>
           </ul>

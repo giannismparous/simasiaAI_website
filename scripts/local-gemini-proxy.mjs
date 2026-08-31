@@ -8,11 +8,15 @@
 import http from 'http';
 import { readFileSync, existsSync } from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const PORT = Number(process.env.SIMASIA_PROXY_PORT || 3456);
+
+const { getModelName, GENERATION_CONFIG } = await import(
+  pathToFileURL(path.join(ROOT, 'netlify/functions/lib/gemini-keys.mjs')).href
+);
 
 function loadEnv() {
   const envPath = path.join(ROOT, '.env');
@@ -42,7 +46,8 @@ function sanitizeDetail(text) {
     .slice(0, 500);
 }
 
-const MODEL = (process.env.SIMASIA_GEMINI_MODEL || 'gemini-flash-lite-latest').trim();
+const MODEL = getModelName();
+const MAX_PROMPT_CHARS = 24000;
 
 function pickKey() {
   if (!keys.length) throw new Error('SIMASIA_GEMINI_API_KEYS missing in .env');
@@ -75,12 +80,17 @@ const server = http.createServer(async (req, res) => {
     try {
       const parsed = JSON.parse(body || '{}');
       const prompt = String(parsed.prompt || '');
+      if (prompt.length > MAX_PROMPT_CHARS) {
+        res.writeHead(413, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'prompt_too_large' }));
+        return;
+      }
       const stream = Boolean(parsed.stream);
       const apiKey = pickKey();
       const googleBase = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(MODEL)}`;
       const googleBody = JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { maxOutputTokens: 1024, temperature: 0.4 },
+        generationConfig: GENERATION_CONFIG,
       });
       const headers = { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey };
 
@@ -132,5 +142,5 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, () => {
   console.log(`Sima Gemini local proxy http://127.0.0.1:${PORT}/.netlify/functions/gemini-chat`);
-  console.log(`Keys loaded: ${keys.length}`);
+  console.log(`Model: ${MODEL} | Keys loaded: ${keys.length}`);
 });

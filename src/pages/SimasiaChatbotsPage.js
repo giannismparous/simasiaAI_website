@@ -4,8 +4,8 @@ import LiveDemoSection from '../components/LiveDemoSection';
 import ComparisonTable from '../components/ComparisonTable';
 import InsightsDashboardSection from '../components/InsightsDashboardSection';
 import ControlledImprovementSection from '../components/ControlledImprovementSection';
+import PageHeroBackdrop from '../components/PageHeroBackdrop';
 import InteractiveConstellation from '../components/InteractiveConstellation';
-import ContactForm from '../components/ContactForm';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
 import './SimasiaChatbotsPage.css';
@@ -55,7 +55,7 @@ const SimasiaChatbotsPage = () => {
     <div className="scp-page">
       {/* Hero */}
       <section className="scp-hero" ref={heroRef}>
-        <InteractiveConstellation pattern="neural" />
+        <PageHeroBackdrop />
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -92,7 +92,7 @@ const SimasiaChatbotsPage = () => {
               </motion.p>
             </div>
             <div className="scp-hero-ctas">
-              <Link to="/book-demo" className="btn btn-primary btn-large">{t('chatbotsPage.bookDemo')}</Link>
+              <Link to="/demo" className="btn btn-primary btn-large">{t('chatbotsPage.bookDemo')}</Link>
               <a href="#live-demo" className="btn btn-secondary btn-large">
                 {t('chatbotsPage.seeLive')} <span className="scp-btn-arrow">↓</span>
               </a>
@@ -265,7 +265,7 @@ const SimasiaChatbotsPage = () => {
           >
             <p dangerouslySetInnerHTML={{ __html: t('chatbotsPage.dialogueClosingHtml') }} />
             <Link
-              to="/book-demo"
+              to="/demo"
               className="scp-dialogue-cta-link"
               dangerouslySetInnerHTML={{ __html: t('chatbotsPage.dialogueCtaHtml') }}
             />
@@ -286,13 +286,12 @@ const SimasiaChatbotsPage = () => {
           <h2>{t('chatbotsPage.finalTitle')}</h2>
           <p dangerouslySetInnerHTML={{ __html: t('chatbotsPage.finalBodyHtml') }} />
           <div className="scp-cta-actions">
-            <Link to="/book-demo" className="btn btn-primary btn-large">{t('chatbotsPage.finalCta')}</Link>
+            <Link to="/demo" className="btn btn-primary btn-large">{t('chatbotsPage.finalCta')}</Link>
             <a href="mailto:contact@simasiaai.gr" className="scp-email-link">contact@simasiaai.gr</a>
           </div>
         </div>
       </section>
 
-      <ContactForm />
     </div>
   );
 };

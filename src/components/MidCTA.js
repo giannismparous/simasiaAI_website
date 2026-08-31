@@ -18,9 +18,9 @@ const MidCTA = () => {
         transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
       >
         <p>
-          {t('midCta.bodyBefore')} <em className="brand-dialogos">DialogosAI</em> {t('midCta.bodyAfter')}
+          {t('midCta.bodyBefore')} <strong>{t('midCta.brand')}</strong> {t('midCta.bodyAfter')}
         </p>
-        <Link to="/book-demo" className="cta-primary">
+        <Link to="/demo" className="cta-primary">
           {t('midCta.cta')}
         </Link>
       </motion.div>

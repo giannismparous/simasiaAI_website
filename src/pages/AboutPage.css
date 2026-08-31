@@ -2,12 +2,15 @@
 
 /* Hero */
 .ap-hero {
-  padding: 10rem 0 5rem;
+  padding: calc(var(--hero-nav-extra, 1.05rem) + 10rem) 0 5rem;
   background: var(--dark, #141413);
   min-height: 60vh;
   display: flex;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
+.ap-hero .container { position: relative; z-index: 2; }
 .ap-hero-inner { max-width: var(--hero-inner-max); }
 .ap-eyebrow {
   font-family: var(--font-sans);
@@ -348,7 +351,7 @@
 }
 
 @media (max-width: 640px) {
-  .ap-hero { padding: 7rem 0 3.5rem; }
+  .ap-hero { padding: calc(var(--hero-nav-extra, 1.05rem) + 7rem) 0 3.5rem; }
   .ap-ceo-layout {
     grid-template-columns: 1fr;
   }

@@ -2,15 +2,17 @@ import { useEffect } from 'react';
 import { useLocation, matchPath } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
 import { newsArticlesByLang } from '../translations/newsArticles';
+import { isArchivedRoute } from '../constants/archivedRoutes';
 
 const ROUTE_TITLE_KEYS = [
   { path: '/', key: 'pageTitles.home', end: true },
+  { path: '/ypodochi', key: 'pageTitles.ypodochi' },
+  { path: '/demo', key: 'pageTitles.demo' },
   { path: '/team', key: 'pageTitles.team' },
   { path: '/news/:slug', key: null }, // resolved from article
   { path: '/news', key: 'pageTitles.news' },
   { path: '/services', key: 'pageTitles.services' },
   { path: '/collaborations', key: 'pageTitles.collaborations' },
-  { path: '/book-demo', key: 'pageTitles.bookDemo' },
   { path: '/solutions', key: 'pageTitles.solutions' },
   { path: '/applications/simasia-chatbots', key: 'pageTitles.dialogosai' },
   { path: '/products/simasia-chatbots', key: 'pageTitles.dialogosai' },
@@ -26,6 +28,10 @@ const ROUTE_TITLE_KEYS = [
 ];
 
 function resolveTitle(pathname, t, language) {
+  if (isArchivedRoute(pathname)) {
+    return 'Archive · SimasiaAI';
+  }
+
   for (const route of ROUTE_TITLE_KEYS) {
     const match = matchPath({ path: route.path, end: route.end ?? false }, pathname);
     if (!match) continue;

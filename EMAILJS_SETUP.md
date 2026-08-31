@@ -32,7 +32,7 @@ Email Απάντησης: {{reply_to}}
 Φορέας/Ιδιότητα: {{organization_type}}
 Επωνυμία: {{company_name}}
 Περιγραφή: {{message}}
-Αρχείο/Σύνδεσμος: {{attachment}}
+{{attachment_line}}
 
 ---
 Αυτό το email στάλθηκε από το contact form της SimasiaAI.

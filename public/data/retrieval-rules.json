@@ -1,6 +1,6 @@
 {
-  "retrievePool": 20,
-  "sendToModel": 6,
+  "retrievePool": 12,
+  "sendToModel": 4,
   "minScore": 0.18,
   "minScoreOutOfScope": 0.22,
   "retrievalScopeMinScore": 0.2,
@@ -90,9 +90,19 @@
       "add": 0.45
     },
     {
-      "query": ["ομαδα", "ομάδα", "μιληστε", "speak with", "talk to the team"],
-      "blob": ["book-demo", "contact@", "επικοινων", "demo"],
+      "query": ["ομαδα", "omada", "ομάδα", "team", "founders", "ιδρυτ", "συνιδρυτ", "μελη", "melh", "ποιοι", "poia einai"],
+      "blob": ["founder", "co-founder", "ceo", "χατζηκυριακ", "παπαδακ", "νατσινα", "/team", "ιδρυτ", "συνιδρυτ", "ομαδα", "omada"],
+      "add": 0.65
+    },
+    {
+      "query": ["module", "modules", "praxi", "apanta", "απαντα", "kleinei", "fernei", "sikonei", "κλεινει", "φερνει"],
+      "blob": ["module", "praxi", "apanta", "απαντα", "kleinei", "fernei", "sikonei", "κλεινει", "φερνει", "σηκωνει"],
       "add": 0.55
+    },
+    {
+      "query": ["ασχολ", "asxole", "τι κανετε", "what do you do", "υπηρεσι", "services"],
+      "blob": ["deep-tech", "pyxida", "ψηφιακη", "υποδοχη", "ανθρωποκεντρ", "chatbot"],
+      "add": 0.45
     },
     {
       "query": ["ποιοι", "τι ειναι", "what is", "εταιρεια", "identity"],

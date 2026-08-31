@@ -41,7 +41,7 @@ const ContactForm = () => {
         organizationType: formData.organizationType,
         companyName: formData.companyName || formData.organization || 'N/A',
         message: formData.description || 'N/A',
-        attachment: formData.attachment || 'N/A',
+        attachment: formData.attachment.trim() || undefined,
       });
 
       setSubmitStatus({

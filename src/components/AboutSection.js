@@ -173,7 +173,7 @@ const AboutSection = () => {
               <em className="brand-dialogos">DialogosAI</em>{' '}
               {t('aboutSection.missionAfter')}
             </p>
-            <Link to="/book-demo" className="btn btn-primary">{t('aboutSection.cta')}</Link>
+            <Link to="/demo" className="btn btn-primary">{t('aboutSection.cta')}</Link>
           </motion.div>
         </div>
       </section>

@@ -1,107 +1,164 @@
 /* ===== NEWS & ARTICLES PAGE ===== */
 .np-page { background: var(--light, #faf9f5); }
 
-/* Hero */
+/* Hero — type scale matches Collaborations page */
 .np-hero {
-  padding: 10rem 0 6rem;
+  padding: calc(var(--hero-nav-extra, 1.05rem) + clamp(7rem, 9.5vw, 8.75rem)) 0 clamp(3rem, 4.5vw, 4rem);
   background: var(--dark, #141413);
-  min-height: 40vh;
+  min-height: min(62vh, 700px);
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
 }
 .np-hero .container { position: relative; z-index: 1; }
-.np-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--orange, #d97757);
-  display: block;
-  margin-bottom: 1.5rem;
+
+.np-hero-inner {
+  max-width: min(68rem, 100%);
+  margin-inline: auto;
+  text-align: center;
 }
+
 .np-hero h1 {
-  font-size: clamp(1.7rem, 3.4vw, 2.75rem);
+  font-family: var(--font-sans);
+  font-size: clamp(2.15rem, 4.85vw, 3.55rem);
   font-weight: 700;
   color: var(--light, #faf9f5);
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin: 0 auto clamp(1.35rem, 2.75vw, 1.85rem);
+  max-width: min(58rem, 100%);
 }
 .np-hero-sub {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: rgba(250, 249, 245, 0.6);
-  max-width: 560px;
+  font-size: clamp(1.12rem, 2.5vw, 1.52rem);
+  line-height: 1.72;
+  color: rgba(250, 249, 245, 0.72);
+  max-width: min(58rem, 100%);
+  margin: 0 auto;
 }
 
-/* Category Filter Wrapper */
+/* Category Filter — open text tabs, no boxes */
 .np-filter {
-  padding: 2rem 0;
-  background: var(--white, #fff);
-  border-bottom: 1px solid var(--light-gray, #e8e6dc);
+  padding: clamp(2.75rem, 4.5vw, 3.75rem) 0 0;
+  background: var(--light, #faf9f5);
 }
-.np-filter-wrapper {
+
+.np-filter-inner {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: clamp(1rem, 2.2vw, 1.35rem);
+  max-width: min(56rem, 100%);
+  margin: 0 auto;
+  text-align: center;
 }
+
 .np-filter-label {
+  margin: 0;
   font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: clamp(0.72rem, 1.2vw, 0.78rem);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-soft, #5a5a58);
+  letter-spacing: 0.14em;
+  color: var(--orange, #d97757);
 }
+
 .np-filter-tabs {
   display: flex;
-  gap: 0.75rem;
-}
-.np-tab {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 500;
-  padding: 0.6rem 1.4rem;
-  border-radius: 20px;
-  border: 1px solid var(--light-gray, #e8e6dc);
-  background: var(--light, #faf9f5);
-  color: var(--dark, #141413);
-  cursor: pointer;
-  display: flex;
   align-items: center;
-  gap: 6px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(1.35rem, 3vw, 2.75rem);
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
 }
+
+.np-tab {
+  position: relative;
+  font-family: var(--font-sans);
+  font-size: clamp(1.02rem, 1.85vw, 1.18rem);
+  font-weight: 500;
+  line-height: 1.2;
+  padding: 0.15rem 0 0.55rem;
+  border: none;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: rgba(90, 90, 88, 0.78);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  transition: color 0.22s ease;
+}
+
+.np-tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--orange, #d97757);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .np-tab:hover {
-  border-color: var(--orange, #d97757);
-  background: var(--white, #fff);
+  color: var(--dark, #141413);
+  background: none;
 }
+
 .np-tab--active {
-  background: var(--dark, #141413);
-  color: var(--light, #faf9f5);
-  border-color: var(--dark, #141413);
+  color: var(--dark, #141413);
+  font-weight: 700;
+  background: none;
+  box-shadow: none;
 }
+
+.np-tab--active::after {
+  transform: scaleX(1);
+}
+
+.np-tab--active:hover {
+  color: var(--dark, #141413);
+  background: none;
+  transform: none;
+}
+
+.np-tab-text {
+  line-height: 1.1;
+}
+
 .np-tab-count {
-  font-size: 0.75rem;
-  opacity: 0.5;
-  background: rgba(255, 255, 255, 0.15);
-  padding: 0.1rem 0.4rem;
-  border-radius: 10px;
+  font-size: 0.78em;
   font-weight: 600;
+  letter-spacing: 0.01em;
+  color: inherit;
+  opacity: 0.42;
+  background: none;
+  min-width: 0;
+  height: auto;
+  padding: 0;
+  border-radius: 0;
 }
+
 .np-tab--active .np-tab-count {
-  background: rgba(250, 249, 245, 0.2);
+  opacity: 0.72;
+  color: var(--orange, #d97757);
+  background: none;
 }
 
 /* Premium Content Hub Grid */
 .np-grid-section {
-  padding: 5rem 0 7rem;
+  padding: clamp(2rem, 3vw, 2.75rem) 0 7rem;
+  background: var(--light, #faf9f5);
 }
 
 /* Featured Post Card - Anthropic layout style */
@@ -307,11 +364,47 @@
   .np-articles-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
 
+@media (max-width: 920px) {
+  .np-hero {
+    padding: calc(var(--hero-nav-extra, 1.05rem) + 6.75rem) 0 3.5rem;
+    min-height: min(58vh, 640px);
+  }
+  .np-hero h1 {
+    font-size: clamp(1.75rem, 5.75vw, 2.55rem);
+    letter-spacing: -0.04em;
+  }
+  .np-hero-sub {
+    font-size: clamp(1.08rem, 4.3vw, 1.26rem);
+    line-height: 1.66;
+  }
+}
+
 @media (max-width: 768px) {
-  .np-hero { padding: 7rem 0 3.5rem; min-height: auto; }
-  .np-filter-wrapper { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .np-grid-section { padding: 3rem 0 5rem; }
+  .np-filter-tabs {
+    gap: 1.15rem 1.75rem;
+  }
+
+  .np-tab {
+    font-size: clamp(0.98rem, 4.2vw, 1.08rem);
+  }
+
+  .np-grid-section { padding: 2.5rem 0 5rem; }
   .np-featured-wrap { margin-bottom: 3rem; padding-bottom: 2.5rem; }
   .np-featured-card h2 { font-size: 1.5rem; }
   .np-featured-card p { font-size: 0.98rem; }
+}
+
+@media (max-width: 640px) {
+  .np-hero {
+    padding: calc(var(--hero-nav-extra, 1.05rem) + 6rem) 0 3rem;
+    min-height: auto;
+  }
+  .np-hero h1 {
+    font-size: clamp(1.58rem, 7vw, 2.05rem);
+    letter-spacing: -0.03em;
+  }
+  .np-hero-sub {
+    font-size: clamp(1.05rem, 4.2vw, 1.22rem);
+    max-width: 36rem;
+  }
 }

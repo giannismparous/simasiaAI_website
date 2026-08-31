@@ -1,8 +1,11 @@
 import { pageI18nEl, pageI18nEn } from './pageI18n';
+import { ypodochiContentEl, ypodochiContentEn } from './ypodochiContent';
 
 /** Extra UI copy missing from the rebuilt homepage / key pages (EL + EN). */
 export const extraUiEl = {
   nav: {
+    ypodochi: 'Pyxida',
+    demo: 'Demo',
     services: 'Υπηρεσίες',
     team: 'Η ομάδα μας',
     news: 'Νέα',
@@ -11,7 +14,9 @@ export const extraUiEl = {
     switchLanguage: 'Αλλαγή γλώσσας',
   },
   pageTitles: {
-    home: 'SimasiaAI — Ανθρωποκεντρική Τεχνητή Νοημοσύνη',
+    home: 'SimasiaAI — Pyxida για ιατρεία',
+    ypodochi: 'Pyxida · SimasiaAI',
+    demo: 'Κλείστε Demo · SimasiaAI',
     team: 'Η ομάδα μας · SimasiaAI',
     news: 'Νέα & Άρθρα · SimasiaAI',
     services: 'Υπηρεσίες · SimasiaAI',
@@ -53,24 +58,33 @@ export const extraUiEl = {
     },
   },
   forbesHero: {
-    words: ['Μέτρο', 'μας;', 'Ο', 'άνθρωπος.'],
-    ariaLabel: 'Μέτρο μας; Ο άνθρωπος.',
-    humanWord: 'άνθρωπος.',
-    subBefore: 'Στην εποχή των γενικών chatbot Τεχνητής Νοημοσύνης, σχεδιάσαμε τον',
-    subEm: 'ανθρωποκεντρικό ψηφιακό πλοηγό DialogosAI',
-    ctaDemo: 'Κλείστε Demo',
-    ctaLiveBefore: 'Δείτε τον',
-    ctaLiveAfter: '',
+    words: ['Κανένας', 'ασθενής', 'αναπάντητος.', 'Ποτέ.'],
+    ariaLabel: 'Κανένας ασθενής αναπάντητος. Ποτέ.',
+    humanWord: 'Ποτέ.',
+    subText: 'Το Pyxida απαντά 24/7, κλείνει ραντεβού και καταγράφει κάθε αίτημα — για ιατρικές μονάδες και οργανισμούς υγείας.',
+    missionLine: 'Γιατί νοιαζόμαστε για όσους φροντίζουν όλους τους άλλους.',
+    careVisualAlt: 'Δύο άνθρωποι — ο ένας στηρίζει τον άλλον',
+    ctaPrimary: 'Δείτε πώς δουλεύει',
+    ctaSecondary: 'Κλείστε demo',
     coords: '37.9795° N / 23.7162° E — Αθήνα',
   },
   midCta: {
-    bodyBefore: 'Δοκιμάστε τον',
+    bodyBefore: 'Δοκιμάστε το',
+    brand: 'Pyxida',
     bodyAfter: 'στον οργανισμό σας. 30 λεπτά αρκούν για να δείτε πώς λειτουργεί.',
     cta: 'Προγραμματίστε Demo',
   },
+  homePyxidaOffer: {
+    titleBefore: 'Τι παίρνετε με το',
+    titleBrand: 'Pyxida',
+    modulesTitle: 'Ενότητες πάνω στο Pyxida',
+    modulesDesc: 'Προσθέστε ό,τι χρειάζεστε — κάθε module επεκτείνει την ίδια βάση.',
+    cta: 'Ρίξτε μια καλύτερη ματιά',
+  },
   enterpriseCta: {
     title: 'Είστε έτοιμοι να ξεκινήσετε;',
-    leadBefore: 'Μαζί, φέρνουμε την Τεχνητή Νοημοσύνη στα μέτρα του οργανισμού σας. Προσαρμόστε σήμερα τον',
+    leadBefore: 'Μαζί, φέρνουμε την Τεχνητή Νοημοσύνη στα μέτρα του οργανισμού σας. Προσαρμόστε σήμερα το',
+    brand: 'Pyxida',
     leadAfter: 'στις πραγματικές ανάγκες των χρηστών σας.',
     cta: 'Κλείστε ένα Demo',
   },
@@ -139,9 +153,9 @@ export const extraUiEl = {
     flipBack: 'Επιστροφή ↺',
     skillsLabel: 'Εξειδίκευση:',
     principlesTitle: 'Οι Αρχές μας',
-    principlesSub: 'Οι τέσσερις πυλώνες πάνω στους οποίους βασίζεται η ανάπτυξη της SimasiaAI.',
+    principlesSub: 'Τέσσερις αρχές που καθορίζουν κάθε απόφαση που παίρνουμε.',
     missionTitle: 'Η Αποστολή μας',
-    missionText: 'Δεν σχεδιάζουμε μία απλή μηχανή απαντήσεων. Δημιουργήσαμε τον ανθρωποκεντρικό πλοηγό DialogosAI που αναπτύσσει έναν αυθεντικό, ασφαλή και προσαρμοσμένο διάλογο με τους χρήστες, με σεβασμό στην ελληνική γλώσσα, την προσβασιμότητα για όλες και όλους, αναλαμβάνοντας την ευθύνη της χρήσης της τεχνολογίας που συνδράμει σε πραγματικές ανάγκες.',
+    missionText: 'Δεν σχεδιάζουμε μία απλή μηχανή απαντήσεων. Δημιουργήσαμε το Pyxida — ανθρωποκεντρική βοηθό που αναπτύσσει αυθεντικό, ασφαλή και προσαρμοσμένο διάλογο με τους ασθενείς, με σεβασμό στην ελληνική γλώσσα, την προσβασιμότητα για όλες και όλους, αναλαμβάνοντας την ευθύνη της χρήσης της τεχνολογίας που συνδράμει σε πραγματικές ανάγκες.',
     missionCta: 'Κλείστε ένα Demo',
     terminalFile: 'mission_statement.txt',
     team: [
@@ -152,10 +166,10 @@ export const extraUiEl = {
       { id: 'pantelis', name: 'Παντελής Νικολόπουλος', role: 'Storyteller & Content Creator', shortBio: 'Storyteller & Content Creator, εστιάζοντας στην ανθρωποκεντρική επικοινωνία της AI τεχνολογίας.', bio: 'Ο Παντελής είναι ο δημιουργικός πυρήνας πίσω από την επικοινωνία και την ταυτότητα της SimasiaAI. Ως Storyteller και Content Creator, εξειδικεύεται στη δημιουργία αυθεντικού περιεχομένου με συναίσθημα και ξεκάθαρο σκοπό.', skills: ['Content Strategy', 'Brand Storytelling', 'Creative Writing', 'Media Creation'] },
     ],
     principles: [
-      { num: '01', title: 'Ανθρωποκεντρικότητα', body: 'Ο σχεδιασμός μας ξεκινά και τελειώνει με την ανθρώπινη εμπειρία, όχι με την τεχνολογία. Θέτουμε τις ανάγκες των χρηστών στο επίκεντρο κάθε γραμμής κώδικα.', icon: '👥' },
-      { num: '02', title: 'Υπευθυνότητα & Συμμόρφωση', body: 'Πλήρης εναρμόνιση με το EU AI Act σε κάθε υλοποίηση. Εγγυόμαστε απόλυτη ασφάλεια δεδομένων, διαφάνεια αποφάσεων και σεβασμό στην ιδιωτικότητα.', icon: '⚖️' },
-      { num: '03', title: 'Οικολογική Καινοτομία', body: 'Eco-Friendly Optimized RAG: Εφαρμόζουμε πράσινες τεχνολογίες για να ελαχιστοποιήσουμε το ενεργειακό αποτύπωμα των γλωσσικών μοντέλων.', icon: '🌱' },
-      { num: '04', title: 'Με Επίκεντρο την Ελλάδα', body: 'Σχεδιάζουμε ειδικά για την ελληνική γλώσσα, υποστηρίζοντας τοπικές ιδιαιτερότητες, ορολογία και πολιτισμικές αποχρώσεις.', icon: '🇬🇷' },
+      { num: '01', title: 'Ανθρωποκεντρικότητα', body: 'Ο σχεδιασμός μας ξεκινά και τελειώνει με την ανθρώπινη εμπειρία, όχι με την τεχνολογία. Θέτουμε τις ανάγκες των ασθενών στο επίκεντρο κάθε γραμμής κώδικα.' },
+      { num: '02', title: 'Υπευθυνότητα & Συμμόρφωση', body: 'Πλήρης εναρμόνιση με το EU AI Act σε κάθε υλοποίηση. Εγγυόμαστε απόλυτη ασφάλεια δεδομένων, διαφάνεια αποφάσεων και σεβασμό στην ιδιωτικότητα.' },
+      { num: '03', title: 'Οικολογική Καινοτομία', body: 'Eco-Friendly Optimized RAG: Εφαρμόζουμε πράσινες τεχνολογίες για να ελαχιστοποιήσουμε το ενεργειακό αποτύπωμα των γλωσσικών μοντέλων.' },
+      { num: '04', title: 'Με Επίκεντρο την Ελλάδα', body: 'Σχεδιάζουμε ειδικά για την ελληνική γλώσσα, υποστηρίζοντας τοπικές ιδιαιτερότητες, ορολογία και πολιτισμικές αποχρώσεις.' },
     ],
   },
   bookDemoPage: {
@@ -184,13 +198,12 @@ export const extraUiEl = {
     successBody: 'Το μήνυμά σας στάλθηκε επιτυχώς! Θα επικοινωνήσουμε σύντομα.',
     newRequest: 'Νέα αίτηση',
     errorFallback: 'Υπήρξε πρόβλημα με την αποστολή. Παρακαλώ δοκιμάστε ξανά ή επικοινωνήστε στο contact@simasiaai.gr',
-    defaultMessage: 'Αίτημα για 30′ Demo μέσω /book-demo',
+    defaultMessage: 'Αίτημα για 30′ Demo μέσω /demo',
   },
   collaborationsPage: {
     title: 'Συνεργασίες',
-    heroSubBefore: 'Τέσσερα προγράμματα',
-    heroSubAfter: 'σε υλοποίηση για οργανισμούς που εργάζονται με εμπάθεια και ανθρώπινη μέριμνα.',
-    more: 'Περισσότερα →',
+    heroSub: 'Γιατί φροντίζουμε τους ανθρώπους που φροντίζουν τους άλλους.',
+    more: 'Περισσότερα',
     interest: 'ενδιαφέρομαι',
   },
   comparison: {
@@ -207,6 +220,7 @@ export const extraUiEl = {
     ],
   },
   liveDemo: {
+    homeTitleBefore: 'Μια συζήτηση με το ',
     subtitle: 'Live Demonstration',
     thinking: 'Σκέφτεται...',
     sources: 'Πηγές',
@@ -329,6 +343,8 @@ export const extraUiEl = {
 
 export const extraUiEn = {
   nav: {
+    ypodochi: 'Pyxida',
+    demo: 'Demo',
     services: 'Services',
     team: 'Our team',
     news: 'News',
@@ -337,7 +353,9 @@ export const extraUiEn = {
     switchLanguage: 'Switch language',
   },
   pageTitles: {
-    home: 'SimasiaAI — Human-centered AI',
+    home: 'SimasiaAI — Pyxida for clinics',
+    ypodochi: 'Pyxida · SimasiaAI',
+    demo: 'Book a Demo · SimasiaAI',
     team: 'Our team · SimasiaAI',
     news: 'News & Articles · SimasiaAI',
     services: 'Services · SimasiaAI',
@@ -379,24 +397,33 @@ export const extraUiEn = {
     },
   },
   forbesHero: {
-    words: ['Human', 'Standard'],
-    ariaLabel: 'Human Standard',
-    humanWord: 'Human',
-    subBefore: 'In the age of generic AI chatbots, we designed the',
-    subEm: 'human-centered digital navigator DialogosAI',
-    ctaDemo: 'Book a Demo',
-    ctaLiveBefore: 'See',
-    ctaLiveAfter: '',
+    words: ['No', 'patient', 'unanswered.', 'Ever.'],
+    ariaLabel: 'No patient unanswered. Ever.',
+    humanWord: 'Ever.',
+    subText: 'Pyxida answers 24/7, books appointments, and records every request — for medical units and health organizations.',
+    missionLine: 'Because we care about the ones that take care of others.',
+    careVisualAlt: 'Two people — one supporting the other',
+    ctaPrimary: 'See how it works',
+    ctaSecondary: 'Book demo',
     coords: '37.9795° N / 23.7162° E — Athens',
   },
   midCta: {
     bodyBefore: 'Try',
+    brand: 'Pyxida',
     bodyAfter: 'in your organization. 30 minutes is enough to see how it works.',
     cta: 'Schedule a Demo',
+  },
+  homePyxidaOffer: {
+    titleBefore: 'What you get with',
+    titleBrand: 'Pyxida',
+    modulesTitle: 'Modules on top of Pyxida',
+    modulesDesc: 'Add what you need — each module extends the same base.',
+    cta: 'Have a better look',
   },
   enterpriseCta: {
     title: 'Ready to get started?',
     leadBefore: 'Together, we bring AI to the scale of your organization. Adapt',
+    brand: 'Pyxida',
     leadAfter: 'today to the real needs of your users.',
     cta: 'Book a Demo',
   },
@@ -465,9 +492,9 @@ export const extraUiEn = {
     flipBack: 'Go back ↺',
     skillsLabel: 'Expertise:',
     principlesTitle: 'Our Principles',
-    principlesSub: 'The four pillars on which SimasiaAI\'s development is built.',
+    principlesSub: 'Four principles that shape every decision we make.',
     missionTitle: 'Our Mission',
-    missionText: 'We do not design a simple answering machine. We created the human-centered navigator DialogosAI that builds an authentic, safe, and adapted dialogue with users — with respect for the Greek language, accessibility for everyone, and responsibility for the use of technology that serves real needs.',
+    missionText: 'We do not design a simple answering machine. We built Pyxida — a human-centered assistant that develops authentic, safe, adapted dialogue with patients, with respect for the Greek language, accessibility for everyone, and responsibility for technology that serves real needs.',
     missionCta: 'Book a Demo',
     terminalFile: 'mission_statement.txt',
     team: [
@@ -478,10 +505,10 @@ export const extraUiEn = {
       { id: 'pantelis', name: 'Pantelis Nikolopoulos', role: 'Storyteller & Content Creator', shortBio: 'Storyteller & Content Creator, focusing on the human-centered communication of AI technology.', bio: 'Pantelis is the creative core behind the communication and identity of SimasiaAI. As a Storyteller and Content Creator, he specializes in creating authentic content with emotion and clear purpose.', skills: ['Content Strategy', 'Brand Storytelling', 'Creative Writing', 'Media Creation'] },
     ],
     principles: [
-      { num: '01', title: 'Human-Centered Design', body: 'Our design begins and ends with the human experience, not with technology. We place user needs at the center of every line of code.', icon: '👥' },
-      { num: '02', title: 'Responsibility & Compliance', body: 'Full alignment with the EU AI Act in every deployment. We guarantee absolute data security, decision transparency, and respect for privacy.', icon: '⚖️' },
-      { num: '03', title: 'Ecological Innovation', body: 'Eco-Friendly Optimized RAG: We apply green technologies to minimize the energy footprint of language models.', icon: '🌱' },
-      { num: '04', title: 'Centered on Greece', body: 'We design specifically for the Greek language, supporting local particularities, terminology, and cultural nuances.', icon: '🇬🇷' },
+      { num: '01', title: 'Human-Centered Design', body: 'Our design begins and ends with the human experience, not with technology. We place patient needs at the center of every line of code.' },
+      { num: '02', title: 'Responsibility & Compliance', body: 'Full alignment with the EU AI Act in every deployment. We guarantee absolute data security, decision transparency, and respect for privacy.' },
+      { num: '03', title: 'Ecological Innovation', body: 'Eco-Friendly Optimized RAG: We apply green technologies to minimize the energy footprint of language models.' },
+      { num: '04', title: 'Centered on Greece', body: 'We design specifically for the Greek language, supporting local particularities, terminology, and cultural nuances.' },
     ],
   },
   bookDemoPage: {
@@ -510,13 +537,12 @@ export const extraUiEn = {
     successBody: 'Your message was sent successfully! We will get back to you soon.',
     newRequest: 'New request',
     errorFallback: 'There was a problem sending. Please try again or email contact@simasiaai.gr',
-    defaultMessage: 'Demo request via /book-demo',
+    defaultMessage: 'Demo request via /demo',
   },
   collaborationsPage: {
     title: 'Collaborations',
-    heroSubBefore: 'Four',
-    heroSubAfter: 'programs in delivery for organizations working with empathy and human care.',
-    more: 'More →',
+    heroSub: 'Because we take care of the people that take care of others.',
+    more: 'More',
     interest: 'I am interested',
   },
   comparison: {
@@ -533,6 +559,7 @@ export const extraUiEn = {
     ],
   },
   liveDemo: {
+    homeTitleBefore: 'A conversation with ',
     subtitle: 'Live Demonstration',
     thinking: 'Thinking...',
     sources: 'Sources',
@@ -668,6 +695,6 @@ const deepMerge = (target, source) => {
 };
 
 export const mergeExtraUi = (el, en) => ({
-  el: deepMerge(deepMerge(el, extraUiEl), pageI18nEl),
-  en: deepMerge(deepMerge(en, extraUiEn), pageI18nEn),
+  el: deepMerge(deepMerge(deepMerge(el, extraUiEl), pageI18nEl), ypodochiContentEl),
+  en: deepMerge(deepMerge(deepMerge(en, extraUiEn), pageI18nEn), ypodochiContentEn),
 });

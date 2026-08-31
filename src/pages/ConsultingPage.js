@@ -117,7 +117,7 @@ const ConsultingPage = () => {
               με πρακτικά αποτελέσματα.
             </p>
             <div className="consulting-hero-ctas">
-              <Link to="/book-demo" className="btn btn-light">Κλείστε 2ωρό Σεμινάριο</Link>
+              <Link to="/demo" className="btn btn-light">Κλείστε 2ωρό Σεμινάριο</Link>
               <a href="#packages" className="consulting-ghost-link">
                 Δείτε τα πακέτα <span>↓</span>
               </a>
@@ -233,7 +233,7 @@ const ConsultingPage = () => {
                   ))}
                 </ul>
                 <Link
-                  to="/book-demo"
+                  to="/demo"
                   className={`pkg-cta${pkg.highlight ? ' pkg-cta--primary' : ''}`}
                 >
                   {pkg.cta}
@@ -259,7 +259,7 @@ const ConsultingPage = () => {
               <a href="mailto:contact@simasiaai.gr" className="btn-consulting-dark">
                 contact@simasiaai.gr
               </a>
-              <Link to="/book-demo" className="btn-consulting-outline">
+              <Link to="/demo" className="btn-consulting-outline">
                 Κλείστε Ραντεβού
               </Link>
             </div>

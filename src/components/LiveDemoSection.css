@@ -19,6 +19,29 @@
   margin-bottom: 0.5rem;
 }
 
+.live-demo-header h2:has(.brand-pyxida-link) {
+  margin-bottom: 0;
+}
+
+.live-demo-header h2 .brand-pyxida-link {
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.live-demo-header .brand-pyxida-link {
+  color: #4a7ab5;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, #4a7ab5 35%, transparent);
+  text-underline-offset: 0.14em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.live-demo-header .brand-pyxida-link:hover {
+  color: #2d5a8a;
+  text-decoration-color: #2d5a8a;
+}
+
 .live-demo-subtitle {
   font-family: var(--font-serif);
   font-size: 1rem;
@@ -187,6 +210,31 @@
   overflow: hidden;
   flex-shrink: 0;
   box-shadow: 0 2px 8px rgba(217, 119, 87, 0.25);
+}
+
+.fin-header-compass {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.fin-chat--pyxida .fin-header-brand {
+  gap: 0.38rem;
+}
+
+.fin-chat--pyxida .fin-header-logo {
+  width: 38px;
+  height: 38px;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.fin-chat--pyxida .fin-header-compass {
+  width: 36px;
+  height: 36px;
 }
 
 .simaki-avatar {
@@ -432,6 +480,48 @@
 .fin-send-btn-active {
   background: var(--orange, #d97757);
   color: #fff;
+}
+
+/* Pyxida — blue chat chrome; orange showcase bg unchanged */
+.fin-chat--pyxida .fin-header-name {
+  color: #2d5a8a;
+}
+
+.fin-chat--pyxida .fin-bubble-user {
+  background: linear-gradient(135deg, #3d6a9e 0%, #4a7ab5 55%, #6a9bcc 100%);
+  color: #fff;
+}
+
+.fin-chat--pyxida .fin-bubble-bot {
+  background: #e8eef7;
+  color: var(--dark);
+}
+
+.fin-chat--pyxida .fin-bot-name {
+  color: #2d5a8a;
+}
+
+.fin-chat--pyxida .fin-warning-inline {
+  color: #1e4a8a;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.fin-chat--pyxida .fin-sources-label {
+  color: #4a7ab5;
+}
+
+.fin-chat--pyxida .fin-sources-list li::before {
+  background: #4a7ab5;
+  box-shadow: 0 0 0 3px rgba(74, 122, 181, 0.2);
+}
+
+.fin-chat--pyxida .fin-send-btn-active {
+  background: #4a7ab5;
+  color: #fff;
+}
+
+.fin-chat--pyxida .fin-send-btn-active:hover {
+  background: #3d6a9e;
 }
 
 /* Internals — further left, on peach bg below chat */

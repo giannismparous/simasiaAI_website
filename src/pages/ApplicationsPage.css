@@ -38,7 +38,7 @@
 /* Mobile responsiveness */
 @media (max-width: 768px) {
     .applications-hero {
-        padding: 8rem 0 0.5rem !important;
+        padding: calc(var(--hero-nav-extra, 1.05rem) + 8rem) 0 0.5rem !important;
     }
 
     .applications-hero .section-title {

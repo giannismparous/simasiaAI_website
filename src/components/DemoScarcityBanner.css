@@ -1,0 +1,64 @@
+.demo-scarcity-banner {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--orange, #d97757);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.75vw, 1.22rem);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+  text-align: center;
+  max-width: min(42rem, 100%);
+}
+
+.demo-cta-stack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: 100%;
+}
+
+.demo-cta-stack > .btn,
+.demo-cta-stack > .btn-primary {
+  margin-top: 0;
+  font-size: clamp(1.05rem, 1.85vw, 1.22rem);
+  font-weight: 600;
+  padding: clamp(1rem, 1.8vw, 1.15rem) clamp(2rem, 3.8vw, 2.85rem);
+}
+
+.demo-cta-stack--offer {
+  width: 100%;
+  max-width: min(96vw, 68rem);
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.demo-cta-stack--offer .demo-scarcity-banner {
+  color: #2d6cb5;
+  font-size: clamp(1.05rem, 1.85vw, 1.28rem);
+  font-weight: 700;
+  white-space: nowrap;
+  max-width: none;
+}
+
+@media (max-width: 720px) {
+  .demo-scarcity-banner {
+    font-size: clamp(0.95rem, 3.4vw, 1.08rem);
+  }
+
+  .demo-cta-stack--offer .demo-scarcity-banner {
+    font-size: clamp(0.95rem, 3.4vw, 1.08rem);
+    white-space: normal;
+    max-width: 34rem;
+  }
+
+  .demo-cta-stack > .btn,
+  .demo-cta-stack > .btn-primary {
+    font-size: clamp(1rem, 4vw, 1.12rem);
+    padding: 0.95rem 1.75rem;
+    width: min(100%, 22rem);
+  }
+}

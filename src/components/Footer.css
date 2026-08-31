@@ -26,14 +26,35 @@
   z-index: 1;
 }
 
+.footer-logo-lockup {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.18rem;
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+}
+
 .footer-logo {
   height: 40px;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
-  margin-bottom: 0.75rem;
-  opacity: 0.85;
+  opacity: 0.9;
   display: block;
+  flex-shrink: 0;
+}
+
+.footer-wordmark {
+  font-family: var(--font-sans);
+  font-size: 1.85rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--light, #faf9f5);
+  white-space: nowrap;
+  line-height: 1;
+  padding-bottom: 0;
+  transform: translateY(0.24rem);
+  opacity: 0.9;
 }
 
 .footer-phrase {
@@ -143,7 +164,7 @@
     width: 100%;
     text-align: center;
   }
-  .footer-logo {
+  .footer-logo-lockup {
     margin-left: auto;
     margin-right: auto;
   }

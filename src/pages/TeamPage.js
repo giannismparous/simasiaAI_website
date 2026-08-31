@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import InteractiveConstellation from '../components/InteractiveConstellation';
+import PageHeroBackdrop from '../components/PageHeroBackdrop';
+import PrincipleIcon from '../components/PrincipleIcons';
 import { useTranslation } from '../hooks/useTranslation';
 import './TeamPage.css';
 import stergiosReal from '../assets/stergios-real.png';
@@ -119,8 +120,6 @@ const TeamPage = () => {
   const [flippedCards, setFlippedCards] = useState({});
   const toggleFlip = (id) => setFlippedCards((prev) => ({ ...prev, [id]: !prev[id] }));
 
-  const [activePrinciple, setActivePrinciple] = useState(0);
-
   const teamMembers = Array.isArray(t('teamPage.team')) ? t('teamPage.team') : [];
   const principles = Array.isArray(t('teamPage.principles')) ? t('teamPage.principles') : [];
 
@@ -128,14 +127,14 @@ const TeamPage = () => {
     <div className="tp-page">
       {/* Hero */}
       <section className="tp-hero">
-        <InteractiveConstellation pattern="people" />
+        <PageHeroBackdrop />
         <div className="container">
           <motion.div
+            className="tp-hero-inner"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease }}
           >
-            <span className="tp-eyebrow">{t('teamPage.eyebrow')}</span>
             <h1>{t('teamPage.heroTitle')}</h1>
             <p className="tp-hero-sub">{t('teamPage.heroSub')}</p>
           </motion.div>
@@ -261,36 +260,23 @@ const TeamPage = () => {
             <p>{t('teamPage.principlesSub')}</p>
           </motion.div>
 
-          <div className="tp-interactive-principles">
-            <div className="tp-principles-nav">
-              {principles.map((p, idx) => (
-                <button
-                  key={p.num}
-                  className={`tp-principle-tab ${activePrinciple === idx ? 'active' : ''}`}
-                  onClick={() => setActivePrinciple(idx)}
-                >
-                  <span className="tp-tab-num">{p.num}</span>
-                  <span className="tp-tab-title">{p.title}</span>
-                </button>
-              ))}
-            </div>
-
-            <div className="tp-principles-content">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activePrinciple}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="tp-active-principle-card"
-                >
-                  <div className="tp-active-icon">{principles[activePrinciple].icon}</div>
-                  <h3>{principles[activePrinciple].title}</h3>
-                  <p>{principles[activePrinciple].body}</p>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+          <div className="tp-principles-list">
+            {principles.map((p, idx) => (
+              <motion.div
+                key={p.num}
+                className="tp-principle-item"
+                initial={{ opacity: 0, y: 16 }}
+                animate={principlesInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.08 + idx * 0.08, ease }}
+              >
+                <span className="tp-principle-num">{p.num}</span>
+                <div className="tp-principle-body">
+                  <h3>{p.title}</h3>
+                  <p>{p.body}</p>
+                </div>
+                <PrincipleIcon num={p.num} className="tp-principle-icon" />
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -322,7 +308,7 @@ const TeamPage = () => {
               </div>
             </div>
             <div className="tp-mission-cta">
-              <Link to="/book-demo" className="btn btn-primary btn-large">{t('teamPage.missionCta')}</Link>
+              <Link to="/demo" className="btn btn-primary btn-large">{t('teamPage.missionCta')}</Link>
             </div>
           </motion.div>
         </div>

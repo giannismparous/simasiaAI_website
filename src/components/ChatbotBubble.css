@@ -1,4 +1,41 @@
 /* Fin-style launcher pill */
+.chatbot-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  pointer-events: none;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
+}
+
+.chatbot-shell > * {
+  pointer-events: auto;
+}
+
+.chatbot-shell--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 0.8s;
+}
+
+.chatbot-shell--hidden .chat-launcher-pill {
+  transform: translateX(-50%) translateY(22px);
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.chatbot-shell--hidden > * {
+  pointer-events: none;
+}
+
 .chat-launcher-pill {
   position: fixed;
   bottom: 2rem;
@@ -21,14 +58,17 @@
   cursor: pointer;
   font-family: var(--font-sans);
   text-align: left;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease,
+    opacity 0.35s ease;
 }
 
 .chat-launcher-pill:hover {
   transform: translateX(-50%) translateY(-2px);
   box-shadow:
     0 4px 16px rgba(20, 20, 19, 0.09),
-    0 16px 44px rgba(217, 119, 87, 0.14);
+    0 16px 44px rgba(74, 122, 181, 0.14);
 }
 
 .chat-launcher-pill.launcher-returning {
@@ -59,11 +99,17 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(20, 20, 19, 0.07);
-  color: rgba(20, 20, 19, 0.4);
+  background: #4a7ab5;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.chat-launcher-pill:hover .launcher-send,
+.chat-launcher-pill:focus-visible .launcher-send {
+  background: #2d5a8a;
 }
 
 .launcher-send svg {

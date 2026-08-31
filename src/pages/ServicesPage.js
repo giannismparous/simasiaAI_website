@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import PageHeroBackdrop from '../components/PageHeroBackdrop';
 import InteractiveConstellation from '../components/InteractiveConstellation';
 import { useTranslation } from '../hooks/useTranslation';
 import './ServicesPage.css';
@@ -36,7 +37,7 @@ const ServicesPage = () => {
     <div className="svc-page">
       {/* Hero */}
       <section className="svc-hero" ref={heroRef}>
-        <InteractiveConstellation pattern="briefcase" />
+        <PageHeroBackdrop />
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -49,7 +50,7 @@ const ServicesPage = () => {
               {t('servicesPage.heroSub')}
             </p>
             <div className="svc-hero-ctas">
-              <Link to="/book-demo" className="btn btn-light">{t('servicesPage.bookAppointment')}</Link>
+              <Link to="/demo" className="btn btn-light">{t('servicesPage.bookAppointment')}</Link>
               <a href="#offers" className="svc-ghost-link">
                 {t('servicesPage.seeServices')} <span>↓</span>
               </a>
@@ -171,7 +172,7 @@ const ServicesPage = () => {
                   ))}
                 </ul>
                 <Link
-                  to="/book-demo"
+                  to="/demo"
                   className={`svc-pkg-cta${pkg.highlight ? ' svc-pkg-cta--primary' : ''}`}
                 >
                   {pkg.cta}
@@ -252,7 +253,7 @@ const ServicesPage = () => {
               >
                 <h3>{w.title}</h3>
                 <p>{w.desc}</p>
-                <Link to="/book-demo" className="svc-workshop-cta">
+                <Link to="/demo" className="svc-workshop-cta">
                   {t('servicesPage.workshopCta')}
                 </Link>
               </motion.div>
@@ -293,7 +294,7 @@ const ServicesPage = () => {
               <a href="mailto:contact@simasiaai.gr" className="svc-btn-dark">
                 contact@simasiaai.gr
               </a>
-              <Link to="/book-demo" className="svc-btn-outline">
+              <Link to="/demo" className="svc-btn-outline">
                 {t('servicesPage.finalCta')}
               </Link>
             </div>

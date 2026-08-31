@@ -1,38 +1,69 @@
 .collabs-page { background: var(--light, #faf9f5); }
 
+/* Hero — type scale matches ForbesHero (home) & Team page */
 .cp-hero {
-  padding: 10rem 0 5rem;
+  padding: calc(var(--hero-nav-extra, 1.05rem) + clamp(7rem, 9.5vw, 8.75rem)) 0 clamp(3rem, 4.5vw, 4rem);
   background: var(--dark, #141413);
-  min-height: 55vh;
+  min-height: min(62vh, 700px);
   display: flex;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
+.cp-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.cp-hero-inner {
+  max-width: min(68rem, 100%);
+  margin-inline: auto;
+  text-align: center;
+}
+
 .cp-eyebrow {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: clamp(0.9rem, 1.85vw, 1.08rem);
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--orange, #d97757);
   display: block;
-  margin-bottom: 1.25rem;
+  margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 .cp-hero h1 {
-  font-size: clamp(1.7rem, 3.4vw, 2.75rem);
+  font-family: var(--font-sans);
+  font-size: clamp(2.15rem, 4.85vw, 3.55rem);
   font-weight: 700;
   color: var(--light, #faf9f5);
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin-bottom: 1.25rem;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin: 0 auto clamp(1.35rem, 2.75vw, 1.85rem);
+  max-width: min(58rem, 100%);
 }
 .cp-hero-sub {
   font-family: var(--font-serif);
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: rgba(250, 249, 245, 0.6);
+  font-size: clamp(1.12rem, 2.5vw, 1.52rem);
+  line-height: 1.72;
+  color: rgba(250, 249, 245, 0.72);
+  max-width: min(58rem, 100%);
+  margin: 0 auto;
+}
+.cp-hero-sub em {
+  color: rgba(250, 249, 245, 0.9);
+  font-style: italic;
 }
 
-.cp-cards { padding: 5rem 0; }
+.cp-intro {
+  padding: clamp(3.5rem, 6vw, 5rem) 0 0;
+  background: var(--light, #faf9f5);
+}
+
+.cp-intro .collabs-copy p:last-of-type {
+  margin-bottom: 0;
+}
+
+.cp-cards { padding: clamp(2.5rem, 4vw, 3.5rem) 0 5rem; }
 .cp-cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -121,9 +152,37 @@
 }
 .cp-card-cta:hover { background: #c0603e; border-color: #c0603e; color: #fff; }
 
+@media (max-width: 920px) {
+  .cp-hero {
+    padding: calc(var(--hero-nav-extra, 1.05rem) + 6.75rem) 0 3.5rem;
+    min-height: min(58vh, 640px);
+  }
+  .cp-hero h1 {
+    font-size: clamp(1.75rem, 5.75vw, 2.55rem);
+    letter-spacing: -0.04em;
+  }
+  .cp-hero-sub {
+    font-size: clamp(1.08rem, 4.3vw, 1.26rem);
+    line-height: 1.66;
+  }
+}
+
 @media (max-width: 768px) {
   .cp-cards-grid { grid-template-columns: 1fr; }
-  .cp-hero { padding: 7rem 0 3.5rem; text-align: center; }
-  .cp-hero h1 { font-size: clamp(1.85rem, 8vw, 2.6rem); }
   .cp-card-actions { flex-wrap: wrap; }
+}
+
+@media (max-width: 640px) {
+  .cp-hero {
+    padding: calc(var(--hero-nav-extra, 1.05rem) + 6rem) 0 3rem;
+    min-height: auto;
+  }
+  .cp-hero h1 {
+    font-size: clamp(1.58rem, 7vw, 2.05rem);
+    letter-spacing: -0.03em;
+  }
+  .cp-hero-sub {
+    font-size: clamp(1.05rem, 4.2vw, 1.22rem);
+    max-width: 36rem;
+  }
 }

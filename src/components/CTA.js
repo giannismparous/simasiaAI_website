@@ -45,7 +45,7 @@ const CTA = () => {
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <Link to="/book-demo" className="btn btn-primary">
+                <Link to="/demo" className="btn btn-primary">
                   {t('cta.button')}
                 </Link>
               </motion.div>

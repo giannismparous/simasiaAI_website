@@ -148,7 +148,7 @@ export function resolveUserQuery(userText, messages, lastResolvedQuery = '') {
     if (isEl) {
       return {
         query:
-          `Ο χρήστης απάντησε σύντομα ("${text}") στην τελευταία ερώτηση του DialogosAI (ανθρωποκεντρικού ψηφιακού συστήματος πλοήγησης). ` +
+          `Ο χρήστης απάντησε σύντομα ("${text}") στην τελευταία ερώτηση του Pyxida (ψηφιακής υποδοχής SimasiaAI). ` +
           `Απάντησε άμεσα και συγκεκριμένα στην ερώτηση: "${lastBotQuestion}". ` +
           'Μην ζητήσεις επιβεβαίωση και μην επαναδιατυπώσεις την ίδια ερώτηση.',
         isFollowUp: true,
@@ -156,7 +156,7 @@ export function resolveUserQuery(userText, messages, lastResolvedQuery = '') {
     }
     return {
       query:
-        `The user gave a short reply ("${text}") to DialogosAI's last question. ` +
+        `The user gave a short reply ("${text}") to Pyxida's last question. ` +
         `Answer that question directly and concretely: "${lastBotQuestion}". ` +
         'Do not ask for confirmation and do not restate the same question.',
       isFollowUp: true,
@@ -183,7 +183,7 @@ export function resolveUserQuery(userText, messages, lastResolvedQuery = '') {
       query:
         `Τρέχον μήνυμα χρήστη: "${text}". ` +
         `Ερμήνευσέ το με βάση το πρόσφατο θέμα: "${fallbackTopic || '(χωρίς σαφές προηγούμενο θέμα)'}". ` +
-        `Τελευταία απάντηση DialogosAI: "${lastBot || '(καμία)'}".`,
+        `Τελευταία απάντηση Pyxida: "${lastBot || '(καμία)'}".`,
       isFollowUp: true,
     };
   }
@@ -192,7 +192,7 @@ export function resolveUserQuery(userText, messages, lastResolvedQuery = '') {
     query:
       `Current user message: "${text}". ` +
       `Interpret it using recent topic: "${fallbackTopic || '(no clear previous topic)'}". ` +
-      `Last DialogosAI reply: "${lastBot || '(none)'}".`,
+      `Last Pyxida reply: "${lastBot || '(none)'}".`,
     isFollowUp: true,
   };
 }
@@ -215,7 +215,7 @@ export function buildConversationContext(messages, maxMessages = 6) {
     .slice(-maxMessages);
   return usable
     .map((m) => {
-      const role = m.sender === 'user' ? 'USER' : 'DIALOGOSAI';
+      const role = m.sender === 'user' ? 'USER' : 'PYXIDA';
       const max = m.sender === 'bot' ? 420 : 280;
       return `${role}: ${clipForPrompt(m.text, max)}`;
     })

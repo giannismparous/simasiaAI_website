@@ -35,7 +35,7 @@ export const sendContactEmail = async ({
   organizationType = 'N/A',
   companyName = 'N/A',
   message = 'N/A',
-  attachment = 'N/A',
+  attachment,
 }) => {
   const { serviceID, templateID, publicKey } = getConfig();
 
@@ -47,16 +47,25 @@ export const sendContactEmail = async ({
 
   ensureInit(publicKey);
 
+  const trimmedAttachment = typeof attachment === 'string' ? attachment.trim() : '';
+  const attachmentLine = trimmedAttachment
+    ? `Αρχείο/Σύνδεσμος: ${trimmedAttachment}`
+    : '';
+
   const templateParams = {
     from_name: fromName,
     from_email: fromEmail,
     organization_type: organizationType,
     company_name: companyName || 'N/A',
     message: message || 'N/A',
-    attachment: attachment || 'N/A',
+    attachment_line: attachmentLine,
     to_email: 'contact@simasiaai.gr',
     reply_to: fromEmail,
   };
+
+  if (trimmedAttachment) {
+    templateParams.attachment = trimmedAttachment;
+  }
 
   let retries = 2;
   let lastError = null;
@@ -83,7 +92,7 @@ export const sendContactEmail = async ({
 export const mapEmailJsError = (error, fallbackMessage) => {
   const text = `${error?.text || ''} ${error?.message || ''}`;
   if (error?.code === 'CONFIG_MISSING') {
-    return 'Email configuration error. Please contact support.';
+    return fallbackMessage;
   }
   if (text.includes('fetch') || text.includes('Failed to fetch')) {
     return 'Network error. Please check your internet connection and try again.';

@@ -106,13 +106,24 @@ const FIGURE_EDGES = [
 
 const WAVE_RADIUS = INFLUENCE_RADIUS * 1.15;
 
-const getFigureZone = (width, height) => {
+const getFigureLayout = (width) => {
   const isMobile = width < 640;
   return {
-    cx: width * (isMobile ? 0.72 : 0.78),
-    cy: height * (isMobile ? 0.78 : 0.83),
-    rx: Math.min(width, height) * (isMobile ? 0.21 : 0.25),
-    ry: Math.min(width, height) * (isMobile ? 0.3 : 0.34),
+    cxRatio: isMobile ? 0.66 : 0.66,
+    cyRatio: isMobile ? 0.78 : 0.56,
+    scaleMul: isMobile ? 0.38 : 0.44,
+    zoneRxMul: isMobile ? 0.21 : 0.25,
+    zoneRyMul: isMobile ? 0.3 : 0.34,
+  };
+};
+
+const getFigureZone = (width, height) => {
+  const layout = getFigureLayout(width);
+  return {
+    cx: width * layout.cxRatio,
+    cy: height * layout.cyRatio,
+    rx: Math.min(width, height) * layout.zoneRxMul,
+    ry: Math.min(width, height) * layout.zoneRyMul,
   };
 };
 
@@ -154,10 +165,10 @@ const randomBgStarPos = (width, height, zone, avoidFigureZone = true) => {
 };
 
 const mapFigurePoint = (p, width, height) => {
-  const isMobile = width < 640;
-  const scale = Math.min(width, height) * (isMobile ? 0.38 : 0.46);
-  const cx = width * (isMobile ? 0.72 : 0.78);
-  const cy = height * (isMobile ? 0.78 : 0.83);
+  const layout = getFigureLayout(width);
+  const scale = Math.min(width, height) * layout.scaleMul;
+  const cx = width * layout.cxRatio;
+  const cy = height * layout.cyRatio;
   const jitter = () => (Math.random() - 0.5) * scale * 0.012;
   return {
     x: cx + p.x * scale + jitter(),

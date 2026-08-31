@@ -37,12 +37,20 @@
     --ease-in-out: cubic-bezier(0.25, 0.1, 0.25, 1);
     --z-nav: 1000;
     --z-cursor: 9999;
+    --nav-height: 6.325rem;
+    --hero-nav-extra: 1.05rem;
     --hero-inner-max: min(1140px, 92vw);
     --hero-sub-max: min(900px, 88vw);
 }
 
 ::selection { background: var(--orange); color: #fff; }
 ::-moz-selection { background: var(--orange); color: #fff; }
+
+/* Brand name: Pyxida — always italic, inherits weight/color */
+.brand-pyxida {
+    font-style: italic;
+    font-family: inherit;
+}
 
 /* Brand name: DialogosAI — always italic, inherits weight/color */
 .brand-dialogos {
@@ -158,6 +166,11 @@ section.impact-wrapper:hover .impact .section-title { color: var(--dark-text) !i
 .btn-light:hover { background: #c0603e; color: #fff; transform: translateY(-2px); }
 .btn-secondary { background: transparent; color: var(--dark); border: 1px solid var(--light-gray); }
 .btn-secondary:hover { border-color: var(--orange, #d97757); color: var(--orange, #d97757); }
+.btn-large {
+    font-size: clamp(1.05rem, 1.85vw, 1.22rem);
+    padding: clamp(1rem, 1.8vw, 1.15rem) clamp(2rem, 3.8vw, 2.85rem);
+    font-weight: 600;
+}
 
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -186,7 +199,7 @@ section.impact-wrapper:hover .impact .section-title { color: var(--dark-text) !i
 .marquee-inner { display: inline-flex; animation: marquee 20s linear infinite; }
 
 @media (max-width: 768px) {
-    .applications-hero, .solutions-hero, .collaborations-hero, .book-demo-page { padding: 6rem 0 2rem !important; }
+    .applications-hero, .solutions-hero, .collaborations-hero, .book-demo-page { padding: calc(var(--hero-nav-extra, 1.05rem) + 6rem) 0 2rem !important; }
     .section-title { font-size: 2rem !important; margin-bottom: 1.5rem !important; }
     .application-card { padding: 2rem 1.5rem !important; margin: 0 1rem !important; }
     .collaboration-ctas { flex-direction: column !important; gap: 0.5rem !important; }

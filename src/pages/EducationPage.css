@@ -7,7 +7,7 @@
 /* === HERO === */
 .edu-hero {
   position: relative;
-  padding: 10rem 0 6rem;
+  padding: calc(var(--hero-nav-extra, 1.05rem) + 10rem) 0 6rem;
   background: var(--dark, #141413);
   min-height: 60vh;
   display: flex;
@@ -218,7 +218,7 @@
 }
 
 @media (max-width: 640px) {
-  .edu-hero { padding: 7rem 0 4rem; }
+  .edu-hero { padding: calc(var(--hero-nav-extra, 1.05rem) + 7rem) 0 4rem; }
   .edu-hero-ctas { flex-direction: column; align-items: flex-start; }
   .edu-groups, .edu-workshops-sec { padding: 3.5rem 0; }
   .edu-group-item { grid-template-columns: 50px 1fr; gap: 1rem; }

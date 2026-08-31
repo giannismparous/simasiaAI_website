@@ -20,7 +20,11 @@ const CORE_IDENTITY_FILE = path.join(ROOT, "data", "rag", "sima-core-identity.js
 const translationsUrl = pathToFileURL(
   path.join(ROOT, "src", "translations", "translations.js")
 ).href;
+const scarcityCopyUrl = pathToFileURL(
+  path.join(ROOT, "src", "utils", "scarcityCopy.js")
+).href;
 const { translations } = await import(translationsUrl);
+const { formatScarcityNote } = await import(scarcityCopyUrl);
 
 function normalize(text) {
   return (text || "")
@@ -86,16 +90,19 @@ function addDocs(docs, base) {
   });
 }
 
+/** Navbar routes only — current public site (see Navbar.js) */
+const NAVBAR_ROUTES = ['/', '/ypodochi', '/collaborations', '/news', '/team', '/demo'];
+
 function buildFromTranslations(lang, t) {
   const docs = [];
   const L = lang;
 
   addDocs(docs, {
-    title: L === "el" ? "Αρχική — SimasiaAI" : "Home — SimasiaAI",
+    title: L === "el" ? "Αρχική — SimasiaAI & Pyxida" : "Home — SimasiaAI & Pyxida",
     url: "/",
     lang: L,
     category: "company",
-    keywords: ["simasiaai", "simasia", "home", "αρχικη"],
+    keywords: ["simasiaai", "simasia", "pyxida", "home", "αρχικη"],
     content: [
       t.hero?.line1a,
       t.hero?.line1b,
@@ -122,90 +129,11 @@ function buildFromTranslations(lang, t) {
   });
 
   addDocs(docs, {
-    title: L === "el" ? "Σχετικά — SimasiaAI" : "About — SimasiaAI",
-    url: "/about",
-    lang: L,
-    category: "company",
-    keywords: ["about", "σχετικα", "εταιρεια", "startup"],
-    content: [
-      t.about?.title,
-      t.about?.text,
-      t.mission?.title,
-      t.mission?.text,
-      t.values?.title,
-      ...(t.values?.items || []).map((v) => `${v.title}: ${v.text}`),
-      t.philosophy?.title,
-      t.philosophy?.vision?.title,
-      t.philosophy?.vision?.text,
-      t.philosophy?.whatWeDo?.title,
-      ...(t.philosophy?.whatWeDo?.items || []).map((x) => `${x.title}: ${x.text}`),
-    ]
-      .filter(Boolean)
-      .join("\n"),
-  });
-
-  addDocs(docs, {
-    title: L === "el" ? "Εφαρμογές — Επισκόπηση" : "Applications — Overview",
-    url: "/applications",
-    lang: L,
-    category: "products",
-    keywords: ["products", "applications", "εφαρμογες", "προιοντα"],
-    content: [
-      t.applications?.title,
-      t.applications?.subtitle,
-      t.whatWeOffer?.title,
-      ...(t.whatWeOffer?.cards || []).map((c) => `${c.name}: ${c.desc} (${c.link})`),
-    ]
-      .filter(Boolean)
-      .join("\n"),
-  });
-
-  const productKeys = [
-    { key: "chatbots", path: "/applications/simasia-chatbots", name: "SimasiaChatbots" },
-    { key: "edu", path: "/applications/simasia-edu", name: "SimasiaEdu" },
-    { key: "studio", path: "/applications/simasia-studio", name: "SimasiaStudio" },
-    { key: "daily", path: "/applications/simasia-daily", name: "SimasiaDaily" },
-  ];
-
-  for (const { key, path: url, name } of productKeys) {
-    const p = t.products?.[key];
-    if (!p) continue;
-    let body = [p.name, p.title, p.offers, ...(p.features || [])].filter(Boolean).join("\n");
-    if (p.toolCategories) {
-      body += "\n" + p.toolCategories.map((tc) => `${tc.category}: ${(tc.tools || []).join(" ")}`).join("\n");
-    }
-    addDocs(docs, {
-      title: `${name} — ${L === "el" ? "Προϊόν" : "Product"}`,
-      url,
-      lang: L,
-      category: "products",
-      keywords: [name.toLowerCase(), key, "simasia"],
-      content: body,
-    });
-  }
-
-  addDocs(docs, {
-    title: L === "el" ? "Ποιους αφορά" : "Who It's For",
-    url: "/target-audience",
-    lang: L,
-    category: "audience",
-    keywords: ["target", "audience", "ποιους", "αφορα"],
-    content: [
-      t.targetAudience?.title,
-      ...(t.targetAudience?.audienceCards || []).map(
-        (c) => `${c.title} — προτεινόμενο/ recommended: ${c.product}`
-      ),
-    ]
-      .filter(Boolean)
-      .join("\n"),
-  });
-
-  addDocs(docs, {
     title: L === "el" ? "Συνεργασίες" : "Collaborations",
     url: "/collaborations",
     lang: L,
     category: "collaborations",
-    keywords: ["collaborations", "συνεργασιες", "partners"],
+    keywords: ["collaborations", "συνεργασιες", "partners", "ποαμσκπ", "καπα3"],
     content: [
       t.collaborations?.title,
       t.collaborations?.current?.title,
@@ -223,19 +151,19 @@ function buildFromTranslations(lang, t) {
   });
 
   addDocs(docs, {
-    title: L === "el" ? "Κλείστε demo" : "Book a demo",
-    url: "/book-demo",
+    title: L === "el" ? "Κλείστε demo — φόρμα" : "Book a demo — form",
+    url: "/demo",
     lang: L,
     category: "contact",
-    keywords: ["demo", "book", "συνεργασια", "proposal"],
-    content: [t.bookDemo?.title, t.bookDemo?.description, t.contactForm?.title, t.contactForm?.subtitle]
+    keywords: ["demo", "book", "συνεργασια", "proposal", "pyxida"],
+    content: [t.demoPage?.heroTitle, t.demoPage?.siteUrlHint, t.demoPage?.submit, t.demoPage?.offerLabel]
       .filter(Boolean)
       .join("\n"),
   });
 
   addDocs(docs, {
     title: L === "el" ? "Επικοινωνία" : "Contact",
-    url: "/book-demo",
+    url: "/demo",
     lang: L,
     category: "contact",
     keywords: ["contact", "email", "επικοινωνια", "simasiaai.gr"],
@@ -245,9 +173,7 @@ function buildFromTranslations(lang, t) {
       t.footer?.location,
       "LinkedIn: linkedin.com/company/simasiaai",
       "Instagram: instagram.com/simasiaai",
-      t.contactForm?.subtitle,
-      t.contactForm?.privacyNote,
-      t.contactForm?.errorMessage,
+      t.demoPage?.heroTitle,
     ]
       .filter(Boolean)
       .join("\n"),
@@ -256,54 +182,9 @@ function buildFromTranslations(lang, t) {
   return docs;
 }
 
-/** Solutions page bilingual summary (backup if pageI18n missing) */
+/** @deprecated — solutions page not in navbar; removed from index */
 function solutionsPageDocs() {
-  const el = {
-    title: "Λύσεις με Σημασία",
-    url: "/solutions",
-    content: `Λύσεις με Σημασία. Για Επιχειρήσεις, Φορείς, Οργανισμούς. Συνεργαζόμαστε για λύσεις που ενισχύουν την κοινωνική συνοχή και υποστηρίζουν καθαρή, προσβάσιμη επικοινωνία.
-
-Τι πετυχαίνουμε μαζί:
-- Σαφείς απαντήσεις και λιγότερη χρονοτριβή σε συχνές ερωτήσεις/σύνθετες διαδικασίες.
-- Διαφάνεια γνώσης με τεκμηρίωση από εγκεκριμένες πηγές.
-- Προσβασιμότητα & συμπερίληψη στην ψηφιακή επικοινωνία.
-- Ενδυνάμωση κοινοτήτων (υγεία, εκπαίδευση, κοινωνικές υπηρεσίες, πολιτισμός) με έγκυρη καθοδήγηση.
-- Ομαλή ενσωμάτωση στις υπάρχουσες ροές και συστήματα.
-
-Πώς συνεργαζόμαστε: Διερεύνηση → Πιλοτική εφαρμογή → Παραγωγική ένταξη (SSO/CRM/Helpdesk) → Υποστήριξη & Εξέλιξη.
-
-Τι μπορούμε να αναπτύξουμε (ενδεικτικά): chatbots, εκπαιδευτικά εργαλεία, μετάφραση/επιμέλεια, μικρά εργαλεία αυτοματοποίησης.
-
-Γιατί chatbots SimasiaAI: προσβασιμότητα, πολυγλωσσία, μείωση προκαταλήψεων, εκπαίδευση σε δικό σας περιεχόμενο, συνέπεια & ασφάλεια, κλιμάκωση και ειδοποιήσεις.`,
-  };
-  const en = {
-    title: "Solutions with Meaning",
-    url: "/solutions",
-    content: `Solutions with Meaning. For businesses, institutions, and organizations. We collaborate to strengthen social cohesion and support clear, accessible communication.
-
-What we achieve together: clear answers to frequent questions; knowledge transparency from approved sources; accessibility and inclusion; community empowerment in health, education, social services, and culture; smooth integration into existing systems.
-
-How we collaborate: Exploration → Pilot → Production integration (SSO/CRM/Helpdesk) → Support & evolution.
-
-What we can build: chatbots, education tools, translation/editing, workflow automation.
-
-Why SimasiaAI chatbots: accessibility by design, multilingual support, bias reduction, training on your content, consistency and safety, escalation and notifications.`,
-  };
-  const docs = [];
-  for (const [lang, block] of [
-    ["el", el],
-    ["en", en],
-  ]) {
-    addDocs(docs, {
-      title: block.title,
-      url: block.url,
-      lang,
-      category: "solutions",
-      keywords: ["solutions", "λυσεις", "συνεργασια"],
-      content: block.content,
-    });
-  }
-  return docs;
+  return [];
 }
 
 function flattenValue(v, acc = []) {
@@ -324,80 +205,52 @@ function flattenValue(v, acc = []) {
   return acc;
 }
 
-/** Extra homepage / product namespaces from merged translations */
+/** Extra page i18n — navbar routes only */
 function buildFromExtraNamespaces(lang, t) {
   const docs = [];
   const L = lang;
   const blocks = [
     {
-      title: L === "el" ? "Hero — DialogosAI" : "Hero — DialogosAI",
+      title: L === "el" ? "Hero — Pyxida (αρχική)" : "Hero — Pyxida (home)",
       url: "/",
-      keys: ["forbesHero", "midCta", "enterpriseCta", "hero"],
+      keys: ["forbesHero", "midCta", "enterpriseCta", "hero", "homePyxidaOffer"],
       category: "company",
-      keywords: ["dialogosai", "hero", "demo"],
+      keywords: ["pyxida", "hero", "demo", "clinic", "ιατρειο"],
     },
     {
-      title: L === "el" ? "Σχετικά με εμάς (ενότητα)" : "About section",
-      url: "/#about",
+      title: L === "el" ? "Pyxida — ψηφιακή υποδοχή" : "Pyxida — digital reception",
+      url: "/ypodochi",
+      keys: ["ypodochiPage"],
+      category: "products",
+      keywords: ["pyxida", "praxi", "ypodochi", "clinic", "ιατρειο", "reception", "απανταει"],
+    },
+    {
+      title: L === "el" ? "Demo — φόρμα αίτησης" : "Demo — request form",
+      url: "/demo",
+      keys: ["demoPage"],
+      category: "contact",
+      keywords: ["demo", "book", "pyxida", "φορμα"],
+    },
+    {
+      title: L === "el" ? "Σχετικά (ενότητα αρχικής)" : "About section (home)",
+      url: "/",
       keys: ["aboutSection"],
       category: "company",
-      keywords: ["about", "ομαδα", "founders", "σχετικα"],
+      keywords: ["about", "ομαδα", "founders", "σχετικα", "pyxida"],
     },
     {
-      title: L === "el" ? "Κύκλος μάθησης" : "Learning loop",
-      url: "/",
-      keys: ["learningLoop"],
-      category: "product",
-      keywords: ["learning", "loop", "analyze", "train", "test", "deploy"],
+      title: L === "el" ? "Ομάδα — SimasiaAI" : "Team — SimasiaAI",
+      url: "/team",
+      keys: ["teamPage"],
+      category: "company",
+      keywords: ["team", "ομαδα", "founders", "ιδρυτες", "ceo"],
     },
     {
-      title: L === "el" ? "Ελεγχόμενη βελτίωση" : "Controlled improvement",
-      url: "/",
-      keys: ["controlledImprovement"],
-      category: "product",
-      keywords: ["improvement", "flywheel", "approval", "ελεγχος"],
-    },
-    {
-      title: L === "el" ? "Insights Dashboard" : "Insights Dashboard",
-      url: "/",
-      keys: ["insightsDashboard"],
-      category: "product",
-      keywords: ["insights", "dashboard", "analytics"],
-    },
-    {
-      title: L === "el" ? "Σύγκριση DialogosAI" : "DialogosAI comparison",
-      url: "/applications/simasia-chatbots",
-      keys: ["comparison"],
-      category: "products",
-      keywords: ["comparison", "συγκριση", "chatbots"],
-    },
-    {
-      title: "DialogosAI — product page",
-      url: "/applications/simasia-chatbots",
-      keys: ["chatbotsPage"],
-      category: "products",
-      keywords: ["dialogosai", "chatbots", "pillars", "sectors"],
-    },
-    {
-      title: L === "el" ? "Υπηρεσίες" : "Services",
-      url: "/services",
-      keys: ["servicesPage"],
-      category: "services",
-      keywords: ["services", "υπηρεσιες", "consulting", "education", "packages"],
-    },
-    {
-      title: L === "el" ? "Λύσεις (pageI18n)" : "Solutions (pageI18n)",
-      url: "/solutions",
-      keys: ["solutionsPage"],
-      category: "solutions",
-      keywords: ["solutions", "λυσεις"],
-    },
-    {
-      title: L === "el" ? "Κλείστε Demo (σελίδα)" : "Book Demo page",
-      url: "/book-demo",
-      keys: ["bookDemoPage", "bookDemo"],
-      category: "contact",
-      keywords: ["demo", "book"],
+      title: L === "el" ? "Νέα & Άρθρα" : "News & articles",
+      url: "/news",
+      keys: ["newsPage"],
+      category: "company",
+      keywords: ["news", "νεα", "articles", "αρθρα"],
     },
   ];
 
@@ -407,13 +260,37 @@ function buildFromExtraNamespaces(lang, t) {
       if (t[key]) flattenValue(t[key], parts);
     }
     if (!parts.length) continue;
+
+    let content = parts.join("\n");
+    if (block.keys.includes("ypodochiPage")) {
+      const translate = (key) => {
+        let value = t;
+        for (const k of key.split(".")) {
+          value = value?.[k];
+        }
+        return value ?? key;
+      };
+      const monthLabel = translate("ypodochiPage.cms.monthLabel");
+      const seatsSuffix = translate("ypodochiPage.cms.seatsSuffix");
+      const resolvedScarcity = formatScarcityNote(translate);
+      const filtered = parts.filter(
+        (p) =>
+          p !== monthLabel &&
+          p !== seatsSuffix &&
+          !/\{seatsPhrase\}/.test(p) &&
+          !/\{month\}/.test(p)
+      );
+      if (resolvedScarcity) filtered.push(resolvedScarcity);
+      content = filtered.join("\n");
+    }
+
     addDocs(docs, {
       title: block.title,
       url: block.url,
       lang: L,
       category: block.category,
       keywords: block.keywords,
-      content: parts.join("\n"),
+      content,
       sourceType: "page_i18n",
       priority: 1,
     });
@@ -465,10 +342,10 @@ function buildFromRagFolder() {
     if (parts.length <= 1) {
       addDocs(docs, {
         title: file.replace(/\.(txt|md)$/i, ""),
-        url: "/applications/simasia-chatbots",
+        url: "/ypodochi",
         lang: "el",
         category: "rag_upload",
-        keywords: ["dialogosai", "simasia", "rag"],
+        keywords: ["pyxida", "simasia", "rag"],
         content: raw,
         sourceType: "rag_txt",
         priority: 3,
@@ -479,8 +356,8 @@ function buildFromRagFolder() {
     for (const part of parts) {
       if (/Οδηγία για το RAG/i.test(part) && !/Τίτλος:/u.test(part)) {
         addDocs(docs, {
-          title: "RAG system guidance (sales) — DialogosAI",
-          url: "/book-demo",
+          title: "RAG system guidance (sales) — Pyxida",
+          url: "/demo",
           lang: "el",
           category: "rag_guidance",
           keywords: ["demo", "book", "access", "sales"],
@@ -493,14 +370,14 @@ function buildFromRagFolder() {
       const titleMatch = part.match(/Τίτλος:\s*(.+)/u);
       const headMatch = part.match(/^Κείμενο\s+\d+\s*:\s*(.+)/u);
       const contentMatch = part.match(/Περιεχόμενο:\s*([\s\S]*?)(?=(?:\nΚείμενο\s+\d+|$))/u);
-      const title = (titleMatch?.[1] || headMatch?.[1] || "DialogosAI RAG").trim();
+      const title = (titleMatch?.[1] || headMatch?.[1] || "Pyxida RAG").trim();
       let content = (contentMatch?.[1] || part).trim();
       // Strip trailing global RAG instruction from last chunk if glued
       content = content.replace(/\nΟδηγία για το RAG[\s\S]*$/u, "").trim();
       if (!content) continue;
       addDocs(docs, {
         title,
-        url: "/applications/simasia-chatbots",
+        url: "/ypodochi",
         lang: "el",
         category: "rag_upload",
         keywords: extractKeywords(title + " " + content, 18),
@@ -556,7 +433,8 @@ fs.writeFileSync(
     {
       documents: allDocs,
       generatedAt: new Date().toISOString(),
-      source: "website-translations+page-i18n+core-identity+rag-uploads",
+      source: "navbar-pages+page-i18n+core-identity+pyxida-rag",
+      navbarRoutes: NAVBAR_ROUTES,
     },
     null,
     2

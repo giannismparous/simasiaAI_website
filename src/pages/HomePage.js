@@ -1,11 +1,9 @@
 import React from 'react';
 import ForbesHero from '../components/ForbesHero';
 import LiveDemoSection from '../components/LiveDemoSection';
-import MidCTA from '../components/MidCTA';
-import LearningLoopSection from '../components/LearningLoopSection';
+import HomePyxidaOfferSection from '../components/HomePyxidaOfferSection';
 import PartnershipsSection from '../components/PartnershipsSection';
 import EnterpriseCTA from '../components/EnterpriseCTA';
-import ContactForm from '../components/ContactForm';
 
 const HomePage = () => {
   return (
@@ -13,22 +11,16 @@ const HomePage = () => {
       {/* 1. Hero with logo */}
       <ForbesHero />
 
-      {/* 2. Live Demonstration — auto-typing chatbot */}
-      <LiveDemoSection />
+      {/* 2. Pyxida conversation demo */}
+      <LiveDemoSection brandName="Pyxida" brandShort="Pyxida" conversationTitle />
 
-      {/* 3. CTA */}
-      <MidCTA />
+      {/* 3. Pyxida core offer */}
+      <HomePyxidaOfferSection />
 
-      {/* 4. Continuous learning loop */}
-      <LearningLoopSection />
-
-      {/* 5. Collaborations — trust section */}
+      {/* 4. Collaborations — trust section */}
       <PartnershipsSection />
 
-      {/* 6. Contact form (EmailJS — same as production main) */}
-      <ContactForm />
-
-      {/* 7. CTA */}
+      {/* 5. CTA */}
       <EnterpriseCTA />
     </>
   );

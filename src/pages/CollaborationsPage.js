@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
-import InteractiveConstellation from '../components/InteractiveConstellation';
-import ContactForm from '../components/ContactForm';
+import PageHeroBackdrop from '../components/PageHeroBackdrop';
+import CollaborationsIntroCopy from '../components/CollaborationsIntroCopy';
 import './CollaborationsPage.css';
 
 const LOGO_MAP = {
@@ -50,7 +49,9 @@ const getLinkForCollab = (name) => {
 const CollaborationsPage = () => {
   const { t } = useTranslation();
   const heroRef = useRef(null);
+  const introRef = useRef(null);
   const cardsRef = useRef(null);
+  const introInView = useInView(introRef, { once: true, margin: '100px' });
   const cardsInView = useInView(cardsRef, { once: true, margin: '100px' });
   const collaborations = t('collaborations.current.items') || [];
 
@@ -58,20 +59,28 @@ const CollaborationsPage = () => {
     <div className="collabs-page">
       {/* Hero */}
       <section className="cp-hero">
-        <InteractiveConstellation pattern="handshake" />
+        <PageHeroBackdrop />
         <div className="container" ref={heroRef}>
           <motion.div
+            className="cp-hero-inner"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="cp-eyebrow">SimasiaAI</span>
             <h1>{t('collaborationsPage.title')}</h1>
-            <p className="cp-hero-sub">
-              {t('collaborationsPage.heroSubBefore')}{' '}
-              <em className="brand-dialogos">DialogosAI</em>{' '}
-              {t('collaborationsPage.heroSubAfter')}
-            </p>
+            <p className="cp-hero-sub">{t('collaborationsPage.heroSub')}</p>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="cp-intro" ref={introRef}>
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={introInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <CollaborationsIntroCopy />
           </motion.div>
         </div>
       </section>
@@ -111,11 +120,10 @@ const CollaborationsPage = () => {
                   {collab.description && <p className="cp-card-desc">{collab.description}</p>}
                   <div className="cp-card-footer">
                     {collabLink && (
-                      <a href={collabLink} target="_blank" rel="noopener noreferrer" className="cp-card-link">
+                      <a href={collabLink} target="_blank" rel="noopener noreferrer" className="cp-card-cta">
                         {t('collaborationsPage.more')}
                       </a>
                     )}
-                    <Link to="/book-demo" className="cp-card-cta">{t('collaborationsPage.interest')}</Link>
                   </div>
                 </motion.div>
               );
@@ -124,7 +132,6 @@ const CollaborationsPage = () => {
         </div>
       </section>
 
-      <ContactForm />
     </div>
   );
 };

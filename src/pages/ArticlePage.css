@@ -2,7 +2,7 @@
 .ap-article-page { background: var(--light, #faf9f5); }
 
 .ap-article-hero {
-  padding: 10rem 0 4rem;
+  padding: calc(var(--hero-nav-extra, 1.05rem) + 10rem) 0 4rem;
   background: var(--dark, #141413);
   position: relative;
 }
@@ -112,7 +112,7 @@
 .ap-back-btn:hover { color: var(--orange, #d97757); }
 
 @media (max-width: 768px) {
-  .ap-article-hero { padding: 7rem 0 3rem; }
+  .ap-article-hero { padding: calc(var(--hero-nav-extra, 1.05rem) + 7rem) 0 3rem; }
   .ap-article-content { padding: 3rem 0 4rem; }
   .ap-article-body p { font-size: 1rem; }
 }

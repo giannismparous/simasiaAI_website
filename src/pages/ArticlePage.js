@@ -53,7 +53,7 @@ const ArticlePage = () => {
 
           <div className="ap-article-footer">
             <Link to="/news" className="ap-back-btn">{t('newsPage.backToNewsBtn')}</Link>
-            <Link to="/book-demo" className="btn btn-primary">{t('newsPage.cta')}</Link>
+            <Link to="/demo" className="btn btn-primary">{t('newsPage.cta')}</Link>
           </div>
         </div>
       </section>

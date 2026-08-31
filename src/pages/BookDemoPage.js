@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import InteractiveConstellation from '../components/InteractiveConstellation';
+import PageHeroBackdrop from '../components/PageHeroBackdrop';
 import { mapEmailJsError, sendContactEmail } from '../services/emailService';
 import { useTranslation } from '../hooks/useTranslation';
 import './BookDemoPage.css';
@@ -27,7 +27,6 @@ const BookDemoPage = () => {
         organizationType: 'Demo Request',
         companyName: form.org.trim() || 'N/A',
         message: form.message.trim() || t('bookDemoPage.defaultMessage'),
-        attachment: 'N/A',
       });
 
       setSubmitStatus({
@@ -49,7 +48,7 @@ const BookDemoPage = () => {
   return (
     <div className="bdp-page">
       <section className="bdp-hero">
-        <InteractiveConstellation pattern="calendar" />
+        <PageHeroBackdrop />
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

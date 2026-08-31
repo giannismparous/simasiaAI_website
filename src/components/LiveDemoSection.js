@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
+import PyxidaCompassIcon from './PyxidaCompassIcon';
 import './LiveDemoSection.css';
 
 const CHAR_DELAY = 26;
@@ -12,47 +14,58 @@ const FADE_DURATION = 500;
 const INTERNALS_FADE_MS = 850;
 const PRE_INTERNALS_MS = 450;
 
-const SimakiAvatar = () => (
-  <svg className="simaki-avatar" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-    <rect width="32" height="32" rx="8" fill="#d97757" />
-    <circle cx="16" cy="14" r="7.5" fill="#fff5f0" />
-    <circle cx="13" cy="13" r="1.35" fill="#141413" />
-    <circle cx="19" cy="13" r="1.35" fill="#141413" />
-    <circle cx="13.4" cy="12.6" r="0.4" fill="#fff" />
-    <circle cx="19.4" cy="12.6" r="0.4" fill="#fff" />
-    <path d="M12.5 16.5C14 18.2 18 18.2 19.5 16.5" stroke="#141413" strokeWidth="1.2" strokeLinecap="round" />
-    <circle cx="11" cy="15" r="1.1" fill="#f4b8a4" opacity="0.7" />
-    <circle cx="21" cy="15" r="1.1" fill="#f4b8a4" opacity="0.7" />
-    <path d="M22 8.5L23.2 6.8L24.8 8.2" stroke="#fff5f0" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+const SimakiAvatar = ({ variant = 'orange' }) => {
+  const isPyxida = variant === 'pyxida';
+  const shell = isPyxida ? '#4a7ab5' : '#d97757';
+  const face = isPyxida ? '#eef4fb' : '#fff5f0';
+  const blush = isPyxida ? '#b8cce8' : '#f4b8a4';
+
+  return (
+    <svg className="simaki-avatar" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <rect width="32" height="32" rx="8" fill={shell} />
+      <circle cx="16" cy="14" r="7.5" fill={face} />
+      <circle cx="13" cy="13" r="1.35" fill="#141413" />
+      <circle cx="19" cy="13" r="1.35" fill="#141413" />
+      <circle cx="13.4" cy="12.6" r="0.4" fill="#fff" />
+      <circle cx="19.4" cy="12.6" r="0.4" fill="#fff" />
+      <path d="M12.5 16.5C14 18.2 18 18.2 19.5 16.5" stroke="#141413" strokeWidth="1.2" strokeLinecap="round" />
+      <circle cx="11" cy="15" r="1.1" fill={blush} opacity="0.7" />
+      <circle cx="21" cy="15" r="1.1" fill={blush} opacity="0.7" />
+      <path d="M22 8.5L23.2 6.8L24.8 8.2" stroke={face} strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+};
+
+const ThinkingIndicator = ({ label, variant = 'orange' }) => {
+  const arcStroke = variant === 'pyxida' ? '#4a7ab5' : '#d97757';
+
+  return (
+    <div className="fin-thinking-row" aria-live="polite">
+      <span className="fin-thinking-circle" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="7.5" stroke="#ececea" strokeWidth="2" />
+          <circle
+            className="fin-thinking-arc"
+            cx="10"
+            cy="10"
+            r="7.5"
+            stroke={arcStroke}
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray="14 34"
+          />
+        </svg>
+      </span>
+      <span className="fin-thinking-text">{label}</span>
+    </div>
+  );
+};
 
 const parseSources = (sources) => {
   if (!sources) return [];
   const cleaned = sources.replace(/^(Πηγές|Sources):\s*/i, '').trim();
   return cleaned.split(/\s*·\s*|\s*,\s*/).filter(Boolean);
 };
-
-const ThinkingIndicator = ({ label }) => (
-  <div className="fin-thinking-row" aria-live="polite">
-    <span className="fin-thinking-circle" aria-hidden="true">
-      <svg viewBox="0 0 20 20" fill="none">
-        <circle cx="10" cy="10" r="7.5" stroke="#ececea" strokeWidth="2" />
-        <circle
-          className="fin-thinking-arc"
-          cx="10"
-          cy="10"
-          r="7.5"
-          stroke="#d97757"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeDasharray="14 34"
-        />
-      </svg>
-    </span>
-    <span className="fin-thinking-text">{label}</span>
-  </div>
-);
 
 const InternIcon = ({ type, accent }) => {
   if (type === 'branch') return <span className="intern-icon intern-icon-branch">↳</span>;
@@ -79,8 +92,14 @@ const nextMessageId = () => {
   return `msg-${messageIdCounter}`;
 };
 
-const LiveDemoSection = () => {
+const LiveDemoSection = ({
+  hideHeader = false,
+  brandName = 'DialogosAI',
+  brandShort = 'DialogosAI',
+  conversationTitle = false,
+}) => {
   const { t, language } = useTranslation();
+  const avatarVariant = brandName === 'Pyxida' ? 'pyxida' : 'orange';
   const conversations = t('liveDemo.conversations');
   const conversationsRef = useRef(Array.isArray(conversations) ? conversations : []);
   conversationsRef.current = Array.isArray(conversations) ? conversations : [];
@@ -351,7 +370,7 @@ const LiveDemoSection = () => {
 
   const renderBotBubble = (text, meta) => (
     <div className="fin-bubble fin-bubble-bot">
-      <strong className="fin-bot-name"><em className="brand-dialogos">DialogosAI</em></strong>
+      <strong className="fin-bot-name">{brandShort}</strong>
       <p className="fin-bot-text">{text}</p>
       {meta?.warning && (
         <p className="fin-warning-inline">{meta.warning}</p>
@@ -372,15 +391,32 @@ const LiveDemoSection = () => {
   return (
     <section className="live-demo-section" id="live-demo" ref={ref}>
       <div className="container">
+        {!hideHeader && (
         <motion.div
           className="live-demo-header"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2><em className="brand-dialogos">DialogosAI</em></h2>
-          <p className="live-demo-subtitle">{t('liveDemo.subtitle')}</p>
+          <h2>
+            {conversationTitle ? (
+              <>
+                {t('liveDemo.homeTitleBefore')}
+                <Link to="/ypodochi" className="brand-pyxida-link">
+                  {brandName}
+                </Link>
+              </>
+            ) : brandName === 'DialogosAI' ? (
+              <em className="brand-dialogos">DialogosAI</em>
+            ) : (
+              brandName
+            )}
+          </h2>
+          {!conversationTitle && (
+            <p className="live-demo-subtitle">{t('liveDemo.subtitle')}</p>
+          )}
         </motion.div>
+        )}
 
         <div className="demo-stage">
           <div className="demo-showcase">
@@ -393,7 +429,7 @@ const LiveDemoSection = () => {
             </div>
 
             <div className="fin-chat-stack">
-              <div className={`fin-chat${chatFading ? ' fin-chat-fading' : ''}`}>
+              <div className={`fin-chat${chatFading ? ' fin-chat-fading' : ''}${avatarVariant === 'pyxida' ? ' fin-chat--pyxida' : ''}`}>
                 <header className="fin-chat-header">
                   <button type="button" className="fin-header-btn" aria-label={t('liveDemo.a11y.back')}>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -402,9 +438,13 @@ const LiveDemoSection = () => {
                   </button>
                   <div className="fin-header-brand">
                     <span className="fin-header-logo">
-                      <SimakiAvatar />
+                      {avatarVariant === 'pyxida' ? (
+                        <PyxidaCompassIcon className="fin-header-compass" idSuffix="live-demo" />
+                      ) : (
+                        <SimakiAvatar variant={avatarVariant} />
+                      )}
                     </span>
-                    <span className="fin-header-name"><em className="brand-dialogos">DialogosAI</em></span>
+                    <span className="fin-header-name">{brandName === 'DialogosAI' ? <em className="brand-dialogos">DialogosAI</em> : brandName}</span>
                   </div>
                   <div className="fin-header-actions">
                     <button type="button" className="fin-header-btn" aria-label={t('liveDemo.a11y.menu')}>⋯</button>
@@ -455,7 +495,7 @@ const LiveDemoSection = () => {
                           exit={{ opacity: 0, transition: { duration: 0.28, ease: msgEase } }}
                           transition={{ duration: 0.3, ease: msgEase }}
                         >
-                          <ThinkingIndicator label={t('liveDemo.thinking')} />
+                          <ThinkingIndicator label={t('liveDemo.thinking')} variant={avatarVariant} />
                         </motion.div>
                       )}
                     </AnimatePresence>

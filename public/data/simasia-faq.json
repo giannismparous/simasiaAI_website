@@ -2,33 +2,57 @@
   "entries": [
     {
       "id": "faq_simasia_identity",
-      "triggers": ["τι ειναι", "what is", "simasiaai", "simasia ai", "εταιρεια", "company", "ποιοι ειστε", "who are"],
+      "triggers": ["τι ειναι η simasia", "ti einai i simasia", "ti einai to simasiaai", "what is simasia", "simasiaai", "simasia ai", "εταιρεια", "company", "ποιοι ειστε", "poioi eiste", "who are"],
       "title": "SimasiaAI — ταυτότητα",
-      "content": "Η SimasiaAI είναι ελληνική deep-tech εταιρεία για Ανθρωποκεντρικούς Compliant B2B AI Chatbots — όχι μεταπώληση generic εργαλείων. Αυτονομές, έγκυρες, νομικά θωρακισμένες AI υποδομές. Tagline: «AI από την πλευρά του ανθρώπου»."
+      "content": "Η SimasiaAI είναι ελληνική deep-tech εταιρεία για ανθρωποκεντρική ψηφιακή υποδοχή (Pyxida) — όχι μεταπώληση generic εργαλείων. Tagline: «AI από την πλευρά του ανθρώπου»."
     },
     {
-      "id": "faq_chatbots_compliance",
-      "triggers": ["chatbot", "compliant", "gdpr", "ai act", "wcag", "προσβασιμ", "νομικ"],
-      "title": "SimasiaAI Chatbots — συμμόρφωση & διαφοροποίηση",
-      "content": "SimasiaAI Chatbots: EU AI Act + GDPR, WCAG 2.1 AA / EAA, φίλτρα bias, απαντήσεις μόνο από εγκεκριμένα δεδομένα πελάτη, φυσικά Ελληνικά (γλωσσολογική έρευνα / Τριανταφυλλίδης)."
+      "id": "faq_pyxida",
+      "triggers": ["pyxida", "πυξιδα", "ψηφιακη", "υποδοχη", "ιατρειο", "κλινικη", "reception", "ypodochi"],
+      "title": "Pyxida — ψηφιακή υποδοχή",
+      "content": "Το Pyxida είναι η ψηφιακή υποδοχή της SimasiaAI: bot + CRM + απαντήσεις 24/7 για ιατρεία και οργανισμούς. Βάση Απαντάει + προαιρετικά Praxi modules. Live σε 48 ώρες. Σελίδα: /ypodochi."
+    },
+    {
+      "id": "faq_pyxida_gender",
+      "triggers": ["φυλο", "gender", "αρσενικ", "θηλυκ", "he", "she", "neutral", "ουδετερ"],
+      "title": "Pyxida — ουδέτερο φύλο",
+      "content": "Το Pyxida είναι ουδέτερο ως προς το φύλο — ούτε αρσενικό ούτε θηλυκό. Στα ελληνικά «το Pyxida», στα αγγλικά it/its. Ψηφιακή υποδοχή, όχι άνθρωπος."
     },
     {
       "id": "faq_contact",
-      "triggers": ["επικοινων", "contact", "email", "mail", "τηλ", "phone", "demo"],
+      "triggers": ["επικοινων", "epikoinwn", "epikoinon", "contact", "email", "mail", "τηλ", "phone", "demo", "pws mporw", "pos mporw", "πως μπορω"],
       "title": "SimasiaAI — επικοινωνία & demo",
-      "content": "Email: contact@simasiaai.gr. Αθήνα, Ελλάδα. Demo/συνεργασία: φόρμα /book-demo — απάντηση εντός 24 ωρών. Δωρεάν ζωντανό demo ~15 λεπτά κατόπιν αιτήματος."
+      "content": "Email: contact@simasiaai.gr. Αθήνα, Ελλάδα. Demo/συνεργασία: φόρμα /demo — απάντηση εντός 24 ωρών."
     },
     {
-      "id": "faq_products_overview",
-      "triggers": ["προιον", "προϊον", "product", "εφαρμογ", "application", "υπηρεσι"],
-      "title": "Προϊόντα SimasiaAI",
-      "content": "Κύριο προϊόν-πυλώνας: SimasiaAI Chatbots (Compliant B2B). Επίσης: SimasiaEdu, SimasiaStudio, SimasiaDaily."
+      "id": "faq_pyxida_dialogosai",
+      "triggers": ["dialogosai", "dialogos ai", "διαλογος", "διαλογος ai", "dialogos"],
+      "title": "Pyxida — παλιό όνομα DialogosAI",
+      "content": "Το DialogosAI ήταν το προηγούμενο όνομα της ψηφιακής υποδοχής της SimasiaAI. Σήμερα λέγεται Pyxida: bot + CRM + απαντήσεις 24/7 για ιατρεία και οργανισμούς. Ίδια λύση, νέο brand."
     },
     {
-      "id": "faq_sima_bot",
-      "triggers": ["sima", "σίμα", "σιμα", "βοηθος", "assistant"],
-      "title": "Sima — ψηφιακή βοηθός",
-      "content": "Η Sima είναι η ψηφιακή βοηθός του site. Απαντά για SimasiaAI, chatbots, λύσεις και επικοινωνία — όχι για άσχετα θέματα."
+      "id": "faq_team_members",
+      "triggers": ["μελη", "μέλη", "melh", "ομαδα", "omada", "ομάδα", "team", "founders", "ιδρυτ", "idrut", "συνιδρυτ", "ποιοι ειναι", "poioi einai", "poia einai", "ποια ειναι", "who is the team"],
+      "title": "SimasiaAI — ομάδα & ιδρυτές",
+      "content": "Οι ιδρυτές / συνιδρυτές της SimasiaAI: 1) Καθηγητής Στέργιος Χατζηκυριακίδης — Co-founder & CEO. 2) Δημήτρης Παπαδάκης — Co-founder & Head of Sales. 3) Γιάννης — Co-founder & CTO. 4) Αναπληρώτρια Καθηγήτρια Αναστασία Νάτσινα — Co-founder & CCO. Σελίδα: /team."
+    },
+    {
+      "id": "faq_pyxida_modules",
+      "triggers": ["module", "modules", "module 1", "module 2", "module 3", "praxi", "apanta", "απαντα", "kleinei", "fernei", "sikonei", "κλεινει", "φερνει", "σηκωνει"],
+      "title": "Pyxida — βάση & Praxi modules",
+      "content": "Η βάση Pyxida λέγεται ΑΠΑΝΤΑΕΙ (bot + CRM + απαντήσεις 24/7). Προαιρετικά Praxi modules πάνω από αυτή: Module 1 = ΚΛΕΙΝΕΙ (κράτηση ραντεβού, WhatsApp/Viber/social). Module 2 = ΦΕΡΝΕΙ ΠΙΣΩ (ανάκτηση leads, υπενθυμίσεις, recall). Module 3 = ΣΗΚΩΝΕΙ ΤΟ ΤΗΛΕΦΩΝΟ (ζωντανή φωνή 24/7). Λεπτομέρειες: /ypodochi."
+    },
+    {
+      "id": "faq_what_we_do",
+      "triggers": ["ασχολ", "asxole", "τι κανετε", "ti kanete", "me ti", "what do you", "services", "υπηρεσι"],
+      "title": "SimasiaAI — τι κάνουμε",
+      "content": "Η SimasiaAI αναπτύσσει ανθρωποκεντρική ψηφιακή υποδοχή (Pyxida) για ιατρεία και οργανισμούς: bot + CRM, απαντήσεις 24/7, συμμόρφωση GDPR & EU AI Act, φυσικά Ελληνικά/Αγγλικά. Συνεργασίες σε υγεία και εκπαίδευση."
+    },
+    {
+      "id": "faq_pyxida_bot",
+      "triggers": ["pyxida bot", "πυξιδα bot", "βοηθος site", "assistant site", "chatbot site"],
+      "title": "Pyxida — chatbot του site",
+      "content": "Το Pyxida είναι το chatbot αυτού του site. Απαντά για SimasiaAI, την ψηφιακή υποδοχή Pyxida, συνεργασίες και demo — στα Ελληνικά ή στα Αγγλικά, ανάλογα με τη γλώσσα του επισκέπτη. Όχι για άσχετα θέματα."
     }
   ]
 }

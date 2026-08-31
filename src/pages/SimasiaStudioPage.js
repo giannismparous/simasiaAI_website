@@ -7,7 +7,6 @@ import { SmoothReveal, WordReveal } from '../components/TextReveal';
 import { StudioAnimation } from '../components/ProductAnimations';
 import { useTranslation } from '../hooks/useTranslation';
 import CTA from '../components/CTA';
-import ContactForm from '../components/ContactForm';
 
 const SimasiaStudioPage = () => {
   const { t } = useTranslation();
@@ -81,17 +80,16 @@ const SimasiaStudioPage = () => {
 
       <section style={{ padding: '4rem 0', textAlign: 'center' }}>
         <div className="container" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link to="/book-demo" className="btn btn-primary" style={{ fontSize: '1.2rem', padding: '1rem 2rem' }}>
+          <Link to="/demo" className="btn btn-primary" style={{ fontSize: '1.2rem', padding: '1rem 2rem' }}>
             {t('common.scheduleDemoNow')}
           </Link>
-          <a href="#contact" className="btn btn-secondary" style={{ fontSize: '1.2rem', padding: '1rem 2rem' }}>
+          <Link to="/demo" className="btn btn-secondary" style={{ fontSize: '1.2rem', padding: '1rem 2rem' }}>
             {t('common.requestAccess')}
-          </a>
+          </Link>
         </div>
       </section>
 
       <CTA />
-      <ContactForm />
     </div>
   );
 };

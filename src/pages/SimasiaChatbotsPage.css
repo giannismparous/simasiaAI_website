@@ -2,7 +2,7 @@
 .scp-page { background: var(--light, #faf9f5); }
 
 .scp-hero {
-  padding: 12rem 0 7rem;
+  padding: calc(var(--hero-nav-extra, 1.05rem) + 12rem) 0 7rem;
   background: var(--dark, #141413);
   min-height: 70vh;
   display: flex;
@@ -493,7 +493,7 @@
   .scp-comm-flow { flex-direction: column; gap: 0.5rem; }
   .scp-comm-arrow span { transform: rotate(90deg); }
   .scp-comm-node { max-width: 100%; width: 100%; }
-  .scp-hero { padding: 8.5rem 0 4.25rem; text-align: center; }
+  .scp-hero { padding: calc(var(--hero-nav-extra, 1.05rem) + 8.5rem) 0 4.25rem; text-align: center; }
   .scp-slogan { text-align: center; }
   .scp-hero-ctas { flex-direction: column; width: 100%; align-items: stretch; }
   .scp-hero-ctas .btn { width: 100%; text-align: center; }

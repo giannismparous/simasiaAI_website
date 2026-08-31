@@ -1,0 +1,36 @@
+.fh-care-visual {
+  width: 100%;
+  line-height: 0;
+  pointer-events: auto;
+  cursor: default;
+  outline: none;
+}
+
+.fh-care-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.fh-care-hand,
+.fh-care-ground {
+  transition: stroke 0.2s ease, stroke-width 0.25s ease;
+}
+
+.fh-care-star {
+  animation: fh-care-twinkle 4.5s ease-in-out infinite;
+}
+
+.fh-care-star--delay {
+  animation-delay: 1.2s;
+}
+
+.fh-care-star--delay2 {
+  animation-delay: 2.1s;
+}
+
+@keyframes fh-care-twinkle {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.85; }
+}

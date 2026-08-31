@@ -1,5 +1,5 @@
 /**
- * Chat orchestrator — POAMSKP-style RAG + DialogosAI persona (website-only knowledge).
+ * Chat orchestrator — POAMSKP-style RAG + Pyxida persona (website-only knowledge).
  */
 
 import { generateWithTimeout, generateStream } from './geminiService.js';
@@ -7,6 +7,8 @@ import {
   retrieveRelevantDocsWithContext,
   buildContext,
   detectLanguage,
+  detectReplyLanguage,
+  expandProductAliases,
   hasSimasiaTopicSignals,
 } from './retriever.js';
 import {
@@ -35,9 +37,8 @@ import {
   isContactIntent,
   answerInvitesBookDemo,
   ensureBookDemoInAnswer,
-  ensureContactFormInAnswer,
   withBookDemoSource,
-  withContactFormSource,
+  resolveProductPageCta,
 } from './scopeGuard.js';
 
 const PROMPT_SECURITY_EL =
@@ -79,8 +80,9 @@ export async function answerQuestion(userQuestion, language = null, options = {}
     onChunk = null,
   } = options;
   const rawQuestion = String(userQuestion || '').trim();
+  const normalizedQuestion = expandProductAliases(rawQuestion);
 
-  if (!rawQuestion) {
+  if (!normalizedQuestion) {
     const lang = uiLanguage === 'en' ? 'en' : 'el';
     return {
       answer:
@@ -92,14 +94,13 @@ export async function answerQuestion(userQuestion, language = null, options = {}
     };
   }
 
-  const resolved = resolveUserQuery(rawQuestion, messages, lastResolvedQuery);
+  const resolved = resolveUserQuery(normalizedQuestion, messages, lastResolvedQuery);
   const conversationStarted = (messages || []).some((m) => m && m.sender === 'bot');
   const lang =
     language ||
-    (uiLanguage === 'en' || uiLanguage === 'el' ? uiLanguage : null) ||
-    detectLanguage(`${rawQuestion} ${resolved.query}`);
+    detectReplyLanguage(normalizedQuestion, uiLanguage === 'en' ? 'en' : 'el');
 
-  if (isBlockedUserMessage(rawQuestion)) {
+  if (isBlockedUserMessage(normalizedQuestion)) {
     return {
       answer: buildBlockedReply(lang),
       sources: [],
@@ -108,7 +109,7 @@ export async function answerQuestion(userQuestion, language = null, options = {}
     };
   }
 
-  if (isCrisisUserMessage(rawQuestion)) {
+  if (isCrisisUserMessage(normalizedQuestion)) {
     return {
       answer: buildCrisisSafetyReply(lang),
       sources: [],
@@ -117,7 +118,7 @@ export async function answerQuestion(userQuestion, language = null, options = {}
     };
   }
 
-  if (!resolved.isFollowUp && isHardOffTopic(rawQuestion)) {
+  if (!resolved.isFollowUp && isHardOffTopic(normalizedQuestion)) {
     return {
       answer: buildOutOfScopeReply(lang),
       sources: [],
@@ -126,14 +127,16 @@ export async function answerQuestion(userQuestion, language = null, options = {}
     };
   }
 
-  const retrievalQuery = resolved.isFollowUp ? resolved.query : rawQuestion;
+  const retrievalQuery = expandProductAliases(
+    resolved.isFollowUp ? resolved.query : normalizedQuestion
+  );
 
   let relevantDocs;
   try {
     relevantDocs = await retrieveRelevantDocsWithContext(
       retrievalQuery,
       messages,
-      6,
+      4,
       lang,
       lastResolvedQuery
     );
@@ -154,7 +157,7 @@ export async function answerQuestion(userQuestion, language = null, options = {}
   if (
     !resolved.isFollowUp &&
     shouldRejectAsOffTopic(
-      rawQuestion,
+      normalizedQuestion,
       messages,
       lastResolvedQuery,
       topScore,
@@ -197,22 +200,37 @@ export async function answerQuestion(userQuestion, language = null, options = {}
   const conversationContext = buildConversationContext(messages, 6);
   const forceProgress = isContinuationDirective(resolved.query);
   const shortFollowUp =
-    resolved.isFollowUp && isLikelyLowInfoReply(rawQuestion);
+    resolved.isFollowUp && isLikelyLowInfoReply(normalizedQuestion);
 
-  const prompt = createRAGPrompt(context, rawQuestion, lang, {
+  const prompt = createRAGPrompt(context, normalizedQuestion, lang, {
     conversationContext,
     forceProgress,
     shortFollowUp,
     conversationStarted,
-    externalOrgDeepDive: isExternalOrgDeepDive(rawQuestion),
-    genderQuestion: /αρσενικ|θηλυκ|gender|she\/her|he\/him/i.test(rawQuestion),
-    locationNotListed: asksLocationNotInContext(rawQuestion, context),
+    externalOrgDeepDive: isExternalOrgDeepDive(normalizedQuestion),
+    genderQuestion: /αρσενικ|θηλυκ|gender|she\/her|he\/him/i.test(normalizedQuestion),
+    locationNotListed: asksLocationNotInContext(normalizedQuestion, context),
   });
 
   try {
     let answer;
     if (stream && typeof onChunk === 'function') {
-      answer = await generateStream(prompt, onChunk);
+      try {
+        answer = await generateStream(prompt, onChunk);
+      } catch (streamError) {
+        const errMsg = String(streamError?.message || '').toLowerCase();
+        const retryable =
+          errMsg.includes('504') ||
+          errMsg.includes('failed to fetch') ||
+          errMsg.includes('network') ||
+          errMsg.includes('proxy') ||
+          errMsg.includes('stream failed');
+        if (retryable) {
+          answer = await generateWithTimeout(prompt);
+        } else {
+          throw streamError;
+        }
+      }
     } else {
       answer = await generateWithTimeout(prompt);
     }
@@ -221,7 +239,7 @@ export async function answerQuestion(userQuestion, language = null, options = {}
       language: lang,
       conversationStarted,
     });
-    trimmed = refineLocationAnswer(trimmed, rawQuestion, context, lang);
+    trimmed = refineLocationAnswer(trimmed, normalizedQuestion, context, lang);
     trimmed = polishBotAnswer(trimmed, { language: lang, conversationStarted });
     if (!trimmed) {
       throw new Error('Empty model response');
@@ -231,23 +249,30 @@ export async function answerQuestion(userQuestion, language = null, options = {}
     let sources = buildWebsiteSources(relevantDocs);
     // Show Demo button when the user asks to book OR the bot pitches the form.
     const bookingCta =
-      isBookingOrMeetingIntent(rawQuestion) || answerInvitesBookDemo(trimmed);
-    const contactCta = !bookingCta && isContactIntent(rawQuestion);
+      isBookingOrMeetingIntent(normalizedQuestion) || answerInvitesBookDemo(trimmed);
+    const contactCta = !bookingCta && isContactIntent(normalizedQuestion);
+    const showDemoCta = bookingCta || contactCta;
 
-    if (bookingCta) {
+    if (showDemoCta) {
       trimmed = ensureBookDemoInAnswer(trimmed, lang);
       sources = withBookDemoSource(sources, lang);
-    } else if (contactCta) {
-      trimmed = ensureContactFormInAnswer(trimmed, lang);
-      sources = withContactFormSource(sources, lang);
     }
+
+    const pageCta = resolveProductPageCta({
+      question: normalizedQuestion,
+      answer: trimmed,
+      docs: relevantDocs,
+      language: lang,
+      showDemoCta,
+    });
 
     return {
       answer: trimmed,
       sources,
       confidence,
-      bookDemoCta: bookingCta,
-      contactCta,
+      bookDemoCta: showDemoCta,
+      contactCta: false,
+      pageCta,
     };
   } catch (error) {
     return {
@@ -270,29 +295,41 @@ function createRAGPrompt(context, question, language, options = {}) {
     conversationStarted = false,
   } = options;
 
+  const userGreekScript = /[α-ωΑ-ΩΆΈΉΊΌΎΏάέήίόύώ]/.test(String(question || ''));
+  const userGreeklish =
+    !userGreekScript &&
+    /\b(ti|poia|poio|einai|eimai|gia|pyxida|simasia|melh|omada|iatreio|thelw|thelo)\b/i.test(
+      String(question || '')
+    );
+
   if (language === 'el') {
+    const languageRule = userGreeklish
+      ? '1) Μίλα σε πρώτο πρόσωπο (π.χ. «μπορώ», «δεν υπάρχουν»). Το Pyxida είναι ουδέτερο ως προς το φύλο — «το Pyxida», ποτέ «ο/η Pyxida». Ο χρήστης έγραψε Greeklish· απάντησε στα Ελληνικά με ελληνικό αλφάβητο, όχι latin.\n'
+      : '1) Μίλα σε πρώτο πρόσωπο (π.χ. «μπορώ», «δεν υπάρχουν»). Το Pyxida είναι ουδέτερο ως προς το φύλο — «το Pyxida», ποτέ «ο/η Pyxida». ΑΠΑΝΤΑ ΠΑΝΤΑ στα ΕΛΛΗΝΙΚΑ με ελληνικό αλφάβητο (α-ω). ΑΠΑΓΟΡΕΎΕΤΑΙ το Greeklish/latin (π.χ. «einai», «gia», «Pyxida einai») — γράψε «είναι», «για», «Το Pyxida είναι».\n';
+
     return (
-      'Είσαι το DialogosAI, το ανθρωποκεντρικό ψηφιακό σύστημα πλοήγησης της SimasiaAI. ' +
+      'Είσαι το Pyxida, η ψηφιακή υποδοχή της SimasiaAI — ανθρωποκεντρικό σύστημα που απαντά 24/7, καθοδηγεί επισκέπτες και υποστηρίζει ιατρεία και οργανισμούς. ' +
       'Απαντάς χρησιμοποιώντας ΜΟΝΟ τις πληροφορίες που ακολουθούν.\n\n' +
       'ΚΑΝΟΝΕΣ:\n' +
-      '1) Μίλα σε πρώτο πρόσωπο (π.χ. «μπορώ», «δεν υπάρχουν», «μπορείτε να»). Το DialogosAI είναι ουδέτερο ως προς το φύλο — χρησιμοποίησε «το DialogosAI», ποτέ «ο/η DialogosAI», ούτε «αυτός/αυτή».\n' +
-      '2) Απλές ερωτήσεις: 2-4 σύντομες προτάσεις. Σύνθετες: έως 1 σύντομη παράγραφος.\n' +
+      languageRule +
+      '2) Γράψε 3–5 φυσικές, ζεστές προτάσεις — σαν να μιλάς σε επισκέπτη, όχι τηλεγραφικά. Απλές ερωτήσεις: 3–4 προτάσεις. Σύνθετες: έως 5 προτάσεις ή 1 σύντομη παράγραφος.\n' +
       '3) Μην εφευρίσκεις στοιχεία. Αν δεν υπάρχουν στο context, πες το καθαρά.\n' +
-      '3β) Αν το context έχει σαφή απάντηση, μην πεις «δεν βρήκα».\n' +
-      '4) Μην γράφεις URLs ή διαδρομές σελίδας (/book-demo, /#contact) μέσα στο κείμενο — το κουμπί φόρμας εμφανίζεται από κάτω.\n' +
+      '3β) Αν το context έχει σαφή απάντηση (ονόματα, email, modules, ομάδα), ΧΡΗΣΙΜΟΠΟΙΗΣΕ την — μην πεις «δεν υπάρχουν πληροφορίες» όταν υπάρχουν στο context.\n' +
+      '4) Μην γράφεις URLs ή διαδρομές σελίδας (/demo) μέσα στο κείμενο — το κουμπί φόρμας εμφανίζεται από κάτω.\n' +
       '5) Ύφος: ζεστό, φυσικό, επαγγελματικό.\n' +
       '6) Εστίασε ΜΟΝΟ σε SimasiaAI: εταιρεία, προϊόντα, λύσεις, συνεργασίες, επικοινωνία.\n' +
       '7) Αρνήσου ευγενικά πολιτικά, διασημότητες, αθλητικά, καιρό, αστεία και άσχετα θέματα.\n' +
       '8) Σύντομα/αόριστα μηνύματα («ναι», «πες μου»): ερμήνευσέ τα από το ιστορικό.\n' +
       '9) Μην ξεκινάς με νέο χαιρετισμό αν η συνομιλία έχει ξεκινήσει.\n' +
       (conversationStarted
-        ? '9β) Το DialogosAI έχει ήδη χαιρετήσει στο chat — ΜΗΝ ξαναπείς «Είμαι το DialogosAI» ούτε «Γεια σας». Ξεκίνα απευθείας με την ουσία.\n'
+        ? '9β) Το Pyxida έχει ήδη χαιρετήσει στο chat — ΜΗΝ ξαναπείς «Είμαι το Pyxida» ούτε «Γεια σας». Ξεκίνα απευθείας με την ουσία.\n'
         : '') +
       '10) Αν ο χρήστης απαντήσει «ναι»/«οκ» σε δική σου ερώτηση, δώσε απευθείας την πληροφορία.\n' +
       '11) ΜΗΝ χρησιμοποιείς markdown (**, ##, `). Γράψε απλό κείμενο· λίστες με «•» ή «-».\n' +
       '12) Για «τι είναι η SimasiaAI»: χρησιμοποίησε identity από το context. Demo CTA μόνο αν ταιριάζει εμπορικά — όχι σε κάθε απάντηση.\n' +
       '12β) Για «ποιοι είναι οι ιδρυτές / συνιδρυτές / η ομάδα»: απάντησε σοβαρά με ΠΛΗΡΗ ονόματα και ρόλους από το context (Στέργιος Χατζηκυριακίδης CEO, Δημήτρης Παπαδάκης, Γιάννης, Αναστασία Νάτσινα). ΜΗΝ παραλείπεις τον Στέργιο. ΜΗΝ κλείνεις με demo.\n' +
-      '12γ) Για demo/ραντεβού: πες ότι μπορούν να κλείσουν μέσω της φόρμας Demo (χωρίς URL). Για επικοινωνία: φόρμα επικοινωνίας + contact@simasiaai.gr αν υπάρχει στο context — χωρίς URL.\n' +
+      '12γ) Για demo/ραντεβού/επικοινωνία: πες ότι μπορούν να κλείσουν μέσω της φόρμας Demo (χωρίς URL). Εναλλακτικά contact@simasiaai.gr — χωρίς URL.\n' +
+      '12δ) Αν ρωτούν για DialogosAI / Dialogos AI / «διαλογος ai»: εξήγησε ότι ήταν το παλιό όνομα — σήμερα λέγεται Pyxida (η ψηφιακή υποδοχή της SimasiaAI). Μην αρνηθείς την ερώτηση ως άσχετη.\n' +
       PROMPT_SECURITY_EL +
       (shortFollowUp
         ? '21α) Το μήνυμα χρήστη είναι σύντομο follow-up: ερμήνευσέ το ΜΟΝΟ από το ΠΡΟΣΦΑΤΟ ΙΣΤΟΡΙΚΟ (ανοιχτή ερώτηση / θέμα) και απάντησε άμεσα — χωρίς επιβεβαίωση.\n'
@@ -301,7 +338,7 @@ function createRAGPrompt(context, question, language, options = {}) {
         ? '21) Ο χρήστης ζήτησε συνέχεια: δώσε 3 συγκεκριμένα σημεία, χωρίς επανάληψη.\n'
         : '') +
       (genderQuestion
-        ? '22) Αν ρωτούν για φύλο/πρόσωπο: πες ξεκάθαρα ότι το DialogosAI είναι ουδέτερο ως προς το φύλο (ούτε αρσενικό ούτε θηλυκό) — ψηφιακό σύστημα πλοήγησης, όχι άνθρωπος. Μην χρησιμοποιείς «ο/η», «αυτός/αυτή» ή he/she.\n'
+        ? '22) Αν ρωτούν για φύλο/πρόσωπο: πες ξεκάθαρα ότι το Pyxida είναι ουδέτερο ως προς το φύλο (ούτε αρσενικό ούτε θηλυκό) — ψηφιακό σύστημα πλοήγησης, όχι άνθρωπος. Μην χρησιμοποιείς «ο/η», «αυτός/αυτή» ή he/she.\n'
         : '') +
       (externalOrgDeepDive
         ? '23) Αν ζητούν λεπτομέρειες τρίτων φορέων (π.χ. ΠΟΑμΣΚΠ): μόνο η συνεργασία/ΣΚΠ-i chatbot της SimasiaAI, όχι πλήρης οδηγός οργανισμού.\n'
@@ -315,32 +352,33 @@ function createRAGPrompt(context, question, language, options = {}) {
       context +
       '\n\nΕΡΩΤΗΣΗ ΧΡΗΣΤΗ: ' +
       question +
-      '\n\nΑΠΑΝΤΗΣΗ (ως το DialogosAI):'
+      '\n\nΑΠΑΝΤΗΣΗ (ως το Pyxida):'
     );
   }
 
   return (
-    'You are DialogosAI, the human-centered digital navigation system for SimasiaAI. ' +
+    'You are Pyxida, SimasiaAI\'s digital reception — a human-centered system that answers 24/7, guides visitors, and supports clinics and organizations. ' +
     'Answer using ONLY the information below.\n\n' +
     'RULES:\n' +
-    '1) Use first person (I can, I do not have). DialogosAI is gender-neutral — use it/its (or “DialogosAI”), never he/him or she/her.\n' +
-    '2) Simple questions: 2-4 short sentences. Complex: max one short paragraph.\n' +
+    '1) Use first person (I can, I do not have). Pyxida is gender-neutral — use it/its (or “Pyxida”), never he/him or she/her. Reply in clear English unless the user wrote in Greek script (then answer in Greek with Greek alphabet only — never Greeklish).\n' +
+    '2) Write 3–5 natural, warm sentences — like talking to a visitor, not telegraphic bullets. Simple questions: 3–4 sentences. Complex: up to 5 sentences or one short paragraph.\n' +
     '3) Do not invent facts. If context is insufficient, say so clearly.\n' +
-    '3b) If context clearly answers, do not say you could not find information.\n' +
-    '4) Do not include URLs or page paths (/book-demo, /#contact) in the text — a form button appears below.\n' +
+    '3b) If context clearly answers (names, email, modules, team), USE it — do not say "no information" when it is in the context.\n' +
+    '4) Do not include URLs or page paths (/demo) in the text — a form button appears below.\n' +
     '5) Tone: warm, natural, professional.\n' +
     '6) Focus ONLY on SimasiaAI: company, products, solutions, collaborations, contact.\n' +
     '7) Politely decline politics, celebrities, sports, weather, jokes, unrelated topics.\n' +
     '8) For short/ambiguous follow-ups, use recent chat history.\n' +
     '9) Do not start with a new greeting mid-conversation.\n' +
     (conversationStarted
-      ? '9b) DialogosAI already greeted in the chat — do NOT say "I\'m DialogosAI" or "Hi" again. Answer directly.\n'
+      ? '9b) Pyxida already greeted in the chat — do NOT say "I\'m Pyxida" or "Hi" again. Answer directly.\n'
       : '') +
     '10) If the user replies "yes"/"ok" to your question, answer directly.\n' +
     '11) No markdown (**, ##, backticks). Plain text only; use "•" or "-" for lists.\n' +
     '12) For "what is SimasiaAI": use identity from context. Demo CTA only when commercially appropriate — not on every reply.\n' +
     '12b) For "who are the founders / co-founders / team": answer seriously with FULL names and roles from context (Stergios Chatzikyriakidis CEO, Dimitris Papadakis, Giannis, Anastasia Natsina). Never omit Stergios. Never close with a demo pitch.\n' +
-    '12c) For demo/meeting: say they can book via the Demo form (no URL). For contact: contact form + contact@simasiaai.gr when in context — no URL.\n' +
+    '12c) For demo/meeting/contact: say they can book via the Demo form (no URL). Alternatively contact@simasiaai.gr — no URL.\n' +
+    '12d) If asked about DialogosAI / Dialogos AI: explain it was the old product name — now called Pyxida (SimasiaAI digital reception). Do not treat as off-topic.\n' +
     PROMPT_SECURITY_EN +
     (shortFollowUp
       ? '21a) The user message is a short follow-up: interpret it ONLY from RECENT CHAT (open question / topic) and answer directly — no confirmation ask.\n'
@@ -349,7 +387,7 @@ function createRAGPrompt(context, question, language, options = {}) {
       ? '21) User asked to continue: give 3 concrete points without repeating prior wording.\n'
       : '') +
     (genderQuestion
-      ? '22) If asked about gender/persona: state clearly that DialogosAI is gender-neutral (neither male nor female) — a digital navigation system, not a person. Do not use he/she or masculine/feminine framing.\n'
+      ? '22) If asked about gender/persona: state clearly that Pyxida is gender-neutral (neither male nor female) — a digital navigation system, not a person. Do not use he/she or masculine/feminine framing.\n'
       : '') +
     (externalOrgDeepDive
       ? '23) If asked for deep third-party org details: only SimasiaAI collaboration (e.g. SKP-i chatbot), not a full external org guide.\n'
@@ -363,25 +401,25 @@ function createRAGPrompt(context, question, language, options = {}) {
     context +
     '\n\nUSER QUESTION: ' +
     question +
-    '\n\nANSWER (as DialogosAI):'
+    '\n\nANSWER (as Pyxida):'
   );
 }
 
 export function getSuggestedQuestions(language = 'greek') {
   const suggestions = {
     greek: [
+      'Τι είναι το Pyxida;',
       'Τι είναι η SimasiaAI;',
-      'Ποια προϊόντα προσφέρετε;',
-      'Πώς λειτουργεί το SimasiaChatbots;',
+      'Πώς λειτουργεί η ψηφιακή υποδοχή;',
       'Ποιους εξυπηρετείτε;',
-      'Πώς μπορώ να επικοινωνήσω μαζί σας;',
+      'Πώς μπορώ να κλείσω demo;',
     ],
     english: [
+      'What is Pyxida?',
       'What is SimasiaAI?',
-      'What products do you offer?',
-      'How does SimasiaChatbots work?',
+      'How does digital reception work?',
       'Who do you serve?',
-      'How can I contact you?',
+      'How can I book a demo?',
     ],
   };
   return suggestions[language] || suggestions.greek;

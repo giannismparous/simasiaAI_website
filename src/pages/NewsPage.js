@@ -1,7 +1,7 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import InteractiveConstellation from '../components/InteractiveConstellation';
+import PageHeroBackdrop from '../components/PageHeroBackdrop';
 import { useTranslation } from '../hooks/useTranslation';
 import { newsArticlesByLang } from '../translations/newsArticles';
 import './NewsPage.css';
@@ -33,14 +33,14 @@ const NewsPage = () => {
   return (
     <div className="np-page">
       <section className="np-hero">
-        <InteractiveConstellation pattern="book" />
+        <PageHeroBackdrop />
         <div className="container">
           <motion.div
+            className="np-hero-inner"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease }}
           >
-            <span className="np-eyebrow">SimasiaAI</span>
             <h1>{t('newsPage.heroTitle')}</h1>
             <p className="np-hero-sub">{t('newsPage.heroSub')}</p>
           </motion.div>
@@ -49,29 +49,38 @@ const NewsPage = () => {
 
       <section className="np-filter">
         <div className="container">
-          <div className="np-filter-wrapper">
-            <span className="np-filter-label">{t('newsPage.filterLabel')}</span>
-            <div className="np-filter-tabs">
+          <div className="np-filter-inner">
+            <p className="np-filter-label">{t('newsPage.filterLabel')}</p>
+            <div className="np-filter-tabs" role="tablist" aria-label={t('newsPage.filterLabel')}>
               <button
                 type="button"
+                role="tab"
+                aria-selected={filter === 'all'}
                 className={`np-tab${filter === 'all' ? ' np-tab--active' : ''}`}
                 onClick={() => setFilter('all')}
               >
-                {t('newsPage.filterAll')} <span className="np-tab-count">{countAll}</span>
+                <span className="np-tab-text">{t('newsPage.filterAll')}</span>
+                <span className="np-tab-count">{countAll}</span>
               </button>
               <button
                 type="button"
+                role="tab"
+                aria-selected={filter === 'news'}
                 className={`np-tab${filter === 'news' ? ' np-tab--active' : ''}`}
                 onClick={() => setFilter('news')}
               >
-                {t('newsPage.filterNews')} <span className="np-tab-count">{countNews}</span>
+                <span className="np-tab-text">{t('newsPage.filterNews')}</span>
+                <span className="np-tab-count">{countNews}</span>
               </button>
               <button
                 type="button"
+                role="tab"
+                aria-selected={filter === 'articles'}
                 className={`np-tab${filter === 'articles' ? ' np-tab--active' : ''}`}
                 onClick={() => setFilter('articles')}
               >
-                {t('newsPage.filterArticles')} <span className="np-tab-count">{countArticles}</span>
+                <span className="np-tab-text">{t('newsPage.filterArticles')}</span>
+                <span className="np-tab-count">{countArticles}</span>
               </button>
             </div>
           </div>

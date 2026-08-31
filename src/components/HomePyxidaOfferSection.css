@@ -1,0 +1,221 @@
+.home-pyxida-offer {
+  padding: clamp(3rem, 7vw, 5rem) 0 clamp(2.5rem, 5vw, 4rem);
+  background: var(--paper, #faf9f6);
+}
+
+.home-pyxida-offer-inner.ol-pyxida-scene--offer {
+  padding: 0;
+  overflow: visible;
+}
+
+.home-pyxida-offer-inner .ol-pyxida-offer-open {
+  max-width: min(96vw, 68rem);
+}
+
+.home-pyxida-offer-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.65rem, 3.2vw, 2.35rem);
+  font-weight: 400;
+  color: var(--dark, #141413);
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  margin: 0 auto;
+  max-width: min(36rem, 100%);
+  text-align: center;
+}
+
+.home-pyxida-offer-title .brand-pyxida-link {
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.home-pyxida-offer-inner .ol-pyxida-offer-body {
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.home-pyxida-modules {
+  margin-top: clamp(2.25rem, 4.5vw, 3rem);
+  padding-top: clamp(2rem, 4vw, 2.75rem);
+  border-top: 1px solid rgba(20, 20, 19, 0.08);
+}
+
+.home-pyxida-modules-head {
+  max-width: min(40rem, 100%);
+  margin: 0 auto clamp(1.75rem, 3.5vw, 2.5rem);
+  text-align: center;
+}
+
+.home-pyxida-modules-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--dark, #141413);
+  margin: 0 0 0.55rem;
+}
+
+.home-pyxida-modules-desc {
+  font-family: var(--font-serif);
+  font-size: clamp(0.98rem, 1.8vw, 1.08rem);
+  line-height: 1.55;
+  color: var(--ink-soft, #5a5a58);
+  margin: 0;
+}
+
+.home-pyxida-modules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.home-pyxida-module {
+  padding: clamp(1.65rem, 3vw, 2.25rem) 0;
+}
+
+.home-pyxida-module + .home-pyxida-module {
+  border-top: 1px solid rgba(20, 20, 19, 0.06);
+}
+
+.home-pyxida-module-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(260px, 1fr);
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+  align-items: center;
+  max-width: min(68rem, 100%);
+  margin: 0 auto;
+}
+
+.home-pyxida-module-grid > .home-pyxida-module-copy {
+  grid-column: 1;
+  grid-row: 1;
+  padding-right: 0;
+  padding-left: 0;
+  max-height: none;
+  overflow: visible;
+}
+
+.home-pyxida-module-grid > .home-pyxida-module-visual {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.home-pyxida-module--visual-first .home-pyxida-module-grid > .home-pyxida-module-copy {
+  grid-column: 2;
+}
+
+.home-pyxida-module--visual-first .home-pyxida-module-grid > .home-pyxida-module-visual {
+  grid-column: 1;
+}
+
+.home-pyxida-module-copy {
+  min-width: 0;
+}
+
+.home-pyxida-module-visual {
+  min-width: 0;
+  width: 100%;
+}
+
+.home-pyxida-module-visual .ol-visual-stage {
+  min-height: clamp(15rem, 28vw, 19rem);
+}
+
+.home-pyxida-module-copy .ol-module-index {
+  display: block;
+  margin-bottom: 0.45rem;
+}
+
+.home-pyxida-module-copy .ol-praxi-module-verb {
+  margin: 0 0 0.45rem;
+}
+
+.home-pyxida-module-copy .ol-praxi-module-focus {
+  margin: 0 0 0.35rem;
+}
+
+.home-pyxida-module-copy .ol-praxi-module-tagline {
+  margin: 0;
+}
+
+.home-pyxida-module-copy .ol-praxi-module-pricing {
+  margin-top: 0.55rem;
+}
+
+.home-pyxida-module-pricing {
+  display: flex;
+  justify-content: center;
+}
+
+.home-pyxida-module-price-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.35rem 0.55rem;
+}
+
+.home-pyxida-module-price-sep {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  font-weight: 600;
+  color: var(--ink-soft, #5a5a58);
+  line-height: 1;
+}
+
+.home-pyxida-module-pricing .ol-praxi-module-setup {
+  display: inline;
+  font-size: clamp(0.82rem, 1.5vw, 0.92rem);
+}
+
+.home-pyxida-module-copy .ol-praxi-module-features {
+  margin-top: 0.85rem;
+}
+
+.home-pyxida-offer-cta-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: 0;
+}
+
+@media (max-width: 960px) {
+  .home-pyxida-module-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 1fr);
+  }
+
+  .home-pyxida-module-grid > .home-pyxida-module-copy {
+    grid-column: 1;
+  }
+
+  .home-pyxida-module-grid > .home-pyxida-module-visual {
+    grid-column: 2;
+  }
+
+  .home-pyxida-module--visual-first .home-pyxida-module-grid > .home-pyxida-module-copy {
+    grid-column: 2;
+  }
+
+  .home-pyxida-module--visual-first .home-pyxida-module-grid > .home-pyxida-module-visual {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .home-pyxida-module-grid {
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+  }
+
+  .home-pyxida-module-grid > .home-pyxida-module-copy,
+  .home-pyxida-module--visual-first .home-pyxida-module-grid > .home-pyxida-module-copy {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .home-pyxida-module-grid > .home-pyxida-module-visual,
+  .home-pyxida-module--visual-first .home-pyxida-module-grid > .home-pyxida-module-visual {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}

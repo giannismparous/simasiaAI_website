@@ -25,7 +25,7 @@ const QUERY_STOPWORDS_EN = new Set([
 ]);
 
 const SIMASIA_SIGNAL_BASE =
-  'simasia|σίμασια|σιμασια|sima\\b|simasiachatbots|simasiaedu|simasiastudio|simasiadaily|ai\\s+from\\s+the\\s+human|ανθρωποκεντρ|προϊον|προιον|product|εφαρμογ|application|επικοινων|contact|εταιρ|company|startup|chatbot|slogan|σύνθημα|συνθημα|αποστολ|mission|demo|συνεργ|ομαδ|ομάδ|team|τομει|τομέ|εργαζ|έρευν|research|αξι|φιλοσοφ|vision|όραμα';
+  'simasia|σίμασια|σιμασια|sima\\b|simasiachatbots|pyxida|πυξιδα|πυξίδα|dialogosai|dialogos|ψηφιακη|υποδοχη|ypodochi|praxi|απανταει|simasiaedu|simasiastudio|simasiadaily|ai\\s+from\\s+the\\s+human|ανθρωποκεντρ|προϊον|προιον|product|εφαρμογ|application|επικοινων|contact|εταιρ|company|startup|chatbot|slogan|σύνθημα|συνθημα|αποστολ|mission|demo|συνεργ|ομαδ|ομάδ|team|τομει|τομέ|εργαζ|έρευν|research|αξι|φιλοσοφ|vision|όραμα|μελη|μηλος|ιδρυτ|founder';
 
 let scopeSignalRegex = null;
 
@@ -45,25 +45,31 @@ function escapeRegexToken(token) {
 
 function buildScopeSignalRegex(rules = {}) {
   const parts = new Set();
-  SIMASIA_SIGNAL_BASE.split('|').forEach((p) => parts.add(p));
-
-  (rules.scopeSignals || []).forEach((t) => {
-    const n = normalize(t);
-    if (n.length >= 3) parts.add(escapeRegexToken(n));
+  SIMASIA_SIGNAL_BASE.split('|').forEach((p) => {
+    parts.add(p);
+    const plain = p.replace(/\\b/g, '');
+    if (/[α-ω]/.test(plain)) {
+      const gl = foldGreeklishForMatch(toGreeklish(plain));
+      if (gl.length >= 3) parts.add(escapeRegexToken(gl));
+    }
   });
 
+  const addScopeToken = (token) => {
+    const n = normalize(token);
+    if (n.length < 3) return;
+    parts.add(escapeRegexToken(n));
+    const gl = foldGreeklishForMatch(toGreeklish(n));
+    if (gl.length >= 3 && gl !== n) parts.add(escapeRegexToken(gl));
+  };
+
+  (rules.scopeSignals || []).forEach(addScopeToken);
+
   (rules.domainPatterns || []).forEach((entry) => {
-    (entry.query || []).forEach((t) => {
-      const n = normalize(t);
-      if (n.length >= 3) parts.add(escapeRegexToken(n));
-    });
+    (entry.query || []).forEach(addScopeToken);
   });
 
   (rules.topicBoosts || []).forEach((boost) => {
-    (boost.query || []).forEach((t) => {
-      const n = normalize(t);
-      if (n.length >= 3) parts.add(escapeRegexToken(n));
-    });
+    (boost.query || []).forEach(addScopeToken);
   });
 
   return new RegExp(Array.from(parts).join('|'), 'i');
@@ -87,9 +93,152 @@ function toGreeklish(text) {
     .join('');
 }
 
+/** Fold Greeklish spelling variants (y/i, ei/i, …) for cross-script retrieval. */
+function foldGreeklishForMatch(text) {
+  return normalize(String(text || ''))
+    .replace(/th/g, 't')
+    .replace(/ch/g, 'x')
+    .replace(/ps/g, 'p')
+    .replace(/ou/g, 'u')
+    .replace(/ei/g, 'i')
+    .replace(/ai/g, 'e')
+    .replace(/oi/g, 'i')
+    .replace(/y/g, 'i');
+}
+
+function sharedPrefixLength(a, b) {
+  const fa = foldGreeklishForMatch(a);
+  const fb = foldGreeklishForMatch(b);
+  let i = 0;
+  while (i < fa.length && i < fb.length && fa[i] === fb[i]) i += 1;
+  return i;
+}
+
+function docGreeklishBlob(doc) {
+  return `${doc._titleGreeklish || ''} ${doc._contentGreeklish || ''} ${(doc._keywordGreeklish || []).join(' ')}`;
+}
+
+function foldedQueryTokens(queryNorm, queryGreeklish) {
+  const folded = foldGreeklishForMatch(`${queryNorm} ${queryGreeklish}`);
+  return folded.split(/[^a-z0-9]+/).filter((w) => w.length >= 3);
+}
+
+function scoreGreeklishFuzzy(queryWords, doc) {
+  const foldedBlob = doc._foldedGreeklishBlob || foldGreeklishForMatch(docGreeklishBlob(doc));
+  if (!foldedBlob.trim()) return 0;
+
+  let score = 0;
+  const blobWords = foldedBlob.split(/[^a-z0-9]+/).filter((w) => w.length >= 3);
+
+  queryWords.forEach((word) => {
+    if (word.length < 4) return;
+    const foldedWord = foldGreeklishForMatch(word);
+
+    if (foldedBlob.includes(foldedWord)) {
+      score += 0.58;
+      return;
+    }
+
+    const stem = foldedWord.slice(0, Math.min(6, foldedWord.length));
+    if (stem.length >= 5 && foldedBlob.includes(stem)) {
+      score += 0.48;
+      return;
+    }
+
+    let bestPrefix = 0;
+    blobWords.forEach((blobWord) => {
+      bestPrefix = Math.max(bestPrefix, sharedPrefixLength(foldedWord, blobWord));
+    });
+
+    if (bestPrefix >= 6) score += 0.44;
+    else if (bestPrefix >= 5) score += 0.34;
+    else if (bestPrefix >= 4) score += 0.22;
+  });
+
+  return score;
+}
+
+function topicTermMatchesQuery(queryNorm, queryGreeklish, term) {
+  const tn = normalize(term);
+  if (!tn) return false;
+  if (queryNorm.includes(tn)) return true;
+
+  const foldedQuery = foldGreeklishForMatch(`${queryNorm} ${queryGreeklish}`);
+  const foldedTerm = foldGreeklishForMatch(toGreeklish(term));
+  if (foldedTerm.length >= 3 && foldedQuery.includes(foldedTerm)) return true;
+
+  if (foldedTerm.length >= 4) {
+    const tokens = foldedQueryTokens(queryNorm, queryGreeklish);
+    return tokens.some(
+      (qt) =>
+        qt.length >= 4 &&
+        sharedPrefixLength(qt, foldedTerm) >= Math.min(5, foldedTerm.length, qt.length)
+    );
+  }
+  return false;
+}
+
+function querySignalsCollaborations(queryNorm, queryGreeklish) {
+  const folded = foldGreeklishForMatch(`${queryNorm} ${queryGreeklish}`);
+  return (
+    /συνεργ|collaboration|partner|poamskp|myrto|\bk3\b/.test(queryNorm) ||
+    /sinerg|synerg|collabor|partner|poamskp|myrto/.test(folded)
+  );
+}
+
+function querySignalsDemo(queryNorm, queryGreeklish) {
+  const folded = foldGreeklishForMatch(`${queryNorm} ${queryGreeklish}`);
+  return /demo|ραντεβ|book|κλεισ|randev|kleis/.test(queryNorm) || /demo|randev|kleis/.test(folded);
+}
+
+function topicTermMatchesBlob(blob, term) {
+  const tn = normalize(term);
+  if (!tn) return false;
+  if (blob.includes(tn)) return true;
+  const foldedBlob = foldGreeklishForMatch(toGreeklish(blob));
+  const foldedTerm = foldGreeklishForMatch(toGreeklish(term));
+  if (foldedTerm.length >= 3 && foldedBlob.includes(foldedTerm)) return true;
+  if (foldedTerm.length >= 4) {
+    const blobWords = foldedBlob.split(/[^a-z0-9]+/).filter((w) => w.length >= 3);
+    return blobWords.some(
+      (bw) => sharedPrefixLength(bw, foldedTerm) >= Math.min(5, foldedTerm.length, bw.length)
+    );
+  }
+  return false;
+}
+
 export function detectLanguage(text) {
   const greekChars = String(text || '').match(/[α-ωΑ-ΩΆΈΉΊΌΎΏάέήίόύώϊΐϋΰ]/g);
   return greekChars && greekChars.length > 0 ? 'el' : 'en';
+}
+
+/** Reply language: Greek script → Greek; clear English → English; else site default (usually Greek). */
+export function detectReplyLanguage(text, uiLanguage = 'el') {
+  const raw = String(text || '').trim();
+  if (/[α-ωΑ-ΩΆΈΉΊΌΎΏάέήίόύώ]/.test(raw)) return 'el';
+
+  const norm = normalize(raw);
+  const englishCue =
+    /\b(what|how|who|why|when|where|can|you|your|the|is|are|please|thanks|hello|hi|book|demo)\b/.test(
+      norm
+    );
+  const greeklishCue =
+    /\b(ti|poia|poio|pos|pws|einai|eimai|gia|kai|mas|sas|thelw|thelo|melh|omada|iatreio|idiotes|idiotites)\b/.test(
+      norm
+    );
+
+  if (englishCue && !greeklishCue) return 'en';
+  if (greeklishCue) return 'el';
+  return uiLanguage === 'en' ? 'en' : 'el';
+}
+
+/** Map legacy product names to Pyxida for retrieval & scope. */
+export function expandProductAliases(text) {
+  return String(text || '')
+    .replace(/\bdialogos\s*ai\b/gi, 'Pyxida')
+    .replace(/\bdialogosai\b/gi, 'Pyxida')
+    .replace(/\bδιαλογος\s*ai\b/gi, 'Pyxida')
+    .replace(/\bδιαλογοςαι\b/gi, 'Pyxida');
 }
 
 function cleanQueryToken(token) {
@@ -157,12 +306,24 @@ export function queryAlignsWithKnowledge(text) {
   return false;
 }
 
+function faqTriggerMatches(queryNorm, queryGreeklishNorm, trigger) {
+  const tn = normalize(trigger);
+  const tnGl = toGreeklish(trigger);
+  return (
+    queryNorm.includes(tn) ||
+    queryGreeklishNorm.includes(tn) ||
+    queryNorm.includes(tnGl) ||
+    queryGreeklishNorm.includes(tnGl)
+  );
+}
+
 function faqDocsForQuery(query) {
   const qn = normalize(query);
+  const qnGl = toGreeklish(query);
   const out = [];
   (retrieverState.faqEntries || []).forEach((entry) => {
     const triggers = entry.triggers || [];
-    if (triggers.some((t) => qn.includes(normalize(t)))) {
+    if (triggers.some((t) => faqTriggerMatches(qn, qnGl, t))) {
       out.push({
         id: entry.id,
         title: entry.title || 'FAQ',
@@ -173,7 +334,7 @@ function faqDocsForQuery(query) {
         category: 'faq',
         source: { type: 'faq' },
         org: 'simasia',
-        relevanceScore: 2.5,
+        relevanceScore: 4,
         _titleNorm: normalize(entry.title || ''),
         _contentNorm: normalize(entry.content || ''),
         _keywordNorms: triggers.map((t) => normalize(t)),
@@ -186,11 +347,14 @@ function faqDocsForQuery(query) {
   return out;
 }
 
-function applyRetrievalRelevanceAdjustments(score, doc, queryNorm, topicContextNorm = '') {
+function applyRetrievalRelevanceAdjustments(score, doc, queryNorm, topicContextNorm = '', queryGreeklish = '') {
   const targets = detectTargetOrgs(queryNorm);
   const blob = docTextBlob(doc);
   const effectiveNorm = `${queryNorm} ${topicContextNorm || ''}`.trim();
-  const simasiaQuery = hasSimasiaTopicSignals(effectiveNorm);
+  const effectiveGreeklish = `${queryGreeklish || toGreeklish(queryNorm)} ${toGreeklish(topicContextNorm || '')}`.trim();
+  const simasiaQuery =
+    hasSimasiaTopicSignals(effectiveNorm) ||
+    hasSimasiaTopicSignals(foldGreeklishForMatch(effectiveGreeklish));
   const simasiaDoc = getScopeSignalRegex().test(blob);
   const org = docOrg(doc);
 
@@ -201,8 +365,10 @@ function applyRetrievalRelevanceAdjustments(score, doc, queryNorm, topicContextN
   }
 
   (retrieverState.rules.topicBoosts || []).forEach((boost) => {
-    const qHit = (boost.query || []).some((t) => queryNorm.includes(normalize(t)));
-    const bHit = (boost.blob || []).some((t) => blob.includes(normalize(t)));
+    const qHit = (boost.query || []).some((t) =>
+      topicTermMatchesQuery(effectiveNorm, effectiveGreeklish, t)
+    );
+    const bHit = (boost.blob || []).some((t) => topicTermMatchesBlob(blob, t));
     if (qHit && bHit) score += Number(boost.add || 0.3);
   });
 
@@ -239,6 +405,16 @@ function applyRetrievalRelevanceAdjustments(score, doc, queryNorm, topicContextN
   }
 
   score += Number(doc.priority || 0) * 0.12;
+
+  if (doc.source?.type === 'page_i18n') score *= 1.1;
+  else if (doc.source?.type === 'core_rag') score *= 1.05;
+  else if (doc.source?.type === 'rag_txt') score *= 0.85;
+
+  const docUrl = String(doc.url || '').trim().replace(/\/+$/, '');
+  if (querySignalsCollaborations(queryNorm, queryGreeklish)) {
+    if (docUrl === '/collaborations') score += 0.55;
+    if (docUrl === '/demo' && !querySignalsDemo(queryNorm, queryGreeklish)) score *= 0.28;
+  }
 
   return score;
 }
@@ -279,6 +455,9 @@ async function initRetriever() {
         _titleGreeklish: toGreeklish(doc.title || ''),
         _contentGreeklish: toGreeklish(doc.content || ''),
         _keywordGreeklish: (doc.keywords || []).map((k) => toGreeklish(k)),
+        _foldedGreeklishBlob: foldGreeklishForMatch(
+          `${toGreeklish(doc.title || '')} ${toGreeklish(doc.content || '')} ${(doc.keywords || []).map((k) => toGreeklish(k)).join(' ')}`
+        ),
       };
     });
     retrieverState.ready = true;
@@ -340,9 +519,19 @@ export async function retrieveRelevantDocs(query, topN = 6, preferredLanguage = 
           if (kwHits) score += Math.min(0.4, kwHits * 0.12);
           if (contentGreeklish.includes(w)) score += 0.06;
         });
+
+        const fuzzyWords =
+          queryGreeklishWords.length >= queryWords.length ? queryGreeklishWords : queryWords;
+        score += scoreGreeklishFuzzy(fuzzyWords, doc);
       }
 
-      score = applyRetrievalRelevanceAdjustments(score, doc, queryNorm, topicContextNorm);
+      score = applyRetrievalRelevanceAdjustments(
+        score,
+        doc,
+        queryNorm,
+        topicContextNorm,
+        queryGreeklish
+      );
       return { ...doc, relevanceScore: score };
     })
     .sort((a, b) => b.relevanceScore - a.relevanceScore)
@@ -364,7 +553,12 @@ export async function retrieveRelevantDocs(query, topN = 6, preferredLanguage = 
   faqDocsForQuery(query).forEach((d) => merged.set(d.id, d));
 
   return Array.from(merged.values())
-    .sort((a, b) => b.relevanceScore - a.relevanceScore)
+    .sort((a, b) => {
+      const aFaq = a.source?.type === 'faq' ? 1 : 0;
+      const bFaq = b.source?.type === 'faq' ? 1 : 0;
+      if (aFaq !== bFaq) return bFaq - aFaq;
+      return b.relevanceScore - a.relevanceScore;
+    })
     .slice(0, sendToModel);
 }
 
@@ -389,7 +583,7 @@ export async function retrieveRelevantDocsWithContext(
   const baseHits = await retrieveRelevantDocs(base, Math.max(topN * 2, 6), lang, topicContext);
   const baseTopScore = baseHits.length ? Number(baseHits[0].relevanceScore || 0) : 0;
 
-  if (baseTopScore >= 0.38) {
+  if (baseTopScore >= 0.32) {
     return baseHits.slice(0, topN);
   }
 
@@ -433,7 +627,7 @@ export async function retrieveRelevantDocsWithContext(
 export function buildContext(docs) {
   if (!docs || docs.length === 0) return '';
   // Cap each chunk so we never ship near-full pages into the prompt.
-  const MAX_CONTENT = 1400;
+  const MAX_CONTENT = 900;
   return docs
     .map((doc) => {
       let content = String(doc.content || '').trim();

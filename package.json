@@ -17,6 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "npm run proxy:gemini & npm start",
     "build": "react-scripts build",
     "build:knowledge": "node scripts/build_knowledge_index.mjs",
     "proxy:gemini": "node scripts/local-gemini-proxy.mjs",

@@ -193,16 +193,6 @@ const baseTranslations = {
         { title: "Economic retrieval", desc: "Cache-augmented generation για μικρά stable corpora. KV-caching static prompt prefixes. Top-2 retrieval. Λιγότερα tokens, ίδιες απαντήσεις." }
       ]
     },
-    // Compliance
-    compliance: {
-      title: "Compliance & ασφάλεια",
-      subtitle: "Χτισμένα από την αρχή για ρυθμιζόμενους τομείς. Auditable, transparent, ασφαλή by design.",
-      cards: [
-        { title: "GDPR-aware", desc: "Anonymized sessions, μηδέν PII storage by default. Data deletion flow ενσωματωμένο. Data Processor Agreement template διαθέσιμο." },
-        { title: "EU AI Act ready", desc: "Δομημένο για high-risk classification: documented data flow, human oversight hooks, audit logs. Συνεργαζόμαστε με νομικούς συμβούλους για DPIA / FRIA." },
-        { title: "Auditable safety", desc: "Κάθε safety απόφαση είναι γραμμή κώδικα ή κανόνας σε YAML — όχι μαύρο κουτί. Compliance officer το διαβάζει και το επικυρώνει." }
-      ]
-    },
     // Who It's For (Homepage) — now chatbot focused
     whoItsFor: {
       title: "Ποιους αφορά",
@@ -426,10 +416,10 @@ const baseTranslations = {
     collaborations: {
       title: "Συνεργασίες",
       home: {
-        headline: "Ο ψηφιακός πλοηγός <em class=\"brand-dialogos\">DialogosAI</em> υλοποιείται ήδη σε οργανισμούς με κοινωνικό αντίκτυπο",
-        paragraph1: "Οι συνεργασίες μας περιλαμβάνουν το Κέντρο Καθοδήγησης Καρκινοπαθών (Μυρτώ), την ΠΟΑμΣΚΠ (ΣΚΠ-i), ενώ χαράσσουμε κοινή πορεία για άλλους δύτο <em class=\"brand-dialogos\">DialogosAI</em> μαζί με την Bpanheroes και το Perfectaki Able.",
+        headline: "Το <strong>Pyxida</strong> υλοποιείται ήδη σε οργανισμούς με κοινωνικό αντίκτυπο",
+        paragraph1: "Οι συνεργασίες μας περιλαμβάνουν το Κέντρο Καθοδήγησης Καρκινοπαθών (Μυρτώ), την ΠΟΑμΣΚΠ (ΣΚΠ-i), ενώ χαράσσουμε κοινή πορεία για άλλους δύο <strong>Pyxida</strong> μαζί με την Bpanheroes και το Perfectaki Able.",
         paragraph2: "Εργαζόμαστε σε τομείς Τεχνητής Νοημοσύνης ρυθμιζόμενου ρίσκου όπου η ακρίβεια, η προσβασιμότητα και η ανθρώπινη κλιμάκωση είναι κρίσιμες, όπως η υγεία, η εκπαίδευση και οι κοινωνικές υπηρεσίες.",
-        paragraph3: "Μαζί πετυχαίνουμε σαφείς απαντήσεις σε σύνθετες διαδικασίες, διαφάνεια γνώσης από εγκεκριμένες πηγές και ψηφιακή ένταξη για κοινότητες που το χρειάζονται. Γι' αυτήν του την υπεύθυνη και αξιόπιστη εφαρμογή, το <em class=\"brand-dialogos\">DialogosAI</em> μπορεί να προσαρμοστεί σε μεγάλο εύρος πεδίων όπου χρειάζεται καθοδήγηση χρηστών.",
+        paragraph3: "Μαζί πετυχαίνουμε σαφείς απαντήσεις σε σύνθετες διαδικασίες, διαφάνεια γνώσης από εγκεκριμένες πηγές και ψηφιακή ένταξη για κοινότητες που το χρειάζονται. Γι' αυτήν την υπεύθυνη και αξιόπιστη εφαρμογή, το <strong>Pyxida</strong> μπορεί να προσαρμοστεί σε μεγάλο εύρος πεδίων όπου χρειάζεται καθοδήγηση χρηστών.",
         viewAll: "Όλες οι συνεργασίες →"
       },
       current: {
@@ -718,16 +708,6 @@ const baseTranslations = {
         { title: "Economic retrieval", desc: "Cache-augmented generation for small stable corpora. KV-caching static prompt prefixes. Top-2 retrieval. Fewer tokens, same answers." }
       ]
     },
-    // Compliance
-    compliance: {
-      title: "Compliance & Security",
-      subtitle: "Built from the ground up for regulated sectors. Auditable, transparent, secure by design.",
-      cards: [
-        { title: "GDPR-aware", desc: "Anonymized sessions, zero PII storage by default. Data deletion flow built-in. Data Processor Agreement template available." },
-        { title: "EU AI Act ready", desc: "Structured for high-risk classification: documented data flow, human oversight hooks, audit logs. We work with legal advisors for DPIA / FRIA." },
-        { title: "Auditable safety", desc: "Every safety decision is a line of code or a rule in YAML — not a black box. A compliance officer reads it and validates it." }
-      ]
-    },
     // Who It's For (Homepage) — now chatbot focused
     whoItsFor: {
       title: "Who it's for",
@@ -951,10 +931,10 @@ const baseTranslations = {
     collaborations: {
       title: "Collaborations",
       home: {
-        headline: "<em class=\"brand-dialogos\">DialogosAI</em> is already deployed in organizations with social impact",
-        paragraph1: "Our collaborations include the Cancer Guidance Center (Myrto), POAMSKP (SKP-i), while we are charting a shared path for two more <em class=\"brand-dialogos\">DialogosAI</em> instances together with Bpanheroes and Perfectaki Able.",
+        headline: "<strong>Pyxida</strong> is already deployed in organizations with social impact",
+        paragraph1: "Our collaborations include the Cancer Guidance Center (Myrto), POAMSKP (SKP-i), while we are charting a shared path for two more <strong>Pyxida</strong> instances together with Bpanheroes and Perfectaki Able.",
         paragraph2: "We work in regulated-risk AI sectors where accuracy, accessibility, and human escalation are critical — health, education, and social services.",
-        paragraph3: "Together we deliver clear answers to complex processes, knowledge transparency from approved sources, and digital inclusion for communities that need it. For this responsible and reliable deployment, <em class=\"brand-dialogos\">DialogosAI</em> can be adapted to a wide range of fields where user guidance is needed.",
+        paragraph3: "Together we deliver clear answers to complex processes, knowledge transparency from approved sources, and digital inclusion for communities that need it. For this responsible and reliable deployment, <strong>Pyxida</strong> can be adapted to a wide range of fields where user guidance is needed.",
         viewAll: "View all collaborations →"
       },
       current: {

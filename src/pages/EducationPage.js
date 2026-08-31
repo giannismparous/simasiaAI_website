@@ -60,7 +60,7 @@ const EducationPage = () => {
               Ερχόμαστε στον χώρο σας ή συνδεόμαστε online για να φέρουμε το μέλλον της μάθησης στο σήμερα.
             </p>
             <div className="edu-hero-ctas">
-              <Link to="/book-demo" className="btn btn-light">Κλείστε Ραντεβού</Link>
+              <Link to="/demo" className="btn btn-light">Κλείστε Ραντεβού</Link>
               <a href="#workshops" className="edu-ghost-link">
                 Δείτε τα σεμινάρια <span>↓</span>
               </a>
@@ -128,7 +128,7 @@ const EducationPage = () => {
                 <span className="edu-workshop-tag">{w.price}</span>
                 <h3>{w.title}</h3>
                 <p>{w.desc}</p>
-                <Link to="/book-demo" className="edu-workshop-cta">
+                <Link to="/demo" className="edu-workshop-cta">
                   Κράτηση Θέσης →
                 </Link>
               </motion.div>
@@ -145,7 +145,7 @@ const EducationPage = () => {
             Πιστεύουμε ότι η Τεχνητή Νοημοσύνη πρέπει να ενδυναμώνει τον δάσκαλο και τον καθηγητή,
             προσφέροντας περισσότερο χρόνο για την πραγματική, ανθρώπινη επαφή με τον μαθητή.
           </p>
-          <Link to="/book-demo" className="btn btn-primary">Ξεκινήστε Σήμερα</Link>
+          <Link to="/demo" className="btn btn-primary">Ξεκινήστε Σήμερα</Link>
         </div>
       </section>
     </div>

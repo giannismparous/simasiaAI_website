@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { SmoothReveal, WordReveal } from '../components/TextReveal';
 import CTA from '../components/CTA';
-import ContactForm from '../components/ContactForm';
 import PageHeroBackdrop from '../components/PageHeroBackdrop';
 import { useTranslation } from '../hooks/useTranslation';
 import '../components/Mission.css';
@@ -338,7 +337,6 @@ const SolutionsPage = () => {
       </section>
 
       <CTA />
-      <ContactForm />
     </div>
   );
 };

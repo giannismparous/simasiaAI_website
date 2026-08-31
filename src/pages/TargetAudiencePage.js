@@ -58,7 +58,7 @@ const TargetAudiencePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Link to="/book-demo" className="btn btn-primary">
+            <Link to="/demo" className="btn btn-primary">
               {t('nav.bookDemo')}
             </Link>
           </motion.div>

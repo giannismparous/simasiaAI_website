@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import PageHeroBackdrop from '../components/PageHeroBackdrop';
 import './AboutPage.css';
 import giannisReal from '../assets/giannis-real.png';
 import dimitrisReal from '../assets/dimitris-real.png';
@@ -72,6 +73,7 @@ const AboutPage = () => {
     <div className="about-page">
       {/* Hero */}
       <section className="ap-hero" ref={heroRef}>
+        <PageHeroBackdrop />
         <div className="container">
           <motion.div className="ap-hero-inner"
             initial={{ opacity: 0, y: 30 }}
@@ -199,7 +201,7 @@ const AboutPage = () => {
             <p className="ap-mission-text">Δεν σχεδιάζουμε μία απλή μηχανή απαντήσεων.{' '}
               Δημιουργήσαμε το ανθρωποκεντρικό σύστημα πλοήγησης <em className="brand-dialogos">DialogosAI</em> που αναπτύσσει έναν αυθεντικό, ασφαλή και προσαρμοσμένο διάλογο με τους χρήστες, με σεβασμό στην ελληνική γλώσσα, την προσβασιμότητα για όλες και όλους, αναλαμβάνοντας την ευθύνη της χρήσης της τεχνολογίας που συνδράμει σε πραγματικές ανάγκες.
             </p>
-            <Link to="/book-demo" className="btn btn-primary">Κλείστε Demo</Link>
+            <Link to="/demo" className="btn btn-primary">Κλείστε Demo</Link>
           </motion.div>
         </div>
       </section>

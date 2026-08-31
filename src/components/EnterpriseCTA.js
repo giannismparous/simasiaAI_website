@@ -22,11 +22,11 @@ const EnterpriseCTA = () => {
         <h2>{t('enterpriseCta.title')}</h2>
         <p className="enterprise-cta-lead">
           {t('enterpriseCta.leadBefore')}{' '}
-          <em className="brand-dialogos">DialogosAI</em>{' '}
+          <strong>{t('enterpriseCta.brand')}</strong>{' '}
           {t('enterpriseCta.leadAfter')}
         </p>
         <div className="enterprise-cta-buttons">
-          <Link to="/book-demo" className="btn-cta-primary">
+          <Link to="/demo" className="btn-cta-primary">
             {t('enterpriseCta.cta')}
           </Link>
           <a href="mailto:contact@simasiaai.gr" className="btn-cta-secondary">

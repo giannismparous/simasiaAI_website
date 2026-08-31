@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ChatWindow.css';
 import { answerQuestion } from '../chatbot/services/chatService';
+import { toUserFacingError } from '../chatbot/services/scopeGuard';
 import { useLanguage } from '../contexts/LanguageContext';
-import SimakiAvatar from './SimakiAvatar';
+import PyxidaCompassIcon from './PyxidaCompassIcon';
 
 const msgEase = [0.16, 1, 0.3, 1];
 /** Fast reveal: ms between ticks; multiple chars per tick. */
@@ -14,23 +15,19 @@ const SOURCE_CHARS_PER_TICK = 4;
 const SOURCE_GAP_MS = 28;
 
 function renderMessageText(text) {
-  const parts = String(text || '').split(/(\/#contact|\/book-demo)/gi);
+  const parts = String(text || '').split(/(\/#contact|\/book-demo|\/demo)/gi);
   return parts.map((part, i) => {
-    if (/^\/book-demo$/i.test(part)) {
+    if (/^\/(?:demo|book-demo)$/i.test(part)) {
       return (
-        <Link key={`bd-${i}`} to="/book-demo" className="message-inline-link">
-          /book-demo
+        <Link key={`bd-${i}`} to="/demo" className="message-inline-link">
+          /demo
         </Link>
       );
     }
     if (/^\/#contact$/i.test(part)) {
       return (
-        <Link
-          key={`ct-${i}`}
-          to={{ pathname: '/', hash: 'contact' }}
-          className="message-inline-link"
-        >
-          /#contact
+        <Link key={`ct-${i}`} to="/demo" className="message-inline-link">
+          /demo
         </Link>
       );
     }
@@ -50,24 +47,29 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
   const inputRef = useRef(null);
   const panelRef = useRef(null);
   const typewriterRef = useRef(null);
+  const sendInFlightRef = useRef(false);
 
   const suggestedQuestions = useMemo(() => {
     return language === 'el'
       ? [
-          { id: 1, text: 'Τι μπορεί να κάνει το DialogosAI για μένα;' },
+          { id: 1, text: 'Τι μπορεί να κάνει το Pyxida για μένα;' },
           { id: 2, text: 'Πώς βοηθά η SimasiaAI οργανισμούς;' },
           { id: 3, text: 'Μπορώ να κλείσω demo;' },
         ]
       : [
-          { id: 1, text: 'What can DialogosAI do for me?' },
+          { id: 1, text: 'What can Pyxida do for me?' },
           { id: 2, text: 'How does SimasiaAI help organizations?' },
           { id: 3, text: 'Can I book a demo?' },
         ];
   }, [language]);
 
   const hasConversation = messages.length > 0;
-  const showSuggestionChips = showOptions && !isLoading;
+  const showSuggestionChips = showOptions && !isLoading && !hasConversation;
   const isIdle = !hasConversation;
+
+  useEffect(() => {
+    if (hasConversation) setShowOptions(false);
+  }, [hasConversation]);
 
   useEffect(() => {
     if (initialShowOptions && !hasPrefilled && messages.length === 0) {
@@ -104,6 +106,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
       confidence: 0,
       bookDemoCta: false,
       contactCta: false,
+      pageCta: null,
       done: false,
       phase: 'text', // text → sourcesLabel → sourcesItems → idle
       labelTarget: sourcesLabel,
@@ -154,6 +157,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
             confidence: tw.confidence,
             bookDemoCta: tw.bookDemoCta,
             contactCta: tw.contactCta,
+            pageCta: tw.pageCta,
             isTyping: false,
             isTypingSources: false,
             typedSourcesLabel: '',
@@ -173,6 +177,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
           sources: tw.sources,
           bookDemoCta: tw.bookDemoCta,
           contactCta: tw.contactCta,
+          pageCta: tw.pageCta,
           typedSourcesLabel: '',
           typedSourceCount: 0,
           typingSourceTitle: '',
@@ -208,6 +213,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
             confidence: tw.confidence,
             bookDemoCta: tw.bookDemoCta,
             contactCta: tw.contactCta,
+            pageCta: tw.pageCta,
             isTyping: false,
             isTypingSources: false,
             typedSourcesLabel: tw.labelTarget,
@@ -251,7 +257,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
   const updateTypewriterTarget = (
     botId,
     target,
-    { done = false, sources = [], confidence = 0, bookDemoCta = false, contactCta = false } = {}
+    { done = false, sources = [], confidence = 0, bookDemoCta = false, contactCta = false, pageCta = null } = {}
   ) => {
     const tw = typewriterRef.current;
     if (!tw || tw.botId !== botId) return;
@@ -262,12 +268,14 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
       tw.confidence = confidence || 0;
       tw.bookDemoCta = Boolean(bookDemoCta);
       tw.contactCta = Boolean(contactCta);
+      tw.pageCta = pageCta && pageCta.url ? pageCta : null;
     }
   };
 
   const sendUserMessage = async (userText) => {
-    if (!userText.trim() || isLoading) return;
+    if (!userText.trim() || isLoading || sendInFlightRef.current) return;
 
+    sendInFlightRef.current = true;
     setShowOptions(false);
     const historyBeforeSend = messages.slice();
     const previousResolvedQuery = lastResolvedQueryRef.current;
@@ -279,9 +287,10 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
 
     let streamMounted = false;
     let streamBuffer = '';
+    let response = null;
 
     try {
-      const response = await answerQuestion(userText.trim(), null, {
+      response = await answerQuestion(userText.trim(), null, {
         messages: historyBeforeSend,
         lastResolvedQuery: previousResolvedQuery,
         uiLanguage: language,
@@ -314,6 +323,12 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
       });
 
       const finalAnswer = response.answer || streamBuffer || '';
+      if (response.error && !finalAnswer.trim()) {
+        throw new Error(response.error);
+      }
+      if (!finalAnswer.trim() && !streamMounted) {
+        throw new Error('empty_response');
+      }
       if (!streamMounted) {
         streamMounted = true;
         setMessages((prev) => [
@@ -339,13 +354,13 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
         confidence: response.confidence,
         bookDemoCta: Boolean(response.bookDemoCta),
         contactCta: Boolean(response.contactCta),
+        pageCta: response.pageCta || null,
       });
     } catch (error) {
       stopTypewriter();
       const errText =
-        language === 'el'
-          ? 'Συγγνώμη, κάτι πήγε στραβά. Προσπάθησε ξανά.'
-          : 'Sorry, something went wrong. Please try again.';
+        response?.answer ||
+        toUserFacingError(error, language === 'el' ? 'el' : 'en');
       setMessages((prev) => {
         if (streamMounted) {
           return prev.map((m) =>
@@ -366,6 +381,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
         return [...prev, { id: botId, text: errText, sender: 'bot' }];
       });
     } finally {
+      sendInFlightRef.current = false;
       setIsLoading(false);
     }
   };
@@ -378,9 +394,8 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
   };
 
   const handleQuestionClick = (question) => {
-    if (isLoading) return;
+    if (isLoading || hasConversation) return;
     setInputValue(question.text);
-    setShowOptions(true);
     inputRef.current?.focus();
   };
 
@@ -392,7 +407,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
   };
 
   const openOptions = () => {
-    setShowOptions(true);
+    if (!hasConversation) setShowOptions(true);
     inputRef.current?.focus();
   };
 
@@ -404,10 +419,10 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
       <header className="chat-header">
         <div className="chat-header-content">
           <div className="bot-avatar">
-            <SimakiAvatar size={32} />
+            <PyxidaCompassIcon idSuffix="header" size={32} />
           </div>
           <div className="bot-info">
-            <h3><em className="brand-dialogos">DialogosAI</em></h3>
+            <h3><em className="brand-pyxida">Pyxida</em></h3>
           </div>
         </div>
         <button
@@ -465,7 +480,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
               >
                 {message.sender === 'bot' && (
                   <div className="chat-row-avatar" aria-hidden="true">
-                    <SimakiAvatar size={26} />
+                    <PyxidaCompassIcon idSuffix={`msg-${message.id}`} size={26} />
                   </div>
                 )}
                 <div className={`message-bubble ${message.sender}-message`}>
@@ -474,19 +489,28 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
                     {message.isTyping && <span className="typing-cursor" aria-hidden="true" />}
                   </p>
                   {!message.isTyping && !message.isTypingSources && message.bookDemoCta && (
-                    <Link to="/book-demo" className="message-demo-cta" onClick={onClose}>
+                    <Link to="/demo" className="message-demo-cta" onClick={onClose}>
                       {language === 'el' ? 'Άνοιγμα φόρμας Demo' : 'Open Demo form'}
                     </Link>
                   )}
                   {!message.isTyping && !message.isTypingSources && message.contactCta && (
-                    <Link
-                      to={{ pathname: '/', hash: 'contact' }}
-                      className="message-demo-cta"
-                      onClick={onClose}
-                    >
-                      {language === 'el' ? 'Άνοιγμα φόρμας επικοινωνίας' : 'Open contact form'}
+                    <Link to="/demo" className="message-demo-cta" onClick={onClose}>
+                      {language === 'el' ? 'Άνοιγμα φόρμας Demo' : 'Open Demo form'}
                     </Link>
                   )}
+                  {!message.isTyping &&
+                    !message.isTypingSources &&
+                    !message.bookDemoCta &&
+                    !message.contactCta &&
+                    message.pageCta?.url && (
+                      <Link
+                        to={message.pageCta.url}
+                        className="message-demo-cta message-page-cta"
+                        onClick={onClose}
+                      >
+                        {message.pageCta.label}
+                      </Link>
+                    )}
                   {(() => {
                     const hasSources = (message.sources || []).length > 0;
                     const revealing = Boolean(message.isTypingSources);
@@ -516,12 +540,15 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
                         )}
                         <ul>
                           {doneItems.map((source, idx) => {
-                            const isHashContact =
-                              source.url === '/#contact' || source.url === '/#contact/';
+                            const isDemoFormLink =
+                              source.url === '/demo' ||
+                              source.url === '/book-demo' ||
+                              source.url === '/#contact' ||
+                              source.url === '/#contact/';
                             return (
                             <li key={`${source.url}-${idx}`}>
-                              {isHashContact ? (
-                                <Link to={{ pathname: '/', hash: 'contact' }} onClick={onClose}>
+                              {isDemoFormLink ? (
+                                <Link to="/demo" onClick={onClose}>
                                   {source.title}
                                 </Link>
                               ) : source.url.startsWith('/') ? (
@@ -552,7 +579,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
           {isLoading && messages[messages.length - 1]?.sender !== 'bot' && (
             <div className="chat-row chat-row-bot">
               <div className="chat-row-avatar" aria-hidden="true">
-                <SimakiAvatar size={26} />
+                <PyxidaCompassIcon idSuffix="typing" size={26} />
               </div>
               <div className="message-bubble bot-message loading">
                 <div className="typing-indicator" aria-label="Typing">
@@ -581,7 +608,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
               onChange={(e) => setInputValue(e.target.value)}
               onFocus={() => {
                 setInputFocused(true);
-                setShowOptions(true);
+                if (!hasConversation) setShowOptions(true);
               }}
               onBlur={() => setInputFocused(false)}
               onKeyPress={handleKeyPress}

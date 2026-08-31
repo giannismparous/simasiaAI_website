@@ -1,10 +1,25 @@
 /** Server-only Gemini key pool (never sent to the browser). */
 
-const MODEL_DEFAULT = "gemini-flash-lite-latest";
+const MODEL_DEFAULT = "gemini-3.5-flash-lite";
+
+/** Cheapest flash-lite models only — blocks accidental pro/ultra billing. */
+const ALLOWED_MODELS = new Set([
+  "gemini-3.5-flash-lite",
+  "gemini-flash-lite-latest",
+  "gemini-2.0-flash-lite",
+]);
 
 export function getModelName() {
-  return (process.env.SIMASIA_GEMINI_MODEL || MODEL_DEFAULT).trim();
+  const requested = (process.env.SIMASIA_GEMINI_MODEL || MODEL_DEFAULT).trim();
+  if (ALLOWED_MODELS.has(requested)) return requested;
+  return MODEL_DEFAULT;
 }
+
+/** Cap output tokens — chat answers are short; keeps cost down. */
+export const GENERATION_CONFIG = {
+  maxOutputTokens: 512,
+  temperature: 0.48,
+};
 
 export function loadApiKeys() {
   const raw = (process.env.SIMASIA_GEMINI_API_KEYS || "").trim();

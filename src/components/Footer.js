@@ -12,7 +12,10 @@ const Footer = () => {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <img src="/logos/simasiaai.PNG" alt="SimasiaAI" className="footer-logo" />
+            <Link to="/" className="footer-logo-lockup" aria-label="SimasiaAI">
+              <img src="/logos/simasiaai.PNG" alt="" className="footer-logo" />
+              <span className="footer-wordmark">imasiaAI</span>
+            </Link>
             <p className="footer-phrase">{t('footer.phrase')}</p>
             <p className="footer-tagline">{t('footer.tagline')}</p>
           </div>
@@ -20,11 +23,10 @@ const Footer = () => {
           <div className="footer-col">
             <h4>{t('footer.navTitle')}</h4>
             <Link to="/">{t('nav.home')}</Link>
-            <Link to="/applications/simasia-chatbots"><em className="brand-dialogos">DialogosAI</em></Link>
-            <Link to="/services">{t('nav.services')}</Link>
+            <Link to="/ypodochi">{t('nav.ypodochi')}</Link>
+            <Link to="/demo">{t('nav.demo')}</Link>
             <Link to="/team">{t('footer.teamLink')}</Link>
             <Link to="/collaborations">{t('nav.collaborations')}</Link>
-            <Link to="/news">{t('footer.newsLink')}</Link>
           </div>
 
           <div className="footer-col">

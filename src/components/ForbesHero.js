@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import StarCanvas from './StarCanvas';
+import HeroCareVisual from './HeroCareVisual';
 import { useTranslation } from '../hooks/useTranslation';
 import './ForbesHero.css';
 
@@ -26,8 +27,7 @@ const ForbesHero = () => {
 
   return (
     <section className="fh-section" ref={ref}>
-      {/* Human figure only above 920px — compact screens get stars-only backdrop */}
-      <StarCanvas showFigure={!isCompact} />
+      <StarCanvas showFigure={false} />
       <div className="fh-layout">
         <div className="fh-inner">
           <h1 className="fh-headline" aria-label={t('forbesHero.ariaLabel')}>
@@ -55,18 +55,53 @@ const ForbesHero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
           >
-            {t('forbesHero.subBefore')}{' '}
-            <em>{t('forbesHero.subEm')}</em>.
+            {t('forbesHero.subText')}
           </motion.p>
+          {isCompact && (
+            <motion.div
+              className="fh-visual fh-visual--inline"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.02, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <HeroCareVisual />
+            </motion.div>
+          )}
+          {isCompact && (
+            <motion.p
+              className="fh-mission fh-mission--inline"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.08, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {t('forbesHero.missionLine')}
+            </motion.p>
+          )}
           <motion.div
             className="fh-ctas"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Link to="/book-demo" className="fh-btn-primary">{t('forbesHero.ctaDemo')}</Link>
+            <Link to="/ypodochi" className="fh-btn-primary">{t('forbesHero.ctaPrimary')}</Link>
+            <Link to="/demo" className="fh-btn-ghost">{t('forbesHero.ctaSecondary')} <span className="fh-arrow">→</span></Link>
           </motion.div>
         </div>
+        {!isCompact && (
+          <motion.div
+            className="fh-right-col"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="fh-visual">
+              <HeroCareVisual />
+            </div>
+            <aside className="fh-aside" aria-label={t('forbesHero.missionLine')}>
+              <p className="fh-mission">{t('forbesHero.missionLine')}</p>
+            </aside>
+          </motion.div>
+        )}
       </div>
       <motion.div
         className="fh-coord"
