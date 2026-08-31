@@ -1082,21 +1082,91 @@
     grid-template-columns: 1fr;
   }
 
+  .demo-offer-stack-inner {
+    padding: 1rem 0.9rem 1.1rem;
+  }
+
   .demo-offer-stack-row {
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 0.55rem;
     overflow-x: visible;
+    padding-bottom: 0;
+  }
+
+  .demo-offer-stack-row > :first-child {
+    width: 100%;
+  }
+
+  .demo-offer-stack-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    width: 100%;
+    gap: 0.4rem;
   }
 
   .demo-offer-plus {
-    margin: 0.15rem 0.35rem;
+    justify-self: center;
+    margin: 0;
+    width: 1.5rem;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.9rem;
   }
 
   .demo-offer-base-card {
-    width: min(100%, 11.5rem);
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    padding: 1rem 1rem 1.05rem;
+  }
+
+  .demo-offer-base-card-verb {
+    font-size: 1rem;
+  }
+
+  .demo-offer-base-card-role {
+    font-size: 0.84rem;
   }
 
   .demo-offer-module-card {
-    width: min(100%, 8.5rem);
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    padding: 0.85rem 0.9rem 0.9rem;
+    gap: 0.45rem;
+  }
+
+  .demo-offer-module-card-hit {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    text-align: left;
+  }
+
+  .demo-offer-module-card-verb {
+    font-size: 0.86rem;
+    text-align: left;
+  }
+
+  .demo-offer-module-card-role {
+    width: 100%;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  .demo-offer-module-card-action {
+    margin-top: 0;
+    align-self: stretch;
+    width: 100%;
+    min-width: 0;
+    min-height: 2.35rem;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.68rem;
   }
 
   .demo-toggle--org {
