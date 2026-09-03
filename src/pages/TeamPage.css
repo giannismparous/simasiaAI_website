@@ -262,6 +262,14 @@
 .tp-member-portrait img.tp-avatar-pantelis {
   object-position: center 60%;
 }
+/* Dimitris speaker photo — full-body portrait, show upper half (face + torso) */
+.tp-member-portrait img.tp-avatar-speaker {
+  object-position: center 15%;
+}
+/* Sotiris — face centred */
+.tp-member-portrait img.tp-avatar-sotiris {
+  object-position: center 20%;
+}
 
 .tp-flip-indicator {
   position: absolute;

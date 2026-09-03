@@ -239,6 +239,56 @@
   padding-left: 5px;
 }
 
+/* Featured card image — top banner */
+.np-featured-img {
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+  background: #fff;
+}
+.np-featured-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.np-featured-card:hover .np-featured-img img {
+  transform: scale(1.03);
+}
+/* Logo variant — full logo, no crop */
+.np-featured-img--logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.np-featured-img--logo img {
+  object-fit: contain;
+  max-width: 320px;
+  padding: 2rem;
+  transform: none !important;
+}
+
+/* Grid card image — top banner */
+.np-card-img {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+.np-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.np-article-card:hover .np-card-img img {
+  transform: scale(1.03);
+}
+
 /* Metadata components */
 .np-card-meta {
   display: flex;

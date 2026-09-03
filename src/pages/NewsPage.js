@@ -97,6 +97,11 @@ const NewsPage = () => {
               transition={{ duration: 0.7, ease }}
             >
               <Link to={`/news/${featuredArticle.slug}`} className="np-featured-card">
+                {featuredArticle.image && (
+                  <div className={`np-featured-img${featuredArticle.image.includes('/logos/') ? ' np-featured-img--logo' : ''}`}>
+                    <img src={featuredArticle.image} alt={featuredArticle.title} />
+                  </div>
+                )}
                 <div className="np-featured-content">
                   <div className="np-featured-badge">{t('newsPage.featuredBadge')}</div>
                   <div className="np-card-meta">
@@ -122,6 +127,11 @@ const NewsPage = () => {
                   transition={{ duration: 0.5, delay: i * 0.1, ease }}
                 >
                   <Link to={`/news/${article.slug}`} className="np-article-card">
+                    {article.image && (
+                      <div className="np-card-img">
+                        <img src={article.image} alt={article.title} />
+                      </div>
+                    )}
                     <div className="np-card-content">
                       <div className="np-card-meta">
                         <span className={`np-card-category-tag ${article.category}`}>

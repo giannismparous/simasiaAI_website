@@ -6,17 +6,19 @@ import PrincipleIcon from '../components/PrincipleIcons';
 import { useTranslation } from '../hooks/useTranslation';
 import './TeamPage.css';
 import stergiosReal from '../assets/stergios-real.png';
-import dimitrisReal from '../assets/dimitris-real.png';
+import dimitrisSpeaker from '../assets/dimitrisspeaker.png';
 import giannisReal from '../assets/giannis-real.png';
 import anastasiaReal from '../assets/anastasia-real.png';
 import pantelisImg from '../assets/pantelis.png';
+import sotirisReal from '../assets/sotiris-real.png';
 
 const AVATARS = {
   stergios: stergiosReal,
-  dimitris: dimitrisReal,
+  dimitris: dimitrisSpeaker,
   giannis: giannisReal,
   anastasia: anastasiaReal,
   pantelis: pantelisImg,
+  sotiris: sotirisReal,
 };
 
 const ease = [0.16, 1, 0.3, 1];
@@ -205,7 +207,11 @@ const TeamPage = () => {
                         <img
                           src={AVATARS[member.id]}
                           alt={member.name}
-                          className={member.id === 'pantelis' ? 'tp-avatar-pantelis' : undefined}
+                          className={[
+                            member.id === 'pantelis' ? 'tp-avatar-pantelis' : '',
+                            member.id === 'dimitris' ? 'tp-avatar-speaker' : '',
+                            member.id === 'sotiris'  ? 'tp-avatar-sotiris'  : '',
+                          ].filter(Boolean).join(' ') || undefined}
                         />
                         <div className="tp-flip-indicator">
                           <span>{t('teamPage.flipLabel')}</span>

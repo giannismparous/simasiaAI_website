@@ -78,7 +78,7 @@ export const extraUiEl = {
   homePyxidaOffer: {
     titleBefore: 'Τι παίρνετε με το',
     titleBrand: 'Pyxida',
-    modulesTitle: 'Ενότητες πάνω στο Pyxida',
+    modulesTitle: 'Ενότητες πάνω ση Pyxida',
     modulesDesc: 'Προσθέστε ό,τι χρειάζεστε — κάθε module επεκτείνει την ίδια βάση.',
     cta: 'Ρίξτε μια καλύτερη ματιά',
   },
@@ -156,7 +156,7 @@ export const extraUiEl = {
     principlesTitle: 'Οι Αρχές μας',
     principlesSub: 'Τέσσερις αρχές που καθορίζουν κάθε απόφαση που παίρνουμε.',
     missionTitle: 'Η Αποστολή μας',
-    missionText: 'Δεν σχεδιάζουμε μία απλή μηχανή απαντήσεων. Δημιουργήσαμε το Pyxida — ανθρωποκεντρική βοηθό που αναπτύσσει αυθεντικό, ασφαλή και προσαρμοσμένο διάλογο με τους ασθενείς, με σεβασμό στην ελληνική γλώσσα, την προσβασιμότητα για όλες και όλους, αναλαμβάνοντας την ευθύνη της χρήσης της τεχνολογίας που συνδράμει σε πραγματικές ανάγκες.',
+    missionText: 'Δεν σχεδιάζουμε μία απλή μηχανή απαντήσεων. Δημιουργήσαμε η Pyxida — ανθρωποκεντρική βοηθό που αναπτύσσει αυθεντικό, ασφαλή και προσαρμοσμένο διάλογο με τους ασθενείς, με σεβασμό στην ελληνική γλώσσα, την προσβασιμότητα για όλες και όλους, αναλαμβάνοντας την ευθύνη της χρήσης της τεχνολογίας που συνδράμει σε πραγματικές ανάγκες.',
     missionCta: 'Κλείστε ένα Demo',
     terminalFile: 'mission_statement.txt',
     team: [
@@ -165,6 +165,7 @@ export const extraUiEl = {
       { id: 'giannis', name: 'Γιάννης', role: 'Co-founder & CTO', shortBio: 'Υποψήφιος Διδάκτωρ Πληροφορικής (San Francisco), ειδικός σε ασφάλεια δεδομένων και RAG.', bio: 'Ο Γιάννης ηγείται του τεχνολογικού σχεδιασμού και των υποδομών της SimasiaAI. Είναι Υποψήφιος Διδάκτωρ (PhD candidate) στην Επιστήμη Υπολογιστών με έδρα το Σαν Φρανσίσκο, με εξειδίκευση σε συστήματα ιδιωτικότητας, ασφάλεια δεδομένων και αξιόπιστες υποδομές λογισμικού.', skills: ['Full Stack Development', 'AI Security & Privacy', 'RAG Architectures', 'Infrastructure Scaling'] },
       { id: 'anastasia', name: 'Αναπληρώτρια Καθ. Αναστασία Νάτσινα', role: 'Chief Communications Officer (CCO) & Co-Founder', shortBio: 'Αναπλ. Καθηγήτρια Πανεπιστημίου Κρήτης, απόφοιτος Οξφόρδης με Constantine Trypanis Award.', bio: 'Η Αναστασία ηγείται της στρατηγικής επικοινωνίας, των δημοσίων σχέσεων και της εξωστρέφειας της SimasiaAI. Είναι Αναπληρώτρια Καθηγήτρια Νεοελληνικής Φιλολογίας και Πρόεδρος του τμήματος Φιλολογίας του Πανεπιστημίου Κρήτης.', skills: ['Strategic Communications', 'Public Relations', 'Public Image', 'Text Composition'] },
       { id: 'pantelis', name: 'Παντελής Νικολόπουλος', role: 'Storyteller & Content Creator', shortBio: 'Storyteller & Content Creator, εστιάζοντας στην ανθρωποκεντρική επικοινωνία της AI τεχνολογίας.', bio: 'Ο Παντελής είναι ο δημιουργικός πυρήνας πίσω από την επικοινωνία και την ταυτότητα της SimasiaAI. Ως Storyteller και Content Creator, εξειδικεύεται στη δημιουργία αυθεντικού περιεχομένου με συναίσθημα και ξεκάθαρο σκοπό.', skills: ['Content Strategy', 'Brand Storytelling', 'Creative Writing', 'Media Creation'] },
+      { id: 'sotiris', name: 'Σωτήρης', role: 'Videographer · Photographer · Editor', shortBio: 'Videographer, Photographer και Editor με 5+ χρόνια εμπειρίας — δίνει πρόσωπο, φως και συναίσθημα στην τεχνολογία μας.', bio: 'Ο Σωτήρης είναι αυτός που δίνει πρόσωπο, φως και συναίσθημα στην τεχνολογία μας. Με 5+ χρόνια εμπειρίας στο video, τη φωτογραφία και το editing, έχει το σπάνιο χάρισμα να μετατρέπει αφηρημένες έννοιες σε δυνατές οπτικές αφηγήσεις. Με απόλυτη εμμονή στην αισθητική λεπτομέρεια και αγάπη για το storytelling, εξασφαλίζει ότι το μήνυμα της SimasiaAI δεν ακούγεται απλώς, αλλά αποτυπώνεται στο βλέμμα και τη μνήμη του θεατή.', skills: ['Video Production', 'Photography', 'Editing', 'Visual Storytelling'] },
     ],
     principles: [
       { num: '01', title: 'Ανθρωποκεντρικότητα', body: 'Ο σχεδιασμός μας ξεκινά και τελειώνει με την ανθρώπινη εμπειρία, όχι με την τεχνολογία. Θέτουμε τις ανάγκες των ασθενών στο επίκεντρο κάθε γραμμής κώδικα.' },
@@ -505,6 +506,7 @@ export const extraUiEn = {
       { id: 'giannis', name: 'Giannis', role: 'Co-founder & CTO', shortBio: 'PhD candidate in Computer Science (San Francisco), specialist in data security and RAG architectures.', bio: 'Giannis leads the technological design and infrastructure of SimasiaAI. He is a PhD candidate in Computer Science based in San Francisco, specializing in privacy systems, data security, and reliable software infrastructure.', skills: ['Full Stack Development', 'AI Security & Privacy', 'RAG Architectures', 'Infrastructure Scaling'] },
       { id: 'anastasia', name: 'Assoc. Prof. Anastasia Natsina', role: 'Chief Communications Officer (CCO) & Co-Founder', shortBio: 'Associate Professor at University of Crete, Oxford graduate and Constantine Trypanis Award recipient.', bio: 'Anastasia leads the strategic communications, public relations, and outreach of SimasiaAI. She is an Associate Professor of Modern Greek Literature and Chair of the Department of Philology at the University of Crete.', skills: ['Strategic Communications', 'Public Relations', 'Public Image', 'Text Composition'] },
       { id: 'pantelis', name: 'Pantelis Nikolopoulos', role: 'Storyteller & Content Creator', shortBio: 'Storyteller & Content Creator, focusing on the human-centered communication of AI technology.', bio: 'Pantelis is the creative core behind the communication and identity of SimasiaAI. As a Storyteller and Content Creator, he specializes in creating authentic content with emotion and clear purpose.', skills: ['Content Strategy', 'Brand Storytelling', 'Creative Writing', 'Media Creation'] },
+      { id: 'sotiris', name: 'Sotiris', role: 'Videographer · Photographer · Editor', shortBio: 'Videographer, Photographer and Editor with 5+ years of experience — giving our technology a face, light and emotion.', bio: 'Sotiris is the one who gives our technology a face, light and emotion. With 5+ years of experience in video, photography and editing, he has the rare gift of transforming abstract concepts into powerful visual narratives. With an absolute obsession for aesthetic detail and a love for storytelling, he ensures that the message of SimasiaAI is not merely heard, but imprinted on the gaze and memory of the viewer.', skills: ['Video Production', 'Photography', 'Editing', 'Visual Storytelling'] },
     ],
     principles: [
       { num: '01', title: 'Human-Centered Design', body: 'Our design begins and ends with the human experience, not with technology. We place patient needs at the center of every line of code.' },

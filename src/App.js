@@ -28,6 +28,10 @@ import NewsPage from './pages/NewsPage';
 import ArticlePage from './pages/ArticlePage';
 import ChatbotBubble from './components/ChatbotBubble';
 import DocumentTitle from './components/DocumentTitle';
+import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
+import CookiesPage from './pages/CookiesPage';
+import CookieBanner from './components/CookieBanner';
 import './App.css';
 
 function App() {
@@ -68,9 +72,13 @@ function App() {
             <Route path="/products/simasia-edu" element={<SimasiaEduPage />} />
             <Route path={ARCHIVED_ROUTES.oldHome} element={<OldHomePage />} />
             <Route path={ARCHIVED_ROUTES.oldDialogosAi} element={<OldDialogosAiPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/cookies" element={<CookiesPage />} />
           </Routes>
           <Footer />
           <ChatbotBubble />
+          <CookieBanner />
         </div>
       </Router>
       </BillingPreferenceProvider>

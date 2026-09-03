@@ -34,6 +34,11 @@ const ArticlePage = () => {
               <span className="ap-article-time">{article.readTime}</span>
             </div>
             <h1>{article.title}</h1>
+            {article.image && (
+              <div className={`ap-hero-image${article.image.includes('/logos/') ? ' ap-hero-image--logo' : ''}`}>
+                <img src={article.image} alt={article.title} />
+              </div>
+            )}
           </motion.div>
         </div>
       </section>
@@ -46,9 +51,17 @@ const ArticlePage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {article.content.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
-            ))}
+            {article.content.map((block, i) => {
+              if (block && typeof block === 'object' && block.type === 'image') {
+                return (
+                  <figure key={i} className="ap-inline-figure">
+                    <img src={block.src} alt={block.alt || ''} />
+                    {block.caption && <figcaption>{block.caption}</figcaption>}
+                  </figure>
+                );
+              }
+              return <p key={i}>{block}</p>;
+            })}
           </motion.div>
 
           <div className="ap-article-footer">

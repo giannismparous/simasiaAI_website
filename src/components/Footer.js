@@ -51,6 +51,13 @@ const Footer = () => {
           </div>
 
           <div className="footer-col">
+            <h4>Νομικά</h4>
+            <Link to="/terms">Όροι Χρήσης</Link>
+            <Link to="/privacy">Πολιτική Απορρήτου</Link>
+            <Link to="/cookies">Πολιτική Cookies</Link>
+          </div>
+
+          <div className="footer-col">
             <h4>{t('footer.contactTitle')}</h4>
             <a href="mailto:contact@simasiaai.gr">contact@simasiaai.gr</a>
             <p>{t('footer.addressLine1')}</p>
