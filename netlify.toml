@@ -1,4 +1,4 @@
-# Netlify deploy config
+# Netlify deploy config (redeploy trigger)
 [build]
   command = "npm run build:knowledge && npm run build"
   publish = "build"
