@@ -341,6 +341,23 @@ export const extraUiEl = {
       },
     },
   },
+  gate: {
+    clinic: {
+      headline: ['Ιατρεία,', 'Κλινικές &', 'Διαγνωστικά'],
+      tagline: 'Για ιατρεία και κλινικές που θέλουν να εξυπηρετούν χωρίς διακοπή.',
+      primaryCta: 'Ιατρείο ή Κλινική',
+      switcherLabel: 'Ιατρεία & Κλινικές',
+    },
+    ngo: {
+      headline: ['ΜΚΟ &', 'Οργανισμοί', 'Ασθενών'],
+      tagline: 'Για ΜΚΟ και οργανισμούς που στηρίζουν ανθρώπους κάθε μέρα.',
+      primaryCta: 'ΜΚΟ ή Οργανισμός',
+      switcherLabel: 'ΜΚΟ & Οργανισμοί',
+    },
+    hint: 'Δύο αγορές. Μία τεχνολογία. Ο ίδιος σεβασμός στον άνθρωπο.',
+    viewing: 'Βλέπετε:',
+    changeCategory: 'Αλλαγή κατηγορίας',
+  },
 };
 
 export const extraUiEn = {
@@ -696,6 +713,23 @@ const deepMerge = (target, source) => {
     }
   });
   return out;
+  gate: {
+    clinic: {
+      headline: ['Clinics,', 'Hospitals &', 'Diagnostic Centres'],
+      tagline: 'For clinics and hospitals that want to serve without interruption.',
+      primaryCta: 'Clinic or Hospital',
+      switcherLabel: 'Clinics & Hospitals',
+    },
+    ngo: {
+      headline: ['NGOs &', 'Patient', 'Organisations'],
+      tagline: 'For NGOs and organisations that support people every day.',
+      primaryCta: 'NGO or Organisation',
+      switcherLabel: 'NGOs & Organisations',
+    },
+    hint: 'Two markets. One technology. The same respect for every human being.',
+    viewing: 'Viewing:',
+    changeCategory: 'Change category',
+  },
 };
 
 export const mergeExtraUi = (el, en) => ({

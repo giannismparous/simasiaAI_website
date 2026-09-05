@@ -20,26 +20,26 @@ const splitCloseLine = (text, accent) => {
 };
 
 /* ── Data ────────────────────────────────────────────────────────────── */
-const MARKETS = {
+const getMarkets = (t) => ({
   clinic: {
     id: 'clinic',
     accentClass: 'pag-card--clinic',
     letter: 'Α',
-    headline: ['Ιατρεία,', 'Κλινικές &', 'Διαγνωστικά'],
-    tagline: 'Για ιατρεία και κλινικές που θέλουν να εξυπηρετούν χωρίς διακοπή.',
-    primaryCta: 'Ιατρείο ή Κλινική',
-    switcherLabel: 'Ιατρεία & Κλινικές',
+    headline: t('gate.clinic.headline') || ['Ιατρεία,', 'Κλινικές &', 'Διαγνωστικά'],
+    tagline: t('gate.clinic.tagline') || 'Για ιατρεία και κλινικές που θέλουν να εξυπηρετούν χωρίς διακοπή.',
+    primaryCta: t('gate.clinic.primaryCta') || 'Ιατρείο ή Κλινική',
+    switcherLabel: t('gate.clinic.switcherLabel') || 'Ιατρεία & Κλινικές',
   },
   ngo: {
     id: 'ngo',
     accentClass: 'pag-card--ngo',
     letter: 'Β',
-    headline: ['ΜΚΟ &', 'Οργανισμοί', 'Ασθενών'],
-    tagline: 'Για ΜΚΟ και οργανισμούς που στηρίζουν ανθρώπους κάθε μέρα.',
-    primaryCta: 'ΜΚΟ ή Οργανισμός',
-    switcherLabel: 'ΜΚΟ & Οργανισμοί',
+    headline: t('gate.ngo.headline') || ['ΜΚΟ &', 'Οργανισμοί', 'Ασθενών'],
+    tagline: t('gate.ngo.tagline') || 'Για ΜΚΟ και οργανισμούς που στηρίζουν ανθρώπους κάθε μέρα.',
+    primaryCta: t('gate.ngo.primaryCta') || 'ΜΚΟ ή Οργανισμός',
+    switcherLabel: t('gate.ngo.switcherLabel') || 'ΜΚΟ & Οργανισμοί',
   },
-};
+});
 
 /* ── Audience Gate ────────────────────────────────────────────────────── */
 const GateCard = ({ market, hovered, onHover, onLeave, onSelect }) => {
@@ -104,6 +104,8 @@ const GateCard = ({ market, hovered, onHover, onLeave, onSelect }) => {
 
 const AudienceGate = ({ onSelect }) => {
   const [hovered, setHovered] = useState(null);
+  const { t } = useTranslation();
+  const MARKETS = getMarkets(t);
   return (
     <motion.section className="pag-gate" key="gate"
       initial={{ opacity: 0 }} animate={{ opacity: 1 }}
@@ -135,31 +137,35 @@ const AudienceGate = ({ onSelect }) => {
       <motion.p className="pag-gate-hint"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease, delay: 0.7 }}>
-        Δύο εκδοχές. Μία τεχνολογία. Ο ίδιος σεβασμός στον άνθρωπο.
+        {t('gate.hint') || 'Δύο εκδοχές. Μία τεχνολογία. Ο ίδιος σεβασμός στον άνθρωπο.'}
       </motion.p>
     </motion.section>
   );
 };
 
 /* ── Market Switcher strip ───────────────────────────────────────────── */
-const MarketSwitcher = ({ market, onReset }) => (
+const MarketSwitcher = ({ market, onReset }) => {
+  const { t } = useTranslation();
+  const MARKETS = getMarkets(t);
+  return (
   <motion.div className="pag-switcher"
     initial={{ opacity: 0, y: -12 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.45, ease }}>
     <div className="container">
       <div className="pag-switcher-inner">
-        <span className="pag-switcher-viewing">Βλέπετε:</span>
+        <span className="pag-switcher-viewing">{t('gate.viewing') || 'Βλέπετε:'}</span>
         <span className={`pag-switcher-tag pag-card--${market}`}>{MARKETS[market].letter}</span>
         <span className="pag-switcher-label">— {MARKETS[market].switcherLabel}</span>
         <button type="button" className="pag-switcher-reset" onClick={onReset}>
-          Αλλαγή κατηγορίας
+          {t('gate.changeCategory') || 'Αλλαγή κατηγορίας'}
           <span aria-hidden="true"> ↩</span>
         </button>
       </div>
     </div>
   </motion.div>
-);
+  );
+};
 
 /* ── Sub-components unchanged ────────────────────────────────────────── */
 const PainHero = () => {
