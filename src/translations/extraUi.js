@@ -699,20 +699,6 @@ export const extraUiEn = {
       },
     },
   },
-};
-
-const deepMerge = (target, source) => {
-  const out = { ...target };
-  Object.keys(source || {}).forEach((key) => {
-    const sv = source[key];
-    const tv = target[key];
-    if (sv && typeof sv === 'object' && !Array.isArray(sv) && tv && typeof tv === 'object' && !Array.isArray(tv)) {
-      out[key] = deepMerge(tv, sv);
-    } else {
-      out[key] = sv;
-    }
-  });
-  return out;
   gate: {
     clinic: {
       headline: ['Clinics,', 'Hospitals &', 'Diagnostic Centres'],
@@ -730,6 +716,20 @@ const deepMerge = (target, source) => {
     viewing: 'Viewing:',
     changeCategory: 'Change category',
   },
+};
+
+const deepMerge = (target, source) => {
+  const out = { ...target };
+  Object.keys(source || {}).forEach((key) => {
+    const sv = source[key];
+    const tv = target[key];
+    if (sv && typeof sv === 'object' && !Array.isArray(sv) && tv && typeof tv === 'object' && !Array.isArray(tv)) {
+      out[key] = deepMerge(tv, sv);
+    } else {
+      out[key] = sv;
+    }
+  });
+  return out;
 };
 
 export const mergeExtraUi = (el, en) => ({
