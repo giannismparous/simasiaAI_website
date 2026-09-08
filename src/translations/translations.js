@@ -447,9 +447,8 @@ const baseTranslations = {
           },
           {
             name: "Perfectaki Able",
-            description: "Ψηφιακός πλοηγός για προσβάσιμη υγεία.",
-            logo: "/logos/perfectaki.png",
-            category: "υγεία"
+            description: "Οδηγός για κινητική προσβασιμότητα.",
+            logo: "/logos/perfectaki.png"
           }
         ]
       },
@@ -962,9 +961,8 @@ const baseTranslations = {
           },
           {
             name: "Perfectaki Able",
-            description: "Digital navigator for accessible health.",
-            logo: "/logos/perfectaki.png",
-            category: "health"
+            description: "Guide for mobility accessibility.",
+            logo: "/logos/perfectaki.png"
           }
         ]
       },
