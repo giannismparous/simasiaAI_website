@@ -47,6 +47,11 @@ export const extraUiEl = {
     taxOffice: 'ΔΟΥ: ΚΕΦΟΔΕ Αττικής',
     addressLine1: 'Ναρκίσσου 26, 15452',
     addressLine2: 'Παλαιό Ψυχικό, Αττική',
+    legalTitle: 'Νομικά',
+    termsLink: 'Όροι Χρήσης',
+    privacyLink: 'Πολιτική Απορρήτου',
+    cookiesLink: 'Πολιτική Cookies',
+    socialTitle: 'Social Media',
     copyright: 'Σημασία ΑΙ (Simasia AI) · Ιδιωτική Κεφαλαιουχική Εταιρεία (Ι.Κ.Ε.)',
   },
   partnerships: {
@@ -405,6 +410,11 @@ export const extraUiEn = {
     taxOffice: 'Tax office: KEFÓDE Attica',
     addressLine1: 'Narkissou 26, 15452',
     addressLine2: 'Palaio Psychiko, Attica',
+    legalTitle: 'Legal',
+    termsLink: 'Terms of Use',
+    privacyLink: 'Privacy Policy',
+    cookiesLink: 'Cookie Policy',
+    socialTitle: 'Social Media',
     copyright: 'Simasia AI · Private Company (I.K.E.)',
   },
   partnerships: {
