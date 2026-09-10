@@ -38,22 +38,22 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  gap: 1.25rem;
+  gap: 1.5rem;
   transform: translate(42px, calc(2vh - 112px));
   padding-left: clamp(0.5rem, 4vw, 3rem);
 }
 
 .fh-headline {
   font-family: var(--font-sans);
-  font-size: clamp(2rem, 4.5vw, 3.35rem);
+  font-size: clamp(2.2rem, 4.6vw, 3.5rem);
   font-weight: 700;
   color: var(--light, #faf9f5);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  gap: 0.2em;
+  gap: 0.22em;
   margin: 0;
   white-space: nowrap;
 }
@@ -61,27 +61,68 @@
 .fh-word { display: inline-block; }
 .fh-word-human {
   color: #ffffff;
-  text-shadow: 0 0 14px rgba(250, 249, 245, 0.18);
+  text-shadow: 0 0 24px rgba(217, 119, 87, 0.22), 0 0 45px rgba(250, 249, 245, 0.12);
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
 .fh-rule {
-  width: 60px;
-  height: 1.5px;
-  background: var(--orange, #d97757);
+  width: 72px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--orange, #d97757) 0%, rgba(217, 119, 87, 0.25) 100%);
   transform-origin: left;
-  border-radius: 1px;
+  border-radius: 2px;
+  margin: 0.2rem 0;
 }
 
 .fh-sub {
   font-family: var(--font-serif);
-  font-size: clamp(1.1rem, 2.4vw, 1.45rem);
-  color: rgba(250, 249, 245, 0.65);
-  line-height: 1.8;
-  max-width: 42rem;
+  font-size: clamp(1.22rem, 2.45vw, 1.58rem);
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(250, 249, 245, 0.94);
+  line-height: 1.7;
+  letter-spacing: 0.012em;
+  max-width: 44rem;
   margin: 0;
+  min-height: 4.8em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
-.fh-sub em { color: rgba(250, 249, 245, 0.9); font-style: italic; }
+.fh-sub em { color: rgba(250, 249, 245, 0.95); font-style: italic; }
+
+.fh-typewriter {
+  display: inline;
+}
+
+.fh-cursor {
+  display: inline-block;
+  margin-left: 3px;
+  color: var(--orange, #d97757);
+  font-style: normal;
+  font-weight: 300;
+  vertical-align: baseline;
+  user-select: none;
+}
+
+@keyframes fhBlink {
+  0%, 45% { opacity: 1; text-shadow: 0 0 10px rgba(217, 119, 87, 0.7); }
+  50%, 95% { opacity: 0; text-shadow: none; }
+  100% { opacity: 1; text-shadow: 0 0 10px rgba(217, 119, 87, 0.7); }
+}
+
+@keyframes fhBlinkSoft {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.8; text-shadow: 0 0 6px rgba(217, 119, 87, 0.35); }
+}
+
+.fh-cursor--typing {
+  animation: fhBlink 0.8s infinite ease-in-out;
+}
+
+.fh-cursor--done {
+  animation: fhBlinkSoft 2.6s infinite ease-in-out;
+}
 
 .fh-right-col {
   position: relative;

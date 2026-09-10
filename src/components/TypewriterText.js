@@ -1,67 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 
-const TypewriterText = ({ text, speed = 80, className = '', delay = 0 }) => {
+const TypewriterText = ({ text, speed = 32, className = '', delay = 900 }) => {
   const [displayedText, setDisplayedText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
-    const startDelay = setTimeout(() => {
-      setHasStarted(true);
+    setDisplayedText('');
+    setIsTyping(false);
+
+    let currentIndex = 0;
+    let timeoutId = null;
+
+    const startTimeout = setTimeout(() => {
+      setIsTyping(true);
+
+      const typeNextChar = () => {
+        if (currentIndex < text.length) {
+          currentIndex++;
+          setDisplayedText(text.slice(0, currentIndex));
+
+          const char = text[currentIndex - 1];
+          const isPunctuation = [',', '.', ';', ':', '—'].includes(char);
+          const nextDelay = isPunctuation ? speed * 3.8 : char === ' ' ? speed * 0.75 : speed;
+
+          timeoutId = setTimeout(typeNextChar, nextDelay);
+        } else {
+          setIsTyping(false);
+        }
+      };
+
+      typeNextChar();
     }, delay);
 
-    return () => clearTimeout(startDelay);
-  }, [delay]);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-
-    if (currentIndex < text.length) {
-      // Variable speed for more natural typing
-      const charSpeed = text[currentIndex] === ' ' ? speed * 0.5 : speed;
-      const timeout = setTimeout(() => {
-        setDisplayedText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, charSpeed);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex, text, speed, hasStarted]);
+    return () => {
+      clearTimeout(startTimeout);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [text, speed, delay]);
 
   return (
-    <span className={className}>
-      {displayedText.split('').map((char, index) => (
-        <motion.span
-          key={index}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
-        >
-          {char}
-        </motion.span>
-      ))}
-      <AnimatePresence>
-        {currentIndex < text.length && (
-          <motion.span
-            key="cursor"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 1, 1, 0] }}
-            exit={{ opacity: 0 }}
-            transition={{
-              duration: 1,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="cursor"
-          >
-            |
-          </motion.span>
-        )}
-      </AnimatePresence>
+    <span className={`fh-typewriter ${className}`} aria-label={text}>
+      <span>{displayedText}</span>
+      <span
+        className={`fh-cursor ${isTyping ? 'fh-cursor--typing' : 'fh-cursor--done'}`}
+        aria-hidden="true"
+      >
+        |
+      </span>
     </span>
   );
 };
 
 export default TypewriterText;
-

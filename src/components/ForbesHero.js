@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import StarCanvas from './StarCanvas';
 import HeroCareVisual from './HeroCareVisual';
 import { useTranslation } from '../hooks/useTranslation';
 import MissionReveal from './MissionReveal';
+import TypewriterText from './TypewriterText';
 import './ForbesHero.css';
 
 const COMPACT_MQ = '(max-width: 920px)';
@@ -54,9 +54,13 @@ const ForbesHero = () => {
             className="fh-sub"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            {t('forbesHero.subText')}
+            <TypewriterText
+              text={t('forbesHero.subText')}
+              speed={32}
+              delay={950}
+            />
           </motion.p>
           {isCompact && (
             <motion.div
@@ -81,15 +85,6 @@ const ForbesHero = () => {
               )}
             </motion.div>
           )}
-          <motion.div
-            className="fh-ctas"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Link to="/ypodochi" className="fh-btn-primary">{t('forbesHero.ctaPrimary')}</Link>
-            <Link to="/demo" className="fh-btn-ghost">{t('forbesHero.ctaSecondary')} <span className="fh-arrow">→</span></Link>
-          </motion.div>
         </div>
         {!isCompact && (
           <motion.div
