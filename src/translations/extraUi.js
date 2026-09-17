@@ -47,11 +47,6 @@ export const extraUiEl = {
     taxOffice: 'ΔΟΥ: ΚΕΦΟΔΕ Αττικής',
     addressLine1: 'Ναρκίσσου 26, 15452',
     addressLine2: 'Παλαιό Ψυχικό, Αττική',
-    legalTitle: 'Νομικά',
-    termsLink: 'Όροι Χρήσης',
-    privacyLink: 'Πολιτική Απορρήτου',
-    cookiesLink: 'Πολιτική Cookies',
-    socialTitle: 'Social Media',
     copyright: 'Σημασία ΑΙ (Simasia AI) · Ιδιωτική Κεφαλαιουχική Εταιρεία (Ι.Κ.Ε.)',
   },
   partnerships: {
@@ -346,23 +341,6 @@ export const extraUiEl = {
       },
     },
   },
-  gate: {
-    clinic: {
-      headline: ['Ιατρεία,', 'Κλινικές &', 'Διαγνωστικά'],
-      tagline: 'Για ιατρεία και κλινικές που θέλουν να εξυπηρετούν χωρίς διακοπή.',
-      primaryCta: 'Ιατρείο ή Κλινική',
-      switcherLabel: 'Ιατρεία & Κλινικές',
-    },
-    ngo: {
-      headline: ['ΜΚΟ &', 'Οργανισμοί', 'Ασθενών'],
-      tagline: 'Για ΜΚΟ και οργανισμούς που στηρίζουν ανθρώπους κάθε μέρα.',
-      primaryCta: 'ΜΚΟ ή Οργανισμός',
-      switcherLabel: 'ΜΚΟ & Οργανισμοί',
-    },
-    hint: 'Δύο αγορές. Μία τεχνολογία. Ο ίδιος σεβασμός στον άνθρωπο.',
-    viewing: 'Βλέπετε:',
-    changeCategory: 'Αλλαγή κατηγορίας',
-  },
 };
 
 export const extraUiEn = {
@@ -410,11 +388,6 @@ export const extraUiEn = {
     taxOffice: 'Tax office: KEFÓDE Attica',
     addressLine1: 'Narkissou 26, 15452',
     addressLine2: 'Palaio Psychiko, Attica',
-    legalTitle: 'Legal',
-    termsLink: 'Terms of Use',
-    privacyLink: 'Privacy Policy',
-    cookiesLink: 'Cookie Policy',
-    socialTitle: 'Social Media',
     copyright: 'Simasia AI · Private Company (I.K.E.)',
   },
   partnerships: {
@@ -708,23 +681,6 @@ export const extraUiEn = {
         ],
       },
     },
-  },
-  gate: {
-    clinic: {
-      headline: ['Clinics,', 'Hospitals &', 'Diagnostic Centres'],
-      tagline: 'For clinics and hospitals that want to serve without interruption.',
-      primaryCta: 'Clinic or Hospital',
-      switcherLabel: 'Clinics & Hospitals',
-    },
-    ngo: {
-      headline: ['NGOs &', 'Patient', 'Organisations'],
-      tagline: 'For NGOs and organisations that support people every day.',
-      primaryCta: 'NGO or Organisation',
-      switcherLabel: 'NGOs & Organisations',
-    },
-    hint: 'Two markets. One technology. The same respect for every human being.',
-    viewing: 'Viewing:',
-    changeCategory: 'Change category',
   },
 };
 

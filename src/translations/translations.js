@@ -441,14 +441,15 @@ const baseTranslations = {
           },
           {
             name: "Bpanheroes",
-            description: "Ψηφιακός πλοηγός για την κοινότητα BPAN.",
+            description: "Ψηφιακός πλοηγός για την κοινότητα BPAN — σε εξέλιξη.",
             logo: "/logos/bepan.png",
             category: "υγεία"
           },
           {
             name: "Perfectaki Able",
-            description: "Οδηγός για κινητική προσβασιμότητα.",
-            logo: "/logos/perfectaki.png"
+            description: "Ψηφιακός πλοηγός για προσβάσιμη εκπαίδευση — σε εξέλιξη.",
+            logo: "/logos/perfectaki.png",
+            category: "εκπαίδευση"
           }
         ]
       },
@@ -955,14 +956,15 @@ const baseTranslations = {
           },
           {
             name: "Bpanheroes",
-            description: "Digital navigator for the BPAN community.",
+            description: "Digital navigator for the BPAN community — in progress.",
             logo: "/logos/bepan.png",
             category: "health"
           },
           {
             name: "Perfectaki Able",
-            description: "Guide for mobility accessibility.",
-            logo: "/logos/perfectaki.png"
+            description: "Digital navigator for accessible education — in progress.",
+            logo: "/logos/perfectaki.png",
+            category: "education"
           }
         ]
       },
