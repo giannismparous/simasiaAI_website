@@ -1,0 +1,12 @@
+# Prevent stale browser favicon / brand-icon caches
+/favicon.ico
+  Cache-Control: public, max-age=0, must-revalidate
+
+/favicon-*.png
+  Cache-Control: public, max-age=0, must-revalidate
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=0, must-revalidate
+
+/icons/*
+  Cache-Control: public, max-age=0, must-revalidate
