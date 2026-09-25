@@ -44,3 +44,12 @@ yarn-error.log*
 # OS
 .DS_Store
 Thumbs.db
+
+# Local Workspace
+personal-website/
+simasia_website_v3/
+website/
+website-dia/
+scripts/generate_website.mjs
+scripts/serve_personal_website.mjs
+calculator.html

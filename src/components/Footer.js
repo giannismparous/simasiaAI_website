@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
+import { isEmailJsConfigured, sendContactEmail } from '../services/emailService';
 import './Footer.css';
 
 const Footer = () => {
@@ -8,6 +9,10 @@ const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const year = new Date().getFullYear();
+
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState({ type: null, message: '' });
 
   const handleBrandClick = (e) => {
     e.preventDefault();
@@ -18,10 +23,93 @@ const Footer = () => {
     navigate('/');
   };
 
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    const cleanEmail = email.trim();
+    if (!cleanEmail || !cleanEmail.includes('@') || !cleanEmail.includes('.')) {
+      setStatus({ type: 'error', message: t('footer.newsletterError') });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setStatus({ type: null, message: '' });
+
+    try {
+      if (isEmailJsConfigured()) {
+        await sendContactEmail({
+          fromName: 'Newsletter Subscriber (Footer)',
+          fromEmail: cleanEmail,
+          organizationType: 'Newsletter Subscription',
+          companyName: 'SimasiaAI Newsletter Subscriber',
+          message: `Εγγραφή νέου συνδρομητή στο SimasiaAI Newsletter από το footer: ${cleanEmail}`,
+        });
+        setStatus({ type: 'success', message: t('footer.newsletterSuccess') });
+        setEmail('');
+      } else {
+        const mailtoSubject = encodeURIComponent('Εγγραφή στο Newsletter SimasiaAI');
+        const mailtoBody = encodeURIComponent(
+          `Παρακαλώ όπως με εγγράψετε στο newsletter της SimasiaAI με το email: ${cleanEmail}`
+        );
+        window.location.href = `mailto:contact@simasiaai.gr?subject=${mailtoSubject}&body=${mailtoBody}`;
+        setStatus({ type: 'success', message: t('footer.newsletterSuccess') });
+        setEmail('');
+      }
+    } catch (err) {
+      const mailtoSubject = encodeURIComponent('Εγγραφή στο Newsletter SimasiaAI');
+      const mailtoBody = encodeURIComponent(
+        `Παρακαλώ όπως με εγγράψετε στο newsletter της SimasiaAI με το email: ${cleanEmail}`
+      );
+      window.location.href = `mailto:contact@simasiaai.gr?subject=${mailtoSubject}&body=${mailtoBody}`;
+      setStatus({ type: 'success', message: t('footer.newsletterSuccess') });
+      setEmail('');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="site-footer">
       <div className="footer-dots" aria-hidden="true" />
       <div className="container">
+        {/* Newsletter Subscription Strip */}
+        <div className="footer-newsletter-banner">
+          <div className="footer-newsletter-text">
+            <div className="footer-newsletter-tag">
+              <span className="footer-newsletter-dot" />
+              <span>{t('footer.newsletterLink') || 'Newsletter'}</span>
+            </div>
+            <h3 className="footer-newsletter-title">{t('footer.newsletterTitle')}</h3>
+            <p className="footer-newsletter-sub">{t('footer.newsletterSub')}</p>
+          </div>
+          <form className="footer-newsletter-form" onSubmit={handleSubscribe}>
+            <div className="footer-newsletter-input-wrap">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={t('footer.newsletterPlaceholder')}
+                className="footer-newsletter-input"
+                required
+                aria-label={t('footer.newsletterPlaceholder')}
+              />
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="footer-newsletter-btn"
+              >
+                {isSubmitting
+                  ? (t('footer.newsletterSubmitting') || '...')
+                  : (t('footer.newsletterButton') || 'Εγγραφή')}
+              </button>
+            </div>
+            {status.message && (
+              <p className={`footer-newsletter-msg footer-newsletter-msg--${status.type}`}>
+                {status.message}
+              </p>
+            )}
+          </form>
+        </div>
+
         <div className="footer-grid">
           <div className="footer-brand">
             <Link to="/" className="footer-logo-lockup" onClick={handleBrandClick} aria-label="SimasiaAI">
@@ -39,6 +127,8 @@ const Footer = () => {
             <Link to="/demo">{t('nav.demo')}</Link>
             <Link to="/team">{t('footer.teamLink')}</Link>
             <Link to="/collaborations">{t('nav.collaborations')}</Link>
+            <Link to="/news">{t('footer.newsLink') || 'Νέα & Άρθρα'}</Link>
+            <Link to="/newsletter">{t('footer.newsletterLink') || 'Newsletter'}</Link>
           </div>
 
           <div className="footer-col">

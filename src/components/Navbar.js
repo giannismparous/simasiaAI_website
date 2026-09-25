@@ -45,6 +45,7 @@ const Navbar = () => {
     { path: '/ypodochi', text: t('nav.ypodochi') },
     { path: '/collaborations', text: t('nav.collaborations') },
     { path: '/news', text: t('nav.news') },
+    { path: '/newsletter', text: t('nav.newsletter') },
     { path: '/team', text: t('nav.team') },
     { path: '/demo', text: t('nav.demo'), isButton: true },
   ];

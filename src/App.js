@@ -26,12 +26,14 @@ import ServicesPage from './pages/ServicesPage';
 import TeamPage from './pages/TeamPage';
 import NewsPage from './pages/NewsPage';
 import ArticlePage from './pages/ArticlePage';
+import NewsletterPage from './pages/NewsletterPage';
 import ChatbotBubble from './components/ChatbotBubble';
 import DocumentTitle from './components/DocumentTitle';
 import TermsPage from './pages/TermsPage';
 import PrivacyPage from './pages/PrivacyPage';
 import CookiesPage from './pages/CookiesPage';
 import CookieBanner from './components/CookieBanner';
+import PricingCalculatorPage from './pages/PricingCalculatorPage';
 import './App.css';
 
 function App() {
@@ -62,6 +64,7 @@ function App() {
             <Route path="/team" element={<TeamPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/news/:slug" element={<ArticlePage />} />
+            <Route path="/newsletter" element={<NewsletterPage />} />
             <Route path="/applications/simasia-chatbots" element={<SimasiaChatbotsPage />} />
             <Route path="/applications/simasia-studio" element={<SimasiaStudioPage />} />
             <Route path="/applications/simasia-daily" element={<SimasiaDailyPage />} />
@@ -75,6 +78,8 @@ function App() {
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/cookies" element={<CookiesPage />} />
+            <Route path="/calculator" element={<PricingCalculatorPage />} />
+            <Route path="/pricing-calculator" element={<PricingCalculatorPage />} />
           </Routes>
           <Footer />
           <ChatbotBubble />

@@ -1,0 +1,73 @@
+/* SimasiaAI Fλow Digital Ecosystem Pricing Calculator Styles */
+
+.flow-calc-page {
+  min-height: 100vh;
+  background-color: #060911;
+  color: #F1F5F9;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background-image: 
+    radial-gradient(at 10% 15%, rgba(20, 184, 166, 0.09) 0px, transparent 50%),
+    radial-gradient(at 90% 20%, rgba(245, 158, 11, 0.08) 0px, transparent 45%),
+    radial-gradient(at 50% 80%, rgba(15, 23, 42, 0.95) 0px, transparent 60%);
+  background-attachment: fixed;
+  padding-bottom: 5rem;
+}
+
+.flow-calc-glass {
+  background: rgba(15, 22, 38, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+}
+
+.flow-calc-card {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.flow-calc-card:hover {
+  border-color: rgba(45, 212, 191, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(45, 212, 191, 0.12);
+}
+
+.flow-calc-card.active-amber {
+  border-color: #FBBF24 !important;
+  background: linear-gradient(135deg, rgba(20, 29, 51, 0.9), rgba(69, 26, 3, 0.25)) !important;
+  box-shadow: 0 0 30px -4px rgba(245, 158, 11, 0.28) !important;
+}
+
+.flow-calc-card.active-teal {
+  border-color: #2DD4BF !important;
+  background: linear-gradient(135deg, rgba(20, 29, 51, 0.9), rgba(4, 47, 46, 0.3)) !important;
+  box-shadow: 0 0 30px -4px rgba(45, 212, 191, 0.28) !important;
+}
+
+.flow-calc-card.active-slate {
+  border-color: #94A3B8 !important;
+  background: rgba(30, 41, 59, 0.6) !important;
+}
+
+.flow-calc-receipt {
+  background: rgba(15, 22, 38, 0.96);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 25px 0 rgba(45, 212, 191, 0.1);
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.flow-number-mono {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.02em;
+}
+
+@media print {
+  .flow-calc-page .no-print {
+    display: none !important;
+  }
+  .flow-calc-page .print-only {
+    display: block !important;
+  }
+}

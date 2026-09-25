@@ -43,6 +43,11 @@ const NewsPage = () => {
           >
             <h1>{t('newsPage.heroTitle')}</h1>
             <p className="np-hero-sub">{t('newsPage.heroSub')}</p>
+            <Link to="/newsletter" className="np-hero-newsletter-pill">
+              <span className="np-hnl-tag">{t('newsPage.newsletterBannerTag') || 'NEWSLETTER'}</span>
+              <span className="np-hnl-text">{t('newsPage.newsletterBannerTitle')}</span>
+              <span className="np-hnl-cta">{t('newsPage.newsletterBannerCta')}</span>
+            </Link>
           </motion.div>
         </div>
       </section>

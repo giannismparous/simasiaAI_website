@@ -11,4 +11,7 @@ export const DARK_HERO_ROUTES = [
   '/products/simasia-chatbots',
   '/team',
   '/news',
+  '/newsletter',
+  '/calculator',
+  '/pricing-calculator',
 ];

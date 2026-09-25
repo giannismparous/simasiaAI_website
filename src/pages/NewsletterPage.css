@@ -1,0 +1,1009 @@
+/* ==========================================================================
+   SimasiaAI — Oxford University Press Editorial Folio & Scholarly Monograph
+   ========================================================================== */
+
+.nlp-oxford-page {
+  position: relative;
+  min-height: 100vh;
+  background: #0d0f14;
+  color: #f3f3f0;
+  overflow-x: hidden;
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+}
+
+/* --------------------------------------------------------------------------
+   Hero / Scholarly Preamble
+   -------------------------------------------------------------------------- */
+.nlp-hero-scholarly {
+  position: relative;
+  min-height: 48vh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--nav-height, 6.325rem) + 2.5rem) 1.5rem 3rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(220, 185, 130, 0.15);
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(217, 119, 87, 0.12), transparent 70%),
+              radial-gradient(ellipse 60% 40% at 50% 100%, rgba(18, 22, 31, 0.9), transparent 80%),
+              #0d0f14;
+}
+
+.nlp-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 54rem;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nlp-hero-preamble {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(225, 195, 145, 0.9);
+  padding: 0.35rem 1rem;
+  border-radius: 4px;
+  background: rgba(220, 185, 130, 0.08);
+  border: 1px solid rgba(220, 185, 130, 0.22);
+  margin-bottom: 1.5rem;
+}
+
+.nlp-academic-seal {
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.nlp-hero-divider-dot {
+  opacity: 0.5;
+}
+
+.nlp-hero-pub-id {
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.nlp-hero-title {
+  font-family: Georgia, 'Playfair Display', 'Times New Roman', serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: #faf9f6;
+  margin: 0 0 1.25rem;
+}
+
+.nlp-hero-sub {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.08rem, 2vw, 1.28rem);
+  font-style: italic;
+  line-height: 1.68;
+  color: rgba(245, 243, 238, 0.78);
+  max-width: 44rem;
+  margin: 0 0 2.25rem;
+}
+
+.nlp-hero-quick-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.15rem;
+  flex-wrap: wrap;
+}
+
+.nlp-btn-scholarly {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.8rem 1.75rem;
+  background: #c66a4a;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 14px rgba(198, 106, 74, 0.32);
+}
+
+.nlp-btn-scholarly:hover {
+  background: #b55d3e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(198, 106, 74, 0.42);
+}
+
+.nlp-btn-scholarly-ghost {
+  font-family: Georgia, serif;
+  font-size: 0.96rem;
+  font-style: italic;
+  padding: 0.8rem 1.65rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(220, 185, 130, 0.25);
+  color: rgba(245, 243, 238, 0.88);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.22s ease;
+}
+
+.nlp-btn-scholarly-ghost:hover {
+  background: rgba(220, 185, 130, 0.1);
+  color: #fff;
+  border-color: rgba(220, 185, 130, 0.45);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   Folio Viewer Section
+   -------------------------------------------------------------------------- */
+.nlp-folio-section {
+  position: relative;
+  padding: 3.5rem 1.5rem 4.5rem;
+  background: #0f1218;
+}
+
+/* Oxford Journal Header Rule */
+.nlp-journal-masthead {
+  max-width: 68rem;
+  margin: 0 auto 2rem;
+}
+
+.nlp-masthead-top-rule {
+  height: 3px;
+  background: linear-gradient(90deg, rgba(220, 185, 130, 0.1), rgba(220, 185, 130, 0.6) 20%, rgba(220, 185, 130, 0.6) 80%, rgba(220, 185, 130, 0.1));
+  margin-bottom: 0.6rem;
+}
+
+.nlp-masthead-bottom-rule {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(220, 185, 130, 0.05), rgba(220, 185, 130, 0.3) 20%, rgba(220, 185, 130, 0.3) 80%, rgba(220, 185, 130, 0.05));
+  margin-top: 0.6rem;
+}
+
+.nlp-masthead-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.5rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: rgba(240, 235, 225, 0.72);
+  text-transform: uppercase;
+}
+
+.nlp-masthead-center {
+  font-style: italic;
+  color: rgba(225, 195, 145, 0.95);
+}
+
+/* Toolbar */
+.nlp-folio-toolbar {
+  max-width: 68rem;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  background: rgba(22, 26, 35, 0.7);
+  border: 1px solid rgba(220, 185, 130, 0.18);
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+}
+
+.nlp-edition-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(10, 13, 19, 0.65);
+  padding: 0.3rem 0.65rem;
+  border: 1px solid rgba(220, 185, 130, 0.3);
+  border-radius: 8px;
+}
+
+.nlp-edition-label {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e5c388;
+  font-weight: 700;
+  margin-right: 0.35rem;
+}
+
+.nlp-viewmode-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nlp-toolbar-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(240, 235, 225, 0.55);
+  font-weight: 600;
+  margin-right: 0.25rem;
+}
+
+.nlp-edition-pill {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.84rem;
+  font-weight: 500;
+  padding: 0.45rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(245, 243, 238, 0.82);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nlp-edition-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(220, 185, 130, 0.45);
+}
+
+.nlp-edition-pill--active {
+  background: #dcb982;
+  border-color: #dcb982;
+  color: #12151d;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(220, 185, 130, 0.35);
+}
+
+.nlp-viewmode-pill {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.45rem 0.95rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(245, 243, 238, 0.78);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nlp-viewmode-pill:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+  border-color: rgba(220, 185, 130, 0.35);
+}
+
+.nlp-viewmode-pill--active {
+  background: rgba(220, 185, 130, 0.16);
+  border-color: rgba(220, 185, 130, 0.5);
+  color: #f7eedb;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(220, 185, 130, 0.15);
+}
+
+.nlp-folio-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  background: rgba(217, 119, 87, 0.16);
+  border: 1px solid rgba(217, 119, 87, 0.45);
+  color: #f5a98e;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nlp-folio-download-btn:hover {
+  background: #c66a4a;
+  color: #fff;
+  border-color: #c66a4a;
+  transform: translateY(-1px);
+}
+
+/* Desk / Spread Canvas */
+.nlp-folio-desk {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2.25rem 1.5rem;
+  background: linear-gradient(180deg, #141822 0%, #10131b 100%);
+  border: 1px solid rgba(220, 185, 130, 0.15);
+  border-radius: 8px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4),
+              0 18px 45px rgba(0, 0, 0, 0.5);
+}
+
+.nlp-folio-spread {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  position: relative;
+  gap: 0;
+}
+
+.nlp-folio-spread--page1,
+.nlp-folio-spread--page2 {
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+/* Page Leaves */
+.nlp-folio-page-leaf {
+  flex: 1;
+  max-width: 34rem;
+  background: #ffffff;
+  border-radius: 3px;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.48),
+              0 2px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.nlp-folio-page-leaf:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6),
+              0 0 0 2px rgba(220, 185, 130, 0.45);
+}
+
+.nlp-folio-page-leaf--left {
+  border-top-right-radius: 1px;
+  border-bottom-right-radius: 1px;
+}
+
+.nlp-folio-page-leaf--right {
+  border-top-left-radius: 1px;
+  border-bottom-left-radius: 1px;
+}
+
+/* Center binding gutter */
+.nlp-folio-gutter {
+  width: 16px;
+  background: linear-gradient(90deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.15) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(0, 0, 0, 0.15) 75%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+  z-index: 2;
+  position: relative;
+}
+
+.nlp-leaf-inner {
+  position: relative;
+  background: #fff;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nlp-folio-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Hover Enlarge Hint */
+.nlp-folio-hover-hint {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 16, 23, 0.72);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.nlp-folio-page-leaf:hover .nlp-folio-hover-hint {
+  opacity: 1;
+}
+
+.nlp-page-footer-mark {
+  background: #f7f6f2;
+  border-top: 1px solid #e5e3dc;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Georgia, serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  color: #726e64;
+  text-transform: uppercase;
+}
+
+.nlp-page-num {
+  font-style: italic;
+  font-weight: 600;
+  color: #4a473f;
+}
+
+/* --------------------------------------------------------------------------
+   Scholarly Monograph Text Section
+   -------------------------------------------------------------------------- */
+.nlp-monograph-section {
+  position: relative;
+  padding: 5rem 1.5rem 6rem;
+  background: #0d0f14;
+}
+
+.nlp-monograph-body {
+  max-width: 58rem;
+  margin: 0 auto;
+  background: #12151d;
+  border: 1px solid rgba(220, 185, 130, 0.2);
+  border-radius: 8px;
+  padding: 3.5rem 3.25rem 4rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* Monograph Header */
+.nlp-mono-header {
+  text-align: center;
+  margin-bottom: 3.25rem;
+}
+
+.nlp-mono-eyebrow {
+  font-family: Georgia, serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  color: #e0b46e;
+  margin: 0 0 0.85rem;
+}
+
+.nlp-mono-headline {
+  font-family: Georgia, 'Playfair Display', 'Times New Roman', serif;
+  font-size: clamp(1.85rem, 3.8vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  color: #fdfbf7;
+  margin: 0 0 1.5rem;
+  text-transform: uppercase;
+}
+
+.nlp-mono-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin: 1.25rem auto 1.75rem;
+  max-width: 22rem;
+}
+
+.nlp-ornament-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220, 185, 130, 0.4), transparent);
+}
+
+.nlp-ornament-leaf {
+  color: #e0b46e;
+  font-size: 1.15rem;
+}
+
+.nlp-mono-lead {
+  font-family: Georgia, serif;
+  font-size: 1.18rem;
+  line-height: 1.8;
+  color: rgba(245, 242, 235, 0.88);
+  max-width: 48rem;
+  margin: 0 auto;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Assistants Scholarly Cards */
+.nlp-mono-assistants {
+  margin-bottom: 3.5rem;
+}
+
+.nlp-mono-subhead {
+  font-family: Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #f7eedb;
+  margin: 0 0 1.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nlp-mono-numeral {
+  color: #e0b46e;
+  font-style: italic;
+}
+
+.nlp-partners-scholarly-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.nlp-scholarly-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(220, 185, 130, 0.16);
+  border-radius: 6px;
+  padding: 1.5rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.22s ease;
+}
+
+.nlp-scholarly-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(220, 185, 130, 0.35);
+  transform: translateY(-2px);
+}
+
+.nlp-sc-top {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.1rem;
+}
+
+.nlp-sc-logo-frame {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.nlp-sc-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.nlp-sc-header-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.nlp-sc-name {
+  font-family: Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 0.2rem;
+}
+
+.nlp-sc-partner-label {
+  font-size: 0.74rem;
+  line-height: 1.3;
+  color: rgba(240, 235, 225, 0.65);
+  display: block;
+}
+
+.nlp-sc-desc {
+  font-family: Georgia, serif;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: rgba(245, 242, 235, 0.78);
+  margin: 0 0 1.25rem;
+  flex: 1;
+}
+
+.nlp-sc-anchor {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: #e0b46e;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  align-self: flex-start;
+}
+
+.nlp-sc-anchor:hover {
+  color: #f7eedb;
+  text-decoration: underline;
+}
+
+/* Scholarly Principles in Roman Numerals */
+.nlp-mono-principles {
+  margin-bottom: 3.5rem;
+  border-top: 1px solid rgba(220, 185, 130, 0.12);
+  border-bottom: 1px solid rgba(220, 185, 130, 0.12);
+  padding: 2.5rem 0;
+}
+
+.nlp-principles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.nlp-principle-item {
+  position: relative;
+  padding: 0 0.5rem;
+}
+
+.nlp-principle-numeral {
+  display: inline-block;
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e0b46e;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.nlp-principle-title {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #fdfbf7;
+  margin: 0 0 0.65rem;
+}
+
+.nlp-principle-text {
+  font-family: Georgia, serif;
+  font-size: 0.92rem;
+  line-height: 1.68;
+  color: rgba(245, 242, 235, 0.75);
+  margin: 0;
+}
+
+/* Academic Text Flow */
+.nlp-mono-text-flow {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.nlp-flow-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.nlp-scholarly-p {
+  font-family: Georgia, serif;
+  font-size: 0.98rem;
+  line-height: 1.78;
+  color: rgba(245, 242, 235, 0.84);
+  margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.nlp-scholarly-quote-box {
+  background: rgba(220, 185, 130, 0.05);
+  border-left: 3px solid #e0b46e;
+  padding: 1.35rem 1.4rem;
+  border-radius: 0 6px 6px 0;
+}
+
+.nlp-scholarly-impact-box {
+  background: rgba(217, 119, 87, 0.06);
+  border-left: 3px solid #d97757;
+  padding: 1.35rem 1.4rem;
+  border-radius: 0 6px 6px 0;
+}
+
+.nlp-box-subhead {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #faf9f6;
+  margin: 0 0 0.65rem;
+}
+
+/* Oxford Colophon (Single CTA Integration) */
+.nlp-oxford-colophon {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.nlp-colophon-border {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220, 185, 130, 0.35), transparent);
+}
+
+.nlp-colophon-inner {
+  padding: 2.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.nlp-colophon-seal {
+  font-size: 2.2rem;
+  opacity: 0.85;
+}
+
+.nlp-colophon-body {
+  max-width: 36rem;
+  text-align: left;
+}
+
+.nlp-colophon-title {
+  font-family: Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #f7eedb;
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nlp-colophon-text {
+  font-family: Georgia, serif;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(245, 242, 235, 0.75);
+  margin: 0 0 1.1rem;
+}
+
+.nlp-colophon-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.nlp-colophon-jump-btn {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  background: rgba(220, 185, 130, 0.14);
+  border: 1px solid rgba(220, 185, 130, 0.35);
+  color: #f7eedb;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nlp-colophon-jump-btn:hover {
+  background: #c66a4a;
+  color: #fff;
+  border-color: #c66a4a;
+  transform: translateY(-1px);
+}
+
+.nlp-colophon-archive {
+  font-family: Georgia, serif;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: rgba(240, 235, 225, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   Click-to-Enlarge Lightbox Modal
+   -------------------------------------------------------------------------- */
+.nlp-lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10, 12, 16, 0.88);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: nlpFadeIn 0.22s ease-out;
+}
+
+@keyframes nlpFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.nlp-lightbox-container {
+  max-width: 52rem;
+  width: 100%;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  background: #141720;
+  border: 1px solid rgba(220, 185, 130, 0.35);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+}
+
+.nlp-lightbox-bar {
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #191e2a;
+  border-bottom: 1px solid rgba(220, 185, 130, 0.2);
+}
+
+.nlp-lightbox-title {
+  font-family: Georgia, serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.06em;
+  color: rgba(245, 242, 235, 0.85);
+  text-transform: uppercase;
+}
+
+.nlp-lightbox-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nlp-lightbox-dl {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  background: rgba(220, 185, 130, 0.15);
+  border: 1px solid rgba(220, 185, 130, 0.3);
+  color: #f7eedb;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.nlp-lightbox-dl:hover {
+  background: rgba(220, 185, 130, 0.3);
+}
+
+.nlp-lightbox-close {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.18s ease;
+}
+
+.nlp-lightbox-close:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nlp-lightbox-content {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: #0b0d12;
+}
+
+.nlp-lightbox-img {
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .nlp-partners-scholarly-grid,
+  .nlp-principles-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .nlp-mono-text-flow {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .nlp-monograph-body {
+    padding: 2.5rem 1.75rem 3rem;
+  }
+
+  .nlp-folio-spread {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .nlp-folio-gutter {
+    display: none;
+  }
+
+  .nlp-folio-page-leaf {
+    max-width: 100%;
+  }
+
+  .nlp-colophon-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nlp-colophon-body {
+    text-align: center;
+  }
+
+  .nlp-colophon-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 680px) {
+  .nlp-hero-scholarly {
+    padding-top: calc(var(--nav-height, 6.325rem) + 1.5rem);
+    min-height: auto;
+  }
+
+  .nlp-masthead-meta-row {
+    flex-direction: column;
+    gap: 0.35rem;
+    text-align: center;
+  }
+
+  .nlp-folio-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nlp-edition-toggle-group,
+  .nlp-viewmode-toggle-group {
+    justify-content: center;
+  }
+
+  .nlp-download-actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .nlp-folio-desk {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .nlp-monograph-body {
+    padding: 2rem 1.25rem;
+  }
+
+  .nlp-hero-quick-bar {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nlp-btn-scholarly,
+  .nlp-btn-scholarly-ghost {
+    width: 100%;
+    text-align: center;
+  }
+}
