@@ -106,6 +106,11 @@ const ArticlePage = () => {
     return list.find((a) => a.slug === slug);
   }, [language, slug]);
 
+  // Backward-compatibility redirect from old slug to new slug
+  if (slug === 'syggnomi-kyria-mou-poia-eiste') {
+    return <Navigate to="/news/poia-techniti-noimosyni" replace />;
+  }
+
   if (!article) {
     return <Navigate to="/news" replace />;
   }

@@ -43,7 +43,7 @@ export const newsArticlesByLang = {
       ],
     },
     {
-      slug: 'syggnomi-kyria-mou-poia-eiste',
+      slug: 'poia-techniti-noimosyni',
       category: 'articles',
       categoryLabel: 'Άρθρο',
       title: '«Ποια τεχνητή νοημοσύνη;»',
@@ -163,7 +163,7 @@ export const newsArticlesByLang = {
       ],
     },
     {
-      slug: 'syggnomi-kyria-mou-poia-eiste',
+      slug: 'poia-techniti-noimosyni',
       category: 'articles',
       categoryLabel: 'Article',
       title: '«Which Artificial Intelligence?»',
