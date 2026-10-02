@@ -43,7 +43,7 @@ const FlowHome = ({ demo = null, proof = null }) => {
             {c.hero.sub.map(([b, t]) => <React.Fragment key={t}>{b && <b>{b}</b>}{t}</React.Fragment>)}
           </p>
           <div className="fl-ctas">
-            <a className="fl-btn" href="#fl-start">{c.hero.cta}</a>
+            <Link className="fl-btn" to="/flow/build">{c.hero.cta}</Link>
             <a className="fl-link" href="#fl-day">{c.hero.link}</a>
           </div>
         </div>
@@ -159,7 +159,7 @@ const FlowHome = ({ demo = null, proof = null }) => {
           <div className="fl-guar">
             <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" /><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
             <div><h3>{c.plans.guarantee[ed][0]}</h3><p>{c.plans.guarantee[ed][1]}</p></div>
-            <a className="fl-btn" href="#fl-start">{c.plans.start}</a>
+            <Link className="fl-btn" to={`/flow/build?for=${ed}`}>{c.plans.start}</Link>
           </div>
         </div>
       </section>
@@ -189,7 +189,8 @@ const FlowHome = ({ demo = null, proof = null }) => {
           <h2 className="fl-h2">{c.final.title}</h2>
           <p className="fl-lead">{c.final.lead}</p>
           <div className="fl-ctas">
-            <Link className="fl-btn" to="/demo">{c.final.cta}</Link>
+            <Link className="fl-btn" to="/flow/build">{c.final.build}</Link>
+            <Link className="fl-link" to="/demo">{c.final.cta}</Link>
             <span className="fl-mail">{c.final.mail} <a href="mailto:contact@simasiaai.gr">contact@simasiaai.gr</a></span>
           </div>
         </div>

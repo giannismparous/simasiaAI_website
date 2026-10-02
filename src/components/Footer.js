@@ -123,7 +123,9 @@ const Footer = () => {
           <div className="footer-col">
             <h4>{t('footer.navTitle')}</h4>
             <Link to="/">{t('nav.home')}</Link>
-            <Link to="/ypodochi">{t('nav.ypodochi')}</Link>
+            <Link to="/flow">{t('nav.ypodochi')}</Link>
+            <Link to="/flow/build">{t('footer.flowBuild')}</Link>
+            <Link to="/ypodochi">{t('footer.clinicsLink')}</Link>
             <Link to="/demo">{t('nav.demo')}</Link>
             <Link to="/team">{t('footer.teamLink')}</Link>
             <Link to="/collaborations">{t('nav.collaborations')}</Link>

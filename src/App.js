@@ -8,6 +8,8 @@ import CursorFollower from './components/CursorFollower';
 import ScrollToTop from './components/ScrollToTop';
 import OverscrollFill from './components/OverscrollFill';
 import HomePage from './pages/HomePage';
+import FlowPage from './pages/FlowPage';
+import FlowBuildPage from './pages/FlowBuildPage';
 import SolutionsPage from './pages/SolutionsPage';
 import CollaborationsPage from './pages/CollaborationsPage';
 import ApplicationsPage from './pages/ApplicationsPage';
@@ -49,6 +51,8 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/flow" element={<FlowPage />} />
+            <Route path="/flow/build" element={<FlowBuildPage />} />
             <Route path="/ypodochi" element={<YpodochiPage />} />
             <Route path="/demo" element={<DemoPage />} />
             <Route path="/solutions" element={<SolutionsPage />} />

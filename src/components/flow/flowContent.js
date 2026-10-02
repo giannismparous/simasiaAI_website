@@ -13,7 +13,7 @@ export const flowContent = {
         ['Ο PraxisAI', ' κρατά τον φάκελο και θυμάται ό,τι λήγει. '],
         ['', 'Μαζί, η μέρα σας κυλά πιο ήσυχα.'],
       ],
-      cta: 'Ζητήστε δωρεάν διάγνωση ροής',
+      cta: 'Φτιάξτε το fλow σας',
       link: 'Δείτε μια μέρα με fλow',
       aria: 'Δύο ρεύματα, ο Λόγος (DialogosAI) και η Πράξη (PraxisAI), ενώνονται σε σχήμα λ και γίνονται ένα ήρεμο ποτάμι. Χάρτινα καραβάκια μεταφέρουν ερωτήσεις που φτάνουν ως απαντήσεις.',
       logos: ['Λόγος', 'Ο DialogosAI απαντά'],
@@ -167,7 +167,7 @@ export const flowContent = {
         ngo: ['Δοκιμάστε το 60 μέρες με 490 €', 'Με τα δικά σας δεδομένα. Αν συνεχίσετε, τα 490 € αφαιρούνται από την ένταξη. Αν στις 60 μέρες δεν απαντά σωστά στο 90% των ερωτήσεων που συμφωνήσαμε, η συνδρομή είναι δωρεάν ώσπου να το πετύχει.'],
         med: ['Live σε 48 ώρες, αλλιώς δωρεάν', 'Τεστ αποδοχής με 50 πραγματικές ερωτήσεις, μπροστά σας. Αν δεν φτάσει το 90% ακρίβεια, δεν πληρώνετε.'],
       },
-      start: 'Ξεκινήστε',
+      start: 'Φτιάξτε την προσφορά σας',
     },
 
     crossing: {
@@ -194,7 +194,8 @@ export const flowContent = {
     final: {
       title: 'Ας δούμε πού κολλάει η ροή σας.',
       lead: 'Στέλνουμε στην ομάδα σας ένα ερωτηματολόγιο 5 λεπτών. Σας επιστρέφουμε έναν χάρτη: πού χάνονται ώρες, τι ρωτούν οι άνθρωποί σας, τι πρόκειται να λήξει. Δωρεάν, χωρίς δέσμευση.',
-      cta: 'Κλείστε 30 λεπτά',
+      build: 'Φτιάξτε το fλow σας',
+      cta: 'ή κλείστε 30 λεπτά μαζί μας',
       mail: 'ή γράψτε μας στο',
     },
   },
@@ -208,7 +209,7 @@ export const flowContent = {
         ['PraxisAI', ' keeps the case file and remembers what expires. '],
         ['', 'Together, your day runs quieter.'],
       ],
-      cta: 'Get a free flow diagnosis',
+      cta: 'Build your fλow',
       link: 'See a day with fλow',
       aria: 'Two streams, Logos (DialogosAI) and Praxis (PraxisAI), meet in the shape of λ and become one calm river. Paper boats carry questions that arrive as answers.',
       logos: ['Logos', 'DialogosAI answers'],
@@ -299,7 +300,7 @@ export const flowContent = {
         ngo: ['Try it for 60 days for €490', 'With your own data. If you continue, the €490 is credited against onboarding. If at 60 days it doesn\'t answer 90% of our agreed questions correctly, the subscription is free until it does.'],
         med: ['Live in 48 hours, or free', 'An acceptance test with 50 real questions, in front of you. If it doesn\'t reach 90% accuracy, you don\'t pay.'],
       },
-      start: 'Get started',
+      start: 'Build your offer',
     },
     crossing: {
       title: 'We cross the river together',
@@ -313,7 +314,8 @@ export const flowContent = {
     final: {
       title: 'Let\'s see where your flow gets stuck.',
       lead: 'We send your team a 5-minute survey and return a map: where hours are lost, what your people ask, what is about to expire. Free, no commitment.',
-      cta: 'Book 30 minutes', mail: 'or write to us at',
+      build: 'Build your fλow',
+      cta: 'or book 30 minutes with us', mail: 'or write to us at',
     },
   },
 };

@@ -1,0 +1,22 @@
+# SimasiaAI · fλow
+
+> fλow is SimasiaAI's product for organisations that care for people. It joins DialogosAI, an assistant that answers people 24/7 only from approved sources, and PraxisAI, a CRM for case files, bookings, daily logs and expiry reminders. Nothing is sent without a human's approval. Greek first, EU-hosted, EU AI Act and GDPR compliant.
+
+## Who it is for
+- NGOs, patient associations and care services: Insights dashboard and a monthly report for funders. Plans from €119/month + onboarding.
+- Practices and clinics: 24/7 answers and bookings, patient card, reminders and recall. From €149/month billed annually.
+- Sponsors (pharma, foundations, CSR): measurable support per person reached, disclosure-ready.
+
+## Live today
+- Μυρτώ, digital navigator for people with cancer (Κάπα3, supported by the TIMA Foundation).
+- ΣΚΠ-i, 24/7 assistant for the Multiple Sclerosis community (ΠΟΑμΣΚΠ), covered by news4health, healthpharma, newsbeast and ygeiamou in September 2026.
+
+## Pages
+- [fλow](https://simasiaai.gr/flow): product overview
+- [Build your fλow](https://simasiaai.gr/flow/build): configure features and get an offer
+- [For practices](https://simasiaai.gr/ypodochi): clinic plans
+- [Collaborations](https://simasiaai.gr/collaborations)
+- [Team](https://simasiaai.gr/team)
+
+## Contact
+contact@simasiaai.gr · Ναρκίσσου 26, 15452 Παλαιό Ψυχικό, Athens

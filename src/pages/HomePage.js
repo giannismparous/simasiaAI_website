@@ -1,15 +1,17 @@
 import React from 'react';
-import FlowHome from '../components/flow/FlowHome';
-import LiveDemoSection from '../components/LiveDemoSection';
-import PartnershipsSection from '../components/PartnershipsSection';
+import ForbesHero from '../components/ForbesHero';
+import EnterpriseCTA from '../components/EnterpriseCTA';
+import { FlowTeaser, FlowProof, PressStrip } from '../components/flow/FlowHomeBlocks';
 
-// fλow = DialogosAI (assistant) + PraxisAI (CRM). The live DialogosAI demo
-// follows "Λόγος + Πράξη", and the partnerships prove it works in the field.
+// Home keeps the company's voice (Μέτρο μας ο Άνθρωπος) and introduces fλow as an idea:
+// chaos → λ → calm, three doors into the builder, then proof and press.
 const HomePage = () => (
-  <FlowHome
-    demo={<LiveDemoSection brandName="DialogosAI" brandShort="DialogosAI" conversationTitle />}
-    proof={<PartnershipsSection />}
-  />
+  <>
+    <ForbesHero bottom={<div className="flh-hero-press"><div className="flh-in"><PressStrip /></div></div>} />
+    <FlowTeaser />
+    <FlowProof />
+    <EnterpriseCTA />
+  </>
 );
 
 export default HomePage;

@@ -2,3 +2,7 @@ User-agent: *
 Allow: /
 
 Disallow: /archive/
+Disallow: /calculator
+Disallow: /pricing-calculator
+
+Sitemap: https://simasiaai.gr/sitemap.xml

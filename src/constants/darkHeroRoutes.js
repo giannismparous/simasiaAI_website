@@ -1,5 +1,7 @@
 export const DARK_HERO_ROUTES = [
   '/',
+  '/flow',
+  '/flow/build',
   '/ypodochi',
   '/demo',
   '/collaborations',

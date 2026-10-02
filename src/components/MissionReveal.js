@@ -13,7 +13,8 @@ export default function MissionReveal({ text }) {
   if (!text) return null;
 
   // Isolate "DialogosAI" at the end (handles both "Την DialogosAI" and plain "DialogosAI")
-  const pyxidaIdx = text.lastIndexOf('DialogosAI');
+  const BRAND = text.includes('fλow') ? 'fλow' : 'DialogosAI';
+  const pyxidaIdx = text.lastIndexOf(BRAND);
   const hasPyxida = pyxidaIdx !== -1;
 
   // Everything before "DialogosAI" — trim trailing space
@@ -53,7 +54,7 @@ export default function MissionReveal({ text }) {
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          DialogosAI
+          {BRAND}
         </motion.span>
       )}
     </p>

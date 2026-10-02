@@ -42,7 +42,7 @@ const Navbar = () => {
 
   const navLinks = [
     { path: '/', text: t('nav.home') },
-    { path: '/ypodochi', text: t('nav.ypodochi') },
+    { path: '/flow', text: t('nav.ypodochi') },
     { path: '/collaborations', text: t('nav.collaborations') },
     { path: '/news', text: t('nav.news') },
     { path: '/newsletter', text: t('nav.newsletter') },
