@@ -48,7 +48,7 @@ const BotHoursVisual = () => {
           <>
             <span className="ol-chat-app-avatar">P</span>
             <div>
-              <strong>Pyxida</strong>
+              <strong>DialogosAI</strong>
               <span>{c.status}</span>
             </div>
           </>
@@ -160,13 +160,13 @@ const BotSafeVisual = () => {
 const BotHumanVisual = () => {
   const c = useCopy().botHuman;
   return (
-    <ProductFrame title="clinic.gr · Pyxida" badge="Live" variant="bot-human">
+    <ProductFrame title="clinic.gr · DialogosAI" badge="Live" variant="bot-human">
       <ChatAppShell
         header={
           <>
             <span className="ol-chat-app-avatar">P</span>
             <div>
-              <strong>Pyxida</strong>
+              <strong>DialogosAI</strong>
               <span className="ol-chat-live-status">
                 <span className="ol-chat-live-dot" aria-hidden="true" />
                 {c.status}
@@ -217,7 +217,7 @@ const BotHumanVisual = () => {
 const BotDocsVisual = () => {
   const c = useCopy().botDocs;
   return (
-    <ProductFrame title="Pyxida · Knowledge" badge="99%" variant="bot-docs">
+    <ProductFrame title="DialogosAI · Knowledge" badge="99%" variant="bot-docs">
       <div className="ol-docs-ui">
         <div className="ol-docs-head">
           <div className="ol-docs-ring" aria-hidden="true">
@@ -386,7 +386,7 @@ const GoogleCalendarPanel = () => {
 const CrmCaptureVisual = () => {
   const c = useCopy().crmCapture;
   return (
-    <ProductFrame title="CRM · Pyxida Dashboard" badge={c.badge} variant="crm-capture">
+    <ProductFrame title="PraxisAI · CRM Dashboard" badge={c.badge} variant="crm-capture">
       <div className="ol-crm-dashboard">
         <nav className="ol-crm-nav" aria-hidden="true">
           {c.tabs.map((tab, i) => (

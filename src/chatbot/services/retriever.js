@@ -232,13 +232,13 @@ export function detectReplyLanguage(text, uiLanguage = 'el') {
   return uiLanguage === 'en' ? 'en' : 'el';
 }
 
-/** Map legacy product names to Pyxida for retrieval & scope. */
+/** Map legacy product names to DialogosAI for retrieval & scope. */
 export function expandProductAliases(text) {
   return String(text || '')
-    .replace(/\bdialogos\s*ai\b/gi, 'Pyxida')
-    .replace(/\bdialogosai\b/gi, 'Pyxida')
-    .replace(/\bδιαλογος\s*ai\b/gi, 'Pyxida')
-    .replace(/\bδιαλογοςαι\b/gi, 'Pyxida');
+    .replace(/\bdialogos\s*ai\b/gi, 'DialogosAI')
+    .replace(/\bdialogosai\b/gi, 'DialogosAI')
+    .replace(/\bδιαλογος\s*ai\b/gi, 'DialogosAI')
+    .replace(/\bδιαλογοςαι\b/gi, 'DialogosAI');
 }
 
 function cleanQueryToken(token) {

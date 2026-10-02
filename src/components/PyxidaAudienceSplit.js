@@ -76,7 +76,7 @@ const PyxidaAudienceSplit = () => {
         <motion.div className="pas-eyebrow-wrap"
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }} transition={{ duration: 0.55, ease }}>
-          <span className="pas-eyebrow">Η Pyxida μιλά απευθείας σε εσάς</span>
+          <span className="pas-eyebrow">Ο DialogosAI μιλά απευθείας σε εσάς</span>
           <p className="pas-lead">Δύο αγορές. Μία λύση. Επιλέξτε τον χώρο σας.</p>
         </motion.div>
         <motion.div className="pas-divider"
@@ -85,7 +85,7 @@ const PyxidaAudienceSplit = () => {
         <div className="pas-grid">
           <Card index={0} tag="Εκδοχή Α" tagClass="pas-tag--clinic"
             headline="Ιατρεία, Κλινικές & Διαγνωστικά Κέντρα"
-            sub="Η Pyxida στην κλινική σας πράξη:"
+            sub="Ο DialogosAI στην κλινική σας πράξη:"
             bullets={clinicBullets} cta="Δείτε ένα Demo για Ιατρεία (15′)" ctaTo="/demo"
             hovered={hovered === 'clinic'} onHover={() => setHovered('clinic')} onLeave={() => setHovered(null)} />
           <div className="pas-sep" aria-hidden="true">
@@ -95,7 +95,7 @@ const PyxidaAudienceSplit = () => {
           </div>
           <Card index={1} tag="Εκδοχή Β" tagClass="pas-tag--ngo"
             headline="ΜΚΟ & Οργανισμοί Υποστήριξης Ασθενών"
-            sub="Η Pyxida στην υπηρεσία της κοινότητάς σας:"
+            sub="Ο DialogosAI στην υπηρεσία της κοινότητάς σας:"
             bullets={ngoBullets} cta="Δείτε πώς εφαρμόζεται σε Οργανισμούς" ctaTo="/demo"
             hovered={hovered === 'ngo'} onHover={() => setHovered('ngo')} onLeave={() => setHovered(null)} />
         </div>

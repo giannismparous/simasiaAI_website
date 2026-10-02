@@ -143,11 +143,11 @@ const CenterStackTower = ({ tiers, activeIndex, moduleIndexPrefix = 'Module', on
             }}
             transition={towerSpring}
             onClick={handleSelect}
-            aria-label={isPyxida ? 'Pyxida' : moduleIndexLabel(moduleIndexPrefix, praxiIndex)}
+            aria-label={isPyxida ? 'DialogosAI' : moduleIndexLabel(moduleIndexPrefix, praxiIndex)}
           >
             {isPyxida ? (
               <>
-                <span className="ol-tower-slab-brand">Pyxida</span>
+                <span className="ol-tower-slab-brand">DialogosAI</span>
                 <span className="ol-tower-slab-verb">{tier.verb}</span>
               </>
             ) : (
@@ -258,7 +258,7 @@ const useLeadSceneMotion = (scrollYProgress, start, end) => {
   return { opacity, y, scale, copyX, visualX, visibility, fadeIn, holdIn };
 };
 
-/** First Praxi module — delayed entry until lead is mostly done */
+/** First PraxisAI module — delayed entry until lead is mostly done */
 const useFirstModuleSceneMotion = (scrollYProgress, start, end) => {
   const fadeIn = start - LEAD_MODULE_CROSSFADE;
   const { holdIn, holdOut, fadeOut } = sceneRange(start, end);
@@ -1009,7 +1009,7 @@ const PyxidaIntroScene = ({ scrollYProgress, offer, shellMotion }) => {
   const settleEnd = start + span * 0.36;
   const colorEnd = start + span * 0.38;
   const copyStart = start + span * 0.32;
-  const titleText = offer.pyxidaTitle || 'Pyxida';
+  const titleText = offer.pyxidaTitle || 'DialogosAI';
   const zoomStart = -0.045;
 
   const blockY = useTransform(scrollYProgress, [zoomStart, settleEnd], [-220, -40], { ease: scrollEase });
@@ -1165,9 +1165,9 @@ const PraxiLeadScene = ({ offer, shellMotion, scrollYProgress, sceneStart, scene
         </motion.h2>
         <motion.p className="ol-praxi-lead-desc" style={{ opacity: desc.opacity, y: desc.y }}>
           {offer.praxiLeadDescBefore}{' '}
-          <BrandInline name={offer.praxiLeadDescPraxi || 'Praxi'} variant="praxi" onClick={goPraxi} />
+          <BrandInline name={offer.praxiLeadDescPraxi || 'PraxisAI'} variant="praxi" onClick={goPraxi} />
           {' '}{offer.praxiLeadDescMid}{' '}
-          <BrandInline name={offer.praxiLeadDescPyxida || 'Pyxida'} variant="pyxida" onClick={goPyxida} />
+          <BrandInline name={offer.praxiLeadDescPyxida || 'DialogosAI'} variant="pyxida" onClick={goPyxida} />
           {offer.praxiLeadDescAfter}
         </motion.p>
       </div>
@@ -1389,7 +1389,7 @@ const PyxidaOfferScene = ({
   const end = sceneEnd ?? PYXIDA_OFFER_END;
   const features = tier.scrollFeatures || tier.features.slice(0, 6);
   const giftRows = offer.giftRows || [];
-  const pyxidaName = offer.pyxidaTitle || 'Pyxida';
+  const pyxidaName = offer.pyxidaTitle || 'DialogosAI';
   const includedHeaderStep = 4;
   const giftHeaderStep = includedHeaderStep + features.length;
   const listsCompleteStep = getOfferListsCompleteStep(features, giftRows);
@@ -1777,7 +1777,7 @@ const OfferChapterNav = ({ visible, offer, journeyRef, praxiTiers, scrollYProgre
   const navItems = [
     {
       id: 'pyxida',
-      label: <BrandInline name={offer.pyxidaTitle || 'Pyxida'} variant="pyxida" />,
+      label: <BrandInline name={offer.pyxidaTitle || 'DialogosAI'} variant="pyxida" />,
       onClick: goPyxida,
       variant: 'pyxida',
     },
@@ -1927,8 +1927,8 @@ const OfferScrollJourney = ({
   const scrollYProgress = externalScrollYProgress ?? fallbackScrollYProgress;
 
   const scenes = offer.pyxidaScrollScenes || [];
-  const botLabel = offer.pyxidaBotLabel || 'Bot · Pyxida';
-  const crmLabel = offer.pyxidaCrmLabel || 'CRM · Pyxida';
+  const botLabel = offer.pyxidaBotLabel || 'Bot · DialogosAI';
+  const crmLabel = offer.pyxidaCrmLabel || 'CRM · PraxisAI';
   const pyxidaFeatureRanges = getPyxidaFeatureRanges(scenes.length);
   const journeyVh = 340 + scenes.length * 22 + praxiTiers.length * 118;
 
@@ -2007,7 +2007,7 @@ const OfferScrollJourney = ({
       className="ol-pyxida-journey ol-offer-journey"
       ref={journeyRef}
       id="tier-apanta"
-      aria-label="Pyxida and Praxi"
+      aria-label="DialogosAI and PraxisAI"
       style={{ height: `${journeyVh}vh` }}
     >
       <div id="ol-praxi-journey" className="ol-offer-journey-anchor" aria-hidden="true" />

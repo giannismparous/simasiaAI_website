@@ -99,7 +99,7 @@ const LiveDemoSection = ({
   conversationTitle = false,
 }) => {
   const { t, language } = useTranslation();
-  const avatarVariant = brandName === 'Pyxida' ? 'pyxida' : 'orange';
+  const avatarVariant = brandName === 'DialogosAI' ? 'pyxida' : 'orange';
   const conversations = t('liveDemo.conversations');
   const conversationsRef = useRef(Array.isArray(conversations) ? conversations : []);
   conversationsRef.current = Array.isArray(conversations) ? conversations : [];

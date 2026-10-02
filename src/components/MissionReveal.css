@@ -22,7 +22,7 @@
   will-change: opacity, filter;
 }
 
-/* "Pyxida" — inline-block so scale animates correctly */
+/* "DialogosAI" — inline-block so scale animates correctly */
 .mr-pyxida {
   display: inline-block;
   font-family: var(--font-sans);

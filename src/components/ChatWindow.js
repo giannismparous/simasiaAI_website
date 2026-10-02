@@ -52,12 +52,12 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
   const suggestedQuestions = useMemo(() => {
     return language === 'el'
       ? [
-          { id: 1, text: 'Τι μπορεί να κάνει το Pyxida για μένα;' },
+          { id: 1, text: 'Τι μπορεί να κάνει ο DialogosAI για μένα;' },
           { id: 2, text: 'Πώς βοηθά η SimasiaAI οργανισμούς;' },
           { id: 3, text: 'Μπορώ να κλείσω demo;' },
         ]
       : [
-          { id: 1, text: 'What can Pyxida do for me?' },
+          { id: 1, text: 'What can DialogosAI do for me?' },
           { id: 2, text: 'How does SimasiaAI help organizations?' },
           { id: 3, text: 'Can I book a demo?' },
         ];
@@ -422,7 +422,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
             <PyxidaCompassIcon idSuffix="header" size={32} />
           </div>
           <div className="bot-info">
-            <h3><em className="brand-pyxida">Pyxida</em></h3>
+            <h3><em className="brand-pyxida">DialogosAI</em></h3>
           </div>
         </div>
         <button

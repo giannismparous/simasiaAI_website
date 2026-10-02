@@ -4,19 +4,19 @@
       "id": "faq_simasia_identity",
       "triggers": ["τι ειναι η simasia", "ti einai i simasia", "ti einai to simasiaai", "what is simasia", "simasiaai", "simasia ai", "εταιρεια", "company", "ποιοι ειστε", "poioi eiste", "who are"],
       "title": "SimasiaAI — ταυτότητα",
-      "content": "Η SimasiaAI είναι ελληνική deep-tech εταιρεία για ανθρωποκεντρική ψηφιακή υποδοχή (Pyxida) — όχι μεταπώληση generic εργαλείων. Tagline: «AI από την πλευρά του ανθρώπου»."
+      "content": "Η SimasiaAI είναι ελληνική deep-tech εταιρεία για ανθρωποκεντρική ψηφιακή υποδοχή (DialogosAI) — όχι μεταπώληση generic εργαλείων. Tagline: «AI από την πλευρά του ανθρώπου»."
     },
     {
       "id": "faq_pyxida",
       "triggers": ["pyxida", "πυξιδα", "ψηφιακη", "υποδοχη", "ιατρειο", "κλινικη", "reception", "ypodochi"],
-      "title": "Pyxida — ψηφιακή υποδοχή",
-      "content": "Το Pyxida είναι η ψηφιακή υποδοχή της SimasiaAI: bot + CRM + απαντήσεις 24/7 για ιατρεία και οργανισμούς. Βάση Απαντάει + προαιρετικά Praxi modules. Live σε 48 ώρες. Σελίδα: /ypodochi."
+      "title": "DialogosAI — ψηφιακή υποδοχή",
+      "content": "Ο DialogosAI είναι η ψηφιακή υποδοχή της SimasiaAI: bot + CRM + απαντήσεις 24/7 για ιατρεία και οργανισμούς. Βάση Απαντάει + προαιρετικά PraxisAI modules. Live σε 48 ώρες. Σελίδα: /ypodochi."
     },
     {
       "id": "faq_pyxida_gender",
       "triggers": ["φυλο", "gender", "αρσενικ", "θηλυκ", "he", "she", "neutral", "ουδετερ"],
-      "title": "Pyxida — ουδέτερο φύλο",
-      "content": "Το Pyxida είναι ουδέτερο ως προς το φύλο — ούτε αρσενικό ούτε θηλυκό. Στα ελληνικά «το Pyxida», στα αγγλικά it/its. Ψηφιακή υποδοχή, όχι άνθρωπος."
+      "title": "DialogosAI — ουδέτερο φύλο",
+      "content": "Ο DialogosAI είναι ουδέτερο ως προς το φύλο — ούτε αρσενικό ούτε θηλυκό. Στα ελληνικά «ο DialogosAI», στα αγγλικά it/its. Ψηφιακή υποδοχή, όχι άνθρωπος."
     },
     {
       "id": "faq_contact",
@@ -27,8 +27,8 @@
     {
       "id": "faq_pyxida_dialogosai",
       "triggers": ["dialogosai", "dialogos ai", "διαλογος", "διαλογος ai", "dialogos"],
-      "title": "Pyxida — παλιό όνομα DialogosAI",
-      "content": "Το DialogosAI ήταν το προηγούμενο όνομα της ψηφιακής υποδοχής της SimasiaAI. Σήμερα λέγεται Pyxida: bot + CRM + απαντήσεις 24/7 για ιατρεία και οργανισμούς. Ίδια λύση, νέο brand."
+      "title": "DialogosAI — παλιό όνομα DialogosAI",
+      "content": "Ο DialogosAI ήταν το προηγούμενο όνομα της ψηφιακής υποδοχής της SimasiaAI. Σήμερα λέγεται fλow: DialogosAI (bot) + PraxisAI (CRM) + απαντήσεις 24/7 για ιατρεία και οργανισμούς. Ίδια λύση, νέο brand."
     },
     {
       "id": "faq_team_members",
@@ -39,20 +39,20 @@
     {
       "id": "faq_pyxida_modules",
       "triggers": ["module", "modules", "module 1", "module 2", "module 3", "praxi", "apanta", "απαντα", "kleinei", "fernei", "sikonei", "κλεινει", "φερνει", "σηκωνει"],
-      "title": "Pyxida — βάση & Praxi modules",
-      "content": "Η βάση Pyxida λέγεται ΑΠΑΝΤΑΕΙ (bot + CRM + απαντήσεις 24/7). Προαιρετικά Praxi modules πάνω από αυτή: Module 1 = ΚΛΕΙΝΕΙ (κράτηση ραντεβού, WhatsApp/Viber/social). Module 2 = ΦΕΡΝΕΙ ΠΙΣΩ (ανάκτηση leads, υπενθυμίσεις, recall). Module 3 = ΣΗΚΩΝΕΙ ΤΟ ΤΗΛΕΦΩΝΟ (ζωντανή φωνή 24/7). Λεπτομέρειες: /ypodochi."
+      "title": "fλow — DialogosAI & PraxisAI modules",
+      "content": "Η βάση του fλow λέγεται ΑΠΑΝΤΑΕΙ (bot + CRM + απαντήσεις 24/7). Προαιρετικά PraxisAI modules πάνω από αυτή: Module 1 = ΚΛΕΙΝΕΙ (κράτηση ραντεβού, WhatsApp/Viber/social). Module 2 = ΦΕΡΝΕΙ ΠΙΣΩ (ανάκτηση leads, υπενθυμίσεις, recall). Module 3 = ΣΗΚΩΝΕΙ ΤΟ ΤΗΛΕΦΩΝΟ (ζωντανή φωνή 24/7). Λεπτομέρειες: /ypodochi."
     },
     {
       "id": "faq_what_we_do",
       "triggers": ["ασχολ", "asxole", "τι κανετε", "ti kanete", "me ti", "what do you", "services", "υπηρεσι"],
       "title": "SimasiaAI — τι κάνουμε",
-      "content": "Η SimasiaAI αναπτύσσει ανθρωποκεντρική ψηφιακή υποδοχή (Pyxida) για ιατρεία και οργανισμούς: bot + CRM, απαντήσεις 24/7, συμμόρφωση GDPR & EU AI Act, φυσικά Ελληνικά/Αγγλικά. Συνεργασίες σε υγεία και εκπαίδευση."
+      "content": "Η SimasiaAI αναπτύσσει ανθρωποκεντρική ψηφιακή υποδοχή (DialogosAI) για ιατρεία και οργανισμούς: bot + CRM, απαντήσεις 24/7, συμμόρφωση GDPR & EU AI Act, φυσικά Ελληνικά/Αγγλικά. Συνεργασίες σε υγεία και εκπαίδευση."
     },
     {
       "id": "faq_pyxida_bot",
       "triggers": ["pyxida bot", "πυξιδα bot", "βοηθος site", "assistant site", "chatbot site"],
-      "title": "Pyxida — chatbot του site",
-      "content": "Το Pyxida είναι το chatbot αυτού του site. Απαντά για SimasiaAI, την ψηφιακή υποδοχή Pyxida, συνεργασίες και demo — στα Ελληνικά ή στα Αγγλικά, ανάλογα με τη γλώσσα του επισκέπτη. Όχι για άσχετα θέματα."
+      "title": "DialogosAI — chatbot του site",
+      "content": "Ο DialogosAI είναι το chatbot αυτού του site. Απαντά για SimasiaAI, την ψηφιακή υποδοχή DialogosAI, συνεργασίες και demo — στα Ελληνικά ή στα Αγγλικά, ανάλογα με τη γλώσσα του επισκέπτη. Όχι για άσχετα θέματα."
     }
   ]
 }

@@ -4,10 +4,10 @@ import { useTranslation } from '../hooks/useTranslation';
 import './PartnershipsSection.css';
 
 const PYXIDA_PATH = '/ypodochi';
-const PYXIDA_MARKER = /<strong>Pyxida<\/strong>/g;
+const PYXIDA_MARKER = /<strong>DialogosAI<\/strong>/g;
 
 export const renderWithPyxidaLinks = (html) => {
-  if (!html || !html.includes('<strong>Pyxida</strong>')) {
+  if (!html || !html.includes('<strong>DialogosAI</strong>')) {
     return <span dangerouslySetInnerHTML={{ __html: html }} />;
   }
 
@@ -16,7 +16,7 @@ export const renderWithPyxidaLinks = (html) => {
     <React.Fragment key={i}>
       {i > 0 && (
         <Link to={PYXIDA_PATH} className="brand-pyxida-link">
-          Pyxida
+          DialogosAI
         </Link>
       )}
       {part ? <span dangerouslySetInnerHTML={{ __html: part }} /> : null}

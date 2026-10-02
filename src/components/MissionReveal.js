@@ -4,7 +4,7 @@ import './MissionReveal.css';
 
 /**
  * MissionReveal — blur-to-sharp word cascade.
- * Each word sharpens in sequence; "Pyxida" arrives last with brand accent + glow.
+ * Each word sharpens in sequence; "DialogosAI" arrives last with brand accent + glow.
  */
 export default function MissionReveal({ text }) {
   const ref = useRef(null);
@@ -12,13 +12,13 @@ export default function MissionReveal({ text }) {
 
   if (!text) return null;
 
-  // Isolate "Pyxida" at the end (handles both "Την Pyxida" and plain "Pyxida")
-  const pyxidaIdx = text.lastIndexOf('Pyxida');
+  // Isolate "DialogosAI" at the end (handles both "Την DialogosAI" and plain "DialogosAI")
+  const pyxidaIdx = text.lastIndexOf('DialogosAI');
   const hasPyxida = pyxidaIdx !== -1;
 
-  // Everything before "Pyxida" — trim trailing space
+  // Everything before "DialogosAI" — trim trailing space
   const bodyRaw = hasPyxida ? text.slice(0, pyxidaIdx).trimEnd() : text;
-  // The word before Pyxida (e.g. "Την") stays visually separate but in same flow
+  // The word before DialogosAI (e.g. "Την") stays visually separate but in same flow
   const bodyWords = bodyRaw.split(' ').filter(Boolean);
 
   const WORD_STAGGER = 0.042;       // seconds between each word
@@ -53,7 +53,7 @@ export default function MissionReveal({ text }) {
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          Pyxida
+          DialogosAI
         </motion.span>
       )}
     </p>

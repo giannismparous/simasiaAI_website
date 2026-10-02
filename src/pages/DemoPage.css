@@ -431,7 +431,7 @@
   transform: translateY(-1px);
 }
 
-/* —— Pyxida + modules stack —— */
+/* —— DialogosAI + modules stack —— */
 .demo-offer-stack {
   margin-top: 0.85rem;
   margin-bottom: 0.35rem;
@@ -525,7 +525,7 @@
   line-height: 1;
 }
 
-/* Base Pyxida card */
+/* Base DialogosAI card */
 .demo-offer-base-card {
   position: relative;
   flex: 0 0 auto;

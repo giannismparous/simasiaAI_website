@@ -214,9 +214,9 @@ const baseTranslations = {
     },
     learningLoop: {
       index: "06",
-      title: "Τι κάνει το <em class=\"brand-dialogos\">DialogosAI</em> ξεχωριστό;",
-      lead: "Το <em class=\"brand-dialogos\">DialogosAI</em> εξελίσσεται με κάθε αλληλεπίδραση. Κάθε συνομιλία τροφοδοτεί έναν κύκλο συνεχούς βελτίωσης: ανάλυση, εκπαίδευση, δοκιμή και περαιτέρω ανάπτυξη.",
-      body: "Έτσι, το <em class=\"brand-dialogos\">DialogosAI</em> γίνεται τελικά ο διάλογος που εσείς θέλετε να έχετε με τους ανθρώπους που σχετίζεται ο οργανισμός σας, με τις απαντήσεις να γίνονται πιο ακριβείς, πιο χρήσιμες και πιο προσαρμοσμένες στις πραγματικές τους ανάγκες.",
+      title: "Τι κάνει ο <em class=\"brand-dialogos\">DialogosAI</em> ξεχωριστό;",
+      lead: "Ο <em class=\"brand-dialogos\">DialogosAI</em> εξελίσσεται με κάθε αλληλεπίδραση. Κάθε συνομιλία τροφοδοτεί έναν κύκλο συνεχούς βελτίωσης: ανάλυση, εκπαίδευση, δοκιμή και περαιτέρω ανάπτυξη.",
+      body: "Έτσι, ο <em class=\"brand-dialogos\">DialogosAI</em> γίνεται τελικά ο διάλογος που εσείς θέλετε να έχετε με τους ανθρώπους που σχετίζεται ο οργανισμός σας, με τις απαντήσεις να γίνονται πιο ακριβείς, πιο χρήσιμες και πιο προσαρμοσμένες στις πραγματικές τους ανάγκες.",
       aria: "Κύκλος συνεχούς βελτίωσης",
       steps: ["Ανάλυση", "Εκπαίδευση", "Δοκιμή", "Ανάπτυξη"]
     },
@@ -416,10 +416,10 @@ const baseTranslations = {
     collaborations: {
       title: "Συνεργασίες",
       home: {
-        headline: "Το <strong>Pyxida</strong> υλοποιείται ήδη σε οργανισμούς με κοινωνικό αντίκτυπο",
-        paragraph1: "Οι συνεργασίες μας περιλαμβάνουν το Κέντρο Καθοδήγησης Καρκινοπαθών (Μυρτώ), την ΠΟΑμΣΚΠ (ΣΚΠ-i), ενώ χαράσσουμε κοινή πορεία για άλλους δύο <strong>Pyxida</strong> μαζί με την Bpanheroes και το Perfectaki Able.",
+        headline: "Ο <strong>DialogosAI</strong> υλοποιείται ήδη σε οργανισμούς με κοινωνικό αντίκτυπο",
+        paragraph1: "Οι συνεργασίες μας περιλαμβάνουν το Κέντρο Καθοδήγησης Καρκινοπαθών (Μυρτώ), την ΠΟΑμΣΚΠ (ΣΚΠ-i), ενώ χαράσσουμε κοινή πορεία για άλλους δύο <strong>DialogosAI</strong> μαζί με την Bpanheroes και το Perfectaki Able.",
         paragraph2: "Εργαζόμαστε σε τομείς Τεχνητής Νοημοσύνης ρυθμιζόμενου ρίσκου όπου η ακρίβεια, η προσβασιμότητα και η ανθρώπινη κλιμάκωση είναι κρίσιμες, όπως η υγεία, η εκπαίδευση και οι κοινωνικές υπηρεσίες.",
-        paragraph3: "Μαζί πετυχαίνουμε σαφείς απαντήσεις σε σύνθετες διαδικασίες, διαφάνεια γνώσης από εγκεκριμένες πηγές και ψηφιακή ένταξη για κοινότητες που το χρειάζονται. Γι' αυτήν την υπεύθυνη και αξιόπιστη εφαρμογή, το <strong>Pyxida</strong> μπορεί να προσαρμοστεί σε μεγάλο εύρος πεδίων όπου χρειάζεται καθοδήγηση χρηστών.",
+        paragraph3: "Μαζί πετυχαίνουμε σαφείς απαντήσεις σε σύνθετες διαδικασίες, διαφάνεια γνώσης από εγκεκριμένες πηγές και ψηφιακή ένταξη για κοινότητες που το χρειάζονται. Γι' αυτήν την υπεύθυνη και αξιόπιστη εφαρμογή, ο <strong>DialogosAI</strong> μπορεί να προσαρμοστεί σε μεγάλο εύρος πεδίων όπου χρειάζεται καθοδήγηση χρηστών.",
         viewAll: "Όλες οι συνεργασίες →"
       },
       current: {
@@ -931,10 +931,10 @@ const baseTranslations = {
     collaborations: {
       title: "Collaborations",
       home: {
-        headline: "<strong>Pyxida</strong> is already deployed in organizations with social impact",
-        paragraph1: "Our collaborations include the Cancer Guidance Center (Myrto), POAMSKP (SKP-i), while we are charting a shared path for two more <strong>Pyxida</strong> instances together with Bpanheroes and Perfectaki Able.",
+        headline: "<strong>DialogosAI</strong> is already deployed in organizations with social impact",
+        paragraph1: "Our collaborations include the Cancer Guidance Center (Myrto), POAMSKP (SKP-i), while we are charting a shared path for two more <strong>DialogosAI</strong> instances together with Bpanheroes and Perfectaki Able.",
         paragraph2: "We work in regulated-risk AI sectors where accuracy, accessibility, and human escalation are critical — health, education, and social services.",
-        paragraph3: "Together we deliver clear answers to complex processes, knowledge transparency from approved sources, and digital inclusion for communities that need it. For this responsible and reliable deployment, <strong>Pyxida</strong> can be adapted to a wide range of fields where user guidance is needed.",
+        paragraph3: "Together we deliver clear answers to complex processes, knowledge transparency from approved sources, and digital inclusion for communities that need it. For this responsible and reliable deployment, <strong>DialogosAI</strong> can be adapted to a wide range of fields where user guidance is needed.",
         viewAll: "View all collaborations →"
       },
       current: {

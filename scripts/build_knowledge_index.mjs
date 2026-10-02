@@ -98,7 +98,7 @@ function buildFromTranslations(lang, t) {
   const L = lang;
 
   addDocs(docs, {
-    title: L === "el" ? "Αρχική — SimasiaAI & Pyxida" : "Home — SimasiaAI & Pyxida",
+    title: L === "el" ? "Αρχική — SimasiaAI & DialogosAI" : "Home — SimasiaAI & DialogosAI",
     url: "/",
     lang: L,
     category: "company",
@@ -211,14 +211,14 @@ function buildFromExtraNamespaces(lang, t) {
   const L = lang;
   const blocks = [
     {
-      title: L === "el" ? "Hero — Pyxida (αρχική)" : "Hero — Pyxida (home)",
+      title: L === "el" ? "Hero — DialogosAI (αρχική)" : "Hero — DialogosAI (home)",
       url: "/",
       keys: ["forbesHero", "midCta", "enterpriseCta", "hero", "homePyxidaOffer"],
       category: "company",
       keywords: ["pyxida", "hero", "demo", "clinic", "ιατρειο"],
     },
     {
-      title: L === "el" ? "Pyxida — ψηφιακή υποδοχή" : "Pyxida — digital reception",
+      title: L === "el" ? "DialogosAI — ψηφιακή υποδοχή" : "DialogosAI — digital reception",
       url: "/ypodochi",
       keys: ["ypodochiPage"],
       category: "products",
@@ -356,7 +356,7 @@ function buildFromRagFolder() {
     for (const part of parts) {
       if (/Οδηγία για το RAG/i.test(part) && !/Τίτλος:/u.test(part)) {
         addDocs(docs, {
-          title: "RAG system guidance (sales) — Pyxida",
+          title: "RAG system guidance (sales) — DialogosAI",
           url: "/demo",
           lang: "el",
           category: "rag_guidance",
@@ -370,7 +370,7 @@ function buildFromRagFolder() {
       const titleMatch = part.match(/Τίτλος:\s*(.+)/u);
       const headMatch = part.match(/^Κείμενο\s+\d+\s*:\s*(.+)/u);
       const contentMatch = part.match(/Περιεχόμενο:\s*([\s\S]*?)(?=(?:\nΚείμενο\s+\d+|$))/u);
-      const title = (titleMatch?.[1] || headMatch?.[1] || "Pyxida RAG").trim();
+      const title = (titleMatch?.[1] || headMatch?.[1] || "DialogosAI RAG").trim();
       let content = (contentMatch?.[1] || part).trim();
       // Strip trailing global RAG instruction from last chunk if glued
       content = content.replace(/\nΟδηγία για το RAG[\s\S]*$/u, "").trim();

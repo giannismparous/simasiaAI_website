@@ -4,7 +4,7 @@ import { ypodochiContentEl, ypodochiContentEn } from './ypodochiContent';
 /** Extra UI copy missing from the rebuilt homepage / key pages (EL + EN). */
 export const extraUiEl = {
   nav: {
-    ypodochi: 'Pyxida',
+    ypodochi: 'fλow',
     demo: 'Demo',
     services: 'Υπηρεσίες',
     team: 'Η ομάδα μας',
@@ -16,7 +16,7 @@ export const extraUiEl = {
   },
   pageTitles: {
     home: 'SimasiaAI — Μέτρο μας ο Άνθρωπος',
-    ypodochi: 'Pyxida · SimasiaAI',
+    ypodochi: 'fλow · SimasiaAI',
     demo: 'Κλείστε Demo · SimasiaAI',
     team: 'Η ομάδα μας · SimasiaAI',
     news: 'Νέα & Άρθρα · SimasiaAI',
@@ -78,7 +78,7 @@ export const extraUiEl = {
     humanWord: 'Άνθρωπος',
     subText: 'Υποστηρίζουμε τα χέρια που φροντίζουν με ανθρωποκεντρικές εφαρμογές Τεχνητής Νοημοσύνης',
     missionLine: 'Πώς;',
-    missionLineBold: 'Συνεργαζόμαστε με ΜΚΟ, Οργανισμούς και επαγγελματίες υγείας για να συνδημιουργήσουμε το οικοσύστημα υποστήριξης των ασθενών του μέλλοντος, με την αιχμή της τεχνολογίας του σήμερα: Την Pyxida',
+    missionLineBold: 'Συνεργαζόμαστε με ΜΚΟ, Οργανισμούς και επαγγελματίες υγείας για να συνδημιουργήσουμε το οικοσύστημα υποστήριξης των ασθενών του μέλλοντος, με την αιχμή της τεχνολογίας του σήμερα: Την DialogosAI',
     careVisualAlt: 'Δύο άνθρωποι — ο ένας στηρίζει τον άλλον',
     ctaPrimary: 'Δείτε πώς δουλεύει',
     ctaSecondary: 'Κλείστε demo',
@@ -86,21 +86,21 @@ export const extraUiEl = {
   },
   midCta: {
     bodyBefore: 'Δοκιμάστε το',
-    brand: 'Pyxida',
+    brand: 'DialogosAI',
     bodyAfter: 'στον οργανισμό σας. 30 λεπτά αρκούν για να δείτε πώς λειτουργεί.',
     cta: 'Προγραμματίστε Demo',
   },
   homePyxidaOffer: {
     titleBefore: 'Τι παίρνετε με το',
-    titleBrand: 'Pyxida',
-    modulesTitle: 'Ενότητες πάνω ση Pyxida',
+    titleBrand: 'DialogosAI',
+    modulesTitle: 'Ενότητες πάνω ση DialogosAI',
     modulesDesc: 'Προσθέστε ό,τι χρειάζεστε — κάθε module επεκτείνει την ίδια βάση.',
     cta: 'Ρίξτε μια καλύτερη ματιά',
   },
   enterpriseCta: {
     title: 'Είστε έτοιμοι να ξεκινήσετε;',
     leadBefore: 'Μαζί, φέρνουμε την Τεχνητή Νοημοσύνη στα μέτρα του οργανισμού σας. Προσαρμόστε σήμερα το',
-    brand: 'Pyxida',
+    brand: 'DialogosAI',
     leadAfter: 'στις πραγματικές ανάγκες των χρηστών σας.',
     cta: 'Κλείστε ένα Demo',
   },
@@ -259,7 +259,7 @@ export const extraUiEl = {
     principlesTitle: 'Οι Αρχές μας',
     principlesSub: 'Τέσσερις αρχές που καθορίζουν κάθε απόφαση που παίρνουμε.',
     missionTitle: 'Η Αποστολή μας',
-    missionText: 'Δεν σχεδιάζουμε μία απλή μηχανή απαντήσεων. Δημιουργήσαμε η Pyxida — ανθρωποκεντρική βοηθό που αναπτύσσει αυθεντικό, ασφαλή και προσαρμοσμένο διάλογο με τους ασθενείς, με σεβασμό στην ελληνική γλώσσα, την προσβασιμότητα για όλες και όλους, αναλαμβάνοντας την ευθύνη της χρήσης της τεχνολογίας που συνδράμει σε πραγματικές ανάγκες.',
+    missionText: 'Δεν σχεδιάζουμε μία απλή μηχανή απαντήσεων. Δημιουργήσαμε ο DialogosAI — ανθρωποκεντρική βοηθό που αναπτύσσει αυθεντικό, ασφαλή και προσαρμοσμένο διάλογο με τους ασθενείς, με σεβασμό στην ελληνική γλώσσα, την προσβασιμότητα για όλες και όλους, αναλαμβάνοντας την ευθύνη της χρήσης της τεχνολογίας που συνδράμει σε πραγματικές ανάγκες.',
     missionCta: 'Κλείστε ένα Demo',
     terminalFile: 'mission_statement.txt',
     team: [
@@ -448,7 +448,7 @@ export const extraUiEl = {
 
 export const extraUiEn = {
   nav: {
-    ypodochi: 'Pyxida',
+    ypodochi: 'fλow',
     demo: 'Demo',
     services: 'Services',
     team: 'Our team',
@@ -460,7 +460,7 @@ export const extraUiEn = {
   },
   pageTitles: {
     home: 'SimasiaAI — The Human Standard',
-    ypodochi: 'Pyxida · SimasiaAI',
+    ypodochi: 'fλow · SimasiaAI',
     demo: 'Book a Demo · SimasiaAI',
     team: 'Our team · SimasiaAI',
     news: 'News & Articles · SimasiaAI',
@@ -522,7 +522,7 @@ export const extraUiEn = {
     humanWord: 'Standard',
     subText: 'We support the hands that care with human-centered Artificial Intelligence applications',
     missionLine: 'How?',
-    missionLineBold: 'We collaborate with NGOs, Organizations and healthcare professionals to co-create the patient support ecosystem of the future, with today\'s cutting-edge technology: Pyxida',
+    missionLineBold: 'We collaborate with NGOs, Organizations and healthcare professionals to co-create the patient support ecosystem of the future, with today\'s cutting-edge technology: DialogosAI',
     careVisualAlt: 'Two people — one supporting the other',
     ctaPrimary: 'See how it works',
     ctaSecondary: 'Book demo',
@@ -530,21 +530,21 @@ export const extraUiEn = {
   },
   midCta: {
     bodyBefore: 'Try',
-    brand: 'Pyxida',
+    brand: 'DialogosAI',
     bodyAfter: 'in your organization. 30 minutes is enough to see how it works.',
     cta: 'Schedule a Demo',
   },
   homePyxidaOffer: {
     titleBefore: 'What you get with',
-    titleBrand: 'Pyxida',
-    modulesTitle: 'Modules on top of Pyxida',
+    titleBrand: 'DialogosAI',
+    modulesTitle: 'Modules on top of DialogosAI',
     modulesDesc: 'Add what you need — each module extends the same base.',
     cta: 'Have a better look',
   },
   enterpriseCta: {
     title: 'Ready to get started?',
     leadBefore: 'Together, we bring AI to the scale of your organization. Adapt',
-    brand: 'Pyxida',
+    brand: 'DialogosAI',
     leadAfter: 'today to the real needs of your users.',
     cta: 'Book a Demo',
   },
@@ -714,7 +714,7 @@ export const extraUiEn = {
     principlesTitle: 'Our Principles',
     principlesSub: 'Four principles that shape every decision we make.',
     missionTitle: 'Our Mission',
-    missionText: 'We do not design a simple answering machine. We built Pyxida — a human-centered assistant that develops authentic, safe, adapted dialogue with patients, with respect for the Greek language, accessibility for everyone, and responsibility for technology that serves real needs.',
+    missionText: 'We do not design a simple answering machine. We built DialogosAI — a human-centered assistant that develops authentic, safe, adapted dialogue with patients, with respect for the Greek language, accessibility for everyone, and responsibility for technology that serves real needs.',
     missionCta: 'Book a Demo',
     terminalFile: 'mission_statement.txt',
     team: [

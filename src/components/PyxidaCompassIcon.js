@@ -3,7 +3,7 @@ import React from 'react';
 const INK = '#141413';
 
 /**
- * Comic Pyxida compass — interior ink only (face, needle, hub, ticks). No outer ring.
+ * Comic DialogosAI compass — interior ink only (face, needle, hub, ticks). No outer ring.
  */
 const PyxidaCompassIcon = ({ className = '', idSuffix = 'icon', needleRotate = -22, size }) => {
   const uid = `pyxida-comic-${idSuffix}`;

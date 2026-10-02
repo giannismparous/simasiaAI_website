@@ -113,7 +113,7 @@ const AudienceGate = ({ onSelect }) => {
       <motion.div className="pag-gate-strip"
         initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease, delay: 0.05 }}>
-        <span className="pag-strip-label">Pyxida</span>
+        <span className="pag-strip-label">DialogosAI</span>
 
       </motion.div>
 
@@ -124,7 +124,7 @@ const AudienceGate = ({ onSelect }) => {
 
         <div className="pag-vert-divider" aria-hidden="true">
           <div className="pag-vert-line" />
-          <span className="pag-vert-word">Pyxida</span>
+          <span className="pag-vert-word">DialogosAI</span>
           <div className="pag-vert-line" />
         </div>
 
@@ -269,7 +269,7 @@ const YpodochiFaqItem = ({ item, index, isOpen, onToggle }) => (
   </div>
 );
 
-/* ── Main Pyxida Content (same for both markets for now) ─────────────── */
+/* ── Main DialogosAI Content (same for both markets for now) ─────────────── */
 const PyxidaContent = ({ market }) => {
   const { t } = useTranslation();
   const [openFaq, setOpenFaq] = useState(-1);

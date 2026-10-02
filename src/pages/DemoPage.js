@@ -142,7 +142,7 @@ const DemoPage = () => {
     if (offerMode === 'other') return t('demoPage.offerOther');
 
     const pyxidaTier = tiers.find((tier) => tier.productKind === 'pyxida');
-    const parts = [pyxidaTier?.verb || 'Pyxida'];
+    const parts = [pyxidaTier?.verb || 'DialogosAI'];
 
     selectedModules.forEach((id) => {
       const tier = tiers.find((item) => item.id === id);

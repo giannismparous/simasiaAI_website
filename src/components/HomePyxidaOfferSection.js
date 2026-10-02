@@ -7,7 +7,7 @@ import ModuleVisual, { VisualStage } from './PraxiModuleVisuals';
 import './OfferLadderSection.css';
 import './HomePyxidaOfferSection.css';
 
-const PYXIDA_NAME = 'Pyxida';
+const PYXIDA_NAME = 'DialogosAI';
 
 const moduleIndexLabel = (prefix, index) => `${prefix || 'Module'} ${index + 1}`;
 

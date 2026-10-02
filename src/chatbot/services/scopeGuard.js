@@ -568,7 +568,7 @@ export function withContactFormSource(sources, language = 'el') {
 }
 
 const NAV_PAGE_LABELS = {
-  '/ypodochi': { el: 'Δείτε το Pyxida', en: 'Explore Pyxida' },
+  '/ypodochi': { el: 'Δείτε ο DialogosAI', en: 'Explore DialogosAI' },
   '/collaborations': { el: 'Δείτε τις συνεργασίες', en: 'View collaborations' },
   '/team': { el: 'Γνωρίστε την ομάδα', en: 'Meet the team' },
   '/news': { el: 'Νέα & άρθρα', en: 'News & articles' },
