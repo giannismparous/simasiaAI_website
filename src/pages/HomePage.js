@@ -1,26 +1,17 @@
 import React from 'react';
-import ForbesHero from '../components/ForbesHero';
+import FlowHome from '../components/flow/FlowHome';
 import LiveDemoSection from '../components/LiveDemoSection';
 import PartnershipsSection from '../components/PartnershipsSection';
-import EnterpriseCTA from '../components/EnterpriseCTA';
 
+// fλow is the main product. Pyxida is its assistant: the live Pyxida demo
+// sits right after "how it works", and the partnerships prove it in the field.
 const HomePage = () => {
   return (
-    <>
-      {/* 1. Hero with logo */}
-      <ForbesHero />
-
-      {/* 2. Pyxida conversation demo */}
-      <LiveDemoSection brandName="Pyxida" brandShort="Pyxida" conversationTitle />
-
-      {/* 3. Collaborations — trust section */}
-      <PartnershipsSection />
-
-      {/* 4. CTA */}
-      <EnterpriseCTA />
-    </>
+    <FlowHome
+      afterHow={<LiveDemoSection brandName="Pyxida" brandShort="Pyxida" conversationTitle />}
+      afterInsights={<PartnershipsSection />}
+    />
   );
 };
 
 export default HomePage;
-
