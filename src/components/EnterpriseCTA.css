@@ -85,3 +85,10 @@
     text-align: center;
   }
 }
+
+.enterprise-cta-buttons { align-items: center; }
+.enterprise-cta .btn-cta-secondary { min-height: 52px; display: inline-flex; align-items: center; border-radius: 999px; padding: 0 1.6rem; font-size: 0.95rem; }
+.enterprise-cta-reassure { list-style: none; margin: 1.6rem 0 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.4rem 1.4rem; font-family: var(--font-sans); font-size: 0.85rem; color: rgba(255, 255, 255, 0.55); }
+.enterprise-cta-reassure li::before { content: '✓'; color: #9fb383; margin-right: 0.45rem; }
+.enterprise-cta-mail { display: inline-block; margin-top: 1.2rem; font-family: var(--font-sans); font-size: 0.85rem; color: rgba(255, 255, 255, 0.45); text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
+.enterprise-cta-mail:hover { color: #fff; }

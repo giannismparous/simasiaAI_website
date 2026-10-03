@@ -1,16 +1,18 @@
 import React from 'react';
 import ForbesHero from '../components/ForbesHero';
 import EnterpriseCTA from '../components/EnterpriseCTA';
-import { FlowTeaser, FlowProof, PressStrip } from '../components/flow/FlowHomeBlocks';
+import { FlowTeaser, FlowProof, PressBand } from '../components/flow/FlowHomeBlocks';
 
 // Home keeps the company's voice (Μέτρο μας ο Άνθρωπος) and introduces fλow as an idea:
-// chaos → λ → calm, three doors into the builder, then proof and press.
+// noise → λ → calm, three doors into /go, the organisations already in flow,
+// one calm closing invitation, and the press just above the footer.
 const HomePage = () => (
   <>
-    <ForbesHero bottom={<div className="flh-hero-press"><div className="flh-in"><PressStrip /></div></div>} />
+    <ForbesHero />
     <FlowTeaser />
     <FlowProof />
     <EnterpriseCTA />
+    <PressBand />
   </>
 );
 

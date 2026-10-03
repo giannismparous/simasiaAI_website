@@ -1,2 +1,16 @@
 /* App-level styles - can be empty if all styles are in components */
 
+
+/* "Go with the fλow" button, used across the site. Paper pill on dark, ink pill on light. */
+.go-l { color: #d97757; }
+.go-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 52px; padding: 0 28px; border-radius: 999px;
+  background: #faf9f5; color: #141413 !important; border: 1.5px solid #faf9f5;
+  font-family: var(--font-sans, 'Inter', sans-serif); font-weight: 700; font-size: 16px; letter-spacing: -.005em;
+  text-decoration: none; cursor: pointer; transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.go-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -12px rgba(217, 119, 87, .55); }
+.go-btn.is-ink { background: #141413; color: #faf9f5 !important; border-color: #141413; }
+.go-btn.is-ink:hover { background: #2a2a28; }
+@media (prefers-reduced-motion: reduce) { .go-btn:hover { transform: none; } }

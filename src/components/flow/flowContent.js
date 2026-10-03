@@ -7,17 +7,17 @@ export const flowContent = {
   el: {
     hero: {
       by: 'της SimasiaAI',
-      title: 'Η φροντίδα να ρέει.',
+      title: 'Πολύπλευρη Φροντίδα με ροή.',
       sub: [
-        ['Ο DialogosAI', ' απαντά στους ανθρώπους σας, μέρα και νύχτα. '],
-        ['Ο PraxisAI', ' κρατά τον φάκελο και θυμάται ό,τι λήγει. '],
-        ['', 'Μαζί, η μέρα σας κυλά πιο ήσυχα.'],
+        ['Το DialogosAI', ' απαντά στους ανθρώπους σας, μέρα και νύχτα. '],
+        ['Το PraxisAI', ' κρατά όλες τις πληροφορίες συγκεντρωμένες. '],
+        ['', 'Διάλογος και πράξη είναι συνδεδεμένα. Μαζί, η μέρα σας κυλά πιο ήσυχα. Κυλάει με ροή.'],
       ],
       cta: 'Φτιάξτε το fλow σας',
       link: 'Δείτε μια μέρα με fλow',
       aria: 'Δύο ρεύματα, ο Λόγος (DialogosAI) και η Πράξη (PraxisAI), ενώνονται σε σχήμα λ και γίνονται ένα ήρεμο ποτάμι. Χάρτινα καραβάκια μεταφέρουν ερωτήσεις που φτάνουν ως απαντήσεις.',
-      logos: ['Λόγος', 'Ο DialogosAI απαντά'],
-      praxis: ['Πράξη', 'Ο PraxisAI θυμάται'],
+      logos: ['Λόγος', 'Το DialogosAI απαντά'],
+      praxis: ['Πράξη', 'Το PraxisAI θυμάται'],
       roi: ['Ροή', 'μία ήσυχη μέρα'],
       boats: [
         { q: 'Πώς ήταν σήμερα ο Νίκος;', a: 'Ήρεμος. Έφτιαξε ένα βάζο στην κεραμική.' },
@@ -67,7 +67,7 @@ export const flowContent = {
         {
           id: 'sofia', name: 'Κυρία Σοφία', role: 'Μητέρα του Νίκου',
           before: 'Δεν θέλει να ενοχλεί, αλλά ανησυχεί. Παίρνει τηλέφωνο, ζητά συγγνώμη, ξαναπαίρνει.',
-          after: 'Ξέρει πώς πέρασε η μέρα πριν ρωτήσει. Όταν έχει απορία, ο DialogosAI απαντά αμέσως.',
+          after: 'Ξέρει πώς πέρασε η μέρα πριν ρωτήσει. Όταν έχει απορία, το DialogosAI απαντά αμέσως.',
         },
       ],
     },
@@ -88,7 +88,7 @@ export const flowContent = {
       joint: {
         word: 'Ροή', name: 'fλow',
         gate: 'Έγκριση από άνθρωπο',
-        items: ['Ενημερώσεις οικογενειών που εγκρίνατε', 'Ο DialogosAI ξέρει «πώς ήταν σήμερα»', 'Insights: τι ρωτούν και τι λείπει'],
+        items: ['Ενημερώσεις οικογενειών που εγκρίνατε', 'Το DialogosAI ξέρει «πώς ήταν σήμερα»', 'MetronAI: τι ρωτούν και τι λείπει'],
       },
     },
 
@@ -147,7 +147,7 @@ export const flowContent = {
           ['Η βεβαιότητα', 'Δουλεύει ήδη σε δύο οργανισμούς. Εγγύηση 90% ακρίβειας, αλλιώς δεν πληρώνετε.'],
         ],
         bottom: [
-          ['Ο χρόνος αναμονής', 'Ο DialogosAI απαντά από τις πρώτες 48 ώρες.'],
+          ['Ο χρόνος αναμονής', 'Το DialogosAI απαντά από τις πρώτες 48 ώρες.'],
           ['Ο κόπος σας', 'Μία κλήση 45 λεπτών. Τα υπόλοιπα τα κάνουμε εμείς.'],
         ],
         caption: 'Η αξία μεγαλώνει όταν τα πάνω ανεβαίνουν και τα κάτω μικραίνουν.',
@@ -187,13 +187,16 @@ export const flowContent = {
         ['Μιλά μόνο από ό,τι εγκρίνατε.', 'Με παραπομπή στην πηγή. Όταν δεν ξέρει, το λέει.'],
         ['Τίποτα δεν φεύγει χωρίς άνθρωπο.', 'Κάθε ενημέρωση προς οικογένεια περνά από έγκριση.'],
         ['Ποτέ ιατρική συμβουλή.', 'Ούτε διάγνωση, ούτε αλλαγή αγωγής. Τα επείγοντα πάνε σε άνθρωπο.'],
-        ['Σύμφωνο με EU AI Act και GDPR.', 'Δηλώνει ότι είναι AI. Τα δεδομένα μένουν στην ΕΕ.'],
+        ['Σύμφωνο με EU AI Act και GDPR.', 'Δηλώνει ότι είναι AI. Τα δεδομένα μένουν στην ΕΕ. Η συμμόρφωση είναι η πρώτη μας προτεραιότητα.'],
+        ['Νομικός συνεργάτης σε κάθε έργο.', 'Συνεργαζόμενη νομική εταιρεία αξιολογεί ξεχωριστά κάθε υλοποίηση, πριν βγει στους ανθρώπους σας.'],
+        ['Ελέγχουμε την ακρίβεια, κάθε μήνα.', 'Κανένα σύστημα AI δεν είναι αλάθητο. Γι\' αυτό: τεστ αποδοχής πριν το live, μηνιαίο τεστ μετά, και σαφής ενημέρωση των χρηστών.'],
       ],
+      termsLink: 'Ακρίβεια απαντήσεων: τι ισχύει',
     },
 
     final: {
-      title: 'Ας δούμε πού κολλάει η ροή σας.',
-      lead: 'Στέλνουμε στην ομάδα σας ένα ερωτηματολόγιο 5 λεπτών. Σας επιστρέφουμε έναν χάρτη: πού χάνονται ώρες, τι ρωτούν οι άνθρωποί σας, τι πρόκειται να λήξει. Δωρεάν, χωρίς δέσμευση.',
+      title: 'Ας δούμε πού εμποδίζεται η ροή σας.',
+      lead: 'Έξι ερωτήσεις, δύο λεπτά. Βλέπετε αμέσως πού χάνεται χρόνος και από πού αξίζει να ξεκινήσετε. Αν θέλετε, σας στέλνουμε τον πλήρη χάρτη για όλη την ομάδα σας. Δωρεάν, χωρίς δέσμευση.',
       build: 'Φτιάξτε το fλow σας',
       cta: 'ή κλείστε 30 λεπτά μαζί μας',
       mail: 'ή γράψτε μας στο',
@@ -203,11 +206,11 @@ export const flowContent = {
   en: {
     hero: {
       by: 'by SimasiaAI',
-      title: 'Let care flow.',
+      title: 'Many-sided care, in flow.',
       sub: [
         ['DialogosAI', ' answers your people, day and night. '],
-        ['PraxisAI', ' keeps the case file and remembers what expires. '],
-        ['', 'Together, your day runs quieter.'],
+        ['PraxisAI', ' keeps all your information in one place. '],
+        ['', 'Dialogue and action are connected. Together, your day runs more quietly. It runs in flow.'],
       ],
       cta: 'Build your fλow',
       link: 'See a day with fλow',
@@ -250,7 +253,7 @@ export const flowContent = {
       lead: 'Two tools that work on their own. Joined, each knows what the other does, and nothing leaves without a person.',
       logos: { name: 'DialogosAI', word: 'Logos', line: 'Talks with your people.', items: ['Answers 24/7 on your site, Viber and WhatsApp', 'Only from your approved sources', 'Says "I don\'t know" and calls you in when needed', 'Understands Greeklish and hurried messages'] },
       praxis: { name: 'PraxisAI', word: 'Praxis', line: 'Holds your team\'s work.', items: ['A file for every person, on phone and desktop', 'Log by tap or by voice', 'Remembers every expiry, 60, 30 and 7 days ahead', 'Funder and grant reports in one click'] },
-      joint: { word: 'Flow', name: 'fλow', gate: 'Human approval', items: ['Family updates you approved', 'DialogosAI knows "how today was"', 'Insights: what people ask and what is missing'] },
+      joint: { word: 'Flow', name: 'fλow', gate: 'Human approval', items: ['Family updates you approved', 'DialogosAI knows "how today was"', 'MetronAI: what people ask and what is missing'] },
     },
     day: { title: 'The same day, at a different pace', lead: 'Tap to see the difference. The moments are the same; what changes is how much they shake you.', toggle: ['Today', 'With fλow'], aria: 'A line of the day from 8am to 8pm. Without fλow it is turbulent, with fλow it is smooth.' },
     editions: { aria: 'Type of organisation', ngo: 'NGOs and care services', med: 'Practices and clinics' },
@@ -309,11 +312,12 @@ export const flowContent = {
     },
     trust: {
       title: 'AI assists. People decide.',
-      items: [['It only speaks from what you approved.', 'With a source. When it doesn\'t know, it says so.'], ['Nothing leaves without a person.', 'Every family update goes through approval.'], ['Never medical advice.', 'No diagnosis, no treatment changes. Urgent cases go to a person.'], ['EU AI Act and GDPR compliant.', 'It says it is AI. Data stays in the EU.']],
+      items: [['It only speaks from what you approved.', 'With a source. When it doesn\'t know, it says so.'], ['Nothing leaves without a person.', 'Every family update goes through approval.'], ['Never medical advice.', 'No diagnosis, no treatment changes. Urgent cases go to a person.'], ['EU AI Act and GDPR compliant.', 'It says it is AI. Data stays in the EU. Compliance is our first priority.'], ['A legal partner on every project.', 'A partner law firm reviews every implementation separately, before it reaches your people.'], ['We check accuracy, every month.', 'No AI system is infallible. So: an acceptance test before going live, a monthly test after, and clear notice to users.']],
+      termsLink: 'Answer accuracy: what applies',
     },
     final: {
-      title: 'Let\'s see where your flow gets stuck.',
-      lead: 'We send your team a 5-minute survey and return a map: where hours are lost, what your people ask, what is about to expire. Free, no commitment.',
+      title: 'Let\'s see where your flow is blocked.',
+      lead: 'Six questions, two minutes. You see straight away where time is lost and where it is worth starting. If you like, we send you the full map for your whole team. Free, no commitment.',
       build: 'Build your fλow',
       cta: 'or book 30 minutes with us', mail: 'or write to us at',
     },
@@ -326,7 +330,7 @@ export const editions = {
     ngo: {
       day: [
         ['08:00', 'Η βάρδια ψάχνει σημειώσεις σε τετράδια', 'Η παράδοση βάρδιας είναι σε μία οθόνη', 0.7],
-        ['10:30', 'Τρία τηλέφωνα «πώς είναι;», η δουλειά σταματά', 'Ο DialogosAI απαντά από την εγκεκριμένη σύνοψη', 0.9],
+        ['10:30', 'Τρία τηλέφωνα «πώς είναι;», η δουλειά σταματά', 'Το DialogosAI απαντά από την εγκεκριμένη σύνοψη', 0.9],
         ['13:00', 'Χρειάζεται μια αλλεργία, ο φάκελος είναι στο γραφείο', 'Αγωγή και αλλεργίες με ένα πάτημα', 0.6],
         ['16:00', 'Μια πιστοποίηση αναπηρίας έληξε χωρίς να το δει κανείς', 'Η υπενθύμιση ήρθε 60 μέρες πριν', 1],
         ['18:30', 'Η αναφορά για τον χορηγό, δύο βράδια σε Excel', 'Η μηνιαία αναφορά βγαίνει μόνη της', 0.8],
@@ -334,9 +338,9 @@ export const editions = {
       th: [['Πιστοποίηση ΚΕΠΑ', 31], ['Επιδόματα ΟΠΕΚΑ', 22], ['Ραντεβού και νοσοκομεία', 17], ['Ψυχολογική στήριξη', 12], ['Δωρεές και εθελοντισμός', 8]],
       nd: [['Μεταφορά προς θεραπείες', 14], ['Ομάδες στήριξης γονέων', 9], ['Φροντίδα το Σαββατοκύριακο', 6]],
       plans: [
-        { n: 'Πλοηγός', f: 'Ο DialogosAI στο site σας, για το πρώτο βήμα', m: 119, s: '2.400 €', w: '3.550 € + 135 €/μήνα', h: ['Μαθαίνει από τα έγγραφά σας', 'Οδηγός δικαιωμάτων και παροχών', 'Widget και QR για τα έντυπα'], x: ['Απαντήσεις μόνο από εγκεκριμένες πηγές', 'Πρωτόκολλο κρίσης, καμία ιατρική συμβουλή', 'AI Act, GDPR, προσβασιμότητα', 'Βασικά στατιστικά', '1 εκπαίδευση, 30 μέρες δίπλα σας'] },
-        { n: 'Πλοηγός Insights', f: 'Για συλλόγους ασθενών και ΜΚΟ με χορηγούς', m: 179, s: '2.900 €', w: '4.450 € + 255 €/μήνα', rec: true, h: ['Όλα του Πλοηγού', 'Viber ή Messenger, δεύτερη γλώσσα', 'Insights και μηνιαία αναφορά για χορηγούς'], x: ['Θέματα ερωτήσεων και τάσεις', 'Οι αναπάντητες ερωτήσεις ως ανάγκες', 'Ανάλυση διάθεσης και κρίσεων', 'Μηνιαίο τεστ ακρίβειας', '2 εκπαιδεύσεις, 90 μέρες δίπλα σας'] },
-        { n: 'Φροντίδα', f: 'Ολόκληρο το fλow, για δομές με ανθρώπους κάθε μέρα', m: 249, s: '4.500 €', w: '6.900 € + 495 €/μήνα', h: ['Όλα του Πλοηγού Insights', 'PraxisAI: φάκελοι, καταγραφή, λήξεις', 'Ενημερώσεις οικογενειών με έγκριση'], x: ['Κάρτα βάρδιας: αγωγή, αλλεργίες', 'Καταγραφή με κουμπιά ή φωνή', 'Δωρητές, εθελοντές, μαζικά μηνύματα', 'Μεταφορά δεδομένων έως 40 ατόμων', '3 εκπαιδεύσεις, 1 δια ζώσης'] },
+        { n: 'Πλοηγός', f: 'Το DialogosAI στο site σας, για το πρώτο βήμα', m: 119, s: '2.400 €', w: '3.550 € + 135 €/μήνα', h: ['Μαθαίνει από τα έγγραφά σας', 'Οδηγός δικαιωμάτων και παροχών', 'Widget και QR για τα έντυπα'], x: ['Απαντήσεις μόνο από εγκεκριμένες πηγές', 'Πρωτόκολλο κρίσης, καμία ιατρική συμβουλή', 'AI Act, GDPR, προσβασιμότητα', 'Βασικά στατιστικά', '1 εκπαίδευση, 30 μέρες δίπλα σας'] },
+        { n: 'Πλοηγός + MetronAI', f: 'Για συλλόγους ασθενών και ΜΚΟ με χορηγούς', m: 179, s: '2.900 €', w: '4.450 € + 255 €/μήνα', rec: true, h: ['Όλα του Πλοηγού', 'Viber ή Messenger, δεύτερη γλώσσα', 'MetronAI και μηνιαία αναφορά για χορηγούς'], x: ['Θέματα ερωτήσεων και τάσεις', 'Οι αναπάντητες ερωτήσεις ως ανάγκες', 'Ανάλυση διάθεσης και κρίσεων', 'Μηνιαίο τεστ ακρίβειας', '2 εκπαιδεύσεις, 90 μέρες δίπλα σας'] },
+        { n: 'Φροντίδα', f: 'Ολόκληρο το fλow, για δομές με ανθρώπους κάθε μέρα', m: 249, s: '4.500 €', w: '6.900 € + 495 €/μήνα', h: ['Όλα του Πλοηγού + MetronAI', 'PraxisAI: φάκελοι, καταγραφή, λήξεις', 'Ενημερώσεις οικογενειών με έγκριση'], x: ['Κάρτα βάρδιας: αγωγή, αλλεργίες', 'Καταγραφή με κουμπιά ή φωνή', 'Δωρητές, εθελοντές, μαζικά μηνύματα', 'Μεταφορά δεδομένων έως 40 ατόμων', '3 εκπαιδεύσεις, 1 δια ζώσης'] },
       ],
     },
     med: {
@@ -344,14 +348,14 @@ export const editions = {
         ['08:00', 'Τέσσερις αναπάντητες κλήσεις από χθες βράδυ', 'Τα ραντεβού έκλεισαν τη νύχτα, στο Viber', 0.8],
         ['09:30', 'Ο ασθενής γράφει ιστορικό στην αναμονή', 'Το ερωτηματολόγιο ήρθε συμπληρωμένο από χθες', 0.6],
         ['12:00', 'Μια ακύρωση αφήνει κενό μισή ώρα', 'Η λίστα αναμονής το γέμισε', 0.9],
-        ['15:00', 'Ερωτήσεις για ΕΟΠΥΥ ενώ εξετάζετε', 'Ο DialogosAI απάντησε από τον τιμοκατάλογό σας', 0.7],
+        ['15:00', 'Ερωτήσεις για ΕΟΠΥΥ ενώ εξετάζετε', 'Το DialogosAI απάντησε από τον τιμοκατάλογό σας', 0.7],
         ['19:00', 'Οι ετήσιοι έλεγχοι ξεχνιούνται', 'Το recall έφυγε με σύνδεσμο για ραντεβού', 1],
       ],
       th: [['Ραντεβού και διαθεσιμότητα', 38], ['Τιμές και ΕΟΠΥΥ', 21], ['Προετοιμασία εξετάσεων', 16], ['Αποτελέσματα', 14], ['Επανάληψη συνταγής', 11]],
       nd: [['Ραντεβού Σάββατο πρωί', 22], ['Τηλεϊατρική', 11], ['Αγγλικά για επισκέπτες', 7]],
       // Mirrors /ypodochi (live). m = monthly, a = monthly when billed annually.
       plans: [
-        { n: 'Απαντάει', f: 'Ο DialogosAI με βασικό CRM. Η βάση, όλα ξεκινούν εδώ.', m: 199, a: 149, s: '490 €, δωρεάν με ετήσια', w: '≈ 4.700 €', rec: true, h: ['Live σε 48 ώρες', 'Απαντά 24/7, και σε Greeklish', 'ΕΟΠΥΥ, παραπεμπτικά, συμμετοχές'], x: ['Μιλά μόνο από την επαληθευμένη βάση σας', 'Ποτέ διάγνωση· τα επείγοντα πάνε στο τηλέφωνο', 'Αιτήματα ραντεβού στο γραφείο σας αμέσως', 'Μηνιαία αναφορά: τι ρωτούν, τι λείπει', 'Πλήρες πακέτο GDPR και EU AI Act'] },
+        { n: 'Απαντάει', f: 'Το DialogosAI με βασικό CRM. Η βάση, όλα ξεκινούν εδώ.', m: 199, a: 149, s: '490 €, δωρεάν με ετήσια', w: '≈ 4.700 €', rec: true, h: ['Live σε 48 ώρες', 'Απαντά 24/7, και σε Greeklish', 'ΕΟΠΥΥ, παραπεμπτικά, συμμετοχές'], x: ['Μιλά μόνο από την επαληθευμένη βάση σας', 'Ποτέ διάγνωση· τα επείγοντα πάνε στο τηλέφωνο', 'Αιτήματα ραντεβού στο γραφείο σας αμέσως', 'Μηνιαία αναφορά: τι ρωτούν, τι λείπει', 'Πλήρες πακέτο GDPR και EU AI Act'] },
         { n: 'Κλείνει', f: 'Συν ραντεβού και κανάλια', m: 249, a: 199, s: '490 €, δωρεάν με ετήσια', h: ['Κλείνει, αλλάζει, ακυρώνει στο ημερολόγιο', 'WhatsApp, Viber, Instagram, Facebook', 'Πολλοί γιατροί, σωστό ημερολόγιο'], x: ['Έντυπα εγγραφής μόλις κλειστεί ραντεβού'] },
         { n: 'Φέρνει πίσω', f: 'Συν ανάκτηση ασθενών', m: 299, a: 249, s: '490 €, δωρεάν με ετήσια', h: ['Αναπάντητη κλήση, αμέσως SMS ή Viber', 'Υπενθυμίσεις 24 ώρες πριν', 'Recall και επανενεργοποίηση'], x: ['Γνώμη ιδιωτικά πριν το Google review', 'Οδηγίες μετά από κάθε πράξη', 'Μαζικές ενημερώσεις με ένα κλικ'] },
         { n: 'Σηκώνει το τηλέφωνο', f: 'Συν ζωντανή φωνή', m: 399, a: 299, s: '490 €, δωρεάν με ετήσια', h: ['Ζωντανή φωνή στον αριθμό σας, 24/7', 'Φιλτράρει spam και πωλητές', 'Το voicemail γίνεται απάντηση'], x: [] },
@@ -371,8 +375,8 @@ export const editions = {
       nd: [['Transport to therapy', 14], ['Parent support groups', 9], ['Weekend care', 6]],
       plans: [
         { n: 'Navigator', f: 'DialogosAI on your site, as a first step', m: 119, s: '€2,400', w: '€3,550 + €135/month', h: ['Learns from your documents', 'Rights and benefits guide', 'Widget and QR for print'], x: ['Answers only from approved sources', 'Crisis protocol, no medical advice', 'AI Act, GDPR, accessibility', 'Basic statistics', '1 training, 30 days alongside you'] },
-        { n: 'Navigator Insights', f: 'For patient associations and funded NGOs', m: 179, s: '€2,900', w: '€4,450 + €255/month', rec: true, h: ['Everything in Navigator', 'Viber or Messenger, second language', 'Insights and a monthly funder report'], x: ['Question themes and trends', 'Unanswered questions as needs', 'Sentiment and crisis analysis', 'Monthly accuracy test', '2 trainings, 90 days alongside you'] },
-        { n: 'Care', f: 'The whole fλow, for services with people every day', m: 249, s: '€4,500', w: '€6,900 + €495/month', h: ['Everything in Navigator Insights', 'PraxisAI: files, logging, expiries', 'Family updates with approval'], x: ['Shift card: medication, allergies', 'Log by tap or voice', 'Donors, volunteers, bulk messages', 'Data migration for up to 40 people', '3 trainings, 1 on site'] },
+        { n: 'Navigator + MetronAI', f: 'For patient associations and funded NGOs', m: 179, s: '€2,900', w: '€4,450 + €255/month', rec: true, h: ['Everything in Navigator', 'Viber or Messenger, second language', 'MetronAI and a monthly funder report'], x: ['Question themes and trends', 'Unanswered questions as needs', 'Sentiment and crisis analysis', 'Monthly accuracy test', '2 trainings, 90 days alongside you'] },
+        { n: 'Care', f: 'The whole fλow, for services with people every day', m: 249, s: '€4,500', w: '€6,900 + €495/month', h: ['Everything in Navigator + MetronAI', 'PraxisAI: files, logging, expiries', 'Family updates with approval'], x: ['Shift card: medication, allergies', 'Log by tap or voice', 'Donors, volunteers, bulk messages', 'Data migration for up to 40 people', '3 trainings, 1 on site'] },
       ],
     },
     med: {

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ClinicIllustration, NgoIllustration } from '../GateIllustrations';
 import { sendContactEmail } from '../../services/emailService';
@@ -11,7 +11,7 @@ const euroCents = (n, lang) => { const v = new Intl.NumberFormat(lang === 'en' ?
 import './FlowBuilder.css';
 
 /*
- * /flow/build: a visitor builds their own fλow and gets an offer.
+ * /go: a visitor builds their own fλow and gets an offer.
  * Left: five short steps. Right: the live flow (what hurts today on the left,
  * the λ in the middle, what they chose on the right) and the price.
  */
@@ -117,7 +117,8 @@ const Chip = ({ on, onClick, children }) => (
   <button type="button" className={`flb-chip${on ? ' is-on' : ''}`} aria-pressed={on} onClick={onClick}>{children}</button>
 );
 
-const FlowBuilder = () => {
+const FlowBuilder = ({ onSummary }) => {
+  const navigate = useNavigate();
   const { language } = useLanguage();
   const lang = language === 'en' ? 'en' : 'el';
   const c = builderCopy[lang];
@@ -186,6 +187,10 @@ const FlowBuilder = () => {
     return lines.join('\n');
   };
 
+  // hand the current flow to the page (attached to a booking or message, if the visitor wants)
+  const summaryText = aud && offer ? offerText() : '';
+  useEffect(() => { if (onSummary) onSummary(summaryText); }, [summaryText, onSummary]);
+
   const submit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.consent) { setStatus({ state: 'invalid', mailto: '' }); return; }
@@ -242,7 +247,10 @@ const FlowBuilder = () => {
     <div className="flb" data-aud={aud || 'none'}>
       <header className="flb-head">
         <div className="flb-in">
-          <p className="flb-mark">f<span>λ</span>ow</p>
+          <div className="flb-topbar">
+            <button type="button" className="flb-back" onClick={() => { if (window.history.state && window.history.state.idx > 0) navigate(-1); else navigate('/'); }}>← {c.back}</button>
+            <p className="flb-mark">Go with the f<span>λ</span>ow</p>
+          </div>
           <h1>{c.title}</h1>
           <p className="flb-lead">{c.lead}</p>
         </div>
@@ -373,6 +381,36 @@ const FlowBuilder = () => {
                   <p className="flb-offer-fine">{c.offer.note}</p>
                 </article>
 
+                {aud !== 'sponsor' && (
+                  <div className="flb-stack">
+                    <h3>{c.stack.title}</h3>
+                    <ul>{c.stack.items.map(([t, v]) => <li key={t}><span>{t}</span><s>{euro(v, lang)}</s></li>)}</ul>
+                    <p className="flb-stack-sum">
+                      <span>{c.stack.worth} <s>{euro(c.stack.items.reduce((a, [, v]) => a + v, 0), lang)}</s></span>
+                      <b>{c.stack.you}: {c.stack.free}</b>
+                    </p>
+                  </div>
+                )}
+
+                <div className="flb-assure">
+                  <h3>{c.assure.title}</h3>
+                  <ul>{c.assure[aud].map(([t, d]) => <li key={t}><b>{t}</b><span>{d}</span></li>)}</ul>
+                </div>
+
+                <div className="flb-unique">
+                  <h3>{c.unique.title}</h3>
+                  <p>{c.unique.text}</p>
+                  <p className="flb-impact">{c.impact[aud]}</p>
+                </div>
+
+                <div className="flb-faq">
+                  <h3>{c.faq.title}</h3>
+                  {c.faq[aud].map(([q, a]) => (
+                    <details key={q}><summary>{q}</summary><p>{a}</p></details>
+                  ))}
+                  <Link className="flb-terms" to="/terms#ai-accuracy">{lang === 'en' ? 'Answer accuracy and terms' : 'Ακρίβεια απαντήσεων και όροι'} →</Link>
+                </div>
+
                 <form className="flb-form" onSubmit={submit} noValidate>
                   <h3>{c.contact.title}</h3>
                   <p className="flb-hint">{c.contact.lead}</p>
@@ -387,6 +425,7 @@ const FlowBuilder = () => {
                     <button type="submit" className="fl-btn" disabled={status.state === 'sending'}>{status.state === 'sending' ? c.contact.sending : c.contact.send}</button>
                     <button type="button" className="flb-print-btn" onClick={() => window.print()}>{aud === 'sponsor' ? c.contact.printSponsor : c.contact.print}</button>
                   </div>
+                  <a className="flb-booklink" href="#book">{c.bookLink} ↓</a>
                   <p role="status" className="flb-status">
                     {status.state === 'invalid' && c.contact.required}
                     {status.state === 'sent' && c.contact.sent}

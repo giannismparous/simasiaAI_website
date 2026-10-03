@@ -3,6 +3,9 @@ import { motion, useInView } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
 import PageHeroBackdrop from '../components/PageHeroBackdrop';
 import CollaborationsIntroCopy from '../components/CollaborationsIntroCopy';
+import { FlowAdoption } from '../components/flow/FlowHomeBlocks';
+import { GoLabel } from '../components/flow/modules';
+import { Link } from 'react-router-dom';
 import './CollaborationsPage.css';
 
 const LOGO_MAP = {
@@ -82,6 +85,14 @@ const CollaborationsPage = () => {
           >
             <CollaborationsIntroCopy />
           </motion.div>
+        </div>
+      </section>
+
+      {/* Which part of fλow each organisation has, and the next step */}
+      <section className="flh-proof cp-adopt">
+        <div className="flh-in">
+          <FlowAdoption />
+          <div className="cp-adopt-go"><Link to="/go" className="go-btn is-ink"><GoLabel /></Link></div>
         </div>
       </section>
 

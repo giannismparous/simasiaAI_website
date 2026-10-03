@@ -23,7 +23,7 @@ export const NGO = {
   // tiers are cumulative; the highest selected module sets the base
   tiers: [
     { id: 'navigator', name: L('Πλοηγός', 'Navigator'), monthly: 119, setup: 2400, worth: L('3.550 € + 135 €/μήνα', '€3,550 + €135/month') },
-    { id: 'insights', name: L('Πλοηγός Insights', 'Navigator Insights'), monthly: 179, setup: 2900, worth: L('4.450 € + 255 €/μήνα', '€4,450 + €255/month') },
+    { id: 'insights', name: L('Πλοηγός + MetronAI', 'Navigator + MetronAI'), monthly: 179, setup: 2900, worth: L('4.450 € + 255 €/μήνα', '€4,450 + €255/month') },
     { id: 'care', name: L('Φροντίδα', 'Care'), monthly: 249, setup: 4500, worth: L('6.900 € + 495 €/μήνα', '€6,900 + €495/month') },
   ],
   network: { name: L('Δίκτυο', 'Network'), monthly: 450, setup: 7500 },
@@ -34,8 +34,8 @@ export const NGO = {
     { id: 'rights', group: 'logos', tag: L('Δικαιώματα', 'Rights guide'), tier: 'navigator', locked: true, on: true,
       label: L('Οδηγός δικαιωμάτων', 'Rights guide'),
       note: L('ΚΕΠΑ, ΟΠΕΚΑ, ΕΟΠΥΥ, εργασιακά. Κοινό για όλους, ενημερώνεται συνεχώς.', 'Disability, benefits, insurance, work rights. Shared and kept up to date.') },
-    { id: 'insights', group: 'insights', tag: L('Insights', 'Insights'), tier: 'insights', on: true, recommended: true,
-      label: L('Πίνακας Insights και αναφορά για χορηγούς', 'Insights dashboard and funder report'),
+    { id: 'insights', group: 'insights', tag: L('MetronAI', 'MetronAI'), tier: 'insights', on: true, recommended: true,
+      label: L('MetronAI: πίνακας δεδομένων και αναφορά για χορηγούς', 'MetronAI: data dashboard and funder report'),
       note: L('Τι ρωτούν, τι λείπει, πώς νιώθουν. Κάθε μήνα, έτοιμο για χορηγούς.', 'What people ask, what is missing, how they feel. Monthly, funder-ready.') },
     { id: 'viber', group: 'logos', tag: L('Viber', 'Viber'), monthly: 20, setup: 200, includedFrom: 'insights',
       label: L('Viber ή Messenger', 'Viber or Messenger'), note: L('Εκεί που ήδη γράφουν οι άνθρωποί σας.', 'Where your people already write.') },
@@ -77,7 +77,7 @@ export const MED = {
   features: [
     { id: 'answers', group: 'logos', tag: L('DialogosAI 24/7', 'DialogosAI 24/7'), tier: 1, locked: true, on: true, label: L('DialogosAI 24/7, και σε Greeklish', 'DialogosAI 24/7, Greeklish too'), note: L('Ώρες, τιμές, ΕΟΠΥΥ, παραπεμπτικά, από τη βάση σας.', 'Hours, prices, insurance, referrals, from your base.') },
     { id: 'card', group: 'praxis', tag: L('Καρτέλα ασθενούς', 'Patient card'), tier: 1, locked: true, on: true, label: L('PraxisAI: καρτέλα για κάθε ασθενή', 'PraxisAI: a card for every patient'), note: L('Κάθε αίτημα γίνεται καρτέλα. Ικανοποίηση, παράπονα, ρουτίνες.', 'Every request becomes a card. Satisfaction, complaints, routines.') },
-    { id: 'report', group: 'insights', tag: L('Insights', 'Insights'), tier: 1, locked: true, on: true, label: L('Μηνιαία αναφορά Insights', 'Monthly Insights report'), note: L('Τι ζητούν οι ασθενείς που δεν προσφέρετε.', 'What patients ask for that you don\'t offer.') },
+    { id: 'report', group: 'insights', tag: L('MetronAI', 'MetronAI'), tier: 1, locked: true, on: true, label: L('Μηνιαία αναφορά MetronAI', 'Monthly MetronAI report'), note: L('Τι ζητούν οι ασθενείς που δεν προσφέρετε.', 'What patients ask for that you don\'t offer.') },
     { id: 'booking', group: 'praxis', tag: L('Ραντεβού', 'Bookings'), tier: 2, label: L('Κλείνει ραντεβού στο ημερολόγιό σας', 'Books into your calendar'), note: L('Κλείνει, αλλάζει, ακυρώνει. doctoranytime, Google Calendar.', 'Books, moves, cancels. Works with your calendar.') },
     { id: 'channels', group: 'logos', tag: L('Viber, WhatsApp', 'Viber, WhatsApp'), tier: 2, label: L('Viber, WhatsApp, Instagram, Facebook', 'Viber, WhatsApp, Instagram, Facebook'), note: L('Εκεί που γράφουν πραγματικά οι ασθενείς.', 'Where patients actually write.') },
     { id: 'forms', group: 'praxis', tag: L('Έντυπα', 'Intake forms'), tier: 2, label: L('Έντυπα εγγραφής πριν την επίσκεψη', 'Intake forms before the visit'), note: L('Φεύγουν μόλις κλειστεί το ραντεβού.', 'Sent as soon as the visit is booked.') },
@@ -102,7 +102,7 @@ export const SPONSOR = {
     { id: '2-5', label: L('2 – 5 οργανισμοί', '2 – 5 organisations'), count: 3, setupDiscount: 0.2, coord: 0 },
     { id: 'fed', label: L('Ομοσπονδία (6+)', 'Federation (6+)'), count: 8, setupDiscount: 0.35, coord: 150 },
   ],
-  perOrg: { monthly: 179, setup: 2900 }, // Πλοηγός Insights
+  perOrg: { monthly: 179, setup: 2900 }, // Πλοηγός + MetronAI
   impactPackYear: 600, // quarterly impact report + disclosure file
   options: [
     { id: 'impact', tag: L('Αντίκτυπος', 'Impact'), locked: true, on: true, label: L('Αναφορά αντίκτυπου κάθε τρίμηνο', 'Quarterly impact report'), note: L('Ερωτήσεις που απαντήθηκαν, ανάγκες, κάλυψη.', 'Questions answered, needs, reach.') },

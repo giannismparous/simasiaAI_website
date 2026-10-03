@@ -1424,7 +1424,7 @@ const PyxidaOfferScene = ({
   );
   const hasCostCompare = costCompare?.costs?.length > 0;
 
-  const goDemo = () => navigate('/demo');
+  const goDemo = () => navigate('/go#book');
 
   return (
     <PyxidaScene {...shellMotion} zIndex={6} className="ol-pyxida-scene--offer">

@@ -4,55 +4,67 @@
       "id": "faq_simasia_identity",
       "triggers": ["τι ειναι η simasia", "ti einai i simasia", "ti einai to simasiaai", "what is simasia", "simasiaai", "simasia ai", "εταιρεια", "company", "ποιοι ειστε", "poioi eiste", "who are"],
       "title": "SimasiaAI — ταυτότητα",
-      "content": "Η SimasiaAI είναι ελληνική deep-tech εταιρεία για ανθρωποκεντρική ψηφιακή υποδοχή (DialogosAI) — όχι μεταπώληση generic εργαλείων. Tagline: «AI από την πλευρά του ανθρώπου»."
+      "content": "Η SimasiaAI (Σημασία-ΑΙ Ι.Κ.Ε.) είναι ελληνική εταιρεία τεχνητής νοημοσύνης στην Αθήνα, με κοινωνικό αποτύπωμα. Σύνθημα: «Μέτρο μας ο Άνθρωπος». Φτιάχνει ένα προϊόν, το fλow: βοηθό AI και CRM για ΜΚΟ, συλλόγους ασθενών, δομές φροντίδας, ιατρεία και κλινικές σε Ελλάδα και Κύπρο."
     },
     {
-      "id": "faq_pyxida",
-      "triggers": ["pyxida", "πυξιδα", "ψηφιακη", "υποδοχη", "ιατρειο", "κλινικη", "reception", "ypodochi"],
-      "title": "DialogosAI — ψηφιακή υποδοχή",
-      "content": "Ο DialogosAI είναι η ψηφιακή υποδοχή της SimasiaAI: bot + CRM + απαντήσεις 24/7 για ιατρεία και οργανισμούς. Βάση Απαντάει + προαιρετικά PraxisAI modules. Live σε 48 ώρες. Σελίδα: /ypodochi."
+      "id": "faq_flow",
+      "triggers": ["flow", "fλow", "φλοου", "τι ειναι το flow", "what is flow", "προιον", "product", "τι κανετε", "ti kanete", "what do you", "ασχολ", "asxole"],
+      "title": "fλow — τι είναι",
+      "content": "Το fλow είναι βοηθός AI και CRM για ανθρώπους που φροντίζουν άλλους. Το DialogosAI απαντά σε ασθενείς, οικογένειες και μέλη 24/7 μόνο από εγκεκριμένες πηγές, με παραπομπές (site, Viber, WhatsApp, φωνή). Το PraxisAI κρατά καρτέλες, ραντεβού, λήξεις, υπενθυμίσεις και follow-ups. Το MetronAI δείχνει τι ρωτούν οι άνθρωποι και τι λείπει, με αναφορές για ομάδες και χορηγούς. Σελίδα: /flow."
     },
     {
-      "id": "faq_pyxida_gender",
-      "triggers": ["φυλο", "gender", "αρσενικ", "θηλυκ", "he", "she", "neutral", "ουδετερ"],
-      "title": "DialogosAI — ουδέτερο φύλο",
-      "content": "Ο DialogosAI είναι ουδέτερο ως προς το φύλο — ούτε αρσενικό ούτε θηλυκό. Στα ελληνικά «ο DialogosAI», στα αγγλικά it/its. Ψηφιακή υποδοχή, όχι άνθρωπος."
+      "id": "faq_dialogosai",
+      "triggers": ["dialogosai", "dialogos ai", "διαλογος", "dialogos", "chatbot", "βοηθος ai"],
+      "title": "DialogosAI — ο βοηθός AI του fλow",
+      "content": "Το DialogosAI είναι ο βοηθός AI του fλow (και το chatbot αυτού του site). Απαντά 24/7 στα ελληνικά, σε Greeklish και σε άλλες γλώσσες, μόνο από τις εγκεκριμένες πηγές του οργανισμού και με παραπομπές. Λέει «δεν ξέρω» όταν δεν έχει απάντηση και δεν δίνει ιατρικές συμβουλές. Στα ελληνικά «το DialogosAI», στα αγγλικά it/its."
+    },
+    {
+      "id": "faq_praxisai_metronai",
+      "triggers": ["praxisai", "praxis ai", "πραξις", "metronai", "metron ai", "μετρον", "crm", "insights", "dashboard", "αναλυσεις"],
+      "title": "PraxisAI και MetronAI",
+      "content": "Το PraxisAI είναι το CRM του fλow: καρτέλες μελών και ασθενών, ραντεβού, προθεσμίες και λήξεις, υπενθυμίσεις και follow-ups. Το MetronAI είναι ο πίνακας αναλύσεων: τι ρωτούν οι άνθρωποι, ποιες ανάγκες μένουν αναπάντητες, αναφορές για την ομάδα και τους χορηγούς. Σελίδα: /flow."
+    },
+    {
+      "id": "faq_clinics",
+      "triggers": ["ιατρειο", "iatreio", "κλινικη", "klinikh", "γιατρος", "doctor", "clinic", "ψηφιακη υποδοχη", "υποδοχη", "reception", "ypodochi", "apanta", "απανταει", "κλεινει", "φερνει πισω", "σηκωνει"],
+      "title": "fλow για ιατρεία και κλινικές",
+      "content": "Για ιατρεία και κλινικές: Απαντάει 199 €/μήνα (149 € με ετήσια), Κλείνει 249 € (199 €), Φέρνει πίσω 299 € (249 €), Σηκώνει το τηλέφωνο 399 € (299 €). Ένταξη 490 €, δωρεάν με ετήσια. Σε λειτουργία μέσα σε 48 ώρες ή δωρεάν. Τιμές χωρίς ΦΠΑ. Σελίδα: /ypodochi."
+    },
+    {
+      "id": "faq_ngos_pricing",
+      "triggers": ["μκο", "ngo", "συλλογος", "σωματειο", "τιμη", "τιμες", "κοστος", "ποσο κανει", "ποσο κοστιζει", "price", "pricing", "πιλοτικο", "pilot"],
+      "title": "fλow — τιμές για ΜΚΟ",
+      "content": "Για ΜΚΟ και οργανισμούς φροντίδας το fλow ξεκινά από 119 €/μήνα (Πλοηγός), με Πλοηγό Insights 179 €, Φροντίδα 249 € και Δίκτυο από 450 €/μήνα, συν εφάπαξ ένταξη. Πιλοτικό 60 ημερών με 490 €, που αφαιρούνται από την ένταξη. Χορηγοί (φαρμακευτικές, ιδρύματα, CSR) μπορούν να το χρηματοδοτήσουν. Τιμές χωρίς ΦΠΑ. Άμεση προσφορά: /go."
+    },
+    {
+      "id": "faq_compliance",
+      "triggers": ["gdpr", "ai act", "συμμορφωση", "compliance", "δεδομενα", "ασφαλεια", "ιατρικη συμβουλη", "medical advice", "διαγνωση", "wcag", "προσβασιμοτητα"],
+      "title": "fλow — συμμόρφωση και όρια",
+      "content": "Το fλow σχεδιάζεται για EU AI Act και GDPR, με φιλοξενία στην ΕΕ και προσβασιμότητα WCAG. Συνεργαζόμενη δικηγορική εταιρεία ελέγχει χωριστά κάθε έργο. Απαντά μόνο από εγκεκριμένες πηγές. Δεν κάνει διάγνωση και δεν δίνει ιατρικές συμβουλές· τα επείγοντα πάνε σε άνθρωπο."
+    },
+    {
+      "id": "faq_implementations",
+      "triggers": ["μυρτω", "myrto", "σκπ-i", "skp-i", "ποαμσκπ", "καπα3", "kapa3", "bpan", "perfectaki", "συνεργασιες", "πελατες", "ποιοι το χρησιμοποιουν"],
+      "title": "fλow σε λειτουργία",
+      "content": "Μυρτώ για το Κάπα3 (Κέντρο Καθοδήγησης Καρκινοπαθών), ολόκληρο το fλow. ΣΚΠ-i για την ΠΟΑμΣΚΠ (Σκλήρυνση Κατά Πλάκας), DialogosAI με υποστήριξη φαρμακευτικών χορηγών. BPAN Companion σε 60 γλώσσες για τους Ήρωες της BPAN. Perfectaki Able για προσβάσιμη εκπαίδευση. Σελίδα: /collaborations."
     },
     {
       "id": "faq_contact",
-      "triggers": ["επικοινων", "epikoinwn", "epikoinon", "contact", "email", "mail", "τηλ", "phone", "demo", "pws mporw", "pos mporw", "πως μπορω"],
-      "title": "SimasiaAI — επικοινωνία & demo",
-      "content": "Email: contact@simasiaai.gr. Αθήνα, Ελλάδα. Demo/συνεργασία: φόρμα /demo — απάντηση εντός 24 ωρών."
-    },
-    {
-      "id": "faq_pyxida_dialogosai",
-      "triggers": ["dialogosai", "dialogos ai", "διαλογος", "διαλογος ai", "dialogos"],
-      "title": "DialogosAI — παλιό όνομα DialogosAI",
-      "content": "Ο DialogosAI ήταν το προηγούμενο όνομα της ψηφιακής υποδοχής της SimasiaAI. Σήμερα λέγεται fλow: DialogosAI (bot) + PraxisAI (CRM) + απαντήσεις 24/7 για ιατρεία και οργανισμούς. Ίδια λύση, νέο brand."
+      "triggers": ["επικοινων", "epikoinwn", "epikoinon", "contact", "email", "mail", "τηλ", "phone", "demo", "συναντηση", "pws mporw", "pos mporw", "πως μπορω"],
+      "title": "SimasiaAI — επικοινωνία & συνάντηση",
+      "content": "Email: contact@simasiaai.gr. Ναρκίσσου 26, 15452 Παλαιό Ψυχικό, Αθήνα. Στη σελίδα Go with the fλow (/go) φτιάχνετε το fλow σας, παίρνετε προσφορά, στέλνετε μήνυμα ή κλείνετε συνάντηση 30 λεπτών από το ημερολόγιο (/go#book)."
     },
     {
       "id": "faq_team_members",
-      "triggers": ["μελη", "μέλη", "melh", "ομαδα", "omada", "ομάδα", "team", "founders", "ιδρυτ", "idrut", "συνιδρυτ", "ποιοι ειναι", "poioi einai", "poia einai", "ποια ειναι", "who is the team"],
+      "triggers": ["μελη", "melh", "ομαδα", "omada", "team", "founders", "ιδρυτ", "idrut", "συνιδρυτ", "ποιοι ειναι", "poioi einai", "poia einai", "ποια ειναι", "who is the team"],
       "title": "SimasiaAI — ομάδα & ιδρυτές",
-      "content": "Οι ιδρυτές / συνιδρυτές της SimasiaAI: 1) Καθηγητής Στέργιος Χατζηκυριακίδης — Co-founder & CEO. 2) Δημήτρης Παπαδάκης — Co-founder & Head of Sales. 3) Γιάννης — Co-founder & CTO. 4) Αναπληρώτρια Καθηγήτρια Αναστασία Νάτσινα — Co-founder & CCO. Σελίδα: /team."
+      "content": "Οι συνιδρυτές της SimasiaAI: 1) Καθηγητής Στέργιος Χατζηκυριακίδης — Co-founder & CEO. 2) Δημήτρης Παπαδάκης — Co-founder & Head of Sales. 3) Γιάννης — Co-founder & CTO. 4) Αναπληρώτρια Καθηγήτρια Αναστασία Νάτσινα — Co-founder & CCO. Σελίδα: /team."
     },
     {
-      "id": "faq_pyxida_modules",
-      "triggers": ["module", "modules", "module 1", "module 2", "module 3", "praxi", "apanta", "απαντα", "kleinei", "fernei", "sikonei", "κλεινει", "φερνει", "σηκωνει"],
-      "title": "fλow — DialogosAI & PraxisAI modules",
-      "content": "Η βάση του fλow λέγεται ΑΠΑΝΤΑΕΙ (bot + CRM + απαντήσεις 24/7). Προαιρετικά PraxisAI modules πάνω από αυτή: Module 1 = ΚΛΕΙΝΕΙ (κράτηση ραντεβού, WhatsApp/Viber/social). Module 2 = ΦΕΡΝΕΙ ΠΙΣΩ (ανάκτηση leads, υπενθυμίσεις, recall). Module 3 = ΣΗΚΩΝΕΙ ΤΟ ΤΗΛΕΦΩΝΟ (ζωντανή φωνή 24/7). Λεπτομέρειες: /ypodochi."
-    },
-    {
-      "id": "faq_what_we_do",
-      "triggers": ["ασχολ", "asxole", "τι κανετε", "ti kanete", "me ti", "what do you", "services", "υπηρεσι"],
-      "title": "SimasiaAI — τι κάνουμε",
-      "content": "Η SimasiaAI αναπτύσσει ανθρωποκεντρική ψηφιακή υποδοχή (DialogosAI) για ιατρεία και οργανισμούς: bot + CRM, απαντήσεις 24/7, συμμόρφωση GDPR & EU AI Act, φυσικά Ελληνικά/Αγγλικά. Συνεργασίες σε υγεία και εκπαίδευση."
-    },
-    {
-      "id": "faq_pyxida_bot",
-      "triggers": ["pyxida bot", "πυξιδα bot", "βοηθος site", "assistant site", "chatbot site"],
-      "title": "DialogosAI — chatbot του site",
-      "content": "Ο DialogosAI είναι το chatbot αυτού του site. Απαντά για SimasiaAI, την ψηφιακή υποδοχή DialogosAI, συνεργασίες και demo — στα Ελληνικά ή στα Αγγλικά, ανάλογα με τη γλώσσα του επισκέπτη. Όχι για άσχετα θέματα."
+      "id": "faq_flow_gender",
+      "triggers": ["φυλο", "gender", "αρσενικ", "θηλυκ", "ουδετερ", "γενος"],
+      "title": "fλow — γένος και γραφή",
+      "content": "Το DialogosAI, το PraxisAI και το MetronAI είναι ουδέτερα: «το DialogosAI». Στα αγγλικά it/its. Το προϊόν γράφεται «fλow», με ελληνικό λάμδα."
     }
   ]
 }

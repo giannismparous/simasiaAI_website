@@ -314,7 +314,7 @@ const TeamPage = () => {
               </div>
             </div>
             <div className="tp-mission-cta">
-              <Link to="/demo" className="btn btn-primary btn-large">{t('teamPage.missionCta')}</Link>
+              <Link to="/go#book" className="btn btn-primary btn-large">{t('teamPage.missionCta')}</Link>
             </div>
           </motion.div>
         </div>

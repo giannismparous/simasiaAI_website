@@ -1,22 +1,30 @@
-# SimasiaAI · fλow
+# SimasiaAI
 
-> fλow is SimasiaAI's product for organisations that care for people. It joins DialogosAI, an assistant that answers people 24/7 only from approved sources, and PraxisAI, a CRM for case files, bookings, daily logs and expiry reminders. Nothing is sent without a human's approval. Greek first, EU-hosted, EU AI Act and GDPR compliant.
+> SimasiaAI (Σημασία-ΑΙ Ι.Κ.Ε., Athens, Greece) is a Greek AI company with a social-impact focus. Its one product, fλow (also written "flow"), is an AI assistant + CRM for people who care for others: NGOs, patient associations, disability services, doctors, practices, polyclinics and clinics in Greece and Cyprus. fλow has three parts: DialogosAI (AI assistant that answers patients, families and members 24/7 only from the organisation's approved sources, with citations), PraxisAI (CRM: member/patient cards, appointments, expiries, reminders, follow-ups) and MetronAI (analytics: what people ask, unmet needs, reports for teams and sponsors). EU AI Act and GDPR compliant, EU-hosted, WCAG-accessible. It never gives medical advice. NGOs from €119/month; clinics from €149/month (annual). Motto: «Μέτρο μας ο Άνθρωπος» (The human is our measure).
 
-## Who it is for
-- NGOs, patient associations and care services: Insights dashboard and a monthly report for funders. Plans from €119/month + onboarding.
-- Practices and clinics: 24/7 answers and bookings, patient card, reminders and recall. From €149/month billed annually.
-- Sponsors (pharma, foundations, CSR): measurable support per person reached, disclosure-ready.
+Key facts: implementations with Κάπα3 («Μυρτώ», cancer navigator), ΠΟΑμΣΚΠ («ΣΚΠ-i», Multiple Sclerosis), Ήρωες της BPAN («BPAN Companion», 60 languages) and Perfectaki Able (accessible education). Pharma/CSR sponsors can fund fλow for an NGO. Contact: contact@simasiaai.gr.
 
-## Live today
-- Μυρτώ, digital navigator for people with cancer (Κάπα3, supported by the TIMA Foundation).
-- ΣΚΠ-i, 24/7 assistant for the Multiple Sclerosis community (ΠΟΑμΣΚΠ), covered by news4health, healthpharma, newsbeast and ygeiamou in September 2026.
+## Product
 
-## Pages
-- [fλow](https://simasiaai.gr/flow): product overview
-- [Build your fλow](https://simasiaai.gr/flow/build): configure features and get an offer
-- [For practices](https://simasiaai.gr/ypodochi): clinic plans
-- [Collaborations](https://simasiaai.gr/collaborations)
-- [Team](https://simasiaai.gr/team)
+- [fλow](https://www.simasiaai.gr/flow): the product page: DialogosAI + PraxisAI + MetronAI, who it is for, a day with fλow, pricing for NGOs and clinics
+- [Go with the fλow](https://www.simasiaai.gr/go): build your own fλow, get an instant offer, send a message or book a 30-minute call (/go#book)
+- [fλow for practices and clinics](https://www.simasiaai.gr/ypodochi): digital reception for doctors: plans Απαντάει, Κλείνει, Φέρνει πίσω, Σηκώνει το τηλέφωνο; live in 48 hours or free
+- [fλow platform](https://www.simasiaai.gr/platform): entry to the fλow client platform (coming soon)
 
-## Contact
-contact@simasiaai.gr · Ναρκίσσου 26, 15452 Παλαιό Ψυχικό, Athens
+## Company
+
+- [Home](https://www.simasiaai.gr/): SimasiaAI and fλow at a glance
+- [Collaborations](https://www.simasiaai.gr/collaborations): live implementations with patient organisations and partners
+- [Team](https://www.simasiaai.gr/team): the four co-founders
+- [News](https://www.simasiaai.gr/news): articles and announcements
+- [Newsletter](https://www.simasiaai.gr/newsletter): SimasiaAI newsletter issues
+
+## Full facts
+
+- [llms-full.txt](https://www.simasiaai.gr/llms-full.txt): complete factual description in English and Greek: founders, product, audiences, implementations, pricing, compliance, press, contact, and how to describe SimasiaAI
+
+## Optional
+
+- [Terms of use](https://www.simasiaai.gr/terms)
+- [Privacy policy](https://www.simasiaai.gr/privacy)
+- [Cookie policy](https://www.simasiaai.gr/cookies)

@@ -462,7 +462,7 @@ export function isBookingOrMeetingIntent(text) {
 export function answerInvitesBookDemo(text) {
   const raw = String(text || '');
   if (!raw.trim()) return false;
-  if (/\/demo/i.test(raw)) return true;
+  if (/\/go#book|\/demo\b/i.test(raw)) return true;
   const t = normalize(raw);
   if (
     /κλεισ(?:τε|ετε|ουμε|ω|ει).{0,48}demo|demo.{0,48}κλεισ|book.{0,24}demo|schedule.{0,24}demo|κλεισ(?:τε|ετε|ουμε|ω).{0,40}ραντεβ/.test(
@@ -493,10 +493,16 @@ export function isContactIntent(text) {
   );
 }
 
+/** Booking / contact lives on «Go with the fλow»: 30-minute call calendar at /go#book. */
+export const BOOK_CALL_URL = '/go#book';
+
+/** Retired booking URLs, still recognised so old answers/sources are replaced by /go#book. */
+const LEGACY_BOOKING_URLS = new Set(['/demo', '/book-demo', '/flow/build', '/go', BOOK_CALL_URL]);
+
 export function bookDemoSource(language = 'el') {
   return {
-    title: language === 'el' ? 'Κλείστε Demo — φόρμα' : 'Book a Demo — form',
-    url: '/demo',
+    title: language === 'el' ? 'Κλείστε συνάντηση 30 λεπτών — Go with the fλow' : 'Book a 30-minute call — Go with the fλow',
+    url: BOOK_CALL_URL,
     category: 'contact',
   };
 }
@@ -511,8 +517,8 @@ export function ensureBookDemoInAnswer(answer, language = 'el') {
   if (!t) return t;
   // Drop raw path mentions; the UI button opens the form.
   t = t
-    .replace(/\s*(?:εδώ|here)?\s*:?\s*\/demo\b/gi, '')
-    .replace(/\/demo\b/gi, '')
+    .replace(/\s*(?:εδώ|here)?\s*:?\s*(?:\/go#book|\/demo\b)/gi, '')
+    .replace(/\/go#book|\/demo\b/gi, '')
     .replace(/\s{2,}/g, ' ')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
@@ -540,14 +546,14 @@ export function ensureBookDemoInAnswer(answer, language = 'el') {
       );
   }
 
-  if (/φορμα\s*demo\s*παρακάτω|demo form below|φόρμας Demo παρακάτω/i.test(t)) {
+  if (/φορμα\s*demo\s*παρακάτω|demo form below|φόρμας Demo παρακάτω|κουμπί παρακάτω|button below/i.test(t)) {
     return t;
   }
   if (/φορμα|φόρμα|form|demo|ραντεβ|book/i.test(t)) return t;
   const line =
     language === 'el'
-      ? 'Μπορείτε να κλείσετε demo μέσω της φόρμας Demo παρακάτω.'
-      : 'You can book a demo via the Demo form below.';
+      ? 'Μπορείτε να κλείσετε συνάντηση 30 λεπτών από το κουμπί παρακάτω.'
+      : 'You can book a 30-minute call with the button below.';
   return `${t}\n\n${line}`;
 }
 
@@ -558,7 +564,7 @@ export function ensureContactFormInAnswer(answer, language = 'el') {
 
 export function withBookDemoSource(sources, language = 'el') {
   const list = Array.isArray(sources)
-    ? sources.filter((s) => s && s.url !== '/demo')
+    ? sources.filter((s) => s && !LEGACY_BOOKING_URLS.has(String(s.url || '').trim()))
     : [];
   return [bookDemoSource(language), ...list];
 }
@@ -568,7 +574,9 @@ export function withContactFormSource(sources, language = 'el') {
 }
 
 const NAV_PAGE_LABELS = {
-  '/ypodochi': { el: 'Δείτε ο DialogosAI', en: 'Explore DialogosAI' },
+  '/flow': { el: 'Δείτε το fλow', en: 'Explore fλow' },
+  '/go': { el: 'Φτιάξτε το fλow σας', en: 'Build your fλow' },
+  '/ypodochi': { el: 'fλow για ιατρεία', en: 'fλow for practices' },
   '/collaborations': { el: 'Δείτε τις συνεργασίες', en: 'View collaborations' },
   '/team': { el: 'Γνωρίστε την ομάδα', en: 'Meet the team' },
   '/news': { el: 'Νέα & άρθρα', en: 'News & articles' },
@@ -601,7 +609,7 @@ export function isProductExploreIntent(text) {
   const q = normalize(String(text || ''));
   if (!q) return false;
   if (isBookingOrMeetingIntent(q) || isContactIntent(q)) return false;
-  return /pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|apanta|απαντα|module|modules|kleinei|fernei|sikonei|κλεινει|φερνει|σηκωνει|product|προιον|τιμ|price|feature|λειτουργ|τι κανει|what does|tell me about|ypodochi|συνεργ|sinerg|synerg|collabor|partner|ομαδ|omada|team|founder|ιδρυτ|νεα|news|αρθρ|τι ειναι|what is|πακετο|tier|προσφορ/i.test(
+  return /flow|fλow|dialogos|praxis|metron|crm|μκο|ngo|pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|apanta|απαντα|module|modules|kleinei|fernei|sikonei|κλεινει|φερνει|σηκωνει|product|προιον|τιμ|price|feature|λειτουργ|τι κανει|what does|tell me about|ypodochi|συνεργ|sinerg|synerg|collabor|partner|ομαδ|omada|team|founder|ιδρυτ|νεα|news|αρθρ|τι ειναι|what is|πακετο|tier|προσφορ/i.test(
     q
   );
 }
@@ -634,7 +642,7 @@ export function resolveProductPageCta({
     };
   }
 
-  const allowed = new Set(['/ypodochi', '/collaborations', '/team', '/news', '/']);
+  const allowed = new Set(['/flow', '/go', '/ypodochi', '/collaborations', '/team', '/news', '/']);
   const scores = new Map();
 
   (docs || []).forEach((doc) => {
@@ -646,8 +654,14 @@ export function resolveProductPageCta({
   });
 
   const q = normalize(question);
-  if (/pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|module|ypodochi|απαντα/.test(q)) {
+  if (/pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|module|ypodochi|απαντα|ιατρει|iatrei|κλινικ|klinik|clinic|γιατρ|doctor/.test(q)) {
     scores.set('/ypodochi', (scores.get('/ypodochi') || 0) + 1.5);
+  }
+  if (/flow|fλow|dialogos|διαλογ|praxis|πραξις|metron|μετρον|crm|insights|μκο|ngo|συλλογ|χορηγ|sponsor/.test(q)) {
+    scores.set('/flow', (scores.get('/flow') || 0) + 1.5);
+  }
+  if (/τιμ|κοστ|price|pricing|cost|προσφορ|offer|πακετο|πιλοτ|pilot/.test(q)) {
+    scores.set('/go', (scores.get('/go') || 0) + 1.2);
   }
   if (/συνεργ|sinerg|synerg|collabor|partner|poamskp|myrto/.test(q)) {
     scores.set('/collaborations', (scores.get('/collaborations') || 0) + 1.5);
@@ -670,6 +684,7 @@ export function resolveProductPageCta({
 
   if (!bestUrl || bestScore < 0.35) {
     if (/pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|module/.test(q)) bestUrl = '/ypodochi';
+    else if (/flow|fλow|dialogos|praxis|metron/.test(q)) bestUrl = '/flow';
     else return null;
   }
 

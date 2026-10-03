@@ -20,7 +20,7 @@ export const productVisualCopy = {
       title: 'clinic.gr · DialogosAI',
       badge: 'Live 24/7',
       status: 'Online · απαντά σε δευτερόλεπτα',
-      botGreeting: 'Γεια σας! Είμαι ο DialogosAI — πώς μπορώ να βοηθήσω;',
+      botGreeting: 'Γεια σας! Είμαι το DialogosAI — πώς μπορώ να βοηθήσω;',
       userHours: 'Ποιες ώρες είστε ανοιχτοί το Σάββατο;',
       botHoursReply: 'Το Σάββατο <strong>09:00–14:00</strong>. Θέλετε να κλείσουμε ραντεβού;',
       replyTime: '09:14 · απάντηση σε 2 δευτ.',

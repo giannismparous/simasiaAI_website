@@ -23,6 +23,12 @@ const Footer = () => {
     navigate('/');
   };
 
+  const openCookieSettings = () => {
+    try {
+      window.dispatchEvent(new Event('simasia:cookie-settings'));
+    } catch (e) {}
+  };
+
   const handleSubscribe = async (e) => {
     e.preventDefault();
     const cleanEmail = email.trim();
@@ -123,30 +129,44 @@ const Footer = () => {
           <div className="footer-col">
             <h4>{t('footer.navTitle')}</h4>
             <Link to="/">{t('nav.home')}</Link>
-            <Link to="/flow">{t('nav.ypodochi')}</Link>
-            <Link to="/flow/build">{t('footer.flowBuild')}</Link>
-            <Link to="/ypodochi">{t('footer.clinicsLink')}</Link>
-            <Link to="/demo">{t('nav.demo')}</Link>
+            <Link to="/flow">{t('footer.flowLink')}</Link>
+            <Link to="/go">{t('footer.goLink')}</Link>
+            <Link to="/go#book">{t('footer.bookLink')}</Link>
+            <Link to="/ypodochi">{t('footer.clinicsNavLink')}</Link>
+            <Link to="/platform">{t('footer.platformLink')}</Link>
             <Link to="/team">{t('footer.teamLink')}</Link>
             <Link to="/collaborations">{t('nav.collaborations')}</Link>
             <Link to="/news">{t('footer.newsLink') || 'Νέα & Άρθρα'}</Link>
             <Link to="/newsletter">{t('footer.newsletterLink') || 'Newsletter'}</Link>
           </div>
 
-          <div className="footer-col">
+          <div className="footer-col footer-company">
             <h4>{t('footer.companyTitle')}</h4>
-            <p className="footer-legal-name">{t('footer.legalName')}</p>
-            <p className="footer-legal-intl">{t('footer.legalIntl')}</p>
-            <p>{t('footer.gemi')}</p>
-            <p>{t('footer.afm')}</p>
-            <p>{t('footer.taxOffice')}</p>
+            <p className="footer-legal-name">{t('footer.legalFullName')}</p>
+            <p className="footer-legal-intl">{t('footer.legalShort')}</p>
+            <p>
+              <span className="footer-label">{t('footer.registeredOfficeLabel')}</span>{' '}
+              {t('footer.registeredOffice')}
+            </p>
+            <p>
+              <span className="footer-label">{t('footer.gemiLabel')}</span> {t('footer.gemiNumber')}
+            </p>
+            <p>
+              <span className="footer-label">{t('footer.vatLabel')}</span> {t('footer.vatNumber')}
+            </p>
+            <p>
+              <span className="footer-label">{t('footer.taxOfficeLabel')}</span> {t('footer.taxOfficeName')}
+            </p>
           </div>
 
           <div className="footer-col">
-            <h4>Νομικά</h4>
-            <Link to="/terms">Όροι Χρήσης</Link>
-            <Link to="/privacy">Πολιτική Απορρήτου</Link>
-            <Link to="/cookies">Πολιτική Cookies</Link>
+            <h4>{t('footer.legalTitle')}</h4>
+            <Link to="/terms">{t('footer.termsLink')}</Link>
+            <Link to="/privacy">{t('footer.privacyLink')}</Link>
+            <Link to="/cookies">{t('footer.cookiesLink')}</Link>
+            <button type="button" className="footer-cookie-btn" onClick={openCookieSettings}>
+              {t('footer.cookieSettings')}
+            </button>
           </div>
 
           <div className="footer-col">
@@ -164,6 +184,7 @@ const Footer = () => {
         <div className="footer-bottom">
           <p>© {year} {t('footer.copyright')}</p>
           <span className="footer-badge">{t('footer.complianceBadge')}</span>
+          <p className="footer-compliance-line">{t('footer.complianceLine')}</p>
         </div>
       </div>
     </footer>

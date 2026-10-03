@@ -15,19 +15,19 @@ const SOURCE_CHARS_PER_TICK = 4;
 const SOURCE_GAP_MS = 28;
 
 function renderMessageText(text) {
-  const parts = String(text || '').split(/(\/#contact|\/book-demo|\/demo)/gi);
+  const parts = String(text || '').split(/(\/#contact|\/book-demo|\/demo|\/go#book)/gi);
   return parts.map((part, i) => {
-    if (/^\/(?:demo|book-demo)$/i.test(part)) {
+    if (/^\/(?:demo|book-demo|go#book)$/i.test(part)) {
       return (
-        <Link key={`bd-${i}`} to="/demo" className="message-inline-link">
-          /demo
+        <Link key={`bd-${i}`} to="/go#book" className="message-inline-link">
+          /go#book
         </Link>
       );
     }
     if (/^\/#contact$/i.test(part)) {
       return (
-        <Link key={`ct-${i}`} to="/demo" className="message-inline-link">
-          /demo
+        <Link key={`ct-${i}`} to="/go#book" className="message-inline-link">
+          /go#book
         </Link>
       );
     }
@@ -52,7 +52,7 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
   const suggestedQuestions = useMemo(() => {
     return language === 'el'
       ? [
-          { id: 1, text: 'Τι μπορεί να κάνει ο DialogosAI για μένα;' },
+          { id: 1, text: 'Τι μπορεί να κάνει το DialogosAI για μένα;' },
           { id: 2, text: 'Πώς βοηθά η SimasiaAI οργανισμούς;' },
           { id: 3, text: 'Μπορώ να κλείσω demo;' },
         ]
@@ -489,12 +489,12 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
                     {message.isTyping && <span className="typing-cursor" aria-hidden="true" />}
                   </p>
                   {!message.isTyping && !message.isTypingSources && message.bookDemoCta && (
-                    <Link to="/demo" className="message-demo-cta" onClick={onClose}>
+                    <Link to="/go#book" className="message-demo-cta" onClick={onClose}>
                       {language === 'el' ? 'Άνοιγμα φόρμας Demo' : 'Open Demo form'}
                     </Link>
                   )}
                   {!message.isTyping && !message.isTypingSources && message.contactCta && (
-                    <Link to="/demo" className="message-demo-cta" onClick={onClose}>
+                    <Link to="/go#book" className="message-demo-cta" onClick={onClose}>
                       {language === 'el' ? 'Άνοιγμα φόρμας Demo' : 'Open Demo form'}
                     </Link>
                   )}
@@ -543,12 +543,14 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
                             const isDemoFormLink =
                               source.url === '/demo' ||
                               source.url === '/book-demo' ||
+                              source.url === '/go' ||
+                              source.url === '/go#book' ||
                               source.url === '/#contact' ||
                               source.url === '/#contact/';
                             return (
                             <li key={`${source.url}-${idx}`}>
                               {isDemoFormLink ? (
-                                <Link to="/demo" onClick={onClose}>
+                                <Link to="/go#book" onClick={onClose}>
                                   {source.title}
                                 </Link>
                               ) : source.url.startsWith('/') ? (
@@ -632,6 +634,14 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
             </svg>
           </button>
         </div>
+        <p className="chat-disclaimer">
+          {language === 'el'
+            ? 'Οι απαντήσεις δημιουργούνται από ΤΝ και μπορεί να περιέχουν λάθη. Ελέγξτε τις σημαντικές πληροφορίες.'
+            : 'Answers are AI-generated and may contain mistakes. Check important information.'}{' '}
+          <Link to="/terms#ai-accuracy" onClick={onClose}>
+            {language === 'el' ? 'Όροι' : 'Terms'}
+          </Link>
+        </p>
       </footer>
     </div>
   );
