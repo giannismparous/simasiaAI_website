@@ -48,7 +48,7 @@ const baseTranslations = {
           },
           {
             name: "Bpanheroes",
-            description: "Ψηφιακός πλοηγός για την κοινότητα BPAN — σε εξέλιξη.",
+            description: "BPAN Companion: βοηθός σε 60 γλώσσες για οικογένειες που ζουν με τη σπάνια νόσο BPAN. Σε λειτουργία.",
             logo: "/logos/bepan.png",
             category: "υγεία"
           },
@@ -140,7 +140,7 @@ const baseTranslations = {
           },
           {
             name: "Bpanheroes",
-            description: "Digital navigator for the BPAN community — in progress.",
+            description: "BPAN Companion: an assistant in 60 languages for families living with the rare disease BPAN. Live.",
             logo: "/logos/bepan.png",
             category: "health"
           },

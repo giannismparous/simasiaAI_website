@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useRef } from 'react';
 
 /*
  * The λ river. Λόγος (DialogosAI, blue) falls from the top, Πράξη (PraxisAI,
- * green) rises from the lower left; they meet side by side at the confluence
- * and continue as one wide, slow river. Paper boats drift along; a question
+ * green) rises from the lower left and Καταγραφή (MetronAI, orange) joins from
+ * below; they meet side by side at the confluence and continue as one wide, slow river. Paper boats drift along; a question
  * turns into its answer once the boat passes the confluence.
  * Motion is slow on purpose (25–40 s loops) and stops for reduced motion.
  */
@@ -49,6 +49,11 @@ const PRAXIS = sample([
   [[420, H + 40], [700, 720], [900, JY + HALF + 6], [JX, JY + HALF]],
   [[JX, JY + HALF], [1220, JY + HALF + 10], [1330, JY + HALF + 34], [W + 60, JY + HALF + 54]],
 ]);
+const METRON = sample([
+  [[1010, H + 40], [1010, 820], [1030, JY + 3 * HALF + 8], [JX + 40, JY + 3 * HALF + 2]],
+  [[JX + 40, JY + 3 * HALF + 2], [1220, JY + 3 * HALF + 10], [1330, JY + 3 * HALF + 34], [W + 60, JY + 3 * HALF + 54]],
+]);
+const metronPath = (i) => offsetPath(METRON, -(i - (N - 1) / 2) * S, 0.5);
 const logosPath = (i) => offsetPath(LOGOS, -(i - (N - 1) / 2) * S, 0.5);
 const praxisPath = (i) => offsetPath(PRAXIS, -(i - (N - 1) / 2) * S, 0.5);
 
@@ -72,6 +77,7 @@ const FlowRiver = ({ copy }) => {
       const op = (0.28 + 0.72 * (1 - edge)).toFixed(2);
       out.push({ d: logosPath(i), k: 'logos', i, op });
       out.push({ d: praxisPath(i), k: 'praxis', i, op });
+      out.push({ d: metronPath(i), k: 'metron', i, op });
     }
     return out;
   }, []);
@@ -162,6 +168,8 @@ const FlowRiver = ({ copy }) => {
         <text x="960" y="194" className="flr-note">{copy.logos[1]}</text>
         <text x="560" y="820" className="flr-word">{copy.praxis[0]}</text>
         <text x="560" y="844" className="flr-note">{copy.praxis[1]}</text>
+        {copy.metron && <text x="1130" y="808" className="flr-word">{copy.metron[0]}</text>}
+        {copy.metron && <text x="1130" y="832" className="flr-note">{copy.metron[1]}</text>}
         <text x="1230" y="470" className="flr-word">{copy.roi[0]}</text>
         <text x="1230" y="494" className="flr-note">{copy.roi[1]}</text>
       </g>

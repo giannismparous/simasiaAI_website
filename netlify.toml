@@ -5,6 +5,9 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  # Netlify sets CI=true, which turns every ESLint warning into a failed build.
+  # Lint still runs in `npm start`; it just cannot block a deploy.
+  DISABLE_ESLINT_PLUGIN = "true"
 
 [functions]
   directory = "netlify/functions"

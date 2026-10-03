@@ -1,37 +1,33 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { flowContent, editions } from './flowContent';
+import { flowContent } from './flowContent';
+import { threeContent } from './flowThreeContent';
 import FlowRiver from './FlowRiver';
-import {
-  PhoneDay, People, LogosPraxis, DayRiver, ValueCalc, Equation, Plans, Crossing,
-} from './FlowParts';
-import FlowDiagnosis from './FlowDiagnosis';
+import { PhoneDay, People, Crossing } from './FlowParts';
+import { ThreeLayers, DemoHead, Edition, TimeBack, ValueEquation, BuildTeaser } from './FlowThree';
+import DialogosDemo from './DialogosDemo';
+import PraxisDemo from './PraxisDemo';
+import MetronDemo from './MetronDemo';
+import { GoLabel } from './modules';
 import './Flow.css';
 
 /*
- * fλow home page. Dark and paper bands alternate, as on the rest of the site.
- * The river is the one memorable element; everything else stays quiet.
- * Slots let the page reuse live sections (DialogosAI demo, partnerships).
+ * fλow product page. Dark and paper bands alternate, as on the rest of the site.
+ * Story: the river (one flow) → why it matters (Νίκος) → for whom → three parts,
+ * separately and together → each part, live → proof → the time that returns and
+ * why it is worth it → build your own fλow (no fixed packages) → how we cross
+ * together → trust → start with a few questions.
  */
 
 const Wordmark = () => <span className="fl-word">f<span>λ</span>ow</span>;
 
-const EditionSwitch = ({ c, ed, setEd }) => (
-  <div className="fl-ed" role="group" aria-label={c.aria}>
-    <button type="button" aria-pressed={ed === 'ngo'} onClick={() => setEd('ngo')}>{c.ngo}</button>
-    <button type="button" aria-pressed={ed === 'med'} onClick={() => setEd('med')}>{c.med}</button>
-  </div>
-);
-
-const FlowHome = ({ demo = null, proof = null }) => {
+const FlowHome = ({ proof = null }) => {
   const { language } = useLanguage();
   const lang = language === 'en' ? 'en' : 'el';
   const c = flowContent[lang];
+  const t3 = threeContent[lang];
   const [ed, setEd] = useState('ngo');
-  const [calm, setCalm] = useState(false);
-  const d = editions[lang][ed];
-  const maxTheme = d.th[0][1];
 
   return (
     <div className="fl" lang={lang} data-ed={ed}>
@@ -44,8 +40,8 @@ const FlowHome = ({ demo = null, proof = null }) => {
             {c.hero.sub.map(([b, t]) => <React.Fragment key={t}>{b && <b>{b}</b>}{t}</React.Fragment>)}
           </p>
           <div className="fl-ctas">
-            <Link className="fl-btn" to="/go">{c.hero.cta}</Link>
-            <a className="fl-link" href="#fl-day">{c.hero.link}</a>
+            <Link className="go-btn" to="/go"><GoLabel /></Link>
+            <a className="fl-link" href="#fl-parts">{c.hero.link}</a>
           </div>
         </div>
         <div className="fl-river"><FlowRiver copy={c.hero} /></div>
@@ -71,101 +67,72 @@ const FlowHome = ({ demo = null, proof = null }) => {
         </div>
       </section>
 
-      {/* 4. Λόγος + Πράξη = Ροή */}
-      <section className="fl-sec fl-paper">
+      {/* 4. Λόγος, Πράξη και Καταγραφή: separately and together */}
+      <section id="fl-parts" className="fl-sec fl-paper">
         <div className="fl-in">
-          <h2 className="fl-h2">{c.parts.title}</h2>
-          <p className="fl-lead">{c.parts.lead}</p>
-          <LogosPraxis c={c.parts} />
+          <h2 className="fl-h2">{t3.layers.title}</h2>
+          <p className="fl-lead">{t3.layers.lead}</p>
+          <ThreeLayers c={t3.layers} />
         </div>
       </section>
 
-      {demo}
-
-      {/* 5. A day, turbulent or calm */}
-      <section id="fl-day" className="fl-sec fl-dark">
+      {/* 5. 01 DialogosAI, live */}
+      <section id="fl-dialogos" className="fl-sec fl-dark">
         <div className="fl-in">
-          <div className="fl-headrow">
-            <div>
-              <h2 className="fl-h2">{c.day.title}</h2>
-              <p className="fl-lead">{c.day.lead}</p>
-            </div>
-            <EditionSwitch c={c.editions} ed={ed} setEd={setEd} />
-          </div>
-          <DayRiver rows={d.day} c={c.day} calm={calm} setCalm={setCalm} />
+          <DemoHead d={t3.demos.dialogos} id="dialogos"><Edition c={t3.demos.edition} ed={ed} setEd={setEd} dark /></DemoHead>
+          <DialogosDemo lang={lang} ed={ed} key={`d-${ed}-${lang}`} />
         </div>
       </section>
 
-      {/* 6. Insights */}
-      <section className="fl-sec fl-paper">
-        <div className="fl-in fl-ins">
-          <div className="fl-ins-text">
-            <h2 className="fl-h2">{c.insights.title}</h2>
-            <p className="fl-lead">{c.insights.lead[ed]}</p>
-            <dl className="fl-ins-nums">
-              {[c.insights.conv, c.insights.after, c.insights.answered].map((n) => (
-                <div key={n[1]}><dt>{n[0]}</dt><dd>{n[1]}</dd></div>
-              ))}
-            </dl>
-            <p className="fl-fine">{c.insights.sample}</p>
-          </div>
-          <div className="fl-ins-lists">
-            <h3>{c.insights.themes}</h3>
-            <ul className="fl-themes">
-              {d.th.map((t) => (
-                <li key={t[0]}>
-                  <span>{t[0]}</span>
-                  <i style={{ '--w': `${Math.round((t[1] / maxTheme) * 100)}%` }} />
-                  <b>{t[1]}%</b>
-                </li>
-              ))}
-            </ul>
-            <h3>{c.insights.needs}</h3>
-            <ul className="fl-needs">
-              {d.nd.map((n) => <li key={n[0]}><span>{n[0]}</span><b>{n[1]} {c.insights.q}</b></li>)}
-            </ul>
-            <p className="fl-fine">{c.insights.needsNote}</p>
-          </div>
+      {/* 6. 02 PraxisAI, live */}
+      <section id="fl-praxis" className="fl-sec fl-paper">
+        <div className="fl-in">
+          <DemoHead d={t3.demos.praxis} id="praxis" />
+          <PraxisDemo lang={lang} ed={ed} key={`p-${ed}-${lang}`} />
+        </div>
+      </section>
+
+      {/* 7. 03 MetronAI, live */}
+      <section id="fl-metron" className="fl-sec fl-dark">
+        <div className="fl-in">
+          <DemoHead d={{ ...t3.demos.metron, lead: t3.demos.metron.lead[ed] }} id="metron"><Edition c={t3.demos.edition} ed={ed} setEd={setEd} dark /></DemoHead>
+          <MetronDemo lang={lang} ed={ed} key={`m-${ed}-${lang}`} />
         </div>
       </section>
 
       {proof}
 
-      {/* 7. Value: Hormozi's equation, made tangible */}
-      <section className="fl-sec fl-dark">
+      {/* 8. The time that comes back, and why it is worth more than it costs */}
+      <section id="fl-value" className="fl-sec fl-dark">
         <div className="fl-in">
           <div className="fl-headrow">
             <div>
-              <h2 className="fl-h2">{c.value.title}</h2>
-              <p className="fl-lead">{c.value.lead}</p>
+              <h2 className="fl-h2">{t3.time.title}</h2>
+              <p className="fl-lead">{t3.time.lead}</p>
             </div>
-            <EditionSwitch c={c.editions} ed={ed} setEd={setEd} />
+            <Edition c={t3.demos.edition} ed={ed} setEd={setEd} dark />
           </div>
-          <ValueCalc c={c.value} ed={ed} lang={lang} />
-          <h3 className="fl-h3">{c.value.eqTitle}</h3>
-          <Equation c={c.value.eq} />
+          <TimeBack c={t3.time} lang={lang} ed={ed} key={`t-${ed}`} />
+          <h3 className="fl-h3">{t3.eq.title}</h3>
+          <ValueEquation c={t3.eq} />
         </div>
       </section>
 
-      {/* 8. Plans and guarantee */}
+      {/* 9. Build your own fλow (replaces fixed packages) */}
       <section id="fl-plans" className="fl-sec fl-paper">
         <div className="fl-in">
           <div className="fl-headrow">
-            <h2 className="fl-h2">{c.plans.title}</h2>
-            <EditionSwitch c={c.editions} ed={ed} setEd={setEd} />
+            <div>
+              <h2 className="fl-h2">{t3.build.title}</h2>
+              <p className="fl-lead">{t3.build.lead}</p>
+            </div>
+            <Edition c={t3.demos.edition} ed={ed} setEd={setEd} />
           </div>
-          {ed === 'ngo' && <p className="fl-lead">{c.plans.ngoFunding}</p>}
-          <Plans plans={d.plans} c={c.plans} ed={ed} lang={lang} />
-          <p className="fl-fine fl-center-t">{c.plans.note}{ed === 'med' && <> <Link to="/ypodochi">{c.plans.details}</Link></>}</p>
-          <div className="fl-guar">
-            <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" /><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            <div><h3>{c.plans.guarantee[ed][0]}</h3><p>{c.plans.guarantee[ed][1]}</p></div>
-            <Link className="fl-btn" to={`/go?for=${ed}`}>{c.plans.start}</Link>
-          </div>
+          <BuildTeaser c={t3.build} parts={t3.layers.parts} lang={lang} ed={ed} key={`b-${ed}`} />
         </div>
       </section>
 
-      {/* 9. Crossing: onboarding */}
+      {/* 10. Crossing: onboarding */}
       <section className="fl-sec fl-dark">
         <div className="fl-in">
           <h2 className="fl-h2">{c.crossing.title}</h2>
@@ -174,7 +141,7 @@ const FlowHome = ({ demo = null, proof = null }) => {
         <Crossing c={c.crossing} />
       </section>
 
-      {/* 10. Trust */}
+      {/* 11. Trust */}
       <section className="fl-sec fl-paper">
         <div className="fl-in">
           <h2 className="fl-h2">{c.trust.title}</h2>
@@ -185,14 +152,13 @@ const FlowHome = ({ demo = null, proof = null }) => {
         </div>
       </section>
 
-      {/* 11. Final invitation */}
+      {/* 12. Start: a few questions, and the offer designs itself */}
       <section id="fl-start" className="fl-sec fl-dark fl-final">
         <div className="fl-in">
           <h2 className="fl-h2">{c.final.title}</h2>
           <p className="fl-lead">{c.final.lead}</p>
-          <FlowDiagnosis lang={lang} />
           <div className="fl-ctas fl-final-ctas">
-            <Link className="fl-btn" to="/go">{c.final.build}</Link>
+            <Link className="go-btn" to={`/go?for=${ed}`}><GoLabel /></Link>
             <Link className="fl-link" to="/go#book">{c.final.cta}</Link>
             <span className="fl-mail">{c.final.mail} <a href="mailto:contact@simasiaai.gr">contact@simasiaai.gr</a></span>
           </div>

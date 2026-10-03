@@ -4,22 +4,33 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { ClinicIllustration, NgoIllustration } from '../GateIllustrations';
 import { sendContactEmail } from '../../services/emailService';
 import { builderCopy } from './builderContent';
-import { NGO, MED, SPONSOR, computeNgo, computeMed, computeSponsor } from './offerEngine';
+import { threeContent } from './flowThreeContent';
+import { NGO, MED, SPONSOR, MODULE_IDS, computeNgo, computeMed, computeSponsor } from './offerEngine';
 import { euro } from './FlowParts';
-
-const euroCents = (n, lang) => { const v = new Intl.NumberFormat(lang === 'en' ? 'en-IE' : 'el-GR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n); return lang === 'en' ? `€${v}` : `${v} €`; };
+import { MODULES } from './modules';
+import { TimeBack } from './FlowThree';
 import './FlowBuilder.css';
 
 /*
- * /go: a visitor builds their own fλow and gets an offer.
- * Left: five short steps. Right: the live flow (what hurts today on the left,
- * the λ in the middle, what they chose on the right) and the price.
+ * /go: «Go with the fλow». The visitor tells us about their day (a few questions,
+ * one at a time), the answers design a first fλow from the three parts
+ * (DialogosAI, PraxisAI, MetronAI), they change it as they like, add their own
+ * requests (unpriced, marked for pricing), see the time that comes back, and get
+ * the offer. No fixed packages. Right: the live flow and the price.
  */
 
+const euroCents = (n, lang) => { const v = new Intl.NumberFormat(lang === 'en' ? 'en-IE' : 'el-GR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n); return lang === 'en' ? `€${v}` : `${v} €`; };
 const AUDIENCES = ['ngo', 'med', 'sponsor'];
-const GROUP_COLOR = { logos: '#6a9bcc', praxis: '#9fb383', insights: '#d97757', extra: '#b0aea5' };
-
+const NAME = { dialogos: 'DialogosAI', praxis: 'PraxisAI', metron: 'MetronAI' };
+const MED_GROUP = { logos: 'dialogos', praxis: 'praxis', insights: 'metron', extra: 'all' };
+const SP_GROUP = { impact: 'metron', disclosure: 'metron', lang2: 'dialogos', praxis: 'praxis', greek: 'all' };
+const SP_INC = {
+  el: ['Απαντά 24/7 στους ανθρώπους του οργανισμού', 'Μόνο από εγκεκριμένες πηγές του οργανισμού', '«Με την υποστήριξη του …» σε κάθε συνομιλία'],
+  en: ['Answers the organisation\'s people 24/7', 'Only from the organisation\'s approved sources', '"Supported by …" in every conversation'],
+};
+const short = (s, n = 26) => (s.length > n ? `${s.slice(0, n - 1).trim()}…` : s);
 const initialFeatures = (list) => list.reduce((acc, f) => ({ ...acc, [f.id]: !!f.on }), {});
+const parseMods = (m) => (m && /^[dpm]{1,3}$/.test(m) ? { dialogos: m.includes('d'), praxis: m.includes('p'), metron: m.includes('m') } : null);
 
 /* Animated number for the price ticker */
 const useTween = (value, ms = 450) => {
@@ -60,19 +71,16 @@ const SponsorIllustration = () => (
         <path d="M0 10 C0 -2, 18 -4, 18 8 C18 -4, 36 -2, 36 10 C36 24, 18 32, 18 38 C18 32, 0 24, 0 10 Z" fill="#d97757" />
       </g>
       <path d="M166 146 C 180 140, 190 136, 198 126" stroke="#d97757" strokeWidth="1.6" strokeDasharray="4 4" fill="none" opacity="0.7" />
-      <circle cx="60" cy="80" r="4" fill="#d97757" opacity="0.6" />
-      <circle cx="226" cy="214" r="3" fill="#faf9f5" opacity="0.5" />
     </svg>
   </div>
 );
 
-/* The live flow: pains (left, tangled) → λ → chosen features (right, calm) */
-const LiveFlow = ({ pains, features, price, c, lang }) => {
-  const W = 560; const H = 440; const NX = 270; const NY = 200;
-  const leftItems = pains.length ? pains : [];
-  const L = leftItems.length; const R = features.length;
-  const ly = (i) => (L <= 1 ? NY : 60 + (i * (H - 150)) / (L - 1));
-  const ry = (i) => (R <= 1 ? NY : 40 + (i * (H - 110)) / (R - 1));
+/* The live flow: what is hard today (left) → λ → the three parts (right) */
+const LiveFlow = ({ pains, parts, price, c, lang }) => {
+  const W = 560; const H = 460; const NX = 250; const NY = 210;
+  const L = pains.length;
+  const ly = (i) => (L <= 1 ? NY : 60 + (i * (H - 170)) / (L - 1));
+  const rowY = { dialogos: 92, praxis: 210, metron: 328 };
   const shownPrice = useTween(price.value);
   return (
     <svg className="flb-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={c.graphic.aria}>
@@ -84,30 +92,37 @@ const LiveFlow = ({ pains, features, price, c, lang }) => {
       </defs>
       <text x="16" y="22" className="flb-g-cap">{c.graphic.today}</text>
       <text x={W - 16} y="22" textAnchor="end" className="flb-g-cap">{c.graphic.withFlow}</text>
-      {leftItems.map((p, i) => {
+      {pains.map((p, i) => {
         const y = ly(i); const w = 18 + (i % 3) * 14;
         return (
-          <g key={p}>
-            <path className="flb-tangle" d={`M 8 ${y + 14} C ${70} ${y - w}, ${110} ${y + w + 20}, ${150} ${(y + NY) / 2 + ((i % 2) ? 26 : -26)} S ${210} ${NY + ((i % 2) ? -40 : 40)}, ${NX - 46} ${NY + (i - L / 2) * 4}`} />
+          <g key={p} className="flb-calm-g">
+            <path className="flb-tangle" d={`M 8 ${y + 14} C 70 ${y - w}, 100 ${y + w + 20}, 140 ${(y + NY) / 2 + ((i % 2) ? 26 : -26)} S 196 ${NY + ((i % 2) ? -40 : 40)}, ${NX - 46} ${NY + (i - L / 2) * 4}`} />
             <text x="12" y={y + 4} className="flb-g-pain">{p}</text>
           </g>
         );
       })}
-      {features.map((f, i) => {
-        const y = ry(i);
+      {!L && <text x="16" y="70" className="flb-g-pain">{c.graphic.empty}</text>}
+      {parts.map((p, i) => {
+        const y = rowY[p.id];
+        const x2 = W - 200;
         return (
-          <g key={f.id} className="flb-calm-g">
-            <path className="flb-calm" style={{ stroke: GROUP_COLOR[f.group] }} d={`M ${NX + 46} ${NY + (i - R / 2) * 3} C ${NX + 110} ${NY}, ${NX + 120} ${y}, ${W - 150} ${y} L ${W - 140} ${y}`} />
-            <circle cx={W - 140} cy={y} r="3.5" style={{ fill: GROUP_COLOR[f.group] }} />
-            <text x={W - 132} y={y + 4} className="flb-g-feat">{f.short}</text>
+          <g key={p.id} className={`flb-part${p.on ? ' is-on' : ' is-off'}`}>
+            {[-5, 0, 5].map((o) => (
+              <path key={o} className="flb-calm" style={{ stroke: p.color, opacity: p.on ? 1 : 0.18, strokeDasharray: p.on ? undefined : '3 7' }}
+                d={`M ${NX + 46} ${NY + (i - 1) * 10 + o} C ${NX + 100} ${NY + (i - 1) * 10 + o}, ${NX + 110} ${y + o}, ${x2 - 10} ${y + o} L ${x2} ${y + o}`} />
+            ))}
+            <circle cx={x2 + 6} cy={y} r="5" style={{ fill: p.on ? p.color : 'transparent', stroke: p.color }} />
+            <text x={x2 + 18} y={y - 8} className="flb-g-mod" style={{ fill: p.on ? '#faf9f5' : 'rgba(250,249,245,.35)' }}>{p.name}</text>
+            <text x={x2 + 18} y={y + 9} className="flb-g-feat" style={{ fill: p.on ? p.color : 'rgba(250,249,245,.3)' }}>{p.on ? p.word : c.graphic.off}</text>
+            {p.on && p.items.slice(0, 3).map((it, k) => <text key={it} x={x2 + 18} y={y + 27 + k * 15} className="flb-g-opt">+ {short(it, 24)}</text>)}
+            {p.on && p.items.length > 3 && <text x={x2 + 18} y={y + 27 + 3 * 15} className="flb-g-opt">+{p.items.length - 3}</text>}
           </g>
         );
       })}
-      {!R && <text x={W - 16} y={NY + 4} textAnchor="end" className="flb-g-pain">{c.graphic.empty}</text>}
       <circle cx={NX} cy={NY} r="110" fill="url(#flbGlow)" />
       <circle cx={NX} cy={NY} r="46" className="flb-node" />
       <text x={NX} y={NY + 9} textAnchor="middle" className="flb-node-t">f<tspan className="flb-node-l">λ</tspan>ow</text>
-      <text x={NX} y={NY + 84} textAnchor="middle" className="flb-g-price">{price.from ? `${c.offer.from} ` : ''}{price.cents ? euroCents(shownPrice, lang) : euro(shownPrice, lang)}</text>
+      <text x={NX} y={NY + 84} textAnchor="middle" className="flb-g-price">{price.value ? `${price.from ? `${c.offer.from} ` : ''}${price.cents ? euroCents(shownPrice, lang) : euro(shownPrice, lang)}` : '—'}</text>
       <text x={NX} y={NY + 104} textAnchor="middle" className="flb-g-per">{price.label}</text>
     </svg>
   );
@@ -117,22 +132,82 @@ const Chip = ({ on, onClick, children }) => (
   <button type="button" className={`flb-chip${on ? ' is-on' : ''}`} aria-pressed={on} onClick={onClick}>{children}</button>
 );
 
+/* ───────── scoring the answers ───────── */
+const scoreAnswers = (aud, a) => {
+  const n = (k) => (typeof a[k] === 'number' ? a[k] : null);
+  const where = Array.isArray(a.where) ? a.where : null;
+  const scatter = where ? where.filter((i) => i !== 3).length : null;
+  const talk = aud === 'med' ? n('missed') : n('calls');
+  const dialogos = talk === null && n('repeat') === null ? null : Math.round((((talk ?? 1) + (n('repeat') ?? 1)) / 4) * 100);
+  const praxis = n('miss') === null && scatter === null ? null : Math.min(100, Math.round(((n('miss') ?? 0) / 2) * 60 + Math.min(scatter ?? 0, 3) * 14));
+  const metron = n('report') === null ? null : Math.round((n('report') / 2) * 100);
+  return { dialogos, praxis, metron };
+};
+const recommend = (s) => {
+  const known = MODULE_IDS.filter((id) => s[id] !== null);
+  if (!known.length) return null;
+  const rec = known.filter((id) => s[id] >= 40);
+  if (rec.length) return rec;
+  return [known.reduce((x, y) => (s[y] > s[x] ? y : x))];
+};
+
+/* one row per option */
+const OptRow = ({ label, on, onToggle, priceNode, rec, recLabel, locked = false }) => (
+  <button type="button" className={`flb-opt${on ? ' is-on' : ''}${locked ? ' is-locked' : ''}`} aria-pressed={!!on} disabled={locked} onClick={onToggle}>
+    <span className="flb-opt-box" aria-hidden="true">{on ? '✓' : '+'}</span>
+    <span className="flb-opt-t">{label}{rec && <em className="flb-rec">{recLabel}</em>}</span>
+    <span className="flb-opt-p">{priceNode}</span>
+  </button>
+);
+
+/* one card per part */
+const ModuleCard = ({ m, p, on, lockedOn, onSwitch, inc, opts, isRec, c, aloneNote }) => (
+  <article className={`flb-mod${on ? ' is-on' : ''}`} style={{ '--c': m.color }}>
+    <header className="flb-mod-h">
+      <div>
+        <div className="flb-mod-word">{p.word}{isRec && <em className="flb-rec">{c.design.rec}</em>}</div>
+        <h3>{m.name}</h3>
+        <div className="flb-mod-line">{p.line}</div>
+      </div>
+      {lockedOn ? (
+        <span className="flb-mod-state">✓ {c.design.on}</span>
+      ) : (
+        <button type="button" className={`flb-switch${on ? ' is-on' : ''}`} aria-pressed={on} onClick={onSwitch}>
+          <i aria-hidden="true" /><span>{on ? c.design.on : c.design.off}</span>
+        </button>
+      )}
+    </header>
+    {aloneNote && <div className="flb-mod-alone">{aloneNote}</div>}
+    <div className="flb-mod-body">
+      <div className="flb-inc"><div className="flb-sub">{c.design.inc}</div>{inc.map((x) => <div key={x} className="flb-inc-i">{x}</div>)}</div>
+      {opts.length > 0 && <div className="flb-opts"><div className="flb-sub">{c.design.opts}</div>{opts}</div>}
+    </div>
+  </article>
+);
+
 const FlowBuilder = ({ onSummary }) => {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const lang = language === 'en' ? 'en' : 'el';
   const c = builderCopy[lang];
+  const t3 = threeContent[lang];
   const location = useLocation();
   const qp = new URLSearchParams(location.search || '');
   const [aud, setAud] = useState(AUDIENCES.includes(qp.get('for')) ? qp.get('for') : null);
+  const [presetMods] = useState(() => parseMods(qp.get('m')));
   useEffect(() => { const f = new URLSearchParams(location.search || '').get('for'); if (AUDIENCES.includes(f)) setAud(f); }, [location.search]);
 
-  const [ngoSel, setNgoSel] = useState({ size: 's', features: initialFeatures(NGO.features) });
+  const [ngoSel, setNgoSel] = useState({ size: 's', modules: presetMods || { dialogos: true, praxis: false, metron: true }, features: {} });
+  const [modsTouched, setModsTouched] = useState(!!presetMods);
   const [medSel, setMedSel] = useState({ size: '1', features: initialFeatures(MED.features) });
   const [annual, setAnnual] = useState(true);
   const [spSel, setSpSel] = useState({ orgs: '1', people: 2000, years: 1, cause: 0, options: initialFeatures(SPONSOR.options) });
-  const [pains, setPains] = useState({ ngo: [], med: [], sponsor: [] });
-  const [q2, setQ2] = useState({}); const [q3, setQ3] = useState(null);
+  const [answers, setAnswers] = useState({ ngo: {}, med: {} });
+  const [qi, setQi] = useState({ ngo: 0, med: 0 });
+  const [quizDone, setQuizDone] = useState({ ngo: false, med: false });
+  const [custom, setCustom] = useState([]);
+  const [draft, setDraft] = useState('');
+  const [minWarn, setMinWarn] = useState(false);
   const [form, setForm] = useState({ name: '', org: '', email: '', phone: '', consent: false });
   const [status, setStatus] = useState({ state: 'idle', mailto: '' });
 
@@ -140,31 +215,134 @@ const FlowBuilder = ({ onSummary }) => {
   const med = useMemo(() => computeMed(medSel, annual), [medSel, annual]);
   const sp = useMemo(() => computeSponsor(spSel), [spSel]);
   const offer = aud === 'ngo' ? ngo : aud === 'med' ? med : aud === 'sponsor' ? sp : null;
+  const isQuiz = aud === 'ngo' || aud === 'med';
+  const quiz = isQuiz ? c.quiz[aud] : [];
+  const ans = isQuiz ? answers[aud] : {};
+  const scores = isQuiz ? scoreAnswers(aud, ans) : { dialogos: null, praxis: null, metron: null };
+  const rec = recommend(scores);
 
-  // features shown on the right of the live flow
-  const chosen = useMemo(() => {
-    if (aud === 'ngo') return NGO.features.filter((f) => ngo.features[f.id]).map((f) => ({ id: f.id, group: f.group, short: f.tag[lang], full: f.label[lang] }));
-    if (aud === 'med') return MED.features.filter((f) => medSel.features[f.id] && !f.soon).map((f) => ({ id: f.id, group: f.group, short: f.tag[lang], full: f.label[lang] }));
-    if (aud === 'sponsor') return SPONSOR.options.filter((f) => spSel.options[f.id]).map((f) => ({ id: f.id, group: f.id === 'praxis' ? 'praxis' : f.id === 'lang2' ? 'logos' : 'insights', short: f.tag[lang], full: f.label[lang] }));
+  // which parts are on
+  const mods = aud === 'ngo' ? ngoSel.modules : aud === 'sponsor' ? { dialogos: true, praxis: !!spSel.options.praxis, metron: true } : { dialogos: true, praxis: true, metron: true };
+
+  /* questionnaire */
+  const sizeList = aud === 'med' ? MED.sizes : NGO.sizes;
+  const answerLabels = (q) => (q.k === 'size' ? sizeList.map((s) => s.label[lang]) : q.a);
+  const finishQuiz = (nextAnswers) => {
+    setQuizDone((d) => ({ ...d, [aud]: true }));
+    if (aud === 'ngo' && !modsTouched) {
+      const r = recommend(scoreAnswers('ngo', nextAnswers));
+      if (r) setNgoSel((s) => ({ ...s, modules: { dialogos: r.includes('dialogos'), praxis: r.includes('praxis'), metron: r.includes('metron') } }));
+    }
+  };
+  const pick = (q, idx) => {
+    const cur = answers[aud];
+    let val = idx;
+    if (q.multi) { const arr = Array.isArray(cur[q.k]) ? cur[q.k] : []; val = arr.includes(idx) ? arr.filter((x) => x !== idx) : [...arr, idx]; }
+    const next = { ...cur, [q.k]: val };
+    setAnswers((s) => ({ ...s, [aud]: next }));
+    if (q.k === 'size') {
+      const id = sizeList[idx].id;
+      if (aud === 'ngo') setNgoSel((s) => ({ ...s, size: id })); else setMedSel((s) => ({ ...s, size: id }));
+    }
+    if (!q.multi) {
+      const i = qi[aud];
+      setTimeout(() => {
+        if (i < quiz.length - 1) setQi((s) => ({ ...s, [aud]: i + 1 })); else finishQuiz(next);
+      }, 240);
+    }
+  };
+  const answered = (q) => (Array.isArray(ans[q.k]) ? ans[q.k].length > 0 : ans[q.k] !== undefined);
+
+  /* time inputs from the answers */
+  const v = (k, def) => { const q = quiz.find((x) => x.k === k); const i = ans[k]; return q && q.v && typeof i === 'number' ? q.v[i] : def; };
+  const whereArr = Array.isArray(ans.where) ? ans.where : null;
+  const timeInputs = {
+    team: v('team', aud === 'med' ? 1 : 6),
+    calls: v('calls', aud === 'med' ? 35 : 20),
+    repeat: v('repeat', 0.5),
+    missed: v('missed', 4),
+    doctors: { 1: 1, '2-5': 3, '6+': 7 }[medSel.size] || 1,
+    scatter: whereArr ? whereArr.filter((i) => i !== 3).length : 2,
+    miss: typeof ans.miss === 'number' ? ans.miss : 1,
+    report: typeof ans.report === 'number' ? ans.report : 1,
+  };
+
+  /* pains on the left of the live flow */
+  const pains = [];
+  if (isQuiz) {
+    const p = c.quizUi.pains;
+    if (aud === 'med' && typeof ans.missed === 'number') pains.push(p.missed);
+    if (aud === 'ngo' && typeof ans.calls === 'number' && ans.calls > 0) pains.push(p.calls);
+    if (typeof ans.repeat === 'number' && ans.repeat > 0) pains.push(p.repeat);
+    (whereArr || []).forEach((i) => { if (p.where[i]) pains.push(p.where[i]); });
+    if (typeof ans.miss === 'number' && ans.miss > 0) pains.push(p.miss[aud]);
+    if (typeof ans.report === 'number' && ans.report > 0) pains.push(p.report[aud]);
+  }
+
+  // options that come free once two or more parts are in (Viber, second language)
+  const autoInc = (f) => !!f.includedWith && MODULE_IDS.filter((k) => ngoSel.modules[k]).length >= f.includedWith;
+
+  /* the three parts, with chosen options, for the graphic and the offer */
+  const optionsOf = (mid) => {
+    if (aud === 'ngo') return NGO.features.filter((f) => f.module === mid && !f.inc && !f.quote && (ngoSel.features[f.id] || autoInc(f))).map((f) => f.label[lang]);
+    if (aud === 'med') return MED.features.filter((f) => MED_GROUP[f.group] === mid && !f.locked && !f.quote && medSel.features[f.id]).map((f) => f.label[lang]);
+    if (aud === 'sponsor') return SPONSOR.options.filter((f) => SP_GROUP[f.id] === mid && !f.locked && spSel.options[f.id] && f.id !== 'praxis').map((f) => f.label[lang]);
     return [];
-  }, [aud, ngo, medSel, spSel, lang]);
-  const painList = aud ? c.pains[aud] : [];
-  const painsShown = aud ? (pains[aud].length ? pains[aud].map((i) => painList[i]) : painList.slice(0, 3)) : [];
+  };
+  const parts = MODULES.map((m) => ({ id: m.id, name: m.name, color: m.color, word: t3.layers.parts[m.id].word, on: !!mods[m.id], items: optionsOf(m.id) }));
   const price = !offer ? { value: 0, label: '' }
     : aud === 'sponsor' ? { value: offer.perPerson, label: c.offer.perPerson, from: offer.from, cents: true }
       : { value: offer.monthly, label: c.perMonth.replace('/', ''), from: offer.from };
 
-  const toggle = (setter, key) => (id) => setter((s) => ({ ...s, [key]: { ...s[key], [id]: !s[key][id] } }));
-  // NGO: switching PraxisAI off also switches off what depends on it
-  const toggleNgo = (id) => setNgoSel((s) => {
-    const on = !computeNgo(s).features[id];
-    const features = { ...s.features, [id]: on };
-    if (!on && id === 'praxis') { features.family = false; features.voice = false; }
-    if (!on && id === 'insights') { features.praxis = false; features.family = false; features.voice = false; }
-    return { ...s, features };
-  });
-  const togglePain = (i) => setPains((s) => ({ ...s, [aud]: s[aud].includes(i) ? s[aud].filter((x) => x !== i) : [...s[aud], i] }));
+  /* toggles */
+  const toggleModule = (id) => {
+    setModsTouched(true);
+    const next = { ...ngoSel.modules, [id]: !ngoSel.modules[id] };
+    if (!MODULE_IDS.some((k) => next[k])) { setMinWarn(true); return; }
+    setMinWarn(false);
+    const features = { ...ngoSel.features };
+    if (id === 'dialogos' && !next.dialogos) features.family = false;
+    setNgoSel({ ...ngoSel, modules: next, features });
+  };
+  const toggleNgoFeature = (f) => {
+    const on = !ngoSel.features[f.id];
+    const modules = { ...ngoSel.modules };
+    if (on) { if (f.module !== 'all') modules[f.module] = true; if (f.requires) modules[f.requires] = true; }
+    setNgoSel({ ...ngoSel, modules, features: { ...ngoSel.features, [f.id]: on } });
+  };
+  const toggleMed = (id) => setMedSel((s) => ({ ...s, features: { ...s.features, [id]: !s.features[id] } }));
+  const toggleSp = (id) => setSpSel((s) => ({ ...s, options: { ...s.options, [id]: !s.options[id] } }));
+  const addCustom = (e) => { e.preventDefault(); const x = draft.trim(); if (!x || custom.includes(x)) return; setCustom((l) => [...l, x].slice(0, 12)); setDraft(''); };
 
+  /* prices shown next to options */
+  const ngoOptPrice = (f) => {
+    if (f.quote) return c.design.quote;
+    if (f.includedWith && ngo.count >= f.includedWith) return c.included;
+    const bits = [];
+    if (f.monthly) bits.push(`+${euro(f.monthly, lang)}${c.perMonth}`);
+    if (f.setup) bits.push(`+${euro(f.setup, lang)} ${c.setup}`);
+    const p = bits.join(', ') + (f.atCost ? `, ${c.atCost}` : '');
+    return f.includedWith ? `${p} · ${c.design.withTwo}` : p;
+  };
+  const medOptPrice = (f) => {
+    if (f.quote) return c.design.quote;
+    if (f.soon) return c.soon;
+    if (f.atCost) return `+${euro(f.setupExtra, lang)} ${c.setup}, ${c.atCost}`;
+    if (med.tierN >= f.tier) return c.included;
+    const t = MED.tiers[f.tier - 1];
+    return c.design.totalUpTo(`${euro(annual ? t.annual : t.monthly, lang)}${c.perMonth}`);
+  };
+  const spOptPrice = (f) => {
+    if (f.atCost) return `+${euro(f.setup, lang)} ${c.setup}, ${c.atCost}`;
+    return `+${euro(f.perOrgMonthly, lang)}${c.perMonth}${f.perOrgSetup ? ` + ${euro(f.perOrgSetup, lang)}` : ''} ${lang === 'en' ? 'per org' : 'ανά οργανισμό'}`;
+  };
+
+  const quotes = aud === 'ngo' ? ngo.quotes.map((f) => f.label[lang])
+    : aud === 'med' ? MED.features.filter((f) => f.quote && medSel.features[f.id]).map((f) => f.label[lang]) : [];
+  const recFeature = (id) => aud === 'med' && quizDone.med && (
+    (id === 'booking' && (ans.calls ?? 0) >= 1) || (id === 'missed' && (ans.missed ?? 0) >= 1) || (id === 'reminders' && (ans.miss ?? 0) >= 1) || (id === 'callstats' && (ans.report ?? 0) >= 1));
+
+  /* the text that travels with the offer (email, booking) */
   const offerText = () => {
     if (!offer) return '';
     const lines = [`fλow · ${c.who[aud].name}`];
@@ -175,19 +353,19 @@ const FlowBuilder = ({ onSummary }) => {
       lines.push(`${c.size.sponsor[3]} ${SPONSOR.causes[spSel.cause][lang]}`);
       lines.push(`${c.offer.total}: ${euro(sp.total, lang)}, ${euroCents(sp.perPerson, lang)} ${c.offer.perPerson}`);
     } else {
-      lines.push(`${c.offer.plan}: ${offer.name[lang]}`);
+      lines.push(`${c.offer.modulesTitle}: ${parts.filter((p) => p.on).map((p) => p.name).join(' + ')}`);
       lines.push(`${c.offer.monthly}: ${offer.from ? `${c.offer.from} ` : ''}${euro(offer.monthly, lang)}${aud === 'med' ? ` (${annual ? c.billing[1] : c.billing[0]})` : ''}`);
       lines.push(`${c.offer.setup}: ${euro(offer.setup, lang)}`);
     }
-    lines.push(`${lang === 'en' ? 'Selected' : 'Επιλογές'}: ${chosen.map((f) => f.full).join(', ')}`);
-    if (pains[aud].length) lines.push(`${c.pains.title} ${pains[aud].map((i) => painList[i]).join(', ')}`);
-    if (q2[aud] !== undefined) lines.push(`${c.pains.q2[aud]} ${c.pains.a2[aud][q2[aud]]}`);
-    if (q3 !== null) lines.push(`${c.pains.q3} ${c.pains.a3[q3]}`);
+    parts.filter((p) => p.on && p.items.length).forEach((p) => lines.push(`${p.name}: ${p.items.join(', ')}`));
+    if (quotes.length) lines.push(`${c.offer.quotesTitle}: ${quotes.join(', ')}`);
+    if (custom.length) lines.push(`*** ${c.offer.customTitle.toUpperCase()}: ${custom.join(' | ')}`);
+    if (isQuiz) {
+      quiz.forEach((q) => { const a = ans[q.k]; if (a === undefined) return; const labels = answerLabels(q); lines.push(`${q.t} ${Array.isArray(a) ? a.map((i) => labels[i]).join(', ') : labels[a]}`); });
+    }
     if (form.phone) lines.push(`${c.contact.phone}: ${form.phone}`);
     return lines.join('\n');
   };
-
-  // hand the current flow to the page (attached to a booking or message, if the visitor wants)
   const summaryText = aud && offer ? offerText() : '';
   useEffect(() => { if (onSummary) onSummary(summaryText); }, [summaryText, onSummary]);
 
@@ -205,43 +383,39 @@ const FlowBuilder = ({ onSummary }) => {
     }
   };
 
-  const featureRow = (f, on, onToggle, priceNode) => (
-    <label key={f.id} className={`flb-feat${on ? ' is-on' : ''}${f.locked ? ' is-locked' : ''}${f.soon ? ' is-soon' : ''}`}>
-      <input type="checkbox" checked={!!on} disabled={f.locked} onChange={() => onToggle(f.id)} />
-      <span className="flb-feat-dot" style={{ background: GROUP_COLOR[f.group] || GROUP_COLOR.insights }} aria-hidden="true" />
-      <span className="flb-feat-txt"><b>{f.label[lang]}</b><small>{f.note[lang]}</small></span>
-      <span className="flb-feat-price">{priceNode}</span>
-    </label>
-  );
+  const steps = aud === 'sponsor' ? c.stepsSponsor : c.steps;
+  const q = quiz[qi[aud]] || null;
 
-  const ngoPrice = (f) => {
-    if (f.locked) return c.always;
-    if (f.tier) {
-      const t = NGO.tiers.find((x) => x.id === f.tier); const base = NGO.tiers[0];
-      return f.id === 'insights' ? `+${euro(t.monthly - base.monthly, lang)}${c.perMonth}` : `+${euro(t.monthly - NGO.tiers[1].monthly, lang)}${c.perMonth}`;
+  const cardFor = (m) => {
+    const p = t3.layers.parts[m.id];
+    const on = !!mods[m.id];
+    const lockedOn = aud === 'med' || (aud === 'sponsor' && m.id !== 'praxis');
+    let inc = []; let opts = [];
+    if (aud === 'ngo') {
+      inc = NGO.features.filter((f) => f.module === m.id && f.inc).map((f) => f.label[lang]);
+      opts = NGO.features.filter((f) => f.module === m.id && !f.inc).map((f) => (
+        <OptRow key={f.id} label={<>{f.label[lang]}{f.requires && !mods[f.requires] && <small> · {c.design.needs}</small>}</>} on={ngoSel.features[f.id] || autoInc(f)} locked={autoInc(f)} onToggle={() => toggleNgoFeature(f)} priceNode={autoInc(f) ? c.design.withTwo : ngoOptPrice(f)} />
+      ));
+    } else if (aud === 'med') {
+      inc = MED.features.filter((f) => MED_GROUP[f.group] === m.id && f.locked).map((f) => f.label[lang]);
+      opts = MED.features.filter((f) => MED_GROUP[f.group] === m.id && !f.locked).map((f) => (
+        <OptRow key={f.id} label={f.label[lang]} on={medSel.features[f.id]} onToggle={() => toggleMed(f.id)} priceNode={medOptPrice(f)} rec={recFeature(f.id)} recLabel={c.design.rec} />
+      ));
+    } else {
+      inc = m.id === 'dialogos' ? SP_INC[lang] : m.id === 'praxis' ? [SPONSOR.options.find((f) => f.id === 'praxis').note[lang]] : SPONSOR.options.filter((f) => SP_GROUP[f.id] === m.id && f.locked).map((f) => f.label[lang]);
+      opts = SPONSOR.options.filter((f) => SP_GROUP[f.id] === m.id && !f.locked && f.id !== 'praxis').map((f) => (
+        <OptRow key={f.id} label={f.label[lang]} on={spSel.options[f.id]} onToggle={() => toggleSp(f.id)} priceNode={spOptPrice(f)} />
+      ));
     }
-    const tierIdx = NGO.tiers.findIndex((t) => t.id === ngo.tierId);
-    const incIdx = f.includedFrom ? NGO.tiers.findIndex((t) => t.id === f.includedFrom) : 99;
-    if (ngo.tierId === 'network' || tierIdx >= incIdx) return c.included;
-    if (f.atCost) return `+${euro(f.setup, lang)} ${c.setup}, ${c.atCost}`;
-    return `+${euro(f.monthly, lang)}${c.perMonth}`;
+    const isRec = aud === 'ngo' && quizDone.ngo && !!rec && rec.includes(m.id);
+    const aloneNote = aud === 'ngo' && !on ? `${c.design.alone} ${euro(NGO.combos[m.id[0]].monthly, lang)}${c.perMonth}`
+      : aud === 'sponsor' && m.id === 'praxis' ? spOptPrice(SPONSOR.options.find((f) => f.id === 'praxis')) : null;
+    return (
+      <ModuleCard key={m.id} m={m} p={p} on={on} lockedOn={lockedOn} inc={inc} opts={opts} isRec={isRec} c={c} aloneNote={aloneNote}
+        onSwitch={() => (aud === 'ngo' ? toggleModule(m.id) : toggleSp('praxis'))} />
+    );
   };
-  const medPrice = (f) => {
-    if (f.locked) return c.always;
-    if (f.soon) return c.soon;
-    if (f.atCost) return `+${euro(f.setupExtra, lang)} ${c.setup}, ${c.atCost}`;
-    if (med.tierN >= f.tier) return c.included;
-    const t = MED.tiers[f.tier - 1];
-    return `${MED.tiers[f.tier - 1].name[lang]} ${euro(annual ? t.annual : t.monthly, lang)}${c.perMonth}`;
-  };
-  const spPrice = (f) => {
-    if (f.locked) return c.included;
-    if (f.atCost) return `+${euro(f.setup, lang)} ${c.setup}, ${c.atCost}`;
-    return `+${euro(f.perOrgMonthly, lang)}${c.perMonth}${f.perOrgSetup ? ` + ${euro(f.perOrgSetup, lang)}` : ''} ${lang === 'en' ? 'per org' : 'ανά οργανισμό'}`;
-  };
-
-  const groups = aud === 'ngo' ? ['insights', 'logos', 'praxis', 'extra'] : ['praxis', 'logos', 'insights', 'extra'];
-  const groupTitle = (g) => { const [n, v] = c.groups[g].split(' · '); return <h4 className="flb-group"><span style={{ background: GROUP_COLOR[g] }} aria-hidden="true" />{n}{v && <em> {v}</em>}</h4>; };
+  const greek = NGO.features.find((f) => f.id === 'greek');
 
   return (
     <div className="flb" data-aud={aud || 'none'}>
@@ -260,7 +434,7 @@ const FlowBuilder = ({ onSummary }) => {
         <div className="flb-steps">
           {/* 1. who */}
           <section className="flb-step" aria-labelledby="flb-s1">
-            <h2 id="flb-s1"><span className="flb-n">1</span>{c.steps[0]}</h2>
+            <h2 id="flb-s1"><span className="flb-n">1</span>{steps[0]}</h2>
             <div className="flb-doors">
               {AUDIENCES.map((a) => (
                 <button key={a} type="button" className={`flb-door${aud === a ? ' is-on' : ''}`} aria-pressed={aud === a} onClick={() => setAud(a)}>
@@ -275,11 +449,54 @@ const FlowBuilder = ({ onSummary }) => {
 
           {aud && (
             <>
-              {/* 2. size */}
+              {/* 2. your day (questionnaire) or, for sponsors, what to support */}
               <section className="flb-step" aria-labelledby="flb-s2">
-                <h2 id="flb-s2"><span className="flb-n">2</span>{c.steps[1]}</h2>
-                {aud === 'ngo' && (<><p className="flb-q">{c.size.ngo}</p><div className="flb-chips">{NGO.sizes.map((s) => <Chip key={s.id} on={ngoSel.size === s.id} onClick={() => setNgoSel((x) => ({ ...x, size: s.id }))}>{s.label[lang]}</Chip>)}</div></>)}
-                {aud === 'med' && (<><p className="flb-q">{c.size.med}</p><div className="flb-chips">{MED.sizes.map((s) => <Chip key={s.id} on={medSel.size === s.id} onClick={() => setMedSel((x) => ({ ...x, size: s.id }))}>{s.label[lang]}</Chip>)}</div></>)}
+                <h2 id="flb-s2"><span className="flb-n">2</span>{steps[1]}</h2>
+                {isQuiz && (
+                  <div className="flb-quiz">
+                    {!quizDone[aud] && q ? (
+                      <div className="flb-qcard">
+                        <div className="flb-qprog" aria-hidden="true">{quiz.map((x, n) => <span key={x.k} className={n < qi[aud] ? 'is-done' : n === qi[aud] ? 'is-now' : ''} />)}</div>
+                        <div className="flb-qcount">{qi[aud] + 1} {c.quizUi.of} {quiz.length}</div>
+                        <h3 className="flb-qt">{q.t}</h3>
+                        {q.multi && <div className="flb-hint">{c.quizUi.multi}</div>}
+                        <div className="flb-chips" role="group" aria-label={q.t}>
+                          {answerLabels(q).map((a, n) => <Chip key={a} on={q.multi ? (ans[q.k] || []).includes(n) : ans[q.k] === n} onClick={() => pick(q, n)}>{a}</Chip>)}
+                        </div>
+                        <div className="flb-qnav">
+                          {qi[aud] > 0 && <button type="button" className="flb-qback" onClick={() => setQi((s) => ({ ...s, [aud]: s[aud] - 1 }))}>← {c.quizUi.back}</button>}
+                          {(q.multi || answered(q)) && (
+                            <button type="button" className="flb-qnext" disabled={!answered(q)} onClick={() => (qi[aud] < quiz.length - 1 ? setQi((s) => ({ ...s, [aud]: s[aud] + 1 })) : finishQuiz(ans))}>
+                              {qi[aud] < quiz.length - 1 ? c.quizUi.next : c.quizUi.done} →
+                            </button>
+                          )}
+                          <a className="flb-qskip" href="#flb-s3" onClick={() => setQuizDone((d) => ({ ...d, [aud]: true }))}>{c.quizUi.skip}</a>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flb-qsum">
+                        <span>✓ {c.quizUi.answers}</span>
+                        <button type="button" onClick={() => { setQuizDone((d) => ({ ...d, [aud]: false })); setQi((s) => ({ ...s, [aud]: 0 })); }}>{c.quizUi.edit}</button>
+                      </div>
+                    )}
+                    <div className="flb-map" aria-live="polite">
+                      <div className="flb-map-t">{c.quizUi.mapTitle}</div>
+                      {MODULES.map((m) => (
+                        <div key={m.id} className={`flb-bar${scores[m.id] === null ? ' is-empty' : ''}`} style={{ '--c': m.color }}>
+                          <div className="flb-bar-h"><span>{c.quizUi.where[m.id]}</span><b>{m.name}</b></div>
+                          <div className="flb-bar-track"><i style={{ width: `${scores[m.id] === null ? 0 : Math.max(4, scores[m.id])}%` }} /></div>
+                        </div>
+                      ))}
+                      {rec && (quizDone[aud] || Object.keys(ans).length > 3) && (
+                        <div className="flb-recline">
+                          {MODULE_IDS.every((id) => scores[id] !== null && scores[id] < 40) ? c.quizUi.calm : (
+                            <>{c.quizUi.recommend}: <b>{rec.map((id) => NAME[id]).join(' + ')}</b>{aud === 'ngo' && quizDone.ngo && !modsTouched ? `. ${c.quizUi.applied}` : '.'}</>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
                 {aud === 'sponsor' && (
                   <>
                     <p className="flb-q">{c.size.sponsor[0]}</p>
@@ -297,69 +514,90 @@ const FlowBuilder = ({ onSummary }) => {
                 )}
               </section>
 
-              {/* 3. features */}
-              <section className="flb-step" aria-labelledby="flb-s3">
-                <h2 id="flb-s3"><span className="flb-n">3</span>{c.steps[2]}</h2>
+              {/* 3. design your fλow */}
+              <section className="flb-step" id="flb-s3" aria-labelledby="flb-s3h">
+                <h2 id="flb-s3h"><span className="flb-n">3</span>{steps[2]}</h2>
                 {aud === 'med' && (
-                  <div className="flb-billing">
-                    <div className="flb-chips">{c.billing.map((b, i) => <Chip key={b} on={annual === (i === 1)} onClick={() => setAnnual(i === 1)}>{b}</Chip>)}</div>
-                    <small>{c.annualNote}</small>
-                  </div>
-                )}
-                {aud !== 'sponsor' && groups.map((g) => {
-                  const list = (aud === 'ngo' ? NGO : MED).features.filter((f) => f.group === g);
-                  if (!list.length) return null;
-                  return (
-                    <div key={g} className="flb-fgroup">
-                      {groupTitle(g)}
-                      {list.map((f) => (aud === 'ngo'
-                        ? featureRow(f, ngo.features[f.id], toggleNgo, ngoPrice(f))
-                        : featureRow(f, medSel.features[f.id], toggle(setMedSel, 'features'), medPrice(f))))}
+                  <>
+                    <p className="flb-hint">{c.design.medAll}</p>
+                    <div className="flb-billing">
+                      <div className="flb-chips">{c.billing.map((b, i) => <Chip key={b} on={annual === (i === 1)} onClick={() => setAnnual(i === 1)}>{b}</Chip>)}</div>
+                      <small>{c.annualNote}</small>
                     </div>
-                  );
-                })}
-                {aud === 'sponsor' && (
-                  <div className="flb-fgroup">
-                    {SPONSOR.options.map((f) => featureRow({ ...f, group: f.id === 'praxis' ? 'praxis' : f.id === 'lang2' ? 'logos' : f.id === 'greek' ? 'extra' : 'insights' }, spSel.options[f.id], toggle(setSpSel, 'options'), spPrice(f)))}
+                  </>
+                )}
+                {aud === 'sponsor' && <p className="flb-hint">{c.design.sponsorNote}</p>}
+                {minWarn && <p className="flb-warn" role="status">{c.design.minOne}</p>}
+                <div className="flb-mods">{MODULES.map((m) => cardFor(m))}</div>
+                {aud === 'ngo' && ngo.saving && ngo.saving.monthly > 0 && (
+                  <p className="flb-saving">{c.design.saving(euro(ngo.saving.monthly, lang), euro(ngo.saving.setup, lang))}</p>
+                )}
+                {aud === 'ngo' && (
+                  <div className="flb-whole">
+                    <OptRow label={greek.label[lang]} on={ngoSel.features.greek} onToggle={() => toggleNgoFeature(greek)} priceNode={ngoOptPrice(greek)} />
                   </div>
                 )}
+                <form className="flb-custom" onSubmit={addCustom}>
+                  <div className="flb-sub">{c.design.customTitle}</div>
+                  <div className="flb-custom-row">
+                    <input value={draft} onChange={(e) => setDraft(e.target.value)} placeholder={c.design.customPh} aria-label={c.design.customTitle} maxLength={90} />
+                    <button type="submit" className="flb-custom-add">{c.design.customAdd}</button>
+                  </div>
+                  {custom.length > 0 && (
+                    <div className="flb-custom-list">
+                      {custom.map((x) => (
+                        <span key={x} className="flb-custom-chip">{x}<em>{c.design.customTag}</em>
+                          <button type="button" aria-label={`${c.design.remove}: ${x}`} onClick={() => setCustom((l) => l.filter((y) => y !== x))}>×</button>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <div className="flb-hint flb-custom-note">{c.design.customNote}</div>
+                </form>
               </section>
 
-              {/* 4. today */}
+              {/* 4. the time that comes back (or, for sponsors, the impact) */}
               <section className="flb-step" aria-labelledby="flb-s4">
-                <h2 id="flb-s4"><span className="flb-n">4</span>{c.steps[3]}</h2>
-                <p className="flb-q">{c.pains.title}</p>
-                <p className="flb-hint">{c.pains.hint}</p>
-                <div className="flb-chips">{painList.map((p, i) => <Chip key={p} on={pains[aud].includes(i)} onClick={() => togglePain(i)}>{p}</Chip>)}</div>
-                <p className="flb-q">{c.pains.q2[aud]}</p>
-                <div className="flb-chips">{c.pains.a2[aud].map((a, i) => <Chip key={a} on={q2[aud] === i} onClick={() => setQ2((s) => ({ ...s, [aud]: i }))}>{a}</Chip>)}</div>
-                <p className="flb-q">{c.pains.q3}</p>
-                <div className="flb-chips">{c.pains.a3.map((a, i) => <Chip key={a} on={q3 === i} onClick={() => setQ3(i)}>{a}</Chip>)}</div>
+                <h2 id="flb-s4"><span className="flb-n">4</span>{steps[3]}</h2>
+                {isQuiz ? (
+                  <TimeBack c={t3.time} lang={lang} ed={aud} mods={mods} inputs={timeInputs} flowYearCost={offer ? offer.firstYear : null} key={aud} />
+                ) : (
+                  <div className="flb-impact">
+                    <p className="flb-hint">{c.impactStep.lead}</p>
+                    <div className="flb-impact-nums">
+                      <div><b>{new Intl.NumberFormat(lang === 'en' ? 'en-IE' : 'el-GR').format(spSel.people * spSel.years)}</b><span>{c.impactStep.people}{spSel.years > 1 ? ` × ${spSel.years}` : ''}</span></div>
+                      <div><b>{euroCents(sp.perPerson, lang)}</b><span>{c.impactStep.perPerson}</span></div>
+                      <div><b>{sp.orgCount}{sp.from ? '+' : ''}</b><span>{c.impactStep.orgs}</span></div>
+                    </div>
+                    <div className="flb-impact-line">{c.impactStep.report}</div>
+                  </div>
+                )}
               </section>
 
               {/* 5. offer */}
               <section className="flb-step" id="flb-offer" aria-labelledby="flb-s5">
-                <h2 id="flb-s5"><span className="flb-n">5</span>{c.steps[4]}</h2>
+                <h2 id="flb-s5"><span className="flb-n">5</span>{steps[4]}</h2>
                 <article className="flb-offer flb-print">
                   <header className="flb-offer-head">
                     <p className="flb-offer-brand">f<span>λ</span>ow <small>SimasiaAI, contact@simasiaai.gr</small></p>
                     <p className="flb-offer-for">{c.who[aud].name}{aud === 'sponsor' ? `, ${SPONSOR.causes[spSel.cause][lang]}` : ''}</p>
                   </header>
+                  <div className="flb-offer-mods">
+                    {parts.map((p) => (
+                      <span key={p.id} className={`flb-offer-mod${p.on ? ' is-on' : ''}`} style={{ '--c': p.color }}>{p.on ? '✓' : '○'} {p.name}</span>
+                    ))}
+                  </div>
                   {aud !== 'sponsor' ? (
                     <>
-                      <p className="flb-offer-plan">{c.offer.plan}: <b>{offer.name[lang]}</b></p>
                       <dl className="flb-offer-nums">
                         <div><dt>{c.offer.monthly}</dt><dd>{offer.from ? `${c.offer.from} ` : ''}{euro(offer.monthly, lang)}<small>{c.perMonth}</small></dd></div>
                         <div><dt>{c.offer.setup}</dt><dd>{offer.from ? `${c.offer.from} ` : ''}{euro(offer.setup, lang)}</dd></div>
                         <div><dt>{c.offer.firstYear}</dt><dd>{offer.from ? `${c.offer.from} ` : ''}{euro(offer.firstYear, lang)}</dd></div>
                       </dl>
-                      {offer.worth && <p className="flb-offer-worth">{c.offer.worth}: <s>{offer.worth[lang]}</s></p>}
+                      {aud === 'med' && !offer.from && <p className="flb-offer-note">{lang === 'en' ? 'Matches' : 'Αντιστοιχεί στο'} «{offer.name[lang]}» {lang === 'en' ? 'on the clinics page' : 'της σελίδας για ιατρεία'}.</p>}
+                      {aud === 'ngo' && ngo.saving && ngo.saving.monthly > 0 && <p className="flb-offer-note flb-offer-save">{c.design.saving(euro(ngo.saving.monthly, lang), euro(ngo.saving.setup, lang))}</p>}
                       {offer.from && <p className="flb-offer-note">{c.offer.custom}</p>}
                       {offer.atCost && <p className="flb-offer-note">+ {c.atCost}</p>}
-                      <ul className="flb-offer-list">{chosen.map((f) => <li key={f.id}>{f.full}</li>)}</ul>
-                      <p className="flb-offer-g">{aud === 'med' ? c.offer.guaranteeMed : c.offer.guarantee}</p>
-                      {aud === 'ngo' && <p className="flb-offer-note">{c.offer.pilot}</p>}
-                      {aud === 'ngo' && <p className="flb-offer-note">{c.offer.funding}</p>}
                     </>
                   ) : (
                     <>
@@ -369,11 +607,23 @@ const FlowBuilder = ({ onSummary }) => {
                         <div><dt>{c.offer.orgs}</dt><dd>{SPONSOR.orgs.find((o) => o.id === spSel.orgs).label[lang]}</dd></div>
                       </dl>
                       <h3 className="flb-offer-h">{c.offer.sponsorWhat}</h3>
-                      <ul className="flb-offer-list">{c.offer.sponsorList.map((x) => <li key={x}>{x}</li>)}{chosen.filter((f) => !['impact', 'disclosure'].includes(f.id)).map((f) => <li key={f.id}>{f.full}</li>)}</ul>
+                      <ul className="flb-offer-list">{c.offer.sponsorList.map((x) => <li key={x}>{x}</li>)}</ul>
                       <p className="flb-offer-note">{c.offer.proof}</p>
                       {sp.atCost && <p className="flb-offer-note">+ {c.atCost}</p>}
                     </>
                   )}
+                  {parts.some((p) => p.on && p.items.length) && (
+                    <>
+                      <h3 className="flb-offer-h">{c.offer.options}</h3>
+                      <ul className="flb-offer-list">{parts.filter((p) => p.on).flatMap((p) => p.items.map((it) => <li key={`${p.id}${it}`}>{it}</li>))}</ul>
+                    </>
+                  )}
+                  {quotes.length > 0 && (<><h3 className="flb-offer-h">{c.offer.quotesTitle}</h3><ul className="flb-offer-list flb-offer-quote">{quotes.map((x) => <li key={x}>{x}</li>)}</ul></>)}
+                  {custom.length > 0 && (<><h3 className="flb-offer-h">{c.offer.customTitle}</h3><ul className="flb-offer-list flb-offer-quote">{custom.map((x) => <li key={x}>{x}</li>)}</ul></>)}
+                  {aud !== 'sponsor' && <p className="flb-offer-g">{aud === 'med' ? c.offer.guaranteeMed : c.offer.guarantee}</p>}
+                  {aud === 'ngo' && <p className="flb-offer-note flb-offer-pilot">{c.offer.pilot}</p>}
+                  {aud === 'med' && <p className="flb-offer-note flb-offer-pilot">{c.offer.pilotMed}</p>}
+                  {aud === 'ngo' && <p className="flb-offer-note">{c.offer.funding}</p>}
                   <div className="flb-one">
                     <p>{c.offer.oneNumber}</p>
                     <b>{c.offer.oneNumberText}</b>
@@ -384,9 +634,9 @@ const FlowBuilder = ({ onSummary }) => {
                 {aud !== 'sponsor' && (
                   <div className="flb-stack">
                     <h3>{c.stack.title}</h3>
-                    <ul>{c.stack.items.map(([t, v]) => <li key={t}><span>{t}</span><s>{euro(v, lang)}</s></li>)}</ul>
+                    <ul>{c.stack.items.map(([t, val]) => <li key={t}><span>{t}</span><s>{euro(val, lang)}</s></li>)}</ul>
                     <p className="flb-stack-sum">
-                      <span>{c.stack.worth} <s>{euro(c.stack.items.reduce((a, [, v]) => a + v, 0), lang)}</s></span>
+                      <span>{c.stack.worth} <s>{euro(c.stack.items.reduce((a, [, val]) => a + val, 0), lang)}</s></span>
                       <b>{c.stack.you}: {c.stack.free}</b>
                     </p>
                   </div>
@@ -400,13 +650,13 @@ const FlowBuilder = ({ onSummary }) => {
                 <div className="flb-unique">
                   <h3>{c.unique.title}</h3>
                   <p>{c.unique.text}</p>
-                  <p className="flb-impact">{c.impact[aud]}</p>
+                  <p className="flb-impact-l">{c.impact[aud]}</p>
                 </div>
 
                 <div className="flb-faq">
                   <h3>{c.faq.title}</h3>
-                  {c.faq[aud].map(([q, a]) => (
-                    <details key={q}><summary>{q}</summary><p>{a}</p></details>
+                  {c.faq[aud].map(([fq, fa]) => (
+                    <details key={fq}><summary>{fq}</summary><p>{fa}</p></details>
                   ))}
                   <Link className="flb-terms" to="/terms#ai-accuracy">{lang === 'en' ? 'Answer accuracy and terms' : 'Ακρίβεια απαντήσεων και όροι'} →</Link>
                 </div>
@@ -439,7 +689,7 @@ const FlowBuilder = ({ onSummary }) => {
 
         <aside className="flb-live" aria-label={c.graphic.aria}>
           <div className="flb-live-in">
-            <LiveFlow pains={painsShown} features={chosen} price={price} c={c} lang={lang} />
+            <LiveFlow pains={pains.slice(0, 7)} parts={parts} price={price} c={c} lang={lang} />
             {offer && (
               <div className="flb-ticker">
                 <span>{aud === 'sponsor' ? `${c.offer.total} ${euro(sp.total, lang)}` : offer.name[lang]}</span>

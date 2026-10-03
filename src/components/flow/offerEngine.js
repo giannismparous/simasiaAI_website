@@ -4,14 +4,20 @@
 // Sources
 // - Clinics: the live /ypodochi tiers (Απαντάει 199/149, Κλείνει 249/199,
 //   Φέρνει πίσω 299/249, Σηκώνει το τηλέφωνο 399/299; setup 490 €, free with annual).
-// - NGOs: Oct 2026 pricing doc (Πλοηγός 119 + 2.400, Πλοηγός Insights 179 + 2.900,
-//   Φροντίδα 249 + 4.500, Δίκτυο από 450 + 7.500; pilot 490 € for 60 days).
+// - NGOs: Oct 2026 pricing doc, now per part (see NGO.combos). Pilot: 199 € for 60 days.
 // - Sponsors: derived from the NGO Insights package per organisation (PROPOSAL, to confirm).
 // - Size steps, add-on prices and the Greek-model tier are PROPOSALS (to confirm).
 
 const L = (el, en) => ({ el, en });
 
-/* ───────── NGOs: Insights (dashboard) is the product; PraxisAI for daily care ───────── */
+/* ───────── NGOs, associations, care services: three parts, priced alone, cheaper together ─────────
+ * The two- and three-part prices keep the Oct 2026 plans: DialogosAI = Πλοηγός (119 + 2.400),
+ * DialogosAI + MetronAI = 179 + 2.900, all three = Φροντίδα (249 + 4.500).
+ * PraxisAI alone, MetronAI alone and the other pairs are PROPOSALS (to confirm). */
+
+export const MODULE_IDS = ['dialogos', 'praxis', 'metron'];
+
+const comboKey = (m) => MODULE_IDS.filter((id) => m[id]).map((id) => id[0]).join('');
 
 export const NGO = {
   sizes: [
@@ -20,41 +26,60 @@ export const NGO = {
     { id: 'l', label: L('200 – 1.000', '200 – 1,000'), monthly: 70, setup: 600 },
     { id: 'xl', label: L('Πάνω από 1.000 ή πολλές δομές', 'Over 1,000 or several sites'), network: true },
   ],
-  // tiers are cumulative; the highest selected module sets the base
-  tiers: [
-    { id: 'navigator', name: L('Πλοηγός', 'Navigator'), monthly: 119, setup: 2400, worth: L('3.550 € + 135 €/μήνα', '€3,550 + €135/month') },
-    { id: 'insights', name: L('Πλοηγός + MetronAI', 'Navigator + MetronAI'), monthly: 179, setup: 2900, worth: L('4.450 € + 255 €/μήνα', '€4,450 + €255/month') },
-    { id: 'care', name: L('Φροντίδα', 'Care'), monthly: 249, setup: 4500, worth: L('6.900 € + 495 €/μήνα', '€6,900 + €495/month') },
-  ],
+  // d = DialogosAI, p = PraxisAI, m = MetronAI
+  combos: {
+    d: { monthly: 119, setup: 2400 },
+    p: { monthly: 119, setup: 2400 },
+    m: { monthly: 89, setup: 1400 },
+    dm: { monthly: 179, setup: 2900 },
+    dp: { monthly: 199, setup: 3600 },
+    pm: { monthly: 179, setup: 3000 },
+    dpm: { monthly: 249, setup: 4500 },
+  },
   network: { name: L('Δίκτυο', 'Network'), monthly: 450, setup: 7500 },
+  // what each part brings: `inc` = always included, the rest are options
   features: [
-    { id: 'dialogos', group: 'logos', tag: L('DialogosAI 24/7', 'DialogosAI 24/7'), tier: 'navigator', locked: true, on: true,
-      label: L('DialogosAI στο site σας, 24/7', 'DialogosAI on your site, 24/7'),
-      note: L('Απαντά μόνο από τις δικές σας εγκεκριμένες πηγές, με παραπομπή.', 'Answers only from your approved sources, with a citation.') },
-    { id: 'rights', group: 'logos', tag: L('Δικαιώματα', 'Rights guide'), tier: 'navigator', locked: true, on: true,
-      label: L('Οδηγός δικαιωμάτων', 'Rights guide'),
-      note: L('ΚΕΠΑ, ΟΠΕΚΑ, ΕΟΠΥΥ, εργασιακά. Κοινό για όλους, ενημερώνεται συνεχώς.', 'Disability, benefits, insurance, work rights. Shared and kept up to date.') },
-    { id: 'insights', group: 'insights', tag: L('MetronAI', 'MetronAI'), tier: 'insights', on: true, recommended: true,
-      label: L('MetronAI: πίνακας δεδομένων και αναφορά για χορηγούς', 'MetronAI: data dashboard and funder report'),
-      note: L('Τι ρωτούν, τι λείπει, πώς νιώθουν. Κάθε μήνα, έτοιμο για χορηγούς.', 'What people ask, what is missing, how they feel. Monthly, funder-ready.') },
-    { id: 'viber', group: 'logos', tag: L('Viber', 'Viber'), monthly: 20, setup: 200, includedFrom: 'insights',
-      label: L('Viber ή Messenger', 'Viber or Messenger'), note: L('Εκεί που ήδη γράφουν οι άνθρωποί σας.', 'Where your people already write.') },
-    { id: 'whatsapp', group: 'logos', tag: L('WhatsApp', 'WhatsApp'), monthly: 20, setup: 200,
-      label: L('WhatsApp', 'WhatsApp'), note: L('Δεύτερο κανάλι συνομιλίας.', 'A second chat channel.') },
-    { id: 'lang2', group: 'logos', tag: L('2η γλώσσα', '2nd language'), monthly: 20, setup: 300, includedFrom: 'insights',
-      label: L('Δεύτερη γλώσσα', 'Second language'), note: L('Π.χ. αγγλικά, αραβικά, ουκρανικά.', 'E.g. English, Arabic, Ukrainian.') },
-    { id: 'praxis', group: 'praxis', tag: L('PraxisAI', 'PraxisAI'), tier: 'care',
-      label: L('PraxisAI: φάκελοι, καταγραφή, λήξεις', 'PraxisAI: files, daily log, expiries'),
-      note: L('Για δομές με ανθρώπους κάθε μέρα. Υπενθυμίσεις 60, 30, 7 μέρες πριν.', 'For services with people every day. Reminders 60, 30, 7 days ahead.') },
-    { id: 'family', group: 'praxis', tag: L('Οικογένειες', 'Families'), requires: 'praxis', includedFrom: 'care',
-      label: L('Ενημερώσεις οικογενειών με έγκριση', 'Approved family updates'), note: L('Η οικογένεια ξέρει «πώς ήταν σήμερα».', 'Families know "how today was".') },
-    { id: 'voice', group: 'praxis', tag: L('Φωνή', 'Voice'), requires: 'praxis', monthly: 30, setup: 0,
-      label: L('Καταγραφή με φωνή', 'Log by voice'), note: L('Μιλάτε, το PraxisAI γράφει.', 'You speak, PraxisAI writes.') },
-    { id: 'greek', group: 'extra', tag: L('Ελληνικό μοντέλο', 'Greek model'), setup: 1500, atCost: true,
-      label: L('Ελληνικό μοντέλο σε υποδομή ΕΕ', 'Greek model on EU infrastructure'),
-      note: L('Llama-Krikri του ΙΕΛ. Για φορείς που ζητούν κυριαρχία δεδομένων. Φιλοξενία στο κόστος.', 'ILSP\'s Llama-Krikri. For bodies that ask for data sovereignty. Hosting at cost.') },
+    // DialogosAI
+    { id: 'd_answers', module: 'dialogos', inc: true, label: L('Απαντά 24/7 στο site σας', 'Answers 24/7 on your site') },
+    { id: 'd_sources', module: 'dialogos', inc: true, label: L('Μόνο από τις δικές σας πηγές, με παραπομπή', 'Only from your own sources, with a citation') },
+    { id: 'd_rights', module: 'dialogos', inc: true, label: L('Οδηγός δικαιωμάτων: ΚΕΠΑ, ΟΠΕΚΑ, ΕΟΠΥΥ', 'Rights guide: disability, benefits, insurance') },
+    { id: 'd_crisis', module: 'dialogos', inc: true, label: L('Τα επείγοντα πάνε σε άνθρωπο', 'Urgent cases go to a person') },
+    { id: 'viber', module: 'dialogos', monthly: 20, setup: 200, includedWith: 2, label: L('Viber ή Messenger', 'Viber or Messenger') },
+    { id: 'whatsapp', module: 'dialogos', monthly: 20, setup: 200, label: L('WhatsApp', 'WhatsApp') },
+    { id: 'lang2', module: 'dialogos', monthly: 20, setup: 300, includedWith: 2, label: L('Δεύτερη γλώσσα', 'Second language') },
+    { id: 'phone', module: 'dialogos', quote: true, label: L('Φωνή στο τηλέφωνό σας, 24/7', 'A voice on your phone line, 24/7') },
+    // PraxisAI
+    { id: 'p_registry', module: 'praxis', inc: true, label: L('Μητρώο μελών ή φάκελοι ωφελουμένων', 'Member registry or beneficiary files') },
+    { id: 'p_tasks', module: 'praxis', inc: true, label: L('Εργασίες ανά άνθρωπο, με προθεσμίες', 'Tasks per person, with deadlines') },
+    { id: 'p_protocol', module: 'praxis', inc: true, label: L('Πρωτόκολλο με αυτόματη αρίθμηση', 'Protocol book with automatic numbers') },
+    { id: 'p_deadlines', module: 'praxis', inc: true, label: L('Υπενθυμίσεις προθεσμιών 60, 30 και 7 μέρες πριν', 'Deadline reminders 60, 30 and 7 days ahead') },
+    { id: 'p_agent', module: 'praxis', inc: true, label: L('Ενέργειες που προτείνει και εκτελεί, με έγκριση', 'Actions it proposes and runs, with approval') },
+    { id: 'shifts', module: 'praxis', monthly: 30, setup: 0, label: L('Βάρδιες και ενημέρωση βάρδιας', 'Shifts and shift handover') },
+    { id: 'family', module: 'praxis', monthly: 20, setup: 0, requires: 'dialogos', label: L('Ενημερώσεις οικογενειών με έγκριση', 'Approved family updates') },
+    { id: 'ocr', module: 'praxis', monthly: 30, setup: 300, label: L('Σάρωση εγγράφων (OCR) στον φάκελο', 'Document scanning (OCR) into the file') },
+    { id: 'voice', module: 'praxis', monthly: 30, setup: 0, label: L('Καταγραφή με φωνή', 'Log by voice') },
+    { id: 'dues', module: 'praxis', quote: true, label: L('Συνδρομές και πληρωμές μελών', 'Member dues and payments') },
+    { id: 'donors', module: 'praxis', quote: true, label: L('Δωρητές και εθελοντές', 'Donors and volunteers') },
+    // MetronAI
+    { id: 'm_themes', module: 'metron', inc: true, label: L('Τι ρωτούν και τι λείπει, κάθε μήνα', 'What people ask and what is missing, monthly') },
+    { id: 'm_comms', module: 'metron', inc: true, label: L('Στατιστικά επικοινωνίας: κανάλια, ώρες, εκτός ωραρίου', 'Communication stats: channels, hours, after-hours') },
+    { id: 'm_report', module: 'metron', inc: true, label: L('Μηνιαία αναφορά για ομάδα και χορηγούς', 'Monthly report for team and sponsors') },
+    { id: 'm_accuracy', module: 'metron', inc: true, label: L('Τεστ ακρίβειας κάθε μήνα', 'Monthly accuracy test') },
+    { id: 'callcenter', module: 'metron', monthly: 30, setup: 300, label: L('Στατιστικά τηλεφωνικού κέντρου', 'Call-centre statistics') },
+    { id: 'impact', module: 'metron', monthly: 50, setup: 0, label: L('Αναφορά κοινωνικού αντίκτυπου κάθε τρίμηνο', 'Quarterly social-impact report') },
+    // the whole flow
+    { id: 'greek', module: 'all', setup: 1500, atCost: true, label: L('Ελληνικό μοντέλο σε υποδομή ΕΕ (Llama-Krikri)', 'Greek model on EU infrastructure (Llama-Krikri)') },
   ],
-  pilot: 490,
+  pilot: { price: 199, days: 60 },
+};
+
+export const comboPrice = (mods) => NGO.combos[comboKey(mods)] || null;
+export const comboSaving = (mods) => {
+  const k = comboKey(mods);
+  if (k.length < 2) return null;
+  const sum = k.split('').reduce((a, ch) => ({ monthly: a.monthly + NGO.combos[ch].monthly, setup: a.setup + NGO.combos[ch].setup }), { monthly: 0, setup: 0 });
+  const c = NGO.combos[k];
+  return { monthly: sum.monthly - c.monthly, setup: sum.setup - c.setup };
 };
 
 /* ───────── Practices & clinics: PraxisAI (CRM) is the core; live /ypodochi tiers ───────── */
@@ -78,6 +103,7 @@ export const MED = {
     { id: 'answers', group: 'logos', tag: L('DialogosAI 24/7', 'DialogosAI 24/7'), tier: 1, locked: true, on: true, label: L('DialogosAI 24/7, και σε Greeklish', 'DialogosAI 24/7, Greeklish too'), note: L('Ώρες, τιμές, ΕΟΠΥΥ, παραπεμπτικά, από τη βάση σας.', 'Hours, prices, insurance, referrals, from your base.') },
     { id: 'card', group: 'praxis', tag: L('Καρτέλα ασθενούς', 'Patient card'), tier: 1, locked: true, on: true, label: L('PraxisAI: καρτέλα για κάθε ασθενή', 'PraxisAI: a card for every patient'), note: L('Κάθε αίτημα γίνεται καρτέλα. Ικανοποίηση, παράπονα, ρουτίνες.', 'Every request becomes a card. Satisfaction, complaints, routines.') },
     { id: 'report', group: 'insights', tag: L('MetronAI', 'MetronAI'), tier: 1, locked: true, on: true, label: L('Μηνιαία αναφορά MetronAI', 'Monthly MetronAI report'), note: L('Τι ζητούν οι ασθενείς που δεν προσφέρετε.', 'What patients ask for that you don\'t offer.') },
+    { id: 'tasks', group: 'praxis', tag: L('Εργασίες', 'Tasks'), tier: 1, locked: true, on: true, label: L('Εργασίες γραμματείας, με προθεσμίες', 'Front-desk tasks, with deadlines'), note: L('Ποιος κάνει τι, ως πότε. Το PraxisAI θυμίζει.', 'Who does what, by when. PraxisAI reminds.') },
     { id: 'booking', group: 'praxis', tag: L('Ραντεβού', 'Bookings'), tier: 2, label: L('Κλείνει ραντεβού στο ημερολόγιό σας', 'Books into your calendar'), note: L('Κλείνει, αλλάζει, ακυρώνει. doctoranytime, Google Calendar.', 'Books, moves, cancels. Works with your calendar.') },
     { id: 'channels', group: 'logos', tag: L('Viber, WhatsApp', 'Viber, WhatsApp'), tier: 2, label: L('Viber, WhatsApp, Instagram, Facebook', 'Viber, WhatsApp, Instagram, Facebook'), note: L('Εκεί που γράφουν πραγματικά οι ασθενείς.', 'Where patients actually write.') },
     { id: 'forms', group: 'praxis', tag: L('Έντυπα', 'Intake forms'), tier: 2, label: L('Έντυπα εγγραφής πριν την επίσκεψη', 'Intake forms before the visit'), note: L('Φεύγουν μόλις κλειστεί το ραντεβού.', 'Sent as soon as the visit is booked.') },
@@ -85,6 +111,9 @@ export const MED = {
     { id: 'reminders', group: 'praxis', tag: L('Recall', 'Recall'), tier: 3, label: L('Υπενθυμίσεις και recall', 'Reminders and recall'), note: L('24 ώρες πριν, ετήσιος έλεγχος, ημιτελείς θεραπείες.', '24 hours ahead, annual check-ups, unfinished treatments.') },
     { id: 'reviews', group: 'insights', tag: L('Κριτικές', 'Reviews'), tier: 3, label: L('Γνώμη ιδιωτικά, πριν το Google review', 'Private feedback before Google reviews'), note: L('Οι ευχαριστημένοι πάνε στο Google, τα παράπονα σε εσάς.', 'Happy patients go to Google, complaints come to you.') },
     { id: 'voice', group: 'logos', tag: L('Φωνή 24/7', 'Voice 24/7'), tier: 4, label: L('Ζωντανή φωνή στον αριθμό σας', 'A live voice on your number'), note: L('Σηκώνει το τηλέφωνο 24/7, φιλτράρει spam.', 'Picks up 24/7, filters spam.') },
+    { id: 'protocol', group: 'praxis', tag: L('Πρωτόκολλο', 'Protocol'), quote: true, label: L('Πρωτόκολλο και αλληλογραφία', 'Protocol book and correspondence'), note: L('ΕΟΠΥΥ, εργαστήρια, ασφαλιστικές, με αυτόματη αρίθμηση.', 'Insurers, labs, letters, with automatic numbers.') },
+    { id: 'ocr', group: 'praxis', tag: L('OCR', 'OCR'), quote: true, label: L('Σάρωση παραπεμπτικών και εξετάσεων (OCR)', 'Scanning referrals and results (OCR)'), note: L('Το έγγραφο γίνεται πεδία στην καρτέλα.', 'The document becomes fields in the record.') },
+    { id: 'callstats', group: 'insights', tag: L('Τηλεφωνικό κέντρο', 'Call centre'), quote: true, label: L('Στατιστικά τηλεφωνικού κέντρου', 'Call-centre statistics'), note: L('Κλήσεις, αναμονή, ώρες αιχμής.', 'Calls, waiting, peak hours.') },
     { id: 'greek', group: 'extra', tag: L('Ελληνικό μοντέλο', 'Greek model'), setupExtra: 1500, atCost: true, label: L('Ελληνικό μοντέλο σε υποδομή ΕΕ', 'Greek model on EU infrastructure'), note: L('Llama-Krikri του ΙΕΛ. Φιλοξενία στο κόστος.', 'ILSP\'s Llama-Krikri. Hosting at cost.') },
     { id: 'hdyka', group: 'extra', tag: L('ΗΔΥΚΑ', 'e-health record'), soon: true, label: L('Σύνδεση με ΗΔΥΚΑ', 'National e-health record link'), note: L('Μόλις πιστοποιηθεί. Δηλώστε ενδιαφέρον, χωρίς χρέωση.', 'Once certified. Register interest, no charge.') },
   ],
@@ -115,36 +144,30 @@ export const SPONSOR = {
 
 /* ───────── Compute ───────── */
 
-const tierIndex = (id) => NGO.tiers.findIndex((t) => t.id === id);
-
 export function computeNgo(sel) {
   const size = NGO.sizes.find((s) => s.id === sel.size) || NGO.sizes[0];
-  const on = (id) => !!sel.features[id];
-  if (on('family') || on('voice')) sel = { ...sel, features: { ...sel.features, praxis: true } };
-  if (sel.features.praxis) sel = { ...sel, features: { ...sel.features, insights: true } };
-  const f = sel.features;
-  let tier = NGO.tiers[0];
-  NGO.features.forEach((ft) => { if (f[ft.id] && ft.tier && tierIndex(ft.tier) > tierIndex(tier.id)) tier = NGO.tiers[tierIndex(ft.tier)]; });
-  const lines = [];
-  let monthly; let setup; let name; let from = false;
-  if (size.network) {
-    monthly = NGO.network.monthly; setup = NGO.network.setup; name = NGO.network.name; from = true;
-  } else {
-    monthly = tier.monthly; setup = tier.setup; name = tier.name;
-    if (size.monthly || size.setup) lines.push({ key: 'size', monthly: size.monthly, setup: f.praxis ? size.setup : 0 });
-    monthly += size.monthly; setup += f.praxis ? size.setup : 0;
+  const mods = sel.modules;
+  const count = MODULE_IDS.filter((id) => mods[id]).length;
+  const base = comboPrice(mods) || { monthly: 0, setup: 0 };
+  let monthly; let setup; let from = false;
+  if (size.network) { monthly = NGO.network.monthly; setup = NGO.network.setup; from = true; } else {
+    monthly = base.monthly + size.monthly;
+    setup = base.setup + (mods.praxis ? size.setup : 0);
   }
-  let atCost = false;
+  let atCost = false; const quotes = [];
+  const lines = [];
   NGO.features.forEach((ft) => {
-    if (!f[ft.id] || ft.tier) return;
-    const included = ft.includedFrom && tierIndex(tier.id) >= tierIndex(ft.includedFrom);
+    if (ft.inc || !sel.features[ft.id]) return;
+    if (ft.module !== 'all' && !mods[ft.module]) return;
+    if (ft.quote) { quotes.push(ft); return; }
     if (ft.atCost) atCost = true;
-    if (included) { lines.push({ key: ft.id, included: true }); return; }
-    const m = ft.monthly || 0; const s = ft.setup || 0;
-    monthly += m; setup += s;
-    lines.push({ key: ft.id, monthly: m, setup: s, atCost: ft.atCost });
+    if (ft.includedWith && count >= ft.includedWith) { lines.push({ ft, included: true }); return; }
+    if (!size.network) { monthly += ft.monthly || 0; setup += ft.setup || 0; }
+    lines.push({ ft, monthly: ft.monthly || 0, setup: ft.setup || 0 });
   });
-  return { audience: 'ngo', name, monthly, setup, from, firstYear: setup + monthly * 12, worth: size.network ? null : tier.worth, atCost, pilot: NGO.pilot, lines, features: f, tierId: size.network ? 'network' : tier.id };
+  const names = MODULE_IDS.filter((id) => mods[id]).map((id) => ({ dialogos: 'DialogosAI', praxis: 'PraxisAI', metron: 'MetronAI' }[id]));
+  const name = size.network ? NGO.network.name : (count === 3 ? L('Ολόκληρο το fλow', 'The whole fλow') : L(names.join(' + '), names.join(' + ')));
+  return { audience: 'ngo', name, monthly, setup, from, firstYear: setup + monthly * 12, atCost, quotes, lines, count, saving: size.network ? null : comboSaving(mods), pilot: NGO.pilot };
 }
 
 export function computeMed(sel, annual) {

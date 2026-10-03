@@ -6,8 +6,8 @@ import React from 'react';
  */
 export const MODULES = [
   { id: 'dialogos', name: 'DialogosAI', color: '#6a9bcc', role: { el: 'απαντά', en: 'answers' }, line: { el: 'Απαντά στους ανθρώπους σας 24/7, μόνο από τις δικές σας εγκεκριμένες πηγές.', en: 'Answers your people 24/7, only from your own approved sources.' } },
-  { id: 'praxis', name: 'PraxisAI', color: '#9fb383', role: { el: 'θυμάται', en: 'remembers' }, line: { el: 'Κρατά όλες τις πληροφορίες συγκεντρωμένες: καρτέλες, ραντεβού, προθεσμίες.', en: 'Keeps all information in one place: records, appointments, deadlines.' } },
-  { id: 'metron', name: 'MetronAI', color: '#d97757', role: { el: 'μετρά', en: 'measures' }, line: { el: 'Συλλέγει και αναλύει δεδομένα: τι ρωτούν, τι λείπει, τι άλλαξε. Έτοιμο για ομάδα και χορηγούς.', en: 'Collects and analyses data: what people ask, what is missing, what changed. Ready for your team and sponsors.' } },
+  { id: 'praxis', name: 'PraxisAI', color: '#9fb383', role: { el: 'ενεργεί', en: 'acts' }, line: { el: 'Κρατά όλες τις πληροφορίες συγκεντρωμένες και κάνει τη δουλειά να προχωρά: εργασίες, πρωτόκολλο, προθεσμίες.', en: 'Keeps all information in one place and moves the work forward: tasks, protocol book, deadlines.' } },
+  { id: 'metron', name: 'MetronAI', color: '#d97757', role: { el: 'καταγράφει', en: 'records' }, line: { el: 'Καταγράφει κάθε επαφή και αναλύει: τι ρωτούν, τι λείπει, τι άλλαξε. Έτοιμο για ομάδα και χορηγούς.', en: 'Records every contact and analyses it: what people ask, what is missing, what changed. Ready for your team and sponsors.' } },
 ];
 export const moduleById = (id) => MODULES.find((m) => m.id === id);
 
@@ -28,7 +28,7 @@ export const ORGS = [
   {
     id: 'bpan', name: { el: 'Ήρωες της BPAN', en: 'BPAN Heroes' }, product: 'BPAN Companion',
     what: { el: 'Βοηθός σε 60 γλώσσες για οικογένειες που ζουν με τη σπάνια νόσο BPAN.', en: 'An assistant in 60 languages for families living with the rare disease BPAN.' },
-    logo: '/logos/bepan.png', href: 'https://bpanheroes.gr', live: false,
+    logo: '/logos/bepan.png', href: 'https://bpanheroes.gr', live: true,
     has: ['dialogos'], next: 'metron',
   },
   {
