@@ -91,11 +91,20 @@ export const PressBand = () => (
 );
 
 const COLORS = ['#6a9bcc', '#9fb383', '#9fb383', '#d97757', '#faf9f5'];
+const prefersReduced = () => typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* Desktop: noise → λ → five calm streams → holistic care. */
+/* a dot that runs along a path, forever */
+const Runner = ({ href, dur, begin, r = 3.5, className = 'flh-dot' }) => (
+  <circle r={r} className={className}>
+    <animateMotion dur={dur} repeatCount="indefinite" begin={begin}><mpath href={href} /></animateMotion>
+  </circle>
+);
+
+/* Desktop: noise runs tangled into the λ, five calm streams run out of it,
+   and all five run into one result: holistic care. */
 const ChaosToFlow = ({ t }) => {
-  const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const W = 1250; const H = 380; const NX = 470; const NY = 190;
+  const reduce = prefersReduced();
+  const W = 1270; const H = 380; const NX = 470; const NY = 190;
   const ly = [52, 106, 160, 214, 268, 322];
   const ry = [82, 136, 190, 244, 298];
   const mix = [4, 2, 5, 0, 3, 1];
@@ -105,7 +114,8 @@ const ChaosToFlow = ({ t }) => {
   }), []); // eslint-disable-line react-hooks/exhaustive-deps
   const SX = NX + 230;
   const calm = ry.map((y, i) => `M ${NX + 58} ${NY - 16 + i * 8} C ${NX + 130} ${NY - 16 + i * 8}, ${NX + 150} ${y}, ${SX - 20} ${y} L ${SX} ${y}`);
-  const BX = 1046;
+  const RX = 1200; // result
+  const into = ry.map((y, i) => `M 1056 ${y} C 1100 ${y}, 1105 ${NY - 8 + i * 4}, ${RX - 62} ${NY - 8 + i * 4}`);
   return (
     <svg className="flh-chaos" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={t.aria}>
       <defs>
@@ -113,37 +123,81 @@ const ChaosToFlow = ({ t }) => {
       </defs>
       <text x="40" y="18" className="flh-cap">{t.before}</text>
       <text x={SX + 12} y="18" className="flh-cap">{t.after}</text>
-      {tangles.map((d, i) => <path key={i} d={d} className="flh-tangle" />)}
+      {tangles.map((d, i) => <path key={i} id={`flht${i}`} d={d} className="flh-tangle" />)}
       {ly.map((y, i) => <text key={t.left[i]} x="172" y={y + 5} textAnchor="end" className="flh-l">{t.left[i]}</text>)}
       {calm.map((d, i) => <path key={i} id={`flhc${i}`} d={d} className="flh-calm" style={{ stroke: COLORS[i] }} />)}
       {ry.map((y, i) => <text key={t.right[i]} x={SX + 12} y={y + 5} className="flh-r">{t.right[i]}</text>)}
-      {!reduce && ry.map((_, i) => (
-        <circle key={i} r="3.5" className="flh-dot">
-          <animateMotion dur={`${3.4 + i * 0.5}s`} repeatCount="indefinite" begin={`${i * 0.6}s`}><mpath href={`#flhc${i}`} /></animateMotion>
-        </circle>
-      ))}
-      {/* the five streams add up to one result */}
-      <path d={`M ${BX} ${ry[0] - 6} Q ${BX + 16} ${ry[0] - 6}, ${BX + 16} ${ry[0] + 14} L ${BX + 16} ${NY - 14} Q ${BX + 16} ${NY}, ${BX + 28} ${NY} Q ${BX + 16} ${NY}, ${BX + 16} ${NY + 14} L ${BX + 16} ${ry[4] - 14} Q ${BX + 16} ${ry[4] + 6}, ${BX} ${ry[4] + 6}`} className="flh-brace" />
-      <text x={BX + 36} y={NY - 4} className="flh-result">{t.result[0]}</text>
-      <text x={BX + 36} y={NY + 22} className="flh-result">{t.result[1]}</text>
+      {into.map((d, i) => <path key={i} id={`flhi${i}`} d={d} className="flh-into" style={{ stroke: COLORS[i] }} />)}
+      {!reduce && (
+        <g aria-hidden="true">
+          {tangles.map((_, i) => <Runner key={`t${i}`} href={`#flht${i}`} dur={`${2.6 + (i % 3) * 0.7}s`} begin={`${i * 0.45}s`} r={2.6} className="flh-dot-noise" />)}
+          {ry.map((_, i) => <Runner key={`c${i}`} href={`#flhc${i}`} dur={`${3.4 + i * 0.5}s`} begin={`${i * 0.6}s`} />)}
+          {ry.map((_, i) => <Runner key={`r${i}`} href={`#flhi${i}`} dur={`${2.8 + i * 0.3}s`} begin={`${0.4 + i * 0.5}s`} r={3} className="flh-dot-in" />)}
+        </g>
+      )}
       <circle cx={NX} cy={NY} r="140" fill="url(#flhGlow)" />
       <circle cx={NX} cy={NY} r="56" className="flh-node" />
       <text x={NX} y={NY + 12} textAnchor="middle" className="flh-node-t">f<tspan className="flh-node-l">λ</tspan>ow</text>
+      <circle cx={RX} cy={NY} r="70" fill="url(#flhGlow)" />
+      <circle cx={RX} cy={NY} r="62" className="flh-res" />
+      <text x={RX} y={NY - 4} textAnchor="middle" className="flh-result">{t.result[0]}</text>
+      <text x={RX} y={NY + 20} textAnchor="middle" className="flh-result">{t.result[1]}</text>
     </svg>
   );
 };
 
-/* Phone: the same story, top to bottom, in readable type. */
-const ChaosToFlowMobile = ({ t }) => (
-  <div className="flh-m" aria-hidden="true">
-    <p className="flh-m-cap">{t.before}</p>
-    <ul className="flh-m-noise">{t.left.map((l, i) => <li key={l} style={{ transform: `rotate(${[-3, 2, -1.5, 3, -2, 1.5][i]}deg)` }}>{l}</li>)}</ul>
-    <svg className="flh-m-lambda" viewBox="0 0 120 120"><circle cx="60" cy="60" r="44" className="flh-node" /><text x="60" y="70" textAnchor="middle" className="flh-node-t" style={{ fontSize: 28 }}>f<tspan className="flh-node-l">λ</tspan>ow</text></svg>
-    <p className="flh-m-cap">{t.after}</p>
-    <ul className="flh-m-calm">{t.right.map((r, i) => <li key={r}><span style={{ background: COLORS[i] }} />{r}</li>)}</ul>
-    <p className="flh-m-result">= {t.result.join(' ')}</p>
-  </div>
-);
+/* Phone: the same story top to bottom, with the same running lines. */
+const splitLabel = (s, max = 24) => {
+  if (s.length <= max) return [s];
+  const mid = Math.floor(s.length / 2);
+  let k = s.lastIndexOf(' ', mid); if (k < 0) k = s.indexOf(' ', mid);
+  return k < 0 ? [s] : [s.slice(0, k), s.slice(k + 1)];
+};
+const ChaosToFlowMobile = ({ t }) => {
+  const reduce = prefersReduced();
+  const W = 360; const CX = 180; const NY = 250;
+  const lx = [60, 180, 300, 60, 180, 300];
+  const lyy = [52, 52, 52, 96, 96, 96];
+  const tangles = lx.map((x, i) => `M ${x} ${lyy[i] + 12} C ${x + (i % 2 ? 70 : -40)} ${lyy[i] + 60}, ${CX + (i % 3 - 1) * 90} ${150 + (i % 2) * 20}, ${CX + (i - 2.5) * 6} ${NY - 46}`);
+  const top = 330; const gap = 64;
+  const lanes = COLORS.map((_, i) => 28 + i * 9);
+  const rows = t.right.map((_, i) => top + 20 + i * gap);
+  const RY = top + 5 * gap + 70;
+  const H = RY + 50;
+  const calm = lanes.map((x, i) => `M ${CX + (i - 2) * 7} ${NY + 46} C ${CX + (i - 2) * 7} ${NY + 90}, ${x} ${top - 30}, ${x} ${top} L ${x} ${RY - 70} C ${x} ${RY - 30}, ${CX - 70 + i * 4} ${RY}, ${CX - 112} ${RY}`);
+  return (
+    <svg className="flh-chaos-m" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={t.aria}>
+      <defs>
+        <radialGradient id="flhGlowM" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stopColor="#d97757" stopOpacity="0.3" /><stop offset="1" stopColor="#d97757" stopOpacity="0" /></radialGradient>
+      </defs>
+      <text x="16" y="20" className="flh-cap">{t.before}</text>
+      {tangles.map((d, i) => <path key={i} id={`flhmt${i}`} d={d} className="flh-tangle" />)}
+      {t.left.map((l, i) => <text key={l} x={lx[i]} y={lyy[i] + 5} textAnchor="middle" className="flh-l flh-l-m">{l}</text>)}
+      {calm.map((d, i) => <path key={i} id={`flhmc${i}`} d={d} className="flh-calm" style={{ stroke: COLORS[i] }} />)}
+      <text x="16" y={top - 44} className="flh-cap">{t.after}</text>
+      {rows.map((y, i) => (
+        <g key={t.right[i]}>
+          <line x1={lanes[i] + 6} y1={y} x2="104" y2={y} className="flh-tick" style={{ stroke: COLORS[i] }} />
+          <circle cx="104" cy={y} r="3" style={{ fill: COLORS[i] }} />
+          <text x="114" y={y + 5} className="flh-r flh-r-m">
+            {splitLabel(t.right[i]).map((part, k) => <tspan key={part} x="114" dy={k ? 19 : 0}>{part}</tspan>)}
+          </text>
+        </g>
+      ))}
+      {!reduce && (
+        <g aria-hidden="true">
+          {tangles.map((_, i) => <Runner key={`t${i}`} href={`#flhmt${i}`} dur={`${2.4 + (i % 3) * 0.6}s`} begin={`${i * 0.4}s`} r={2.6} className="flh-dot-noise" />)}
+          {calm.map((_, i) => <Runner key={`c${i}`} href={`#flhmc${i}`} dur={`${5.2 + i * 0.5}s`} begin={`${i * 0.7}s`} />)}
+        </g>
+      )}
+      <circle cx={CX} cy={NY} r="110" fill="url(#flhGlowM)" />
+      <circle cx={CX} cy={NY} r="46" className="flh-node" />
+      <text x={CX} y={NY + 10} textAnchor="middle" className="flh-node-t flh-node-t-m">f<tspan className="flh-node-l">λ</tspan>ow</text>
+      <rect x={CX - 112} y={RY - 28} width="224" height="56" rx="28" className="flh-res" />
+      <text x={CX} y={RY + 7} textAnchor="middle" className="flh-result flh-result-m">{t.result.join(' ')}</text>
+    </svg>
+  );
+};
 
 export const FlowTeaser = () => {
   const [t] = useT();

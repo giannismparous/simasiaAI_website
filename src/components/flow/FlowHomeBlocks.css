@@ -72,31 +72,30 @@
   .flh-in, .flh-chaos-wrap { padding: 0 16px; }
   .flh-teaser, .flh-proof { padding: 80px 0; }
   .flh-chaos-wrap { margin-left: -8px; margin-right: -8px; }
-  .flh-l, .flh-r { font-size: 20px; }
   .flh-open { width: 100%; justify-content: center; }
 }
 
 /* ---- 2026-10: result brace, mobile story, adoption map, press band ---- */
-.flh-brace { fill: none; stroke: rgba(250, 249, 245, .4); stroke-width: 1.5; }
-.flh-result { font: 700 23px var(--font-sans, sans-serif); fill: #d97757; letter-spacing: -.01em; }
+.flh-result { font: 700 20px var(--font-sans, sans-serif); fill: #d97757; letter-spacing: -.01em; }
 .flh-door { position: relative; padding-right: 44px; }
 .flh-door i { position: absolute; right: 20px; top: 22px; font-style: normal; color: rgba(250, 249, 245, .4); transition: transform .2s, color .2s; }
 .flh-door:hover i { color: #d97757; transform: translateX(3px); }
 .flh-go-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 30px; }
 .flh-go-row span { color: rgba(250, 249, 245, .6); font-size: 15px; }
 
-.flh-m { display: none; }
+.flh-chaos-m { display: none; width: 100%; height: auto; }
+.flh-into { fill: none; stroke-width: 2; stroke-linecap: round; opacity: .75; }
+.flh-res { fill: #1c1c1a; stroke: #d97757; stroke-width: 2; }
+.flh-dot-noise { fill: rgba(250, 249, 245, .55); }
+.flh-dot-in { fill: #faf9f5; }
+.flh-tick { stroke-width: 1.6; opacity: .6; }
 @media (max-width: 760px) {
   .flh-chaos { display: none; }
-  .flh-m { display: block; }
-  .flh-m-cap { margin: 0 0 10px; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: rgba(250, 249, 245, .5); }
-  .flh-m-noise { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-  .flh-m-noise li { padding: 6px 12px; border-radius: 999px; border: 1px dashed rgba(250, 249, 245, .3); color: rgba(250, 249, 245, .6); font-size: 15px; }
-  .flh-m-lambda { display: block; width: 104px; height: 104px; margin: 18px auto; }
-  .flh-m-calm { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-  .flh-m-calm li { display: flex; align-items: center; gap: 12px; color: #faf9f5; font-size: 17px; font-weight: 600; }
-  .flh-m-calm li span { flex: 0 0 28px; height: 3px; border-radius: 3px; }
-  .flh-m-result { margin: 18px 0 0; color: #d97757; font-size: 22px; font-weight: 700; }
+  .flh-chaos-m { display: block; max-width: 420px; margin: 0 auto; }
+  .flh-l-m { font-size: 15px; }
+  .flh-r-m { font-size: 16px; }
+  .flh-node-t-m { font-size: 28px; }
+  .flh-result-m { font-size: 19px; }
 }
 
 /* adoption map */
