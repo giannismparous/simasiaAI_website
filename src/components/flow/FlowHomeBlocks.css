@@ -81,7 +81,7 @@
 .flh-door i { position: absolute; right: 20px; top: 22px; font-style: normal; color: rgba(250, 249, 245, .4); transition: transform .2s, color .2s; }
 .flh-door:hover i { color: #d97757; transform: translateX(3px); }
 .flh-go-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 30px; }
-.flh-go-row span { color: rgba(250, 249, 245, .6); font-size: 15px; }
+.flh-go-row > span { color: rgba(250, 249, 245, .6); font-size: 15px; }
 
 .flh-chaos-m { display: none; width: 100%; height: auto; }
 .flh-into { fill: none; stroke-width: 2; stroke-linecap: round; opacity: .75; }

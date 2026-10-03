@@ -14,3 +14,5 @@
 .go-btn.is-ink { background: #141413; color: #faf9f5 !important; border-color: #141413; }
 .go-btn.is-ink:hover { background: #2a2a28; }
 @media (prefers-reduced-motion: reduce) { .go-btn:hover { transform: none; } }
+/* the label inside the button always takes the button's colour */
+.go-btn .go-label { color: inherit !important; }

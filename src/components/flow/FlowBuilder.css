@@ -311,3 +311,8 @@
 .flb-opt.is-locked { cursor: default; }
 .flb-opt.is-locked .flb-opt-box { background: var(--green); border-color: var(--green); color: #fff; }
 @media (max-width: 760px) { .flb-map { grid-template-columns: minmax(0, 1fr); } }
+/* phones: keep the live flow small so the steps stay readable */
+@media (max-width: 640px) {
+  .flb-svg { max-height: 20vh; }
+  .flb-ticker { padding-top: 8px; margin-top: 2px; font-size: 14px; }
+}
