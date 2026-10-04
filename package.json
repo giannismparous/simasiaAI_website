@@ -22,6 +22,7 @@
     "build:knowledge": "node scripts/build_knowledge_index.mjs",
     "proxy:gemini": "node scripts/local-gemini-proxy.mjs",
     "test:chatbot": "node scripts/run_simasia_e2e.mjs",
+    "test:chatbot-offline": "node scripts/test_chatbot_offline.mjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

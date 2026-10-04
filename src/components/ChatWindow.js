@@ -52,14 +52,14 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
   const suggestedQuestions = useMemo(() => {
     return language === 'el'
       ? [
-          { id: 1, text: 'Τι μπορεί να κάνει το DialogosAI για μένα;' },
-          { id: 2, text: 'Πώς βοηθά η SimasiaAI οργανισμούς;' },
-          { id: 3, text: 'Μπορώ να κλείσω demo;' },
+          { id: 1, text: 'Τι μπορεί να κάνει το fλow για εμάς;' },
+          { id: 2, text: 'Πόσο κοστίζει για έναν οργανισμό;' },
+          { id: 3, text: 'Μπορώ να κλείσω 30 λεπτά;' },
         ]
       : [
-          { id: 1, text: 'What can DialogosAI do for me?' },
-          { id: 2, text: 'How does SimasiaAI help organizations?' },
-          { id: 3, text: 'Can I book a demo?' },
+          { id: 1, text: 'What can fλow do for us?' },
+          { id: 2, text: 'How much does it cost for an organisation?' },
+          { id: 3, text: 'Can I book 30 minutes?' },
         ];
   }, [language]);
 
@@ -490,12 +490,12 @@ function ChatWindow({ onClose, isClosing, messages, setMessages, initialShowOpti
                   </p>
                   {!message.isTyping && !message.isTypingSources && message.bookDemoCta && (
                     <Link to="/go#book" className="message-demo-cta" onClick={onClose}>
-                      {language === 'el' ? 'Άνοιγμα φόρμας Demo' : 'Open Demo form'}
+                      {language === 'el' ? 'Κλείστε 30 λεπτά' : 'Book 30 minutes'}
                     </Link>
                   )}
                   {!message.isTyping && !message.isTypingSources && message.contactCta && (
                     <Link to="/go#book" className="message-demo-cta" onClick={onClose}>
-                      {language === 'el' ? 'Άνοιγμα φόρμας Demo' : 'Open Demo form'}
+                      {language === 'el' ? 'Κλείστε 30 λεπτά' : 'Book 30 minutes'}
                     </Link>
                   )}
                   {!message.isTyping &&

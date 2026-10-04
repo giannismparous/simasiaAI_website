@@ -34,6 +34,7 @@ const { translations } = await import(translationsUrl);
 const { formatScarcityNote } = await import(scarcityCopyUrl);
 const { flowContent } = await import(flowContentUrl);
 const { builderCopy } = await import(builderContentUrl);
+const { threeContent } = await import(pathToFileURL(path.join(ROOT, "src", "components", "flow", "flowThreeContent.js")).href);
 
 /** Legacy RAG uploads for retired products (Pyxida etc.). Superseded by sima-core-identity.json. */
 const RAG_SKIP_FILES = new Set(["pyxida-rag-texts.txt"]);
@@ -136,6 +137,21 @@ function buildFromTranslations(lang, t) {
       category: "products",
       keywords: ["flow", "fλow", "dialogosai", "praxisai", "metronai", "μκο", "ngo", "ιατρειο", "clinic", "τιμες", "pricing"],
       content: flowParts.join("\n"),
+      sourceType: "page_i18n",
+      priority: 1,
+    });
+  }
+
+  // /flow: the three parts, separately and together; live demos; time back; value; build your fλow.
+  const threeParts = flattenValue(threeContent?.[L]).filter(keepPart);
+  if (threeParts.length) {
+    addDocs(docs, {
+      title: L === "el" ? "fλow — Λόγος, Πράξη και Καταγραφή, σε μία ροή" : "fλow — dialogue, action and record, in one flow",
+      url: "/flow",
+      lang: L,
+      category: "products",
+      keywords: ["dialogosai", "praxisai", "metronai", "crm", "πρωτοκολλο", "protocol", "ocr", "βαρδιες", "shifts", "αντικτυπος", "impact", "χρονος", "time", "πακετα", "packages"],
+      content: threeParts.join("\n"),
       sourceType: "page_i18n",
       priority: 1,
     });

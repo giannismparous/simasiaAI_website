@@ -6,118 +6,419 @@
   "retrievalScopeMinScore": 0.2,
   "maxChunksPerUrl": 2,
   "scopeSignals": [
-    "ιστοσελιδ", "website", "αναφερ", "προσφερ", "υποστηριζ", "μπορειτε", "μπορει ",
-    "wcag", "προσβασιμ", "accessibility", "τεχνητη", "νοημοσυνη", "artificial intelligence",
-    "συνδιαμορφ", "σχεδιαζ", "οραμα", "vision", "φιλοσοφ", "αξιες", "αποστολ",
-    "εμποδ", "δυνατοτητ", "κινδυν", "παραισθη", "προκαταληψ", "bias",
-    "moodle", "classroom", "lms", "ocr", "τιμολογ", "invoice", "μεταφρα",
-    "επιμελ", "bulk", "sso", "crm", "helpdesk", "πιλοτικ", "linkedin", "instagram",
-    "αθηνα", "athens", "θεσσαλονικ", "αρσενικ", "θηλυκ", "gender",
-    "ποαμσκπ", "σκπ", "myrto", "k3", "δια ζωσης", "σας", "μας",
-    "compliant", "gdpr", "ai act", "eu ai", "wcag", "eaa", "deep-tech", "b2b", "roi", "forty", "forth"
+    "ιστοσελιδ",
+    "website",
+    "αναφερ",
+    "προσφερ",
+    "υποστηριζ",
+    "μπορειτε",
+    "μπορει ",
+    "wcag",
+    "προσβασιμ",
+    "accessibility",
+    "τεχνητη",
+    "νοημοσυνη",
+    "artificial intelligence",
+    "συνδιαμορφ",
+    "σχεδιαζ",
+    "οραμα",
+    "vision",
+    "φιλοσοφ",
+    "αξιες",
+    "αποστολ",
+    "εμποδ",
+    "δυνατοτητ",
+    "κινδυν",
+    "παραισθη",
+    "προκαταληψ",
+    "bias",
+    "ocr",
+    "τιμολογ",
+    "invoice",
+    "crm",
+    "πιλοτικ",
+    "linkedin",
+    "instagram",
+    "αθηνα",
+    "athens",
+    "θεσσαλονικ",
+    "αρσενικ",
+    "θηλυκ",
+    "gender",
+    "ποαμσκπ",
+    "σκπ",
+    "myrto",
+    "k3",
+    "δια ζωσης",
+    "σας",
+    "μας",
+    "compliant",
+    "gdpr",
+    "ai act",
+    "eu ai",
+    "wcag",
+    "eaa",
+    "deep-tech",
+    "b2b",
+    "roi",
+    "forty",
+    "forth",
+    "fλow",
+    "flow",
+    "dialogos",
+    "praxis",
+    "metron",
+    "πρωτοκολλ",
+    "βαρδι",
+    "μητρω",
+    "προθεσμ",
+    "χορηγ",
+    "sponsor",
+    "κοινωνικ",
+    "αντικτυπ",
+    "τυπο",
+    "press"
   ],
   "domainPatterns": [
     {
       "org": "simasia",
-      "domains": ["simasiaai.gr", "simasiaai.netlify.app"],
-      "query": ["simasia", "σιμασια", "simasiaai", "sima"]
-    },
-    {
-      "org": "chatbots",
-      "domains": [],
-      "query": ["chatbot", "chatbots", "σκπ-i", "σκπι", "bot", "βοηθος"]
-    },
-    {
-      "org": "edu",
-      "domains": [],
-      "query": ["edu", "εκπαιδευ", "μαθητ", "διαγων", "σχολει", "φροντιστηρ"]
-    },
-    {
-      "org": "studio",
-      "domains": [],
-      "query": ["studio", "μεταφρασ", "επιμελει", "translation", "λεξικο"]
-    },
-    {
-      "org": "daily",
-      "domains": [],
-      "query": ["daily", "εργαλει", "tool", "invoice", "τιμολογ"]
+      "domains": [
+        "simasiaai.gr",
+        "simasiaai.netlify.app"
+      ],
+      "query": [
+        "simasia",
+        "σιμασια",
+        "simasiaai",
+        "sima",
+        "σημασια",
+        "flow",
+        "fλow"
+      ]
     }
   ],
   "topicBoosts": [
     {
-      "query": ["επικοινων", "contact", "email", "mail"],
-      "blob": ["contact@simasiaai", "επικοινων", "email", "athens"],
+      "query": [
+        "επικοινων",
+        "contact",
+        "email",
+        "mail"
+      ],
+      "blob": [
+        "contact@simasiaai",
+        "επικοινων",
+        "email",
+        "athens"
+      ],
       "add": 0.5
     },
     {
-      "query": ["demo", "προταση", "proposal", "συνεργασ"],
-      "blob": ["demo", "book-demo", "προταση", "συνεργασ"],
+      "query": [
+        "demo",
+        "ραντεβου",
+        "συναντησ",
+        "κλεισ",
+        "book",
+        "meeting",
+        "call",
+        "προταση",
+        "proposal"
+      ],
+      "blob": [
+        "/go#book",
+        "30 λεπτ",
+        "30-minute",
+        "ημερολογ",
+        "demo"
+      ],
       "add": 0.45
     },
     {
-      "query": ["chatbot", "simasiachatbots"],
-      "blob": ["simasiachatbots", "chatbot", "προσβασιμ"],
-      "add": 0.4
-    },
-    {
-      "query": ["edu", "εκπαιδευ", "διαγων"],
-      "blob": ["simasiaedu", "εκπαιδευ", "διαγων", "μαθητ"],
-      "add": 0.4
-    },
-    {
-      "query": ["studio", "μεταφρασ"],
-      "blob": ["simasiastudio", "μεταφρασ", "επιμελει"],
-      "add": 0.4
-    },
-    {
-      "query": ["daily", "εργαλει"],
-      "blob": ["simasiadaily", "εργαλει", "αυτοματο"],
-      "add": 0.4
-    },
-    {
-      "query": ["ποιους", "αφορα", "audience", "target"],
-      "blob": ["ποιους", "target-audience", "audience"],
-      "add": 0.35
-    },
-    {
-      "query": ["συνεργασ", "collaboration", "k3", "ποαμσκπ"],
-      "blob": ["συνεργασ", "collaboration", "myrto", "ποαμσκπ"],
-      "add": 0.35
-    },
-    {
-      "query": ["τομει", "τομείς", "εργαζεστε", "domains", "fields"],
-      "blob": ["τεχνητη", "νοημοσυνη", "γλωσσολογ", "λογισμικ", "ai "],
+      "query": [
+        "dialogos",
+        "διαλογ",
+        "chatbot",
+        "bot",
+        "βοηθ",
+        "assistant",
+        "απαντ"
+      ],
+      "blob": [
+        "dialogosai",
+        "λογος"
+      ],
       "add": 0.45
     },
     {
-      "query": ["ομαδα", "omada", "ομάδα", "team", "founders", "ιδρυτ", "συνιδρυτ", "μελη", "melh", "ποιοι", "poia einai"],
-      "blob": ["founder", "co-founder", "ceo", "χατζηκυριακ", "παπαδακ", "νατσινα", "/team", "ιδρυτ", "συνιδρυτ", "ομαδα", "omada"],
+      "query": [
+        "praxis",
+        "πραξις",
+        "πραξη",
+        "crm",
+        "πρωτοκολλ",
+        "εργασι",
+        "βαρδι",
+        "ocr",
+        "σαρωσ",
+        "μητρω",
+        "φακελ",
+        "προθεσμ",
+        "ραντεβου"
+      ],
+      "blob": [
+        "praxisai",
+        "πρωτοκολλ",
+        "crm",
+        "μητρω"
+      ],
+      "add": 0.5
+    },
+    {
+      "query": [
+        "metron",
+        "μετρον",
+        "καταγραφ",
+        "αναλυσ",
+        "στατιστικ",
+        "analytics",
+        "statistics",
+        "report",
+        "αναφορ",
+        "αντικτυπ",
+        "impact",
+        "τηλεφωνικο κεντρο",
+        "call cent"
+      ],
+      "blob": [
+        "metronai",
+        "καταγραφ",
+        "αντικτυπ",
+        "στατιστικ"
+      ],
+      "add": 0.5
+    },
+    {
+      "query": [
+        "τιμ",
+        "κοστ",
+        "κοστιζ",
+        "price",
+        "pricing",
+        "cost",
+        "δοκιμ",
+        "trial",
+        "pilot",
+        "πιλοτ",
+        "προσφορ",
+        "offer",
+        "πακετ"
+      ],
+      "blob": [
+        "€",
+        "τιμ",
+        "199",
+        "119",
+        "149"
+      ],
+      "add": 0.5
+    },
+    {
+      "query": [
+        "ποιους",
+        "αφορα",
+        "audience",
+        "target",
+        "για ποιους",
+        "who is it for"
+      ],
+      "blob": [
+        "για ποιους",
+        "μκο",
+        "ιατρει",
+        "χορηγ"
+      ],
+      "add": 0.35
+    },
+    {
+      "query": [
+        "συνεργασ",
+        "collaboration",
+        "k3",
+        "καπα3",
+        "ποαμσκπ",
+        "bpan",
+        "perfectaki",
+        "οργανισμ",
+        "χρησιμοποιουν",
+        "πελατ",
+        "clients",
+        "customers",
+        "who uses"
+      ],
+      "blob": [
+        "συνεργασ",
+        "collaboration",
+        "myrto",
+        "μυρτω",
+        "ποαμσκπ",
+        "bpan"
+      ],
+      "add": 0.45
+    },
+    {
+      "query": [
+        "τυπο",
+        "τυπος",
+        "εγραψαν",
+        "press",
+        "media",
+        "δημοσιευ",
+        "news4health",
+        "healthpharma",
+        "newsbeast",
+        "ygeiamou"
+      ],
+      "blob": [
+        "news4health",
+        "healthpharma",
+        "τυπο",
+        "press"
+      ],
+      "add": 0.6
+    },
+    {
+      "query": [
+        "τομει",
+        "τομείς",
+        "εργαζεστε",
+        "domains",
+        "fields"
+      ],
+      "blob": [
+        "τεχνητη",
+        "νοημοσυνη",
+        "γλωσσολογ",
+        "λογισμικ",
+        "ai "
+      ],
+      "add": 0.45
+    },
+    {
+      "query": [
+        "ομαδα",
+        "omada",
+        "ομάδα",
+        "team",
+        "founders",
+        "ιδρυτ",
+        "συνιδρυτ",
+        "μελη",
+        "melh",
+        "ποιοι",
+        "poia einai"
+      ],
+      "blob": [
+        "founder",
+        "co-founder",
+        "ceo",
+        "χατζηκυριακ",
+        "παπαδακ",
+        "νατσινα",
+        "/team",
+        "ιδρυτ",
+        "συνιδρυτ",
+        "ομαδα",
+        "omada"
+      ],
       "add": 0.65
     },
     {
-      "query": ["module", "modules", "praxi", "apanta", "απαντα", "kleinei", "fernei", "sikonei", "κλεινει", "φερνει"],
-      "blob": ["module", "praxi", "apanta", "απαντα", "kleinei", "fernei", "sikonei", "κλεινει", "φερνει", "σηκωνει"],
-      "add": 0.55
-    },
-    {
-      "query": ["ασχολ", "asxole", "τι κανετε", "what do you do", "υπηρεσι", "services"],
-      "blob": ["deep-tech", "pyxida", "ψηφιακη", "υποδοχη", "ανθρωποκεντρ", "chatbot"],
-      "add": 0.45
-    },
-    {
-      "query": ["ποιοι", "τι ειναι", "what is", "εταιρεια", "identity"],
-      "blob": ["deep-tech", "compliant", "b2b", "ανθρωποκεντρ", "identity"],
+      "query": [
+        "apantaei",
+        "απανταει",
+        "kleinei",
+        "fernei",
+        "sikonei",
+        "κλεινει",
+        "φερνει",
+        "σηκωνει",
+        "ιατρει",
+        "κλινικ",
+        "clinic",
+        "practice"
+      ],
+      "blob": [
+        "απανταει",
+        "κλεινει",
+        "φερνει",
+        "σηκωνει",
+        "ιατρει",
+        "κλινικ"
+      ],
       "add": 0.5
     },
     {
-      "query": ["gdpr", "ai act", "eu ai", "wcag", "eaa", "νομικ", "compliance"],
-      "blob": ["gdpr", "ai act", "wcag", "eaa", "compliant", "νομικ"],
-      "add": 0.48
+      "query": [
+        "ασχολ",
+        "asxole",
+        "τι κανετε",
+        "what do you do",
+        "υπηρεσι",
+        "services"
+      ],
+      "blob": [
+        "fλow",
+        "dialogosai",
+        "praxisai",
+        "metronai",
+        "ανθρωποκεντρ"
+      ],
+      "add": 0.45
     },
     {
-      "query": ["roi", "engagement", "support", "70"],
-      "blob": ["roi", "engagement", "70", "conversion"],
-      "add": 0.4
+      "query": [
+        "ποιοι",
+        "τι ειναι",
+        "what is",
+        "εταιρεια",
+        "identity"
+      ],
+      "blob": [
+        "ελληνικη εταιρεια",
+        "greek ai company",
+        "ανθρωποκεντρ",
+        "identity"
+      ],
+      "add": 0.5
+    },
+    {
+      "query": [
+        "gdpr",
+        "ai act",
+        "eu ai",
+        "wcag",
+        "eaa",
+        "νομικ",
+        "compliance",
+        "οροι",
+        "terms",
+        "privacy",
+        "απορρητ",
+        "ακριβει",
+        "λαθ",
+        "accuracy",
+        "mistake"
+      ],
+      "blob": [
+        "gdpr",
+        "ai act",
+        "wcag",
+        "νομικ",
+        "ακριβει",
+        "accuracy"
+      ],
+      "add": 0.48
     }
   ],
   "identityDocBoost": 0.28,

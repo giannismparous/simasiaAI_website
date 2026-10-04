@@ -7,15 +7,15 @@ import { useLanguage } from '../contexts/LanguageContext';
 import './ChatbotBubble.css';
 
 const LAUNCHER_PHRASES_EL = [
-  'Τι μπορεί να κάνει το DialogosAI;',
-  'Πώς βοηθά η SimasiaAI;',
-  'Μπορώ να κλείσω demo;',
+  'Τι μπορεί να κάνει το fλow για εμάς;',
+  'Πόσο κοστίζει για έναν οργανισμό;',
+  'Μπορώ να κλείσω 30 λεπτά;',
 ];
 
 const LAUNCHER_PHRASES_EN = [
-  'What can DialogosAI do for me?',
-  'How does SimasiaAI help?',
-  'Can I book a demo?',
+  'What can fλow do for us?',
+  'How much does it cost for an organisation?',
+  'Can I book 30 minutes?',
 ];
 
 const YPODOCHI_CHAT_GATE = '.ypd-ngo';
