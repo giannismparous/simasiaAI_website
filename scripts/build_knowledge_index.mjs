@@ -206,6 +206,8 @@ function buildFromTranslations(lang, t) {
       t.footer?.location,
       "LinkedIn: linkedin.com/company/simasiaai",
       "Instagram: instagram.com/simasiaai",
+      "Facebook: facebook.com/p/SimasiaΑΙ-61584445269687",
+      "TikTok: tiktok.com/@simasiaai",
       L === "el"
         ? "Φόρμα επικοινωνίας και συνάντηση 30 λεπτών: Go with the fλow (/go#book)."
         : "Contact form and 30-minute call: Go with the fλow (/go#book).",

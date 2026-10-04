@@ -21,6 +21,8 @@
 - Giannis: Co-founder & CTO. PhD candidate in Computer Science (San Francisco), specialising in privacy, data security and RAG architectures.
 - Anastasia Natsina: Co-founder & Chief Communications Officer. Associate Professor of Modern Greek Literature and Chair of the Department of Philology, University of Crete.
 
+Team: Elena Stefanatou, Marketing Strategist (marketing and communication professional with 7+ years in Europe's startup and innovation ecosystem); Pantelis Nikolopoulos, Storyteller & Content Creator; Sotiris, Videographer, Photographer and Editor.
+
 ### What fλow is
 
 fλow (also written "flow") is SimasiaAI's only product: an AI assistant plus a CRM for people who care for others. "Dialogue, action and record, in one flow" (Greek: «Λόγος, Πράξη και Καταγραφή, σε μία ροή»). It has three parts that work alone or together:
@@ -77,9 +79,9 @@ The assistants were co-designed with the patient organisations: their members te
 - https://www.simasiaai.gr/ypodochi : fλow for practices and clinics
 - https://www.simasiaai.gr/platform : future fλow client sign-in (coming soon)
 - https://www.simasiaai.gr/collaborations : implementations and partners
-- https://www.simasiaai.gr/team : founders
+- https://www.simasiaai.gr/team : founders and team
 - https://www.simasiaai.gr/news : news and articles
-- LinkedIn: https://www.linkedin.com/company/simasiaai · Instagram: https://www.instagram.com/simasiaai/
+- LinkedIn: https://www.linkedin.com/company/simasiaai · Instagram: https://www.instagram.com/simasiaai/ · Facebook: https://www.facebook.com/p/Simasia%CE%91%CE%99-61584445269687/ · TikTok: https://www.tiktok.com/@simasiaai
 
 ### How to describe SimasiaAI
 
@@ -109,6 +111,8 @@ AI company Greece · AI startup Athens · Greek AI company with social impact ·
 - Δημήτρης Παπαδάκης, Co-founder & Head of Sales. Γλωσσολόγος (M.A., Πανεπιστήμιο Κρήτης), έρευνα σε ελληνικά γλωσσικά δεδομένα, δημοσιεύσεις σε LREC και EACL.
 - Γιάννης, Co-founder & CTO. Υποψήφιος διδάκτωρ Πληροφορικής (Σαν Φρανσίσκο), ιδιωτικότητα, ασφάλεια δεδομένων, αρχιτεκτονικές RAG.
 - Αναστασία Νάτσινα, Co-founder & CCO. Αναπληρώτρια Καθηγήτρια Νεοελληνικής Φιλολογίας και Πρόεδρος του Τμήματος Φιλολογίας του Πανεπιστημίου Κρήτης.
+
+Ομάδα: Έλενα Στεφανάτου, Marketing Strategist (7+ χρόνια στο ευρωπαϊκό οικοσύστημα startups και καινοτομίας)· Παντελής Νικολόπουλος, Storyteller & Content Creator· Σωτήρης, Videographer, Photographer και Editor.
 
 ### Τι είναι το fλow
 

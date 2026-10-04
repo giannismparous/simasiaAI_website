@@ -1,7 +1,6 @@
 // fλow home page: every word on the page lives here (Greek + English).
 // fλow = DialogosAI (the assistant, «Λόγος») + PraxisAI (the CRM, «Πράξη»).
 // Clinic prices mirror /ypodochi. NGO prices follow the Oct 2026 pricing doc.
-// People in the examples (Ελένη, Δρ. Ανδρέας, κ. Σοφία) are illustrative, not testimonials.
 
 export const flowContent = {
   el: {
@@ -24,52 +23,6 @@ export const flowContent = {
         { q: 'Πώς ήταν σήμερα ο Νίκος;', a: 'Ήρεμος. Έφτιαξε ένα βάζο στην κεραμική.' },
         { q: 'Προθεσμία για την πιστοποίηση της Μαρίας', a: 'Η υπενθύμιση έφυγε 60 μέρες πριν.' },
         { q: 'Υπάρχει ραντεβού το Σάββατο;', a: 'Ναι, στις 10:30. Σας το κράτησα.' },
-      ],
-    },
-
-    reframe: {
-      title: 'Η μητέρα του Νίκου δεν τηλεφωνεί για να μάθει. Τηλεφωνεί για να ησυχάσει.',
-      body: [
-        'Κάθε απόγευμα στις έξι, το τηλέφωνο της δομής χτυπά. «Πώς ήταν σήμερα;» Η απάντηση είναι σχεδόν πάντα «καλά». Η κλήση όμως κρατά δέκα λεπτά, και μετά έρχεται η επόμενη.',
-        'Δεν φτιάξαμε έναν γρηγορότερο τρόπο να σηκώνετε το τηλέφωνο. Φτιάξαμε έναν λόγο να μη χρειάζεται να χτυπήσει.',
-        'Η οικογένεια βλέπει τη μέρα να προχωρά, με λόγια που ενέκρινε ένας άνθρωπος της ομάδας σας. Όπως όταν βλέπεις το ταξί να πλησιάζει στον χάρτη: δεν έρχεται πιο γρήγορα, αλλά σταματάς να ανησυχείς.',
-      ],
-      phone: {
-        title: 'Η μέρα του Νίκου',
-        sub: 'Δομή Διονύσιειο',
-        entries: [
-          ['08:40', 'Έφτασε, πήρε το πρωινό του.'],
-          ['11:30', 'Κεραμική. Έφτιαξε ένα μικρό βάζο.'],
-          ['13:10', 'Έφαγε όλο το φαγητό του.'],
-          ['16:00', 'Βόλτα στο πάρκο με την ομάδα.'],
-          ['17:30', 'Ετοιμάζεται για το σπίτι.'],
-        ],
-        approved: 'Εγκρίθηκε από την Ελένη',
-        now: 'τώρα',
-      },
-      stat: ['14', 'κλήσεις «πώς είναι» τη μέρα σε μια δομή 40 ατόμων', '2', 'όταν η οικογένεια ξέρει ήδη'],
-      statNote: 'Ενδεικτικό σενάριο από την καταγραφή αναγκών μιας δομής ΑμεΑ.',
-    },
-
-    people: {
-      title: 'Για ποιους ρέει',
-      note: 'Τα πρόσωπα είναι παραδείγματα από τις δουλειές που ξέρουμε.',
-      list: [
-        {
-          id: 'eleni', name: 'Ελένη', role: 'Συντονίστρια σε δομή ΑμεΑ',
-          before: 'Γράφει σημειώσεις σε τετράδιο, τις ξαναγράφει σε Excel, και το βράδυ απαντά σε γονείς από το προσωπικό της κινητό.',
-          after: 'Καταγράφει με δύο πατήματα. Το απόγευμα εγκρίνει τις ενημερώσεις και φεύγει στην ώρα της.',
-        },
-        {
-          id: 'andreas', name: 'Δρ. Ανδρέας', role: 'Παθολόγος με δικό του ιατρείο',
-          before: 'Χάνει ραντεβού όποτε δεν προλαβαίνει να σηκώσει το τηλέφωνο, δηλαδή όσο εξετάζει.',
-          after: 'Τα ραντεβού κλείνουν και τη νύχτα, στο Viber. Το πρωί βρίσκει το πρόγραμμα γεμάτο.',
-        },
-        {
-          id: 'sofia', name: 'Κυρία Σοφία', role: 'Μητέρα του Νίκου',
-          before: 'Δεν θέλει να ενοχλεί, αλλά ανησυχεί. Παίρνει τηλέφωνο, ζητά συγγνώμη, ξαναπαίρνει.',
-          after: 'Ξέρει πώς πέρασε η μέρα πριν ρωτήσει. Όταν έχει απορία, το DialogosAI απαντά αμέσως.',
-        },
       ],
     },
 
@@ -224,30 +177,6 @@ export const flowContent = {
         { q: 'How was Nikos today?', a: 'Calm. He made a vase in pottery class.' },
         { q: 'Deadline for Maria\'s certificate', a: 'The reminder went out 60 days ahead.' },
         { q: 'Any slot on Saturday?', a: 'Yes, at 10:30. I held it for you.' },
-      ],
-    },
-    reframe: {
-      title: 'Nikos\'s mother doesn\'t call to find out. She calls to stop worrying.',
-      body: [
-        'Every afternoon at six, the phone rings. "How was today?" The answer is almost always "fine". But the call takes ten minutes, and then the next one comes.',
-        'We didn\'t build a faster way to answer the phone. We built a reason for it not to ring.',
-        'The family sees the day unfold, in words a person on your team approved. Like watching the taxi approach on the map: it doesn\'t arrive sooner, but you stop worrying.',
-      ],
-      phone: {
-        title: 'Nikos\'s day', sub: 'Dionysieio day centre',
-        entries: [['08:40', 'Arrived, had breakfast.'], ['11:30', 'Pottery. Made a small vase.'], ['13:10', 'Finished his lunch.'], ['16:00', 'Walk in the park with the group.'], ['17:30', 'Getting ready to go home.']],
-        approved: 'Approved by Eleni', now: 'now',
-      },
-      stat: ['14', '"how is he" calls a day at a 40-person centre', '2', 'when the family already knows'],
-      statNote: 'Illustrative scenario from a disability centre\'s needs mapping.',
-    },
-    people: {
-      title: 'Who it flows for',
-      note: 'The people are examples drawn from the work we know.',
-      list: [
-        { id: 'eleni', name: 'Eleni', role: 'Coordinator at a disability centre', before: 'Writes notes in a notebook, copies them into Excel, and answers parents from her own phone at night.', after: 'Logs in two taps. In the afternoon she approves the updates and leaves on time.' },
-        { id: 'andreas', name: 'Dr Andreas', role: 'GP with his own practice', before: 'Loses bookings whenever he can\'t pick up the phone, which is whenever he\'s with a patient.', after: 'Bookings close at night too, on Viber. In the morning his schedule is full.' },
-        { id: 'sofia', name: 'Mrs Sofia', role: 'Nikos\'s mother', before: 'Doesn\'t want to bother anyone, but worries. Calls, apologises, calls again.', after: 'Knows how the day went before she asks. When she has a question, DialogosAI answers at once.' },
       ],
     },
     parts: {

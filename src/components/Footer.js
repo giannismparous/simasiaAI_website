@@ -177,6 +177,8 @@ const Footer = () => {
             <div className="footer-social-links">
               <a href="https://www.linkedin.com/company/simasiaai" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               <a href="https://www.instagram.com/simasiaai/" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.facebook.com/p/Simasia%CE%91%CE%99-61584445269687/" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://www.tiktok.com/@simasiaai" target="_blank" rel="noopener noreferrer">TikTok</a>
             </div>
           </div>
         </div>

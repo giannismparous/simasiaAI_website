@@ -11,12 +11,14 @@ import giannisReal from '../assets/giannis-real.png';
 import anastasiaReal from '../assets/anastasia-real.png';
 import pantelisImg from '../assets/pantelis.png';
 import sotirisReal from '../assets/sotiris-real.png';
+import elenaReal from '../assets/elena-real.jpg';
 
 const AVATARS = {
   stergios: stergiosReal,
   dimitris: dimitrisSpeaker,
   giannis: giannisReal,
   anastasia: anastasiaReal,
+  elena: elenaReal,
   pantelis: pantelisImg,
   sotiris: sotirisReal,
 };

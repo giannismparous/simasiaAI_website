@@ -15,7 +15,7 @@ Key facts: live with Κάπα3 («Μυρτώ», DialogosAI + MetronAI), ΠΟΑμ
 
 - [Home](https://www.simasiaai.gr/): SimasiaAI and fλow at a glance
 - [Collaborations](https://www.simasiaai.gr/collaborations): live implementations with patient organisations and partners
-- [Team](https://www.simasiaai.gr/team): the four co-founders
+- [Team](https://www.simasiaai.gr/team): the co-founders and the team
 - [News](https://www.simasiaai.gr/news): articles and announcements
 - [Newsletter](https://www.simasiaai.gr/newsletter): SimasiaAI newsletter issues
 

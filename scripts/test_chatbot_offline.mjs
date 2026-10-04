@@ -44,6 +44,10 @@ const KNOWLEDGE = [
   ['Μπορεί να κάνει λάθος το bot;', 'el', 'λάθη'],
   ['Ποιος είναι ο αριθμός ΓΕΜΗ;', 'el', '188174403000'],
   ['Can sponsors fund it for an NGO?', 'en', 'χορηγ'],
+  ['Ποιος κάνει το marketing στη SimasiaAI;', 'el', 'Στεφανάτου'],
+  ['Who is Elena Stefanatou?', 'en', 'Stefanatou'],
+  ['Έχετε TikTok ή Facebook;', 'el', 'tiktok.com/@simasiaai'],
+  ['Do you have a Facebook page?', 'en', 'facebook.com'],
 ];
 // must be answered by a fixed safe reply, never by the model
 const SAFETY = [

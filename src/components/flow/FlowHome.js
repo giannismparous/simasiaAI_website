@@ -4,7 +4,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { flowContent } from './flowContent';
 import { threeContent } from './flowThreeContent';
 import FlowRiver from './FlowRiver';
-import { PhoneDay, People, Crossing } from './FlowParts';
+import { Crossing } from './FlowParts';
 import { ThreeLayers, DemoHead, Edition, TimeBack, ValueEquation, BuildTeaser } from './FlowThree';
 import DialogosDemo from './DialogosDemo';
 import PraxisDemo from './PraxisDemo';
@@ -14,7 +14,7 @@ import './Flow.css';
 
 /*
  * fλow product page. Dark and paper bands alternate, as on the rest of the site.
- * Story: the river (one flow) → why it matters (Νίκος) → for whom → three parts,
+ * Story: the river (one flow) → three parts,
  * separately and together → each part, live → proof → the time that returns and
  * why it is worth it → build your own fλow (no fixed packages) → how we cross
  * together → trust → start with a few questions.
@@ -45,26 +45,6 @@ const FlowHome = ({ proof = null }) => {
           </div>
         </div>
         <div className="fl-river"><FlowRiver copy={c.hero} /></div>
-      </section>
-
-      {/* 2. The reframe: reassurance, not information */}
-      <section className="fl-sec fl-paper">
-        <div className="fl-in fl-reframe">
-          <div className="fl-reframe-text">
-            <h2>{c.reframe.title}</h2>
-            {c.reframe.body.map((p, i) => <p key={i} className={i === 1 ? 'fl-turn' : 'fl-body'}>{p}</p>)}
-          </div>
-          <PhoneDay c={c.reframe.phone} />
-        </div>
-      </section>
-
-      {/* 3. The people it flows for */}
-      <section className="fl-sec fl-dark">
-        <div className="fl-in">
-          <h2 className="fl-h2">{c.people.title}</h2>
-          <People c={c.people} />
-          <p className="fl-fine">{c.people.note}</p>
-        </div>
       </section>
 
       {/* 4. Λόγος, Πράξη και Καταγραφή: separately and together */}
