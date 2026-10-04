@@ -27,7 +27,9 @@ globalThis.fetch = async (url, opts) => {
 let ipN = 0;
 const call = async (body, origin = 'https://www.simasiaai.gr') => {
   ipN += 1;
-  const req = new Request('https://www.simasiaai.gr/.netlify/functions/send-offer', { method: 'POST', headers: { origin, 'content-type': 'application/json' }, body: JSON.stringify(body) });
+  const headers = { 'content-type': 'application/json' };
+  if (origin) headers.origin = origin;
+  const req = new Request('https://www.simasiaai.gr/.netlify/functions/send-offer', { method: 'POST', headers, body: JSON.stringify(body) });
   const res = await fn(req, { ip: `192.0.2.${ipN}` });
   return { status: res.status, body: await res.json() };
 };
@@ -71,6 +73,13 @@ r = await call({ ...cases[0].body, website: 'spam' });
 check(r.status === 200 && !sent.length, 'bot (hidden field filled) → quiet 200, nothing sent');
 r = await call(cases[0].body, 'https://another-site.example');
 check(r.status === 403 && !sent.length, 'another website → 403');
+r = await call(cases[0].body, 'https://evil.netlify.app');
+check(r.status === 403 && !sent.length, 'another Netlify site → 403');
+r = await call(cases[0].body, null);
+check(r.status === 403 && !sent.length, 'no Origin (a script, not a browser) → 403');
+r = await call({ ...cases[0].body, contact: { ...contact('link@example.com'), name: 'Win now http://bad.example/x www.bad.ru', org: 'visit bad-site.com today' }, custom: ['see https://x.io'] });
+check(r.status === 200 && sent.length === 2 && !/bad\.example|bad-site\.com|x\.io|bad\.ru/i.test(JSON.stringify([sent[0].body.subject, sent[0].body.html, sent[0].body.text, sent[1].body.text])), 'links in name, organisation and requests are removed before sending');
+sent.length = 0;
 resendStatus = 500;
 r = await call({ ...cases[0].body, contact: contact('down@example.com') });
 check(r.status === 502, 'Resend down → 502 (the site falls back to the EmailJS lead)');
@@ -79,6 +88,6 @@ delete process.env.RESEND_API_KEY;
 r = await call({ ...cases[0].body, contact: contact('nokey@example.com') });
 check(r.status === 503 && r.body.error === 'email_not_configured', 'no RESEND_API_KEY → 503 (the site falls back to the EmailJS lead)');
 
-const total = cases.length * 5 + 6;
+const total = cases.length * 5 + 9;
 console.log(`\n${total - fail}/${total} checks passed${process.argv.includes('--pdf') ? ` · sample PDFs in ${outDir}` : ''}`);
 process.exit(fail ? 1 : 0);

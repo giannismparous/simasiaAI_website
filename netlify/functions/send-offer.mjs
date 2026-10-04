@@ -9,7 +9,7 @@
  *   OFFER_NOTIFY_TO     optional, default "contact@simasiaai.gr" (comma-separated for more)
  *   OFFER_REPLY_TO      optional, default "contact@simasiaai.gr"
  */
-import { corsHeaders, isAllowedOrigin, parseAllowedOrigins } from './lib/gemini-keys.mjs';
+import { corsHeaders, netlifyDeployOrigins, parseAllowedOrigins } from './lib/gemini-keys.mjs';
 import { readRequest, buildOffer, OfferInputError } from '../offer/offer.mjs';
 import { renderOfferPdf } from '../offer/doc.mjs';
 import { clientEmail, leadEmail } from '../offer/email.mjs';
@@ -18,6 +18,23 @@ import { COPY } from '../offer/copy.mjs';
 const RESEND_URL = 'https://api.resend.com/emails';
 const MAX_BODY = 20000;
 
+// Only our own pages may ask for an offer: simasiaai.gr, this site's Netlify deploys, local dev.
+// Browsers always send Origin on a POST, so a request without one (a script) is refused.
+const SITE = 'simasiaaiwebsite';
+const offerOriginOk = (origin) => {
+  if (!origin) return false;
+  const o = origin.trim().toLowerCase();
+  if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(o)) return true;
+  let host = '';
+  try { host = new URL(o).hostname; } catch { return false; }
+  if (!o.startsWith('https://')) return false;
+  if (host === 'simasiaai.gr' || host.endsWith('.simasiaai.gr')) return true;
+  const site = (process.env.SITE_NAME || SITE).toLowerCase();
+  if (host === `${site}.netlify.app` || host.endsWith(`--${site}.netlify.app`)) return true;
+  if (netlifyDeployOrigins().includes(o)) return true;
+  return (process.env.SIMASIA_ALLOWED_ORIGINS || '').split(',').map((x) => x.trim().toLowerCase()).filter(Boolean).includes(o);
+};
+
 // best-effort throttle per warm instance: 5 offers per IP per 15 minutes, 3 per address per hour
 const hits = new Map();
 const tooMany = (key, max, windowMs) => {
@@ -25,7 +42,10 @@ const tooMany = (key, max, windowMs) => {
   const list = (hits.get(key) || []).filter((t) => now - t < windowMs);
   list.push(now);
   hits.set(key, list);
-  if (hits.size > 5000) hits.clear();
+  if (hits.size > 5000) {
+    // drop only entries with nothing recent, never the whole table
+    hits.forEach((v, k) => { if (!v.some((t) => now - t < 60 * 60 * 1000)) hits.delete(k); });
+  }
   return list.length > max;
 };
 
@@ -52,11 +72,11 @@ export default async (req, context) => {
   const origin = req.headers.get('origin') || '';
 
   if (req.method === 'OPTIONS') {
-    if (origin && !isAllowedOrigin(origin, allowed)) return new Response(null, { status: 403 });
+    if (!offerOriginOk(origin)) return new Response(null, { status: 403 });
     return new Response(null, { status: 204, headers: corsHeaders(origin, allowed) });
   }
   if (req.method !== 'POST') return json(405, { error: 'method_not_allowed' }, origin, allowed);
-  if (origin && !isAllowedOrigin(origin, allowed)) return json(403, { error: 'origin_not_allowed' }, origin, allowed);
+  if (!offerOriginOk(origin)) return json(403, { error: 'origin_not_allowed' }, origin, allowed);
 
   const raw = await req.text();
   if (raw.length > MAX_BODY) return json(413, { error: 'too_large' }, origin, allowed);

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MODULES } from './modules';
-import { MODULE_IDS } from './offerEngine';
+import { MODULE_IDS } from './offerCatalog';
 import { euro } from './FlowParts';
 import './FlowThree.css';
 

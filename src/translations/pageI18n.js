@@ -355,7 +355,6 @@ export const pageI18nEl = {
       {
         id: 'starter',
         name: 'Starter',
-        price: '490€',
         tag: 'Τιμή γνωριμίας',
         duration: '2 ώρες',
         highlight: false,
@@ -371,7 +370,6 @@ export const pageI18nEl = {
       {
         id: 'business',
         name: 'Business',
-        price: '990€',
         tag: 'Πιο δημοφιλές',
         duration: '4 ώρες',
         highlight: true,
@@ -388,7 +386,6 @@ export const pageI18nEl = {
       {
         id: 'team',
         name: 'Team',
-        price: '1.790€',
         tag: 'Για ομάδες',
         duration: '6 ώρες',
         highlight: false,
@@ -404,7 +401,6 @@ export const pageI18nEl = {
       {
         id: 'growth',
         name: 'Growth',
-        price: '2.990€',
         tag: 'Ολοκληρωμένο',
         duration: '3 μήνες',
         highlight: false,
@@ -905,7 +901,6 @@ export const pageI18nEn = {
       {
         id: 'starter',
         name: 'Starter',
-        price: '490€',
         tag: 'Introductory price',
         duration: '2 hours',
         highlight: false,
@@ -921,7 +916,6 @@ export const pageI18nEn = {
       {
         id: 'business',
         name: 'Business',
-        price: '990€',
         tag: 'Most popular',
         duration: '4 hours',
         highlight: true,
@@ -938,7 +932,6 @@ export const pageI18nEn = {
       {
         id: 'team',
         name: 'Team',
-        price: '1.790€',
         tag: 'For teams',
         duration: '6 hours',
         highlight: false,
@@ -954,7 +947,6 @@ export const pageI18nEn = {
       {
         id: 'growth',
         name: 'Growth',
-        price: '2.990€',
         tag: 'Comprehensive',
         duration: '3 months',
         highlight: false,

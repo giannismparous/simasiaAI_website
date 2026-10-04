@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ClinicIllustration, NgoIllustration } from '../GateIllustrations';
@@ -6,8 +6,7 @@ import { sendContactEmail, isEmailJsConfigured } from '../../services/emailServi
 import { requestOffer, EMAIL_RX } from '../../services/offerService';
 import { builderCopy } from './builderContent';
 import { threeContent } from './flowThreeContent';
-import { NGO, MED, SPONSOR, MODULE_IDS, computeNgo, computeMed, computeSponsor } from './offerEngine';
-import { euro } from './FlowParts';
+import { NGO, MED, SPONSOR, MODULE_IDS } from './offerCatalog';
 import { MODULES } from './modules';
 import { TimeBack, timeModel } from './FlowThree';
 import './FlowBuilder.css';
@@ -192,10 +191,9 @@ const FlowBuilder = ({ onSummary }) => {
   const [form, setForm] = useState({ name: '', org: '', email: '', phone: '', consent: false, website: '' });
   const [status, setStatus] = useState({ state: 'idle', mailto: '', email: '' });
 
-  const ngo = useMemo(() => computeNgo(ngoSel), [ngoSel]);
-  const med = useMemo(() => computeMed(medSel, true), [medSel]);
-  const sp = useMemo(() => computeSponsor(spSel), [spSel]);
-  const offer = aud === 'ngo' ? ngo : aud === 'med' ? med : aud === 'sponsor' ? sp : null;
+  // the page knows the choices only; prices are added on the server, in the emailed PDF
+  const offer = AUDIENCES.includes(aud);
+  const spOrg = SPONSOR.orgs.find((o) => o.id === spSel.orgs) || SPONSOR.orgs[0];
   const isQuiz = aud === 'ngo' || aud === 'med';
   const quiz = isQuiz ? c.quiz[aud] : [];
   const ans = isQuiz ? answers[aud] : {};
@@ -298,14 +296,14 @@ const FlowBuilder = ({ onSummary }) => {
   /* a short tag next to an option; prices are not shown on the site */
   const ngoTag = (f) => (f.quote ? c.design.quote : '');
   const medTag = (f) => (f.quote ? c.design.quote : f.soon ? c.soon : '');
-  const quotes = aud === 'ngo' ? ngo.quotes.map((f) => f.label[lang])
+  const quotes = aud === 'ngo' ? NGO.features.filter((f) => f.quote && ngoSel.features[f.id] && (f.module === 'all' || ngoSel.modules[f.module])).map((f) => f.label[lang])
     : aud === 'med' ? MED.features.filter((f) => f.quote && medSel.features[f.id]).map((f) => f.label[lang]) : [];
   const recFeature = (id) => aud === 'med' && quizDone.med && (
     (id === 'booking' && (ans.calls ?? 0) >= 1) || (id === 'missed' && (ans.missed ?? 0) >= 1) || (id === 'reminders' && (ans.miss ?? 0) >= 1) || (id === 'callstats' && (ans.report ?? 0) >= 1));
 
-  /* the text that travels with the offer. Without prices for anything the visitor sees
-     (booking form, mailto); with prices only for the internal lead to contact@simasiaai.gr. */
-  const offerText = (withPrices = false) => {
+  /* the text that travels with the choices (booking form, mailto, the EmailJS backup lead).
+     It never has prices: those exist only on the server. */
+  const offerText = () => {
     if (!offer) return '';
     const lines = [`fλow · ${c.who[aud].name}`];
     if (aud === 'sponsor') {
@@ -313,11 +311,8 @@ const FlowBuilder = ({ onSummary }) => {
       lines.push(`${c.size.sponsor[1]} ${spSel.people}`);
       lines.push(`${c.size.sponsor[2]} ${spSel.years}`);
       lines.push(`${c.size.sponsor[3]} ${SPONSOR.causes[spSel.cause][lang]}`);
-      if (withPrices) lines.push(`Συνολικό κόστος: ${euro(sp.total, lang)} · ανά άνθρωπο: ${euro(sp.perPerson, lang)}`);
     } else {
       lines.push(`${c.offer.modulesTitle}: ${parts.filter((p) => p.on).map((p) => p.name).join(' + ')}`);
-      if (withPrices && aud === 'ngo') lines.push(`Τιμή: ${offer.from ? 'από ' : ''}${euro(offer.monthly, lang)}/μήνα + ${euro(offer.setup, lang)} ένταξη`);
-      if (withPrices && aud === 'med') lines.push(`Τιμή: «${offer.name.el}» ${offer.from ? 'από ' : ''}${euro(offer.monthly, lang)}/μήνα με ετήσια`);
     }
     parts.filter((p) => p.on && p.items.length).forEach((p) => lines.push(`${p.name}: ${p.items.join(', ')}`));
     if (quotes.length) lines.push(`${c.offer.quotesTitle}: ${quotes.join(', ')}`);
@@ -352,7 +347,7 @@ const FlowBuilder = ({ onSummary }) => {
   /* the lead for the team through EmailJS, used only if the offer email could not go out */
   const sendLeadBackup = (note) => sendContactEmail({
     fromName: form.name, fromEmail: form.email, organizationType: `fλow · ${c.who[aud].name}`, companyName: form.org,
-    message: `${note}\n\n${offerText(true)}`,
+    message: `${note}\n\n${offerText()}`,
   });
 
   const submit = async (e) => {
@@ -548,7 +543,7 @@ const FlowBuilder = ({ onSummary }) => {
                     <div className="flb-impact-nums">
                       <div><b>{new Intl.NumberFormat(lang === 'en' ? 'en-IE' : 'el-GR').format(spSel.people * spSel.years)}</b><span>{c.impactStep.people}{spSel.years > 1 ? ` × ${spSel.years}` : ''}</span></div>
                       <div><b>{spSel.years}</b><span>{c.impactStep.years}</span></div>
-                      <div><b>{sp.orgCount}{sp.from ? '+' : ''}</b><span>{c.impactStep.orgs}</span></div>
+                      <div><b>{spOrg.count}{spOrg.id === 'fed' ? '+' : ''}</b><span>{c.impactStep.orgs}</span></div>
                     </div>
                     <div className="flb-impact-line">{c.impactStep.report}</div>
                   </div>
@@ -650,7 +645,7 @@ const FlowBuilder = ({ onSummary }) => {
             <LiveFlow pains={pains.slice(0, 7)} parts={parts} center={center} c={c} />
             {offer && (
               <div className="flb-ticker">
-                <span>{aud === 'sponsor' ? SPONSOR.orgs.find((o) => o.id === spSel.orgs).label[lang] : parts.filter((p) => p.on).map((p) => p.name).join(' + ')}</span>
+                <span>{aud === 'sponsor' ? spOrg.label[lang] : parts.filter((p) => p.on).map((p) => p.name).join(' + ')}</span>
                 <a href="#flb-form">{c.summaryBar}</a>
               </div>
             )}

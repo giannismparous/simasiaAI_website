@@ -9,6 +9,10 @@ import { COPY, PARTS } from './copy.mjs';
 export class OfferInputError extends Error {}
 
 const clean = (s, max) => String(s ?? '').replace(/[\u0000-\u001f\u007f<>]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max);
+// free text from the visitor goes into an email from our domain: no links in it, so the form
+// cannot be used to send someone a link with our name on it
+const LINK_RX = /(?:https?:\/\/|www\.)\S*|\b[\w-]+(?:\.[\w-]+)*\.(?:com|net|org|gr|eu|io|co|uk|de|ru|cn|xyz|info|biz|top|site|online|link|click|me|app|ly|to|sh|cc|tk|ml|ga|cf|gq|zip|mov|shop|live|store)\b\S*/gi;
+const text = (s, max) => clean(clean(s, max * 2).replace(LINK_RX, ' '), max);
 const bool = (o, ids) => ids.reduce((acc, id) => ({ ...acc, [id]: !!(o && o[id] === true) }), {});
 const numIn = (v, min, max, def) => { const n = Number(v); return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : def; };
 export const EMAIL_RX = /^[^\s@<>()[\]\\,;:"]{1,64}@[^\s@<>()[\]\\,;:"]+\.[a-z]{2,}$/i;
@@ -25,8 +29,8 @@ export const readRequest = (body) => {
   const aud = ['ngo', 'med', 'sponsor'].includes(b.aud) ? b.aud : null;
   if (!aud) throw new OfferInputError('aud');
   const contact = {
-    name: clean(b.contact && b.contact.name, 80),
-    org: clean(b.contact && b.contact.org, 120),
+    name: text(b.contact && b.contact.name, 80),
+    org: text(b.contact && b.contact.org, 120),
     email: clean(b.contact && b.contact.email, 120).toLowerCase(),
     phone: clean(b.contact && b.contact.phone, 30),
   };
@@ -62,9 +66,9 @@ export const readRequest = (body) => {
     };
   }
 
-  const custom = (Array.isArray(b.custom) ? b.custom : []).map((x) => clean(x, 90)).filter(Boolean).slice(0, 12);
+  const custom = (Array.isArray(b.custom) ? b.custom : []).map((x) => text(x, 90)).filter(Boolean).slice(0, 12);
   const answers = (Array.isArray(b.answers) ? b.answers : []).slice(0, 10)
-    .map((x) => ({ q: clean(x && x.q, 160), a: clean(x && x.a, 200) })).filter((x) => x.q && x.a);
+    .map((x) => ({ q: text(x && x.q, 160), a: text(x && x.a, 200) })).filter((x) => x.q && x.a);
   const t = b.time || {};
   const time = { month: Math.round(numIn(t.month, 0, 2000, 0)), days: Math.round(numIn(t.days, 0, 2000, 0)), appts: Math.round(numIn(t.appts, 0, 2000, 0)) };
   return { lang, aud, contact, sel, custom, answers, time };

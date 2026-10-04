@@ -1,5 +1,6 @@
 import { pageI18nEl, pageI18nEn } from './pageI18n';
-import { ypodochiContentEl, ypodochiContentEn } from './ypodochiContent';
+// The old clinics page copy (./ypodochiContent.js, with its price ladder) is no longer merged:
+// /ypodochi redirects to /go and the site shows no prices.
 
 /** Extra UI copy missing from the rebuilt homepage / key pages (EL + EN). */
 export const extraUiEl = {
@@ -988,6 +989,6 @@ const deepMerge = (target, source) => {
 };
 
 export const mergeExtraUi = (el, en) => ({
-  el: deepMerge(deepMerge(deepMerge(el, extraUiEl), pageI18nEl), ypodochiContentEl),
-  en: deepMerge(deepMerge(deepMerge(en, extraUiEn), pageI18nEn), ypodochiContentEn),
+  el: deepMerge(deepMerge(el, extraUiEl), pageI18nEl),
+  en: deepMerge(deepMerge(en, extraUiEn), pageI18nEn),
 });
