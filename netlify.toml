@@ -109,6 +109,26 @@
   status = 301
   force = true
 
+# The clinics page showed a price ladder and the calculator was internal. Prices are
+# no longer on the site: the offer arrives as a PDF by email from /go.
+[[redirects]]
+  from = "/ypodochi"
+  to = "/go?for=med"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/calculator"
+  to = "/go"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pricing-calculator"
+  to = "/go"
+  status = 301
+  force = true
+
 # ── SPA catch-all (keep last) ────────────────────────────────────────────
 [[redirects]]
   from = "/*"

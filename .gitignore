@@ -53,3 +53,4 @@ website-dia/
 scripts/generate_website.mjs
 scripts/serve_personal_website.mjs
 calculator.html
+/offer-samples

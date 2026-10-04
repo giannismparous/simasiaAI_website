@@ -132,7 +132,7 @@ const Footer = () => {
             <Link to="/flow">{t('footer.flowLink')}</Link>
             <Link to="/go">{t('footer.goLink')}</Link>
             <Link to="/go#book">{t('footer.bookLink')}</Link>
-            <Link to="/ypodochi">{t('footer.clinicsNavLink')}</Link>
+            <Link to="/go?for=med">{t('footer.clinicsNavLink')}</Link>
             <Link to="/platform">{t('footer.platformLink')}</Link>
             <Link to="/team">{t('footer.teamLink')}</Link>
             <Link to="/collaborations">{t('nav.collaborations')}</Link>

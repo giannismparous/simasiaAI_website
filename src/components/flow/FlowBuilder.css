@@ -152,17 +152,7 @@
   .flb-offer { padding: 20px; }
   .flb-offer-nums { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .flb-fields { grid-template-columns: minmax(0, 1fr); }
-  .flb .fl-btn, .flb-print-btn { width: 100%; }
-}
-
-/* print: only the offer card, as a one-page PDF */
-@media print {
-  body * { visibility: hidden !important; }
-  .flb-print, .flb-print * { visibility: visible !important; }
-  .flb-print { position: absolute; left: 0; top: 0; width: 100%; border: 0; box-shadow: none; padding: 0; }
-  .flb-one { background: #fff !important; color: #141413 !important; border: 1px solid #ccc; }
-  .flb-one p, .flb-one b { color: #141413 !important; }
-  @page { margin: 16mm; }
+  .flb .fl-btn { width: 100%; }
 }
 
 /* ---- 2026-10: back bar, value stack, assurances, uniqueness, objections ---- */
@@ -201,7 +191,6 @@
   .flb-assure ul { grid-template-columns: minmax(0, 1fr); }
   .flb-stack, .flb-assure, .flb-unique, .flb-faq { padding: 18px 16px; }
 }
-@media print { .flb-stack, .flb-assure, .flb-unique, .flb-faq, .flb-booklink, .flb-topbar { display: none !important; } }
 .flb-assure li { align-content: start; }
 
 /* ───────── 2026-10 v3: questionnaire, three-part designer, custom requests ───────── */
@@ -316,3 +305,13 @@
   .flb-svg { max-height: 20vh; }
   .flb-ticker { padding-top: 8px; margin-top: 2px; font-size: 14px; }
 }
+
+/* ---- 2026-10: the offer arrives by email (no prices on the page) ---- */
+.flb-inbox { margin-top: 18px; padding: 16px 18px 6px; border-radius: 12px; background: #fbeee8; border: 1px solid rgba(217, 119, 87, .35); }
+.flb-inbox .flb-offer-h { margin-top: 0 !important; color: var(--orange-dk); }
+.flb-inbox .flb-offer-list li::before { border-color: var(--orange); }
+.flb-form { scroll-margin-top: 96px; padding: 22px 22px 20px; border-radius: 14px; background: #fff; border: 1px solid var(--sand); box-shadow: 0 18px 40px -28px rgba(20, 20, 19, .35); }
+.flb-consent a { color: var(--ink); text-underline-offset: 3px; }
+.flb-hp { position: absolute !important; left: -10000px !important; width: 1px; height: 1px; overflow: hidden; }
+.flb-status.is-invalid, .flb-status.is-tooMany, .flb-status.is-fallback { color: var(--orange-dk); }
+.flb-status.is-sent, .flb-status.is-queued { font-weight: 600; }

@@ -1,6 +1,6 @@
 // fλow home page: every word on the page lives here (Greek + English).
 // fλow = DialogosAI (the assistant, «Λόγος») + PraxisAI (the CRM, «Πράξη»).
-// Clinic prices mirror /ypodochi. NGO prices follow the Oct 2026 pricing doc.
+// No prices on the site: the priced offer is emailed as a PDF from /go.
 
 export const flowContent = {
   el: {
@@ -66,64 +66,6 @@ export const flowContent = {
       themes: 'Τι ρωτούν', needs: 'Τι λείπει', needsNote: 'Αυτό γίνεται η επόμενη πρότασή σας για χρηματοδότηση.', q: 'ερωτήσεις',
     },
 
-    value: {
-      title: 'Πόσο κοστίζει μια ανήσυχη μέρα;',
-      lead: 'Βάλτε τους δικούς σας αριθμούς. Δεν μετράμε την ησυχία· μόνο τον χρόνο και τα ραντεβού.',
-      ngo: {
-        inputs: [
-          { id: 'people', label: 'Άνθρωποι στην ομάδα', min: 2, max: 30, step: 1, def: 8, unit: '' },
-          { id: 'mins', label: 'Λεπτά την ημέρα ο καθένας σε τηλέφωνα, σημειώσεις, υπενθυμίσεις', min: 10, max: 180, step: 5, def: 75, unit: ' λεπτά' },
-          { id: 'rate', label: 'Κόστος μιας ώρας εργασίας', min: 8, max: 25, step: 1, def: 12, unit: ' €' },
-        ],
-        assumption: 'Υποθέτουμε ότι το fλow αναλαμβάνει το 40% αυτού του χρόνου.',
-        todayLabel: 'Χρόνος που επιστρέφει στην ομάδα, τον χρόνο',
-        flowLabel: 'Φροντίδα, ο πρώτος χρόνος με την ένταξη',
-        flowCost: 4500 + 249 * 12,
-        hoursLabel: 'ώρες τον μήνα πίσω στους ανθρώπους',
-      },
-      med: {
-        inputs: [
-          { id: 'missed', label: 'Αναπάντητες κλήσεις την ημέρα', min: 0, max: 20, step: 1, def: 5, unit: '' },
-          { id: 'book', label: 'Πόσες θα γίνονταν ραντεβού', min: 10, max: 60, step: 5, def: 30, unit: '%' },
-          { id: 'fee', label: 'Μέση αξία ενός ραντεβού', min: 20, max: 150, step: 5, def: 50, unit: ' €' },
-        ],
-        assumption: 'Μετράμε 22 εργάσιμες τον μήνα.',
-        todayLabel: 'Ραντεβού που χάνονται σήμερα, τον χρόνο',
-        flowLabel: 'Απαντάει, με ετήσια συνδρομή',
-        flowCost: 149 * 12,
-        hoursLabel: 'ραντεβού τον μήνα που μένουν',
-      },
-      times: 'φορές όσο κοστίζει',
-      eqTitle: 'Γιατί αξίζει περισσότερο απ᾽ όσο κοστίζει',
-      eq: {
-        top: [
-          ['Το αποτέλεσμα', 'Μια ήσυχη μέρα: η ομάδα φεύγει στην ώρα της, οι οικογένειες ησυχάζουν.'],
-          ['Η βεβαιότητα', 'Δουλεύει ήδη σε δύο οργανισμούς. Εγγύηση 90% ακρίβειας, αλλιώς δεν πληρώνετε.'],
-        ],
-        bottom: [
-          ['Ο χρόνος αναμονής', 'Το DialogosAI απαντά από τις πρώτες 48 ώρες.'],
-          ['Ο κόπος σας', 'Μία κλήση 45 λεπτών. Τα υπόλοιπα τα κάνουμε εμείς.'],
-        ],
-        caption: 'Η αξία μεγαλώνει όταν τα πάνω ανεβαίνουν και τα κάτω μικραίνουν.',
-      },
-    },
-
-    plans: {
-      title: 'Τι πληρώνετε, και τι παίρνετε',
-      perMonth: '/μήνα', annual: 'με ετήσια', setup: 'Ένταξη στη ροή',
-      worth: 'Αξία αν τα αγοράζατε χωριστά',
-      rec: 'Από εδώ ξεκινούν οι περισσότεροι',
-      more: 'Όλα όσα περιλαμβάνει',
-      note: 'Τιμές χωρίς ΦΠΑ. Φιλοξενία και χρήση AI στο κόστος τους.',
-      ngoFunding: 'Συχνά το κόστος δεν το πληρώνει ο οργανισμός. Σας βοηθάμε να το εντάξετε σε χορηγία, CSR ή ευρωπαϊκή πρόταση.',
-      details: 'Λεπτομέρειες για ιατρεία',
-      guarantee: {
-        ngo: ['Δοκιμάστε το 60 μέρες με 199 €', 'Με τα δικά σας δεδομένα. Αν συνεχίσετε, τα 199 € αφαιρούνται από την ένταξη. Αν στις 60 μέρες δεν απαντά σωστά στο 90% των ερωτήσεων που συμφωνήσαμε, η συνδρομή είναι δωρεάν ώσπου να το πετύχει.'],
-        med: ['Live σε 48 ώρες, αλλιώς δωρεάν', 'Τεστ αποδοχής με 50 πραγματικές ερωτήσεις, μπροστά σας. Αν δεν φτάσει το 90% ακρίβεια, δεν πληρώνετε.'],
-      },
-      start: 'Φτιάξτε την προσφορά σας',
-    },
-
     crossing: {
       title: 'Περνάμε το ποτάμι μαζί',
       lead: 'Δεν πληρώνετε εγκατάσταση. Πληρώνετε τη μετάβαση, και την κάνουμε εμείς.',
@@ -150,7 +92,7 @@ export const flowContent = {
 
     final: {
       title: 'Ας δούμε πού εμποδίζεται η ροή σας.',
-      lead: 'Ξεκινήστε με λίγες ερωτήσεις για τη μέρα σας. Βλέπετε πού χάνεται χρόνος, το fλow σας σχεδιάζεται από τις απαντήσεις σας, και η προσφορά βγαίνει μπροστά σας. Δωρεάν, χωρίς δέσμευση.',
+      lead: 'Ξεκινήστε με λίγες ερωτήσεις για τη μέρα σας. Βλέπετε πού χάνεται χρόνος, το fλow σας σχεδιάζεται από τις απαντήσεις σας, και η προσφορά σας έρχεται στο email σας. Δωρεάν, χωρίς δέσμευση.',
       build: 'Φτιάξτε το fλow σας',
       cta: 'ή κλείστε 30 λεπτά μαζί μας',
       mail: 'ή γράψτε μας στο',
@@ -194,48 +136,6 @@ export const flowContent = {
       sample: 'Sample with test data', conv: ['1,284', 'conversations a month'], after: ['41%', 'outside office hours'], answered: ['87%', 'answered from your sources'],
       themes: 'What they ask', needs: 'What is missing', needsNote: 'This becomes your next funding proposal.', q: 'questions',
     },
-    value: {
-      title: 'What does a restless day cost?',
-      lead: 'Use your own numbers. We don\'t price the calm; only time and bookings.',
-      ngo: {
-        inputs: [
-          { id: 'people', label: 'People on the team', min: 2, max: 30, step: 1, def: 8, unit: '' },
-          { id: 'mins', label: 'Minutes a day each on calls, notes, reminders', min: 10, max: 180, step: 5, def: 75, unit: ' min' },
-          { id: 'rate', label: 'Cost of one working hour', min: 8, max: 25, step: 1, def: 12, unit: ' €' },
-        ],
-        assumption: 'We assume fλow takes on 40% of that time.',
-        todayLabel: 'Time returned to the team, per year', flowLabel: 'Care plan, first year incl. onboarding', flowCost: 4500 + 249 * 12, hoursLabel: 'hours a month back to people',
-      },
-      med: {
-        inputs: [
-          { id: 'missed', label: 'Missed calls a day', min: 0, max: 20, step: 1, def: 5, unit: '' },
-          { id: 'book', label: 'Share that would have booked', min: 10, max: 60, step: 5, def: 30, unit: '%' },
-          { id: 'fee', label: 'Average value of a visit', min: 20, max: 150, step: 5, def: 50, unit: ' €' },
-        ],
-        assumption: 'We count 22 working days a month.',
-        todayLabel: 'Bookings lost today, per year', flowLabel: 'Answers plan, billed annually', flowCost: 149 * 12, hoursLabel: 'bookings a month that stay',
-      },
-      times: 'times what it costs',
-      eqTitle: 'Why it is worth more than it costs',
-      eq: {
-        top: [['The outcome', 'A quiet day: the team leaves on time, families stop worrying.'], ['The certainty', 'Already live in two organisations. 90% accuracy guaranteed, or you don\'t pay.']],
-        bottom: [['The wait', 'DialogosAI answers within the first 48 hours.'], ['Your effort', 'One 45-minute call. We do the rest.']],
-        caption: 'Value grows when the top rises and the bottom shrinks.',
-      },
-    },
-    plans: {
-      title: 'What you pay, and what you get',
-      perMonth: '/month', annual: 'billed annually', setup: 'Onboarding into the flow',
-      worth: 'Value if bought separately', rec: 'Most start here', more: 'Everything included',
-      note: 'Prices exclude VAT. Hosting and AI usage at cost.',
-      ngoFunding: 'Often the organisation doesn\'t pay. We help you fit it into a sponsorship, CSR or EU proposal.',
-      details: 'Details for practices',
-      guarantee: {
-        ngo: ['Try it for 60 days for €199', 'With your own data. If you continue, the €199 is credited against onboarding. If at 60 days it doesn\'t answer 90% of our agreed questions correctly, the subscription is free until it does.'],
-        med: ['Live in 48 hours, or free', 'An acceptance test with 50 real questions, in front of you. If it doesn\'t reach 90% accuracy, you don\'t pay.'],
-      },
-      start: 'Build your offer',
-    },
     crossing: {
       title: 'We cross the river together',
       lead: 'You don\'t pay for installation. You pay for the transition, and we do it.',
@@ -248,7 +148,7 @@ export const flowContent = {
     },
     final: {
       title: 'Let\'s see where your flow is blocked.',
-      lead: 'Start with a few questions about your day. You see where time is lost, your fλow is designed from your answers, and your offer appears in front of you. Free, no commitment.',
+      lead: 'Start with a few questions about your day. You see where time is lost, your fλow is designed from your answers, and your offer arrives in your inbox. Free, no commitment.',
       build: 'Build your fλow',
       cta: 'or book 30 minutes with us', mail: 'or write to us at',
     },
@@ -268,11 +168,6 @@ export const editions = {
       ],
       th: [['Πιστοποίηση ΚΕΠΑ', 31], ['Επιδόματα ΟΠΕΚΑ', 22], ['Ραντεβού και νοσοκομεία', 17], ['Ψυχολογική στήριξη', 12], ['Δωρεές και εθελοντισμός', 8]],
       nd: [['Μεταφορά προς θεραπείες', 14], ['Ομάδες στήριξης γονέων', 9], ['Φροντίδα το Σαββατοκύριακο', 6]],
-      plans: [
-        { n: 'Πλοηγός', f: 'Το DialogosAI στο site σας, για το πρώτο βήμα', m: 119, s: '2.400 €', w: '3.550 € + 135 €/μήνα', h: ['Μαθαίνει από τα έγγραφά σας', 'Οδηγός δικαιωμάτων και παροχών', 'Widget και QR για τα έντυπα'], x: ['Απαντήσεις μόνο από εγκεκριμένες πηγές', 'Πρωτόκολλο κρίσης, καμία ιατρική συμβουλή', 'AI Act, GDPR, προσβασιμότητα', 'Βασικά στατιστικά', '1 εκπαίδευση, 30 μέρες δίπλα σας'] },
-        { n: 'Πλοηγός + MetronAI', f: 'Για συλλόγους ασθενών και ΜΚΟ με χορηγούς', m: 179, s: '2.900 €', w: '4.450 € + 255 €/μήνα', rec: true, h: ['Όλα του Πλοηγού', 'Viber ή Messenger, δεύτερη γλώσσα', 'MetronAI και μηνιαία αναφορά για χορηγούς'], x: ['Θέματα ερωτήσεων και τάσεις', 'Οι αναπάντητες ερωτήσεις ως ανάγκες', 'Ανάλυση διάθεσης και κρίσεων', 'Μηνιαίο τεστ ακρίβειας', '2 εκπαιδεύσεις, 90 μέρες δίπλα σας'] },
-        { n: 'Φροντίδα', f: 'Ολόκληρο το fλow, για δομές με ανθρώπους κάθε μέρα', m: 249, s: '4.500 €', w: '6.900 € + 495 €/μήνα', h: ['Όλα του Πλοηγού + MetronAI', 'PraxisAI: φάκελοι, καταγραφή, προθεσμίες', 'Ενημερώσεις οικογενειών με έγκριση'], x: ['Κάρτα βάρδιας: αγωγή, αλλεργίες', 'Καταγραφή με κουμπιά ή φωνή', 'Δωρητές, εθελοντές, μαζικά μηνύματα', 'Μεταφορά δεδομένων έως 40 ατόμων', '3 εκπαιδεύσεις, 1 δια ζώσης'] },
-      ],
     },
     med: {
       day: [
@@ -284,13 +179,6 @@ export const editions = {
       ],
       th: [['Ραντεβού και διαθεσιμότητα', 38], ['Τιμές και ΕΟΠΥΥ', 21], ['Προετοιμασία εξετάσεων', 16], ['Αποτελέσματα', 14], ['Επανάληψη συνταγής', 11]],
       nd: [['Ραντεβού Σάββατο πρωί', 22], ['Τηλεϊατρική', 11], ['Αγγλικά για επισκέπτες', 7]],
-      // Mirrors /ypodochi (live). m = monthly, a = monthly when billed annually.
-      plans: [
-        { n: 'Απαντάει', f: 'Το DialogosAI με βασικό CRM. Η βάση, όλα ξεκινούν εδώ.', m: 199, a: 149, s: '490 €, δωρεάν με ετήσια', w: '≈ 4.700 €', rec: true, h: ['Live σε 48 ώρες', 'Απαντά 24/7, και σε Greeklish', 'ΕΟΠΥΥ, παραπεμπτικά, συμμετοχές'], x: ['Μιλά μόνο από την επαληθευμένη βάση σας', 'Ποτέ διάγνωση· τα επείγοντα πάνε στο τηλέφωνο', 'Αιτήματα ραντεβού στο γραφείο σας αμέσως', 'Μηνιαία αναφορά: τι ρωτούν, τι λείπει', 'Πλήρες πακέτο GDPR και EU AI Act'] },
-        { n: 'Κλείνει', f: 'Συν ραντεβού και κανάλια', m: 249, a: 199, s: '490 €, δωρεάν με ετήσια', h: ['Κλείνει, αλλάζει, ακυρώνει στο ημερολόγιο', 'WhatsApp, Viber, Instagram, Facebook', 'Πολλοί γιατροί, σωστό ημερολόγιο'], x: ['Έντυπα εγγραφής μόλις κλειστεί ραντεβού'] },
-        { n: 'Φέρνει πίσω', f: 'Συν ανάκτηση ασθενών', m: 299, a: 249, s: '490 €, δωρεάν με ετήσια', h: ['Αναπάντητη κλήση, αμέσως SMS ή Viber', 'Υπενθυμίσεις 24 ώρες πριν', 'Recall και επανενεργοποίηση'], x: ['Γνώμη ιδιωτικά πριν το Google review', 'Οδηγίες μετά από κάθε πράξη', 'Μαζικές ενημερώσεις με ένα κλικ'] },
-        { n: 'Σηκώνει το τηλέφωνο', f: 'Συν ζωντανή φωνή', m: 399, a: 299, s: '490 €, δωρεάν με ετήσια', h: ['Ζωντανή φωνή στον αριθμό σας, 24/7', 'Φιλτράρει spam και πωλητές', 'Το voicemail γίνεται απάντηση'], x: [] },
-      ],
     },
   },
   en: {
@@ -304,11 +192,6 @@ export const editions = {
       ],
       th: [['Disability certification', 31], ['Welfare benefits', 22], ['Appointments and hospitals', 17], ['Psychological support', 12], ['Donations and volunteering', 8]],
       nd: [['Transport to therapy', 14], ['Parent support groups', 9], ['Weekend care', 6]],
-      plans: [
-        { n: 'Navigator', f: 'DialogosAI on your site, as a first step', m: 119, s: '€2,400', w: '€3,550 + €135/month', h: ['Learns from your documents', 'Rights and benefits guide', 'Widget and QR for print'], x: ['Answers only from approved sources', 'Crisis protocol, no medical advice', 'AI Act, GDPR, accessibility', 'Basic statistics', '1 training, 30 days alongside you'] },
-        { n: 'Navigator + MetronAI', f: 'For patient associations and funded NGOs', m: 179, s: '€2,900', w: '€4,450 + €255/month', rec: true, h: ['Everything in Navigator', 'Viber or Messenger, second language', 'MetronAI and a monthly funder report'], x: ['Question themes and trends', 'Unanswered questions as needs', 'Sentiment and crisis analysis', 'Monthly accuracy test', '2 trainings, 90 days alongside you'] },
-        { n: 'Care', f: 'The whole fλow, for services with people every day', m: 249, s: '€4,500', w: '€6,900 + €495/month', h: ['Everything in Navigator + MetronAI', 'PraxisAI: files, logging, expiries', 'Family updates with approval'], x: ['Shift card: medication, allergies', 'Log by tap or voice', 'Donors, volunteers, bulk messages', 'Data migration for up to 40 people', '3 trainings, 1 on site'] },
-      ],
     },
     med: {
       day: [
@@ -320,12 +203,6 @@ export const editions = {
       ],
       th: [['Appointments and availability', 38], ['Prices and insurance', 21], ['Exam preparation', 16], ['Results', 14], ['Repeat prescriptions', 11]],
       nd: [['Saturday morning slots', 22], ['Telemedicine', 11], ['English for visitors', 7]],
-      plans: [
-        { n: 'Answers', f: 'DialogosAI with a basic CRM. Everything starts here.', m: 199, a: 149, s: '€490, free with annual', w: '≈ €4,700', rec: true, h: ['Live in 48 hours', 'Answers 24/7, Greeklish too', 'Insurance, referrals, co-payments'], x: ['Speaks only from your verified base', 'Never diagnoses; urgent cases go to the phone', 'Booking requests reach your desk at once', 'Monthly report: what they ask, what is missing', 'Full GDPR and EU AI Act pack'] },
-        { n: 'Books', f: 'Plus bookings and channels', m: 249, a: 199, s: '€490, free with annual', h: ['Books, moves, cancels in your calendar', 'WhatsApp, Viber, Instagram, Facebook', 'Many doctors, the right calendar'], x: ['Registration forms once booked'] },
-        { n: 'Brings back', f: 'Plus patient recovery', m: 299, a: 249, s: '€490, free with annual', h: ['Missed call, instant SMS or Viber', 'Reminders 24 hours ahead', 'Recall and reactivation'], x: ['Private feedback before Google reviews', 'Aftercare instructions', 'Bulk updates in one click'] },
-        { n: 'Picks up the phone', f: 'Plus a live voice', m: 399, a: 299, s: '€490, free with annual', h: ['Live voice on your number, 24/7', 'Filters spam and sales calls', 'Voicemail becomes a reply'], x: [] },
-      ],
     },
   },
 };

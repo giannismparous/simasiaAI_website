@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Build chatbot knowledge-index.json from website translations + page routes.
- * Current offer only: fλow (DialogosAI, PraxisAI, MetronAI), /flow, /go, /ypodochi, /platform.
+ * Current offer only: fλow (DialogosAI, PraxisAI, MetronAI), /flow, /go, /platform.
+ * No prices: the site never shows them; the priced offer is emailed as a PDF from /go.
  * Website-only sources (no Drive). Run: npm run build:knowledge
  */
 
@@ -121,7 +122,7 @@ function addDocs(docs, base) {
 }
 
 /** Current public routes (see src/App.js) */
-const NAVBAR_ROUTES = ['/', '/flow', '/go', '/ypodochi', '/collaborations', '/team', '/news', '/platform'];
+const NAVBAR_ROUTES = ['/', '/flow', '/go', '/collaborations', '/team', '/news', '/platform'];
 
 function buildFromTranslations(lang, t) {
   const docs = [];
@@ -243,13 +244,6 @@ function buildFromExtraNamespaces(lang, t) {
   const L = lang;
   const blocks = [
     {
-      title: L === "el" ? "fλow για ιατρεία — ψηφιακή υποδοχή" : "fλow for practices — digital reception",
-      url: "/ypodochi",
-      keys: ["ypodochiPage"],
-      category: "products",
-      keywords: ["ypodochi", "clinic", "ιατρειο", "κλινικη", "reception", "υποδοχη", "απανταει", "κλεινει", "φερνει", "σηκωνει"],
-    },
-    {
       title: L === "el" ? "Ομάδα — SimasiaAI" : "Team — SimasiaAI",
       url: "/team",
       keys: ["teamPage"],
@@ -356,7 +350,7 @@ function buildFromRagFolder() {
     if (parts.length <= 1) {
       addDocs(docs, {
         title: file.replace(/\.(txt|md)$/i, ""),
-        url: "/ypodochi",
+        url: "/go",
         lang: "el",
         category: "rag_upload",
         keywords: ["simasia", "rag"],
@@ -391,7 +385,7 @@ function buildFromRagFolder() {
       if (!content) continue;
       addDocs(docs, {
         title,
-        url: "/ypodochi",
+        url: "/go",
         lang: "el",
         category: "rag_upload",
         keywords: extractKeywords(title + " " + content, 18),

@@ -12,7 +12,6 @@ import FlowPage from './pages/FlowPage';
 import GoPage from './pages/GoPage';
 import PlatformPage from './pages/PlatformPage';
 import CollaborationsPage from './pages/CollaborationsPage';
-import YpodochiPage from './pages/YpodochiPage';
 import TeamPage from './pages/TeamPage';
 import NewsPage from './pages/NewsPage';
 import ArticlePage from './pages/ArticlePage';
@@ -23,7 +22,6 @@ import TermsPage from './pages/TermsPage';
 import PrivacyPage from './pages/PrivacyPage';
 import CookiesPage from './pages/CookiesPage';
 import CookieBanner from './components/CookieBanner';
-import PricingCalculatorPage from './pages/PricingCalculatorPage';
 import './App.css';
 
 /* Old addresses from earlier editions of the site keep working: they land on
@@ -49,7 +47,8 @@ function App() {
             <Route path="/flow" element={<FlowPage />} />
             <Route path="/go" element={<GoPage />} />
             <Route path="/platform" element={<PlatformPage />} />
-            <Route path="/ypodochi" element={<YpodochiPage />} />
+            {/* The clinics page showed a price ladder; prices now arrive only by email, so it hands over to /go. */}
+            <Route path="/ypodochi" element={<Navigate to="/go?for=med" replace />} />
             <Route path="/collaborations" element={<CollaborationsPage />} />
             <Route path="/team" element={<TeamPage />} />
             <Route path="/news" element={<NewsPage />} />
@@ -58,8 +57,8 @@ function App() {
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/cookies" element={<CookiesPage />} />
-            <Route path="/calculator" element={<PricingCalculatorPage />} />
-            <Route path="/pricing-calculator" element={<PricingCalculatorPage />} />
+            <Route path="/calculator" element={<Navigate to="/go" replace />} />
+            <Route path="/pricing-calculator" element={<Navigate to="/go" replace />} />
 
             {/* Earlier editions → current pages */}
             <Route path="/flow/build" element={<Moved to="/go" />} />

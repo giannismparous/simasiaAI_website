@@ -108,7 +108,7 @@ const FlowHome = ({ proof = null }) => {
             </div>
             <Edition c={t3.demos.edition} ed={ed} setEd={setEd} />
           </div>
-          <BuildTeaser c={t3.build} parts={t3.layers.parts} lang={lang} ed={ed} key={`b-${ed}`} />
+          <BuildTeaser c={t3.build} parts={t3.layers.parts} ed={ed} key={`b-${ed}`} />
         </div>
       </section>
 

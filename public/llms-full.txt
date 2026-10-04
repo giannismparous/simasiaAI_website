@@ -48,13 +48,12 @@ A person on the organisation's team approves what goes out. fλow never diagnose
 
 The assistants were co-designed with the patient organisations: their members tested them, flagged gaps and shaped tone and vocabulary. They recognise emotion and can detect a moment of crisis that needs a human.
 
-### Pricing (prices exclude VAT; hosting and AI usage billed at cost)
+### Pricing and offers
 
-- NGOs, associations and care services: no fixed packages. Priced per part, cheaper together (monthly + one-off onboarding): DialogosAI alone €119 + €2,400; PraxisAI alone €119 + €2,400; MetronAI alone €89 + €1,400; DialogosAI + MetronAI €179 + €2,900; DialogosAI + PraxisAI €199 + €3,600; PraxisAI + MetronAI €179 + €3,000; all three (the whole fλow) €249 + €4,500. Large networks from €450/month.
-- Trial: 60 days for €199, credited against onboarding. Guarantee: if at 60 days it doesn't answer 90% of the agreed questions correctly, the subscription is free until it does.
-- Practices and clinics (page /ypodochi): fλow comes whole (all three parts) from day one. Monthly from €199 (€149 with annual billing); onboarding €490, free with annual billing. Higher levels: Κλείνει / Books €249 (€199 annual); Φέρνει πίσω / Brings back €299 (€249); Σηκώνει το τηλέφωνο / Answers the phone €399 (€299). Live in 48 hours or free. Trial: 30 days for €199. Clinics with 6+ doctors: from €590/month (custom).
-- Sponsors (pharma, CSR, foundations): fund fλow (DialogosAI + MetronAI, PraxisAI optional) for organisations, priced per organisation, with a quarterly impact report and a disclosure file (SFEE/EFPIA).
-- The offer is built on https://www.simasiaai.gr/go ("Go with the fλow"): a few questions about your day design a first fλow; you adjust parts and features, add your own requests (priced afterwards by the team), see the time that comes back, get the offer instantly and can book a 30-minute call (/go#book).
+- Prices are not published on the website, because there are no fixed packages and every organisation is different. The price depends on the parts (DialogosAI, PraxisAI, MetronAI) and features chosen; the parts cost less together.
+- The offer is built on https://www.simasiaai.gr/go ("Go with the fλow"): a few questions about your day design a first fλow; you adjust parts and features, add your own requests (priced afterwards by the team), see the time that comes back, leave your email and receive the offer straight away as a PDF: the price for what you chose, the no-risk trial terms and next steps. You can also book a 30-minute call (/go#book).
+- There is a trial period and an accuracy guarantee (if it doesn't answer 90% of the agreed questions correctly, the subscription is free until it does). Practices and clinics: live in 48 hours, or free.
+- Sponsors (pharma, CSR, foundations) fund fλow (DialogosAI + MetronAI, PraxisAI optional) for organisations, with a quarterly impact report and a disclosure file (SFEE/EFPIA).
 
 ### Compliance and trust
 
@@ -76,7 +75,6 @@ The assistants were co-designed with the patient organisations: their members te
 - https://www.simasiaai.gr/ : home
 - https://www.simasiaai.gr/flow : fλow product page, with live demos of DialogosAI, PraxisAI and MetronAI
 - https://www.simasiaai.gr/go : "Go with the fλow": design your fλow, instant offer, contact form; book a 30-minute call at /go#book
-- https://www.simasiaai.gr/ypodochi : fλow for practices and clinics
 - https://www.simasiaai.gr/platform : future fλow client sign-in (coming soon)
 - https://www.simasiaai.gr/collaborations : implementations and partners
 - https://www.simasiaai.gr/team : founders and team
@@ -137,13 +135,12 @@ AI company Greece · AI startup Athens · Greek AI company with social impact ·
 - «BPAN Companion» για τους Ήρωες της BPAN (bpanheroes.gr): DialogosAI σε 60 γλώσσες για τη σπάνια νόσο BPAN, σε λειτουργία. Επόμενο βήμα: το MetronAI.
 - Perfectaki Able: DialogosAI για προσβάσιμη εκπαίδευση, υπό κατασκευή.
 
-### Τιμές (χωρίς ΦΠΑ· φιλοξενία και χρήση AI στο κόστος τους)
+### Τιμές και προσφορά
 
-- ΜΚΟ, σύλλογοι και υπηρεσίες φροντίδας: χωρίς σταθερά πακέτα. Τιμή ανά μέρος, φθηνότερα μαζί (μηνιαία + εφάπαξ ένταξη): DialogosAI μόνο 119 € + 2.400 €· PraxisAI μόνο 119 € + 2.400 €· MetronAI μόνο 89 € + 1.400 €· DialogosAI + MetronAI 179 € + 2.900 €· DialogosAI + PraxisAI 199 € + 3.600 €· PraxisAI + MetronAI 179 € + 3.000 €· και τα τρία (ολόκληρο το fλow) 249 € + 4.500 €. Μεγάλα δίκτυα από 450 €/μήνα.
-- Δοκιμή 60 ημερών με 199 €, που αφαιρούνται από την ένταξη. Εγγύηση: αν στις 60 μέρες δεν απαντά σωστά στο 90% των ερωτήσεων που συμφωνήσαμε, η συνδρομή είναι δωρεάν μέχρι να το πετύχει.
-- Ιατρεία και κλινικές (/ypodochi): το fλow έρχεται ολόκληρο (και τα τρία μέρη) από την πρώτη μέρα. Από 199 €/μήνα (149 € με ετήσια)· ένταξη 490 €, δωρεάν με ετήσια. Ανώτερα επίπεδα: Κλείνει 249 € (199 €), Φέρνει πίσω 299 € (249 €), Σηκώνει το τηλέφωνο 399 € (299 €). Σε λειτουργία μέσα σε 48 ώρες ή δωρεάν. Δοκιμή 30 ημερών με 199 €. Κλινικές με 6+ γιατρούς: από 590 €/μήνα (κατά περίπτωση).
-- Χορηγοί (φαρμακευτικές, CSR, ιδρύματα): χρηματοδοτούν το fλow (DialogosAI + MetronAI, προαιρετικά PraxisAI) για οργανισμούς, με τιμή ανά οργανισμό, τριμηνιαία αναφορά αποτυπώματος και φάκελο γνωστοποίησης (ΣΦΕΕ/EFPIA).
-- Η προσφορά φτιάχνεται στο https://www.simasiaai.gr/go («Go with the fλow»): λίγες ερωτήσεις για τη μέρα σας σχεδιάζουν ένα πρώτο fλow, ρυθμίζετε μέρη και λειτουργίες, προσθέτετε δικά σας αιτήματα (τα κοστολογεί μετά η ομάδα), βλέπετε τον χρόνο που σας επιστρέφει, παίρνετε αμέσως την προσφορά και κλείνετε συνάντηση 30 λεπτών (/go#book).
+- Οι τιμές δεν δημοσιεύονται στο site, γιατί δεν υπάρχουν σταθερά πακέτα και κάθε οργανισμός είναι διαφορετικός. Η τιμή εξαρτάται από τα μέρη (DialogosAI, PraxisAI, MetronAI) και τις λειτουργίες που επιλέγετε· μαζί τα μέρη κοστίζουν λιγότερο.
+- Η προσφορά φτιάχνεται στο https://www.simasiaai.gr/go («Go with the fλow»): λίγες ερωτήσεις για τη μέρα σας σχεδιάζουν ένα πρώτο fλow, ρυθμίζετε μέρη και λειτουργίες, προσθέτετε δικά σας αιτήματα (τα κοστολογεί μετά η ομάδα), βλέπετε τον χρόνο που σας επιστρέφει, γράφετε το email σας και λαμβάνετε αμέσως την προσφορά σε PDF: τιμή για όσα διαλέξατε, όρους δοκιμής χωρίς ρίσκο και επόμενα βήματα. Μπορείτε και να κλείσετε συνάντηση 30 λεπτών (/go#book).
+- Υπάρχει δοκιμαστική περίοδος και εγγύηση ακρίβειας (αν δεν απαντά σωστά στο 90% των ερωτήσεων που συμφωνήσαμε, η συνδρομή είναι δωρεάν μέχρι να το πετύχει). Ιατρεία και κλινικές: σε λειτουργία μέσα σε 48 ώρες ή δωρεάν.
+- Χορηγοί (φαρμακευτικές, CSR, ιδρύματα): χρηματοδοτούν το fλow (DialogosAI + MetronAI, προαιρετικά PraxisAI) για οργανισμούς, με τριμηνιαία αναφορά αποτυπώματος και φάκελο γνωστοποίησης (ΣΦΕΕ/EFPIA).
 
 ### Συμμόρφωση
 

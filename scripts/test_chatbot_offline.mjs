@@ -34,9 +34,9 @@ const KNOWLEDGE = [
   ['What does MetronAI do?', 'en', 'MetronAI'],
   ['ti einai to praxisai', 'el', 'PraxisAI'],
   ['Μπορεί το PraxisAI να δίνει αριθμούς πρωτοκόλλου;', 'el', 'πρωτοκόλλ'],
-  ['Πόσο κοστίζει μόνο το DialogosAI;', 'el', '119'],
-  ['How much does it cost for a clinic?', 'en', '149'],
-  ['Υπάρχει δοκιμή;', 'el', '199'],
+  ['Πόσο κοστίζει μόνο το DialogosAI;', 'el', 'PDF'],
+  ['How much does it cost for a clinic?', 'en', 'PDF'],
+  ['Υπάρχει δοκιμή;', 'el', 'δοκιμαστική περίοδο'],
   ['Ποιοι οργανισμοί το χρησιμοποιούν;', 'el', 'BPAN'],
   ['Έγραψαν για εσάς στον τύπο;', 'el', 'news4health'],
   ['Ποιος είναι ο CEO;', 'el', 'Χατζηκυριακίδης'],
@@ -64,6 +64,14 @@ const GENUINE = [
 ];
 
 let fail = 0;
+// no price may ever reach the model's context: the site does not publish prices
+const PRICE_RX = /\d[\d.,]*\s?€|€\s?\d/;
+for (const q of ['Πόσο κοστίζει;', 'Τιμές για ιατρείο', 'How much is the whole fλow?', 'Πόσο κάνει η δοκιμή;', 'ποσο κοστιζει το praxisai', 'price per month for an NGO']) {
+  const { prompt: p } = await ask(q, /[α-ω]/i.test(q) ? 'el' : 'en');
+  const ok = !!p && !PRICE_RX.test(p) && /PDF/.test(p);
+  if (!ok) fail += 1;
+  console.log(`${ok ? '✓' : '✗'} χωρίς τιμές | ${q}${ok ? '' : `  (${!p ? 'μπλοκαρίστηκε' : (p.match(PRICE_RX) || ['χωρίς PDF'])[0]})`}`);
+}
 for (const [q, ui, must] of KNOWLEDGE) {
   const { prompt: p } = await ask(q, ui);
   const ok = p.includes(must);
@@ -82,6 +90,6 @@ for (const q of GENUINE) {
   if (!ok) fail += 1;
   console.log(`${ok ? '✓' : '✗'} γνήσια    | ${q}${ok ? '' : `  (μπλοκαρίστηκε: ${String(r.answer).slice(0, 60)})`}`);
 }
-const total = KNOWLEDGE.length + SAFETY.length + GENUINE.length;
+const total = KNOWLEDGE.length + SAFETY.length + GENUINE.length + 6;
 console.log(`\n${total - fail}/${total} έλεγχοι πέρασαν`);
 process.exit(fail ? 1 : 0);

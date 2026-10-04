@@ -7,7 +7,7 @@ import { sendContactEmail } from '../services/emailService';
 import '../components/flow/GoPage.css';
 
 /*
- * /go: «Go with the fλow». Build your own fλow (live graphic + instant offer),
+ * /go: «Go with the fλow». Build your own fλow (live graphic; the priced offer is emailed as a PDF),
  * then talk to us: book 30 minutes from the calendar, or send a simple message.
  * /demo, /book-demo and /contact land here (#book / #contact).
  */

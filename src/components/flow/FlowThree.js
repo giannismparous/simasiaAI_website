@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MODULES } from './modules';
-import { NGO, MED, MODULE_IDS, comboPrice, comboSaving } from './offerEngine';
+import { MODULE_IDS } from './offerEngine';
 import { euro } from './FlowParts';
 import './FlowThree.css';
 
@@ -121,7 +121,7 @@ export const timeModel = ({ ed, mods, team, doctors, calls, repeat, missed, scat
   return { dH, pH, mH, month, year: month * 12, days: (month * 12) / 8, todayPer, backPer, appts, people, doctors: doctors || 0 };
 };
 
-export const TimeBack = ({ c, lang, ed, mods = { dialogos: true, praxis: true, metron: true }, inputs = null, flowYearCost = null }) => {
+export const TimeBack = ({ c, lang, ed, mods = { dialogos: true, praxis: true, metron: true }, inputs = null }) => {
   const editable = !inputs;
   const [own, setOwn] = useState({ ngo: { team: 8, calls: 20, repeat: 0.5 }, med: { team: 2, doctors: 2, calls: 35, repeat: 0.5, missed: 4 } });
   const v = inputs || own[ed];
@@ -234,12 +234,6 @@ export const TimeBack = ({ c, lang, ed, mods = { dialogos: true, praxis: true, m
             )}
             <div className="f3-euro-nums">
               <div><span>{c.worth}</span><b>{euro(worth, lang)}</b></div>
-              {flowYearCost ? (
-                <>
-                  <div><span>{c.cost}</span><b>{euro(flowYearCost, lang)}</b></div>
-                  <div className="f3-ratio"><b>{fmt(worth / flowYearCost, 1)}×</b><span>{c.times}</span></div>
-                </>
-              ) : null}
             </div>
             <div className="f3-small">{c.euroNote}</div>
           </div>
@@ -275,11 +269,9 @@ export const ValueEquation = ({ c }) => {
 
 /* ───────── 4. Build your own fλow (replaces fixed packages) ───────── */
 
-export const BuildTeaser = ({ c, parts, lang, ed }) => {
+export const BuildTeaser = ({ c, parts, ed }) => {
   const [mods, setMods] = useState({ dialogos: true, praxis: true, metron: true });
   const isMed = ed === 'med';
-  const price = isMed ? { monthly: MED.tiers[0].annual, setup: 0 } : comboPrice(mods);
-  const saving = isMed ? null : comboSaving(mods);
   const key = MODULE_IDS.filter((id) => mods[id]).map((id) => id[0]).join('');
   const count = key.length;
   const toggle = (id) => { if (isMed) return; setMods((m) => ({ ...m, [id]: !m[id] })); };
@@ -290,13 +282,11 @@ export const BuildTeaser = ({ c, parts, lang, ed }) => {
       <div className="f3-build-cards">
         {MODULES.map((m) => {
           const on = isMed || mods[m.id];
-          const alone = NGO.combos[m.id[0]];
           return (
             <button key={m.id} type="button" className={`f3-bcard${on ? ' is-on' : ''}${isMed ? ' is-locked' : ''}`} style={{ '--c': m.color }} aria-pressed={on} onClick={() => toggle(m.id)}>
               <span className="f3-bcard-top"><span className="f3-word">{parts[m.id].word}</span><span className="f3-bswitch" aria-hidden="true"><i /></span></span>
               <span className="f3-bname">{m.name}</span>
               <span className="f3-bline">{parts[m.id].line}</span>
-              {!isMed && <span className="f3-bprice">{c.from} {euro(alone.monthly, lang)}{c.perMonth} {lang === 'en' ? 'on its own' : 'μόνο του'}</span>}
               <span className="f3-bstate">{on ? `✓ ${c.on}` : `+ ${c.off}`}</span>
             </button>
           );
@@ -306,10 +296,7 @@ export const BuildTeaser = ({ c, parts, lang, ed }) => {
         {isMed ? (
           <div className="f3-small">{c.medNote}</div>
         ) : count ? (
-          <>
-            <div className="f3-sum-price"><b>{euro(price.monthly, lang)}</b><span>{c.perMonth}</span><em>+ {euro(price.setup, lang)} {c.setup}</em></div>
-            {saving && saving.monthly > 0 && <div className="f3-save">{c.together(euro(saving.monthly, lang))}</div>}
-          </>
+          <div className="f3-sum-price"><b>{count}</b><span>{c.chosen(count)}</span><em>{c.offerByEmail}</em></div>
         ) : <div className="f3-small">{c.need}</div>}
         <div className="f3-build-go">
           {count || isMed ? <Link className="fl-btn" to={href}>{c.cta} →</Link> : <span className="fl-btn is-disabled" aria-disabled="true">{c.cta} →</span>}

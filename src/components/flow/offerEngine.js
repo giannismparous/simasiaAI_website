@@ -1,4 +1,6 @@
 // fλow offer engine: every price and feature of the builder lives here.
+// Prices are never shown on the website. The /go page uses the features; the server
+// (netlify/offer, function send-offer) uses the prices to write the emailed PDF offer.
 // Prices exclude VAT. Hosting and AI usage are billed at cost (as in all contracts).
 //
 // Sources

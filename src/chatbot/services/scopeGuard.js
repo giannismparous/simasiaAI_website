@@ -612,7 +612,7 @@ export function withContactFormSource(sources, language = 'el') {
 const NAV_PAGE_LABELS = {
   '/flow': { el: 'Δείτε το fλow', en: 'Explore fλow' },
   '/go': { el: 'Φτιάξτε το fλow σας', en: 'Build your fλow' },
-  '/ypodochi': { el: 'fλow για ιατρεία', en: 'fλow for practices' },
+  '/go?for=med': { el: 'fλow για ιατρεία', en: 'fλow for practices' },
   '/collaborations': { el: 'Δείτε τις συνεργασίες', en: 'View collaborations' },
   '/team': { el: 'Γνωρίστε την ομάδα', en: 'Meet the team' },
   '/news': { el: 'Νέα & άρθρα', en: 'News & articles' },
@@ -672,15 +672,13 @@ export function resolveProductPageCta({
   const lang = language === 'en' ? 'en' : 'el';
   const combined = `${question} ${answer}`;
 
+  // clinic levels live in Go with the fλow (the old /ypodochi price ladder is retired)
   const tier = detectModuleTier(combined);
   if (tier && MODULE_TIER_LABELS[tier]) {
-    return {
-      url: `/ypodochi#tier-${tier}`,
-      label: MODULE_TIER_LABELS[tier][lang],
-    };
+    return { url: '/go?for=med', label: NAV_PAGE_LABELS['/go?for=med'][lang] };
   }
 
-  const allowed = new Set(['/flow', '/go', '/ypodochi', '/collaborations', '/team', '/news', '/']);
+  const allowed = new Set(['/flow', '/go', '/go?for=med', '/collaborations', '/team', '/news', '/']);
   const scores = new Map();
 
   (docs || []).forEach((doc) => {
@@ -693,7 +691,7 @@ export function resolveProductPageCta({
 
   const q = normalize(question);
   if (/pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|module|ypodochi|απαντα|ιατρει|iatrei|κλινικ|klinik|clinic|γιατρ|doctor/.test(q)) {
-    scores.set('/ypodochi', (scores.get('/ypodochi') || 0) + 1.5);
+    scores.set('/go?for=med', (scores.get('/go?for=med') || 0) + 1.5);
   }
   if (/flow|fλow|dialogos|διαλογ|praxis|πραξις|metron|μετρον|crm|insights|μκο|ngo|συλλογ|χορηγ|sponsor/.test(q)) {
     scores.set('/flow', (scores.get('/flow') || 0) + 1.5);
@@ -724,7 +722,7 @@ export function resolveProductPageCta({
   });
 
   if (!bestUrl || bestScore < 0.35) {
-    if (/pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|module/.test(q)) bestUrl = '/ypodochi';
+    if (/pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|module/.test(q)) bestUrl = '/go?for=med';
     else if (/flow|fλow|dialogos|praxis|metron/.test(q)) bestUrl = '/flow';
     else return null;
   }

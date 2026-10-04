@@ -1,14 +1,15 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ClinicIllustration, NgoIllustration } from '../GateIllustrations';
-import { sendContactEmail } from '../../services/emailService';
+import { sendContactEmail, isEmailJsConfigured } from '../../services/emailService';
+import { requestOffer, EMAIL_RX } from '../../services/offerService';
 import { builderCopy } from './builderContent';
 import { threeContent } from './flowThreeContent';
 import { NGO, MED, SPONSOR, MODULE_IDS, computeNgo, computeMed, computeSponsor } from './offerEngine';
 import { euro } from './FlowParts';
 import { MODULES } from './modules';
-import { TimeBack } from './FlowThree';
+import { TimeBack, timeModel } from './FlowThree';
 import './FlowBuilder.css';
 
 /*
@@ -16,10 +17,12 @@ import './FlowBuilder.css';
  * one at a time), the answers design a first fλow from the three parts
  * (DialogosAI, PraxisAI, MetronAI), they change it as they like, add their own
  * requests (unpriced, marked for pricing), see the time that comes back, and get
- * the offer. No fixed packages. Right: the live flow and the price.
+ * the offer. No fixed packages and no prices on the page: the visitor leaves an
+ * email, and the server (netlify/functions/send-offer.mjs) prices the choices and
+ * emails a branded PDF offer, with a copy of the lead to contact@simasiaai.gr.
+ * Right: the live flow.
  */
 
-const euroCents = (n, lang) => { const v = new Intl.NumberFormat(lang === 'en' ? 'en-IE' : 'el-GR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n); return lang === 'en' ? `€${v}` : `${v} €`; };
 const AUDIENCES = ['ngo', 'med', 'sponsor'];
 const NAME = { dialogos: 'DialogosAI', praxis: 'PraxisAI', metron: 'MetronAI' };
 const MED_GROUP = { logos: 'dialogos', praxis: 'praxis', insights: 'metron', extra: 'all' };
@@ -31,25 +34,6 @@ const SP_INC = {
 const short = (s, n = 26) => (s.length > n ? `${s.slice(0, n - 1).trim()}…` : s);
 const initialFeatures = (list) => list.reduce((acc, f) => ({ ...acc, [f.id]: !!f.on }), {});
 const parseMods = (m) => (m && /^[dpm]{1,3}$/.test(m) ? { dialogos: m.includes('d'), praxis: m.includes('p'), metron: m.includes('m') } : null);
-
-/* Animated number for the price ticker */
-const useTween = (value, ms = 450) => {
-  const [shown, setShown] = useState(value);
-  const from = useRef(value);
-  useEffect(() => {
-    const start = performance.now(); const a = from.current; const b = value;
-    if (a === b) return undefined;
-    let raf = 0;
-    const step = (t) => {
-      const k = Math.min(1, (t - start) / ms); const e = 1 - (1 - k) ** 3;
-      setShown(a + (b - a) * e);
-      if (k < 1) raf = requestAnimationFrame(step); else from.current = b;
-    };
-    raf = requestAnimationFrame(step);
-    return () => { cancelAnimationFrame(raf); from.current = b; };
-  }, [value, ms]);
-  return shown;
-};
 
 /* A sponsor, drawn in the site's character style */
 const SponsorIllustration = () => (
@@ -76,12 +60,11 @@ const SponsorIllustration = () => (
 );
 
 /* The live flow: what is hard today (left) → λ → the three parts (right) */
-const LiveFlow = ({ pains, parts, price, c, lang }) => {
+const LiveFlow = ({ pains, parts, center, c }) => {
   const W = 560; const H = 460; const NX = 250; const NY = 210;
   const L = pains.length;
   const ly = (i) => (L <= 1 ? NY : 60 + (i * (H - 170)) / (L - 1));
   const rowY = { dialogos: 92, praxis: 210, metron: 328 };
-  const shownPrice = useTween(price.value);
   return (
     <svg className="flb-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={c.graphic.aria}>
       <defs>
@@ -122,8 +105,8 @@ const LiveFlow = ({ pains, parts, price, c, lang }) => {
       <circle cx={NX} cy={NY} r="110" fill="url(#flbGlow)" />
       <circle cx={NX} cy={NY} r="46" className="flb-node" />
       <text x={NX} y={NY + 9} textAnchor="middle" className="flb-node-t">f<tspan className="flb-node-l">λ</tspan>ow</text>
-      <text x={NX} y={NY + 84} textAnchor="middle" className="flb-g-price">{price.value ? `${price.from ? `${c.offer.from} ` : ''}${price.cents ? euroCents(shownPrice, lang) : euro(shownPrice, lang)}` : '—'}</text>
-      <text x={NX} y={NY + 104} textAnchor="middle" className="flb-g-per">{price.label}</text>
+      <text x={NX} y={NY + 84} textAnchor="middle" className="flb-g-price">{center.big}</text>
+      <text x={NX} y={NY + 104} textAnchor="middle" className="flb-g-per">{center.small}</text>
     </svg>
   );
 };
@@ -152,16 +135,16 @@ const recommend = (s) => {
 };
 
 /* one row per option */
-const OptRow = ({ label, on, onToggle, priceNode, rec, recLabel, locked = false }) => (
+const OptRow = ({ label, on, onToggle, tag, rec, recLabel, locked = false }) => (
   <button type="button" className={`flb-opt${on ? ' is-on' : ''}${locked ? ' is-locked' : ''}`} aria-pressed={!!on} disabled={locked} onClick={onToggle}>
     <span className="flb-opt-box" aria-hidden="true">{on ? '✓' : '+'}</span>
     <span className="flb-opt-t">{label}{rec && <em className="flb-rec">{recLabel}</em>}</span>
-    <span className="flb-opt-p">{priceNode}</span>
+    {tag ? <span className="flb-opt-p">{tag}</span> : null}
   </button>
 );
 
 /* one card per part */
-const ModuleCard = ({ m, p, on, lockedOn, onSwitch, inc, opts, isRec, c, aloneNote }) => (
+const ModuleCard = ({ m, p, on, lockedOn, onSwitch, inc, opts, isRec, c }) => (
   <article className={`flb-mod${on ? ' is-on' : ''}`} style={{ '--c': m.color }}>
     <header className="flb-mod-h">
       <div>
@@ -177,7 +160,6 @@ const ModuleCard = ({ m, p, on, lockedOn, onSwitch, inc, opts, isRec, c, aloneNo
         </button>
       )}
     </header>
-    {aloneNote && <div className="flb-mod-alone">{aloneNote}</div>}
     <div className="flb-mod-body">
       <div className="flb-inc"><div className="flb-sub">{c.design.inc}</div>{inc.map((x) => <div key={x} className="flb-inc-i">{x}</div>)}</div>
       {opts.length > 0 && <div className="flb-opts"><div className="flb-sub">{c.design.opts}</div>{opts}</div>}
@@ -200,7 +182,6 @@ const FlowBuilder = ({ onSummary }) => {
   const [ngoSel, setNgoSel] = useState({ size: 's', modules: presetMods || { dialogos: true, praxis: false, metron: true }, features: {} });
   const [modsTouched, setModsTouched] = useState(!!presetMods);
   const [medSel, setMedSel] = useState({ size: '1', features: initialFeatures(MED.features) });
-  const [annual, setAnnual] = useState(true);
   const [spSel, setSpSel] = useState({ orgs: '1', people: 2000, years: 1, cause: 0, options: initialFeatures(SPONSOR.options) });
   const [answers, setAnswers] = useState({ ngo: {}, med: {} });
   const [qi, setQi] = useState({ ngo: 0, med: 0 });
@@ -208,11 +189,11 @@ const FlowBuilder = ({ onSummary }) => {
   const [custom, setCustom] = useState([]);
   const [draft, setDraft] = useState('');
   const [minWarn, setMinWarn] = useState(false);
-  const [form, setForm] = useState({ name: '', org: '', email: '', phone: '', consent: false });
-  const [status, setStatus] = useState({ state: 'idle', mailto: '' });
+  const [form, setForm] = useState({ name: '', org: '', email: '', phone: '', consent: false, website: '' });
+  const [status, setStatus] = useState({ state: 'idle', mailto: '', email: '' });
 
   const ngo = useMemo(() => computeNgo(ngoSel), [ngoSel]);
-  const med = useMemo(() => computeMed(medSel, annual), [medSel, annual]);
+  const med = useMemo(() => computeMed(medSel, true), [medSel]);
   const sp = useMemo(() => computeSponsor(spSel), [spSel]);
   const offer = aud === 'ngo' ? ngo : aud === 'med' ? med : aud === 'sponsor' ? sp : null;
   const isQuiz = aud === 'ngo' || aud === 'med';
@@ -290,9 +271,9 @@ const FlowBuilder = ({ onSummary }) => {
     return [];
   };
   const parts = MODULES.map((m) => ({ id: m.id, name: m.name, color: m.color, word: t3.layers.parts[m.id].word, on: !!mods[m.id], items: optionsOf(m.id) }));
-  const price = !offer ? { value: 0, label: '' }
-    : aud === 'sponsor' ? { value: offer.perPerson, label: c.offer.perPerson, from: offer.from, cents: true }
-      : { value: offer.monthly, label: c.perMonth.replace('/', ''), from: offer.from };
+  const onCount = parts.filter((p) => p.on).length;
+  const optCount = parts.filter((p) => p.on).reduce((a, p) => a + p.items.length, 0) + custom.length;
+  const center = !aud ? { big: '—', small: '' } : { big: `${onCount} ${c.picked(onCount)}`, small: optCount ? `+ ${c.options(optCount)}` : '' };
 
   /* toggles */
   const toggleModule = (id) => {
@@ -314,36 +295,17 @@ const FlowBuilder = ({ onSummary }) => {
   const toggleSp = (id) => setSpSel((s) => ({ ...s, options: { ...s.options, [id]: !s.options[id] } }));
   const addCustom = (e) => { e.preventDefault(); const x = draft.trim(); if (!x || custom.includes(x)) return; setCustom((l) => [...l, x].slice(0, 12)); setDraft(''); };
 
-  /* prices shown next to options */
-  const ngoOptPrice = (f) => {
-    if (f.quote) return c.design.quote;
-    if (f.includedWith && ngo.count >= f.includedWith) return c.included;
-    const bits = [];
-    if (f.monthly) bits.push(`+${euro(f.monthly, lang)}${c.perMonth}`);
-    if (f.setup) bits.push(`+${euro(f.setup, lang)} ${c.setup}`);
-    const p = bits.join(', ') + (f.atCost ? `, ${c.atCost}` : '');
-    return f.includedWith ? `${p} · ${c.design.withTwo}` : p;
-  };
-  const medOptPrice = (f) => {
-    if (f.quote) return c.design.quote;
-    if (f.soon) return c.soon;
-    if (f.atCost) return `+${euro(f.setupExtra, lang)} ${c.setup}, ${c.atCost}`;
-    if (med.tierN >= f.tier) return c.included;
-    const t = MED.tiers[f.tier - 1];
-    return c.design.totalUpTo(`${euro(annual ? t.annual : t.monthly, lang)}${c.perMonth}`);
-  };
-  const spOptPrice = (f) => {
-    if (f.atCost) return `+${euro(f.setup, lang)} ${c.setup}, ${c.atCost}`;
-    return `+${euro(f.perOrgMonthly, lang)}${c.perMonth}${f.perOrgSetup ? ` + ${euro(f.perOrgSetup, lang)}` : ''} ${lang === 'en' ? 'per org' : 'ανά οργανισμό'}`;
-  };
-
+  /* a short tag next to an option; prices are not shown on the site */
+  const ngoTag = (f) => (f.quote ? c.design.quote : '');
+  const medTag = (f) => (f.quote ? c.design.quote : f.soon ? c.soon : '');
   const quotes = aud === 'ngo' ? ngo.quotes.map((f) => f.label[lang])
     : aud === 'med' ? MED.features.filter((f) => f.quote && medSel.features[f.id]).map((f) => f.label[lang]) : [];
   const recFeature = (id) => aud === 'med' && quizDone.med && (
     (id === 'booking' && (ans.calls ?? 0) >= 1) || (id === 'missed' && (ans.missed ?? 0) >= 1) || (id === 'reminders' && (ans.miss ?? 0) >= 1) || (id === 'callstats' && (ans.report ?? 0) >= 1));
 
-  /* the text that travels with the offer (email, booking) */
-  const offerText = () => {
+  /* the text that travels with the offer. Without prices for anything the visitor sees
+     (booking form, mailto); with prices only for the internal lead to contact@simasiaai.gr. */
+  const offerText = (withPrices = false) => {
     if (!offer) return '';
     const lines = [`fλow · ${c.who[aud].name}`];
     if (aud === 'sponsor') {
@@ -351,11 +313,11 @@ const FlowBuilder = ({ onSummary }) => {
       lines.push(`${c.size.sponsor[1]} ${spSel.people}`);
       lines.push(`${c.size.sponsor[2]} ${spSel.years}`);
       lines.push(`${c.size.sponsor[3]} ${SPONSOR.causes[spSel.cause][lang]}`);
-      lines.push(`${c.offer.total}: ${euro(sp.total, lang)}, ${euroCents(sp.perPerson, lang)} ${c.offer.perPerson}`);
+      if (withPrices) lines.push(`Συνολικό κόστος: ${euro(sp.total, lang)} · ανά άνθρωπο: ${euro(sp.perPerson, lang)}`);
     } else {
       lines.push(`${c.offer.modulesTitle}: ${parts.filter((p) => p.on).map((p) => p.name).join(' + ')}`);
-      lines.push(`${c.offer.monthly}: ${offer.from ? `${c.offer.from} ` : ''}${euro(offer.monthly, lang)}${aud === 'med' ? ` (${annual ? c.billing[1] : c.billing[0]})` : ''}`);
-      lines.push(`${c.offer.setup}: ${euro(offer.setup, lang)}`);
+      if (withPrices && aud === 'ngo') lines.push(`Τιμή: ${offer.from ? 'από ' : ''}${euro(offer.monthly, lang)}/μήνα + ${euro(offer.setup, lang)} ένταξη`);
+      if (withPrices && aud === 'med') lines.push(`Τιμή: «${offer.name.el}» ${offer.from ? 'από ' : ''}${euro(offer.monthly, lang)}/μήνα με ετήσια`);
     }
     parts.filter((p) => p.on && p.items.length).forEach((p) => lines.push(`${p.name}: ${p.items.join(', ')}`));
     if (quotes.length) lines.push(`${c.offer.quotesTitle}: ${quotes.join(', ')}`);
@@ -369,17 +331,49 @@ const FlowBuilder = ({ onSummary }) => {
   const summaryText = aud && offer ? offerText() : '';
   useEffect(() => { if (onSummary) onSummary(summaryText); }, [summaryText, onSummary]);
 
+  /* what the server needs to price and write the offer: choices only, no prices */
+  const offerPayload = () => {
+    const t = timeModel({ ed: aud, mods, ...timeInputs, doctors: timeInputs.doctors });
+    const answersList = isQuiz ? quiz.filter((q) => ans[q.k] !== undefined && (!Array.isArray(ans[q.k]) || ans[q.k].length)).map((q) => {
+      const labels = answerLabels(q); const a = ans[q.k];
+      return { q: q.t, a: Array.isArray(a) ? a.map((i) => labels[i]).join(', ') : labels[a] };
+    }) : [];
+    return {
+      lang, aud, consent: form.consent, website: form.website,
+      contact: { name: form.name.trim(), org: form.org.trim(), email: form.email.trim(), phone: form.phone.trim() },
+      ngo: aud === 'ngo' ? ngoSel : undefined,
+      med: aud === 'med' ? { size: medSel.size, features: medSel.features } : undefined,
+      sponsor: aud === 'sponsor' ? spSel : undefined,
+      custom, answers: answersList,
+      time: isQuiz ? { month: Math.round(t.month), days: Math.round(t.days), appts: t.appts } : undefined,
+    };
+  };
+
+  /* the lead for the team through EmailJS, used only if the offer email could not go out */
+  const sendLeadBackup = (note) => sendContactEmail({
+    fromName: form.name, fromEmail: form.email, organizationType: `fλow · ${c.who[aud].name}`, companyName: form.org,
+    message: `${note}\n\n${offerText(true)}`,
+  });
+
   const submit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.consent) { setStatus({ state: 'invalid', mailto: '' }); return; }
-    setStatus({ state: 'sending', mailto: '' });
-    const text = offerText();
+    const email = form.email.trim();
+    if (!form.name.trim() || !EMAIL_RX.test(email) || !form.consent) { setStatus({ state: 'invalid', mailto: '', email: '' }); return; }
+    setStatus({ state: 'sending', mailto: '', email });
     try {
-      await sendContactEmail({ fromName: form.name, fromEmail: form.email, organizationType: `fλow · ${c.who[aud].name}`, companyName: form.org, message: text });
-      setStatus({ state: 'sent', mailto: '' });
+      const res = await requestOffer(offerPayload());
+      setStatus({ state: 'sent', mailto: '', email });
+      if (res && res.lead === false && isEmailJsConfigured()) sendLeadBackup('Η προσφορά στάλθηκε αυτόματα στον πελάτη. Το αντίγραφο για την ομάδα δεν έφτασε, γι᾽ αυτό αυτό το μήνυμα.').catch(() => {});
     } catch (err) {
-      const mailto = `mailto:contact@simasiaai.gr?subject=${encodeURIComponent(`fλow · ${c.who[aud].name} · ${form.org || form.name}`)}&body=${encodeURIComponent(text.slice(0, 1800))}`;
-      setStatus({ state: 'fallback', mailto });
+      if (err.status === 429) { setStatus({ state: 'tooMany', mailto: '', email }); return; }
+      if (err.status === 400) { setStatus({ state: 'invalid', mailto: '', email: '' }); return; }
+      try {
+        await sendLeadBackup('*** Η ΑΥΤΟΜΑΤΗ ΠΡΟΣΦΟΡΑ ΔΕΝ ΣΤΑΛΘΗΚΕ. Στείλτε την προσφορά χειροκίνητα σε μία εργάσιμη. ***');
+        setStatus({ state: 'queued', mailto: '', email });
+      } catch (err2) {
+        const mailto = `mailto:contact@simasiaai.gr?subject=${encodeURIComponent(`fλow · ${c.who[aud].name} · ${form.org || form.name}`)}&body=${encodeURIComponent(offerText().slice(0, 1800))}`;
+        setStatus({ state: 'fallback', mailto, email });
+      }
     }
   };
 
@@ -394,24 +388,22 @@ const FlowBuilder = ({ onSummary }) => {
     if (aud === 'ngo') {
       inc = NGO.features.filter((f) => f.module === m.id && f.inc).map((f) => f.label[lang]);
       opts = NGO.features.filter((f) => f.module === m.id && !f.inc).map((f) => (
-        <OptRow key={f.id} label={<>{f.label[lang]}{f.requires && !mods[f.requires] && <small> · {c.design.needs}</small>}</>} on={ngoSel.features[f.id] || autoInc(f)} locked={autoInc(f)} onToggle={() => toggleNgoFeature(f)} priceNode={autoInc(f) ? c.design.withTwo : ngoOptPrice(f)} />
+        <OptRow key={f.id} label={<>{f.label[lang]}{f.requires && !mods[f.requires] && <small> · {c.design.needs}</small>}</>} on={ngoSel.features[f.id] || autoInc(f)} locked={autoInc(f)} onToggle={() => toggleNgoFeature(f)} tag={autoInc(f) ? c.design.withTwo : ngoTag(f)} />
       ));
     } else if (aud === 'med') {
       inc = MED.features.filter((f) => MED_GROUP[f.group] === m.id && f.locked).map((f) => f.label[lang]);
       opts = MED.features.filter((f) => MED_GROUP[f.group] === m.id && !f.locked).map((f) => (
-        <OptRow key={f.id} label={f.label[lang]} on={medSel.features[f.id]} onToggle={() => toggleMed(f.id)} priceNode={medOptPrice(f)} rec={recFeature(f.id)} recLabel={c.design.rec} />
+        <OptRow key={f.id} label={f.label[lang]} on={medSel.features[f.id]} onToggle={() => toggleMed(f.id)} tag={medTag(f)} rec={recFeature(f.id)} recLabel={c.design.rec} />
       ));
     } else {
       inc = m.id === 'dialogos' ? SP_INC[lang] : m.id === 'praxis' ? [SPONSOR.options.find((f) => f.id === 'praxis').note[lang]] : SPONSOR.options.filter((f) => SP_GROUP[f.id] === m.id && f.locked).map((f) => f.label[lang]);
       opts = SPONSOR.options.filter((f) => SP_GROUP[f.id] === m.id && !f.locked && f.id !== 'praxis').map((f) => (
-        <OptRow key={f.id} label={f.label[lang]} on={spSel.options[f.id]} onToggle={() => toggleSp(f.id)} priceNode={spOptPrice(f)} />
+        <OptRow key={f.id} label={f.label[lang]} on={spSel.options[f.id]} onToggle={() => toggleSp(f.id)} />
       ));
     }
     const isRec = aud === 'ngo' && quizDone.ngo && !!rec && rec.includes(m.id);
-    const aloneNote = aud === 'ngo' && !on ? `${c.design.alone} ${euro(NGO.combos[m.id[0]].monthly, lang)}${c.perMonth}`
-      : aud === 'sponsor' && m.id === 'praxis' ? spOptPrice(SPONSOR.options.find((f) => f.id === 'praxis')) : null;
     return (
-      <ModuleCard key={m.id} m={m} p={p} on={on} lockedOn={lockedOn} inc={inc} opts={opts} isRec={isRec} c={c} aloneNote={aloneNote}
+      <ModuleCard key={m.id} m={m} p={p} on={on} lockedOn={lockedOn} inc={inc} opts={opts} isRec={isRec} c={c}
         onSwitch={() => (aud === 'ngo' ? toggleModule(m.id) : toggleSp('praxis'))} />
     );
   };
@@ -517,24 +509,13 @@ const FlowBuilder = ({ onSummary }) => {
               {/* 3. design your fλow */}
               <section className="flb-step" id="flb-s3" aria-labelledby="flb-s3h">
                 <h2 id="flb-s3h"><span className="flb-n">3</span>{steps[2]}</h2>
-                {aud === 'med' && (
-                  <>
-                    <p className="flb-hint">{c.design.medAll}</p>
-                    <div className="flb-billing">
-                      <div className="flb-chips">{c.billing.map((b, i) => <Chip key={b} on={annual === (i === 1)} onClick={() => setAnnual(i === 1)}>{b}</Chip>)}</div>
-                      <small>{c.annualNote}</small>
-                    </div>
-                  </>
-                )}
+                {aud === 'med' && <p className="flb-hint">{c.design.medAll}</p>}
                 {aud === 'sponsor' && <p className="flb-hint">{c.design.sponsorNote}</p>}
                 {minWarn && <p className="flb-warn" role="status">{c.design.minOne}</p>}
                 <div className="flb-mods">{MODULES.map((m) => cardFor(m))}</div>
-                {aud === 'ngo' && ngo.saving && ngo.saving.monthly > 0 && (
-                  <p className="flb-saving">{c.design.saving(euro(ngo.saving.monthly, lang), euro(ngo.saving.setup, lang))}</p>
-                )}
                 {aud === 'ngo' && (
                   <div className="flb-whole">
-                    <OptRow label={greek.label[lang]} on={ngoSel.features.greek} onToggle={() => toggleNgoFeature(greek)} priceNode={ngoOptPrice(greek)} />
+                    <OptRow label={greek.label[lang]} on={ngoSel.features.greek} onToggle={() => toggleNgoFeature(greek)} />
                   </div>
                 )}
                 <form className="flb-custom" onSubmit={addCustom}>
@@ -560,13 +541,13 @@ const FlowBuilder = ({ onSummary }) => {
               <section className="flb-step" aria-labelledby="flb-s4">
                 <h2 id="flb-s4"><span className="flb-n">4</span>{steps[3]}</h2>
                 {isQuiz ? (
-                  <TimeBack c={t3.time} lang={lang} ed={aud} mods={mods} inputs={timeInputs} flowYearCost={offer ? offer.firstYear : null} key={aud} />
+                  <TimeBack c={t3.time} lang={lang} ed={aud} mods={mods} inputs={timeInputs} key={aud} />
                 ) : (
                   <div className="flb-impact">
                     <p className="flb-hint">{c.impactStep.lead}</p>
                     <div className="flb-impact-nums">
                       <div><b>{new Intl.NumberFormat(lang === 'en' ? 'en-IE' : 'el-GR').format(spSel.people * spSel.years)}</b><span>{c.impactStep.people}{spSel.years > 1 ? ` × ${spSel.years}` : ''}</span></div>
-                      <div><b>{euroCents(sp.perPerson, lang)}</b><span>{c.impactStep.perPerson}</span></div>
+                      <div><b>{spSel.years}</b><span>{c.impactStep.years}</span></div>
                       <div><b>{sp.orgCount}{sp.from ? '+' : ''}</b><span>{c.impactStep.orgs}</span></div>
                     </div>
                     <div className="flb-impact-line">{c.impactStep.report}</div>
@@ -574,10 +555,10 @@ const FlowBuilder = ({ onSummary }) => {
                 )}
               </section>
 
-              {/* 5. offer */}
+              {/* 5. offer: a summary without prices, and the email form. The priced PDF arrives by email. */}
               <section className="flb-step" id="flb-offer" aria-labelledby="flb-s5">
                 <h2 id="flb-s5"><span className="flb-n">5</span>{steps[4]}</h2>
-                <article className="flb-offer flb-print">
+                <article className="flb-offer">
                   <header className="flb-offer-head">
                     <p className="flb-offer-brand">f<span>λ</span>ow <small>SimasiaAI, contact@simasiaai.gr</small></p>
                     <p className="flb-offer-for">{c.who[aud].name}{aud === 'sponsor' ? `, ${SPONSOR.causes[spSel.cause][lang]}` : ''}</p>
@@ -587,29 +568,11 @@ const FlowBuilder = ({ onSummary }) => {
                       <span key={p.id} className={`flb-offer-mod${p.on ? ' is-on' : ''}`} style={{ '--c': p.color }}>{p.on ? '✓' : '○'} {p.name}</span>
                     ))}
                   </div>
-                  {aud !== 'sponsor' ? (
+                  {aud === 'sponsor' && (
                     <>
-                      <dl className="flb-offer-nums">
-                        <div><dt>{c.offer.monthly}</dt><dd>{offer.from ? `${c.offer.from} ` : ''}{euro(offer.monthly, lang)}<small>{c.perMonth}</small></dd></div>
-                        <div><dt>{c.offer.setup}</dt><dd>{offer.from ? `${c.offer.from} ` : ''}{euro(offer.setup, lang)}</dd></div>
-                        <div><dt>{c.offer.firstYear}</dt><dd>{offer.from ? `${c.offer.from} ` : ''}{euro(offer.firstYear, lang)}</dd></div>
-                      </dl>
-                      {aud === 'med' && !offer.from && <p className="flb-offer-note">{lang === 'en' ? 'Matches' : 'Αντιστοιχεί στο'} «{offer.name[lang]}» {lang === 'en' ? 'on the clinics page' : 'της σελίδας για ιατρεία'}.</p>}
-                      {aud === 'ngo' && ngo.saving && ngo.saving.monthly > 0 && <p className="flb-offer-note flb-offer-save">{c.design.saving(euro(ngo.saving.monthly, lang), euro(ngo.saving.setup, lang))}</p>}
-                      {offer.from && <p className="flb-offer-note">{c.offer.custom}</p>}
-                      {offer.atCost && <p className="flb-offer-note">+ {c.atCost}</p>}
-                    </>
-                  ) : (
-                    <>
-                      <dl className="flb-offer-nums">
-                        <div><dt>{c.offer.total}</dt><dd>{sp.from ? `${c.offer.from} ` : ''}{euro(sp.total, lang)}</dd></div>
-                        <div><dt>{c.offer.perPerson}</dt><dd>{euroCents(sp.perPerson, lang)}</dd></div>
-                        <div><dt>{c.offer.orgs}</dt><dd>{SPONSOR.orgs.find((o) => o.id === spSel.orgs).label[lang]}</dd></div>
-                      </dl>
                       <h3 className="flb-offer-h">{c.offer.sponsorWhat}</h3>
                       <ul className="flb-offer-list">{c.offer.sponsorList.map((x) => <li key={x}>{x}</li>)}</ul>
                       <p className="flb-offer-note">{c.offer.proof}</p>
-                      {sp.atCost && <p className="flb-offer-note">+ {c.atCost}</p>}
                     </>
                   )}
                   {parts.some((p) => p.on && p.items.length) && (
@@ -621,24 +584,41 @@ const FlowBuilder = ({ onSummary }) => {
                   {quotes.length > 0 && (<><h3 className="flb-offer-h">{c.offer.quotesTitle}</h3><ul className="flb-offer-list flb-offer-quote">{quotes.map((x) => <li key={x}>{x}</li>)}</ul></>)}
                   {custom.length > 0 && (<><h3 className="flb-offer-h">{c.offer.customTitle}</h3><ul className="flb-offer-list flb-offer-quote">{custom.map((x) => <li key={x}>{x}</li>)}</ul></>)}
                   {aud !== 'sponsor' && <p className="flb-offer-g">{aud === 'med' ? c.offer.guaranteeMed : c.offer.guarantee}</p>}
-                  {aud === 'ngo' && <p className="flb-offer-note flb-offer-pilot">{c.offer.pilot}</p>}
-                  {aud === 'med' && <p className="flb-offer-note flb-offer-pilot">{c.offer.pilotMed}</p>}
                   {aud === 'ngo' && <p className="flb-offer-note">{c.offer.funding}</p>}
-                  <div className="flb-one">
-                    <p>{c.offer.oneNumber}</p>
-                    <b>{c.offer.oneNumberText}</b>
+                  <div className="flb-inbox">
+                    <h3 className="flb-offer-h">{c.offer.inbox}</h3>
+                    <ul className="flb-offer-list">{c.offer.inboxList.map((x) => <li key={x}>{x}</li>)}</ul>
                   </div>
-                  <p className="flb-offer-fine">{c.offer.note}</p>
                 </article>
+
+                <form className="flb-form" id="flb-form" onSubmit={submit} noValidate>
+                  <h3>{c.contact.title}</h3>
+                  <p className="flb-hint">{c.contact.lead}</p>
+                  <div className="flb-fields">
+                    <label><span>{c.contact.name}</span><input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} autoComplete="name" required maxLength={80} /></label>
+                    <label><span>{c.contact.org}</span><input value={form.org} onChange={(e) => setForm({ ...form, org: e.target.value })} autoComplete="organization" maxLength={120} /></label>
+                    <label><span>{c.contact.email}</span><input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} autoComplete="email" required maxLength={120} /></label>
+                    <label><span>{c.contact.phone}</span><input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} autoComplete="tel" maxLength={30} /></label>
+                  </div>
+                  <label className="flb-hp" aria-hidden="true">Leave this empty<input tabIndex={-1} name="flb_hp_note" type="text" autoComplete="off" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} /></label>
+                  <label className="flb-consent"><input type="checkbox" checked={form.consent} onChange={(e) => setForm({ ...form, consent: e.target.checked })} /> <span>{c.contact.consent} <Link to="/privacy">{c.contact.privacy}</Link></span></label>
+                  <div className="flb-actions">
+                    <button type="submit" className="fl-btn" disabled={status.state === 'sending' || status.state === 'sent'}>{status.state === 'sending' ? c.contact.sending : c.contact.send}</button>
+                  </div>
+                  <p role="status" aria-live="polite" className={`flb-status is-${status.state}`}>
+                    {status.state === 'invalid' && c.contact.required}
+                    {status.state === 'sent' && c.contact.sent(status.email)}
+                    {status.state === 'queued' && c.contact.queued(status.email)}
+                    {status.state === 'tooMany' && c.contact.tooMany}
+                    {status.state === 'fallback' && (<>{c.contact.fallback} <a href={status.mailto}>{c.contact.fallbackLink}</a></>)}
+                  </p>
+                  <a className="flb-booklink" href="#book">{(status.state === 'sent' || status.state === 'queued') ? `${c.contact.next} ` : ''}{c.bookLink} ↓</a>
+                </form>
 
                 {aud !== 'sponsor' && (
                   <div className="flb-stack">
                     <h3>{c.stack.title}</h3>
-                    <ul>{c.stack.items.map(([t, val]) => <li key={t}><span>{t}</span><s>{euro(val, lang)}</s></li>)}</ul>
-                    <p className="flb-stack-sum">
-                      <span>{c.stack.worth} <s>{euro(c.stack.items.reduce((a, [, val]) => a + val, 0), lang)}</s></span>
-                      <b>{c.stack.you}: {c.stack.free}</b>
-                    </p>
+                    <ul>{c.stack.items.map((t) => <li key={t}><span>{t}</span></li>)}</ul>
                   </div>
                 )}
 
@@ -660,28 +640,6 @@ const FlowBuilder = ({ onSummary }) => {
                   ))}
                   <Link className="flb-terms" to="/terms#ai-accuracy">{lang === 'en' ? 'Answer accuracy and terms' : 'Ακρίβεια απαντήσεων και όροι'} →</Link>
                 </div>
-
-                <form className="flb-form" onSubmit={submit} noValidate>
-                  <h3>{c.contact.title}</h3>
-                  <p className="flb-hint">{c.contact.lead}</p>
-                  <div className="flb-fields">
-                    <label><span>{c.contact.name}</span><input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} autoComplete="name" required /></label>
-                    <label><span>{c.contact.org}</span><input value={form.org} onChange={(e) => setForm({ ...form, org: e.target.value })} autoComplete="organization" /></label>
-                    <label><span>{c.contact.email}</span><input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} autoComplete="email" required /></label>
-                    <label><span>{c.contact.phone}</span><input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} autoComplete="tel" /></label>
-                  </div>
-                  <label className="flb-consent"><input type="checkbox" checked={form.consent} onChange={(e) => setForm({ ...form, consent: e.target.checked })} /> <span>{c.contact.consent}</span></label>
-                  <div className="flb-actions">
-                    <button type="submit" className="fl-btn" disabled={status.state === 'sending'}>{status.state === 'sending' ? c.contact.sending : c.contact.send}</button>
-                    <button type="button" className="flb-print-btn" onClick={() => window.print()}>{aud === 'sponsor' ? c.contact.printSponsor : c.contact.print}</button>
-                  </div>
-                  <a className="flb-booklink" href="#book">{c.bookLink} ↓</a>
-                  <p role="status" className="flb-status">
-                    {status.state === 'invalid' && c.contact.required}
-                    {status.state === 'sent' && c.contact.sent}
-                    {status.state === 'fallback' && (<>{c.contact.fallback} <a href={status.mailto}>{c.contact.fallbackLink}</a></>)}
-                  </p>
-                </form>
               </section>
             </>
           )}
@@ -689,11 +647,11 @@ const FlowBuilder = ({ onSummary }) => {
 
         <aside className="flb-live" aria-label={c.graphic.aria}>
           <div className="flb-live-in">
-            <LiveFlow pains={pains.slice(0, 7)} parts={parts} price={price} c={c} lang={lang} />
+            <LiveFlow pains={pains.slice(0, 7)} parts={parts} center={center} c={c} />
             {offer && (
               <div className="flb-ticker">
-                <span>{aud === 'sponsor' ? `${c.offer.total} ${euro(sp.total, lang)}` : offer.name[lang]}</span>
-                <a href="#flb-offer">{c.summaryBar}</a>
+                <span>{aud === 'sponsor' ? SPONSOR.orgs.find((o) => o.id === spSel.orgs).label[lang] : parts.filter((p) => p.on).map((p) => p.name).join(' + ')}</span>
+                <a href="#flb-form">{c.summaryBar}</a>
               </div>
             )}
           </div>

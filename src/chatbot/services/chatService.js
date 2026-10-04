@@ -346,9 +346,9 @@ function createRAGPrompt(context, question, language, options = {}) {
       '11) ΜΗΝ χρησιμοποιείς markdown (**, ##, `). Γράψε απλό κείμενο· λίστες με «•» ή «-».\n' +
       '12) Για «τι είναι η SimasiaAI»: χρησιμοποίησε identity από το context. Demo CTA μόνο αν ταιριάζει εμπορικά — όχι σε κάθε απάντηση.\n' +
       '12β) Για «ποιοι είναι οι ιδρυτές / συνιδρυτές / η ομάδα»: απάντησε σοβαρά με ΠΛΗΡΗ ονόματα και ρόλους από το context (Στέργιος Χατζηκυριακίδης CEO, Δημήτρης Παπαδάκης, Γιάννης, Αναστασία Νάτσινα). ΜΗΝ παραλείπεις τον Στέργιο. ΜΗΝ κλείνεις με demo.\n' +
-      '12γ) Για demo/ραντεβού/επικοινωνία: πες ότι μπορούν να διαλέξουν ελεύθερη ώρα για συνάντηση 30 λεπτών από το κουμπί «Κλείστε 30 λεπτά» παρακάτω, ή να φτιάξουν το fλow τους και να πάρουν προσφορά αμέσως στο Go with the fλow (χωρίς URL). Εναλλακτικά contact@simasiaai.gr.\n' +
+      '12γ) Για demo/ραντεβού/επικοινωνία: πες ότι μπορούν να διαλέξουν ελεύθερη ώρα για συνάντηση 30 λεπτών από το κουμπί «Κλείστε 30 λεπτά» παρακάτω, ή να φτιάξουν το fλow τους στο Go with the fλow και να λάβουν την προσφορά τους σε PDF στο email τους (χωρίς URL). Εναλλακτικά contact@simasiaai.gr.\n' +
       '12δ) Αν ρωτούν για Pyxida / Πυξίδα / Praxi: ήταν τα παλιά ονόματα — σήμερα λέγονται DialogosAI και PraxisAI, μέρη του fλow. Μην αρνηθείς την ερώτηση ως άσχετη.\n' +
-      '12ε) Για τιμές: δώσε τα ποσά από το context και πρόσθεσε ότι η ακριβής προσφορά βγαίνει αμέσως στο Go with the fλow, γιατί κάθε οργανισμός είναι διαφορετικός. Η δοκιμή κοστίζει 199 €.\n' +
+      '12ε) Για τιμές, κόστος ή δοκιμή: ΜΗΝ αναφέρεις ποτέ ποσά ή ευρώ, ακόμα κι αν τα βρεις κάπου. Εξήγησε ότι η τιμή εξαρτάται από όσα επιλέγει ο οργανισμός (δεν υπάρχουν σταθερά πακέτα· μαζί τα μέρη κοστίζουν λιγότερο), και ότι στο Go with the fλow σχεδιάζει το fλow του, γράφει το email του και λαμβάνει αμέσως την προσφορά του σε PDF, με τιμή, όρους δοκιμής χωρίς ρίσκο και επόμενα βήματα. Ή μπορεί να κλείσει 30 λεπτά.\n' +
       PROMPT_SECURITY_EL +
       (shortFollowUp
         ? '21α) Το μήνυμα χρήστη είναι σύντομο follow-up: ερμήνευσέ το ΜΟΝΟ από το ΠΡΟΣΦΑΤΟ ΙΣΤΟΡΙΚΟ (ανοιχτή ερώτηση / θέμα) και απάντησε άμεσα — χωρίς επιβεβαίωση.\n'
@@ -396,9 +396,9 @@ function createRAGPrompt(context, question, language, options = {}) {
     '11) No markdown (**, ##, backticks). Plain text only; use "•" or "-" for lists.\n' +
     '12) For "what is SimasiaAI": use identity from context. Demo CTA only when commercially appropriate — not on every reply.\n' +
     '12b) For "who are the founders / co-founders / team": answer seriously with FULL names and roles from context (Stergios Chatzikyriakidis CEO, Dimitris Papadakis, Giannis, Anastasia Natsina). Never omit Stergios. Never close with a demo pitch.\n' +
-    '12c) For demo/meeting/contact: say they can pick a free time for a 30-minute call with the «Book 30 minutes» button below, or build their fλow and get an instant offer in Go with the fλow (no URL). Alternatively contact@simasiaai.gr.\n' +
+    '12c) For demo/meeting/contact: say they can pick a free time for a 30-minute call with the «Book 30 minutes» button below, or build their fλow in Go with the fλow and receive their offer by email as a PDF (no URL). Alternatively contact@simasiaai.gr.\n' +
     '12d) If asked about Pyxida / Praxi: those were the old names — today DialogosAI and PraxisAI, parts of fλow. Do not treat as off-topic.\n' +
-    '12e) For prices: give the amounts from the context and add that the exact offer appears instantly in Go with the fλow, because every organisation is different. The trial costs €199.\n' +
+    '12e) For prices, cost or the trial: NEVER state amounts or euros, even if you find them somewhere. Explain that the price depends on what the organisation chooses (no fixed packages; the parts cost less together), and that in Go with the fλow they design their fλow, leave their email and receive their offer as a PDF straight away, with the price, the no-risk trial terms and next steps. Or they can book 30 minutes.\n' +
     PROMPT_SECURITY_EN +
     (shortFollowUp
       ? '21a) The user message is a short follow-up: interpret it ONLY from RECENT CHAT (open question / topic) and answer directly — no confirmation ask.\n'

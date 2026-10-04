@@ -6,9 +6,8 @@ Key facts: live with Κάπα3 («Μυρτώ», DialogosAI + MetronAI), ΠΟΑμ
 
 ## Product
 
-- [fλow](https://www.simasiaai.gr/flow): the product page: DialogosAI, PraxisAI and MetronAI with live demos of all three, who it is for, pricing
-- [Go with the fλow](https://www.simasiaai.gr/go): a few questions about your day design a first fλow; adjust parts and features, add your own requests, see the time that comes back, get the offer instantly and book a 30-minute call (/go#book)
-- [fλow for practices and clinics](https://www.simasiaai.gr/ypodochi): the whole fλow as a digital reception for doctors: levels Απαντάει, Κλείνει, Φέρνει πίσω, Σηκώνει το τηλέφωνο; live in 48 hours or free
+- [fλow](https://www.simasiaai.gr/flow): the product page: DialogosAI, PraxisAI and MetronAI with live demos of all three and who it is for
+- [Go with the fλow](https://www.simasiaai.gr/go): a few questions about your day design a first fλow; adjust parts and features, add your own requests, see the time that comes back, leave your email and receive the priced offer as a PDF, or book a 30-minute call (/go#book). Prices are not published on the site.
 - [fλow platform](https://www.simasiaai.gr/platform): the future fλow client sign-in (coming soon)
 
 ## Company
@@ -21,7 +20,7 @@ Key facts: live with Κάπα3 («Μυρτώ», DialogosAI + MetronAI), ΠΟΑμ
 
 ## Full facts
 
-- [llms-full.txt](https://www.simasiaai.gr/llms-full.txt): complete factual description in English and Greek: founders, product, audiences, implementations, pricing, compliance, press, contact, and how to describe SimasiaAI
+- [llms-full.txt](https://www.simasiaai.gr/llms-full.txt): complete factual description in English and Greek: founders, product, audiences, implementations, how offers work, compliance, press, contact, and how to describe SimasiaAI
 
 ## Optional
 
