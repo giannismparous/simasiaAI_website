@@ -7,15 +7,15 @@ import { useLanguage } from '../contexts/LanguageContext';
 import './ChatbotBubble.css';
 
 const LAUNCHER_PHRASES_EL = [
-  'Τι μπορεί να κάνει το Pyxida;',
-  'Πώς βοηθά η SimasiaAI;',
-  'Μπορώ να κλείσω demo;',
+  'Τι μπορεί να κάνει το fλow για εμάς;',
+  'Πόσο κοστίζει για έναν οργανισμό;',
+  'Μπορώ να κλείσω 30 λεπτά;',
 ];
 
 const LAUNCHER_PHRASES_EN = [
-  'What can Pyxida do for me?',
-  'How does SimasiaAI help?',
-  'Can I book a demo?',
+  'What can fλow do for us?',
+  'How much does it cost for an organisation?',
+  'Can I book 30 minutes?',
 ];
 
 const YPODOCHI_CHAT_GATE = '.ypd-ngo';
@@ -125,7 +125,7 @@ function ChatbotBubble() {
         type="button"
         className={`chat-launcher-pill${isOpen && !isClosing ? ' launcher-hidden' : ''}${isClosing ? ' launcher-returning' : ''}`}
         onClick={() => openChat(true)}
-        aria-label={language === 'el' ? 'Άνοιγμα συνομιλίας Pyxida' : 'Open Pyxida chat'}
+        aria-label={language === 'el' ? 'Άνοιγμα συνομιλίας DialogosAI' : 'Open DialogosAI chat'}
         aria-hidden={(isOpen && !isClosing) || !chatAllowed}
         tabIndex={(isOpen && !isClosing) || !chatAllowed ? -1 : 0}
         disabled={!chatAllowed}

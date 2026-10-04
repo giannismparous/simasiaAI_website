@@ -42,12 +42,13 @@ const Navbar = () => {
 
   const navLinks = [
     { path: '/', text: t('nav.home') },
-    { path: '/ypodochi', text: t('nav.ypodochi') },
+    { path: '/flow', text: t('nav.ypodochi') },
     { path: '/collaborations', text: t('nav.collaborations') },
     { path: '/news', text: t('nav.news') },
     { path: '/newsletter', text: t('nav.newsletter') },
     { path: '/team', text: t('nav.team') },
-    { path: '/demo', text: t('nav.demo'), isButton: true },
+    { path: '/platform', text: t('nav.platform'), isPlatform: true },
+    { path: '/go', text: <>Go with the f<span className="nav-lambda">λ</span>ow</>, isButton: true, label: 'Go with the fλow' },
   ];
 
   return (
@@ -75,8 +76,14 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <li key={link.path}>
                 {link.isButton ? (
+                  <Link to={link.path} onClick={() => setIsMobileMenuOpen(false)} aria-label={link.label}
+                    className={`nav-demo-button nav-go-button${location.pathname === link.path ? ' active' : ''}`}>
+                    {link.text}
+                  </Link>
+                ) : link.isPlatform ? (
                   <Link to={link.path} onClick={() => setIsMobileMenuOpen(false)}
-                    className={`nav-demo-button${location.pathname === link.path ? ' active' : ''}`}>
+                    className={`nav-platform-link${location.pathname === link.path ? ' active' : ''}`}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" /><path d="M10 17l5-5-5-5" /><path d="M15 12H3" /></svg>
                     {link.text}
                   </Link>
                 ) : (

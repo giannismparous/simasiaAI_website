@@ -1,0 +1,29 @@
+# SimasiaAI
+
+> SimasiaAI (Σημασία-ΑΙ Ι.Κ.Ε., Athens, Greece) is a Greek AI company with a social-impact focus. Its one product, fλow (also written "flow"), is an AI assistant + CRM for people who care for others: NGOs, patient associations, disability services, doctors, practices, polyclinics and clinics in Greece and Cyprus. fλow is "dialogue, action and record, in one flow": three parts that work alone or together. DialogosAI (dialogue) is the AI assistant that answers patients, beneficiaries, members and families 24/7 on the website, Viber and WhatsApp, only from approved sources with citations, says when it doesn't know and sends urgent cases to a human. PraxisAI (action) is the CRM with agentic actions (it proposes and executes, a human approves what goes out): member registry, beneficiary files and patient records, tasks with deadlines, protocol book with automatic numbers, deadline reminders 60/30/7 days ahead, appointment confirmations, shift handovers, document scanning (OCR). MetronAI (record) records every contact and analyses it: communication statistics, what people ask and what is missing, social-impact reports for sponsors, a monthly accuracy test. EU AI Act and GDPR compliant, data in the EU. It never gives medical advice. No fixed packages and no prices on the website: visitors design their fλow at /go and receive a personalised offer as a PDF by email, with the price, the no-risk trial terms and next steps. Clinics: live in 48 hours or free. Motto: «Μέτρο μας ο Άνθρωπος» (The human is our measure).
+
+Key facts: live with Κάπα3 («Μυρτώ», DialogosAI + MetronAI), ΠΟΑμΣΚΠ («ΣΚΠ-i», Multiple Sclerosis, DialogosAI) and Ήρωες της BPAN («BPAN Companion», DialogosAI in 60 languages); Perfectaki Able (DialogosAI for accessible education) is being built. Pharma/CSR sponsors can fund fλow for organisations. Contact: contact@simasiaai.gr.
+
+## Product
+
+- [fλow](https://www.simasiaai.gr/flow): the product page: DialogosAI, PraxisAI and MetronAI with live demos of all three and who it is for
+- [Go with the fλow](https://www.simasiaai.gr/go): a few questions about your day design a first fλow; adjust parts and features, add your own requests, see the time that comes back, leave your email and receive the priced offer as a PDF, or book a 30-minute call (/go#book). Prices are not published on the site.
+- [fλow platform](https://www.simasiaai.gr/platform): the future fλow client sign-in (coming soon)
+
+## Company
+
+- [Home](https://www.simasiaai.gr/): SimasiaAI and fλow at a glance
+- [Collaborations](https://www.simasiaai.gr/collaborations): live implementations with patient organisations and partners
+- [Team](https://www.simasiaai.gr/team): the co-founders and the team
+- [News](https://www.simasiaai.gr/news): articles and announcements
+- [Newsletter](https://www.simasiaai.gr/newsletter): SimasiaAI newsletter issues
+
+## Full facts
+
+- [llms-full.txt](https://www.simasiaai.gr/llms-full.txt): complete factual description in English and Greek: founders, product, audiences, implementations, how offers work, compliance, press, contact, and how to describe SimasiaAI
+
+## Optional
+
+- [Terms of use](https://www.simasiaai.gr/terms)
+- [Privacy policy](https://www.simasiaai.gr/privacy)
+- [Cookie policy](https://www.simasiaai.gr/cookies)

@@ -1,0 +1,82 @@
+/* /go: talk to us (booking calendar + simple message). Paper band after the dark builder. */
+.go-talk { position: relative; background: #faf9f5; color: #141413; padding: 104px 0 112px; font-family: var(--font-sans, 'Inter', sans-serif); border-top: 1px solid #e8e6dc; }
+.go-anchor { position: absolute; top: -72px; }
+.go-in { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.go-talk h2 { margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 700; letter-spacing: -.04em; line-height: 1.05; color: #141413; }
+.go-lead { margin: 14px 0 0; font-family: var(--font-serif, Georgia, serif); font-size: 19px; line-height: 1.6; color: #5a5a58; }
+.go-tabs { display: inline-flex; gap: 4px; margin-top: 30px; padding: 4px; border-radius: 999px; background: #efede5; }
+.go-tabs button { min-height: 44px; padding: 0 22px; border: 0; border-radius: 999px; background: transparent; color: #5a5a58; font: 600 15px var(--font-sans, sans-serif); cursor: pointer; transition: background .2s, color .2s; }
+.go-tabs button.is-on { background: #141413; color: #faf9f5; }
+.go-panel { display: grid; gap: 28px; margin-top: 26px; }
+.go-panel.is-book { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: start; }
+.go-panel.is-msg { grid-template-columns: minmax(0, 760px); }
+.go-promise { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; color: #5a5a58; }
+.go-promise li::before { content: '✓'; color: #788c5d; margin-right: 6px; font-weight: 700; }
+
+/* calendar */
+.bk { background: #fff; border: 1px solid #e8e6dc; border-radius: 16px; padding: 18px 18px 20px; }
+.bk-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.bk-range { margin: 0; font-weight: 700; font-size: 16px; letter-spacing: -.01em; }
+.bk-arrow { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #e8e6dc; background: #faf9f5; color: #141413; font-size: 16px; cursor: pointer; }
+.bk-arrow:disabled { opacity: .35; cursor: default; }
+.bk-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; margin: 12px 0 14px; font-size: 13px; color: #5a5a58; }
+.bk-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.bk-legend i { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+.bk-k-free { background: rgba(120, 140, 93, .18); border: 1px solid #9fb383; }
+.bk-k-booked { background: repeating-linear-gradient(135deg, #ecebe4 0 4px, #f6f5ef 4px 8px); border: 1px solid #e8e6dc; }
+.bk-tz { margin-left: auto; }
+.bk-grid { display: grid; grid-template-columns: 46px repeat(5, minmax(0, 1fr)); gap: 3px; }
+.bk-corner { }
+.bk-day { text-align: center; padding: 4px 0 8px; display: grid; gap: 2px; }
+.bk-day b { font-size: 14px; text-transform: capitalize; }
+.bk-day span { font-size: 12px; color: #5a5a58; }
+.bk-day.is-today b { color: #d97757; }
+.bk-time { font-size: 12px; color: #5a5a58; text-align: right; padding-right: 6px; line-height: 26px; height: 26px; }
+.bk-cell { height: 26px; border-radius: 5px; border: 1px solid transparent; }
+.bk-cell.is-booked { background: repeating-linear-gradient(135deg, #ecebe4 0 4px, #f6f5ef 4px 8px); }
+.bk-cell.is-free { background: rgba(120, 140, 93, .14); border-color: rgba(120, 140, 93, .45); color: #4f6338; font: 600 12px var(--font-sans, sans-serif); cursor: pointer; padding: 0; transition: background .15s, transform .15s; }
+.bk-cell.is-free:hover { background: rgba(120, 140, 93, .28); }
+.bk-cell.is-on { background: #d97757; border-color: #d97757; color: #fff; }
+.bk-cell span { pointer-events: none; }
+
+/* form */
+.go-form { background: #fff; border: 1px solid #e8e6dc; border-radius: 16px; padding: 22px 22px 18px; }
+.go-slot { padding: 14px 16px; border-radius: 10px; background: #f3f1ea; color: #5a5a58; font-size: 15px; }
+.go-slot.is-on { background: #141413; color: #faf9f5; display: grid; gap: 2px; }
+.go-slot small { font-size: 12px; color: rgba(250, 249, 245, .6); }
+.go-slot b { font-size: 16px; text-transform: none; }
+.go-q { margin: 18px 0 8px; font-weight: 600; font-size: 15px; }
+.go-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.go-chip { min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #d9d6ca; background: transparent; color: #141413; font: 500 14.5px var(--font-sans, sans-serif); cursor: pointer; }
+.go-chip.is-on { background: #141413; color: #faf9f5; border-color: #141413; }
+.go-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+.go-fields label { display: grid; gap: 6px; font-size: 13.5px; color: #5a5a58; }
+.go-fields .go-wide { grid-column: 1 / -1; }
+.go-fields input, .go-fields textarea { min-height: 46px; padding: 10px 14px; border-radius: 8px; border: 1px solid #d9d6ca; background: #faf9f5; color: #141413; font: 400 16px var(--font-sans, sans-serif); }
+.go-fields textarea { resize: vertical; }
+.go-fields input:focus, .go-fields textarea:focus { outline: none; border-color: #d97757; background: #fff; }
+.go-check { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px; font-size: 14px; color: #5a5a58; }
+.go-submit { width: 100%; margin-top: 18px; border-radius: 10px; }
+.go-status { min-height: 1.4em; margin: 10px 0 0; font-size: 14.5px; line-height: 1.5; }
+.go-status.is-sent { color: #4f6338; font-weight: 600; }
+.go-status.is-invalid { color: #b5482a; }
+.go-mail { margin: 6px 0 0; font-size: 13.5px; color: #5a5a58; }
+.go-mail a { color: #141413; }
+
+@media (max-width: 960px) {
+  .go-panel.is-book { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .go-talk { padding: 72px 0 80px; }
+  .go-in { padding: 0 16px; }
+  .go-tabs { display: flex; }
+  .go-tabs button { flex: 1; padding: 0 10px; }
+  .bk { padding: 14px 10px 16px; }
+  .bk-grid { grid-template-columns: 38px repeat(5, minmax(0, 1fr)); gap: 2px; }
+  .bk-cell.is-free { font-size: 10.5px; }
+  .bk-tz { margin-left: 0; }
+  .go-fields { grid-template-columns: minmax(0, 1fr); }
+}
+.go-fields label { min-width: 0; }
+.go-fields input, .go-fields textarea { box-sizing: border-box; width: 100%; min-width: 0; }
+.go-form, .go-cal { min-width: 0; box-sizing: border-box; }

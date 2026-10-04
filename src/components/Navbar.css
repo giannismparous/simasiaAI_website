@@ -405,3 +405,43 @@
     margin: 0 auto;
   }
 }
+/* "Go with the fλow": calm, dark pill with the orange λ (paper pill on dark heroes) */
+.nav-links a.nav-go-button,
+.navbar .nav-go-button {
+  background: var(--dark, #141413) !important;
+  border-color: var(--dark, #141413) !important;
+  color: #faf9f5 !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.005em;
+  padding: 0.62rem 1.3rem !important;
+}
+.navbar .nav-go-button:hover,
+.navbar .nav-go-button.active {
+  background: #2a2a28 !important;
+  border-color: #2a2a28 !important;
+}
+.navbar.dark-hero:not(.scrolled) .nav-go-button {
+  background: #faf9f5 !important;
+  border-color: #faf9f5 !important;
+  color: #141413 !important;
+}
+.navbar.dark-hero:not(.scrolled) .nav-go-button:hover,
+.navbar.dark-hero:not(.scrolled) .nav-go-button.active {
+  background: #e8e6dc !important;
+  border-color: #e8e6dc !important;
+  color: #141413 !important;
+}
+.nav-go-button .nav-lambda { color: var(--orange, #d97757); font-weight: 700; }
+
+.nav-links a.nav-platform-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+.nav-links a.nav-platform-link:hover,
+.nav-links a.nav-platform-link.active { opacity: 1; }
+@media (max-width: 1260px) and (min-width: 1101px) {
+  .nav-links a.nav-go-button { font-size: 0.9rem !important; padding: 0.55rem 1.05rem !important; min-width: 0; }
+}

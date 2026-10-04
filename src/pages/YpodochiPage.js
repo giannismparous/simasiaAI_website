@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import OfferLadderSection from '../components/OfferLadderSection';
 import { useTranslation } from '../hooks/useTranslation';
+import { useLanguage } from '../contexts/LanguageContext';
 import { DemoCtaStack } from '../components/DemoScarcityBanner';
 import './YpodochiPage.css';
 import { ClinicIllustration, NgoIllustration } from '../components/GateIllustrations';
@@ -20,26 +21,53 @@ const splitCloseLine = (text, accent) => {
 };
 
 /* ── Data ────────────────────────────────────────────────────────────── */
-const MARKETS = {
-  clinic: {
-    id: 'clinic',
-    accentClass: 'pag-card--clinic',
-    letter: 'Α',
-    headline: ['Ιατρεία,', 'Κλινικές &', 'Διαγνωστικά'],
-    tagline: 'Για ιατρεία και κλινικές που θέλουν να εξυπηρετούν χωρίς διακοπή.',
-    primaryCta: 'Ιατρείο ή Κλινική',
-    switcherLabel: 'Ιατρεία & Κλινικές',
+const MARKETS_I18N = {
+  el: {
+    clinic: {
+      id: 'clinic',
+      accentClass: 'pag-card--clinic',
+      letter: 'Α',
+      headline: ['Ιατρεία,', 'Κλινικές &', 'Διαγνωστικά'],
+      tagline: 'Για ιατρεία και κλινικές που θέλουν να εξυπηρετούν χωρίς διακοπή.',
+      primaryCta: 'Ιατρείο ή Κλινική',
+      switcherLabel: 'Ιατρεία & Κλινικές',
+    },
+    ngo: {
+      id: 'ngo',
+      accentClass: 'pag-card--ngo',
+      letter: 'Β',
+      headline: ['ΜΚΟ &', 'Οργανισμοί', 'Ασθενών'],
+      tagline: 'Για ΜΚΟ και οργανισμούς που στηρίζουν ανθρώπους κάθε μέρα.',
+      primaryCta: 'ΜΚΟ ή Οργανισμός',
+      switcherLabel: 'ΜΚΟ & Οργανισμοί',
+    },
   },
-  ngo: {
-    id: 'ngo',
-    accentClass: 'pag-card--ngo',
-    letter: 'Β',
-    headline: ['ΜΚΟ &', 'Οργανισμοί', 'Ασθενών'],
-    tagline: 'Για ΜΚΟ και οργανισμούς που στηρίζουν ανθρώπους κάθε μέρα.',
-    primaryCta: 'ΜΚΟ ή Οργανισμός',
-    switcherLabel: 'ΜΚΟ & Οργανισμοί',
+  en: {
+    clinic: {
+      id: 'clinic',
+      accentClass: 'pag-card--clinic',
+      letter: 'A',
+      headline: ['Practices,', 'Clinics &', 'Diagnostics'],
+      tagline: 'For practices and clinics that want to serve without interruption.',
+      primaryCta: 'Practice or Clinic',
+      switcherLabel: 'Practices & Clinics',
+    },
+    ngo: {
+      id: 'ngo',
+      accentClass: 'pag-card--ngo',
+      letter: 'B',
+      headline: ['NGOs &', 'Patient', 'Organisations'],
+      tagline: 'For NGOs and organisations that support people every day.',
+      primaryCta: 'NGO or Organisation',
+      switcherLabel: 'NGOs & Organisations',
+    },
   },
 };
+const GATE_UI = {
+  el: { hint: 'Δύο εκδοχές. Μία τεχνολογία. Ο ίδιος σεβασμός στον άνθρωπο.', viewing: 'Βλέπετε:', change: 'Αλλαγή κατηγορίας' },
+  en: { hint: 'Two editions. One technology. The same respect for people.', viewing: 'Viewing:', change: 'Change category' },
+};
+const useMarkets = () => { const { language } = useLanguage(); const l = language === 'en' ? 'en' : 'el'; return [MARKETS_I18N[l], GATE_UI[l]]; };
 
 /* ── Audience Gate ────────────────────────────────────────────────────── */
 const GateCard = ({ market, hovered, onHover, onLeave, onSelect }) => {
@@ -104,6 +132,7 @@ const GateCard = ({ market, hovered, onHover, onLeave, onSelect }) => {
 
 const AudienceGate = ({ onSelect }) => {
   const [hovered, setHovered] = useState(null);
+  const [MARKETS, ui] = useMarkets();
   return (
     <motion.section className="pag-gate" key="gate"
       initial={{ opacity: 0 }} animate={{ opacity: 1 }}
@@ -113,7 +142,7 @@ const AudienceGate = ({ onSelect }) => {
       <motion.div className="pag-gate-strip"
         initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease, delay: 0.05 }}>
-        <span className="pag-strip-label">Pyxida</span>
+        <span className="pag-strip-label">DialogosAI</span>
 
       </motion.div>
 
@@ -124,7 +153,7 @@ const AudienceGate = ({ onSelect }) => {
 
         <div className="pag-vert-divider" aria-hidden="true">
           <div className="pag-vert-line" />
-          <span className="pag-vert-word">Pyxida</span>
+          <span className="pag-vert-word">DialogosAI</span>
           <div className="pag-vert-line" />
         </div>
 
@@ -135,31 +164,34 @@ const AudienceGate = ({ onSelect }) => {
       <motion.p className="pag-gate-hint"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease, delay: 0.7 }}>
-        Δύο εκδοχές. Μία τεχνολογία. Ο ίδιος σεβασμός στον άνθρωπο.
+        {ui.hint}
       </motion.p>
     </motion.section>
   );
 };
 
 /* ── Market Switcher strip ───────────────────────────────────────────── */
-const MarketSwitcher = ({ market, onReset }) => (
+const MarketSwitcher = ({ market, onReset }) => {
+  const [MARKETS, ui] = useMarkets();
+  return (
   <motion.div className="pag-switcher"
     initial={{ opacity: 0, y: -12 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.45, ease }}>
     <div className="container">
       <div className="pag-switcher-inner">
-        <span className="pag-switcher-viewing">Βλέπετε:</span>
+        <span className="pag-switcher-viewing">{ui.viewing}</span>
         <span className={`pag-switcher-tag pag-card--${market}`}>{MARKETS[market].letter}</span>
         <span className="pag-switcher-label">— {MARKETS[market].switcherLabel}</span>
         <button type="button" className="pag-switcher-reset" onClick={onReset}>
-          Αλλαγή κατηγορίας
+          {ui.change}
           <span aria-hidden="true"> ↩</span>
         </button>
       </div>
     </div>
   </motion.div>
-);
+  );
+};
 
 /* ── Sub-components unchanged ────────────────────────────────────────── */
 const PainHero = () => {
@@ -260,7 +292,7 @@ const YpodochiFaqItem = ({ item, index, isOpen, onToggle }) => (
           exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.34, ease }}>
           <p className="ypd-faq-a">
             {item.demoLink ? (
-              <>{item.a}<Link to="/demo" className="ypd-faq-demo-link">{item.demoLink}</Link>{item.aAfter}</>
+              <>{item.a}<Link to="/go#book" className="ypd-faq-demo-link">{item.demoLink}</Link>{item.aAfter}</>
             ) : item.a}
           </p>
         </motion.div>
@@ -269,7 +301,7 @@ const YpodochiFaqItem = ({ item, index, isOpen, onToggle }) => (
   </div>
 );
 
-/* ── Main Pyxida Content (same for both markets for now) ─────────────── */
+/* ── Main DialogosAI Content (same for both markets for now) ─────────────── */
 const PyxidaContent = ({ market }) => {
   const { t } = useTranslation();
   const [openFaq, setOpenFaq] = useState(-1);
@@ -304,7 +336,7 @@ const PyxidaContent = ({ market }) => {
           </ul>
           <p className="ypd-ngo-funding">{t('ypodochiPage.ngo.funding')}</p>
           <div className="ypd-ngo-cta-stack">
-            <Link to="/demo" className="btn btn-primary btn-large">{t('ypodochiPage.ngo.cta')}</Link>
+            <Link to="/go#book" className="btn btn-primary btn-large">{t('ypodochiPage.ngo.cta')}</Link>
           </div>
         </div>
       </section>
@@ -332,7 +364,7 @@ const PyxidaContent = ({ market }) => {
           </div>
           <div className="ypd-faq-cta">
             <DemoCtaStack>
-              <Link to="/demo" className="btn btn-primary btn-large">{t('ypodochiPage.finalCta.cta')}</Link>
+              <Link to="/go#book" className="btn btn-primary btn-large">{t('ypodochiPage.finalCta.cta')}</Link>
             </DemoCtaStack>
           </div>
         </div>

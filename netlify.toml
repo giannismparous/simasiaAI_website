@@ -5,11 +5,131 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  # Netlify sets CI=true, which turns every ESLint warning into a failed build.
+  # Lint still runs in `npm start`; it just cannot block a deploy.
+  DISABLE_ESLINT_PLUGIN = "true"
 
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
+# ── Plain-text files for LLMs ────────────────────────────────────────────
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
+[[headers]]
+  for = "/llms-full.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
+# ── Permanent redirects for retired routes (must stay ABOVE the SPA catch-all) ──
+[[redirects]]
+  from = "/demo"
+  to = "/go"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/book-demo"
+  to = "/go"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/go"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/flow/build"
+  to = "/go"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/solutions"
+  to = "/flow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/target-audience"
+  to = "/flow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/applications"
+  to = "/flow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/applications/*"
+  to = "/flow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products"
+  to = "/flow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/*"
+  to = "/flow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services"
+  to = "/flow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/*"
+  to = "/flow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/archive/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about"
+  to = "/team"
+  status = 301
+  force = true
+
+# The clinics page showed a price ladder and the calculator was internal. Prices are
+# no longer on the site: the offer arrives as a PDF by email from /go.
+[[redirects]]
+  from = "/ypodochi"
+  to = "/go?for=med"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/calculator"
+  to = "/go"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pricing-calculator"
+  to = "/go"
+  status = 301
+  force = true
+
+# ── SPA catch-all (keep last) ────────────────────────────────────────────
 [[redirects]]
   from = "/*"
   to = "/index.html"

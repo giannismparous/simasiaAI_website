@@ -1,0 +1,296 @@
+import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { MODULES, ORGS, moduleById, GoLabel } from './modules';
+import './FlowHomeBlocks.css';
+
+/*
+ * Home page blocks. fλow is introduced as an idea first: the noise of a care day on
+ * the left, the λ in the middle, calm parallel streams on the right that add up to
+ * holistic care. Three doors lead into /go (build your own fλow).
+ */
+
+export const PRESS = [
+  { outlet: 'news4health', title: { el: 'ΣΚΠ-i: Το νέο chatbot τεχνητής νοημοσύνης για τη Σκλήρυνση κατά Πλάκας', en: 'ΣΚΠ-i: the new AI chatbot for Multiple Sclerosis' }, url: 'https://www.news4health.gr/digital-health/skp-i-to-neo-chatbot-texnitis-noimosynis-gia-tous-pasxontes-apo-sklirynsi-kata-plakas' },
+  { outlet: 'healthpharma', title: { el: 'Το νέο AI chatbot για τα άτομα με Σκλήρυνση κατά Πλάκας', en: 'The new AI chatbot for people with MS' }, url: 'https://healthpharma.gr/pathiseis/to-neo-ai-chatbot-gia-ta-atoma-me-sklirynsi-kata-plakas/' },
+  { outlet: 'newsbeast', title: { el: 'Η Σκλήρυνση κατά Πλάκας αποκτά AI σύμμαχο', en: 'MS gets an AI ally' }, url: 'https://www.newsbeast.gr/health/arthro/13338274/i-sklirynsi-kata-plakas-apokta-ai-symmacho-to-skp-i-apanta-24-ores-to-24oro' },
+  { outlet: 'ygeiamou', title: { el: 'Νέο Digital Hub για τη Σκλήρυνση κατά Πλάκας', en: 'A new digital hub for MS' }, url: 'https://www.ygeiamou.gr/idisis/585281/i-techniti-noimosini-ginete-simmachos-ton-atomon-me-sklirinsi-kata-plakas-me-neo-digital-hub-to-skp-i/' },
+  { outlet: { el: 'Φωνή Μαλεβιζίου', en: 'Foni Maleviziou' }, title: { el: 'Τρεις ψηφιακοί βοηθοί για ανθρώπους που τους χρειάζονται', en: 'Three digital assistants for people who need them' }, url: 'https://fonimaleviziou.gr/2026/09/04/treis-psifiakoi-voithoi-gia-anthropous-pou-tous-chreiazontai-otan-i-ypologistiki-glossologia-vgainei-apo-to-amfitheatro/' },
+];
+
+const T = {
+  el: {
+    pressLabel: 'Έγραψαν για εμάς',
+    teaserTitle: 'Παραμένετε σε Ροή και προσφέρετε φροντίδα',
+    teaserLead: 'Συνεχή τηλέφωνα, αδιάβαστα μηνύματα στο Viber, στίβες με χαρτιά και αναφορές, συνταγογραφήσεις, προθεσμίες, ενημερώσεις, ραντεβού το ένα μετά το άλλο. Οι άνθρωποι που φροντίζουν άλλους δουλεύουν μέσα σε έναν ασταμάτητο θόρυβο. Το fλow αντικαθιστά τον θόρυβο με ροή.',
+    left: ['Τηλέφωνα', 'Viber', 'Χαρτιά', 'Excel', 'Email', 'Προθεσμίες'],
+    right: ['Έγκυρες και ακριβείς Απαντήσεις 24/7', 'Όλα σε μία πλατφόρμα', 'Υπενθυμίσεις', 'Συλλογή δεδομένων Ανάλυσης', 'Ήσυχες οικογένειες'],
+    result: ['Ολιστική', 'φροντίδα'],
+    before: 'Σήμερα', after: 'Με fλow',
+    aria: 'Έξι μπερδεμένα κανάλια μπαίνουν στο fλow και βγαίνουν ως πέντε ήρεμα, παράλληλα ρεύματα που μαζί δίνουν ολιστική φροντίδα.',
+    doorsTitle: 'Από πού ξεκινάτε;',
+    doors: [
+      { k: 'ngo', b: 'Είμαι οργανισμός ή ΜΚΟ', s: 'Απαντήσεις για τους ανθρώπους σας, δεδομένα για ομάδα και χορηγούς' },
+      { k: 'med', b: 'Είμαι γιατρός ή κλινική', s: 'Ραντεβού και καρτέλες που γεμίζουν μόνες' },
+      { k: 'sponsor', b: 'Θέλω να στηρίξω', s: 'Στήριξη που μετριέται ανά άνθρωπο' },
+    ],
+    goHint: 'Φτιάξτε τη ροή σας σε 3 λεπτά. Η προσφορά σας έρχεται στο email σας.',
+    proofTitle: 'Οργανισμοί με Ροή:',
+    proofLead: 'Το fλow γεννήθηκε μέσα σε δύο οργανισμούς που υποστηρίζουν ανθρώπους καθημερινά.',
+    adoptTitle: 'Το fλow υλοποιείται ήδη σε οργανισμούς με κοινωνικό αντίκτυπο',
+    adoptLead: 'Κάθε οργανισμός ξεκινά από ένα κομμάτι. Όταν η ροή σταθεροποιηθεί, προσθέτει το επόμενο, στην ίδια πλατφόρμα, με τα ίδια δεδομένα.',
+    live: 'Σε λειτουργία', building: 'Σε υλοποίηση',
+    has: 'Έχει', next: 'Επόμενο βήμα', full: 'Ολόκληρο το fλow: απαντήσεις και ανάλυση δεδομένων',
+    allCollabs: 'Όλες οι συνεργασίες',
+  },
+  en: {
+    pressLabel: 'In the press',
+    teaserTitle: 'Stay in flow and give care',
+    teaserLead: 'Constant phone calls, unread Viber messages, piles of paper and reports, prescriptions, deadlines, updates, one appointment after another. People who care for others work inside endless noise. fλow replaces the noise with flow.',
+    left: ['Phone calls', 'Viber', 'Paper', 'Excel', 'Email', 'Deadlines'],
+    right: ['Accurate, reliable answers 24/7', 'Everything on one platform', 'Reminders', 'Data collected for analysis', 'Calm families'],
+    result: ['Holistic', 'care'],
+    before: 'Today', after: 'With fλow',
+    aria: 'Six tangled channels enter fλow and leave as five calm, parallel streams that together make holistic care.',
+    doorsTitle: 'Where do you start?',
+    doors: [
+      { k: 'ngo', b: 'I run an organisation or NGO', s: 'Answers for your people, data for your team and sponsors' },
+      { k: 'med', b: 'I am a doctor or clinic', s: 'Bookings and patient records that fill themselves' },
+      { k: 'sponsor', b: 'I want to support', s: 'Support you can measure per person' },
+    ],
+    goHint: 'Build your flow in 3 minutes. Your offer arrives in your inbox.',
+    proofTitle: 'Organisations in flow:',
+    proofLead: 'fλow was born inside two organisations that support people every day.',
+    adoptTitle: 'fλow already runs in organisations with social impact',
+    adoptLead: 'Every organisation starts with one part. When the flow settles, it adds the next one, on the same platform, with the same data.',
+    live: 'Live', building: 'Being built',
+    has: 'Has', next: 'Next step', full: 'The whole fλow: answers and data analysis',
+    allCollabs: 'All collaborations',
+  },
+};
+
+const useT = () => { const { language } = useLanguage(); const lang = language === 'en' ? 'en' : 'el'; return [T[lang], lang]; };
+
+/* Calm press band, placed just above the footer */
+export const PressStrip = ({ dark = false }) => {
+  const [t, lang] = useT();
+  return (
+    <nav className={`flh-press${dark ? ' is-dark' : ''}`} aria-label={t.pressLabel}>
+      <span className="flh-press-l">{t.pressLabel}</span>
+      <ul>
+        {PRESS.map((p) => (
+          <li key={p.url}><a href={p.url} target="_blank" rel="noopener noreferrer" title={p.title[lang]}>{typeof p.outlet === 'string' ? p.outlet : p.outlet[lang]}</a></li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+
+export const PressBand = () => (
+  <section className="flh-pressband"><div className="flh-in"><PressStrip /></div></section>
+);
+
+const COLORS = ['#6a9bcc', '#9fb383', '#9fb383', '#d97757', '#faf9f5'];
+const prefersReduced = () => typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* a dot that runs along a path, forever */
+const Runner = ({ href, dur, begin, r = 3.5, className = 'flh-dot' }) => (
+  <circle r={r} className={className}>
+    <animateMotion dur={dur} repeatCount="indefinite" begin={begin}><mpath href={href} /></animateMotion>
+  </circle>
+);
+
+/* Desktop: noise runs tangled into the λ, five calm streams run out of it,
+   and all five run into one result: holistic care. */
+const ChaosToFlow = ({ t }) => {
+  const reduce = prefersReduced();
+  const W = 1270; const H = 380; const NX = 470; const NY = 190;
+  const ly = [52, 106, 160, 214, 268, 322];
+  const ry = [82, 136, 190, 244, 298];
+  const mix = [4, 2, 5, 0, 3, 1];
+  const tangles = useMemo(() => ly.map((y, i) => {
+    const t2 = NY - 40 + i * 16;
+    return `M 186 ${y} C 262 ${ly[mix[i]]}, 318 ${ly[(i + 2) % 6]}, 366 ${(y + t2) / 2} S 424 ${t2}, ${NX - 58} ${NY - 20 + i * 8}`;
+  }), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const SX = NX + 230;
+  const calm = ry.map((y, i) => `M ${NX + 58} ${NY - 16 + i * 8} C ${NX + 130} ${NY - 16 + i * 8}, ${NX + 150} ${y}, ${SX - 20} ${y} L ${SX} ${y}`);
+  const RX = 1200; // result
+  const into = ry.map((y, i) => `M 1056 ${y} C 1100 ${y}, 1105 ${NY - 8 + i * 4}, ${RX - 62} ${NY - 8 + i * 4}`);
+  return (
+    <svg className="flh-chaos" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={t.aria}>
+      <defs>
+        <radialGradient id="flhGlow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stopColor="#d97757" stopOpacity="0.3" /><stop offset="1" stopColor="#d97757" stopOpacity="0" /></radialGradient>
+      </defs>
+      <text x="40" y="18" className="flh-cap">{t.before}</text>
+      <text x={SX + 12} y="18" className="flh-cap">{t.after}</text>
+      {tangles.map((d, i) => <path key={i} id={`flht${i}`} d={d} className="flh-tangle" />)}
+      {ly.map((y, i) => <text key={t.left[i]} x="172" y={y + 5} textAnchor="end" className="flh-l">{t.left[i]}</text>)}
+      {calm.map((d, i) => <path key={i} id={`flhc${i}`} d={d} className="flh-calm" style={{ stroke: COLORS[i] }} />)}
+      {ry.map((y, i) => <text key={t.right[i]} x={SX + 12} y={y + 5} className="flh-r">{t.right[i]}</text>)}
+      {into.map((d, i) => <path key={i} id={`flhi${i}`} d={d} className="flh-into" style={{ stroke: COLORS[i] }} />)}
+      {!reduce && (
+        <g aria-hidden="true">
+          {tangles.map((_, i) => <Runner key={`t${i}`} href={`#flht${i}`} dur={`${2.6 + (i % 3) * 0.7}s`} begin={`${i * 0.45}s`} r={2.6} className="flh-dot-noise" />)}
+          {ry.map((_, i) => <Runner key={`c${i}`} href={`#flhc${i}`} dur={`${3.4 + i * 0.5}s`} begin={`${i * 0.6}s`} />)}
+          {ry.map((_, i) => <Runner key={`r${i}`} href={`#flhi${i}`} dur={`${2.8 + i * 0.3}s`} begin={`${0.4 + i * 0.5}s`} r={3} className="flh-dot-in" />)}
+        </g>
+      )}
+      <circle cx={NX} cy={NY} r="140" fill="url(#flhGlow)" />
+      <circle cx={NX} cy={NY} r="56" className="flh-node" />
+      <text x={NX} y={NY + 12} textAnchor="middle" className="flh-node-t">f<tspan className="flh-node-l">λ</tspan>ow</text>
+      <circle cx={RX} cy={NY} r="70" fill="url(#flhGlow)" />
+      <circle cx={RX} cy={NY} r="62" className="flh-res" />
+      <text x={RX} y={NY - 4} textAnchor="middle" className="flh-result">{t.result[0]}</text>
+      <text x={RX} y={NY + 20} textAnchor="middle" className="flh-result">{t.result[1]}</text>
+    </svg>
+  );
+};
+
+/* Phone: the same story top to bottom, with the same running lines. */
+const splitLabel = (s, max = 24) => {
+  if (s.length <= max) return [s];
+  const mid = Math.floor(s.length / 2);
+  let k = s.lastIndexOf(' ', mid); if (k < 0) k = s.indexOf(' ', mid);
+  return k < 0 ? [s] : [s.slice(0, k), s.slice(k + 1)];
+};
+const ChaosToFlowMobile = ({ t }) => {
+  const reduce = prefersReduced();
+  const W = 360; const CX = 180; const NY = 250;
+  const lx = [60, 180, 300, 60, 180, 300];
+  const lyy = [52, 52, 52, 96, 96, 96];
+  const tangles = lx.map((x, i) => `M ${x} ${lyy[i] + 12} C ${x + (i % 2 ? 70 : -40)} ${lyy[i] + 60}, ${CX + (i % 3 - 1) * 90} ${150 + (i % 2) * 20}, ${CX + (i - 2.5) * 6} ${NY - 46}`);
+  const top = 330; const gap = 64;
+  const lanes = COLORS.map((_, i) => 28 + i * 9);
+  const rows = t.right.map((_, i) => top + 20 + i * gap);
+  const RY = top + 5 * gap + 70;
+  const H = RY + 50;
+  const calm = lanes.map((x, i) => `M ${CX + (i - 2) * 7} ${NY + 46} C ${CX + (i - 2) * 7} ${NY + 90}, ${x} ${top - 30}, ${x} ${top} L ${x} ${RY - 70} C ${x} ${RY - 30}, ${CX - 70 + i * 4} ${RY}, ${CX - 112} ${RY}`);
+  return (
+    <svg className="flh-chaos-m" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={t.aria}>
+      <defs>
+        <radialGradient id="flhGlowM" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stopColor="#d97757" stopOpacity="0.3" /><stop offset="1" stopColor="#d97757" stopOpacity="0" /></radialGradient>
+      </defs>
+      <text x="16" y="20" className="flh-cap">{t.before}</text>
+      {tangles.map((d, i) => <path key={i} id={`flhmt${i}`} d={d} className="flh-tangle" />)}
+      {t.left.map((l, i) => <text key={l} x={lx[i]} y={lyy[i] + 5} textAnchor="middle" className="flh-l flh-l-m">{l}</text>)}
+      {calm.map((d, i) => <path key={i} id={`flhmc${i}`} d={d} className="flh-calm" style={{ stroke: COLORS[i] }} />)}
+      <text x="16" y={top - 44} className="flh-cap">{t.after}</text>
+      {rows.map((y, i) => (
+        <g key={t.right[i]}>
+          <line x1={lanes[i] + 6} y1={y} x2="104" y2={y} className="flh-tick" style={{ stroke: COLORS[i] }} />
+          <circle cx="104" cy={y} r="3" style={{ fill: COLORS[i] }} />
+          <text x="114" y={y + 5} className="flh-r flh-r-m">
+            {splitLabel(t.right[i]).map((part, k) => <tspan key={part} x="114" dy={k ? 19 : 0}>{part}</tspan>)}
+          </text>
+        </g>
+      ))}
+      {!reduce && (
+        <g aria-hidden="true">
+          {tangles.map((_, i) => <Runner key={`t${i}`} href={`#flhmt${i}`} dur={`${2.4 + (i % 3) * 0.6}s`} begin={`${i * 0.4}s`} r={2.6} className="flh-dot-noise" />)}
+          {calm.map((_, i) => <Runner key={`c${i}`} href={`#flhmc${i}`} dur={`${5.2 + i * 0.5}s`} begin={`${i * 0.7}s`} />)}
+        </g>
+      )}
+      <circle cx={CX} cy={NY} r="110" fill="url(#flhGlowM)" />
+      <circle cx={CX} cy={NY} r="46" className="flh-node" />
+      <text x={CX} y={NY + 10} textAnchor="middle" className="flh-node-t flh-node-t-m">f<tspan className="flh-node-l">λ</tspan>ow</text>
+      <rect x={CX - 112} y={RY - 28} width="224" height="56" rx="28" className="flh-res" />
+      <text x={CX} y={RY + 7} textAnchor="middle" className="flh-result flh-result-m">{t.result.join(' ')}</text>
+    </svg>
+  );
+};
+
+export const FlowTeaser = () => {
+  const [t] = useT();
+  return (
+    <section className="flh-teaser" aria-labelledby="flh-teaser-t">
+      <div className="flh-in">
+        <h2 id="flh-teaser-t">{t.teaserTitle}</h2>
+        <p className="flh-lead">{t.teaserLead}</p>
+      </div>
+      <div className="flh-chaos-wrap"><ChaosToFlow t={t} /><ChaosToFlowMobile t={t} /></div>
+      <div className="flh-in">
+        <h3 className="flh-doors-t">{t.doorsTitle}</h3>
+        <ul className="flh-doors">
+          {t.doors.map((d) => (
+            <li key={d.k}><Link to={`/go?for=${d.k}`} className={`flh-door flh-door-${d.k}`}><b>{d.b}</b><span>{d.s}</span><i aria-hidden="true">→</i></Link></li>
+          ))}
+        </ul>
+        <div className="flh-go-row">
+          <Link to="/go" className="go-btn"><GoLabel /></Link>
+          <span>{t.goHint}</span>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* One organisation's path through the three parts: filled = has it, dashed = next step */
+const OrgPath = ({ org, t, lang }) => {
+  const order = ['dialogos', 'praxis', 'metron'].sort((a, b) => {
+    const rank = (id) => (org.has.includes(id) ? 0 : id === org.next ? 1 : 2);
+    return rank(a) - rank(b);
+  });
+  return (
+    <ol className="flh-path" aria-label={`${org.name[lang]}: ${org.has.map((h) => moduleById(h).name).join(', ')}`}>
+      {order.map((id) => {
+        const m = moduleById(id);
+        const state = org.has.includes(id) ? 'has' : id === org.next ? 'next' : 'later';
+        return (
+          <li key={id} className={`flh-step is-${state}`} style={{ '--c': m.color }}>
+            <span className="flh-step-dot" aria-hidden="true" />
+            <b>{m.name}</b>
+            <small>{state === 'has' ? m.role[lang] : state === 'next' ? t.next : ''}</small>
+          </li>
+        );
+      })}
+    </ol>
+  );
+};
+
+export const FlowAdoption = ({ heading = true }) => {
+  const [t, lang] = useT();
+  return (
+    <div className="flh-adopt">
+      {heading && (
+        <>
+          <h3 className="flh-adopt-t">{t.adoptTitle}</h3>
+          <p className="flh-adopt-l">{t.adoptLead}</p>
+        </>
+      )}
+      <ul className="flh-legend">
+        {MODULES.map((m) => (
+          <li key={m.id} style={{ '--c': m.color }}><span aria-hidden="true" /><b>{m.name}</b> {m.role[lang]}</li>
+        ))}
+      </ul>
+      <div className="flh-orgs">
+        {ORGS.map((o) => (
+          <article key={o.id} className={`flh-org${o.full ? ' is-full' : ''}`}>
+            <header>
+              <a href={o.href} target="_blank" rel="noopener noreferrer" className="flh-org-logo"><img src={o.logo} alt={o.name[lang]} loading="lazy" /></a>
+              <span className={`flh-tag${o.live ? ' is-live' : ''}`}>{o.live ? t.live : t.building}</span>
+            </header>
+            <h4>{typeof o.product === 'string' ? o.product : o.product[lang]}</h4>
+            <p className="flh-org-name">{o.name[lang]}</p>
+            <p className="flh-org-what">{o.what[lang]}</p>
+            <OrgPath org={o} t={t} lang={lang} />
+            {o.full && <p className="flh-org-full">{t.full}</p>}
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export const FlowProof = () => {
+  const [t] = useT();
+  return (
+    <section className="flh-proof" aria-labelledby="flh-proof-t">
+      <div className="flh-in">
+        <h2 id="flh-proof-t">{t.proofTitle}</h2>
+        <p className="flh-lead">{t.proofLead}</p>
+        <FlowAdoption />
+        <Link to="/collaborations" className="flh-more">{t.allCollabs} →</Link>
+      </div>
+    </section>
+  );
+};

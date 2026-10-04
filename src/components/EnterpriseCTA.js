@@ -3,12 +3,15 @@ import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import InteractiveConstellation from './InteractiveConstellation';
 import { useTranslation } from '../hooks/useTranslation';
+import { GoLabel } from './flow/modules';
 import './EnterpriseCTA.css';
 
+// Closing invitation: build your fλow (primary) or book 30 minutes (secondary).
 const EnterpriseCTA = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '100px' });
   const { t } = useTranslation();
+  const reassure = t('enterpriseCta.reassure');
 
   return (
     <section className="enterprise-cta" ref={ref}>
@@ -22,17 +25,17 @@ const EnterpriseCTA = () => {
         <h2>{t('enterpriseCta.title')}</h2>
         <p className="enterprise-cta-lead">
           {t('enterpriseCta.leadBefore')}{' '}
-          <strong>{t('enterpriseCta.brand')}</strong>{' '}
+          <strong>f<span className="go-l">λ</span>ow</strong>{' '}
           {t('enterpriseCta.leadAfter')}
         </p>
         <div className="enterprise-cta-buttons">
-          <Link to="/demo" className="btn-cta-primary">
-            {t('enterpriseCta.cta')}
-          </Link>
-          <a href="mailto:contact@simasiaai.gr" className="btn-cta-secondary">
-            contact@simasiaai.gr
-          </a>
+          <Link to="/go" className="go-btn"><GoLabel /></Link>
+          <Link to="/go#book" className="btn-cta-secondary">{t('enterpriseCta.cta')}</Link>
         </div>
+        {Array.isArray(reassure) && (
+          <ul className="enterprise-cta-reassure">{reassure.map((r) => <li key={r}>{r}</li>)}</ul>
+        )}
+        <a href="mailto:contact@simasiaai.gr" className="enterprise-cta-mail">contact@simasiaai.gr</a>
       </motion.div>
     </section>
   );

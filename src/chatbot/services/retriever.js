@@ -25,7 +25,7 @@ const QUERY_STOPWORDS_EN = new Set([
 ]);
 
 const SIMASIA_SIGNAL_BASE =
-  'simasia|σίμασια|σιμασια|sima\\b|simasiachatbots|pyxida|πυξιδα|πυξίδα|dialogosai|dialogos|ψηφιακη|υποδοχη|ypodochi|praxi|απανταει|simasiaedu|simasiastudio|simasiadaily|ai\\s+from\\s+the\\s+human|ανθρωποκεντρ|προϊον|προιον|product|εφαρμογ|application|επικοινων|contact|εταιρ|company|startup|chatbot|slogan|σύνθημα|συνθημα|αποστολ|mission|demo|συνεργ|ομαδ|ομάδ|team|τομει|τομέ|εργαζ|έρευν|research|αξι|φιλοσοφ|vision|όραμα|μελη|μηλος|ιδρυτ|founder';
+  'simasia|σίμασια|σιμασια|sima\\b|flow|fλow|dialogosai|dialogos|praxisai|praxis|metronai|metron|pyxida|πυξιδα|πυξίδα|ψηφιακη|υποδοχη|ypodochi|απανταει|ιατρει|κλινικ|μκο|ngo|crm|ai\\s+from\\s+the\\s+human|ανθρωποκεντρ|προϊον|προιον|product|εφαρμογ|application|επικοινων|contact|εταιρ|company|startup|chatbot|slogan|σύνθημα|συνθημα|αποστολ|mission|demo|συνεργ|ομαδ|ομάδ|team|τομει|τομέ|εργαζ|έρευν|research|αξι|φιλοσοφ|vision|όραμα|μελη|μηλος|ιδρυτ|founder';
 
 let scopeSignalRegex = null;
 
@@ -188,7 +188,10 @@ function querySignalsCollaborations(queryNorm, queryGreeklish) {
 
 function querySignalsDemo(queryNorm, queryGreeklish) {
   const folded = foldGreeklishForMatch(`${queryNorm} ${queryGreeklish}`);
-  return /demo|ραντεβ|book|κλεισ|randev|kleis/.test(queryNorm) || /demo|randev|kleis/.test(folded);
+  return (
+    /demo|ραντεβ|book|κλεισ|συναντησ|meeting|call|randev|kleis/.test(queryNorm) ||
+    /demo|randev|kleis|synant|sinant/.test(folded)
+  );
 }
 
 function topicTermMatchesBlob(blob, term) {
@@ -232,13 +235,13 @@ export function detectReplyLanguage(text, uiLanguage = 'el') {
   return uiLanguage === 'en' ? 'en' : 'el';
 }
 
-/** Map legacy product names to Pyxida for retrieval & scope. */
+/** Map legacy product names to DialogosAI for retrieval & scope. */
 export function expandProductAliases(text) {
   return String(text || '')
-    .replace(/\bdialogos\s*ai\b/gi, 'Pyxida')
-    .replace(/\bdialogosai\b/gi, 'Pyxida')
-    .replace(/\bδιαλογος\s*ai\b/gi, 'Pyxida')
-    .replace(/\bδιαλογοςαι\b/gi, 'Pyxida');
+    .replace(/\bdialogos\s*ai\b/gi, 'DialogosAI')
+    .replace(/\bdialogosai\b/gi, 'DialogosAI')
+    .replace(/\bδιαλογος\s*ai\b/gi, 'DialogosAI')
+    .replace(/\bδιαλογοςαι\b/gi, 'DialogosAI');
 }
 
 function cleanQueryToken(token) {
@@ -413,7 +416,7 @@ function applyRetrievalRelevanceAdjustments(score, doc, queryNorm, topicContextN
   const docUrl = String(doc.url || '').trim().replace(/\/+$/, '');
   if (querySignalsCollaborations(queryNorm, queryGreeklish)) {
     if (docUrl === '/collaborations') score += 0.55;
-    if (docUrl === '/demo' && !querySignalsDemo(queryNorm, queryGreeklish)) score *= 0.28;
+    if ((docUrl === '/go#book' || docUrl === '/go') && !querySignalsDemo(queryNorm, queryGreeklish)) score *= 0.28;
   }
 
   return score;

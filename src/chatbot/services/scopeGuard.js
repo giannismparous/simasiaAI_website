@@ -22,7 +22,7 @@ import {
 
 const OFF_TOPIC_REGEX =
 
-  /μητσοτακ|τσιπρα|παπανδρεου|κυβερνηση|κυβέρνηση|πρωθυπουργ|πολιτικ|κομμα\b|κόμμα\b|trump|biden|putin|zelensky|celebrity|διασημο|ποδοσφαιρ|μπασκετ|weather|καιρος|καιρός|recipe|συνταγ|joke|αστειο|αστείο|gambl|καζινο|sex\b|porn|hack\s|crack\s|bitcoin|crypto|football|gaming|eurovision|won\s+the\s+eurovision/i;
+  /μητσοτακ|τσιπρα|παπανδρεου|κυβερνηση|κυβέρνηση|πρωθυπουργ|πολιτικ(?:ος|οι|ους|ων|ου)(?![α-ωa-z])|πολιτικα\s+κομματα|κομμα(?![α-ωa-z])|κόμμα(?![α-ωa-z])|ψηφισω|trump|biden|putin|zelensky|politician|celebrit|διασημο|dating\s+who|ποδοσφαιρ|μπασκετ|weather|recipe|συνταγη\s+για|συνταγες\s+μαγειρ|μουσακα|joke|αστειο|αστείο|gambl|καζινο|sex\b|porn|hack\s|crack\s|malware|ransomware|torrent|bitcoin|crypto|mine\s+crypto|football|gaming|eurovision|ταινια|movie|film\b|oppenheimer|πρωταθλ|champions\s*league|ολυμπιακ|παναθηναικ|παοκ(?![α-ωa-z])|μπαρτσελ|ρεαλ\s+μαδριτ|καιρ(?:ος|ο|ου)(?![α-ωa-z])|θερμοκρασι|βροχ(?:η|ες)(?![α-ωa-z])|temperature|εκλογ|election|ωροσκοπ|ζωδι|horoscope|lotto|τζοκερ|στοιχημ|betting/i;
 
 
 
@@ -32,7 +32,7 @@ const GREETING_ONLY_REGEX = /^(γεια|γειά|hello|hi|hey|καλημερα|�
 
 const CRISIS_USER_REGEX =
 
-  /suicidal|αυτοκτον|σκοτωσω|kill\s+myself|what\s+pills\s+should\s+i\s+take|πια\s+χαπια|να\s+παρω\s+χαπια/i;
+  /suicid|αυτοκτον|σκοτωσω|kill\s+myself|want\s+to\s+die|wanna\s+die|end\s+my\s+life|self[\s-]*harm|hurt\s+myself|what\s+pills\s+should\s+i\s+take|πια\s+χαπια|ποια\s+χαπια|να\s+παρω\s+χαπια|θελω\s+να\s+πεθανω|να\s+πεθανω|δεν\s+θελω\s+να\s+ζω|τελειωσω\s+τη\s+ζωη|βαλω\s+τελος|αυτοτραυματ|κοβομαι|να\s+κοψω\s+τα\s+χερια|thelw\s+na\s+pethanw|na\s+pethano|autoktono/i;
 
 
 
@@ -50,13 +50,13 @@ const EXTERNAL_ORG_DEEP_REGEX =
 
 export const JAILBREAK_USER_REGEX =
 
-  /(?:αγνοησε|αγνοηστε|ignore\s+(?:all\s+)?(?:previous|prior|above)|disregard\s+(?:all\s+)?(?:the\s+)?(?:rules|instructions|context)|pretend\s+you\s+are|you\s+are\s+now|jailbreak|dan\s+mode|developer\s+mode|(?:show|reveal|print|δωσε|δειξε|δείξε).{0,24}(?:api\s*key|secret|κλειδ|κωδικ)|repeat\s+(?:everything|all).{0,20}context|ολοκληρο\s+το\s+context|system\s+prompt|προτροπη\s+συστηματος|SOURCE_TITLE:|SOURCE_CONTENT:)/i;
+  /(?:αγνοησε|αγνοηστε|ignore\s+(?:all\s+)?(?:previous|prior|above|rules|instructions)|end\s*context|new\s+instructions|^\s*system\s*:|disable\s+safety|answer\s+anything|εισαι\s+τωρα|aiza|\.env\b|(?:your|σας|σου)\s+api\s*keys?|send\s+(?:me\s+)?(?:the\s+)?keys|internal\s+chunk|file\s+paths|full\s+context|disregard\s+(?:all\s+)?(?:the\s+)?(?:rules|instructions|context)|pretend\s+you\s+are|you\s+are\s+now|jailbreak|dan\s+mode|developer\s+mode|(?:show|reveal|print|δωσε|δειξε|δείξε).{0,24}(?:api\s*key|secret|κλειδ|κωδικ)|repeat\s+(?:everything|all).{0,20}context|ολοκληρο\s+το\s+context|system\s+prompt|προτροπη\s+συστηματος|SOURCE_TITLE:|SOURCE_CONTENT:)/i;
 
 
 
 export const UNRELATED_TOPIC_REGEX =
 
-  /bitcoin|crypto|μετοχ|stock\s+market|συνταγ|recipe|μαγειρ|ποδοσφαι|football|ταινι|gaming|hack\s+/i;
+  /bitcoin|crypto|μετοχ|stock\s+market|συνταγη\s+για|recipe|μαγειρ|ποδοσφαι|football|ταινι|movie|gaming|hack\s+/i;
 
 
 
@@ -67,6 +67,47 @@ export function userMessageLooksSimasiaRelated(text) {
 }
 
 
+
+const MEDICAL_ADVICE_REGEX =
+  /(?:ποια|τι)\s+φαρμακ|φαρμακα\s+(?:για|να\s+παρω)|δοσολογ|dosage|διαγνωσε|diagnose\s+my|my\s+symptoms|τα\s+συμπτωματα\s+μου|εχω\s+(?:μουδιασμα|πονο|πυρετο)|i\s+have\s+(?:numbness|pain|fever)|treatment\s+guidelines|mcdonald\s+(?:diagnostic\s+)?criteria|προγνωση|prognosis/i;
+
+const PERSONAL_DATA_REGEX =
+  /αμκα\s*(?:μου)?\s*(?:ειναι|:)|(?:^|\D)\d{11}(?:\D|$)|password|κωδικος\s+μου|my\s+(?:home\s+)?address\s+is|η\s+διευθυνση\s+μου\s+ειναι|iban|αριθμος\s+καρτας|card\s+number/i;
+
+const VAGUE_REGEX = /^(?:[^a-zα-ω0-9]*|[a-zα-ω]{1,2}[;?!.]*|help[.!?]*|βοηθεια[.!?]*|\d{1,4}|asdf\w*|qwer\w*|[asdfghjkl]{6,}|[qwertyuiop]{6,})$/i;
+
+export function isMedicalAdviceRequest(text) {
+  return MEDICAL_ADVICE_REGEX.test(normalize(text || ''));
+}
+
+export function isPersonalDataMessage(text) {
+  return PERSONAL_DATA_REGEX.test(normalize(text || ''));
+}
+
+export function isVagueMessage(text) {
+  const n = normalize(text || '').trim();
+  if (!n) return true;
+  if (/^(?:ναι|οχι|οκ|ok|yes|no|nai|oxi)[.!]*$/i.test(n)) return false;
+  return VAGUE_REGEX.test(n);
+}
+
+export function buildMedicalAdviceReply(language) {
+  return language === 'el'
+    ? 'Δεν μπορώ να δώσω ιατρικές συμβουλές για φάρμακα, συμπτώματα, διάγνωση ή θεραπεία. Γι᾽ αυτά μιλήστε με τον γιατρό σας. Σε επείγον καλέστε το 166 ή το 112. Μπορώ να σας πω πώς το fλow βοηθά οργανισμούς και ιατρεία να απαντούν στους ανθρώπους τους από εγκεκριμένες πηγές.'
+    : 'I cannot give medical advice on medication, symptoms, diagnosis or treatment. Please speak to your doctor. In an emergency call 112. I can tell you how fλow helps organisations and practices answer their people from approved sources.';
+}
+
+export function buildPersonalDataReply(language) {
+  return language === 'el'
+    ? 'Παρακαλώ μη γράφετε εδώ προσωπικά δεδομένα, όπως ΑΜΚΑ, διευθύνσεις ή κωδικούς. Δεν τα αποθηκεύω και δεν τα χρειάζομαι. Μπορώ να βοηθήσω με ερωτήσεις για τη SimasiaAI και το fλow.'
+    : 'Please do not share personal data here, such as ID numbers, addresses or passwords. I do not store or need them. I can help with questions about SimasiaAI and fλow.';
+}
+
+export function buildVagueReply(language) {
+  return language === 'el'
+    ? 'Πείτε μου τι θα θέλατε να μάθετε. Για παράδειγμα: τι είναι το fλow, τι κάνουν το DialogosAI, το PraxisAI και το MetronAI, πόσο κοστίζει, ή πώς κλείνετε 30 λεπτά μαζί μας.'
+    : 'Tell me what you would like to know. For example: what fλow is, what DialogosAI, PraxisAI and MetronAI do, what it costs, or how to book 30 minutes with us.';
+}
 
 export function isCrisisUserMessage(text) {
 
@@ -138,9 +179,13 @@ export function buildCrisisSafetyReply(language) {
 
     return (
 
-      'Δεν μπορώ να δώσω ιατρικές ή φαρμακευτικές συμβουλές. Αν βρίσκεστε σε άμεσο κίνδυνο, επικοινωνήστε με γραμμή βοήθειας (π.χ. 1018) ' +
+      'Λυπάμαι πολύ που νιώθετε έτσι, και χαίρομαι που το γράψατε. Δεν είστε μόνοι. ' +
 
-      'ή με επαγγελματία ψυχικής υγείας. Μπορώ να σας βοηθήσω μόνο με θέματα SimasiaAI — εταιρεία, προϊόντα και επικοινωνία.'
+      'Αν κινδυνεύετε τώρα, καλέστε αμέσως το 112. Μπορείτε να μιλήσετε με έναν άνθρωπο, ανώνυμα και όλο το 24ωρο, ' +
+
+      'στη Γραμμή Παρέμβασης για την Αυτοκτονία 1018 ή στη Γραμμή Ψυχοκοινωνικής Υποστήριξης 10306. ' +
+
+      'Είμαι ψηφιακός βοηθός και δεν μπορώ να δώσω ιατρική βοήθεια, αλλά εκεί θα σας ακούσουν τώρα.'
 
     );
 
@@ -148,9 +193,13 @@ export function buildCrisisSafetyReply(language) {
 
   return (
 
-    'I cannot provide medical or medication advice. If you are in immediate danger, please contact a crisis helpline (e.g. 1018) ' +
+    'I am really sorry you are feeling this way, and I am glad you wrote it down. You are not alone. ' +
 
-    'or a mental health professional. I can only help with SimasiaAI topics — company, products, and contact.'
+    'If you are in danger right now, call 112 immediately. You can talk to a person, anonymously and around the clock, ' +
+
+    'on the suicide intervention line 1018 or the psychosocial support line 10306 (Greece), or your local crisis line. ' +
+
+    'I am a digital assistant and cannot give medical help, but they can listen to you now.'
 
   );
 
@@ -172,7 +221,7 @@ export function isHardOffTopic(userText) {
 
   if (OFF_TOPIC_REGEX.test(norm)) return true;
 
-  if (!userMessageLooksSimasiaRelated(raw) && UNRELATED_TOPIC_REGEX.test(norm)) return true;
+  if (!hasSimasiaTopicSignals(raw) && UNRELATED_TOPIC_REGEX.test(norm)) return true;
 
   return false;
 
@@ -462,7 +511,7 @@ export function isBookingOrMeetingIntent(text) {
 export function answerInvitesBookDemo(text) {
   const raw = String(text || '');
   if (!raw.trim()) return false;
-  if (/\/demo/i.test(raw)) return true;
+  if (/\/go#book|\/demo\b/i.test(raw)) return true;
   const t = normalize(raw);
   if (
     /κλεισ(?:τε|ετε|ουμε|ω|ει).{0,48}demo|demo.{0,48}κλεισ|book.{0,24}demo|schedule.{0,24}demo|κλεισ(?:τε|ετε|ουμε|ω).{0,40}ραντεβ/.test(
@@ -493,10 +542,16 @@ export function isContactIntent(text) {
   );
 }
 
+/** Booking / contact lives on «Go with the fλow»: 30-minute call calendar at /go#book. */
+export const BOOK_CALL_URL = '/go#book';
+
+/** Retired booking URLs, still recognised so old answers/sources are replaced by /go#book. */
+const LEGACY_BOOKING_URLS = new Set(['/demo', '/book-demo', '/flow/build', '/go', BOOK_CALL_URL]);
+
 export function bookDemoSource(language = 'el') {
   return {
-    title: language === 'el' ? 'Κλείστε Demo — φόρμα' : 'Book a Demo — form',
-    url: '/demo',
+    title: language === 'el' ? 'Κλείστε συνάντηση 30 λεπτών — Go with the fλow' : 'Book a 30-minute call — Go with the fλow',
+    url: BOOK_CALL_URL,
     category: 'contact',
   };
 }
@@ -511,8 +566,8 @@ export function ensureBookDemoInAnswer(answer, language = 'el') {
   if (!t) return t;
   // Drop raw path mentions; the UI button opens the form.
   t = t
-    .replace(/\s*(?:εδώ|here)?\s*:?\s*\/demo\b/gi, '')
-    .replace(/\/demo\b/gi, '')
+    .replace(/\s*(?:εδώ|here)?\s*:?\s*(?:\/go#book|\/demo\b)/gi, '')
+    .replace(/\/go#book|\/demo\b/gi, '')
     .replace(/\s{2,}/g, ' ')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
@@ -520,34 +575,21 @@ export function ensureBookDemoInAnswer(answer, language = 'el') {
   // Point to the button below instead of a vague “via the form”.
   if (language === 'el') {
     t = t
-      .replace(
-        /μέσω της φόρμας(?!\s*Demo\s*παρακάτω)/gi,
-        'μέσω της φόρμας Demo παρακάτω'
-      )
-      .replace(
-        /στη(?:ν)? φόρμα(?!\s*Demo\s*παρακάτω)(?!\s*επικοινων)/gi,
-        'στη φόρμα Demo παρακάτω'
-      );
+      .replace(/(?:μέσω|από) της φόρμας Demo(?: παρακάτω)?/gi, 'από το κουμπί «Κλείστε 30 λεπτά» παρακάτω')
+      .replace(/στη(?:ν)? φόρμα Demo(?: παρακάτω)?/gi, 'στο κουμπί «Κλείστε 30 λεπτά» παρακάτω');
   } else {
     t = t
-      .replace(
-        /via the (?:Demo )?form(?!\s*below)/gi,
-        'via the Demo form below'
-      )
-      .replace(
-        /through the (?:Demo )?form(?!\s*below)/gi,
-        'through the Demo form below'
-      );
+      .replace(/(?:via|through) the Demo form(?: below)?/gi, 'with the «Book 30 minutes» button below');
   }
 
-  if (/φορμα\s*demo\s*παρακάτω|demo form below|φόρμας Demo παρακάτω/i.test(t)) {
+  if (/φορμα\s*demo\s*παρακάτω|demo form below|φόρμας Demo παρακάτω|κουμπί.{0,30}παρακάτω|button.{0,30}below/i.test(t)) {
     return t;
   }
   if (/φορμα|φόρμα|form|demo|ραντεβ|book/i.test(t)) return t;
   const line =
     language === 'el'
-      ? 'Μπορείτε να κλείσετε demo μέσω της φόρμας Demo παρακάτω.'
-      : 'You can book a demo via the Demo form below.';
+      ? 'Μπορείτε να κλείσετε συνάντηση 30 λεπτών από το κουμπί παρακάτω.'
+      : 'You can book a 30-minute call with the button below.';
   return `${t}\n\n${line}`;
 }
 
@@ -558,7 +600,7 @@ export function ensureContactFormInAnswer(answer, language = 'el') {
 
 export function withBookDemoSource(sources, language = 'el') {
   const list = Array.isArray(sources)
-    ? sources.filter((s) => s && s.url !== '/demo')
+    ? sources.filter((s) => s && !LEGACY_BOOKING_URLS.has(String(s.url || '').trim()))
     : [];
   return [bookDemoSource(language), ...list];
 }
@@ -568,11 +610,13 @@ export function withContactFormSource(sources, language = 'el') {
 }
 
 const NAV_PAGE_LABELS = {
-  '/ypodochi': { el: 'Δείτε το Pyxida', en: 'Explore Pyxida' },
+  '/flow': { el: 'Δείτε το fλow', en: 'Explore fλow' },
+  '/go': { el: 'Φτιάξτε το fλow σας', en: 'Build your fλow' },
+  '/go?for=med': { el: 'fλow για ιατρεία', en: 'fλow for practices' },
   '/collaborations': { el: 'Δείτε τις συνεργασίες', en: 'View collaborations' },
   '/team': { el: 'Γνωρίστε την ομάδα', en: 'Meet the team' },
   '/news': { el: 'Νέα & άρθρα', en: 'News & articles' },
-  '/': { el: 'SimasiaAI — αρχική', en: 'SimasiaAI home' },
+  '/': { el: 'Αρχική σελίδα', en: 'Home page' },
 };
 
 const MODULE_TIER_LABELS = {
@@ -584,6 +628,8 @@ const MODULE_TIER_LABELS = {
 
 function detectModuleTier(text) {
   const q = normalize(String(text || ''));
+  // clinic levels only make sense when the question is about a practice or names a level
+  if (!/ιατρει|iatrei|κλινικ|klinik|clinic|practice|γιατρ|doctor|kleinei|κλεινει|fernei|φερνει|sikonei|σηκωνει|apantaei|απανταει|ypodochi/.test(q)) return null;
   const tiers = [
     ['kleinei', /kleinei|κλεινει|module\s*1\b|κρατηση|ραντεβου/],
     ['fernei', /fernei|φερνει|module\s*2\b|πισω|recall|leads/],
@@ -601,7 +647,7 @@ export function isProductExploreIntent(text) {
   const q = normalize(String(text || ''));
   if (!q) return false;
   if (isBookingOrMeetingIntent(q) || isContactIntent(q)) return false;
-  return /pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|apanta|απαντα|module|modules|kleinei|fernei|sikonei|κλεινει|φερνει|σηκωνει|product|προιον|τιμ|price|feature|λειτουργ|τι κανει|what does|tell me about|ypodochi|συνεργ|sinerg|synerg|collabor|partner|ομαδ|omada|team|founder|ιδρυτ|νεα|news|αρθρ|τι ειναι|what is|πακετο|tier|προσφορ/i.test(
+  return /flow|fλow|dialogos|praxis|metron|crm|μκο|ngo|pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|apanta|απαντα|module|modules|kleinei|fernei|sikonei|κλεινει|φερνει|σηκωνει|product|προιον|τιμ|price|feature|λειτουργ|τι κανει|what does|tell me about|ypodochi|συνεργ|sinerg|synerg|collabor|partner|ομαδ|omada|team|founder|ιδρυτ|νεα|news|αρθρ|τι ειναι|what is|πακετο|tier|προσφορ/i.test(
     q
   );
 }
@@ -626,15 +672,13 @@ export function resolveProductPageCta({
   const lang = language === 'en' ? 'en' : 'el';
   const combined = `${question} ${answer}`;
 
+  // clinic levels live in Go with the fλow (the old /ypodochi price ladder is retired)
   const tier = detectModuleTier(combined);
   if (tier && MODULE_TIER_LABELS[tier]) {
-    return {
-      url: `/ypodochi#tier-${tier}`,
-      label: MODULE_TIER_LABELS[tier][lang],
-    };
+    return { url: '/go?for=med', label: NAV_PAGE_LABELS['/go?for=med'][lang] };
   }
 
-  const allowed = new Set(['/ypodochi', '/collaborations', '/team', '/news', '/']);
+  const allowed = new Set(['/flow', '/go', '/go?for=med', '/collaborations', '/team', '/news', '/']);
   const scores = new Map();
 
   (docs || []).forEach((doc) => {
@@ -646,14 +690,23 @@ export function resolveProductPageCta({
   });
 
   const q = normalize(question);
-  if (/pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|module|ypodochi|απαντα/.test(q)) {
-    scores.set('/ypodochi', (scores.get('/ypodochi') || 0) + 1.5);
+  if (/pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|module|ypodochi|απαντα|ιατρει|iatrei|κλινικ|klinik|clinic|γιατρ|doctor/.test(q)) {
+    scores.set('/go?for=med', (scores.get('/go?for=med') || 0) + 1.5);
+  }
+  if (/flow|fλow|dialogos|διαλογ|praxis|πραξις|metron|μετρον|crm|insights|μκο|ngo|συλλογ|χορηγ|sponsor/.test(q)) {
+    scores.set('/flow', (scores.get('/flow') || 0) + 1.5);
+  }
+  if (/τιμ|κοστ|price|pricing|cost|προσφορ|offer|πακετο|πιλοτ|pilot/.test(q)) {
+    scores.set('/go', (scores.get('/go') || 0) + 1.2);
   }
   if (/συνεργ|sinerg|synerg|collabor|partner|poamskp|myrto/.test(q)) {
     scores.set('/collaborations', (scores.get('/collaborations') || 0) + 1.5);
   }
   if (/ομαδ|omada|team|founder|ιδρυτ|μελη/.test(q)) {
     scores.set('/team', (scores.get('/team') || 0) + 1.5);
+  }
+  if (/τυπο|τυπος|εγραψαν|press|media|δημοσιευ/.test(q)) {
+    scores.set('/', (scores.get('/') || 0) + 8);
   }
   if (/νεα|news|αρθρ|article/.test(q)) {
     scores.set('/news', (scores.get('/news') || 0) + 1.5);
@@ -669,7 +722,8 @@ export function resolveProductPageCta({
   });
 
   if (!bestUrl || bestScore < 0.35) {
-    if (/pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|module/.test(q)) bestUrl = '/ypodochi';
+    if (/pyxida|πυξιδ|ψηφιακ|υποδοχ|praxi|module/.test(q)) bestUrl = '/go?for=med';
+    else if (/flow|fλow|dialogos|praxis|metron/.test(q)) bestUrl = '/flow';
     else return null;
   }
 

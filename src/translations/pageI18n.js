@@ -203,14 +203,14 @@ export const pageI18nEl = {
       'Εβδομάδες Custom Pilot',
     ],
     narrativeHtml:
-      'Τα παραδοσιακά μοντέλα AI λειτουργούν αποκομμένα· απλώς προβλέπουν λέξεις. Το <em class="brand-dialogos">DialogosAI</em> είναι σχεδιασμένο ως ένα αυτόνομο <strong>Ψηφιακό Σύστημα Πλοήγησης Γλώσσας</strong>. Αντλώντας έμπνευση από τις ελληνικές ρίζες της επικοινωνίας και της ερμηνείας, λειτουργεί ως απόλυτος αγγελιοφόρος ανάμεσα στα σύνθετα δεδομένα ενός οργανισμού και τις <strong>πραγματικές ανθρώπινες ανάγκες</strong>. Συνδυάζει την ευφυΐα των γλωσσικών μοντέλων νέας γενιάς με την αυστηρή ακαδημαϊκή εγκυρότητα, καθοδηγώντας τον χρήστη με <strong>απόλυτη σαφήνεια, ενσυναίσθηση και δομική ακρίβεια</strong>.',
+      'Τα παραδοσιακά μοντέλα AI λειτουργούν αποκομμένα· απλώς προβλέπουν λέξεις. Ο <em class="brand-dialogos">DialogosAI</em> είναι σχεδιασμένο ως ένα αυτόνομο <strong>Ψηφιακό Σύστημα Πλοήγησης Γλώσσας</strong>. Αντλώντας έμπνευση από τις ελληνικές ρίζες της επικοινωνίας και της ερμηνείας, λειτουργεί ως απόλυτος αγγελιοφόρος ανάμεσα στα σύνθετα δεδομένα ενός οργανισμού και τις <strong>πραγματικές ανθρώπινες ανάγκες</strong>. Συνδυάζει την ευφυΐα των γλωσσικών μοντέλων νέας γενιάς με την αυστηρή ακαδημαϊκή εγκυρότητα, καθοδηγώντας τον χρήστη με <strong>απόλυτη σαφήνεια, ενσυναίσθηση και δομική ακρίβεια</strong>.',
     pillarsHeader: 'Οι Τρεις Αρχιτεκτονικοί Πυλώνες',
     pillarsSub: 'Το τεχνολογικό υπόβαθρο που καθιστά τον ψηφιακό μας πλοηγό ηγέτη στην αγορά.',
     pillars: [
       {
         num: '01',
         title: 'Fluency & Context (Ουσιαστικός Διάλογος)',
-        body: 'Βασισμένο στην <strong>υπολογιστική γλωσσολογία</strong>, το <em class="brand-dialogos">DialogosAI</em> προσαρμόζεται στο ύφος του οργανισμού σας, αντιλαμβάνεται <strong>τοπικές διαλέκτους</strong> και καθοδηγεί τον χρήστη προληπτικά.',
+        body: 'Βασισμένο στην <strong>υπολογιστική γλωσσολογία</strong>, ο <em class="brand-dialogos">DialogosAI</em> προσαρμόζεται στο ύφος του οργανισμού σας, αντιλαμβάνεται <strong>τοπικές διαλέκτους</strong> και καθοδηγεί τον χρήστη προληπτικά.',
       },
       {
         num: '02',
@@ -225,7 +225,7 @@ export const pageI18nEl = {
     ],
     charsHeader: '5 Μοναδικά Χαρακτηριστικά',
     charsSubHtml:
-      'Γιατί το <em class="brand-dialogos">DialogosAI</em> αποτελεί το πιο εξελιγμένο σύστημα διαλόγου στην ελληνική αγορά.',
+      'Γιατί ο <em class="brand-dialogos">DialogosAI</em> αποτελεί το πιο εξελιγμένο σύστημα διαλόγου στην ελληνική αγορά.',
     characteristics: [
       {
         num: '01',
@@ -254,7 +254,7 @@ export const pageI18nEl = {
       },
     ],
     dialogueHeaderHtml:
-      'Κάθε οργανισμός επικοινωνεί.<br />Το <em class="brand-dialogos">DialogosAI</em> εξασφαλίζει ότι αυτή η επικοινωνία είναι αξιόπιστη.',
+      'Κάθε οργανισμός επικοινωνεί.<br />Ο <em class="brand-dialogos">DialogosAI</em> εξασφαλίζει ότι αυτή η επικοινωνία είναι αξιόπιστη.',
     dialogueSub:
       'Ένα κανάλι ασφαλούς, υπεύθυνου και καθοδηγητικού διαλόγου ανάμεσα στον οργανισμό σας και τους ανθρώπους που εξυπηρετεί. Σχεδιασμένο ακριβώς όπως εσείς το οραματίζεστε.',
     flowOrg: 'Ο Οργανισμός σας',
@@ -290,12 +290,12 @@ export const pageI18nEl = {
       },
     ],
     dialogueClosingHtml:
-      'Αν το <em class="brand-dialogos">DialogosAI</em> εξασφαλίζει αξιόπιστο διάλογο στους πιο ευαίσθητους τομείς, φανταστείτε τι μπορεί να κάνει για τον δικό σας οργανισμό. Σχεδιάστε τον διάλογο που θέλετε — ασφαλή, υπεύθυνο, καθοδηγητικό — ακριβώς όπως τον οραματίζεστε.',
+      'Αν ο <em class="brand-dialogos">DialogosAI</em> εξασφαλίζει αξιόπιστο διάλογο στους πιο ευαίσθητους τομείς, φανταστείτε τι μπορεί να κάνει για τον δικό σας οργανισμό. Σχεδιάστε τον διάλογο που θέλετε — ασφαλή, υπεύθυνο, καθοδηγητικό — ακριβώς όπως τον οραματίζεστε.',
     dialogueCtaHtml:
       'Σχεδιάστε τον δικό σας <em class="brand-dialogos">DialogosAI</em> →',
     finalTitle: 'Αποκτήστε το κορυφαίο ψηφιακό σύστημα πλοήγησης στην Ελλάδα.',
     finalBodyHtml:
-      'Μην συμβιβάζεστε με απλά chatbots που μπερδεύουν τους χρήστες. Κάντε τη διαφορά με το <em class="brand-dialogos">DialogosAI</em> και κερδίστε την εμπιστοσύνη των χρηστών σας από την πρώτη μέρα.',
+      'Μην συμβιβάζεστε με απλά chatbots που μπερδεύουν τους χρήστες. Κάντε τη διαφορά με ο <em class="brand-dialogos">DialogosAI</em> και κερδίστε την εμπιστοσύνη των χρηστών σας από την πρώτη μέρα.',
     finalCta: 'Ξεκινήστε Σήμερα — Book Demo',
   },
 
@@ -355,7 +355,6 @@ export const pageI18nEl = {
       {
         id: 'starter',
         name: 'Starter',
-        price: '490€',
         tag: 'Τιμή γνωριμίας',
         duration: '2 ώρες',
         highlight: false,
@@ -371,7 +370,6 @@ export const pageI18nEl = {
       {
         id: 'business',
         name: 'Business',
-        price: '990€',
         tag: 'Πιο δημοφιλές',
         duration: '4 ώρες',
         highlight: true,
@@ -388,7 +386,6 @@ export const pageI18nEl = {
       {
         id: 'team',
         name: 'Team',
-        price: '1.790€',
         tag: 'Για ομάδες',
         duration: '6 ώρες',
         highlight: false,
@@ -404,7 +401,6 @@ export const pageI18nEl = {
       {
         id: 'growth',
         name: 'Growth',
-        price: '2.990€',
         tag: 'Ολοκληρωμένο',
         duration: '3 μήνες',
         highlight: false,
@@ -905,7 +901,6 @@ export const pageI18nEn = {
       {
         id: 'starter',
         name: 'Starter',
-        price: '490€',
         tag: 'Introductory price',
         duration: '2 hours',
         highlight: false,
@@ -921,7 +916,6 @@ export const pageI18nEn = {
       {
         id: 'business',
         name: 'Business',
-        price: '990€',
         tag: 'Most popular',
         duration: '4 hours',
         highlight: true,
@@ -938,7 +932,6 @@ export const pageI18nEn = {
       {
         id: 'team',
         name: 'Team',
-        price: '1.790€',
         tag: 'For teams',
         duration: '6 hours',
         highlight: false,
@@ -954,7 +947,6 @@ export const pageI18nEn = {
       {
         id: 'growth',
         name: 'Growth',
-        price: '2.990€',
         tag: 'Comprehensive',
         duration: '3 months',
         highlight: false,

@@ -11,12 +11,14 @@ import giannisReal from '../assets/giannis-real.png';
 import anastasiaReal from '../assets/anastasia-real.png';
 import pantelisImg from '../assets/pantelis.png';
 import sotirisReal from '../assets/sotiris-real.png';
+import elenaReal from '../assets/elena-real.jpg';
 
 const AVATARS = {
   stergios: stergiosReal,
   dimitris: dimitrisSpeaker,
   giannis: giannisReal,
   anastasia: anastasiaReal,
+  elena: elenaReal,
   pantelis: pantelisImg,
   sotiris: sotirisReal,
 };
@@ -314,7 +316,7 @@ const TeamPage = () => {
               </div>
             </div>
             <div className="tp-mission-cta">
-              <Link to="/demo" className="btn btn-primary btn-large">{t('teamPage.missionCta')}</Link>
+              <Link to="/go#book" className="btn btn-primary btn-large">{t('teamPage.missionCta')}</Link>
             </div>
           </motion.div>
         </div>

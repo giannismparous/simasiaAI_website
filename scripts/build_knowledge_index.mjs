@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
  * Build chatbot knowledge-index.json from website translations + page routes.
+ * Current offer only: fλow (DialogosAI, PraxisAI, MetronAI), /flow, /go, /platform.
+ * No prices: the site never shows them; the priced offer is emailed as a PDF from /go.
  * Website-only sources (no Drive). Run: npm run build:knowledge
  */
 
@@ -23,8 +25,37 @@ const translationsUrl = pathToFileURL(
 const scarcityCopyUrl = pathToFileURL(
   path.join(ROOT, "src", "utils", "scarcityCopy.js")
 ).href;
+const flowContentUrl = pathToFileURL(
+  path.join(ROOT, "src", "components", "flow", "flowContent.js")
+).href;
+const builderContentUrl = pathToFileURL(
+  path.join(ROOT, "src", "components", "flow", "builderContent.js")
+).href;
 const { translations } = await import(translationsUrl);
 const { formatScarcityNote } = await import(scarcityCopyUrl);
+const { flowContent } = await import(flowContentUrl);
+const { builderCopy } = await import(builderContentUrl);
+const { threeContent } = await import(pathToFileURL(path.join(ROOT, "src", "components", "flow", "flowThreeContent.js")).href);
+
+/** Legacy RAG uploads for retired products (Pyxida etc.). Superseded by sima-core-identity.json. */
+const RAG_SKIP_FILES = new Set(["pyxida-rag-texts.txt"]);
+
+/**
+ * Drop strings that would make the bot promote retired routes/products or the old demo form:
+ * internal identifiers (e.g. "pyxida", "tier-apanta"), short "Book a demo" CTA labels,
+ * and any line naming removed products.
+ */
+const RETIRED_RX =
+  /simasia\s?(?:edu|daily|studio|chatbots)|pyxida|πυξίδα|πυξιδα|\bpraxi\b|\/(?:applications|products|solutions|services|target-audience|archive|demo|book-demo|flow\/build)\b/i;
+
+function keepPart(p) {
+  const s = String(p || "").trim();
+  if (!s) return false;
+  if (/^[a-z0-9_#:\/.\-]+$/.test(s)) return false;
+  if (s.length < 48 && /demo/i.test(s)) return false;
+  if (RETIRED_RX.test(s)) return false;
+  return true;
+}
 
 function normalize(text) {
   return (text || "")
@@ -90,43 +121,57 @@ function addDocs(docs, base) {
   });
 }
 
-/** Navbar routes only — current public site (see Navbar.js) */
-const NAVBAR_ROUTES = ['/', '/ypodochi', '/collaborations', '/news', '/team', '/demo'];
+/** Current public routes (see src/App.js) */
+const NAVBAR_ROUTES = ['/', '/flow', '/go', '/collaborations', '/team', '/news', '/platform'];
 
 function buildFromTranslations(lang, t) {
   const docs = [];
   const L = lang;
 
-  addDocs(docs, {
-    title: L === "el" ? "Αρχική — SimasiaAI & Pyxida" : "Home — SimasiaAI & Pyxida",
-    url: "/",
-    lang: L,
-    category: "company",
-    keywords: ["simasiaai", "simasia", "pyxida", "home", "αρχικη"],
-    content: [
-      t.hero?.line1a,
-      t.hero?.line1b,
-      t.hero?.line2,
-      t.mission?.title,
-      t.mission?.text,
-      t.whatWeOffer?.title,
-      ...(t.whatWeOffer?.cards || []).map((c) => `${c.name}: ${c.desc}`),
-      t.whoItsFor?.title,
-      ...(t.whoItsFor?.items || []),
-      t.howWeWork?.title,
-      ...(t.howWeWork?.steps || []),
-      t.obstacles?.title,
-      ...(t.obstacles?.items || []),
-      t.aiCapabilities?.title,
-      t.aiCapabilities?.capabilities?.title,
-      t.aiCapabilities?.capabilities?.text,
-      t.aiCapabilities?.limits?.title,
-      t.aiCapabilities?.limits?.text,
-      t.footer?.tagline,
-    ]
-      .filter(Boolean)
-      .join("\n"),
-  });
+  // Home and /flow: the fλow page copy (src/components/flow/flowContent.js).
+  const flowParts = flattenValue(flowContent?.[L]).filter(keepPart);
+  if (flowParts.length) {
+    addDocs(docs, {
+      title: L === "el" ? "fλow — DialogosAI, PraxisAI, MetronAI" : "fλow — DialogosAI, PraxisAI, MetronAI",
+      url: "/flow",
+      lang: L,
+      category: "products",
+      keywords: ["flow", "fλow", "dialogosai", "praxisai", "metronai", "μκο", "ngo", "ιατρειο", "clinic", "τιμες", "pricing"],
+      content: flowParts.join("\n"),
+      sourceType: "page_i18n",
+      priority: 1,
+    });
+  }
+
+  // /flow: the three parts, separately and together; live demos; time back; value; build your fλow.
+  const threeParts = flattenValue(threeContent?.[L]).filter(keepPart);
+  if (threeParts.length) {
+    addDocs(docs, {
+      title: L === "el" ? "fλow — Λόγος, Πράξη και Καταγραφή, σε μία ροή" : "fλow — dialogue, action and record, in one flow",
+      url: "/flow",
+      lang: L,
+      category: "products",
+      keywords: ["dialogosai", "praxisai", "metronai", "crm", "πρωτοκολλο", "protocol", "ocr", "βαρδιες", "shifts", "αντικτυπος", "impact", "χρονος", "time", "πακετα", "packages"],
+      content: threeParts.join("\n"),
+      sourceType: "page_i18n",
+      priority: 1,
+    });
+  }
+
+  // /go: build your fλow + instant offer + contact form + 30-minute call.
+  const goParts = flattenValue(builderCopy?.[L]).filter(keepPart);
+  if (goParts.length) {
+    addDocs(docs, {
+      title: L === "el" ? "Go with the fλow — φτιάξτε το fλow σας" : "Go with the fλow — build your fλow",
+      url: "/go",
+      lang: L,
+      category: "contact",
+      keywords: ["go", "build", "φτιαξτε", "προσφορα", "offer", "συναντηση", "meeting", "book"],
+      content: goParts.join("\n"),
+      sourceType: "page_i18n",
+      priority: 1,
+    });
+  }
 
   addDocs(docs, {
     title: L === "el" ? "Συνεργασίες" : "Collaborations",
@@ -146,24 +191,13 @@ function buildFromTranslations(lang, t) {
       ...(t.collaborations?.achievements?.items || []),
       t.collaborations?.commitment,
     ]
-      .filter(Boolean)
-      .join("\n"),
-  });
-
-  addDocs(docs, {
-    title: L === "el" ? "Κλείστε demo — φόρμα" : "Book a demo — form",
-    url: "/demo",
-    lang: L,
-    category: "contact",
-    keywords: ["demo", "book", "συνεργασια", "proposal", "pyxida"],
-    content: [t.demoPage?.heroTitle, t.demoPage?.siteUrlHint, t.demoPage?.submit, t.demoPage?.offerLabel]
-      .filter(Boolean)
+      .filter(keepPart)
       .join("\n"),
   });
 
   addDocs(docs, {
     title: L === "el" ? "Επικοινωνία" : "Contact",
-    url: "/demo",
+    url: "/go#book",
     lang: L,
     category: "contact",
     keywords: ["contact", "email", "επικοινωνια", "simasiaai.gr"],
@@ -173,18 +207,17 @@ function buildFromTranslations(lang, t) {
       t.footer?.location,
       "LinkedIn: linkedin.com/company/simasiaai",
       "Instagram: instagram.com/simasiaai",
-      t.demoPage?.heroTitle,
+      "Facebook: facebook.com/p/SimasiaΑΙ-61584445269687",
+      "TikTok: tiktok.com/@simasiaai",
+      L === "el"
+        ? "Φόρμα επικοινωνίας και συνάντηση 30 λεπτών: Go with the fλow (/go#book)."
+        : "Contact form and 30-minute call: Go with the fλow (/go#book).",
     ]
       .filter(Boolean)
       .join("\n"),
   });
 
   return docs;
-}
-
-/** @deprecated — solutions page not in navbar; removed from index */
-function solutionsPageDocs() {
-  return [];
 }
 
 function flattenValue(v, acc = []) {
@@ -211,34 +244,6 @@ function buildFromExtraNamespaces(lang, t) {
   const L = lang;
   const blocks = [
     {
-      title: L === "el" ? "Hero — Pyxida (αρχική)" : "Hero — Pyxida (home)",
-      url: "/",
-      keys: ["forbesHero", "midCta", "enterpriseCta", "hero", "homePyxidaOffer"],
-      category: "company",
-      keywords: ["pyxida", "hero", "demo", "clinic", "ιατρειο"],
-    },
-    {
-      title: L === "el" ? "Pyxida — ψηφιακή υποδοχή" : "Pyxida — digital reception",
-      url: "/ypodochi",
-      keys: ["ypodochiPage"],
-      category: "products",
-      keywords: ["pyxida", "praxi", "ypodochi", "clinic", "ιατρειο", "reception", "απανταει"],
-    },
-    {
-      title: L === "el" ? "Demo — φόρμα αίτησης" : "Demo — request form",
-      url: "/demo",
-      keys: ["demoPage"],
-      category: "contact",
-      keywords: ["demo", "book", "pyxida", "φορμα"],
-    },
-    {
-      title: L === "el" ? "Σχετικά (ενότητα αρχικής)" : "About section (home)",
-      url: "/",
-      keys: ["aboutSection"],
-      category: "company",
-      keywords: ["about", "ομαδα", "founders", "σχετικα", "pyxida"],
-    },
-    {
       title: L === "el" ? "Ομάδα — SimasiaAI" : "Team — SimasiaAI",
       url: "/team",
       keys: ["teamPage"],
@@ -261,7 +266,9 @@ function buildFromExtraNamespaces(lang, t) {
     }
     if (!parts.length) continue;
 
-    let content = parts.join("\n");
+    const kept = parts.filter(keepPart);
+    if (!kept.length) continue;
+    let content = kept.join("\n");
     if (block.keys.includes("ypodochiPage")) {
       const translate = (key) => {
         let value = t;
@@ -273,7 +280,7 @@ function buildFromExtraNamespaces(lang, t) {
       const monthLabel = translate("ypodochiPage.cms.monthLabel");
       const seatsSuffix = translate("ypodochiPage.cms.seatsSuffix");
       const resolvedScarcity = formatScarcityNote(translate);
-      const filtered = parts.filter(
+      const filtered = kept.filter(
         (p) =>
           p !== monthLabel &&
           p !== seatsSuffix &&
@@ -307,6 +314,7 @@ function buildFromRagFolder() {
   for (const file of fs.readdirSync(ragDir)) {
     const full = path.join(ragDir, file);
     if (!fs.statSync(full).isFile()) continue;
+    if (RAG_SKIP_FILES.has(file)) continue;
 
     if (file.endsWith(".json")) {
       // handled by buildCoreIdentityDocs for sima-core-identity.json shape
@@ -342,10 +350,10 @@ function buildFromRagFolder() {
     if (parts.length <= 1) {
       addDocs(docs, {
         title: file.replace(/\.(txt|md)$/i, ""),
-        url: "/ypodochi",
+        url: "/go",
         lang: "el",
         category: "rag_upload",
-        keywords: ["pyxida", "simasia", "rag"],
+        keywords: ["simasia", "rag"],
         content: raw,
         sourceType: "rag_txt",
         priority: 3,
@@ -356,8 +364,8 @@ function buildFromRagFolder() {
     for (const part of parts) {
       if (/Οδηγία για το RAG/i.test(part) && !/Τίτλος:/u.test(part)) {
         addDocs(docs, {
-          title: "RAG system guidance (sales) — Pyxida",
-          url: "/demo",
+          title: "RAG system guidance (sales) — DialogosAI",
+          url: "/go#book",
           lang: "el",
           category: "rag_guidance",
           keywords: ["demo", "book", "access", "sales"],
@@ -370,14 +378,14 @@ function buildFromRagFolder() {
       const titleMatch = part.match(/Τίτλος:\s*(.+)/u);
       const headMatch = part.match(/^Κείμενο\s+\d+\s*:\s*(.+)/u);
       const contentMatch = part.match(/Περιεχόμενο:\s*([\s\S]*?)(?=(?:\nΚείμενο\s+\d+|$))/u);
-      const title = (titleMatch?.[1] || headMatch?.[1] || "Pyxida RAG").trim();
+      const title = (titleMatch?.[1] || headMatch?.[1] || "DialogosAI RAG").trim();
       let content = (contentMatch?.[1] || part).trim();
       // Strip trailing global RAG instruction from last chunk if glued
       content = content.replace(/\nΟδηγία για το RAG[\s\S]*$/u, "").trim();
       if (!content) continue;
       addDocs(docs, {
         title,
-        url: "/ypodochi",
+        url: "/go",
         lang: "el",
         category: "rag_upload",
         keywords: extractKeywords(title + " " + content, 18),
@@ -403,7 +411,7 @@ function buildCoreIdentityDocs() {
       if (!content) continue;
       addDocs(docs, {
         title: section.title,
-        url: section.url || "/about",
+        url: section.url || "/",
         lang,
         category: "identity",
         keywords: section.keywords || [],
@@ -423,7 +431,6 @@ const allDocs = [
   ...buildFromTranslations("en", translations.en),
   ...buildFromExtraNamespaces("el", translations.el),
   ...buildFromExtraNamespaces("en", translations.en),
-  ...solutionsPageDocs(),
 ];
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -433,7 +440,7 @@ fs.writeFileSync(
     {
       documents: allDocs,
       generatedAt: new Date().toISOString(),
-      source: "navbar-pages+page-i18n+core-identity+pyxida-rag",
+      source: "flow-pages+page-i18n+core-identity",
       navbarRoutes: NAVBAR_ROUTES,
     },
     null,

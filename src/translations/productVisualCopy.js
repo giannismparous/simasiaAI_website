@@ -1,4 +1,4 @@
-/** Locale strings for Pyxida / Praxi product mockup graphics (home + /ypodochi). */
+/** Locale strings for DialogosAI / PraxisAI product mockup graphics (home + /ypodochi). */
 
 const calendarEventsEl = [
   { title: 'Μαρία Κ.', time: '9:00 – 10:00', color: 'peacock', top: '0%', height: '24%' },
@@ -17,10 +17,10 @@ export const productVisualCopy = {
     composeDefault: 'Πληκτρολογήστε μήνυμα…',
     composeDm: 'Αποστολή μηνύματος…',
     botHours: {
-      title: 'clinic.gr · Pyxida',
+      title: 'clinic.gr · DialogosAI',
       badge: 'Live 24/7',
       status: 'Online · απαντά σε δευτερόλεπτα',
-      botGreeting: 'Γεια σας! Είμαι η Pyxida — πώς μπορώ να βοηθήσω;',
+      botGreeting: 'Γεια σας! Είμαι το DialogosAI — πώς μπορώ να βοηθήσω;',
       userHours: 'Ποιες ώρες είστε ανοιχτοί το Σάββατο;',
       botHoursReply: 'Το Σάββατο <strong>09:00–14:00</strong>. Θέλετε να κλείσουμε ραντεβού;',
       replyTime: '09:14 · απάντηση σε 2 δευτ.',
@@ -29,14 +29,14 @@ export const productVisualCopy = {
     },
     botNight: {
       clinicName: 'Ιατρείο Αθηνών',
-      status: 'Ενεργό τώρα · Pyxida',
+      status: 'Ενεργό τώρα · DialogosAI',
       userMsg: 'Είστε ανοιχτοί αύριο το πρωί;',
       botReply: 'Ναι — 09:00–14:00. Θέλετε ραντεβού ή πληροφορίες για εξέταση;',
       replyTime: '21:30 · απάντηση σε 4 δευτ.',
     },
     botSafe: {
-      frameTitle: 'Pyxida · Ασφάλεια',
-      headerTitle: 'Pyxida · Ασφάλεια',
+      frameTitle: 'DialogosAI · Ασφάλεια',
+      headerTitle: 'DialogosAI · Ασφάλεια',
       headerSub: 'Guarded mode · εγκεκριμένο περιεχόμενο',
       userMsg: 'Πονάει έντονα από χθες — τι να κάνω;',
       cardTitle: 'Δεν μπορώ να κάνω διάγνωση',
@@ -82,7 +82,7 @@ export const productVisualCopy = {
       foot: ['Καρτέλα επαφής', 'Instant alert', 'CSV export'],
     },
     crmQueues: {
-      title: 'Ραντεβού · Pyxida + Calendar',
+      title: 'Ραντεβού · DialogosAI + Calendar',
       apptQueue: 'Ουρά ραντεβού',
       apptQueueEm: 'άμεσα',
       newRequest: 'Νέο αίτημα · 10:02',
@@ -94,14 +94,14 @@ export const productVisualCopy = {
     },
     calendarEvents: calendarEventsEl,
     praxiBook: {
-      frameTitle: 'Κλείνει · Pyxida + Calendar',
+      frameTitle: 'Κλείνει · DialogosAI + Calendar',
       channelsLabel: 'Εισερχόμενα κανάλια',
       phoneChannel: 'Τηλέφωνο',
       toastTitle: 'Ραντεβού επιβεβαιώθηκε',
       toastSub: 'Τρι 11 · 10:30 — Νίκος Α. · WhatsApp',
     },
     praxiRecovery: {
-      frameTitle: 'Φέρνει πίσω · Pyxida',
+      frameTitle: 'Φέρνει πίσω · DialogosAI',
       steps: [
         { icon: 'missed', title: 'Αναπάντητη κλήση', sub: '21:30 · εκτός ωραρίου' },
         { icon: 'sms', title: 'Auto SMS / Viber', sub: '«Συνεχίστε εδώ — είμαστε διαθέσιμοι»' },
@@ -127,10 +127,10 @@ export const productVisualCopy = {
     composeDefault: 'Type a message…',
     composeDm: 'Send message…',
     botHours: {
-      title: 'clinic.gr · Pyxida',
+      title: 'clinic.gr · DialogosAI',
       badge: 'Live 24/7',
       status: 'Online · replies in seconds',
-      botGreeting: 'Hello! I\'m Pyxida — how can I help?',
+      botGreeting: 'Hello! I\'m DialogosAI — how can I help?',
       userHours: 'What are your Saturday opening hours?',
       botHoursReply: 'On Saturdays <strong>09:00–14:00</strong>. Would you like to book an appointment?',
       replyTime: '09:14 · reply in 2 sec.',
@@ -139,14 +139,14 @@ export const productVisualCopy = {
     },
     botNight: {
       clinicName: 'Athens Clinic',
-      status: 'Active now · Pyxida',
+      status: 'Active now · DialogosAI',
       userMsg: 'Are you open tomorrow morning?',
       botReply: 'Yes — 09:00–14:00. Would you like an appointment or info about an exam?',
       replyTime: '21:30 · reply in 4 sec.',
     },
     botSafe: {
-      frameTitle: 'Pyxida · Safety',
-      headerTitle: 'Pyxida · Safety',
+      frameTitle: 'DialogosAI · Safety',
+      headerTitle: 'DialogosAI · Safety',
       headerSub: 'Guarded mode · approved content only',
       userMsg: 'It\'s been hurting badly since yesterday — what should I do?',
       cardTitle: 'I can\'t make a diagnosis',
@@ -192,7 +192,7 @@ export const productVisualCopy = {
       foot: ['Contact card', 'Instant alert', 'CSV export'],
     },
     crmQueues: {
-      title: 'Appointments · Pyxida + Calendar',
+      title: 'Appointments · DialogosAI + Calendar',
       apptQueue: 'Appointment queue',
       apptQueueEm: 'now',
       newRequest: 'New request · 10:02',
@@ -204,14 +204,14 @@ export const productVisualCopy = {
     },
     calendarEvents: calendarEventsEn,
     praxiBook: {
-      frameTitle: 'Books · Pyxida + Calendar',
+      frameTitle: 'Books · DialogosAI + Calendar',
       channelsLabel: 'Incoming channels',
       phoneChannel: 'Phone',
       toastTitle: 'Appointment confirmed',
       toastSub: 'Tue 11 · 10:30 — Nikos A. · WhatsApp',
     },
     praxiRecovery: {
-      frameTitle: 'Brings back · Pyxida',
+      frameTitle: 'Brings back · DialogosAI',
       steps: [
         { icon: 'missed', title: 'Missed call', sub: '21:30 · after hours' },
         { icon: 'sms', title: 'Auto SMS / Viber', sub: '“Continue here — we\'re available”' },

@@ -46,7 +46,7 @@
 ::selection { background: var(--orange); color: #fff; }
 ::-moz-selection { background: var(--orange); color: #fff; }
 
-/* Brand name: Pyxida — always italic, inherits weight/color */
+/* Brand name: DialogosAI — always italic, inherits weight/color */
 .brand-pyxida {
     font-style: italic;
     font-family: inherit;

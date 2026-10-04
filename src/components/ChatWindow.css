@@ -369,6 +369,26 @@
   margin-top: auto;
 }
 
+/* Always-visible AI accuracy notice under the input */
+.chat-disclaimer {
+  margin: 0.45rem 0.4rem 0;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: rgba(20, 20, 19, 0.5);
+  text-align: center;
+}
+
+.chat-disclaimer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.chat-disclaimer a:hover {
+  color: #d97757;
+}
+
 .chat-suggestions {
   display: flex;
   flex-direction: column;

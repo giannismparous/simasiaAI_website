@@ -5,11 +5,12 @@ import StarCanvas from './StarCanvas';
 import HeroCareVisual from './HeroCareVisual';
 import { useTranslation } from '../hooks/useTranslation';
 import MissionReveal from './MissionReveal';
+import { GoLabel } from './flow/modules';
 import './ForbesHero.css';
 
 const COMPACT_MQ = '(max-width: 920px)';
 
-const ForbesHero = () => {
+const ForbesHero = ({ bottom = null }) => {
   const ref = useRef(null);
   const { t } = useTranslation();
   const words = t('forbesHero.words');
@@ -87,8 +88,8 @@ const ForbesHero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Link to="/ypodochi" className="fh-btn-primary">{t('forbesHero.ctaPrimary')}</Link>
-            <Link to="/demo" className="fh-btn-ghost">{t('forbesHero.ctaSecondary')} <span className="fh-arrow">→</span></Link>
+            <Link to="/go" className="go-btn"><GoLabel /></Link>
+            <Link to="/flow" className="fh-btn-ghost">{t('forbesHero.ctaSecondary')} <span className="fh-arrow">→</span></Link>
           </motion.div>
         </div>
         {!isCompact && (
@@ -130,6 +131,7 @@ const ForbesHero = () => {
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
         />
       </motion.div>
+      {bottom}
     </section>
   );
 };

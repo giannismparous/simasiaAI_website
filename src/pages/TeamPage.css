@@ -177,6 +177,13 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
 }
+/* A last card alone on its row sits in the middle */
+@media (min-width: 1025px) {
+  .tp-team-grid > .tp-card-scene:last-child:nth-child(3n + 1) { grid-column: 2; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .tp-team-grid > .tp-card-scene:last-child:nth-child(2n + 1) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 1.25rem); }
+}
 
 /* 3D Flip Layout */
 .tp-card-scene {

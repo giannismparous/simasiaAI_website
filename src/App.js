@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { BillingPreferenceProvider } from './contexts/BillingPreferenceContext';
 import Navbar from './components/Navbar';
@@ -8,21 +8,10 @@ import CursorFollower from './components/CursorFollower';
 import ScrollToTop from './components/ScrollToTop';
 import OverscrollFill from './components/OverscrollFill';
 import HomePage from './pages/HomePage';
-import SolutionsPage from './pages/SolutionsPage';
+import FlowPage from './pages/FlowPage';
+import GoPage from './pages/GoPage';
+import PlatformPage from './pages/PlatformPage';
 import CollaborationsPage from './pages/CollaborationsPage';
-import ApplicationsPage from './pages/ApplicationsPage';
-import DemoPage from './pages/DemoPage';
-import YpodochiPage from './pages/YpodochiPage';
-import TargetAudiencePage from './pages/TargetAudiencePage';
-import ProductsPage from './pages/ProductsPage';
-import SimasiaChatbotsPage from './pages/SimasiaChatbotsPage';
-import OldHomePage from './pages/archive/OldHomePage';
-import OldDialogosAiPage from './pages/archive/OldDialogosAiPage';
-import { ARCHIVED_ROUTES } from './constants/archivedRoutes';
-import SimasiaStudioPage from './pages/SimasiaStudioPage';
-import SimasiaDailyPage from './pages/SimasiaDailyPage';
-import SimasiaEduPage from './pages/SimasiaEduPage';
-import ServicesPage from './pages/ServicesPage';
 import TeamPage from './pages/TeamPage';
 import NewsPage from './pages/NewsPage';
 import ArticlePage from './pages/ArticlePage';
@@ -33,8 +22,14 @@ import TermsPage from './pages/TermsPage';
 import PrivacyPage from './pages/PrivacyPage';
 import CookiesPage from './pages/CookiesPage';
 import CookieBanner from './components/CookieBanner';
-import PricingCalculatorPage from './pages/PricingCalculatorPage';
 import './App.css';
+
+/* Old addresses from earlier editions of the site keep working: they land on
+   the page that replaced them, keeping ?query (e.g. /flow/build?for=ngo → /go?for=ngo). */
+function Moved({ to, hash = '' }) {
+  const { search } = useLocation();
+  return <Navigate replace to={`${to}${search}${hash}`} />;
+}
 
 function App() {
   return (
@@ -49,37 +44,48 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/ypodochi" element={<YpodochiPage />} />
-            <Route path="/demo" element={<DemoPage />} />
-            <Route path="/solutions" element={<SolutionsPage />} />
+            <Route path="/flow" element={<FlowPage />} />
+            <Route path="/go" element={<GoPage />} />
+            <Route path="/platform" element={<PlatformPage />} />
+            {/* The clinics page showed a price ladder; prices now arrive only by email, so it hands over to /go. */}
+            <Route path="/ypodochi" element={<Navigate to="/go?for=med" replace />} />
             <Route path="/collaborations" element={<CollaborationsPage />} />
-            <Route path="/applications" element={<ApplicationsPage />} />
-            <Route path="/about" element={<Navigate to="/team" replace />} />
-            <Route path="/book-demo" element={<Navigate replace to="/demo" />} />
-            <Route path="/target-audience" element={<TargetAudiencePage />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/services/consulting" element={<Navigate to="/services#consulting" replace />} />
-            <Route path="/services/education" element={<Navigate to="/services#education" replace />} />
             <Route path="/team" element={<TeamPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/news/:slug" element={<ArticlePage />} />
             <Route path="/newsletter" element={<NewsletterPage />} />
-            <Route path="/applications/simasia-chatbots" element={<SimasiaChatbotsPage />} />
-            <Route path="/applications/simasia-studio" element={<SimasiaStudioPage />} />
-            <Route path="/applications/simasia-daily" element={<SimasiaDailyPage />} />
-            <Route path="/applications/simasia-edu" element={<SimasiaEduPage />} />
-            <Route path="/products/simasia-chatbots" element={<SimasiaChatbotsPage />} />
-            <Route path="/products/simasia-studio" element={<SimasiaStudioPage />} />
-            <Route path="/products/simasia-daily" element={<SimasiaDailyPage />} />
-            <Route path="/products/simasia-edu" element={<SimasiaEduPage />} />
-            <Route path={ARCHIVED_ROUTES.oldHome} element={<OldHomePage />} />
-            <Route path={ARCHIVED_ROUTES.oldDialogosAi} element={<OldDialogosAiPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/cookies" element={<CookiesPage />} />
-            <Route path="/calculator" element={<PricingCalculatorPage />} />
-            <Route path="/pricing-calculator" element={<PricingCalculatorPage />} />
+            <Route path="/calculator" element={<Navigate to="/go" replace />} />
+            <Route path="/pricing-calculator" element={<Navigate to="/go" replace />} />
+
+            {/* Earlier editions → current pages */}
+            <Route path="/flow/build" element={<Moved to="/go" />} />
+            <Route path="/demo" element={<Moved to="/go" hash="#book" />} />
+            <Route path="/book-demo" element={<Moved to="/go" hash="#book" />} />
+            <Route path="/contact" element={<Moved to="/go" hash="#contact" />} />
+            <Route path="/about" element={<Navigate to="/team" replace />} />
+            <Route path="/solutions" element={<Navigate to="/flow" replace />} />
+            <Route path="/target-audience" element={<Navigate to="/flow" replace />} />
+            <Route path="/applications" element={<Navigate to="/flow" replace />} />
+            <Route path="/applications/simasia-chatbots" element={<Navigate to="/flow" replace />} />
+            <Route path="/applications/simasia-studio" element={<Navigate to="/flow" replace />} />
+            <Route path="/applications/simasia-daily" element={<Navigate to="/flow" replace />} />
+            <Route path="/applications/simasia-edu" element={<Navigate to="/flow" replace />} />
+            <Route path="/products" element={<Navigate to="/flow" replace />} />
+            <Route path="/products/simasia-chatbots" element={<Navigate to="/flow" replace />} />
+            <Route path="/products/simasia-studio" element={<Navigate to="/flow" replace />} />
+            <Route path="/products/simasia-daily" element={<Navigate to="/flow" replace />} />
+            <Route path="/products/simasia-edu" element={<Navigate to="/flow" replace />} />
+            <Route path="/services" element={<Navigate to="/flow" replace />} />
+            <Route path="/services/consulting" element={<Navigate to="/flow" replace />} />
+            <Route path="/services/education" element={<Navigate to="/flow" replace />} />
+            <Route path="/applications/*" element={<Navigate to="/flow" replace />} />
+            <Route path="/products/*" element={<Navigate to="/flow" replace />} />
+            <Route path="/services/*" element={<Navigate to="/flow" replace />} />
+            <Route path="/archive/*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           <Footer />
           <ChatbotBubble />

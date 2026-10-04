@@ -1,4 +1,4 @@
-/* ===== Offer Ladder — Pyxida chapter → Praxi scroll ===== */
+/* ===== Offer Ladder — DialogosAI chapter → PraxisAI scroll ===== */
 
 .offer-ladder {
   background: var(--light, #faf9f5);
@@ -130,7 +130,7 @@
   line-height: 1.55;
 }
 
-/* --- Center chapter nav — Pyxida + Module 1/2/3 --- */
+/* --- Center chapter nav — DialogosAI + Module 1/2/3 --- */
 .ol-brand-inline {
   font-weight: 750;
   letter-spacing: -0.01em;
@@ -397,7 +397,7 @@
   color: #c45532;
 }
 
-/* --- Pyxida scroll journey (sticky scrollytelling) --- */
+/* --- DialogosAI scroll journey (sticky scrollytelling) --- */
 .ol-pyxida-journey {
   position: relative;
   background: linear-gradient(180deg, #eef4fb 0%, var(--light, #faf9f5) 14%, #fff 70%, var(--light, #faf9f5) 100%);
@@ -2029,7 +2029,7 @@
 .ol-visual-stage--crm .ol-visual-blob-a { background: #d97757; opacity: 0.22; width: 200px; height: 200px; }
 .ol-visual-stage--crm .ol-visual-blob-b { background: #e8a090; opacity: 0.15; width: 160px; height: 160px; }
 
-/* --- Pyxida product frame mocks — dark chrome, solid light screen for readability --- */
+/* --- DialogosAI product frame mocks — dark chrome, solid light screen for readability --- */
 .ol-product-frame {
   display: flex;
   flex-direction: column;
@@ -3301,7 +3301,7 @@
   flex: 1;
 }
 
-/* --- Pyxida → Praxi scroll transition --- */
+/* --- DialogosAI → PraxisAI scroll transition --- */
 .ol-transition {
   position: relative;
   min-height: 140vh;
@@ -3481,7 +3481,7 @@
   color: var(--ink-soft, #5a5a58);
 }
 
-/* --- Praxi scroll journey (sticky — hook → intro → modules) --- */
+/* --- PraxisAI scroll journey (sticky — hook → intro → modules) --- */
 .ol-praxi-journey {
   position: relative;
   background: linear-gradient(
@@ -4461,7 +4461,7 @@
   background: radial-gradient(ellipse, rgba(217, 119, 87, 0.14) 0%, transparent 70%);
 }
 
-/* Praxi module rows — zigzag around center tower */
+/* PraxisAI module rows — zigzag around center tower */
 .ol-praxi-module {
   display: grid;
   grid-template-columns: 1fr minmax(240px, 300px) 1fr;

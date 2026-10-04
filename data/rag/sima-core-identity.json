@@ -1,61 +1,102 @@
 {
-  "version": 2,
-  "description": "Core SimasiaAI + Pyxida positioning for chatbot RAG. Rebuild with npm run build:knowledge",
+  "version": 3,
+  "description": "Core SimasiaAI + fλow facts for the site chatbot RAG (current offer only, Oct 2026). Rebuild with npm run build:knowledge",
   "sections": [
     {
       "id": "identity_mission",
       "title": "SimasiaAI — ταυτότητα & αποστολή",
       "url": "/",
       "keywords": [
-        "simasiaai", "simasia", "ποιοι ειστε", "τι ειναι", "εταιρεια", "deep-tech",
-        "ανθρωποκεντρικ", "b2b", "chatbot", "compliant", "ελληνικ", "pyxida"
+        "simasiaai", "simasia", "σημασια", "ποιοι ειστε", "τι ειναι", "εταιρεια", "company",
+        "ανθρωποκεντρικ", "κοινωνικο αποτυπωμα", "social impact", "ελληνικ", "αθηνα", "athens", "fλow", "flow"
       ],
-      "content_el": "Η SimasiaAI είναι κορυφαία ελληνική deep-tech εταιρεία που εξειδικεύεται στην ανθρωποκεντρική ψηφιακή υποδοχή για ιατρεία, κλινικές και οργανισμούς. Το κύριο προϊόν είναι το Pyxida — ψηφιακή υποδοχή που απαντά 24/7, καθοδηγεί επισκέπτες και κλείνει ραντεβού. Δεν μεταπωλούμε generic αμερικανικά εργαλεία· σχεδιάζουμε έγκυρες, νομικά θωρακισμένες AI υποδομές.",
-      "content_en": "SimasiaAI is a leading Greek deep-tech company focused on human-centered digital reception for clinics and organizations. The main product is Pyxida — digital reception that answers 24/7, guides visitors, and books appointments. We design accurate, legally protected AI infrastructure rather than reselling generic tools."
+      "content_el": "Η SimasiaAI (Σημασία-ΑΙ Ι.Κ.Ε.) είναι ελληνική εταιρεία τεχνητής νοημοσύνης με έδρα την Αθήνα (Ναρκίσσου 26, 15452 Παλαιό Ψυχικό) και κοινωνικό αποτύπωμα. Σύνθημα: «Μέτρο μας ο Άνθρωπος». Το μοναδικό μας προϊόν είναι το fλow: βοηθός AI και CRM για ανθρώπους που φροντίζουν άλλους, δηλαδή ΜΚΟ, συλλόγους ασθενών, δομές για άτομα με αναπηρία, γιατρούς, ιατρεία, πολυϊατρεία και κλινικές, πρώτα σε Ελλάδα και Κύπρο. Η ομάδα έρχεται από την υπολογιστική γλωσσολογία και την επεξεργασία της ελληνικής γλώσσας.",
+      "content_en": "SimasiaAI (Σημασία-ΑΙ Ι.Κ.Ε., Simasia-AI P.C.) is a Greek AI company based in Athens (Narkissou 26, 15452 Palaio Psychiko) with a social-impact focus. Motto: «Μέτρο μας ο Άνθρωπος» (the human is our measure). Our one product is fλow: an AI assistant and CRM for people who care for others: NGOs, patient associations, disability services, doctors, practices, polyclinics and clinics, starting in Greece and Cyprus. The team comes from computational linguistics and Greek NLP."
     },
     {
-      "id": "pyxida_product",
-      "title": "Pyxida — ψηφιακή υποδοχή",
-      "url": "/ypodochi",
+      "id": "flow_product",
+      "title": "fλow — βοηθός AI και CRM (DialogosAI, PraxisAI, MetronAI)",
+      "url": "/flow",
       "keywords": [
-        "pyxida", "πυξιδα", "ψηφιακη", "υποδοχη", "ιατρειο", "κλινικη", "clinic",
-        "reception", "απανταει", "praxi", "ραντεβου", "24/7", "bot", "crm"
+        "flow", "fλow", "φλοου", "dialogosai", "dialogos", "praxisai", "praxis", "metronai", "metron",
+        "προιον", "product", "βοηθος", "assistant", "chatbot", "crm", "αναλυσεις", "καταγραφη", "πρωτοκολλο", "προθεσμι", "ocr", "τι κανει"
       ],
-      "content_el": "Το Pyxida είναι η ψηφιακή υποδοχή της SimasiaAI για ιατρεία και οργανισμούς. Η βάση (Απαντάει) περιλαμβάνει bot, CRM και απαντήσεις 24/7. Προαιρετικά modules Praxi (π.χ. Φέρνει Πίσω, Φέρνει Μπροστά). Live σε 48 ώρες, εγγύηση ακρίβειας ≥90% ή δωρεάν. Σελίδα προϊόντος: /ypodochi.",
-      "content_en": "Pyxida is SimasiaAI's digital reception for clinics and organizations. The core (Apanta) includes bot, CRM, and 24/7 answers. Optional Praxi modules. Live in 48 hours with ≥90% accuracy guarantee or free. Product page: /ypodochi."
+      "content_el": "Το fλow της SimasiaAI είναι «Λόγος, Πράξη και Καταγραφή, σε μία ροή»: τρία μέρη που δουλεύουν και μόνα τους και μαζί. Το DialogosAI (Λόγος) είναι ο βοηθός AI: απαντά σε ασθενείς, ωφελούμενους, μέλη και οικογένειες 24/7 στο site, στο Viber και στο WhatsApp, μόνο από εγκεκριμένες πηγές και με παραπομπή, λέει όταν δεν ξέρει, στέλνει τα επείγοντα σε άνθρωπο και καταλαβαίνει Greeklish και πολλές γλώσσες. Το PraxisAI (Πράξη) είναι το CRM με πράξεις AI (προτείνει και εκτελεί, ό,τι φεύγει το εγκρίνει άνθρωπος): μητρώο μελών, φάκελοι ωφελούμενων, καρτέλες ασθενών, εργασίες ανά άνθρωπο με προθεσμίες, βιβλίο πρωτοκόλλου με αυτόματο αριθμό για εισερχόμενα και εξερχόμενα, υπενθυμίσεις προθεσμιών 60, 30 και 7 μέρες πριν, επιβεβαίωση ραντεβού, παραδόσεις βάρδιας, σάρωση εγγράφων (OCR) στον φάκελο. Το MetronAI (Καταγραφή), συνδεδεμένο με το DialogosAI, καταγράφει κάθε επαφή και την αναλύει: στατιστικά επικοινωνίας όπως σε τηλεφωνικό κέντρο, τι ρωτούν οι άνθρωποι και τι λείπει, αναφορές κοινωνικού αποτυπώματος για χορηγούς, μηνιαίο τεστ ακρίβειας. Ζωντανά demos και των τριών στη σελίδα /flow.",
+      "content_en": "SimasiaAI's fλow is \"dialogue, action and record, in one flow\": three parts that work alone or together. DialogosAI (dialogue) is the AI assistant: it answers patients, beneficiaries, members and families 24/7 on the website, Viber and WhatsApp, only from approved sources with citations, says when it doesn't know, sends urgent cases to a human and understands Greeklish and many languages. PraxisAI (action) is the CRM with agentic actions (it proposes and executes, a human approves what goes out): member registry, beneficiary files, patient records, tasks per person with deadlines, a protocol book with automatic protocol numbers for incoming and outgoing documents, deadline reminders 60, 30 and 7 days before, appointment confirmations, shift handovers, document scanning (OCR) into the file. MetronAI (record), connected to DialogosAI, records every contact and analyses it: communication statistics like a call centre, what people ask and what is missing, social-impact reports for sponsors, a monthly accuracy test. Live demos of all three on /flow."
     },
     {
-      "id": "human_centered_ai",
-      "title": "Ανθρωποκεντρική Τεχνητή Νοημοσύνη — ορισμός",
-      "url": "/team",
+      "id": "flow_audiences",
+      "title": "fλow — για ποιους (ΜΚΟ, ιατρεία, χορηγοί)",
+      "url": "/flow",
       "keywords": [
-        "ανθρωποκεντρικ", "human-centered", "human side", "ορισμος", "definition",
-        "διαφαν", "υπευθυν", "ηθικ", "χρηστης", "ite", "forth"
+        "για ποιους", "who is it for", "μκο", "ngo", "συλλογος ασθενων", "patient association", "αμεα", "αναπηρια",
+        "ιατρειο", "γιατρος", "κλινικη", "clinic", "doctor", "πολυιατρειο", "χορηγος", "sponsor", "φαρμακευτικ", "pharma", "csr"
       ],
-      "content_el": "Ανθρωποκεντρική Τεχνητή Νοημοσύνη σημαίνει ότι ο άνθρωπος παραμένει ο απόλυτος ελεγκτής της τεχνολογίας. Το Pyxida και τα συστήματά μας είναι διαφανή, υπεύθυνα και ευεξήγητα — με τον τελικό χρήστη στο επίκεντρο.",
-      "content_en": "Human-Centered AI means people remain in control. Pyxida and our systems are transparent, accountable, and explainable — with end users at the center."
+      "content_el": "Το fλow απευθύνεται σε: (1) ΜΚΟ, συλλόγους ασθενών, δομές για άτομα με αναπηρία και υπηρεσίες φροντίδας: απαντήσεις 24/7 (DialogosAI), φάκελοι, προθεσμίες, πρωτόκολλο και ενημερώσεις οικογενειών με έγκριση (PraxisAI), καταγραφή κάθε επαφής και αναφορές για χορηγούς (MetronAI). Παίρνουν όποιο μέρος χρειάζονται ή και τα τρία. (2) Γιατρούς, ιατρεία, πολυϊατρεία και κλινικές: ολόκληρο το fλow από την πρώτη μέρα ως ψηφιακή υποδοχή που απαντά, κλείνει ραντεβού, στέλνει υπενθυμίσεις και recall, σηκώνει το τηλέφωνο (στο Go with the fλow, επιλογή «Ιατρείο ή κλινική»). (3) Χορηγούς (φαρμακευτικές εταιρείες, ιδρύματα, CSR) που χρηματοδοτούν το fλow για οργανισμούς και βλέπουν τη στήριξη να μετριέται ανά άνθρωπο.",
+      "content_en": "fλow is for: (1) NGOs, patient associations, disability services and care services: 24/7 answers (DialogosAI), files, deadlines, protocol book and approved family updates (PraxisAI), every contact recorded and sponsor reports (MetronAI). They take the part they need, or all three. (2) Doctors, practices, polyclinics and clinics: the whole fλow from day one as a digital reception that answers, books appointments, sends reminders and recall, and answers the phone (in Go with the fλow, choose \"Practice or clinic\"). (3) Sponsors (pharma, foundations, CSR) who fund fλow for organisations and see support measured per person reached."
     },
     {
-      "id": "pyxida_compliance",
-      "title": "Pyxida — συμμόρφωση & διαφοροποίηση",
-      "url": "/ypodochi",
+      "id": "flow_pricing",
+      "title": "fλow — τιμές για ΜΚΟ, ιατρεία και χορηγούς",
+      "url": "/go",
       "keywords": [
-        "pyxida", "compliance", "eu ai act", "gdpr", "wcag", "προσβασιμ", "eaa",
-        "hallucination", "γλωσσολογ", "ελληνικ", "greeklish"
+        "τιμη", "τιμες", "κοστος", "ποσο κανει", "ποσο κοστιζει", "price", "pricing", "cost", "πακετο", "ενταξη", "onboarding",
+        "δικτυο", "network", "δοκιμη", "trial", "πιλοτικο", "pilot", "εγγυηση", "guarantee", "συνδρομη", "ετησια", "προσφορα", "χορηγ", "sponsor"
       ],
-      "content_el": "Το Pyxida διαφέρει σε: (1) Κανονιστική συμμόρφωση — EU AI Act και GDPR. (2) Προσβασιμότητα WCAG 2.1 AA. (3) Απαντήσεις μόνο από εγκεκριμένα δεδομένα — μείωση ψευδαισθήσεων. (4) Φυσικά Ελληνικά, Αγγλικά και Greeklish.",
-      "content_en": "Pyxida offers: (1) EU AI Act and GDPR compliance. (2) WCAG 2.1 AA accessibility. (3) Answers only from approved data. (4) Natural Greek, English, and Greeklish support."
+      "content_el": "Τιμές fλow: δεν δημοσιεύουμε τιμές στο site, γιατί κάθε οργανισμός είναι διαφορετικός και δεν υπάρχουν σταθερά πακέτα. Η τιμή εξαρτάται από τα μέρη (DialogosAI, PraxisAI, MetronAI) και τις δυνατότητες που επιλέγετε· μαζί τα μέρη κοστίζουν λιγότερο. Για να τη μάθετε: στο Go with the fλow απαντάτε σε λίγες ερωτήσεις για τη μέρα σας, σχεδιάζετε το fλow σας, γράφετε το email σας και λαμβάνετε αμέσως την προσφορά σας σε PDF, με την τιμή για όσα διαλέξατε, τους όρους της δοκιμής χωρίς ρίσκο και τα επόμενα βήματα. Υπάρχει δοκιμαστική περίοδος και εγγύηση ακρίβειας: αν δεν απαντά σωστά στο 90% των ερωτήσεων που συμφωνήσαμε, η συνδρομή είναι δωρεάν μέχρι να το πετύχει. Στα ιατρεία: live σε 48 ώρες, αλλιώς δωρεάν. Συχνά το κόστος δεν το πληρώνει ο οργανισμός: βοηθάμε να ενταχθεί σε χορηγία, CSR ή ευρωπαϊκό πρόγραμμα. Ή κλείστε 30 λεπτά μαζί μας.",
+      "content_en": "fλow pricing: we do not publish prices on the site, because every organisation is different and there are no fixed packages. The price depends on the parts (DialogosAI, PraxisAI, MetronAI) and the features you choose; together the parts cost less. To get it: in Go with the fλow you answer a few questions about your day, design your fλow, leave your email and receive your offer as a PDF straight away, with the price for what you chose, the terms of the no-risk trial and the next steps. There is a trial period and an accuracy guarantee: if it does not answer 90% of the agreed questions correctly, the subscription is free until it does. For practices: live in 48 hours, or free. Often the organisation does not pay: we help fit it into a sponsorship, CSR or an EU programme. Or book 30 minutes with us."
     },
     {
-      "id": "social_proof",
-      "title": "SimasiaAI — αποδεδειγμένη εμπιστοσύνη",
+      "id": "clinic_plans",
+      "title": "fλow για ιατρεία — επίπεδα Απαντάει, Κλείνει, Φέρνει πίσω, Σηκώνει το τηλέφωνο",
+      "url": "/go",
+      "keywords": [
+        "ιατρειο", "κλινικη", "ψηφιακη υποδοχη", "υποδοχη", "reception", "ypodochi", "apanta", "απανταει",
+        "kleinei", "κλεινει", "fernei", "φερνει πισω", "sikonei", "σηκωνει", "ραντεβου", "recall", "υπενθυμισ", "τηλεφωνο", "voice"
+      ],
+      "content_el": "Στα ιατρεία και στις κλινικές το fλow έρχεται ολόκληρο (DialogosAI, PraxisAI, MetronAI) από την πρώτη μέρα, ως ψηφιακή υποδοχή σε τέσσερα επίπεδα: ΑΠΑΝΤΑΕΙ: απαντά 24/7 και σε Greeklish (ΕΟΠΥΥ, παραπεμπτικά, συμμετοχές) και στέλνει αιτήματα ραντεβού στο γραφείο. ΚΛΕΙΝΕΙ: κλείνει, αλλάζει και ακυρώνει ραντεβού στο ημερολόγιο, σε WhatsApp, Viber, Instagram, Facebook. ΦΕΡΝΕΙ ΠΙΣΩ: SMS ή Viber μετά από αναπάντητη κλήση, υπενθυμίσεις 24 ώρες πριν, recall. ΣΗΚΩΝΕΙ ΤΟ ΤΗΛΕΦΩΝΟ: φωνή 24/7 στον αριθμό σας. Για κλινικές με 6+ γιατρούς φτιάχνουμε προσφορά μαζί. Σε λειτουργία μέσα σε 48 ώρες, αλλιώς δωρεάν· τεστ αποδοχής με 50 πραγματικές ερωτήσεις και αν δεν φτάσει το 90% ακρίβεια δεν πληρώνετε. Ποτέ διάγνωση· τα επείγοντα πάνε στο τηλέφωνο. Την τιμή και τους όρους της δοκιμής τα λαμβάνετε σε PDF στο email σας από το Go with the fλow (επιλογή «Ιατρείο ή κλινική»).",
+      "content_en": "For practices and clinics fλow comes whole (DialogosAI, PraxisAI, MetronAI) from day one, as a digital reception in four levels: ANSWERS: answers 24/7 incl. Greeklish (insurance, referrals, co-payments) and passes booking requests to the desk. BOOKS: books, moves and cancels in the calendar, on WhatsApp, Viber, Instagram, Facebook. BRINGS BACK: SMS or Viber after a missed call, reminders 24 hours ahead, recall. ANSWERS THE PHONE: 24/7 voice on your number. For clinics with 6+ doctors we build the offer together. Live in 48 hours or free; acceptance test with 50 real questions, and below 90% accuracy you don't pay. Never diagnoses; urgent cases go to the phone. You receive the price and the trial terms as a PDF by email from Go with the fλow (choose \"Practice or clinic\")."
+    },
+    {
+      "id": "compliance",
+      "title": "fλow — συμμόρφωση, ασφάλεια, ιατρικές συμβουλές",
+      "url": "/flow",
+      "keywords": [
+        "compliance", "συμμορφωση", "eu ai act", "ai act", "gdpr", "δεδομενα", "data", "φιλοξενια", "hosting", "ευρωπη",
+        "wcag", "προσβασιμ", "accessibility", "δικηγορ", "law firm", "ιατρικη συμβουλη", "medical advice", "διαγνωση", "ασφαλεια"
+      ],
+      "content_el": "Η συμμόρφωση με τον EU AI Act και τον GDPR είναι πρώτη προτεραιότητα: τα δεδομένα μένουν στην ΕΕ, με προσβασιμότητα WCAG. Συνεργαζόμενη δικηγορική εταιρεία ελέγχει χωριστά κάθε έργο. Απαντά μόνο από εγκεκριμένες πηγές, με παραπομπές, και λέει «δεν ξέρω» όταν δεν έχει απάντηση. Δεν κάνει διάγνωση και δεν δίνει ιατρικές συμβουλές· αναγνωρίζει στιγμές κρίσης και τις στέλνει σε άνθρωπο.",
+      "content_en": "EU AI Act and GDPR compliance is top priority: data stays in the EU, with WCAG accessibility. A partner law firm reviews every project separately. It answers only from approved sources, with citations, and says 'I don't know' when it has no answer. It never diagnoses or gives medical advice; it recognises moments of crisis and hands them to a human."
+    },
+    {
+      "id": "implementations",
+      "title": "fλow σε λειτουργία — Μυρτώ, ΣΚΠ-i, BPAN Companion, Perfectaki Able",
       "url": "/collaborations",
       "keywords": [
-        "ποαμσκπ", "σκπ", "καπα3", "k3", "κρητη", "εμπιστοσυνη", "υγεια",
-        "εκπαιδευση", "συνεργασια", "myrto"
+        "συνεργασιες", "collaborations", "πελατες", "clients", "ποαμσκπ", "σκπ", "skp-i", "σκληρυνση", "ms",
+        "καπα3", "κ3", "kapa3", "μυρτω", "myrto", "καρκιν", "cancer", "τιμα", "bpan", "bpanheroes", "perfectaki", "εκπαιδευση"
       ],
-      "content_el": "Κορυφαίοι φορείς στον τομέα Υγείας και Εκπαίδευσης εμπιστεύονται τη SimasiaAI: Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση Κατά Πλάκας (ΠΟΑμΣΚΠ), Κέντρο Καθοδήγησης Καρκινοπαθών (Κάπα3), Πανεπιστήμιο Κρήτης.",
-      "content_en": "Trusted by leading health and education organizations including POAmsKP, Kap3 cancer guidance center, and University of Crete."
+      "content_el": "Το fλow λειτουργεί ήδη σε οργανώσεις ασθενών: «Μυρτώ» για το Κάπα3 (Κ3, Κέντρο Καθοδήγησης Καρκινοπαθών), ψηφιακός οδηγός για ανθρώπους με καρκίνο και τις οικογένειές τους, DialogosAI + MetronAI, σε λειτουργία, με την υποστήριξη του Ιδρύματος ΤΙΜΑ. «ΣΚΠ-i» για την ΠΟΑμΣΚΠ (Πανελλήνια Ομοσπονδία Ατόμων με Σκλήρυνση Κατά Πλάκας), DialogosAI 24/7 για παροχές, υπηρεσίες και δικαιώματα, σε λειτουργία, με την υποστήριξη φαρμακευτικών εταιρειών. «BPAN Companion» για τους Ήρωες της BPAN (bpanheroes.gr), DialogosAI σε 60 γλώσσες για τη σπάνια νόσο BPAN, σε λειτουργία. Για το ΣΚΠ-i και το BPAN Companion επόμενο βήμα είναι το MetronAI. Perfectaki Able: DialogosAI για προσβάσιμη εκπαίδευση, υπό κατασκευή. Οι βοηθοί σχεδιάστηκαν μαζί με τις οργανώσεις και τα μέλη τους. Για το ΣΚΠ-i έγραψαν news4health, healthpharma, newsbeast και ygeiamou· για τους τρεις βοηθούς η Φωνή Μαλεβιζίου.",
+      "content_en": "fλow already runs in patient organisations: «Μυρτώ» (Myrto) for Kapa3 (K3, Cancer Guidance Center), a digital guide for people with cancer and their families, DialogosAI + MetronAI, live, supported by the TIMA Foundation. «ΣΚΠ-i» (SKP-i) for ΠΟΑμΣΚΠ, the Panhellenic Federation of People with Multiple Sclerosis, DialogosAI 24/7 on benefits, services and rights, live, supported by pharmaceutical sponsors. «BPAN Companion» for BPAN Heroes (bpanheroes.gr), DialogosAI in 60 languages for the rare disease BPAN, live. For SKP-i and BPAN Companion the next step is MetronAI. Perfectaki Able: DialogosAI for accessible education, being built. The assistants were co-designed with the organisations and their members. Press on SKP-i: news4health, healthpharma, newsbeast, ygeiamou; on the three assistants: Foni Maleviziou."
+    },
+    {
+      "id": "go_book",
+      "title": "Go with the fλow — φτιάξτε το fλow σας, προσφορά, συνάντηση 30 λεπτών",
+      "url": "/go#book",
+      "keywords": [
+        "go", "demo", "συναντηση", "ραντεβου", "κλεισω", "κλειστε", "book", "meeting", "call", "κληση", "επικοινωνια",
+        "contact", "email", "φορμα", "form", "προσφορα", "offer", "build", "φτιαξτε", "ημερολογιο", "calendar"
+      ],
+      "content_el": "Στη σελίδα Go with the fλow (/go) λίγες ερωτήσεις για τη μέρα σας σχεδιάζουν ένα πρώτο fλow· ρυθμίζετε μέρη και λειτουργίες, προσθέτετε δικά σας αιτήματα (τα κοστολογεί μετά η ομάδα), βλέπετε τον χρόνο που σας επιστρέφει, παίρνετε αμέσως την προσφορά, στέλνετε μήνυμα από τη φόρμα επικοινωνίας και κλείνετε συνάντηση 30 λεπτών με την ομάδα, διαλέγοντας ώρα από το ημερολόγιο διαθεσιμότητας (/go#book). Εναλλακτικά: contact@simasiaai.gr. ΜΗΝ προτείνεις συνάντηση όταν η ερώτηση αφορά αποκλειστικά ιδρυτές ή βιογραφικά.",
+      "content_en": "On the Go with the fλow page (/go) a few questions about your day design a first fλow; you adjust parts and features, add your own requests (priced afterwards by the team), see the time that comes back, get the offer instantly, send a message through the contact form and book a 30-minute call with the team from the availability calendar (/go#book). Alternatively: contact@simasiaai.gr. Do NOT pitch a call for founders/bio-only questions."
+    },
+    {
+      "id": "platform",
+      "title": "Πλατφόρμα fλow — είσοδος πελατών",
+      "url": "/platform",
+      "keywords": ["platform", "πλατφορμα", "login", "συνδεση", "εισοδος", "λογαριασμος", "account", "πελατες", "client"],
+      "content_el": "Η σελίδα /platform είναι η μελλοντική είσοδος πελατών του fλow, όπου θα συνδέονται οι οργανισμοί και τα ιατρεία που χρησιμοποιούν το DialogosAI, το PraxisAI και το MetronAI. Έρχεται σύντομα.",
+      "content_en": "The /platform page is the future fλow client sign-in, where organisations and practices using DialogosAI, PraxisAI and MetronAI will sign in. Coming soon."
     },
     {
       "id": "founders_leadership",
@@ -67,41 +108,27 @@
         "δημητρης", "παπαδακης", "γιαννης", "αναστασια", "νατσινα",
         "ποιοι ειναι", "poia einai", "poioi einai", "ηγεσια", "leadership", "μελη", "melh"
       ],
-      "content_el": "Οι ιδρυτές / συνιδρυτές της SimasiaAI είναι τέσσερις:\n1) Καθηγητής Στέργιος Χατζηκυριακίδης — Co-founder & CEO.\n2) Δημήτρης Παπαδάκης — Co-founder & Head of Sales.\n3) Γιάννης — Co-founder & CTO.\n4) Αναπληρώτρια Καθηγήτρια Αναστασία Νάτσινα — Co-founder & CCO.\nΔημιουργήσαμε το Pyxida — ανθρωποκεντρική ψηφιακή υποδοχή με σεβασμό στην ελληνική γλώσσα και την προσβασιμότητα. Μην κλείνεις με demo CTA σε ερωτήσεις για την ομάδα.",
-      "content_en": "The founders / co-founders of SimasiaAI are four people:\n1) Professor Stergios Chatzikyriakidis — Co-founder & CEO.\n2) Dimitris Papadakis — Co-founder & Head of Sales.\n3) Giannis — Co-founder & CTO.\n4) Associate Professor Anastasia Natsina — Co-founder & CCO.\nWe created Pyxida — human-centered digital reception. Do not close with a demo CTA on founders/team questions."
+      "content_el": "Οι συνιδρυτές της SimasiaAI είναι τέσσερις:\n1) Καθηγητής Στέργιος Χατζηκυριακίδης — Co-founder & CEO, Καθηγητής Υπολογιστικής Γλωσσολογίας.\n2) Δημήτρης Παπαδάκης — Co-founder & Head of Sales, γλωσσολόγος (M.A. NLP).\n3) Γιάννης — Co-founder & CTO, υποψήφιος διδάκτωρ Πληροφορικής.\n4) Αναπληρώτρια Καθηγήτρια Αναστασία Νάτσινα — Co-founder & CCO.\nΜαζί φτιάχνουν το fλow, με σεβασμό στην ελληνική γλώσσα και στην προσβασιμότητα. Μην κλείνεις με πρόταση συνάντησης σε ερωτήσεις για την ομάδα.",
+      "content_en": "SimasiaAI has four co-founders:\n1) Professor Stergios Chatzikyriakidis — Co-founder & CEO, Professor of Computational Linguistics.\n2) Dimitris Papadakis — Co-founder & Head of Sales, linguist (M.A. NLP).\n3) Giannis — Co-founder & CTO, PhD candidate in Computer Science.\n4) Associate Professor Anastasia Natsina — Co-founder & CCO.\nTogether they build fλow, with care for the Greek language and accessibility. Do not close with a call-booking CTA on founders/team questions."
     },
     {
-      "id": "pyxida_gender_neutral",
-      "title": "Pyxida — ουδέτερο φύλο",
-      "url": "/ypodochi",
+      "id": "naming_grammar",
+      "title": "fλow — ονόματα, γένος, γραφή",
+      "url": "/flow",
       "keywords": [
-        "φυλο", "αρσενικ", "θηλυκ", "gender", "neutral", "he", "she", "him", "her",
-        "ουδετερ", "προσωπο", "persona", "αυτος", "αυτη", "pyxida"
+        "φυλο", "γενος", "αρσενικ", "θηλυκ", "gender", "neutral", "he", "she", "ουδετερ", "ονομα", "name",
+        "λαμδα", "lambda", "πως γραφεται", "spelling"
       ],
-      "content_el": "Το Pyxida είναι ουδέτερο ως προς το φύλο. Δεν είναι αρσενικό ούτε θηλυκό πρόσωπο· είναι η ψηφιακή υποδοχή της SimasiaAI. Στα ελληνικά αναφέρεται ως «το Pyxida». Στα αγγλικά χρησιμοποιείται it/its ή το όνομα Pyxida — ποτέ he/him ή she/her.",
-      "content_en": "Pyxida is gender-neutral. It is neither male nor female; it is SimasiaAI's digital reception. In English use it/its or the name Pyxida — never he/him or she/her. In Greek refer to it as «το Pyxida»."
+      "content_el": "Το προϊόν γράφεται «fλow», με το ελληνικό λάμδα (στις διευθύνσεις και στις αναζητήσεις και «flow»). Τα μέρη του είναι ουδέτερα: «το DialogosAI», «το PraxisAI», «το MetronAI». Στα αγγλικά it/its, ποτέ he/she. Ο βοηθός αυτού του site είναι επίσης DialogosAI.",
+      "content_en": "The product is written «fλow», with the Greek letter lambda (plain «flow» in URLs and searches). Its parts are grammatically neuter in Greek: «το DialogosAI», «το PraxisAI», «το MetronAI». In English use it/its, never he/she. The assistant on this website is also DialogosAI."
     },
     {
-      "id": "pyxida_modules",
-      "title": "Pyxida — Απαντάει & Praxi modules",
-      "url": "/ypodochi",
-      "keywords": [
-        "module", "modules", "module 1", "module 2", "module 3", "praxi", "apanta", "απαντα",
-        "kleinei", "fernei", "sikonei", "κλεινει", "φερνει", "σηκωνει", "πακετο", "tier"
-      ],
-      "content_el": "Η βάση Pyxida λέγεται ΑΠΑΝΤΑΕΙ: bot + CRM + απαντήσεις 24/7. Προαιρετικά Praxi modules: (Module 1) ΚΛΕΙΝΕΙ — κράτηση/αλλαγή/ακύρωση ραντεβού, WhatsApp/Viber/Instagram/Facebook. (Module 2) ΦΕΡΝΕΙ ΠΙΣΩ — ανάκτηση χαμένων leads, υπενθυμίσεις, recall, SMS/Viber. (Module 3) ΣΗΚΩΝΕΙ ΤΟ ΤΗΛΕΦΩΝΟ — ζωντανή φωνή 24/7 στον αριθμό σας. Σελίδα: /ypodochi.",
-      "content_en": "Pyxida core is Apanta: bot + CRM + 24/7 answers. Optional Praxi modules: (Module 1) Kleinei — booking & channels. (Module 2) Fernei Piso — lead recovery & reminders. (Module 3) Sikonei — live voice 24/7. See /ypodochi."
-    },
-    {
-      "id": "sales_guidance",
-      "title": "SimasiaAI — οδηγίες demo & ενδιαφέροντος",
-      "url": "/demo",
-      "keywords": [
-        "demo", "προσφορα", "ενδιαφερον", "πωλησει", "widget", "compliant ai",
-        "email", "τηλεφωνο", "book-demo", "pyxida"
-      ],
-      "content_el": "Όταν ρωτούν για demo, ραντεβού ή συνάντηση: σύντομη απάντηση και υπόδειξη της φόρμας Demo στο /demo (χωρίς URL στο κείμενο). Εναλλακτικά contact@simasiaai.gr. ΜΗΝ προτείνεις demo όταν η ερώτηση αφορά αποκλειστικά ιδρυτές ή βιογραφικά.",
-      "content_en": "When asked about a demo or meeting: brief answer and point to the Demo form at /demo (no URL in the text). Alternatively contact@simasiaai.gr. Do NOT pitch a demo for founders/bio-only questions."
+      "id": "contact",
+      "title": "SimasiaAI — επικοινωνία",
+      "url": "/go#book",
+      "keywords": ["επικοινωνια", "contact", "email", "mail", "διευθυνση", "address", "γραφεια", "office", "linkedin", "instagram", "facebook", "tiktok", "social", "κοινωνικα δικτυα"],
+      "content_el": "Email: contact@simasiaai.gr. Διεύθυνση: Ναρκίσσου 26, 15452 Παλαιό Ψυχικό, Αττική. Φόρμα επικοινωνίας και συνάντηση 30 λεπτών: Go with the fλow (/go). LinkedIn: linkedin.com/company/simasiaai · Instagram: instagram.com/simasiaai · Facebook: facebook.com/p/SimasiaΑΙ-61584445269687 · TikTok: tiktok.com/@simasiaai. Σημασία-ΑΙ Ι.Κ.Ε., ΓΕΜΗ 188174403000.",
+      "content_en": "Email: contact@simasiaai.gr. Address: Narkissou 26, 15452 Palaio Psychiko, Attica, Greece. Contact form and 30-minute call: Go with the fλow (/go). LinkedIn: linkedin.com/company/simasiaai · Instagram: instagram.com/simasiaai · Facebook: facebook.com/p/SimasiaΑΙ-61584445269687 · TikTok: tiktok.com/@simasiaai. Simasia-AI P.C., GEMI 188174403000."
     }
   ]
 }

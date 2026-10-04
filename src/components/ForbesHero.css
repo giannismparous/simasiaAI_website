@@ -354,3 +354,4 @@
     font-size: 1rem;
   }
 }
+@media (max-width: 768px) { .fh-ctas .go-btn { width: 100%; } }

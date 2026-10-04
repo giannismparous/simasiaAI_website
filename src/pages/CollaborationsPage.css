@@ -186,3 +186,7 @@
     max-width: 36rem;
   }
 }
+/* fλow adoption map on /collaborations */
+.cp-adopt { padding: 72px 0 80px; }
+.cp-adopt .flh-adopt { margin-top: 0; }
+.cp-adopt-go { margin-top: 32px; }
