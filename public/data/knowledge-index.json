@@ -279,7 +279,7 @@
       "url": "/go",
       "lang": "el",
       "language": "el",
-      "content": "Τιμές fλow: δεν δημοσιεύουμε τιμές στο site, γιατί κάθε οργανισμός είναι διαφορετικός και δεν υπάρχουν σταθερά πακέτα. Η τιμή εξαρτάται από τα μέρη (DialogosAI, PraxisAI, MetronAI) και τις δυνατότητες που επιλέγετε· μαζί τα μέρη κοστίζουν λιγότερο. Για να τη μάθετε: στο Go with the fλow απαντάτε σε λίγες ερωτήσεις για τη μέρα σας, σχεδιάζετε το fλow σας, γράφετε το email σας και λαμβάνετε αμέσως την προσφορά σας σε PDF, με την τιμή για όσα διαλέξατε, τους όρους της δοκιμής χωρίς ρίσκο και τα επόμενα βήματα. Υπάρχει δοκιμαστική περίοδος και εγγύηση ακρίβειας: αν δεν απαντά σωστά στο 90% των ερωτήσεων που συμφωνήσαμε, η συνδρομή είναι δωρεάν μέχρι να το πετύχει. Στα ιατρεία: live σε 48 ώρες, αλλιώς δωρεάν. Συχνά το κόστος δεν το πληρώνει ο οργανισμός: βοηθάμε να ενταχθεί σε χορηγία, CSR ή ευρωπαϊκό πρόγραμμα. Ή κλείστε 30 λεπτά μαζί μας.",
+      "content": "Τιμές fλow: δεν δημοσιεύουμε τιμές στο site, γιατί κάθε οργανισμός είναι διαφορετικός και δεν υπάρχουν σταθερά πακέτα. Η τιμή εξαρτάται από τα μέρη (DialogosAI, PraxisAI, MetronAI) και τις δυνατότητες που επιλέγετε· μαζί τα μέρη κοστίζουν λιγότερο. Για να τη μάθετε: στο Go with the fλow απαντάτε σε λίγες ερωτήσεις για τη μέρα σας, σχεδιάζετε το fλow σας, γράφετε το email σας και λαμβάνετε την προσφορά σας σε PDF μέσα σε μία εργάσιμη, με την τιμή για όσα διαλέξατε, τους όρους της δοκιμής χωρίς ρίσκο και τα επόμενα βήματα. Υπάρχει δοκιμαστική περίοδος και εγγύηση ακρίβειας: αν δεν απαντά σωστά στο 90% των ερωτήσεων που συμφωνήσαμε, η συνδρομή είναι δωρεάν μέχρι να το πετύχει. Στα ιατρεία: live σε 48 ώρες, αλλιώς δωρεάν. Συχνά το κόστος δεν το πληρώνει ο οργανισμός: βοηθάμε να ενταχθεί σε χορηγία, CSR ή ευρωπαϊκό πρόγραμμα. Ή κλείστε 30 λεπτά μαζί μας.",
       "category": "identity",
       "keywords": [
         "τιμη",
@@ -333,7 +333,7 @@
       "url": "/go",
       "lang": "en",
       "language": "en",
-      "content": "fλow pricing: we do not publish prices on the site, because every organisation is different and there are no fixed packages. The price depends on the parts (DialogosAI, PraxisAI, MetronAI) and the features you choose; together the parts cost less. To get it: in Go with the fλow you answer a few questions about your day, design your fλow, leave your email and receive your offer as a PDF straight away, with the price for what you chose, the terms of the no-risk trial and the next steps. There is a trial period and an accuracy guarantee: if it does not answer 90% of the agreed questions correctly, the subscription is free until it does. For practices: live in 48 hours, or free. Often the organisation does not pay: we help fit it into a sponsorship, CSR or an EU programme. Or book 30 minutes with us.",
+      "content": "fλow pricing: we do not publish prices on the site, because every organisation is different and there are no fixed packages. The price depends on the parts (DialogosAI, PraxisAI, MetronAI) and the features you choose; together the parts cost less. To get it: in Go with the fλow you answer a few questions about your day, design your fλow, leave your email and receive your offer as a PDF within one working day, with the price for what you chose, the terms of the no-risk trial and the next steps. There is a trial period and an accuracy guarantee: if it does not answer 90% of the agreed questions correctly, the subscription is free until it does. For practices: live in 48 hours, or free. Often the organisation does not pay: we help fit it into a sponsorship, CSR or an EU programme. Or book 30 minutes with us.",
       "category": "identity",
       "keywords": [
         "τιμη",
@@ -370,8 +370,8 @@
         "parts",
         "answer",
         "questions",
-        "free",
-        "τιμές"
+        "day",
+        "free"
       ],
       "org": "simasia",
       "source": {
@@ -671,7 +671,7 @@
       "url": "/go#book",
       "lang": "el",
       "language": "el",
-      "content": "Στη σελίδα Go with the fλow (/go) λίγες ερωτήσεις για τη μέρα σας σχεδιάζουν ένα πρώτο fλow· ρυθμίζετε μέρη και λειτουργίες, προσθέτετε δικά σας αιτήματα (τα κοστολογεί μετά η ομάδα), βλέπετε τον χρόνο που σας επιστρέφει, παίρνετε αμέσως την προσφορά, στέλνετε μήνυμα από τη φόρμα επικοινωνίας και κλείνετε συνάντηση 30 λεπτών με την ομάδα, διαλέγοντας ώρα από το ημερολόγιο διαθεσιμότητας (/go#book). Εναλλακτικά: contact@simasiaai.gr. ΜΗΝ προτείνεις συνάντηση όταν η ερώτηση αφορά αποκλειστικά ιδρυτές ή βιογραφικά.",
+      "content": "Στη σελίδα Go with the fλow (/go) λίγες ερωτήσεις για τη μέρα σας σχεδιάζουν ένα πρώτο fλow· ρυθμίζετε μέρη και λειτουργίες, προσθέτετε δικά σας αιτήματα (τα κοστολογεί μετά η ομάδα), βλέπετε τον χρόνο που σας επιστρέφει, παίρνετε την προσφορά μέσα σε μία εργάσιμη, στέλνετε μήνυμα από τη φόρμα επικοινωνίας και κλείνετε συνάντηση 30 λεπτών με την ομάδα, διαλέγοντας ώρα από το ημερολόγιο διαθεσιμότητας (/go#book). Εναλλακτικά: contact@simasiaai.gr. ΜΗΝ προτείνεις συνάντηση όταν η ερώτηση αφορά αποκλειστικά ιδρυτές ή βιογραφικά.",
       "category": "identity",
       "keywords": [
         "go",
@@ -1509,7 +1509,7 @@
       "url": "/flow",
       "lang": "el",
       "language": "el",
-      "content": "ο μετράμε μαζί σας στο MetronAI.\nΙ\nΦ\nΜ\nΑ\nΜ\nΙ\nΙ\nΑ\nΣ\nΟ\nΝ\nΔ\nΓιατί αξίζει περισσότερο απ᾽ όσο κοστίζει\nΤο αποτέλεσμα\nΜια ήσυχη μέρα: η ομάδα φεύγει στην ώρα της, οι άνθρωποί σας ησυχάζουν.\nΗ βεβαιότητα\nΤο MetronAI σάς δείχνει κάθε μήνα τι άλλαξε, σε αριθμούς. Εγγύηση 90% ακρίβειας, αλλιώς δεν πληρώνετε.\nΟ χρόνος αναμονής\nΤο DialogosAI απαντά από τις πρώτες 48 ώρες, μέρα και νύχτα.\nΟ κόπος σας\nΤο PraxisAI τα κάνει μόνο του: επιβεβαιώνει ραντεβού, κρατά πρωτόκολλο, θυμίζει προθεσμίες.\nΗ αξία μεγαλώνει όταν τα πάνω ανεβαίνουν και τα κάτω μικραίνουν.\nΦτιάξτε το δικό σας fλow\nΔεν υπάρχουν έτοιμα πακέτα, γιατί κανένας οργανισμός δεν είναι ίδιος με τον άλλον. Διαλέξτε τα μέρη που χρειάζεστε. Μαζί κάνουν περισσότερα.\nΜέσα\nΠροσθήκη\nΗ προσφορά σας έρχεται σε PDF στο email σας\nΣτα ιατρεία, το fλow έρχεται ολόκληρο από την πρώτη μέρα. Η προσφορά σας έρχεται σε PDF στο email σας, φτιαγμένη για το ιατρείο σας.\nΣυνεχίστε: σχεδιάστε το αναλυτικά\nΣτο επόμενο βήμα διαλέγετε δυνατότητες, προσθέτετε τα δικά σας και λαμβάνετε την προσφορά σας στο email σας, σε λίγα δευτερόλεπτα.\nΔιαλέξτε τουλάχιστον ένα μέρος.\nΞεκινήστε χωρίς ρίσκο\nΜε δοκιμαστική περίοδο, με τα δικά σας δεδομένα, και εγγύηση ακρίβειας: αν",
+      "content": "ο μετράμε μαζί σας στο MetronAI.\nΙ\nΦ\nΜ\nΑ\nΜ\nΙ\nΙ\nΑ\nΣ\nΟ\nΝ\nΔ\nΓιατί αξίζει περισσότερο απ᾽ όσο κοστίζει\nΤο αποτέλεσμα\nΜια ήσυχη μέρα: η ομάδα φεύγει στην ώρα της, οι άνθρωποί σας ησυχάζουν.\nΗ βεβαιότητα\nΤο MetronAI σάς δείχνει κάθε μήνα τι άλλαξε, σε αριθμούς. Εγγύηση 90% ακρίβειας, αλλιώς δεν πληρώνετε.\nΟ χρόνος αναμονής\nΤο DialogosAI απαντά από τις πρώτες 48 ώρες, μέρα και νύχτα.\nΟ κόπος σας\nΤο PraxisAI τα κάνει μόνο του: επιβεβαιώνει ραντεβού, κρατά πρωτόκολλο, θυμίζει προθεσμίες.\nΗ αξία μεγαλώνει όταν τα πάνω ανεβαίνουν και τα κάτω μικραίνουν.\nΦτιάξτε το δικό σας fλow\nΔεν υπάρχουν έτοιμα πακέτα, γιατί κανένας οργανισμός δεν είναι ίδιος με τον άλλον. Διαλέξτε τα μέρη που χρειάζεστε. Μαζί κάνουν περισσότερα.\nΜέσα\nΠροσθήκη\nΗ προσφορά σας έρχεται σε PDF στο email σας\nΣτα ιατρεία, το fλow έρχεται ολόκληρο από την πρώτη μέρα. Η προσφορά σας έρχεται σε PDF στο email σας, φτιαγμένη για το ιατρείο σας.\nΣυνεχίστε: σχεδιάστε το αναλυτικά\nΣτο επόμενο βήμα διαλέγετε δυνατότητες, προσθέτετε τα δικά σας και λαμβάνετε την προσφορά σας στο email σας, μέσα σε μία εργάσιμη.\nΔιαλέξτε τουλάχιστον ένα μέρος.\nΞεκινήστε χωρίς ρίσκο\nΜε δοκιμαστική περίοδο, με τα δικά σας δεδομένα, και εγγύηση ακρίβειας: αν",
       "category": "products",
       "keywords": [
         "dialogosai",
@@ -1534,12 +1534,12 @@
         "προσφορά",
         "έρχεται",
         "email",
+        "μία",
         "μαζί",
         "γιατί",
         "εγγύηση",
         "ακρίβειας",
-        "από",
-        "διαλέξτε"
+        "από"
       ],
       "org": "simasia",
       "source": {
@@ -1553,7 +1553,7 @@
       "url": "/flow",
       "lang": "el",
       "language": "el",
-      "content": "ail σας, σε λίγα δευτερόλεπτα.\nΔιαλέξτε τουλάχιστον ένα μέρος.\nΞεκινήστε χωρίς ρίσκο\nΜε δοκιμαστική περίοδο, με τα δικά σας δεδομένα, και εγγύηση ακρίβειας: αν δεν απαντά σωστά στο 90% των ερωτήσεων που συμφωνήσαμε, η συνδρομή είναι δωρεάν ώσπου να το πετύχει. Όλοι οι όροι είναι στην προσφορά σας.\nLive σε 48 ώρες, αλλιώς δωρεάν\nΤεστ αποδοχής με 50 πραγματικές ερωτήσεις, μπροστά σας: αν δεν φτάσει το 90% ακρίβεια, δεν πληρώνετε. Όλοι οι όροι είναι στην προσφορά σας.\nΗ προσφορά σας φτιάχνεται από όσα διαλέγετε και έρχεται σε PDF στο email σας.",
+      "content": "ail σας, μέσα σε μία εργάσιμη.\nΔιαλέξτε τουλάχιστον ένα μέρος.\nΞεκινήστε χωρίς ρίσκο\nΜε δοκιμαστική περίοδο, με τα δικά σας δεδομένα, και εγγύηση ακρίβειας: αν δεν απαντά σωστά στο 90% των ερωτήσεων που συμφωνήσαμε, η συνδρομή είναι δωρεάν ώσπου να το πετύχει. Όλοι οι όροι είναι στην προσφορά σας.\nLive σε 48 ώρες, αλλιώς δωρεάν\nΤεστ αποδοχής με 50 πραγματικές ερωτήσεις, μπροστά σας: αν δεν φτάσει το 90% ακρίβεια, δεν πληρώνετε. Όλοι οι όροι είναι στην προσφορά σας.\nΗ προσφορά σας φτιάχνεται από όσα διαλέγετε και έρχεται σε PDF στο email σας.",
       "category": "products",
       "keywords": [
         "dialogosai",
@@ -1575,6 +1575,7 @@
         "δεν",
         "είναι",
         "προσφορά",
+        "μία",
         "δωρεάν",
         "όλοι",
         "όροι",
@@ -1583,7 +1584,6 @@
         "λόγος",
         "πράξη",
         "καταγραφή",
-        "μία",
         "ροή"
       ],
       "org": "simasia",
@@ -1750,7 +1750,7 @@
       "url": "/go",
       "lang": "el",
       "language": "el",
-      "content": "είναι δωρεάν ώσπου να το πετύχει.\nLive σε 48 ώρες, αλλιώς δωρεάν. Αν δεν φτάσει το 90% ακρίβεια στο τεστ αποδοχής, δεν πληρώνετε.\nΣυχνά δεν το πληρώνει ο οργανισμός. Σας βοηθάμε να βρείτε χορηγό, CSR ή ευρωπαϊκό πρόγραμμα.\nΤι παίρνετε\nΑναφορά αντίκτυπου κάθε τρίμηνο\nΦάκελος έτοιμος για δημοσιοποίηση (ΣΦΕΕ / EFPIA)\nΟ οργανισμός ελέγχει το περιεχόμενο· ο χορηγός δεν επηρεάζει απαντήσεις\nΚαμία ιατρική συμβουλή, καμία προώθηση προϊόντος\nΣύμφωνο με EU AI Act και GDPR, φιλοξενία στην ΕΕ\n«Με την υποστήριξη του …» σε κάθε συνομιλία\nΟ αριθμός που θα βλέπετε κάθε μήνα\nΕρωτήσεις που απαντήθηκαν από εγκεκριμένες πηγές\nΤο ΣΚΠ-i της ΠΟΑμΣΚΠ λειτουργεί ήδη με την υποστήριξη φαρμακευτικών εταιρειών.\nΛάβετε την προσφορά σας στο email σας\nΓράψτε μας πού να τη στείλουμε. Σε λίγα δευτερόλεπτα λαμβάνετε PDF με την προσφορά για όσα διαλέξατε.\nΌνομα\nΟργανισμός\nEmail\nΤηλέφωνο (προαιρετικό)\nΣυμφωνώ να μου στείλει η SimasiaAI την προσφορά στο email μου και να επικοινωνήσει μαζί μου γι᾽ αυτήν.\nΠολιτική απορρήτου\nΣτείλτε μου την προσφορά\nΕτοιμάζουμε την προσφορά σας…\nΣτείλατε πολλά αιτήματα σε λίγο χρόνο. Δοκιμάστε ξανά σε λίγα λεπτά ή γράψτε μας στο contact@simasiaai.gr.\nΗ αποστολή δεν έγινε από εδώ. Στείλτ",
+      "content": "είναι δωρεάν ώσπου να το πετύχει.\nLive σε 48 ώρες, αλλιώς δωρεάν. Αν δεν φτάσει το 90% ακρίβεια στο τεστ αποδοχής, δεν πληρώνετε.\nΣυχνά δεν το πληρώνει ο οργανισμός. Σας βοηθάμε να βρείτε χορηγό, CSR ή ευρωπαϊκό πρόγραμμα.\nΤι παίρνετε\nΑναφορά αντίκτυπου κάθε τρίμηνο\nΦάκελος έτοιμος για δημοσιοποίηση (ΣΦΕΕ / EFPIA)\nΟ οργανισμός ελέγχει το περιεχόμενο· ο χορηγός δεν επηρεάζει απαντήσεις\nΚαμία ιατρική συμβουλή, καμία προώθηση προϊόντος\nΣύμφωνο με EU AI Act και GDPR, φιλοξενία στην ΕΕ\n«Με την υποστήριξη του …» σε κάθε συνομιλία\nΟ αριθμός που θα βλέπετε κάθε μήνα\nΕρωτήσεις που απαντήθηκαν από εγκεκριμένες πηγές\nΤο ΣΚΠ-i της ΠΟΑμΣΚΠ λειτουργεί ήδη με την υποστήριξη φαρμακευτικών εταιρειών.\nΛάβετε την προσφορά σας στο email σας\nΓράψτε μας πού να τη στείλουμε. Μέσα σε μία εργάσιμη λαμβάνετε PDF με την προσφορά για όσα διαλέξατε.\nΌνομα\nΟργανισμός\nEmail\nΤηλέφωνο (προαιρετικό)\nΣυμφωνώ να μου στείλει η SimasiaAI την προσφορά στο email μου και να επικοινωνήσει μαζί μου γι᾽ αυτήν.\nΠολιτική απορρήτου\nΣτείλτε μου την προσφορά\nΕτοιμάζουμε την προσφορά σας…\nΣτείλατε πολλά αιτήματα σε λίγο χρόνο. Δοκιμάστε ξανά σε λίγα λεπτά ή γράψτε μας στο contact@simasiaai.gr.\nΗ αποστολή δεν έγινε από εδώ. Στείλτ",
       "category": "contact",
       "keywords": [
         "go",
@@ -2361,7 +2361,7 @@
       "url": "/flow",
       "lang": "en",
       "language": "en",
-      "content": "et day: the team leaves on time, your people are reassured.\nThe certainty\nMetronAI shows you every month what changed, in numbers. 90% accuracy guaranteed, or you don't pay.\nThe waiting\nDialogosAI answers from the first 48 hours, day and night.\nYour effort\nPraxisAI does it on its own: confirms appointments, keeps the protocol book, reminds you of deadlines.\nValue grows when the top goes up and the bottom shrinks.\nBuild your own fλow\nThere are no fixed packages, because no two organisations are alike. Choose the parts you need. Together they do more.\nIn\nAdd\nYour offer arrives as a PDF in your inbox\nFor practices, fλow comes whole from day one. Your offer arrives as a PDF in your inbox, made for your practice.\nContinue: design it in detail\nNext you choose features, add your own, and receive your offer by email within seconds.\nChoose at least one part.\nStart with no risk\nWith a trial period on your own data, and an accuracy guarantee: if it doesn't answer 90% of the agreed questions correctly, the subscription is free until it does. All the terms are in your offer.\nLive in 48 hours, or free\nAn acceptance test with 50 real questions, in front of you: if it doesn't reach 90% accuracy, y",
+      "content": "et day: the team leaves on time, your people are reassured.\nThe certainty\nMetronAI shows you every month what changed, in numbers. 90% accuracy guaranteed, or you don't pay.\nThe waiting\nDialogosAI answers from the first 48 hours, day and night.\nYour effort\nPraxisAI does it on its own: confirms appointments, keeps the protocol book, reminds you of deadlines.\nValue grows when the top goes up and the bottom shrinks.\nBuild your own fλow\nThere are no fixed packages, because no two organisations are alike. Choose the parts you need. Together they do more.\nIn\nAdd\nYour offer arrives as a PDF in your inbox\nFor practices, fλow comes whole from day one. Your offer arrives as a PDF in your inbox, made for your practice.\nContinue: design it in detail\nNext you choose features, add your own, and receive your offer by email within one working day.\nChoose at least one part.\nStart with no risk\nWith a trial period on your own data, and an accuracy guarantee: if it doesn't answer 90% of the agreed questions correctly, the subscription is free until it does. All the terms are in your offer.\nLive in 48 hours, or free\nAn acceptance test with 50 real questions, in front of you: if it doesn't reach 90% acc",
       "category": "products",
       "keywords": [
         "dialogosai",
@@ -2381,14 +2381,14 @@
         "packages",
         "your",
         "you",
+        "one",
+        "day",
         "are",
         "own",
         "offer",
         "fλow",
-        "one",
-        "day",
-        "accuracy",
         "choose",
+        "accuracy",
         "hours",
         "does",
         "add",
@@ -2406,7 +2406,7 @@
       "url": "/flow",
       "lang": "en",
       "language": "en",
-      "content": "does. All the terms are in your offer.\nLive in 48 hours, or free\nAn acceptance test with 50 real questions, in front of you: if it doesn't reach 90% accuracy, you don't pay. All the terms are in your offer.\nYour offer is built from what you choose and arrives as a PDF in your inbox.",
+      "content": "ntil it does. All the terms are in your offer.\nLive in 48 hours, or free\nAn acceptance test with 50 real questions, in front of you: if it doesn't reach 90% accuracy, you don't pay. All the terms are in your offer.\nYour offer is built from what you choose and arrives as a PDF in your inbox.",
       "category": "products",
       "keywords": [
         "dialogosai",
@@ -2436,8 +2436,8 @@
         "record",
         "one",
         "flow",
-        "does",
-        "live"
+        "ntil",
+        "does"
       ],
       "org": "simasia",
       "source": {
@@ -2602,7 +2602,7 @@
       "url": "/go",
       "lang": "en",
       "language": "en",
-      "content": "get\nQuarterly impact report\nDisclosure-ready file (SFEE / EFPIA)\nThe organisation controls content; the sponsor never shapes answers\nNo medical advice, no product promotion\nEU AI Act and GDPR compliant, hosted in the EU\n\"Supported by …\" in every conversation\nThe number you will see every month\nQuestions answered from approved sources\nΣΚΠ-i by POAmSKP already runs with the support of pharmaceutical companies.\nGet your offer by email\nTell us where to send it. In a few seconds you receive a PDF with the offer for what you chose.\nName\nOrganisation\nEmail\nPhone (optional)\nI agree that SimasiaAI may email me this offer and contact me about it.\nPrivacy policy\nSend me the offer\nPreparing your offer…\nYou sent several requests in a short time. Please try again in a few minutes, or write to contact@simasiaai.gr.\nIt could not be sent from here. Send us the request from your email:\nOpen email\nPlease fill in your name, a valid email and consent.\nWant to look at it together?\nGet the offer\nBack\nGo with the fλow\nIncluded with your subscription, at no extra cost\nA personal project manager, one person from day one\nWe organise your files and build your knowledge base, with no work on your side\nAcceptan",
+      "content": "get\nQuarterly impact report\nDisclosure-ready file (SFEE / EFPIA)\nThe organisation controls content; the sponsor never shapes answers\nNo medical advice, no product promotion\nEU AI Act and GDPR compliant, hosted in the EU\n\"Supported by …\" in every conversation\nThe number you will see every month\nQuestions answered from approved sources\nΣΚΠ-i by POAmSKP already runs with the support of pharmaceutical companies.\nGet your offer by email\nTell us where to send it. Within one working day you receive a PDF with the offer for what you chose.\nName\nOrganisation\nEmail\nPhone (optional)\nI agree that SimasiaAI may email me this offer and contact me about it.\nPrivacy policy\nSend me the offer\nPreparing your offer…\nYou sent several requests in a short time. Please try again in a few minutes, or write to contact@simasiaai.gr.\nIt could not be sent from here. Send us the request from your email:\nOpen email\nPlease fill in your name, a valid email and consent.\nWant to look at it together?\nGet the offer\nBack\nGo with the fλow\nIncluded with your subscription, at no extra cost\nA personal project manager, one person from day one\nWe organise your files and build your knowledge base, with no work on your side\nAc",
       "category": "contact",
       "keywords": [
         "go",
@@ -2619,12 +2619,12 @@
         "fλow",
         "get",
         "send",
+        "one",
         "organisation",
         "every",
-        "few",
+        "day",
         "name",
-        "simasiaai",
-        "contact"
+        "simasiaai"
       ],
       "org": "simasia",
       "source": {
@@ -2638,7 +2638,7 @@
       "url": "/go",
       "lang": "en",
       "language": "en",
-      "content": "n, at no extra cost\nA personal project manager, one person from day one\nWe organise your files and build your knowledge base, with no work on your side\nAcceptance test on 50 questions and answers, before it reaches your people\nTeam training: a guide and video in their language\nQR codes and print material so your people find it\nAlways the newest, strongest AI models\nMonthly meetings with our team\nUrgent fixes within 24 hours\nChat support, 24/7\nA report on what your people asked for and did not find\nYou risk nothing\nA no-risk start\nYou begin with a trial period, on your own data. The terms are in your offer.\nAccuracy guarantee\n90% correct answers on the questions we agree, or it is free until it gets there.\nOne person beside you\nYour project manager, from the first call to well after launch.\nLive in 48 hours, or free\nYou begin with a trial period. The terms are in your offer.\nAcceptance test\nIf it does not reach 90% accuracy, you don't pay.\nOne person beside you\nYour project manager, from the first call to well after launch.\nMeasured every month\nYou see how many people it reached before anyone else does.\nCompliance first\nLegal review on every project, no product promotion.\nOne person",
+      "content": "ription, at no extra cost\nA personal project manager, one person from day one\nWe organise your files and build your knowledge base, with no work on your side\nAcceptance test on 50 questions and answers, before it reaches your people\nTeam training: a guide and video in their language\nQR codes and print material so your people find it\nAlways the newest, strongest AI models\nMonthly meetings with our team\nUrgent fixes within 24 hours\nChat support, 24/7\nA report on what your people asked for and did not find\nYou risk nothing\nA no-risk start\nYou begin with a trial period, on your own data. The terms are in your offer.\nAccuracy guarantee\n90% correct answers on the questions we agree, or it is free until it gets there.\nOne person beside you\nYour project manager, from the first call to well after launch.\nLive in 48 hours, or free\nYou begin with a trial period. The terms are in your offer.\nAcceptance test\nIf it does not reach 90% accuracy, you don't pay.\nOne person beside you\nYour project manager, from the first call to well after launch.\nMeasured every month\nYou see how many people it reached before anyone else does.\nCompliance first\nLegal review on every project, no product promotion.\nOne",
       "category": "contact",
       "keywords": [
         "go",
@@ -2653,9 +2653,9 @@
         "you",
         "one",
         "project",
-        "person",
         "people",
         "manager",
+        "person",
         "first",
         "fλow",
         "acceptance",
@@ -2675,7 +2675,7 @@
       "url": "/go",
       "lang": "en",
       "language": "en",
-      "content": "easured every month\nYou see how many people it reached before anyone else does.\nCompliance first\nLegal review on every project, no product promotion.\nOne person beside you\nA project manager for sponsor and organisation.\nEvery organisation is unique\nfλow is set up on your own documents, name, tone and channels. You start with the part that hurts most and add the next one when you are ready. Your offer is built from what you chose; in our conversation we fit it to you even more.\nEvery answer is a person who did not have to wait until tomorrow.\nEvery call answered is a patient who did not go elsewhere.\nEvery euro reaches people, and it shows.\nWhat holds you back, answered\nIt is too expensive for us.\nOften the organisation doesn't pay: we help you find a sponsor, CSR or an EU programme. And if it answers only 10 calls a day, it gives you back more than 10 hours a month.\nOur team has no time for something new.\nIt doesn't need any. We set it up, from your documents. The team gets one training, a guide in their language and one person to ask.\nWe are not technical.\nNo code, no IT department. If you can send an email, you can work with fλow.\nWhat if it answers wrongly?\nIt answers only from",
+      "content": "nch.\nMeasured every month\nYou see how many people it reached before anyone else does.\nCompliance first\nLegal review on every project, no product promotion.\nOne person beside you\nA project manager for sponsor and organisation.\nEvery organisation is unique\nfλow is set up on your own documents, name, tone and channels. You start with the part that hurts most and add the next one when you are ready. Your offer is built from what you chose; in our conversation we fit it to you even more.\nEvery answer is a person who did not have to wait until tomorrow.\nEvery call answered is a patient who did not go elsewhere.\nEvery euro reaches people, and it shows.\nWhat holds you back, answered\nIt is too expensive for us.\nOften the organisation doesn't pay: we help you find a sponsor, CSR or an EU programme. And if it answers only 10 calls a day, it gives you back more than 10 hours a month.\nOur team has no time for something new.\nIt doesn't need any. We set it up, from your documents. The team gets one training, a guide in their language and one person to ask.\nWe are not technical.\nNo code, no IT department. If you can send an email, you can work with fλow.\nWhat if it answers wrongly?\nIt answers only",
       "category": "contact",
       "keywords": [
         "go",
@@ -2713,7 +2713,7 @@
       "url": "/go",
       "lang": "en",
       "language": "en",
-      "content": "son to ask.\nWe are not technical.\nNo code, no IT department. If you can send an email, you can work with fλow.\nWhat if it answers wrongly?\nIt answers only from what you approved, with a source, and says so when it doesn't know. No AI is infallible: so a test before launch, a check every month, and urgent cases always go to a person.\nWhat about our data?\nIt is hosted in the EU and belongs to you. We sign a data processing agreement, as the GDPR requires.\nAnd the AI Act?\nIt is our first priority. The system says it is AI, people stay in control, and a partner law firm reviews every project separately.\nWhat if it is not right for us?\nYou start with a trial period and an accuracy guarantee. You commit to nothing before you see the flow working. The terms are in your offer.\nIt is expensive for a practice.\nTwo appointments a month that are not lost usually cover the subscription. You see your own price in your offer.\nThe front desk has no time to learn something new.\nIt doesn't need any. We set it up from your price list and information. The front desk gains time from the first week.\nI am not technical.\nNo need. Live in 48 hours, no code, with one person to ask.\nWhat if it tells a patien",
+      "content": "ne person to ask.\nWe are not technical.\nNo code, no IT department. If you can send an email, you can work with fλow.\nWhat if it answers wrongly?\nIt answers only from what you approved, with a source, and says so when it doesn't know. No AI is infallible: so a test before launch, a check every month, and urgent cases always go to a person.\nWhat about our data?\nIt is hosted in the EU and belongs to you. We sign a data processing agreement, as the GDPR requires.\nAnd the AI Act?\nIt is our first priority. The system says it is AI, people stay in control, and a partner law firm reviews every project separately.\nWhat if it is not right for us?\nYou start with a trial period and an accuracy guarantee. You commit to nothing before you see the flow working. The terms are in your offer.\nIt is expensive for a practice.\nTwo appointments a month that are not lost usually cover the subscription. You see your own price in your offer.\nThe front desk has no time to learn something new.\nIt doesn't need any. We set it up from your price list and information. The front desk gains time from the first week.\nI am not technical.\nNo need. Live in 48 hours, no code, with one person to ask.\nWhat if it tells a",
       "category": "contact",
       "keywords": [
         "go",
@@ -2729,6 +2729,7 @@
         "what",
         "not",
         "fλow",
+        "person",
         "are",
         "ask",
         "technical",
@@ -2736,8 +2737,7 @@
         "can",
         "answers",
         "says",
-        "doesn",
-        "before"
+        "doesn"
       ],
       "org": "simasia",
       "source": {
@@ -2751,7 +2751,7 @@
       "url": "/go",
       "lang": "en",
       "language": "en",
-      "content": "mation. The front desk gains time from the first week.\nI am not technical.\nNo need. Live in 48 hours, no code, with one person to ask.\nWhat if it tells a patient something wrong?\nIt never gives medical advice or diagnosis. It answers only from what you approved, and anything urgent goes to a person. No AI is infallible: so a test before launch and a check every month.\nWhat about patient data?\nIt is hosted in the EU and belongs to you. We sign a data processing agreement, as the GDPR requires.\nAnd the AI Act?\nIt is our first priority. A partner law firm reviews every project separately.\nHow do we know the support arrived?\nA report every quarter: how many people were informed, what they asked, what was missing.\nDoes it follow industry codes?\nThe organisation controls content, the sponsor never shapes answers, no product promotion. A disclosure-ready file (SFEE / EFPIA).\nAnd the AI Act?\nOur first priority. A partner law firm reviews every project separately.\nWhat if the organisation does not use it?\nYou see it in the numbers every month, and the project manager steps in before it becomes a problem.\nOr book 30 minutes with us",
+      "content": "information. The front desk gains time from the first week.\nI am not technical.\nNo need. Live in 48 hours, no code, with one person to ask.\nWhat if it tells a patient something wrong?\nIt never gives medical advice or diagnosis. It answers only from what you approved, and anything urgent goes to a person. No AI is infallible: so a test before launch and a check every month.\nWhat about patient data?\nIt is hosted in the EU and belongs to you. We sign a data processing agreement, as the GDPR requires.\nAnd the AI Act?\nIt is our first priority. A partner law firm reviews every project separately.\nHow do we know the support arrived?\nA report every quarter: how many people were informed, what they asked, what was missing.\nDoes it follow industry codes?\nThe organisation controls content, the sponsor never shapes answers, no product promotion. A disclosure-ready file (SFEE / EFPIA).\nAnd the AI Act?\nOur first priority. A partner law firm reviews every project separately.\nWhat if the organisation does not use it?\nYou see it in the numbers every month, and the project manager steps in before it becomes a problem.\nOr book 30 minutes with us",
       "category": "contact",
       "keywords": [
         "go",
@@ -3403,7 +3403,7 @@
       "priority": 1
     }
   ],
-  "generatedAt": "2026-10-05T16:26:58.097Z",
+  "generatedAt": "2026-10-05T20:04:29.821Z",
   "source": "flow-pages+page-i18n+core-identity",
   "navbarRoutes": [
     "/",

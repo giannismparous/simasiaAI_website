@@ -5,10 +5,12 @@ The site shows no prices. On /go the visitor chooses parts and features and leav
 
 1. prices the choices with `src/components/flow/offerEngine.js` (the browser never sends prices);
 2. writes a branded PDF (`doc.mjs`, `pdf.mjs`, fonts in `fonts.mjs`, Greek + Latin, no npm dependencies);
-3. emails the PDF to the visitor (`email.mjs`, reply-to contact@simasiaai.gr);
-4. emails the lead with the same PDF to contact@simasiaai.gr (reply-to the visitor).
+3. emails the lead with the PDF to contact@simasiaai.gr **only**, marked «ΠΡΟΣ ΕΛΕΓΧΟ», with the
+   message for the visitor written out below it (`email.mjs`). Reply-to is the visitor.
+4. The team checks the offer and sends it to the visitor within one working day (the site promises
+   this): press Reply, paste the ready text, attach the PDF. Nothing goes to the visitor automatically.
 
-Copy for the PDF and both emails, Greek and English: `copy.mjs`.
+Copy for the PDF and the client message, Greek and English: `copy.mjs`.
 
 ## Setup (once)
 
@@ -21,18 +23,17 @@ Copy for the PDF and both emails, Greek and English: `copy.mjs`.
 | `RESEND_API_KEY` | `re_…` (required) |
 | `OFFER_FROM` | optional, default `SimasiaAI <contact@simasiaai.gr>` |
 | `OFFER_NOTIFY_TO` | optional, default `contact@simasiaai.gr` (comma-separated for more) |
-| `OFFER_REPLY_TO` | optional, default `contact@simasiaai.gr` |
 
 4. Redeploy.
 
 Until the key is set (or if Resend is down), the function answers 503/502 and the page sends the lead,
-with prices, to contact@simasiaai.gr through EmailJS and tells the visitor the offer arrives within one
-working day. No request is lost.
+without the PDF, to contact@simasiaai.gr through EmailJS. The visitor sees the same message either way
+(the offer arrives within one working day), so no request is lost.
 
 ## Test
 
 ```
-npm run test:offer          # 21 checks with a stand-in for Resend
+npm run test:offer          # 24 checks with a stand-in for Resend
 npm run test:offer -- --pdf # also writes sample PDFs to ./offer-samples/
 ```
 

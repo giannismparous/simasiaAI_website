@@ -1,18 +1,18 @@
 /*
  * POST /.netlify/functions/send-offer
- * The visitor's choices from /go → a priced PDF offer, emailed to the visitor,
- * plus the lead (same PDF) to contact@simasiaai.gr. Prices never reach the browser.
+ * The visitor's choices from /go → a priced PDF offer, emailed with the lead to
+ * contact@simasiaai.gr only. The team reviews it and forwards it to the visitor;
+ * nothing goes to the visitor automatically. Prices never reach the browser.
  *
  * Netlify env:
  *   RESEND_API_KEY      required (resend.com, domain simasiaai.gr verified)
  *   OFFER_FROM          optional, default "SimasiaAI <contact@simasiaai.gr>"
  *   OFFER_NOTIFY_TO     optional, default "contact@simasiaai.gr" (comma-separated for more)
- *   OFFER_REPLY_TO      optional, default "contact@simasiaai.gr"
  */
 import { corsHeaders, netlifyDeployOrigins, parseAllowedOrigins } from './lib/gemini-keys.mjs';
 import { readRequest, buildOffer, OfferInputError } from '../offer/offer.mjs';
 import { renderOfferPdf } from '../offer/doc.mjs';
-import { clientEmail, leadEmail } from '../offer/email.mjs';
+import { leadEmail } from '../offer/email.mjs';
 import { COPY } from '../offer/copy.mjs';
 
 const RESEND_URL = 'https://api.resend.com/emails';
@@ -101,7 +101,6 @@ export default async (req, context) => {
   if (!key) return json(503, { error: 'email_not_configured' }, origin, allowed);
 
   const from = (process.env.OFFER_FROM || 'SimasiaAI <contact@simasiaai.gr>').trim();
-  const replyTo = (process.env.OFFER_REPLY_TO || 'contact@simasiaai.gr').trim();
   const notify = (process.env.OFFER_NOTIFY_TO || 'contact@simasiaai.gr').split(',').map((s) => s.trim()).filter(Boolean);
 
   let offer; let pdf;
@@ -114,22 +113,14 @@ export default async (req, context) => {
   }
   const attachments = [{ filename: COPY[offer.lang].fileName(offer.ref), content: pdf }];
 
-  const mine = clientEmail(offer);
+  // for review: the PDF goes to the team only, and replying to the lead writes to the visitor
+  const lead = leadEmail(offer);
   try {
-    await sendWithResend(key, { from, to: [offer.contact.email], reply_to: replyTo, subject: mine.subject, html: mine.html, text: mine.text, attachments, tags: [{ name: 'type', value: 'offer' }, { name: 'aud', value: offer.aud }] }, `offer-${offer.ref}`);
+    await sendWithResend(key, { from, to: notify, reply_to: offer.contact.email, subject: lead.subject, html: lead.html, text: lead.text, attachments, tags: [{ name: 'type', value: 'lead' }, { name: 'aud', value: offer.aud }] }, `lead-${offer.ref}`);
   } catch (e) {
-    console.error('send-offer: client email failed', e.message);
+    console.error('send-offer: lead email failed', e.message);
     return json(502, { error: 'send_failed' }, origin, allowed);
   }
 
-  const lead = leadEmail(offer);
-  try {
-    await sendWithResend(key, { from, to: notify, reply_to: offer.contact.email, subject: lead.subject, html: lead.html, text: lead.text, attachments, tags: [{ name: 'type', value: 'lead' }] }, `lead-${offer.ref}`);
-  } catch (e) {
-    // the visitor has the offer; the team still needs the lead, so report it for the client fallback
-    console.error('send-offer: lead email failed', e.message);
-    return json(200, { ok: true, ref: offer.ref, lead: false }, origin, allowed);
-  }
-
-  return json(200, { ok: true, ref: offer.ref, lead: true }, origin, allowed);
+  return json(200, { ok: true, ref: offer.ref }, origin, allowed);
 };

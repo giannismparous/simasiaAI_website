@@ -1,7 +1,7 @@
 // Copy for /flow/build ("Φτιάξτε το fλow σας"). Each audience is spoken to in its own terms:
 // NGOs: people supported, sponsors, calm teams. Clinics: bookings, missed calls, time.
 // Sponsors: reach, compliance, disclosure.
-// No prices on the site: the priced offer is built on the server and arrives as a PDF by email
+// No prices on the site: the priced offer is built on the server, reviewed by the team and sent as a PDF by email
 // (netlify/functions/send-offer.mjs, netlify/offer/).
 
 export const builderCopy = {
@@ -86,13 +86,13 @@ export const builderCopy = {
     },
     contact: {
       title: 'Λάβετε την προσφορά σας στο email σας',
-      lead: 'Γράψτε μας πού να τη στείλουμε. Σε λίγα δευτερόλεπτα λαμβάνετε PDF με την προσφορά για όσα διαλέξατε.',
+      lead: 'Γράψτε μας πού να τη στείλουμε. Μέσα σε μία εργάσιμη λαμβάνετε PDF με την προσφορά για όσα διαλέξατε.',
       name: 'Όνομα', org: 'Οργανισμός', email: 'Email', phone: 'Τηλέφωνο (προαιρετικό)',
       consent: 'Συμφωνώ να μου στείλει η SimasiaAI την προσφορά στο email μου και να επικοινωνήσει μαζί μου γι᾽ αυτήν.',
       privacy: 'Πολιτική απορρήτου',
       send: 'Στείλτε μου την προσφορά',
       sending: 'Ετοιμάζουμε την προσφορά σας…',
-      sent: (email) => `Η προσφορά σας στάλθηκε στο ${email}. Αν δεν τη δείτε σε λίγα λεπτά, κοιτάξτε και στα Ανεπιθύμητα.`,
+      sent: (email) => `Λάβαμε το αίτημά σας. Ετοιμάζουμε την προσφορά σας και θα τη στείλουμε στο ${email} μέσα σε μία εργάσιμη.`,
       queued: (email) => `Λάβαμε το αίτημά σας. Η προσφορά σας θα έρθει στο ${email} μέσα σε μία εργάσιμη.`,
       tooMany: 'Στείλατε πολλά αιτήματα σε λίγο χρόνο. Δοκιμάστε ξανά σε λίγα λεπτά ή γράψτε μας στο contact@simasiaai.gr.',
       fallback: 'Η αποστολή δεν έγινε από εδώ. Στείλτε μας το αίτημα από το email σας:',
@@ -238,13 +238,13 @@ export const builderCopy = {
     },
     contact: {
       title: 'Get your offer by email',
-      lead: 'Tell us where to send it. In a few seconds you receive a PDF with the offer for what you chose.',
+      lead: 'Tell us where to send it. Within one working day you receive a PDF with the offer for what you chose.',
       name: 'Name', org: 'Organisation', email: 'Email', phone: 'Phone (optional)',
       consent: 'I agree that SimasiaAI may email me this offer and contact me about it.',
       privacy: 'Privacy policy',
       send: 'Send me the offer',
       sending: 'Preparing your offer…',
-      sent: (email) => `Your offer has been sent to ${email}. If you don't see it in a few minutes, check your spam folder too.`,
+      sent: (email) => `We have your request. We are preparing your offer and will send it to ${email} within one working day.`,
       queued: (email) => `We have your request. Your offer will arrive at ${email} within one working day.`,
       tooMany: 'You sent several requests in a short time. Please try again in a few minutes, or write to contact@simasiaai.gr.',
       fallback: 'It could not be sent from here. Send us the request from your email:', fallbackLink: 'Open email',

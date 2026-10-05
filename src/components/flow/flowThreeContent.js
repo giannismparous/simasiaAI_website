@@ -89,7 +89,7 @@ export const threeContent = {
       offerByEmail: 'Η προσφορά σας έρχεται σε PDF στο email σας',
       medNote: 'Στα ιατρεία, το fλow έρχεται ολόκληρο από την πρώτη μέρα. Η προσφορά σας έρχεται σε PDF στο email σας, φτιαγμένη για το ιατρείο σας.',
       cta: 'Συνεχίστε: σχεδιάστε το αναλυτικά',
-      hint: 'Στο επόμενο βήμα διαλέγετε δυνατότητες, προσθέτετε τα δικά σας και λαμβάνετε την προσφορά σας στο email σας, σε λίγα δευτερόλεπτα.',
+      hint: 'Στο επόμενο βήμα διαλέγετε δυνατότητες, προσθέτετε τα δικά σας και λαμβάνετε την προσφορά σας στο email σας, μέσα σε μία εργάσιμη.',
       need: 'Διαλέξτε τουλάχιστον ένα μέρος.',
       guarantee: {
         ngo: ['Ξεκινήστε χωρίς ρίσκο', 'Με δοκιμαστική περίοδο, με τα δικά σας δεδομένα, και εγγύηση ακρίβειας: αν δεν απαντά σωστά στο 90% των ερωτήσεων που συμφωνήσαμε, η συνδρομή είναι δωρεάν ώσπου να το πετύχει. Όλοι οι όροι είναι στην προσφορά σας.'],
@@ -186,7 +186,7 @@ export const threeContent = {
       offerByEmail: 'Your offer arrives as a PDF in your inbox',
       medNote: 'For practices, fλow comes whole from day one. Your offer arrives as a PDF in your inbox, made for your practice.',
       cta: 'Continue: design it in detail',
-      hint: 'Next you choose features, add your own, and receive your offer by email within seconds.',
+      hint: 'Next you choose features, add your own, and receive your offer by email within one working day.',
       need: 'Choose at least one part.',
       guarantee: {
         ngo: ['Start with no risk', 'With a trial period on your own data, and an accuracy guarantee: if it doesn\'t answer 90% of the agreed questions correctly, the subscription is free until it does. All the terms are in your offer.'],

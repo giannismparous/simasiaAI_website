@@ -3,7 +3,7 @@
  * Offline check of the emailed offer (no Resend key, no network).
  * Runs the real Netlify function netlify/functions/send-offer.mjs with a stand-in for Resend and checks:
  *   1. prices are computed on the server from the visitor's choices (offerEngine.js)
- *   2. a valid PDF is attached, the visitor gets the offer and contact@simasiaai.gr gets the lead
+ *   2. a valid PDF is attached to the lead for contact@simasiaai.gr, for review; nothing goes to the visitor
  *   3. bad input, bots, other sites and floods are refused; a missing key answers 503 (the site then
  *      sends the lead through EmailJS and tells the visitor the offer comes within a working day)
  * Usage: npm run test:offer          (writes sample PDFs to ./offer-samples/ with --pdf)
@@ -53,15 +53,15 @@ const outDir = path.join(ROOT, 'offer-samples');
 for (const c of cases) {
   sent.length = 0;
   const r = await call(c.body);
-  const [mine, lead] = sent;
-  const pdf = mine ? Buffer.from(mine.body.attachments[0].content, 'base64') : Buffer.alloc(0);
+  const [lead] = sent;
+  const pdf = lead ? Buffer.from(lead.body.attachments[0].content, 'base64') : Buffer.alloc(0);
   const price = c.expect();
-  check(r.status === 200 && r.body.ok && sent.length === 2, `${c.name}: 200, 2 emails (${r.body.ref || r.body.error})`);
-  check(mine && mine.url === 'https://api.resend.com/emails' && mine.auth === 'Bearer re_test_key' && mine.body.to[0] === c.body.contact.email && mine.body.reply_to === 'contact@simasiaai.gr', `  visitor email to ${c.body.contact.email}, replies to contact@simasiaai.gr`);
-  check(pdf.slice(0, 5).toString() === '%PDF-' && pdf.length > 30000 && pdf.length < 400000, `  PDF attached (${Math.round(pdf.length / 1024)} KB)`);
-  check(mine && mine.body.html.includes(price), `  server price in the email: ${price}`);
-  check(lead && lead.body.to.includes('contact@simasiaai.gr') && lead.body.reply_to === c.body.contact.email && lead.body.attachments.length === 1, '  lead to contact@simasiaai.gr with the same PDF');
-  if (process.argv.includes('--pdf') && mine) { fs.mkdirSync(outDir, { recursive: true }); fs.writeFileSync(path.join(outDir, mine.body.attachments[0].filename), pdf); }
+  check(r.status === 200 && r.body.ok && sent.length === 1, `${c.name}: 200, 1 email (${r.body.ref || r.body.error})`);
+  check(lead && lead.url === 'https://api.resend.com/emails' && lead.auth === 'Bearer re_test_key' && lead.body.to.length === 1 && lead.body.to[0] === 'contact@simasiaai.gr' && lead.body.reply_to === c.body.contact.email, `  only to contact@simasiaai.gr (not to ${c.body.contact.email}), replies go to the visitor`);
+  check(pdf.slice(0, 5).toString() === '%PDF-' && pdf.length > 30000 && pdf.length < 400000 && lead.body.attachments.length === 1, `  PDF attached (${Math.round(pdf.length / 1024)} KB)`);
+  check(lead && lead.body.html.includes(price) && lead.body.text.includes(price), `  server price in the lead: ${price}`);
+  check(lead && /^\[ΠΡΟΣ ΕΛΕΓΧΟ\]/.test(lead.body.subject) && lead.body.text.includes('ΔΕΝ στάλθηκε στον πελάτη') && lead.body.text.includes('Έτοιμο κείμενο για τον πελάτη'), '  marked for review, with the client text ready to forward');
+  if (process.argv.includes('--pdf') && lead) { fs.mkdirSync(outDir, { recursive: true }); fs.writeFileSync(path.join(outDir, lead.body.attachments[0].filename), pdf); }
 }
 
 sent.length = 0;
@@ -78,7 +78,7 @@ check(r.status === 403 && !sent.length, 'another Netlify site → 403');
 r = await call(cases[0].body, null);
 check(r.status === 403 && !sent.length, 'no Origin (a script, not a browser) → 403');
 r = await call({ ...cases[0].body, contact: { ...contact('link@example.com'), name: 'Win now http://bad.example/x www.bad.ru', org: 'visit bad-site.com today' }, custom: ['see https://x.io'] });
-check(r.status === 200 && sent.length === 2 && !/bad\.example|bad-site\.com|x\.io|bad\.ru/i.test(JSON.stringify([sent[0].body.subject, sent[0].body.html, sent[0].body.text, sent[1].body.text])), 'links in name, organisation and requests are removed before sending');
+check(r.status === 200 && sent.length === 1 && !/bad\.example|bad-site\.com|x\.io|bad\.ru/i.test(JSON.stringify([sent[0].body.subject, sent[0].body.html, sent[0].body.text])), 'links in name, organisation and requests are removed before sending');
 sent.length = 0;
 resendStatus = 500;
 r = await call({ ...cases[0].body, contact: contact('down@example.com') });
