@@ -1,6 +1,7 @@
 import React from 'react';
 import greeceOutline from '../assets/greece-outline.svg';
 import './PrincipleIcons.css';
+import HandInk from './HandInk';
 
 const INK = '#141413';
 const INK_SOFT = 'rgba(20, 20, 19, 0.38)';
@@ -9,6 +10,8 @@ const GREEN = '#5a8a62';
 
 export const PrincipleHumanIcon = ({ className = '' }) => (
   <svg className={`pi-svg ${className}`} viewBox="0 0 80 88" fill="none" aria-hidden="true">
+      <HandInk id="ink-p1" scale={2.6} seed={3} />
+      <g filter="url(#ink-p1)">
     <g className="pi-human-supported">
       <circle cx="52" cy="18" r="7.2" stroke={INK} strokeWidth="1.5" />
       <path d="M52 25.5v22" stroke={INK} strokeWidth="1.5" strokeLinecap="round" />
@@ -32,11 +35,14 @@ export const PrincipleHumanIcon = ({ className = '' }) => (
       strokeLinejoin="round"
     />
     <path d="M14 74 Q40 80 66 74" stroke={INK_SOFT} strokeWidth="1.3" strokeLinecap="round" />
-  </svg>
+      </g>
+    </svg>
 );
 
 export const PrincipleShieldIcon = ({ className = '' }) => (
   <svg className={`pi-svg ${className}`} viewBox="0 0 80 88" fill="none" aria-hidden="true">
+      <HandInk id="ink-p2" scale={2.6} seed={5} />
+      <g filter="url(#ink-p2)">
     {/* Notepad */}
     <rect
       x="14"
@@ -79,11 +85,14 @@ export const PrincipleShieldIcon = ({ className = '' }) => (
     />
     <circle cx="54" cy="65" r="2" fill={INK} />
     <path d="M54 67 v4" stroke={INK} strokeWidth="1.45" strokeLinecap="round" />
-  </svg>
+      </g>
+    </svg>
 );
 
 export const PrincipleLeafIcon = ({ className = '' }) => (
   <svg className={`pi-svg pi-plant ${className}`} viewBox="0 0 80 88" fill="none" aria-hidden="true">
+      <HandInk id="ink-p3" scale={2.6} seed={9} />
+      <g filter="url(#ink-p3)">
     <path d="M18 74 Q40 80 62 74" stroke={INK_SOFT} strokeWidth="1.3" strokeLinecap="round" />
     <path
       className="pi-plant-stem"
@@ -116,7 +125,8 @@ export const PrincipleLeafIcon = ({ className = '' }) => (
       strokeWidth="1.3"
       strokeLinejoin="round"
     />
-  </svg>
+      </g>
+    </svg>
 );
 
 export const PrincipleGreeceIcon = ({ className = '' }) => (

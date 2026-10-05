@@ -10,6 +10,7 @@ import { NGO, MED, SPONSOR, MODULE_IDS } from './offerCatalog';
 import { MODULES } from './modules';
 import { TimeBack, timeModel } from './FlowThree';
 import './FlowBuilder.css';
+import HandInk from '../HandInk';
 
 /*
  * /go: «Go with the fλow». The visitor tells us about their day (a few questions,
@@ -38,6 +39,8 @@ const parseMods = (m) => (m && /^[dpm]{1,3}$/.test(m) ? { dialogos: m.includes('
 const SponsorIllustration = () => (
   <div className="gate-illus" aria-hidden="true">
     <svg viewBox="0 0 280 280" fill="none" className="gate-illus-svg">
+      <HandInk id="ink-sponsor" seed={4} />
+      <g filter="url(#ink-sponsor)">
       <ellipse cx="140" cy="244" rx="74" ry="7" fill="#faf9f5" opacity="0.06" />
       <rect x="104" y="204" width="18" height="36" rx="8" fill="#3a3630" />
       <rect x="128" y="204" width="18" height="36" rx="8" fill="#3a3630" />
@@ -54,6 +57,7 @@ const SponsorIllustration = () => (
         <path d="M0 10 C0 -2, 18 -4, 18 8 C18 -4, 36 -2, 36 10 C36 24, 18 32, 18 38 C18 32, 0 24, 0 10 Z" fill="#d97757" />
       </g>
       <path d="M166 146 C 180 140, 190 136, 198 126" stroke="#d97757" strokeWidth="1.6" strokeDasharray="4 4" fill="none" opacity="0.7" />
+      </g>
     </svg>
   </div>
 );

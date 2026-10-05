@@ -295,7 +295,7 @@ export const extraUiEl = {
     principlesTitle: 'Οι Αρχές μας',
     principlesSub: 'Τέσσερις αρχές που καθορίζουν κάθε απόφαση που παίρνουμε.',
     missionTitle: 'Η Αποστολή μας',
-    missionText: 'Δεν σχεδιάζουμε μία απλή μηχανή απαντήσεων. Δημιουργήσαμε το DialogosAI, ένα ανθρωποκεντρικό σύστημα που αναπτύσσει αυθεντικό, ασφαλή και προσαρμοσμένο διάλογο με τους ασθενείς, με σεβασμό στην ελληνική γλώσσα, την προσβασιμότητα για όλες και όλους, αναλαμβάνοντας την ευθύνη της χρήσης της τεχνολογίας που συνδράμει σε πραγματικές ανάγκες.',
+    missionText: 'Δεν φτιάχνουμε άλλη μια μηχανή απαντήσεων. Φτιάχνουμε το fλow: Λόγο, Πράξη και Καταγραφή σε μία ροή, για τους ανθρώπους που φροντίζουν άλλους. Το DialogosAI μιλά με σεβασμό στην ελληνική γλώσσα, μόνο από εγκεκριμένες πηγές. Το PraxisAI αναλαμβάνει τη ρουτίνα, ώστε να μένει χρόνος για τον άνθρωπο. Το MetronAI μετρά τι άλλαξε, για να φαίνεται ο αντίκτυπος. Ο άνθρωπος αποφασίζει πάντα· η τεχνολογία υπηρετεί. Μέτρο μας ο Άνθρωπος.',
     missionCta: 'Κλείστε ένα Demo',
     terminalFile: 'mission_statement.txt',
     team: [
@@ -786,7 +786,7 @@ export const extraUiEn = {
     principlesTitle: 'Our Principles',
     principlesSub: 'Four principles that shape every decision we make.',
     missionTitle: 'Our Mission',
-    missionText: 'We do not design a simple answering machine. We built DialogosAI — a human-centered assistant that develops authentic, safe, adapted dialogue with patients, with respect for the Greek language, accessibility for everyone, and responsibility for technology that serves real needs.',
+    missionText: 'We are not building another answering machine. We build fλow: Dialogue, Action and Record in one flow, for the people who care for others. DialogosAI speaks with respect for the Greek language, only from approved sources. PraxisAI takes on the routine, so there is time left for people. MetronAI measures what changed, so the impact shows. People always decide; technology serves. The human is our measure.',
     missionCta: 'Book a Demo',
     terminalFile: 'mission_statement.txt',
     team: [

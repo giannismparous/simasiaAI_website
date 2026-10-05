@@ -1,5 +1,6 @@
 import React from 'react';
 import './GateIllustrations.css';
+import HandInk from './HandInk';
 
 /*
  * Anthropic-style SVG illustrations:
@@ -31,6 +32,8 @@ export const ClinicIllustration = () => (
   <div className="gate-illus gate-illus--clinic" aria-hidden="true">
     <svg viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg"
       className="gate-illus-svg">
+      <HandInk id="ink-clinic" />
+      <g filter="url(#ink-clinic)">
 
       {/* ── Sparkle stars — orbit via CSS ── */}
       <Star4 x="140" y="24"  r="9"   color="#d97757" className="gi-star gi-star--1"/>
@@ -115,6 +118,7 @@ export const ClinicIllustration = () => (
       <circle cx="162" cy="62" r="2.5" fill="#d97757" className="gi-dot gi-dot--1"/>
       <circle cx="245" cy="172" r="2"   fill="#faf9f5" opacity="0.4" className="gi-dot gi-dot--2"/>
       <circle cx="42"  cy="185" r="2"   fill="#d97757" opacity="0.55" className="gi-dot gi-dot--3"/>
+      </g>
     </svg>
   </div>
 );
@@ -128,6 +132,8 @@ export const NgoIllustration = () => (
   <div className="gate-illus gate-illus--ngo" aria-hidden="true">
     <svg viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg"
       className="gate-illus-svg">
+      <HandInk id="ink-ngo" seed={11} />
+      <g filter="url(#ink-ngo)">
 
       {/* ── Green sparkle stars ── */}
       <Star4 x="140" y="22"  r="9"   color="#6aab6a" className="gi-star gi-star--1"/>
@@ -224,6 +230,7 @@ export const NgoIllustration = () => (
       <circle cx="162" cy="56" r="2.5" fill="#6aab6a" className="gi-dot gi-dot--1"/>
       <circle cx="250" cy="175" r="2"   fill="#faf9f5" opacity="0.4" className="gi-dot gi-dot--2"/>
       <circle cx="30"  cy="175" r="2"   fill="#6aab6a" opacity="0.5" className="gi-dot gi-dot--3"/>
+      </g>
     </svg>
   </div>
 );
