@@ -9,7 +9,7 @@ const COPY = {
   el: {
     ed: { assoc: 'Σύλλογος / ΜΚΟ', care: 'Δομή φροντίδας', clinic: 'Ιατρείο / Κλινική' },
     edAria: 'Τύπος οργανισμού για το δείγμα',
-    sample: 'Δείγμα με δοκιμαστικά δεδομένα',
+    sample: 'Παράδειγμα',
     tryIt: 'Δοκιμάστε:',
     hints: {
       agent: { assoc: 'υπενθύμιση ανανέωσης', care: 'ενημέρωση βάρδιας', clinic: 'επιβεβαίωση ραντεβού' },
@@ -111,7 +111,7 @@ const COPY = {
   en: {
     ed: { assoc: 'Association / NGO', care: 'Care facility', clinic: 'Practice / Clinic' },
     edAria: 'Organisation type for the sample',
-    sample: 'Sample with test data',
+    sample: 'Example',
     tryIt: 'Try:',
     hints: {
       agent: { assoc: 'renewal reminder', care: 'shift handover', clinic: 'confirm appointments' },

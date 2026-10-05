@@ -949,6 +949,113 @@
     },
     {
       "id": "web_0021",
+      "title": "SimasiaAI — η ευρύτερη ομάδα (marketing, περιεχόμενο, βίντεο)",
+      "url": "/team",
+      "lang": "el",
+      "language": "el",
+      "content": "Εκτός από τους τέσσερις συνιδρυτές, στην ομάδα της SimasiaAI είναι:\n- Έλενα Στεφανάτου — Marketing Strategist: χαράζει τη στρατηγική marketing και επικοινωνίας (7+ χρόνια στο ευρωπαϊκό οικοσύστημα startups και καινοτομίας).\n- Παντελής Νικολόπουλος — Storyteller & Content Creator: γράφει και δημιουργεί το περιεχόμενό μας.\n- Σωτήρης — Videographer, Photographer & Editor: βίντεο, φωτογραφία και μοντάζ.\nΜην κλείνεις με πρόταση συνάντησης σε ερωτήσεις για την ομάδα.",
+      "category": "identity",
+      "keywords": [
+        "ομαδα",
+        "omada",
+        "team",
+        "ποιος κανει",
+        "who does",
+        "marketing",
+        "μαρκετινγκ",
+        "επικοινωνια",
+        "communication",
+        "περιεχομενο",
+        "content",
+        "storyteller",
+        "βιντεο",
+        "video",
+        "videographer",
+        "φωτογραφ",
+        "photographer",
+        "editor",
+        "ελενα",
+        "στεφανατου",
+        "stefanatou",
+        "παντελης",
+        "νικολοπουλος",
+        "nikolopoulos",
+        "σωτηρης",
+        "sotiris",
+        "ομάδα",
+        "simasiaai",
+        "βίντεο",
+        "ευρύτερη",
+        "περιεχόμενο",
+        "εκτός",
+        "από",
+        "τους",
+        "τέσσερις",
+        "συνιδρυτές",
+        "στην",
+        "είναι",
+        "έλενα"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0022",
+      "title": "SimasiaAI — η ευρύτερη ομάδα (marketing, περιεχόμενο, βίντεο)",
+      "url": "/team",
+      "lang": "en",
+      "language": "en",
+      "content": "Besides the four co-founders, the SimasiaAI team includes:\n- Elena Stefanatou — Marketing Strategist: leads marketing and communication strategy (7+ years in Europe's startup and innovation ecosystem).\n- Pantelis Nikolopoulos — Storyteller & Content Creator: writes and creates our content.\n- Sotiris — Videographer, Photographer & Editor: video, photography and editing.\nDo not close with a call-booking CTA on team questions.",
+      "category": "identity",
+      "keywords": [
+        "ομαδα",
+        "omada",
+        "team",
+        "ποιος κανει",
+        "who does",
+        "marketing",
+        "μαρκετινγκ",
+        "επικοινωνια",
+        "communication",
+        "περιεχομενο",
+        "content",
+        "storyteller",
+        "βιντεο",
+        "video",
+        "videographer",
+        "φωτογραφ",
+        "photographer",
+        "editor",
+        "ελενα",
+        "στεφανατου",
+        "stefanatou",
+        "παντελης",
+        "νικολοπουλος",
+        "nikolopoulos",
+        "σωτηρης",
+        "sotiris",
+        "simasiaai",
+        "ευρύτερη",
+        "ομάδα",
+        "περιεχόμενο",
+        "βίντεο",
+        "besides",
+        "four",
+        "co-founders",
+        "includes",
+        "elena"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "core_rag"
+      },
+      "priority": 2
+    },
+    {
+      "id": "web_0023",
       "title": "fλow — ονόματα, γένος, γραφή",
       "url": "/flow",
       "lang": "el",
@@ -993,7 +1100,7 @@
       "priority": 2
     },
     {
-      "id": "web_0022",
+      "id": "web_0024",
       "title": "fλow — ονόματα, γένος, γραφή",
       "url": "/flow",
       "lang": "en",
@@ -1037,7 +1144,7 @@
       "priority": 2
     },
     {
-      "id": "web_0023",
+      "id": "web_0025",
       "title": "SimasiaAI — επικοινωνία",
       "url": "/go#book",
       "lang": "el",
@@ -1075,7 +1182,7 @@
       "priority": 2
     },
     {
-      "id": "web_0024",
+      "id": "web_0026",
       "title": "SimasiaAI — επικοινωνία",
       "url": "/go#book",
       "lang": "en",
@@ -1112,7 +1219,7 @@
       "priority": 2
     },
     {
-      "id": "web_0025",
+      "id": "web_0027",
       "title": "fλow — DialogosAI, PraxisAI, MetronAI (1/4)",
       "url": "/flow",
       "lang": "el",
@@ -1149,7 +1256,7 @@
       "priority": 1
     },
     {
-      "id": "web_0026",
+      "id": "web_0028",
       "title": "fλow — DialogosAI, PraxisAI, MetronAI (2/4)",
       "url": "/flow",
       "lang": "el",
@@ -1186,7 +1293,7 @@
       "priority": 1
     },
     {
-      "id": "web_0027",
+      "id": "web_0029",
       "title": "fλow — DialogosAI, PraxisAI, MetronAI (3/4)",
       "url": "/flow",
       "lang": "el",
@@ -1227,7 +1334,7 @@
       "priority": 1
     },
     {
-      "id": "web_0028",
+      "id": "web_0030",
       "title": "fλow — DialogosAI, PraxisAI, MetronAI (4/4)",
       "url": "/flow",
       "lang": "el",
@@ -1264,7 +1371,7 @@
       "priority": 1
     },
     {
-      "id": "web_0029",
+      "id": "web_0031",
       "title": "fλow — Λόγος, Πράξη και Καταγραφή, σε μία ροή (1/5)",
       "url": "/flow",
       "lang": "el",
@@ -1309,7 +1416,7 @@
       "priority": 1
     },
     {
-      "id": "web_0030",
+      "id": "web_0032",
       "title": "fλow — Λόγος, Πράξη και Καταγραφή, σε μία ροή (2/5)",
       "url": "/flow",
       "lang": "el",
@@ -1352,7 +1459,7 @@
       "priority": 1
     },
     {
-      "id": "web_0031",
+      "id": "web_0033",
       "title": "fλow — Λόγος, Πράξη και Καταγραφή, σε μία ροή (3/5)",
       "url": "/flow",
       "lang": "el",
@@ -1397,7 +1504,7 @@
       "priority": 1
     },
     {
-      "id": "web_0032",
+      "id": "web_0034",
       "title": "fλow — Λόγος, Πράξη και Καταγραφή, σε μία ροή (4/5)",
       "url": "/flow",
       "lang": "el",
@@ -1441,7 +1548,7 @@
       "priority": 1
     },
     {
-      "id": "web_0033",
+      "id": "web_0035",
       "title": "fλow — Λόγος, Πράξη και Καταγραφή, σε μία ροή (5/5)",
       "url": "/flow",
       "lang": "el",
@@ -1486,7 +1593,7 @@
       "priority": 1
     },
     {
-      "id": "web_0034",
+      "id": "web_0036",
       "title": "Go with the fλow — φτιάξτε το fλow σας (1/10)",
       "url": "/go",
       "lang": "el",
@@ -1524,7 +1631,7 @@
       "priority": 1
     },
     {
-      "id": "web_0035",
+      "id": "web_0037",
       "title": "Go with the fλow — φτιάξτε το fλow σας (2/10)",
       "url": "/go",
       "lang": "el",
@@ -1562,7 +1669,7 @@
       "priority": 1
     },
     {
-      "id": "web_0036",
+      "id": "web_0038",
       "title": "Go with the fλow — φτιάξτε το fλow σας (3/10)",
       "url": "/go",
       "lang": "el",
@@ -1600,7 +1707,7 @@
       "priority": 1
     },
     {
-      "id": "web_0037",
+      "id": "web_0039",
       "title": "Go with the fλow — φτιάξτε το fλow σας (4/10)",
       "url": "/go",
       "lang": "el",
@@ -1638,7 +1745,7 @@
       "priority": 1
     },
     {
-      "id": "web_0038",
+      "id": "web_0040",
       "title": "Go with the fλow — φτιάξτε το fλow σας (5/10)",
       "url": "/go",
       "lang": "el",
@@ -1676,7 +1783,7 @@
       "priority": 1
     },
     {
-      "id": "web_0039",
+      "id": "web_0041",
       "title": "Go with the fλow — φτιάξτε το fλow σας (6/10)",
       "url": "/go",
       "lang": "el",
@@ -1714,7 +1821,7 @@
       "priority": 1
     },
     {
-      "id": "web_0040",
+      "id": "web_0042",
       "title": "Go with the fλow — φτιάξτε το fλow σας (7/10)",
       "url": "/go",
       "lang": "el",
@@ -1752,7 +1859,7 @@
       "priority": 1
     },
     {
-      "id": "web_0041",
+      "id": "web_0043",
       "title": "Go with the fλow — φτιάξτε το fλow σας (8/10)",
       "url": "/go",
       "lang": "el",
@@ -1790,7 +1897,7 @@
       "priority": 1
     },
     {
-      "id": "web_0042",
+      "id": "web_0044",
       "title": "Go with the fλow — φτιάξτε το fλow σας (9/10)",
       "url": "/go",
       "lang": "el",
@@ -1828,7 +1935,7 @@
       "priority": 1
     },
     {
-      "id": "web_0043",
+      "id": "web_0045",
       "title": "Go with the fλow — φτιάξτε το fλow σας (10/10)",
       "url": "/go",
       "lang": "el",
@@ -1866,7 +1973,7 @@
       "priority": 1
     },
     {
-      "id": "web_0044",
+      "id": "web_0046",
       "title": "Συνεργασίες (1/2)",
       "url": "/collaborations",
       "lang": "el",
@@ -1901,7 +2008,7 @@
       "priority": 0
     },
     {
-      "id": "web_0045",
+      "id": "web_0047",
       "title": "Συνεργασίες (2/2)",
       "url": "/collaborations",
       "lang": "el",
@@ -1936,7 +2043,7 @@
       "priority": 0
     },
     {
-      "id": "web_0046",
+      "id": "web_0048",
       "title": "Επικοινωνία",
       "url": "/go#book",
       "lang": "el",
@@ -1968,7 +2075,7 @@
       "priority": 0
     },
     {
-      "id": "web_0047",
+      "id": "web_0049",
       "title": "fλow — DialogosAI, PraxisAI, MetronAI (1/4)",
       "url": "/flow",
       "lang": "en",
@@ -2004,7 +2111,7 @@
       "priority": 1
     },
     {
-      "id": "web_0048",
+      "id": "web_0050",
       "title": "fλow — DialogosAI, PraxisAI, MetronAI (2/4)",
       "url": "/flow",
       "lang": "en",
@@ -2041,7 +2148,7 @@
       "priority": 1
     },
     {
-      "id": "web_0049",
+      "id": "web_0051",
       "title": "fλow — DialogosAI, PraxisAI, MetronAI (3/4)",
       "url": "/flow",
       "lang": "en",
@@ -2081,7 +2188,7 @@
       "priority": 1
     },
     {
-      "id": "web_0050",
+      "id": "web_0052",
       "title": "fλow — DialogosAI, PraxisAI, MetronAI (4/4)",
       "url": "/flow",
       "lang": "en",
@@ -2118,7 +2225,7 @@
       "priority": 1
     },
     {
-      "id": "web_0051",
+      "id": "web_0053",
       "title": "fλow — dialogue, action and record, in one flow (1/5)",
       "url": "/flow",
       "lang": "en",
@@ -2163,7 +2270,7 @@
       "priority": 1
     },
     {
-      "id": "web_0052",
+      "id": "web_0054",
       "title": "fλow — dialogue, action and record, in one flow (2/5)",
       "url": "/flow",
       "lang": "en",
@@ -2205,7 +2312,7 @@
       "priority": 1
     },
     {
-      "id": "web_0053",
+      "id": "web_0055",
       "title": "fλow — dialogue, action and record, in one flow (3/5)",
       "url": "/flow",
       "lang": "en",
@@ -2249,7 +2356,7 @@
       "priority": 1
     },
     {
-      "id": "web_0054",
+      "id": "web_0056",
       "title": "fλow — dialogue, action and record, in one flow (4/5)",
       "url": "/flow",
       "lang": "en",
@@ -2294,7 +2401,7 @@
       "priority": 1
     },
     {
-      "id": "web_0055",
+      "id": "web_0057",
       "title": "fλow — dialogue, action and record, in one flow (5/5)",
       "url": "/flow",
       "lang": "en",
@@ -2339,7 +2446,7 @@
       "priority": 1
     },
     {
-      "id": "web_0056",
+      "id": "web_0058",
       "title": "Go with the fλow — build your fλow (1/9)",
       "url": "/go",
       "lang": "en",
@@ -2376,7 +2483,7 @@
       "priority": 1
     },
     {
-      "id": "web_0057",
+      "id": "web_0059",
       "title": "Go with the fλow — build your fλow (2/9)",
       "url": "/go",
       "lang": "en",
@@ -2414,7 +2521,7 @@
       "priority": 1
     },
     {
-      "id": "web_0058",
+      "id": "web_0060",
       "title": "Go with the fλow — build your fλow (3/9)",
       "url": "/go",
       "lang": "en",
@@ -2452,7 +2559,7 @@
       "priority": 1
     },
     {
-      "id": "web_0059",
+      "id": "web_0061",
       "title": "Go with the fλow — build your fλow (4/9)",
       "url": "/go",
       "lang": "en",
@@ -2490,7 +2597,7 @@
       "priority": 1
     },
     {
-      "id": "web_0060",
+      "id": "web_0062",
       "title": "Go with the fλow — build your fλow (5/9)",
       "url": "/go",
       "lang": "en",
@@ -2526,7 +2633,7 @@
       "priority": 1
     },
     {
-      "id": "web_0061",
+      "id": "web_0063",
       "title": "Go with the fλow — build your fλow (6/9)",
       "url": "/go",
       "lang": "en",
@@ -2563,7 +2670,7 @@
       "priority": 1
     },
     {
-      "id": "web_0062",
+      "id": "web_0064",
       "title": "Go with the fλow — build your fλow (7/9)",
       "url": "/go",
       "lang": "en",
@@ -2601,7 +2708,7 @@
       "priority": 1
     },
     {
-      "id": "web_0063",
+      "id": "web_0065",
       "title": "Go with the fλow — build your fλow (8/9)",
       "url": "/go",
       "lang": "en",
@@ -2639,7 +2746,7 @@
       "priority": 1
     },
     {
-      "id": "web_0064",
+      "id": "web_0066",
       "title": "Go with the fλow — build your fλow (9/9)",
       "url": "/go",
       "lang": "en",
@@ -2677,7 +2784,7 @@
       "priority": 1
     },
     {
-      "id": "web_0065",
+      "id": "web_0067",
       "title": "Collaborations (1/2)",
       "url": "/collaborations",
       "lang": "en",
@@ -2711,7 +2818,7 @@
       "priority": 0
     },
     {
-      "id": "web_0066",
+      "id": "web_0068",
       "title": "Collaborations (2/2)",
       "url": "/collaborations",
       "lang": "en",
@@ -2745,7 +2852,7 @@
       "priority": 0
     },
     {
-      "id": "web_0067",
+      "id": "web_0069",
       "title": "Contact",
       "url": "/go#book",
       "lang": "en",
@@ -2777,7 +2884,7 @@
       "priority": 0
     },
     {
-      "id": "web_0068",
+      "id": "web_0070",
       "title": "Ομάδα — SimasiaAI (1/7)",
       "url": "/team",
       "lang": "el",
@@ -2812,12 +2919,12 @@
       "priority": 1
     },
     {
-      "id": "web_0069",
+      "id": "web_0071",
       "title": "Ομάδα — SimasiaAI (2/7)",
       "url": "/team",
       "lang": "el",
       "language": "el",
-      "content": "φία ή την κάρτα για να αναποδογυρίσει και να δείτε το αναλυτικό βιογραφικό και τις δεξιότητες.\nΔείτε το CV ↻\nΕπιστροφή ↺\nΕξειδίκευση:\nΟι Αρχές μας\nΤέσσερις αρχές που καθορίζουν κάθε απόφαση που παίρνουμε.\nΗ Αποστολή μας\nΔεν σχεδιάζουμε μία απλή μηχανή απαντήσεων. Δημιουργήσαμε το DialogosAI, ένα ανθρωποκεντρικό σύστημα που αναπτύσσει αυθεντικό, ασφαλή και προσαρμοσμένο διάλογο με τους ασθενείς, με σεβασμό στην ελληνική γλώσσα, την προσβασιμότητα για όλες και όλους, αναλαμβάνοντας την ευθύνη της χρήσης της τεχνολογίας που συνδράμει σε πραγματικές ανάγκες.\nΣτέργιος Χατζηκυριακίδης\nCo-founder & CEO, simasiaAI\nΚαθηγητής Υπολογιστικής Γλωσσολογίας με 20 έτη διεθνούς εμπειρίας (London, Gothenburg, CLASP).\nΟ Καθηγητής Υπολογιστικής Γλωσσολογίας Στέργιος Χατζηκυριακίδης φέρνει στη SimasiaAI μια διεθνή ακαδημαϊκή και επιχειρηματική εμπειρία δύο δεκαετιών. Με θητεία σε ορισμένα από τα πιο αναγνωρισμένα ιδρύματα της Ευρώπης (University of London, CNRS, Πανεπιστήμιο Γκέτεμποργκ) και έχοντας διατελέσει Αναπληρωτής Διευθυντής του Κέντρου Αριστείας CLASP, αποτελεί σημείο αναφοράς στην Επεξεργασία Φυσικής Γλώσσας (NLP). Το έργο του περιλαμβάνει 4 μονογραφίες, 120+ επιστημονικά paper με συστηματική",
+      "content": "φία ή την κάρτα για να αναποδογυρίσει και να δείτε το αναλυτικό βιογραφικό και τις δεξιότητες.\nΔείτε το CV ↻\nΕπιστροφή ↺\nΕξειδίκευση:\nΟι Αρχές μας\nΤέσσερις αρχές που καθορίζουν κάθε απόφαση που παίρνουμε.\nΗ Αποστολή μας\nΔεν φτιάχνουμε άλλη μια μηχανή απαντήσεων. Φτιάχνουμε το fλow: Λόγο, Πράξη και Καταγραφή σε μία ροή, για τους ανθρώπους που φροντίζουν άλλους. Το DialogosAI μιλά με σεβασμό στην ελληνική γλώσσα, μόνο από εγκεκριμένες πηγές. Το PraxisAI αναλαμβάνει τη ρουτίνα, ώστε να μένει χρόνος για τον άνθρωπο. Το MetronAI μετρά τι άλλαξε, για να φαίνεται ο αντίκτυπος. Ο άνθρωπος αποφασίζει πάντα· η τεχνολογία υπηρετεί. Μέτρο μας ο Άνθρωπος.\nΣτέργιος Χατζηκυριακίδης\nCo-founder & CEO, simasiaAI\nΚαθηγητής Υπολογιστικής Γλωσσολογίας με 20 έτη διεθνούς εμπειρίας (London, Gothenburg, CLASP).\nΟ Καθηγητής Υπολογιστικής Γλωσσολογίας Στέργιος Χατζηκυριακίδης φέρνει στη SimasiaAI μια διεθνή ακαδημαϊκή και επιχειρηματική εμπειρία δύο δεκαετιών. Με θητεία σε ορισμένα από τα πιο αναγνωρισμένα ιδρύματα της Ευρώπης (University of London, CNRS, Πανεπιστήμιο Γκέτεμποργκ) και έχοντας διατελέσει Αναπληρωτής Διευθυντής του Κέντρου Αριστείας CLASP, αποτελεί σημείο αναφοράς στην Επεξεργασία Φυσικής Γλώ",
       "category": "company",
       "keywords": [
         "team",
@@ -2825,20 +2932,20 @@
         "founders",
         "ιδρυτες",
         "ceo",
-        "που",
         "simasiaai",
-        "την",
+        "μας",
+        "που",
         "δείτε",
         "αρχές",
-        "μας",
+        "φτιάχνουμε",
+        "μια",
         "στην",
+        "από",
+        "άνθρωπος",
         "στέργιος",
         "χατζηκυριακίδης",
         "καθηγητής",
-        "υπολογιστικής",
-        "γλωσσολογίας",
-        "london",
-        "clasp"
+        "υπολογιστικής"
       ],
       "org": "simasia",
       "source": {
@@ -2847,12 +2954,12 @@
       "priority": 1
     },
     {
-      "id": "web_0070",
+      "id": "web_0072",
       "title": "Ομάδα — SimasiaAI (3/7)",
       "url": "/team",
       "lang": "el",
       "language": "el",
-      "content": "Αριστείας CLASP, αποτελεί σημείο αναφοράς στην Επεξεργασία Φυσικής Γλώσσας (NLP). Το έργο του περιλαμβάνει 4 μονογραφίες, 120+ επιστημονικά paper με συστηματική συνεισφορά στο ελληνικό NLP, και τη δημιουργία περισσότερων από 30 ready-to-market AI εφαρμογών.\nΥπολογιστική Γλωσσολογία\nΕπεξεργασία Φυσικής Γλώσσας (NLP)\nAI Architecture\nΈρευνα & Ανάπτυξη\nΔημήτρης Παπαδάκης\nCo-founder & Head of Sales\nΓλωσσολόγος (M.A. NLP) με ερευνητικό έργο σε διεθνή συνέδρια AI και εμπειρία στο LORIA (Γαλλία).\nΣτην SimasiaAI, ο Δημήτρης γεφυρώνει τον κόσμο της προηγμένης τεχνολογίας του AI με την επιχειρηματική ανάπτυξη και τη στρατηγική πωλήσεων. Είναι αριστούχος κάτοχος M.A. στη Γλωσσολογία (Πανεπιστήμιο Κρήτης) με εκτενή ερευνητική εμπειρία στην ανάπτυξη ελληνικών γλωσσικών δεδομένων (NLP) και δημοσιεύσεις σε κορυφαία διεθνή συνέδρια τεχνητής νοημοσύνης (LREC, EACL).\nBusiness Development\nNLP Research\nΣτρατηγική Πωλήσεων\nProject Management\nΓιάννης\nCo-founder & CTO\nΥποψήφιος Διδάκτωρ Πληροφορικής (San Francisco), ειδικός σε ασφάλεια δεδομένων και RAG.\nΟ Γιάννης ηγείται του τεχνολογικού σχεδιασμού και των υποδομών της SimasiaAI. Είναι Υποψήφιος Διδάκτωρ (PhD candidate) στην Επιστήμη Υπολογιστών με έδρα",
+      "content": "CNRS, Πανεπιστήμιο Γκέτεμποργκ) και έχοντας διατελέσει Αναπληρωτής Διευθυντής του Κέντρου Αριστείας CLASP, αποτελεί σημείο αναφοράς στην Επεξεργασία Φυσικής Γλώσσας (NLP). Το έργο του περιλαμβάνει 4 μονογραφίες, 120+ επιστημονικά paper με συστηματική συνεισφορά στο ελληνικό NLP, και τη δημιουργία περισσότερων από 30 ready-to-market AI εφαρμογών.\nΥπολογιστική Γλωσσολογία\nΕπεξεργασία Φυσικής Γλώσσας (NLP)\nAI Architecture\nΈρευνα & Ανάπτυξη\nΔημήτρης Παπαδάκης\nCo-founder & Head of Sales\nΓλωσσολόγος (M.A. NLP) με ερευνητικό έργο σε διεθνή συνέδρια AI και εμπειρία στο LORIA (Γαλλία).\nΣτην SimasiaAI, ο Δημήτρης γεφυρώνει τον κόσμο της προηγμένης τεχνολογίας του AI με την επιχειρηματική ανάπτυξη και τη στρατηγική πωλήσεων. Είναι αριστούχος κάτοχος M.A. στη Γλωσσολογία (Πανεπιστήμιο Κρήτης) με εκτενή ερευνητική εμπειρία στην ανάπτυξη ελληνικών γλωσσικών δεδομένων (NLP) και δημοσιεύσεις σε κορυφαία διεθνή συνέδρια τεχνητής νοημοσύνης (LREC, EACL).\nBusiness Development\nNLP Research\nΣτρατηγική Πωλήσεων\nProject Management\nΓιάννης\nCo-founder & CTO\nΥποψήφιος Διδάκτωρ Πληροφορικής (San Francisco), ειδικός σε ασφάλεια δεδομένων και RAG.\nΟ Γιάννης ηγείται του τεχνολογικού σχεδιασμού και των υποδομών",
       "category": "company",
       "keywords": [
         "team",
@@ -2861,10 +2968,11 @@
         "ιδρυτες",
         "ceo",
         "nlp",
-        "στην",
-        "simasiaai",
         "του",
+        "στην",
         "ανάπτυξη",
+        "simasiaai",
+        "πανεπιστήμιο",
         "επεξεργασία",
         "φυσικής",
         "γλώσσας",
@@ -2872,8 +2980,7 @@
         "γλωσσολογία",
         "δημήτρης",
         "co-founder",
-        "διεθνή",
-        "συνέδρια"
+        "διεθνή"
       ],
       "org": "simasia",
       "source": {
@@ -2882,12 +2989,12 @@
       "priority": 1
     },
     {
-      "id": "web_0071",
+      "id": "web_0073",
       "title": "Ομάδα — SimasiaAI (4/7)",
       "url": "/team",
       "lang": "el",
       "language": "el",
-      "content": "ι RAG.\nΟ Γιάννης ηγείται του τεχνολογικού σχεδιασμού και των υποδομών της SimasiaAI. Είναι Υποψήφιος Διδάκτωρ (PhD candidate) στην Επιστήμη Υπολογιστών με έδρα το Σαν Φρανσίσκο, με εξειδίκευση σε συστήματα ιδιωτικότητας, ασφάλεια δεδομένων και αξιόπιστες υποδομές λογισμικού.\nFull Stack Development\nAI Security & Privacy\nRAG Architectures\nInfrastructure Scaling\nΑναπληρώτρια Καθ. Αναστασία Νάτσινα\nChief Communications Officer (CCO) & Co-Founder\nΑναπλ. Καθηγήτρια Πανεπιστημίου Κρήτης, απόφοιτος Οξφόρδης με Constantine Trypanis Award.\nΗ Αναστασία ηγείται της στρατηγικής επικοινωνίας, των δημοσίων σχέσεων και της εξωστρέφειας της SimasiaAI. Είναι Αναπληρώτρια Καθηγήτρια Νεοελληνικής Φιλολογίας και Πρόεδρος του τμήματος Φιλολογίας του Πανεπιστημίου Κρήτης.\nStrategic Communications\nPublic Relations\nPublic Image\nText Composition\nΈλενα Στεφανάτου\nMarketing Strategist\nMarketing & Communication Professional με 7+ χρόνια εμπειρίας στο ευρωπαϊκό οικοσύστημα startups και καινοτομίας.\nΗ Έλενα χαράζει τη στρατηγική marketing της SimasiaAI και φροντίζει το fλow να φτάνει στους οργανισμούς που το χρειάζονται. Με 7+ χρόνια εμπειρίας στο οικοσύστημα startups και καινοτομίας σε όλη την Ευρώπη, ξέρει πώς",
+      "content": "er & CTO\nΥποψήφιος Διδάκτωρ Πληροφορικής (San Francisco), ειδικός σε ασφάλεια δεδομένων και RAG.\nΟ Γιάννης ηγείται του τεχνολογικού σχεδιασμού και των υποδομών της SimasiaAI. Είναι Υποψήφιος Διδάκτωρ (PhD candidate) στην Επιστήμη Υπολογιστών με έδρα το Σαν Φρανσίσκο, με εξειδίκευση σε συστήματα ιδιωτικότητας, ασφάλεια δεδομένων και αξιόπιστες υποδομές λογισμικού.\nFull Stack Development\nAI Security & Privacy\nRAG Architectures\nInfrastructure Scaling\nΑναπληρώτρια Καθ. Αναστασία Νάτσινα\nChief Communications Officer (CCO) & Co-Founder\nΑναπλ. Καθηγήτρια Πανεπιστημίου Κρήτης, απόφοιτος Οξφόρδης με Constantine Trypanis Award.\nΗ Αναστασία ηγείται της στρατηγικής επικοινωνίας, των δημοσίων σχέσεων και της εξωστρέφειας της SimasiaAI. Είναι Αναπληρώτρια Καθηγήτρια Νεοελληνικής Φιλολογίας και Πρόεδρος του τμήματος Φιλολογίας του Πανεπιστημίου Κρήτης.\nStrategic Communications\nPublic Relations\nPublic Image\nText Composition\nΈλενα Στεφανάτου\nMarketing Strategist\nMarketing & Communication Professional με 7+ χρόνια εμπειρίας στο ευρωπαϊκό οικοσύστημα startups και καινοτομίας.\nΗ Έλενα χαράζει τη στρατηγική marketing της SimasiaAI και φροντίζει το fλow να φτάνει στους οργανισμούς που το χρειάζονται. Με",
       "category": "company",
       "keywords": [
         "team",
@@ -2898,87 +3005,17 @@
         "simasiaai",
         "του",
         "marketing",
+        "υποψήφιος",
+        "διδάκτωρ",
+        "ασφάλεια",
+        "δεδομένων",
         "rag",
         "ηγείται",
         "είναι",
         "αναπληρώτρια",
         "αναστασία",
         "communications",
-        "καθηγήτρια",
-        "πανεπιστημίου",
-        "κρήτης",
-        "φιλολογίας",
-        "public"
-      ],
-      "org": "simasia",
-      "source": {
-        "type": "page_i18n"
-      },
-      "priority": 1
-    },
-    {
-      "id": "web_0072",
-      "title": "Ομάδα — SimasiaAI (5/7)",
-      "url": "/team",
-      "lang": "el",
-      "language": "el",
-      "content": "ι φροντίζει το fλow να φτάνει στους οργανισμούς που το χρειάζονται. Με 7+ χρόνια εμπειρίας στο οικοσύστημα startups και καινοτομίας σε όλη την Ευρώπη, ξέρει πώς μια νέα τεχνολογία γίνεται ιστορία που κερδίζει εμπιστοσύνη: σε επενδυτές, συνεργάτες και, πάνω απ᾽ όλα, στους ανθρώπους που φροντίζουν άλλους. Συνδέει το προϊόν με την αγορά, χτίζει τη φωνή μας σε κάθε κανάλι και ανοίγει πόρτες σε ΜΚΟ, κλινικές και χορηγούς σε Ελλάδα και Κύπρο, μετρώντας τι πραγματικά φέρνει αποτέλεσμα.\nMarketing Strategy\nGo-to-Market\nStartup & Innovation Ecosystem\nBrand Communication\nΠαντελής Νικολόπουλος\nStoryteller & Content Creator\nStoryteller & Content Creator, εστιάζοντας στην ανθρωποκεντρική επικοινωνία της AI τεχνολογίας.\nΟ Παντελής είναι ο δημιουργικός πυρήνας πίσω από την επικοινωνία και την ταυτότητα της SimasiaAI. Ως Storyteller και Content Creator, εξειδικεύεται στη δημιουργία αυθεντικού περιεχομένου με συναίσθημα και ξεκάθαρο σκοπό.\nContent Strategy\nBrand Storytelling\nCreative Writing\nMedia Creation\nΣωτήρης\nVideographer · Photographer · Editor\nVideographer, Photographer και Editor με 5+ χρόνια εμπειρίας — δίνει πρόσωπο, φως και συναίσθημα στην τεχνολογία μας.\nΟ Σωτήρης είναι αυτός που δίνει π",
-      "category": "company",
-      "keywords": [
-        "team",
-        "ομαδα",
-        "founders",
-        "ιδρυτες",
-        "ceo",
-        "που",
-        "την",
-        "content",
-        "storyteller",
-        "creator",
-        "simasiaai",
-        "στους",
-        "χρόνια",
-        "εμπειρίας",
-        "τεχνολογία",
-        "μας",
-        "strategy",
-        "brand",
-        "παντελής"
-      ],
-      "org": "simasia",
-      "source": {
-        "type": "page_i18n"
-      },
-      "priority": 1
-    },
-    {
-      "id": "web_0073",
-      "title": "Ομάδα — SimasiaAI (6/7)",
-      "url": "/team",
-      "lang": "el",
-      "language": "el",
-      "content": "· Editor\nVideographer, Photographer και Editor με 5+ χρόνια εμπειρίας — δίνει πρόσωπο, φως και συναίσθημα στην τεχνολογία μας.\nΟ Σωτήρης είναι αυτός που δίνει πρόσωπο, φως και συναίσθημα στην τεχνολογία μας. Με 5+ χρόνια εμπειρίας στο video, τη φωτογραφία και το editing, έχει το σπάνιο χάρισμα να μετατρέπει αφηρημένες έννοιες σε δυνατές οπτικές αφηγήσεις. Με απόλυτη εμμονή στην αισθητική λεπτομέρεια και αγάπη για το storytelling, εξασφαλίζει ότι το μήνυμα της SimasiaAI δεν ακούγεται απλώς, αλλά αποτυπώνεται στο βλέμμα και τη μνήμη του θεατή.\nVideo Production\nPhotography\nEditing\nVisual Storytelling\nΑνθρωποκεντρικότητα\nΟ σχεδιασμός μας ξεκινά και τελειώνει με την ανθρώπινη εμπειρία, όχι με την τεχνολογία. Θέτουμε τις ανάγκες των ασθενών στο επίκεντρο κάθε γραμμής κώδικα.\nΥπευθυνότητα & Συμμόρφωση\nΠλήρης εναρμόνιση με το EU AI Act σε κάθε υλοποίηση. Εγγυόμαστε απόλυτη ασφάλεια δεδομένων, διαφάνεια αποφάσεων και σεβασμό στην ιδιωτικότητα.\nΟικολογική Καινοτομία\nEco-Friendly Optimized RAG: Εφαρμόζουμε πράσινες τεχνολογίες για να ελαχιστοποιήσουμε το ενεργειακό αποτύπωμα των γλωσσικών μοντέλων.\nΜε Επίκεντρο την Ελλάδα\nΣχεδιάζουμε ειδικά για την ελληνική γλώσσα, υποστηρίζοντας τοπικές ιδια",
-      "category": "company",
-      "keywords": [
-        "team",
-        "ομαδα",
-        "founders",
-        "ιδρυτες",
-        "ceo",
-        "στην",
-        "την",
-        "τεχνολογία",
-        "μας",
-        "simasiaai",
-        "editor",
-        "χρόνια",
-        "εμπειρίας",
-        "δίνει",
-        "πρόσωπο",
-        "φως",
-        "συναίσθημα",
-        "video",
-        "editing"
+        "καθηγήτρια"
       ],
       "org": "simasia",
       "source": {
@@ -2988,11 +3025,81 @@
     },
     {
       "id": "web_0074",
+      "title": "Ομάδα — SimasiaAI (5/7)",
+      "url": "/team",
+      "lang": "el",
+      "language": "el",
+      "content": "σύστημα startups και καινοτομίας.\nΗ Έλενα χαράζει τη στρατηγική marketing της SimasiaAI και φροντίζει το fλow να φτάνει στους οργανισμούς που το χρειάζονται. Με 7+ χρόνια εμπειρίας στο οικοσύστημα startups και καινοτομίας σε όλη την Ευρώπη, ξέρει πώς μια νέα τεχνολογία γίνεται ιστορία που κερδίζει εμπιστοσύνη: σε επενδυτές, συνεργάτες και, πάνω απ᾽ όλα, στους ανθρώπους που φροντίζουν άλλους. Συνδέει το προϊόν με την αγορά, χτίζει τη φωνή μας σε κάθε κανάλι και ανοίγει πόρτες σε ΜΚΟ, κλινικές και χορηγούς σε Ελλάδα και Κύπρο, μετρώντας τι πραγματικά φέρνει αποτέλεσμα.\nMarketing Strategy\nGo-to-Market\nStartup & Innovation Ecosystem\nBrand Communication\nΠαντελής Νικολόπουλος\nStoryteller & Content Creator\nStoryteller & Content Creator, εστιάζοντας στην ανθρωποκεντρική επικοινωνία της AI τεχνολογίας.\nΟ Παντελής είναι ο δημιουργικός πυρήνας πίσω από την επικοινωνία και την ταυτότητα της SimasiaAI. Ως Storyteller και Content Creator, εξειδικεύεται στη δημιουργία αυθεντικού περιεχομένου με συναίσθημα και ξεκάθαρο σκοπό.\nContent Strategy\nBrand Storytelling\nCreative Writing\nMedia Creation\nΣωτήρης\nVideographer · Photographer · Editor\nVideographer, Photographer και Editor με 5+ χρόνια εμπειρίας",
+      "category": "company",
+      "keywords": [
+        "team",
+        "ομαδα",
+        "founders",
+        "ιδρυτες",
+        "ceo",
+        "την",
+        "content",
+        "simasiaai",
+        "που",
+        "storyteller",
+        "creator",
+        "startups",
+        "καινοτομίας",
+        "marketing",
+        "στους",
+        "χρόνια",
+        "εμπειρίας",
+        "strategy",
+        "brand"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "page_i18n"
+      },
+      "priority": 1
+    },
+    {
+      "id": "web_0075",
+      "title": "Ομάδα — SimasiaAI (6/7)",
+      "url": "/team",
+      "lang": "el",
+      "language": "el",
+      "content": "gy\nBrand Storytelling\nCreative Writing\nMedia Creation\nΣωτήρης\nVideographer · Photographer · Editor\nVideographer, Photographer και Editor με 5+ χρόνια εμπειρίας — δίνει πρόσωπο, φως και συναίσθημα στην τεχνολογία μας.\nΟ Σωτήρης είναι αυτός που δίνει πρόσωπο, φως και συναίσθημα στην τεχνολογία μας. Με 5+ χρόνια εμπειρίας στο video, τη φωτογραφία και το editing, έχει το σπάνιο χάρισμα να μετατρέπει αφηρημένες έννοιες σε δυνατές οπτικές αφηγήσεις. Με απόλυτη εμμονή στην αισθητική λεπτομέρεια και αγάπη για το storytelling, εξασφαλίζει ότι το μήνυμα της SimasiaAI δεν ακούγεται απλώς, αλλά αποτυπώνεται στο βλέμμα και τη μνήμη του θεατή.\nVideo Production\nPhotography\nEditing\nVisual Storytelling\nΑνθρωποκεντρικότητα\nΟ σχεδιασμός μας ξεκινά και τελειώνει με την ανθρώπινη εμπειρία, όχι με την τεχνολογία. Θέτουμε τις ανάγκες των ασθενών στο επίκεντρο κάθε γραμμής κώδικα.\nΥπευθυνότητα & Συμμόρφωση\nΠλήρης εναρμόνιση με το EU AI Act σε κάθε υλοποίηση. Εγγυόμαστε απόλυτη ασφάλεια δεδομένων, διαφάνεια αποφάσεων και σεβασμό στην ιδιωτικότητα.\nΟικολογική Καινοτομία\nEco-Friendly Optimized RAG: Εφαρμόζουμε πράσινες τεχνολογίες για να ελαχιστοποιήσουμε το ενεργειακό αποτύπωμα των γλωσσικών μοντέλων.\nΜε Επ",
+      "category": "company",
+      "keywords": [
+        "team",
+        "ομαδα",
+        "founders",
+        "ιδρυτες",
+        "ceo",
+        "στην",
+        "storytelling",
+        "τεχνολογία",
+        "μας",
+        "simasiaai",
+        "σωτήρης",
+        "videographer",
+        "photographer",
+        "editor",
+        "χρόνια",
+        "εμπειρίας",
+        "δίνει",
+        "πρόσωπο",
+        "φως"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "page_i18n"
+      },
+      "priority": 1
+    },
+    {
+      "id": "web_0076",
       "title": "Ομάδα — SimasiaAI (7/7)",
       "url": "/team",
       "lang": "el",
       "language": "el",
-      "content": "λαχιστοποιήσουμε το ενεργειακό αποτύπωμα των γλωσσικών μοντέλων.\nΜε Επίκεντρο την Ελλάδα\nΣχεδιάζουμε ειδικά για την ελληνική γλώσσα, υποστηρίζοντας τοπικές ιδιαιτερότητες, ορολογία και πολιτισμικές αποχρώσεις.",
+      "content": "ικολογική Καινοτομία\nEco-Friendly Optimized RAG: Εφαρμόζουμε πράσινες τεχνολογίες για να ελαχιστοποιήσουμε το ενεργειακό αποτύπωμα των γλωσσικών μοντέλων.\nΜε Επίκεντρο την Ελλάδα\nΣχεδιάζουμε ειδικά για την ελληνική γλώσσα, υποστηρίζοντας τοπικές ιδιαιτερότητες, ορολογία και πολιτισμικές αποχρώσεις.",
       "category": "company",
       "keywords": [
         "team",
@@ -3003,17 +3110,17 @@
         "την",
         "ομάδα",
         "simasiaai",
-        "λαχιστοποιήσουμε",
+        "ικολογική",
+        "καινοτομία",
+        "eco-friendly",
+        "optimized",
+        "rag",
+        "εφαρμόζουμε",
+        "πράσινες",
+        "τεχνολογίες",
+        "ελαχιστοποιήσουμε",
         "ενεργειακό",
-        "αποτύπωμα",
-        "γλωσσικών",
-        "μοντέλων",
-        "επίκεντρο",
-        "ελλάδα",
-        "σχεδιάζουμε",
-        "ειδικά",
-        "ελληνική",
-        "γλώσσα"
+        "αποτύπωμα"
       ],
       "org": "simasia",
       "source": {
@@ -3022,7 +3129,7 @@
       "priority": 1
     },
     {
-      "id": "web_0075",
+      "id": "web_0077",
       "title": "Νέα & Άρθρα",
       "url": "/news",
       "lang": "el",
@@ -3056,12 +3163,12 @@
       "priority": 1
     },
     {
-      "id": "web_0076",
+      "id": "web_0078",
       "title": "Team — SimasiaAI (1/6)",
       "url": "/team",
       "lang": "en",
       "language": "en",
-      "content": "SimasiaAI\nOur Team\nThe people, the principles, and the mission behind SimasiaAI's technological excellence.\nExecutive Leadership\n\"Artificial intelligence gains value when it is designed with\nthe human as its standard\n— and operates with transparency, responsibility, and scientific precision.\"\nProfessor Stergios Chatzikyriakidis\nCo-founder & CEO\nProfessor of Computational Linguistics Stergios Chatzikyriakidis brings to SimasiaAI two decades of international academic and entrepreneurial experience. With positions at some of Europe's most recognized institutions (University of London, CNRS, University of Gothenburg) and having served as Deputy Director of the CLASP Centre of Excellence, he is a leading figure in Natural Language Processing (NLP). His work includes 4 monographs, 120+ scientific papers with systematic contributions to Greek NLP, and the creation of over 30 ready-to-market AI applications, ensuring SimasiaAI's scientific rigor and technological excellence.\nCo-Founders & Strategic Team\nClick on a photo or card to flip it and see the full CV and expertise.\nView CV ↻\nGo back ↺\nExpertise:\nOur Principles\nFour principles that shape every decision we make.\nOur Mission\nWe do not",
+      "content": "SimasiaAI\nOur Team\nThe people, the principles, and the mission behind SimasiaAI's technological excellence.\nExecutive Leadership\n\"Artificial intelligence gains value when it is designed with\nthe human as its standard\n— and operates with transparency, responsibility, and scientific precision.\"\nProfessor Stergios Chatzikyriakidis\nCo-founder & CEO\nProfessor of Computational Linguistics Stergios Chatzikyriakidis brings to SimasiaAI two decades of international academic and entrepreneurial experience. With positions at some of Europe's most recognized institutions (University of London, CNRS, University of Gothenburg) and having served as Deputy Director of the CLASP Centre of Excellence, he is a leading figure in Natural Language Processing (NLP). His work includes 4 monographs, 120+ scientific papers with systematic contributions to Greek NLP, and the creation of over 30 ready-to-market AI applications, ensuring SimasiaAI's scientific rigor and technological excellence.\nCo-Founders & Strategic Team\nClick on a photo or card to flip it and see the full CV and expertise.\nView CV ↻\nGo back ↺\nExpertise:\nOur Principles\nFour principles that shape every decision we make.\nOur Mission\nWe are no",
       "category": "company",
       "keywords": [
         "team",
@@ -3090,12 +3197,12 @@
       "priority": 1
     },
     {
-      "id": "web_0077",
+      "id": "web_0079",
       "title": "Team — SimasiaAI (2/6)",
       "url": "/team",
       "lang": "en",
       "language": "en",
-      "content": "lip it and see the full CV and expertise.\nView CV ↻\nGo back ↺\nExpertise:\nOur Principles\nFour principles that shape every decision we make.\nOur Mission\nWe do not design a simple answering machine. We built DialogosAI — a human-centered assistant that develops authentic, safe, adapted dialogue with patients, with respect for the Greek language, accessibility for everyone, and responsibility for technology that serves real needs.\nStergios Chatzikyriakidis\nCo-founder & CEO, SimasiaAI\nProfessor of Computational Linguistics with 20 years of international experience (London, Gothenburg, CLASP).\nProfessor of Computational Linguistics Stergios Chatzikyriakidis brings to SimasiaAI two decades of international academic and entrepreneurial experience. With positions at some of Europe's most recognized institutions (University of London, CNRS, University of Gothenburg) and having served as Deputy Director of the CLASP Centre of Excellence, he is a leading figure in Natural Language Processing (NLP). His work includes 4 monographs, 120+ scientific papers, and the creation of over 30 ready-to-market AI applications.\nComputational Linguistics\nNatural Language Processing (NLP)\nAI Architecture\nResea",
+      "content": "lip it and see the full CV and expertise.\nView CV ↻\nGo back ↺\nExpertise:\nOur Principles\nFour principles that shape every decision we make.\nOur Mission\nWe are not building another answering machine. We build fλow: Dialogue, Action and Record in one flow, for the people who care for others. DialogosAI speaks with respect for the Greek language, only from approved sources. PraxisAI takes on the routine, so there is time left for people. MetronAI measures what changed, so the impact shows. People always decide; technology serves. The human is our measure.\nStergios Chatzikyriakidis\nCo-founder & CEO, SimasiaAI\nProfessor of Computational Linguistics with 20 years of international experience (London, Gothenburg, CLASP).\nProfessor of Computational Linguistics Stergios Chatzikyriakidis brings to SimasiaAI two decades of international academic and entrepreneurial experience. With positions at some of Europe's most recognized institutions (University of London, CNRS, University of Gothenburg) and having served as Deputy Director of the CLASP Centre of Excellence, he is a leading figure in Natural Language Processing (NLP). His work includes 4 monographs, 120+ scientific papers, and the creatio",
       "category": "company",
       "keywords": [
         "team",
@@ -3104,19 +3211,19 @@
         "ιδρυτες",
         "ceo",
         "simasiaai",
-        "language",
-        "computational",
-        "linguistics",
-        "expertise",
         "our",
+        "people",
+        "expertise",
         "principles",
+        "language",
         "stergios",
         "chatzikyriakidis",
         "professor",
+        "computational",
+        "linguistics",
         "international",
         "experience",
-        "london",
-        "gothenburg"
+        "london"
       ],
       "org": "simasia",
       "source": {
@@ -3125,12 +3232,12 @@
       "priority": 1
     },
     {
-      "id": "web_0078",
+      "id": "web_0080",
       "title": "Team — SimasiaAI (3/6)",
       "url": "/team",
       "lang": "en",
       "language": "en",
-      "content": "cientific papers, and the creation of over 30 ready-to-market AI applications.\nComputational Linguistics\nNatural Language Processing (NLP)\nAI Architecture\nResearch & Development\nDimitris Papadakis\nCo-founder & Head of Sales\nLinguist (M.A. NLP) with research published at international AI conferences and experience at LORIA (France).\nAt SimasiaAI, Dimitris bridges the world of advanced AI technology with business development and sales strategy. He holds a distinguished M.A. in Linguistics (University of Crete) with extensive research experience in Greek NLP data development and publications at top international AI conferences (LREC, EACL).\nBusiness Development\nNLP Research\nSales Strategy\nProject Management\nGiannis\nCo-founder & CTO\nPhD candidate in Computer Science (San Francisco), specialist in data security and RAG architectures.\nGiannis leads the technological design and infrastructure of SimasiaAI. He is a PhD candidate in Computer Science based in San Francisco, specializing in privacy systems, data security, and reliable software infrastructure.\nFull Stack Development\nAI Security & Privacy\nRAG Architectures\nInfrastructure Scaling\nAssoc. Prof. Anastasia Natsina\nChief Communicatio",
+      "content": "CLASP Centre of Excellence, he is a leading figure in Natural Language Processing (NLP). His work includes 4 monographs, 120+ scientific papers, and the creation of over 30 ready-to-market AI applications.\nComputational Linguistics\nNatural Language Processing (NLP)\nAI Architecture\nResearch & Development\nDimitris Papadakis\nCo-founder & Head of Sales\nLinguist (M.A. NLP) with research published at international AI conferences and experience at LORIA (France).\nAt SimasiaAI, Dimitris bridges the world of advanced AI technology with business development and sales strategy. He holds a distinguished M.A. in Linguistics (University of Crete) with extensive research experience in Greek NLP data development and publications at top international AI conferences (LREC, EACL).\nBusiness Development\nNLP Research\nSales Strategy\nProject Management\nGiannis\nCo-founder & CTO\nPhD candidate in Computer Science (San Francisco), specialist in data security and RAG architectures.\nGiannis leads the technological design and infrastructure of SimasiaAI. He is a PhD candidate in Computer Science based in San Francisco, specializing in privacy systems, data security, and reliable software infrastructure.\nFull Sta",
       "category": "company",
       "keywords": [
         "team",
@@ -3138,20 +3245,20 @@
         "founders",
         "ιδρυτες",
         "ceo",
-        "development",
         "nlp",
         "research",
+        "development",
         "simasiaai",
         "sales",
         "data",
-        "security",
-        "infrastructure",
+        "natural",
+        "language",
+        "processing",
         "linguistics",
         "dimitris",
         "co-founder",
         "international",
-        "conferences",
-        "experience"
+        "conferences"
       ],
       "org": "simasia",
       "source": {
@@ -3160,12 +3267,12 @@
       "priority": 1
     },
     {
-      "id": "web_0079",
+      "id": "web_0081",
       "title": "Team — SimasiaAI (4/6)",
       "url": "/team",
       "lang": "en",
       "language": "en",
-      "content": "software infrastructure.\nFull Stack Development\nAI Security & Privacy\nRAG Architectures\nInfrastructure Scaling\nAssoc. Prof. Anastasia Natsina\nChief Communications Officer (CCO) & Co-Founder\nAssociate Professor at University of Crete, Oxford graduate and Constantine Trypanis Award recipient.\nAnastasia leads the strategic communications, public relations, and outreach of SimasiaAI. She is an Associate Professor of Modern Greek Literature and Chair of the Department of Philology at the University of Crete.\nStrategic Communications\nPublic Relations\nPublic Image\nText Composition\nElena Stefanatou\nMarketing Strategist\nMarketing & communication professional with 7+ years in Europe's startup and innovation ecosystem.\nElena shapes SimasiaAI's marketing strategy and makes sure fλow reaches the organisations that need it. With 7+ years in the startup and innovation ecosystem across Europe, she knows how a new technology becomes a story that earns trust: with investors, partners and, above all, the people who care for others. She connects the product with the market, builds our voice on every channel and opens doors to NGOs, clinics and sponsors in Greece and Cyprus, measuring what truly brings",
+      "content": "He is a PhD candidate in Computer Science based in San Francisco, specializing in privacy systems, data security, and reliable software infrastructure.\nFull Stack Development\nAI Security & Privacy\nRAG Architectures\nInfrastructure Scaling\nAssoc. Prof. Anastasia Natsina\nChief Communications Officer (CCO) & Co-Founder\nAssociate Professor at University of Crete, Oxford graduate and Constantine Trypanis Award recipient.\nAnastasia leads the strategic communications, public relations, and outreach of SimasiaAI. She is an Associate Professor of Modern Greek Literature and Chair of the Department of Philology at the University of Crete.\nStrategic Communications\nPublic Relations\nPublic Image\nText Composition\nElena Stefanatou\nMarketing Strategist\nMarketing & communication professional with 7+ years in Europe's startup and innovation ecosystem.\nElena shapes SimasiaAI's marketing strategy and makes sure fλow reaches the organisations that need it. With 7+ years in the startup and innovation ecosystem across Europe, she knows how a new technology becomes a story that earns trust: with investors, partners and, above all, the people who care for others. She connects the product with the market, bu",
       "category": "company",
       "keywords": [
         "team",
@@ -3178,84 +3285,15 @@
         "public",
         "she",
         "marketing",
+        "privacy",
+        "security",
         "infrastructure",
         "anastasia",
         "associate",
         "professor",
         "university",
         "crete",
-        "strategic",
-        "relations",
-        "elena"
-      ],
-      "org": "simasia",
-      "source": {
-        "type": "page_i18n"
-      },
-      "priority": 1
-    },
-    {
-      "id": "web_0080",
-      "title": "Team — SimasiaAI (5/6)",
-      "url": "/team",
-      "lang": "en",
-      "language": "en",
-      "content": "s the product with the market, builds our voice on every channel and opens doors to NGOs, clinics and sponsors in Greece and Cyprus, measuring what truly brings results.\nMarketing Strategy\nGo-to-Market\nStartup & Innovation Ecosystem\nBrand Communication\nPantelis Nikolopoulos\nStoryteller & Content Creator\nStoryteller & Content Creator, focusing on the human-centered communication of AI technology.\nPantelis is the creative core behind the communication and identity of SimasiaAI. As a Storyteller and Content Creator, he specializes in creating authentic content with emotion and clear purpose.\nContent Strategy\nBrand Storytelling\nCreative Writing\nMedia Creation\nSotiris\nVideographer · Photographer · Editor\nVideographer, Photographer and Editor with 5+ years of experience — giving our technology a face, light and emotion.\nSotiris is the one who gives our technology a face, light and emotion. With 5+ years of experience in video, photography and editing, he has the rare gift of transforming abstract concepts into powerful visual narratives. With an absolute obsession for aesthetic detail and a love for storytelling, he ensures that the message of SimasiaAI is not merely heard, but imprinted",
-      "category": "company",
-      "keywords": [
-        "team",
-        "ομαδα",
-        "founders",
-        "ιδρυτες",
-        "ceo",
-        "content",
-        "simasiaai",
-        "our",
-        "communication",
-        "storyteller",
-        "creator",
-        "technology",
-        "emotion",
-        "strategy",
-        "brand",
-        "pantelis",
-        "creative",
-        "storytelling",
-        "sotiris"
-      ],
-      "org": "simasia",
-      "source": {
-        "type": "page_i18n"
-      },
-      "priority": 1
-    },
-    {
-      "id": "web_0081",
-      "title": "Team — SimasiaAI (6/6)",
-      "url": "/team",
-      "lang": "en",
-      "language": "en",
-      "content": "atives. With an absolute obsession for aesthetic detail and a love for storytelling, he ensures that the message of SimasiaAI is not merely heard, but imprinted on the gaze and memory of the viewer.\nVideo Production\nPhotography\nEditing\nVisual Storytelling\nHuman-Centered Design\nOur design begins and ends with the human experience, not with technology. We place patient needs at the center of every line of code.\nResponsibility & Compliance\nFull alignment with the EU AI Act in every deployment. We guarantee absolute data security, decision transparency, and respect for privacy.\nEcological Innovation\nEco-Friendly Optimized RAG: We apply green technologies to minimize the energy footprint of language models.\nCentered on Greece\nWe design specifically for the Greek language, supporting local particularities, terminology, and cultural nuances.",
-      "category": "company",
-      "keywords": [
-        "team",
-        "ομαδα",
-        "founders",
-        "ιδρυτες",
-        "ceo",
-        "design",
-        "simasiaai",
-        "absolute",
-        "storytelling",
-        "not",
-        "every",
-        "language",
-        "atives",
-        "obsession",
-        "aesthetic",
-        "detail",
-        "love",
-        "ensures"
+        "strategic"
       ],
       "org": "simasia",
       "source": {
@@ -3265,6 +3303,75 @@
     },
     {
       "id": "web_0082",
+      "title": "Team — SimasiaAI (5/6)",
+      "url": "/team",
+      "lang": "en",
+      "language": "en",
+      "content": "chnology becomes a story that earns trust: with investors, partners and, above all, the people who care for others. She connects the product with the market, builds our voice on every channel and opens doors to NGOs, clinics and sponsors in Greece and Cyprus, measuring what truly brings results.\nMarketing Strategy\nGo-to-Market\nStartup & Innovation Ecosystem\nBrand Communication\nPantelis Nikolopoulos\nStoryteller & Content Creator\nStoryteller & Content Creator, focusing on the human-centered communication of AI technology.\nPantelis is the creative core behind the communication and identity of SimasiaAI. As a Storyteller and Content Creator, he specializes in creating authentic content with emotion and clear purpose.\nContent Strategy\nBrand Storytelling\nCreative Writing\nMedia Creation\nSotiris\nVideographer · Photographer · Editor\nVideographer, Photographer and Editor with 5+ years of experience — giving our technology a face, light and emotion.\nSotiris is the one who gives our technology a face, light and emotion. With 5+ years of experience in video, photography and editing, he has the rare gift of transforming abstract concepts into powerful visual narratives. With an absolute obsessio",
+      "category": "company",
+      "keywords": [
+        "team",
+        "ομαδα",
+        "founders",
+        "ιδρυτες",
+        "ceo",
+        "content",
+        "our",
+        "communication",
+        "storyteller",
+        "creator",
+        "technology",
+        "emotion",
+        "simasiaai",
+        "who",
+        "strategy",
+        "brand",
+        "pantelis",
+        "creative",
+        "sotiris"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "page_i18n"
+      },
+      "priority": 1
+    },
+    {
+      "id": "web_0083",
+      "title": "Team — SimasiaAI (6/6)",
+      "url": "/team",
+      "lang": "en",
+      "language": "en",
+      "content": "experience in video, photography and editing, he has the rare gift of transforming abstract concepts into powerful visual narratives. With an absolute obsession for aesthetic detail and a love for storytelling, he ensures that the message of SimasiaAI is not merely heard, but imprinted on the gaze and memory of the viewer.\nVideo Production\nPhotography\nEditing\nVisual Storytelling\nHuman-Centered Design\nOur design begins and ends with the human experience, not with technology. We place patient needs at the center of every line of code.\nResponsibility & Compliance\nFull alignment with the EU AI Act in every deployment. We guarantee absolute data security, decision transparency, and respect for privacy.\nEcological Innovation\nEco-Friendly Optimized RAG: We apply green technologies to minimize the energy footprint of language models.\nCentered on Greece\nWe design specifically for the Greek language, supporting local particularities, terminology, and cultural nuances.",
+      "category": "company",
+      "keywords": [
+        "team",
+        "ομαδα",
+        "founders",
+        "ιδρυτες",
+        "ceo",
+        "design",
+        "simasiaai",
+        "experience",
+        "video",
+        "photography",
+        "editing",
+        "visual",
+        "absolute",
+        "storytelling",
+        "not",
+        "every",
+        "language",
+        "has"
+      ],
+      "org": "simasia",
+      "source": {
+        "type": "page_i18n"
+      },
+      "priority": 1
+    },
+    {
+      "id": "web_0084",
       "title": "News & articles",
       "url": "/news",
       "lang": "en",
@@ -3296,7 +3403,7 @@
       "priority": 1
     }
   ],
-  "generatedAt": "2026-10-04T17:31:20.913Z",
+  "generatedAt": "2026-10-05T16:26:58.097Z",
   "source": "flow-pages+page-i18n+core-identity",
   "navbarRoutes": [
     "/",

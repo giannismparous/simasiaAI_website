@@ -112,6 +112,19 @@
       "content_en": "SimasiaAI has four co-founders:\n1) Professor Stergios Chatzikyriakidis — Co-founder & CEO, Professor of Computational Linguistics.\n2) Dimitris Papadakis — Co-founder & Head of Sales, linguist (M.A. NLP).\n3) Giannis — Co-founder & CTO, PhD candidate in Computer Science.\n4) Associate Professor Anastasia Natsina — Co-founder & CCO.\nTogether they build fλow, with care for the Greek language and accessibility. Do not close with a call-booking CTA on founders/team questions."
     },
     {
+      "id": "team_roles",
+      "title": "SimasiaAI — η ευρύτερη ομάδα (marketing, περιεχόμενο, βίντεο)",
+      "url": "/team",
+      "keywords": [
+        "ομαδα", "omada", "team", "ποιος κανει", "who does", "marketing", "μαρκετινγκ",
+        "επικοινωνια", "communication", "περιεχομενο", "content", "storyteller", "βιντεο",
+        "video", "videographer", "φωτογραφ", "photographer", "editor", "ελενα", "στεφανατου",
+        "stefanatou", "παντελης", "νικολοπουλος", "nikolopoulos", "σωτηρης", "sotiris"
+      ],
+      "content_el": "Εκτός από τους τέσσερις συνιδρυτές, στην ομάδα της SimasiaAI είναι:\n- Έλενα Στεφανάτου — Marketing Strategist: χαράζει τη στρατηγική marketing και επικοινωνίας (7+ χρόνια στο ευρωπαϊκό οικοσύστημα startups και καινοτομίας).\n- Παντελής Νικολόπουλος — Storyteller & Content Creator: γράφει και δημιουργεί το περιεχόμενό μας.\n- Σωτήρης — Videographer, Photographer & Editor: βίντεο, φωτογραφία και μοντάζ.\nΜην κλείνεις με πρόταση συνάντησης σε ερωτήσεις για την ομάδα.",
+      "content_en": "Besides the four co-founders, the SimasiaAI team includes:\n- Elena Stefanatou — Marketing Strategist: leads marketing and communication strategy (7+ years in Europe's startup and innovation ecosystem).\n- Pantelis Nikolopoulos — Storyteller & Content Creator: writes and creates our content.\n- Sotiris — Videographer, Photographer & Editor: video, photography and editing.\nDo not close with a call-booking CTA on team questions."
+    },
+    {
       "id": "naming_grammar",
       "title": "fλow — ονόματα, γένος, γραφή",
       "url": "/flow",

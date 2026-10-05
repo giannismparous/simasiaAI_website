@@ -29,7 +29,7 @@ const COPY = {
     source: 'Πηγή',
     you: 'Εσείς',
     foot: 'Το DialogosAI δηλώνει ότι είναι AI · απαντά μόνο από εγκεκριμένες πηγές · μπορεί να κάνει λάθη, γι᾽ αυτό ελέγχουμε κάθε μήνα',
-    sample: 'Δείγμα με δοκιμαστικά δεδομένα',
+    sample: 'Παράδειγμα',
     flowTitle: 'Μία ροή',
     flow: [
       { k: 'dialogos', name: 'DialogosAI', role: 'Λόγος', unit: ['απάντηση', 'απαντήσεις'] },
@@ -57,7 +57,7 @@ const COPY = {
     source: 'Source',
     you: 'You',
     foot: 'DialogosAI says it is an AI · answers only from approved sources · it can make mistakes, so we review it every month',
-    sample: 'Sample with test data',
+    sample: 'Example',
     flowTitle: 'One flow',
     flow: [
       { k: 'dialogos', name: 'DialogosAI', role: 'Logos', unit: ['answer', 'answers'] },

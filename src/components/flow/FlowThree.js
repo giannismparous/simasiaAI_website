@@ -4,6 +4,7 @@ import { MODULES } from './modules';
 import { MODULE_IDS } from './offerCatalog';
 import { euro } from './FlowParts';
 import './FlowThree.css';
+import HandInk from '../HandInk';
 
 /*
  * The three parts of fλow on the product page:
@@ -82,11 +83,14 @@ export const ThreeLayers = ({ c }) => {
 
 const Person = ({ doctor, on }) => (
   <svg className={`f3-person${doctor ? ' is-doc' : ''}${on ? ' is-on' : ''}`} viewBox="0 0 24 40" aria-hidden="true">
+      <HandInk id="ink-person" scale={1.4} freq={0.1} seed={2} />
+      <g filter="url(#ink-person)">
     <circle cx="12" cy="7" r="5.5" className="f3-head" />
     <path d="M3 38 V22 C3 16 6.5 14 12 14 C17.5 14 21 16 21 22 V38 Z" className="f3-body" />
     {doctor && <path d="M8 15 C8 22 10 25 12 25 C14 25 16 22 16 15" className="f3-steth" />}
     {doctor && <circle cx="12" cy="27" r="1.6" className="f3-steth-dot" />}
-  </svg>
+      </g>
+    </svg>
 );
 
 const useCount = (value, ms = 600) => {
