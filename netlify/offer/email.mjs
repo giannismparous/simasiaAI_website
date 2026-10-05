@@ -1,5 +1,6 @@
 /*
- * The two emails: the offer to the visitor (with the PDF) and the lead to contact@simasiaai.gr.
+ * The lead to contact@simasiaai.gr, with the PDF, for review. The team checks it and forwards it;
+ * clientEmail() is the ready-written message for the visitor, included in the lead to copy or forward.
  * Table layout with inline styles, so it reads well in Gmail, Outlook and phones.
  */
 import { COPY, COMPANY, BOOK_URL } from './copy.mjs';
@@ -74,7 +75,7 @@ ${time ? `<div style="font:14px ${FONT};color:#4f6b3a;margin-top:8px">${esc(time
   return { subject: m.subject(offer.contact.org), html, text };
 };
 
-/* The lead for the team, always in Greek */
+/* The lead for the team, always in Greek, with the visitor's message ready to forward */
 export const leadEmail = (offer) => {
   const p = offer.price;
   const who = COPY.el.who[offer.aud];
@@ -100,14 +101,22 @@ export const leadEmail = (offer) => {
   if (offer.time.month) add('Χρόνος που επιστρέφει', `${offer.time.month} ώρες/μήνα${offer.time.appts ? `, +${offer.time.appts} ραντεβού/μήνα` : ''}`);
   offer.answers.forEach(({ q, a }) => add(q, a));
 
-  const subject = `Νέα προσφορά fλow · ${offer.contact.org || offer.contact.name} · ${who} · ${priceLine(offer)}`;
+  const draft = clientEmail(offer);
+  const first = offer.contact.name.replace(/\.+$/, '');
+  const subject = `[ΠΡΟΣ ΕΛΕΓΧΟ] Προσφορά fλow · ${offer.contact.org || offer.contact.name} · ${who} · ${priceLine(offer)}`;
   const html = `<!doctype html><html lang="el"><head><meta charset="utf-8"></head><body style="margin:0;padding:20px;background:#f3f1ea;font:14px/1.5 ${FONT};color:${INK}">
 <div style="max-width:640px;margin:0 auto;background:#fff;border-radius:12px;padding:24px">
-<p style="margin:0 0 4px">${wordmark(22, INK)} <span style="color:${MUTED}">· νέα προσφορά από το site</span></p>
-<p style="margin:0 0 16px;color:#4f6b3a;font-weight:700">Το PDF στάλθηκε αυτόματα στο ${esc(offer.contact.email)}. Απαντήστε σε αυτό το email για να γράψετε απευθείας στον/στην ${esc(offer.contact.name.replace(/\.+$/, ''))}.</p>
+<p style="margin:0 0 4px">${wordmark(22, INK)} <span style="color:${MUTED}">· νέο αίτημα προσφοράς από το site</span></p>
+<p style="margin:0 0 16px;padding:12px 14px;background:#fdf1ec;border-left:4px solid ${ORANGE};font-weight:700">Προς έλεγχο: ΔΕΝ στάλθηκε στον πελάτη. Ελέγξτε το συνημμένο PDF και στείλτε το στο ${esc(offer.contact.email)} μέσα σε μία εργάσιμη, όπως υποσχεθήκαμε στο site. Πατώντας «Απάντηση» γράφετε απευθείας στον/στην ${esc(first)}, με το έτοιμο κείμενο πιο κάτω.</p>
 <table cellpadding="0" cellspacing="0" width="100%">${lines.map(([k, v]) => `<tr><td valign="top" style="padding:6px 12px 6px 0;color:${k.startsWith('***') ? '#b42318' : MUTED};font-weight:${k.startsWith('***') ? 700 : 400};width:38%">${esc(k)}</td><td valign="top" style="padding:6px 0;${k.startsWith('***') ? 'color:#b42318;font-weight:700' : ''}">${esc(v)}</td></tr>`).join('')}</table>
 ${offer.contact.phone ? `<p style="margin:16px 0 0"><a href="tel:${esc(offer.contact.phone.replace(/[^\d+]/g, ''))}" style="color:${ORANGE}">Κλήση ${esc(offer.contact.phone)}</a></p>` : ''}
+<div style="margin:24px 0 8px;padding-top:16px;border-top:2px dashed #e8e6dc;font:700 11px ${FONT};letter-spacing:1px;text-transform:uppercase;color:#b85f42">Έτοιμο κείμενο για τον πελάτη · θέμα: ${esc(draft.subject)}</div>
+<div style="white-space:pre-wrap;padding:14px 16px;background:#faf9f5;border:1px solid #e8e6dc;border-radius:10px">${esc(draft.text)}</div>
 </div></body></html>`;
-  const text = [`Νέα προσφορά fλow από το site. Το PDF στάλθηκε αυτόματα στο ${offer.contact.email}.`, '', ...lines.map(([k, v]) => `${k}: ${v}`)].join('\n');
+  const text = [
+    `ΠΡΟΣ ΕΛΕΓΧΟ: ΔΕΝ στάλθηκε στον πελάτη. Ελέγξτε το συνημμένο PDF και στείλτε το στο ${offer.contact.email} μέσα σε μία εργάσιμη.`, '',
+    ...lines.map(([k, v]) => `${k}: ${v}`), '',
+    `--- Έτοιμο κείμενο για τον πελάτη · θέμα: ${draft.subject} ---`, '', draft.text,
+  ].join('\n');
   return { subject, html, text };
 };

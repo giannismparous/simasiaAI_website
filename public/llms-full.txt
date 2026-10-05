@@ -51,7 +51,7 @@ The assistants were co-designed with the patient organisations: their members te
 ### Pricing and offers
 
 - Prices are not published on the website, because there are no fixed packages and every organisation is different. The price depends on the parts (DialogosAI, PraxisAI, MetronAI) and features chosen; the parts cost less together.
-- The offer is built on https://www.simasiaai.gr/go ("Go with the fλow"): a few questions about your day design a first fλow; you adjust parts and features, add your own requests (priced afterwards by the team), see the time that comes back, leave your email and receive the offer straight away as a PDF: the price for what you chose, the no-risk trial terms and next steps. You can also book a 30-minute call (/go#book).
+- The offer is built on https://www.simasiaai.gr/go ("Go with the fλow"): a few questions about your day design a first fλow; you adjust parts and features, add your own requests (priced afterwards by the team), see the time that comes back, leave your email and receive the offer as a PDF within one working day: the price for what you chose, the no-risk trial terms and next steps. You can also book a 30-minute call (/go#book).
 - There is a trial period and an accuracy guarantee (if it doesn't answer 90% of the agreed questions correctly, the subscription is free until it does). Practices and clinics: live in 48 hours, or free.
 - Sponsors (pharma, CSR, foundations) fund fλow (DialogosAI + MetronAI, PraxisAI optional) for organisations, with a quarterly impact report and a disclosure file (SFEE/EFPIA).
 
@@ -138,7 +138,7 @@ AI company Greece · AI startup Athens · Greek AI company with social impact ·
 ### Τιμές και προσφορά
 
 - Οι τιμές δεν δημοσιεύονται στο site, γιατί δεν υπάρχουν σταθερά πακέτα και κάθε οργανισμός είναι διαφορετικός. Η τιμή εξαρτάται από τα μέρη (DialogosAI, PraxisAI, MetronAI) και τις λειτουργίες που επιλέγετε· μαζί τα μέρη κοστίζουν λιγότερο.
-- Η προσφορά φτιάχνεται στο https://www.simasiaai.gr/go («Go with the fλow»): λίγες ερωτήσεις για τη μέρα σας σχεδιάζουν ένα πρώτο fλow, ρυθμίζετε μέρη και λειτουργίες, προσθέτετε δικά σας αιτήματα (τα κοστολογεί μετά η ομάδα), βλέπετε τον χρόνο που σας επιστρέφει, γράφετε το email σας και λαμβάνετε αμέσως την προσφορά σε PDF: τιμή για όσα διαλέξατε, όρους δοκιμής χωρίς ρίσκο και επόμενα βήματα. Μπορείτε και να κλείσετε συνάντηση 30 λεπτών (/go#book).
+- Η προσφορά φτιάχνεται στο https://www.simasiaai.gr/go («Go with the fλow»): λίγες ερωτήσεις για τη μέρα σας σχεδιάζουν ένα πρώτο fλow, ρυθμίζετε μέρη και λειτουργίες, προσθέτετε δικά σας αιτήματα (τα κοστολογεί μετά η ομάδα), βλέπετε τον χρόνο που σας επιστρέφει, γράφετε το email σας και λαμβάνετε την προσφορά σε PDF μέσα σε μία εργάσιμη: τιμή για όσα διαλέξατε, όρους δοκιμής χωρίς ρίσκο και επόμενα βήματα. Μπορείτε και να κλείσετε συνάντηση 30 λεπτών (/go#book).
 - Υπάρχει δοκιμαστική περίοδος και εγγύηση ακρίβειας (αν δεν απαντά σωστά στο 90% των ερωτήσεων που συμφωνήσαμε, η συνδρομή είναι δωρεάν μέχρι να το πετύχει). Ιατρεία και κλινικές: σε λειτουργία μέσα σε 48 ώρες ή δωρεάν.
 - Χορηγοί (φαρμακευτικές, CSR, ιδρύματα): χρηματοδοτούν το fλow (DialogosAI + MetronAI, προαιρετικά PraxisAI) για οργανισμούς, με τριμηνιαία αναφορά αποτυπώματος και φάκελο γνωστοποίησης (ΣΦΕΕ/EFPIA).
 

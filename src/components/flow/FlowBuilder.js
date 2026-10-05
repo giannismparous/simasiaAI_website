@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ClinicIllustration, NgoIllustration } from '../GateIllustrations';
-import { sendContactEmail, isEmailJsConfigured } from '../../services/emailService';
+import { sendContactEmail } from '../../services/emailService';
 import { requestOffer, EMAIL_RX } from '../../services/offerService';
 import { builderCopy } from './builderContent';
 import { threeContent } from './flowThreeContent';
@@ -19,7 +19,8 @@ import HandInk from '../HandInk';
  * requests (unpriced, marked for pricing), see the time that comes back, and get
  * the offer. No fixed packages and no prices on the page: the visitor leaves an
  * email, and the server (netlify/functions/send-offer.mjs) prices the choices and
- * emails a branded PDF offer, with a copy of the lead to contact@simasiaai.gr.
+ * emails the PDF offer with the lead to contact@simasiaai.gr; the team reviews it
+ * and sends it to the visitor within one working day.
  * Right: the live flow.
  */
 
@@ -360,14 +361,13 @@ const FlowBuilder = ({ onSummary }) => {
     if (!form.name.trim() || !EMAIL_RX.test(email) || !form.consent) { setStatus({ state: 'invalid', mailto: '', email: '' }); return; }
     setStatus({ state: 'sending', mailto: '', email });
     try {
-      const res = await requestOffer(offerPayload());
+      await requestOffer(offerPayload());
       setStatus({ state: 'sent', mailto: '', email });
-      if (res && res.lead === false && isEmailJsConfigured()) sendLeadBackup('Η προσφορά στάλθηκε αυτόματα στον πελάτη. Το αντίγραφο για την ομάδα δεν έφτασε, γι᾽ αυτό αυτό το μήνυμα.').catch(() => {});
     } catch (err) {
       if (err.status === 429) { setStatus({ state: 'tooMany', mailto: '', email }); return; }
       if (err.status === 400) { setStatus({ state: 'invalid', mailto: '', email: '' }); return; }
       try {
-        await sendLeadBackup('*** Η ΑΥΤΟΜΑΤΗ ΠΡΟΣΦΟΡΑ ΔΕΝ ΣΤΑΛΘΗΚΕ. Στείλτε την προσφορά χειροκίνητα σε μία εργάσιμη. ***');
+        await sendLeadBackup('*** ΤΟ PDF ΤΗΣ ΠΡΟΣΦΟΡΑΣ ΔΕΝ ΔΗΜΙΟΥΡΓΗΘΗΚΕ. Ετοιμάστε την προσφορά χειροκίνητα και στείλτε την σε μία εργάσιμη. ***');
         setStatus({ state: 'queued', mailto: '', email });
       } catch (err2) {
         const mailto = `mailto:contact@simasiaai.gr?subject=${encodeURIComponent(`fλow · ${c.who[aud].name} · ${form.org || form.name}`)}&body=${encodeURIComponent(offerText().slice(0, 1800))}`;
